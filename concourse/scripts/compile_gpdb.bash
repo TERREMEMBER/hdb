@@ -60,6 +60,9 @@ function install_deps() {
 function link_python() {
   tar xf python-tarball/python-*.tar.gz -C $(pwd)/${GPDB_SRC_PATH}/gpAux/ext
   ln -sf $(pwd)/${GPDB_SRC_PATH}/gpAux/ext/${BLD_ARCH}/python-2.7.12 /opt/python-2.7.12
+  ln -sf $(pwd)/${GPDB_SRC_PATH}/gpAux/ext/${BLD_ARCH}/python-2.7.12 /usr/local/python2.7
+  ln -sf $(pwd)/${GPDB_SRC_PATH}/gpAux/ext/${BLD_ARCH}/python-2.7.12/include/python2.7 /usr/include/python2.7
+  ln -sf $(pwd)/${GPDB_SRC_PATH}/gpAux/ext/${BLD_ARCH}/python-2.7.12/lib/libpython2.7.so $(pwd)/${GPDB_SRC_PATH}/gpAux/ext/${BLD_ARCH}/lib/libpython2.7.so
 }
 
 function generate_build_number() {
@@ -236,7 +239,7 @@ function _main() {
       fetch_orca_src "${ORCA_TAG}"
       build_xerces
       build_and_test_orca
-      install_deps
+      #install_deps
       link_python
       ;;
     win32)
@@ -271,7 +274,7 @@ function _main() {
       unittest_check_gpdb
   fi
   include_zstd
-  include_quicklz
+  # include_quicklz
   include_libstdcxx
   export_gpdb
   export_gpdb_extensions
