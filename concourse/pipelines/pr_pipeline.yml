@@ -45,13 +45,6 @@ resources:
     regex: 'python-(?P<version>2\.7\.12).tar.gz'
     uri: 'http://10.221.129.153:8088/python-{version}.tar.gz'
 
-- name: gpdb-gpraca
-  type: http
-  source:
-    index: http://10.221.129.153:8088
-    regex: 'gporca-(?P<version>3\.92\.0).tar.gz'
-    uri: 'http://10.221.129.153:8088/gporca-{version}.tar.gz"
-
 jobs:
 - name: compile_and_test_gpdb
   public: true
@@ -67,7 +60,6 @@ jobs:
 #      resource: libsigar-centos7
     - get: python-tarball
       resource: python-centos7
-    - get: gpdb-gpraca
 
 #  - put: gpdb_pr
 #    params:
