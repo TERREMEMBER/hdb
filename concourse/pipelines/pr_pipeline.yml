@@ -45,6 +45,13 @@ resources:
     regex: 'python-(?P<version>2\.7\.12).tar.gz'
     uri: 'http://10.221.129.153:8088/python-{version}.tar.gz'
 
+- name: gpdb-gpraca
+  type: http
+  source:
+    index: http://10.221.129.153:8088
+    regex: 'gporca-(?P<version>3\.92\.0).tar.gz'
+    uri: 'http://10.221.129.153:8088/gporca-{version}.tar.gz"
+
 jobs:
 - name: compile_and_test_gpdb
   public: true
@@ -60,6 +67,7 @@ jobs:
 #      resource: libsigar-centos7
     - get: python-tarball
       resource: python-centos7
+    - get: gpdb-gpraca
 
 #  - put: gpdb_pr
 #    params:
@@ -92,8 +100,8 @@ jobs:
             cd gpdb_src &&
             #git fetch http://10.110.27.118/fanwenchang/hdb.git --tags &&
             git fetch http://oauth2:GotJADg5KkyfSzNesG35@git.inspur.com/fanwenchang/hdb.git --tags &&
-            git branch 6X_STABLE_test &&
-            git checkout 6X_STABLE_test &&
+            git branch 6X_STABLE_test2 &&
+            git checkout 6X_STABLE_test2 &&
             git submodule update --init --recursive
         inputs: [{ name: gpdb_pr }]
         outputs: [{ name: gpdb_src }]

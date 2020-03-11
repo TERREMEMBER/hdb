@@ -4,6 +4,7 @@ image_resource:
 inputs:
   - name: gpdb_src
   - name: python-tarball
+  - name: gpdb-gpraca
 outputs:
   - name: gpdb_artifacts
 run:

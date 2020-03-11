@@ -210,7 +210,8 @@ function fetch_orca_src {
   local orca_tag="${1}"
 
   mkdir orca_src
-  wget --quiet --output-document=- "https://github.com/greenplum-db/gporca/archive/${orca_tag}.tar.gz" \
+  #wget --quiet --output-document=- "https://github.com/greenplum-db/gporca/archive/${orca_tag}.tar.gz" \
+  wget --quiet --output-document=- "http://10.221.129.153:8088/gporca-3.92.0.tar.gz" \
     | tar xzf - --strip-components=1 --directory=orca_src
 }
 
