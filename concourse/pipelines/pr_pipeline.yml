@@ -66,17 +66,17 @@ jobs:
 #      path: gpdb_pr
 #      status: pending
   - # "do" the remaining steps with these hooks:
-    on_failure:
-      put: gpdb_pr
-      params:
-        path: gpdb_pr
-        status: failure
-    on_success:
-      put: report_pr_success
-      resource: gpdb_pr
-      params:
-        path: gpdb_pr
-        status: success
+#    on_failure:
+#      put: gpdb_pr
+#      params:
+#        path: gpdb_pr
+#        status: failure
+#    on_success:
+#      put: report_pr_success
+#      resource: gpdb_pr
+#      params:
+#        path: gpdb_pr
+#        status: success
     do:
     - task: init gpdb_src  # Fetch tags and submodules, because the PR resource doesn't.
       image: gpdb6-centos7-build
