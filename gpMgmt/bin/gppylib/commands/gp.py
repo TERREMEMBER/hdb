@@ -9,10 +9,6 @@ TODO: docs!
 import os, pickle, base64, time
 import os.path
 import pipes
-try:
-    import subprocess32 as subprocess
-except:
-    import subprocess
 
 import re, socket
 
@@ -570,7 +566,7 @@ class GpSegStartArgs(CmdArgs):
         @param timeout - seconds to wait before giving up
         """
         default_args = [
-            "$GPHOME/sbin/gpsegstart.py",
+            "$GPHOME/sbin/hdbsegstart.py",
             "-M", str(mirrormode),
             "-V '%s'" % gpversion,
             "-n", str(num_cids),
@@ -661,7 +657,7 @@ class GpSegStopCmd(Command):
         else:
             setverbose=""
 
-        self.cmdStr="$GPHOME/sbin/gpsegstop.py %s -D %s -m %s -t %s -V '%s'"  %\
+        self.cmdStr="$GPHOME/sbin/hdbsegstop.py %s -D %s -m %s -t %s -V '%s'"  %\
                         (setverbose,dirstr,mode,timeout,version)
 
         if (logfileDirectory):
@@ -713,7 +709,7 @@ class GpStandbyStart(MasterStart, object):
 #-----------------------------------------------
 class GpStart(Command):
     def __init__(self, name, masterOnly=False, restricted=False, verbose=False,ctxt=LOCAL, remoteHost=None):
-        self.cmdStr="$GPHOME/bin/gpstart -a"
+        self.cmdStr="$GPHOME/bin/hdbstart -a"
         if masterOnly:
             self.cmdStr += " -m"
             self.propagate_env_map['GPSTART_INTERNAL_MASTER_ONLY'] = 1
@@ -731,7 +727,7 @@ class GpStart(Command):
 #-----------------------------------------------
 class NewGpStart(Command):
     def __init__(self, name, masterOnly=False, restricted=False, verbose=False,nostandby=False,ctxt=LOCAL, remoteHost=None, masterDirectory=None):
-        self.cmdStr="$GPHOME/bin/gpstart -a"
+        self.cmdStr="$GPHOME/bin/hdbstart -a"
         if masterOnly:
             self.cmdStr += " -m"
             self.propagate_env_map['GPSTART_INTERNAL_MASTER_ONLY'] = 1
@@ -756,7 +752,7 @@ class NewGpStart(Command):
 #-----------------------------------------------
 class NewGpStop(Command):
     def __init__(self, name, masterOnly=False, restart=False, fast=False, force=False, verbose=False, ctxt=LOCAL, remoteHost=None):
-        self.cmdStr="$GPHOME/bin/gpstop -a"
+        self.cmdStr="$GPHOME/bin/hdbstop -a"
         if masterOnly:
             self.cmdStr += " -m"
         if verbose or logging_is_verbose():
@@ -777,7 +773,7 @@ class NewGpStop(Command):
 #-----------------------------------------------
 class GpStop(Command):
     def __init__(self, name, masterOnly=False, verbose=False, quiet=False, restart=False, fast=False, force=False, datadir=None, parallel=None, reload=False, ctxt=LOCAL, remoteHost=None, logfileDirectory=False):
-        self.cmdStr="$GPHOME/bin/gpstop -a"
+        self.cmdStr="$GPHOME/bin/hdbstop -a"
         if masterOnly:
             self.cmdStr += " -m"
         if restart:
@@ -821,25 +817,17 @@ class ModifyConfSetting(Command):
 
 class ModifyPgHbaConfSetting(Command):
     def __init__(self, name, file, ctxt, remoteHost, addresses, is_hba_hostnames):
-        username = getUserName()
-        # Add a samehost replication entry to support single-host development.
-        hba_content = "\nhost replication {username} samehost trust".format(username=username)
+        hba_content = ""
 
         for address in addresses:
             if is_hba_hostnames:
-                hba_content += "\nhost all {username} {hostname} trust".format(username=username, hostname=address)
-                hba_content += "\nhost replication {username} {hostname} trust".format(username=username, hostname=address)
+                hba_content += "\nhost all {0} {1} trust".format(getUserName(), address)
             else:
                 ips = InterfaceAddrs.remote('get mirror ips', address)
                 for ip in ips:
                     cidr_suffix = '/128' if ':' in ip else '/32'
                     cidr = ip + cidr_suffix
-                    hba_content += "\nhost all {username} {cidr} trust".format(username=username, cidr=cidr)
-                if_addrs = IfAddrs.list_addrs(address)
-                for ip in if_addrs:
-                    cidr_suffix = '/128' if ':' in ip else '/32'
-                    cidr = ip + cidr_suffix
-                    hba_content += "\nhost replication {username} {cidr} trust".format(username=username, cidr=cidr)
+                    hba_content += "\nhost all {0} {1} trust".format(getUserName(), cidr)
 
         # You might think you can substitute the primary and mirror addresses
         # with the new primary and mirror addresses, but what if they were the
@@ -1146,7 +1134,7 @@ def get_masterport(datadir):
 
 ######
 def check_permissions(username):
-    logger.debug("--Checking that current user can use GP binaries")
+    logger.debug("--Checking that current user can use HTAP binaries")
     chk_gpdb_id(username)
 
 
@@ -1577,20 +1565,6 @@ class GpRecoverSeg(Command):
        cmdStr = "$GPHOME/bin/gprecoverseg %s" % (options)
        Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 
-class IfAddrs:
-    @staticmethod
-    def list_addrs(hostname=None, include_loopback=False):
-        cmd = ['%s/libexec/ifaddrs' % GPHOME]
-        if not include_loopback:
-            cmd.append('--no-loopback')
-        if hostname:
-            args = ['ssh', '-n', hostname]
-            args.append(' '.join(cmd))
-        else:
-            args = cmd
-
-        result = subprocess.check_output(args)
-        return result.splitlines()
 
 if __name__ == '__main__':
 
