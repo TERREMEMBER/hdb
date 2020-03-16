@@ -17,6 +17,7 @@ use File::Spec;
 use File::Temp ();
 use IPC::Run;
 use SimpleTee;
+use Commoninfo;
 
 # specify a recent enough version of Test::More  to support the note() function
 use Test::More 0.82;
@@ -374,7 +375,8 @@ sub program_help_ok
 	print("# Running: $cmd --help\n");
 	my $result = run [ $cmd, '--help' ], '>', \$stdout, '2>', \$stderr;
 	ok($result, "$cmd --help exit code 0");
-	isnt($stdout, '', "$cmd --help goes to stdout");
+	#isnt($stdout, '', "$cmd --help goes to stdout");
+        is($stdout,$Commoninfo::help_info[$cmd]->[1],"$cmd --help goes to stdout");
 	is($stderr, '', "$cmd --help nothing to stderr");
 }
 
@@ -385,8 +387,9 @@ sub program_version_ok
 	print("# Running: $cmd --version\n");
 	my $result = run [ $cmd, '--version' ], '>', \$stdout, '2>', \$stderr;
 	ok($result, "$cmd --version exit code 0");
-	isnt($stdout, '', "$cmd --version goes to stdout");
-	is($stderr, '', "$cmd --version nothing to stderr");
+	#isnt($stdout, '', "$cmd --version goes to stdout");
+	is($stdout,$Commoninfo::version_info[$cmd]->[1],"$cmd --version goes to stdout");
+        is($stderr, '', "$cmd --version nothing to stderr");
 }
 
 sub program_options_handling_ok
