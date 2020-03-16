@@ -17,7 +17,7 @@ PROGRAMS= analyzedb gpactivatestandby gpaddmirrors gpcheckcat gpcheckperf \
 	gpinitsystem gpload gpload.py gplogfilter gpmovemirrors \
 	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys gpstart \
 	gpstate gpstop gpsys1 minirepro \
-        hdbinitsystem hdbscp
+        hdbinitsystem hdbscp gpssh
 
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)/lib'
