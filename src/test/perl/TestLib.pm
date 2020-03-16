@@ -306,6 +306,12 @@ sub issues_sql_like
 	my $result = run_log($cmd);
 	ok($result, "@$cmd exit code 0");
 	my $log = slurp_file($test_server_logfile);
+	print("cmd:$cmd\n");
+	print("expected_sql:$expected_sql\n");
+	print("test_name:$test_name\n");
+	print("result:$result\n");
+	print("test_server_logfile:$test_server_logfile\n");
+	print("log:$log\n");
 	like($log, $expected_sql, "$test_name: SQL found in server log");
 }
 
@@ -346,6 +352,9 @@ sub command_fails
 {
 	my ($cmd, $test_name) = @_;
 	my $result = run_log($cmd);
+	print("cmd:$cmd\n");
+	print("test_name:$test_name\n");
+	print("result:$result\n");
 	ok(!$result, $test_name);
 }
 
@@ -376,7 +385,16 @@ sub program_help_ok
 	my $result = run [ $cmd, '--help' ], '>', \$stdout, '2>', \$stderr;
 	ok($result, "$cmd --help exit code 0");
 	#isnt($stdout, '', "$cmd --help goes to stdout");
-        is($stdout,$Commoninfo::help_info[$cmd]->[1],"$cmd --help goes to stdout");
+	my $len = scalar(@Commoninfo::help_info);
+        for(my $i=0; $i<$len; $i++)
+        {
+	    if("$Commoninfo::help_info[$i][0]" eq "$cmd")
+	    {    
+	        is($stdout,$Commoninfo::help_info[$i][1],"$cmd --help goes to stdout");
+		last;
+	    }
+        }
+    
 	is($stderr, '', "$cmd --help nothing to stderr");
 }
 
@@ -388,7 +406,15 @@ sub program_version_ok
 	my $result = run [ $cmd, '--version' ], '>', \$stdout, '2>', \$stderr;
 	ok($result, "$cmd --version exit code 0");
 	#isnt($stdout, '', "$cmd --version goes to stdout");
-	is($stdout,$Commoninfo::version_info[$cmd]->[1],"$cmd --version goes to stdout");
+	my $len = scalar(@Commoninfo::version_info);
+        for(my $i=0; $i<$len; $i++)
+        {
+	    if("$Commoninfo::version_info[$i][0]" eq "$cmd")
+	    {    
+	        is($stdout,$Commoninfo::version_info[$i][1],"$cmd --version goes to stdout");
+		last;
+	    }
+        } 
         is($stderr, '', "$cmd --version nothing to stderr");
 }
 
