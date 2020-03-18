@@ -1,6 +1,6 @@
 @gprecoverseg
 Feature: gprecoverseg tests
-
+    
     Scenario: incremental recovery works with tablespaces
         Given the database is running
           And a tablespace is created with data
@@ -17,7 +17,7 @@ Feature: gprecoverseg tests
           And the segments are synchronized
           And the tablespace is valid
           And the other tablespace is valid
-
+  
     Scenario: full recovery works with tablespaces
         Given the database is running
           And a tablespace is created with data
@@ -279,3 +279,175 @@ Feature: gprecoverseg tests
           And the segments are synchronized
           And the tablespace is valid
           And the other tablespace is valid
+
+    @recoverseg_a	
+    Scenario: Do not prompt the user for confirmation
+        Given the database is running
+          And a tablespace is created with data
+          And user stops all primary processes
+          And user can start transactions
+         When the user runs "hdbrecoverseg -a"
+         Then hdbrecoverseg should return a return code of 0
+          And the segments are synchronized
+          And the tablespace is valid
+	  And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+	  And hdbrecoverseg should print "local inHybrid Version" to stdout
+	  And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+        Given another tablespace is created with data
+         When the user runs "hdbrecoverseg -ra"
+         Then gprecoverseg should return a return code of 0
+          And the segments are synchronized
+          And the tablespace is valid
+          And the other tablespace is valid
+	      And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+	      And hdbrecoverseg should print "local inHybrid Version" to stdout
+          And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_F	  
+    Scenario: Perform a full copy of the active segment instance in order to recover the failed
+segment.
+        Given the database is running
+          And a tablespace is created with data
+          And user stops all primary processes
+          And user can start transactions
+         When the user runs "hdbrecoverseg -a -F"
+         Then hdbrecoverseg should return a return code of 0
+          And the segments are synchronized
+          And the tablespace is valid
+	  And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+          And hdbrecoverseg should print "local inHybrid Version" to stdout
+	  And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_d	
+    Scenario: Optional. The master host data directory
+        Given the database is running
+          And a tablespace is created with data
+          And user stops all primary processes
+          And user can start transactions
+         When the user runs "hdbrecoverseg -a -d $MASTER_DATA_DIRECTORY"
+         Then hdbrecoverseg should return a return code of 0
+          And the segments are synchronized
+          And the tablespace is valid
+	  And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+	  And hdbrecoverseg should print "local inHybrid Version" to stdout
+	  And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_l	
+    Scenario: The directory to write the log file. Defaults to ~/gpAdminLogs.
+        Given the database is running
+          And a tablespace is created with data
+          And user stops all primary processes
+          And user can start transactions
+         When the user runs "hdbrecoverseg -a -l ~/gpAdminLogs"
+         Then hdbrecoverseg should return a return code of 0
+          And the segments are synchronized
+          And the tablespace is valid
+	      And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+	      And hdbrecoverseg should print "local inHybrid Version" to stdout
+	      And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_o
+    @concourse_cluster
+    Scenario: Specifies a file name and location to output a sample recovery configuration file.
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -o failedSegmentFile"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_p
+    @concourse_cluster
+    Scenario: Specifies a spare host outside of the currently configured Database array on which to recover invalid segments
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -p localhost"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_B
+    @concourse_cluster
+    Scenario: The number of segments to recover in parallel
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -B 2"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_r
+    @concourse_cluster
+    Scenario: After a segment recovery, segment instances may not be returned to the preferred role that they were given at system initialization time
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -r"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_s
+    @concourse_cluster
+    Scenario: Show pg_basebackup progress sequentially instead of in-place
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -s"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_noprogress
+    @concourse_cluster
+    Scenario: Suppresses progress reports from the pg_basebackup utility
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg --no-progress"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_v
+    @concourse_cluster
+    Scenario: Sets logging output to verbose
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg -v"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
+        And hdbrecoverseg should print "local inHybrid Version" to stdout
+        And hdbrecoverseg should print "master inHybrid Version" to stdout
+
+    @recoverseg_version
+    @concourse_cluster
+    Scenario: Displays the version of this utility
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg --version"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "hdbrecoverseg version" to stdout
+
+    @recoverseg_help
+    @concourse_cluster
+    Scenario: Displays the online help
+        Given the database is running
+        And all the segments are running
+        And the segments are synchronized
+        When the user runs "hdbrecoverseg --help"
+        Then hdbrecoverseg should return a return code of 0
+        And hdbrecoverseg should print "hdbrecoverseg" to stdout
+
