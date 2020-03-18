@@ -14,7 +14,7 @@ DOCS= gpactivatestandby_help gpaddmirrors_help gpcheckperf_help \
 	gpreload_help gpscp_help gpssh-exkeys_help gpssh_help gpstart_help \
 	gpstate_help gpstop_help gpsys1_help \
         hdbinitsystem_help hdbscp_help hdbssh_help hdbssh-exkeys_help \
-	hdbstart_help hdbstart_help hdbrecoverseg_help
+	hdbstart_help hdbstop_help hdbrecoverseg_help
 
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(prefix)/docs/cli_help'
