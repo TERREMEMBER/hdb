@@ -62,17 +62,38 @@ By default, a database with the same name as the current user is created.\
 \
 Report bugs to <bugs\@inspur.com>.\n";
 our $createdb_version = "createdb (inHybrid Database) 9.4.24\n";
-###############################createlang###########################################
-
+###############################dropdb###########################################
+our $dropdb_help = "dropdb removes a PostgreSQL database.\
+\
+Usage:\
+  dropdb [OPTION]... DBNAME\
+\
+Options:\
+  -e, --echo                show the commands being sent to the server\
+  -i, --interactive         prompt before deleting anything\
+  -V, --version             output version information, then exit\
+  --if-exists               don't report error if database doesn't exist\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+  --maintenance-db=DBNAME   alternate maintenance database\
+\
+Report bugs to <bugs\@inspur.com>\n"
+our $dropdb_version = "dropdb (inHybrid Database) 9.4.24\n"
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
 ["createdb", $createdb_help],
-["createlang", "createlang help info"],
+["createlang", $dropdb_help],
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
 ["clusterdb", $clusterdb_version],
 ["createdb", $createdb_version],
-["createlang", "createlang help info"],
+["createlang", $dropdb_version],
 );
