@@ -2061,7 +2061,7 @@ def checkOwners():
     #  - Theoretically this could result in multiple corrections for a given
     #    table based on having multiple "wrong" owners.  Realistically most
     #    of the problems we have seen with this problem the wrong owner is
-    #    almost always the gpadmin user, so this is not expected.  If it does
+    #    almost always the hdbadmin user, so this is not expected.  If it does
     #    occur it won't be a problem, but we will issue more ALTER TABLE
     #    commands than is strictly necessary.
     #
@@ -2844,7 +2844,7 @@ name_repair = {
 }
 
 ############################################################################
-# version = X.X : run this check as part of running all checks on gpdb <= X.X
+# version = X.X : run this check as part of running all checks on hdb <= X.X
 #                 individually, any check should be ok run on any version
 #  online = True: okie to run hdbcheckcat online
 #   order = X   : the order check should be run when running all checks
@@ -4267,7 +4267,7 @@ def main():
 
     GV.version = getversion()
     if GV.version < "4.0":
-        myprint("Error: only Greenplum database version >= 4.0 are supported\n")
+        myprint("Error: only inHybrid database version >= 4.0 are supported\n")
         sys.exit(GV.retcode)
 
     # hdbcheckcat should check gpexpand runnning status
@@ -4300,7 +4300,7 @@ def main():
         GPObjectGraph.clear()
         GV.dbname = dbname
         myprint('')
-        myprint("Connected as user \'%s\' to database '%s', port '%d', gpdb version '%s'" \
+        myprint("Connected as user \'%s\' to database '%s', port '%d', hdb version '%s'" \
                 % (GV.opt['-U'], GV.dbname, GV.report_cfg[-1]['port'], GV.version))
         myprint('-------------------------------------------------------------------')
         myprint('Batch size: %s' % GV.opt['-B'])

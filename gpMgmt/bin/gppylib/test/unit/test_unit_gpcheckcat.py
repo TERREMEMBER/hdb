@@ -14,8 +14,8 @@ class GpCheckCatTestCase(GpTestCase):
         # if we had a gpcheckcat.py, this is equivalent to:
         #   import gpcheckcat
         #   self.subject = gpcheckcat
-        gpcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
-        self.subject = imp.load_source('gpcheckcat', gpcheckcat_file)
+        hdbcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
+        self.subject = imp.load_source('gpcheckcat', hdbcheckcat_file)
         self.subject.check_gpexpand = lambda : (True, "")
 
         self.db_connection = Mock(spec=['close', 'query'])

@@ -5,6 +5,7 @@ Feature: hdbcheckcat tests
         When the user runs "hdbcheckcat -l"
         Then verify that the utility hdbcheckcat ever does logging into the user's "gpAdminLogs" directory
     
+    @mytest
     Scenario: run all the checks in hdbcheckcat
         Given database "all_good" is dropped and recreated
         Then the user runs "hdbcheckcat -A"
@@ -352,16 +353,16 @@ Feature: hdbcheckcat tests
         And the path "hdbcheckcat.repair.*" is removed from current working directory
 
     Scenario: hdbcheckcat missing_extraneous and dependency tests detects pg_depend issues
-        Given database "gpcheckcat_dependency" is dropped and recreated
-        And there is a "heap" table "heap_table1" in "gpcheckcat_dependency" with data
-        And there is a "heap" table "heap_table2" in "gpcheckcat_dependency" with data
-        And there is a "heap" table "heap_table3" in "gpcheckcat_dependency" with data
-        And the entry for the table "heap_table1" is removed from "pg_catalog.pg_depend" with key "objid" in the database "gpcheckcat_dependency" on the first primary segment
-        And the entry for the table "heap_table1" is removed from "pg_catalog.pg_depend" with key "refobjid" in the database "gpcheckcat_dependency" on the first primary segment
-        And the entry for the table "heap_table2" is removed from "pg_catalog.pg_type" with key "typrelid" in the database "gpcheckcat_dependency" on the first primary segment
-        And the entry for the table "heap_table3" is removed from "pg_catalog.pg_depend" with key "refobjid" in the database "gpcheckcat_dependency" on the first primary segment
-        And table "heap_table3" is dropped in "gpcheckcat_dependency"
-        When the user runs "hdbcheckcat gpcheckcat_dependency"
+        Given database "hdbcheckcat_dependency" is dropped and recreated
+        And there is a "heap" table "heap_table1" in "hdbcheckcat_dependency" with data
+        And there is a "heap" table "heap_table2" in "hdbcheckcat_dependency" with data
+        And there is a "heap" table "heap_table3" in "hdbcheckcat_dependency" with data
+        And the entry for the table "heap_table1" is removed from "pg_catalog.pg_depend" with key "objid" in the database "hdbcheckcat_dependency" on the first primary segment
+        And the entry for the table "heap_table1" is removed from "pg_catalog.pg_depend" with key "refobjid" in the database "hdbcheckcat_dependency" on the first primary segment
+        And the entry for the table "heap_table2" is removed from "pg_catalog.pg_type" with key "typrelid" in the database "hdbcheckcat_dependency" on the first primary segment
+        And the entry for the table "heap_table3" is removed from "pg_catalog.pg_depend" with key "refobjid" in the database "hdbcheckcat_dependency" on the first primary segment
+        And table "heap_table3" is dropped in "hdbcheckcat_dependency"
+        When the user runs "hdbcheckcat hdbcheckcat_dependency"
         Then hdbcheckcat should return a return code of 3
         Then hdbcheckcat should print "Name of test which found this issue: missing_extraneous_pg_type" to stdout
         Then hdbcheckcat should print "Extra type metadata of {.*} on content 0" to stdout
@@ -372,130 +373,130 @@ Feature: hdbcheckcat tests
         Then hdbcheckcat should print "Table pg_class has a dependency issue on oid .* at content 0" to stdout
         Then hdbcheckcat should print "Name of test which found this issue: dependency_pg_type" to stdout
         Then hdbcheckcat should print "Table pg_type has a dependency issue on oid .* at content 0" to stdout
-        And the user runs "dropdb gpcheckcat_dependency"
+        And the user runs "dropdb hdbcheckcat_dependency"
 
     Scenario: hdbcheckcat should repair "bad reference" orphaned toast tables (caused by missing reltoastrelid)
-        Given the database "gpcheckcat_orphans" is broken with "bad reference" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "bad reference" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "To fix, run the generated repair script which updates a pg_class entry using the correct dependent table OID for reltoastrelid" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "Found no catalog issue" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should repair "bad dependency" orphaned toast tables (caused by missing pg_depend entry)
-        Given the database "gpcheckcat_orphans" is broken with "bad dependency" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "bad dependency" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "To fix, run the generated repair script which inserts a pg_depend entry using the correct dependent table OID for refobjid" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "Found no catalog issue" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should log and not attempt to repair "double orphan - no parent" orphaned toast tables (caused by both missing reltoastrelid and missing pg_depend entry)
-        Given the database "gpcheckcat_orphans" is broken with "double orphan - no parent" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "double orphan - no parent" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "The parent table does not exist. Therefore, the toast table" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should log and not attempt to repair "double orphan - valid parent" orphaned toast tables (caused by both missing reltoastrelid and missing pg_depend entry)
-        Given the database "gpcheckcat_orphans" is broken with "double orphan - valid parent" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "double orphan - valid parent" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "The parent table already references a valid toast table" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should log and not attempt to repair "double orphan - invalid parent" orphaned toast tables (caused by both missing reltoastrelid and missing pg_depend entry)
-        Given the database "gpcheckcat_orphans" is broken with "double orphan - invalid parent" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "double orphan - invalid parent" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "Verify that the parent table requires a toast table." to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should log and not repair "mismatched non-cyclic" orphaned toast tables (caused by non-matching reltoastrelid)
-        Given the database "gpcheckcat_orphans" is broken with "mismatched non-cyclic" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "mismatched non-cyclic" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "A manual catalog change is needed to fix by updating the pg_depend TOAST table entry and setting the refobjid field to the correct dependent table" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "A manual catalog change is needed" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should log and not attempt to repair "mismatched cyclic" orphaned toast tables
-        Given the database "gpcheckcat_orphans" is broken with "mismatched cyclic" orphaned toast tables
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "mismatched cyclic" orphaned toast tables
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "A manual catalog change is needed to fix by updating the pg_depend TOAST table entry and setting the refobjid field to the correct dependent table" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And hdbcheckcat should print "A manual catalog change is needed" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should repair orphaned toast tables that are only orphaned on some segments
-        Given the database "gpcheckcat_orphans" is broken with "bad reference" orphaned toast tables only on segments with content IDs "0, 1"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "bad reference" orphaned toast tables only on segments with content IDs "0, 1"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "On segment\(s\) 0, 1 table" to stdout
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "Found no catalog issue" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should repair orphaned toast tables that are only orphaned on the master
 		# TODO: should we just combine this into the test above?
-        Given the database "gpcheckcat_orphans" is broken with "bad reference" orphaned toast tables only on segments with content IDs "-1"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" is broken with "bad reference" orphaned toast tables only on segments with content IDs "-1"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         Then hdbcheckcat should return a return code of 1
         And hdbcheckcat should print "On segment\(s\) -1 table" to stdout
         And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
         And run all the repair scripts in the dir "repair_dir"
-        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
         And hdbcheckcat should print "Found no catalog issue" to stdout
-        And the user runs "dropdb gpcheckcat_orphans"
+        And the user runs "dropdb hdbcheckcat_orphans"
         And the path "repair_dir" is removed from current working directory
 
     Scenario: hdbcheckcat should repair tables that are orphaned in different ways per segment
-        Given the database "gpcheckcat_orphans" has a table that is orphaned in multiple ways
-         When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+        Given the database "hdbcheckcat_orphans" has a table that is orphaned in multiple ways
+         When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
          Then hdbcheckcat should return a return code of 1
           And hdbcheckcat should print "Found a \"bad reference\" orphaned TOAST table caused by missing a reltoastrelid in pg_class." to stdout
           And hdbcheckcat should print "Found a \"bad dependency\" orphaned TOAST table caused by missing a pg_depend entry." to stdout
           And hdbcheckcat should print "catalog issue\(s\) found , repair script\(s\) generated" to stdout
           And run all the repair scripts in the dir "repair_dir"
-         When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir gpcheckcat_orphans"
+         When the user runs "hdbcheckcat -R orphaned_toast_tables -g repair_dir hdbcheckcat_orphans"
          Then hdbcheckcat should print "Found no catalog issue" to stdout
-          And the user runs "dropdb gpcheckcat_orphans"
+          And the user runs "dropdb hdbcheckcat_orphans"
           And the path "repair_dir" is removed from current working directory
 
 ########################### @concourse_cluster tests ###########################
