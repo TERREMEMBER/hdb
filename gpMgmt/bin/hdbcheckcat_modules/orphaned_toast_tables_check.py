@@ -4,7 +4,7 @@ import itertools
 
 from collections import defaultdict, namedtuple
 from gppylib.db import dbconn
-from gpcheckcat_modules.orphan_toast_table_issues import OrphanToastTableIssue, DoubleOrphanToastTableIssue, ReferenceOrphanToastTableIssue, DependencyOrphanToastTableIssue, MismatchOrphanToastTableIssue
+from hdbcheckcat_modules.orphan_toast_table_issues import OrphanToastTableIssue, DoubleOrphanToastTableIssue, ReferenceOrphanToastTableIssue, DependencyOrphanToastTableIssue, MismatchOrphanToastTableIssue
 
 
 OrphanedTable = namedtuple('OrphanedTable', 'oid catname')

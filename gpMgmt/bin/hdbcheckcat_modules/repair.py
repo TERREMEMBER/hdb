@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 """
 Purpose : Creates the repair dir and the corresponding sql/bash scripts for
-          repairing some of the catalog issues(see the list below) reported by gpcheckcat.
+          repairing some of the catalog issues(see the list below) reported by hdbcheckcat.
           Not responsible for generating the repair contents.
 
-Creates repair for the following gpcheckcat checks
+Creates repair for the following hdbcheckcat checks
        * missing_extraneous
        * owner
        * part_integrity
@@ -13,7 +13,7 @@ Creates repair for the following gpcheckcat checks
 
 import os
 import stat
-from gpcheckcat_modules.repair_missing_extraneous import RepairMissingExtraneous
+from hdbcheckcat_modules.repair_missing_extraneous import RepairMissingExtraneous
 
 
 class Repair:

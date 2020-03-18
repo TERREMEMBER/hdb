@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 '''
-Usage: gpcheckcat [<option>] [dbname]
+Usage: hdbcheckcat [<option>] [dbname]
 
     -?
     -B parallel: number of worker threads
@@ -33,11 +33,11 @@ try:
     from gppylib.system.info import *
     from pygresql.pgdb import DatabaseError
     from pygresql import pg
-    from gpcheckcat_modules.unique_index_violation_check import UniqueIndexViolationCheck
-    from gpcheckcat_modules.leaked_schema_dropper import LeakedSchemaDropper
-    from gpcheckcat_modules.repair import Repair
-    from gpcheckcat_modules.foreign_key_check import ForeignKeyCheck
-    from gpcheckcat_modules.orphaned_toast_tables_check import OrphanedToastTablesCheck, OrphanToastTableIssue, OrphanedTable
+    from hdbcheckcat_modules.unique_index_violation_check import UniqueIndexViolationCheck
+    from hdbcheckcat_modules.leaked_schema_dropper import LeakedSchemaDropper
+    from hdbcheckcat_modules.repair import Repair
+    from hdbcheckcat_modules.foreign_key_check import ForeignKeyCheck
+    from hdbcheckcat_modules.orphaned_toast_tables_check import OrphanedToastTablesCheck, OrphanToastTableIssue, OrphanedTable
 
 
 except ImportError, e:
@@ -109,7 +109,7 @@ class Global():
         self.opt['-V'] = False
         self.opt['-t'] = False
 
-        self.opt['-g'] = 'gpcheckcat.repair.' + self.timestamp
+        self.opt['-g'] = 'hdbcheckcat.repair.' + self.timestamp
         self.opt['-B'] = parallelism
         self.opt['-T'] = None
 
@@ -718,7 +718,7 @@ def checkPartitionIntegrity():
             myprint(
                 '[ERROR]: child partition(s) are distributed differently from '
                 'the root partition, and must be manually redistributed, for '
-                'some tables. Check the gpcheckcat log for details.'
+                'some tables. Check the hdbcheckcat log for details.'
             )
             logger.error('The following tables must be manually redistributed:')
 
@@ -2846,7 +2846,7 @@ name_repair = {
 ############################################################################
 # version = X.X : run this check as part of running all checks on gpdb <= X.X
 #                 individually, any check should be ok run on any version
-#  online = True: okie to run gpcheckcat online
+#  online = True: okie to run hdbcheckcat online
 #   order = X   : the order check should be run when running all checks
 ############################################################################
 
@@ -2969,7 +2969,7 @@ all_checks = {
 #-------------------------------------------------------------------------------
 def listAllChecks():
 
-    myprint('\nList of gpcheckcat tests:\n')
+    myprint('\nList of hdbcheckcat tests:\n')
     for name in sorted(all_checks, key=lambda x: all_checks[x]["order"]):
         myprint(" %24s: %s" % \
                 (name, all_checks[name]["description"]))
@@ -4239,7 +4239,7 @@ def generateVerifyFile(catname, fields, results, checkname):
           ) alltyprelids
           GROUP BY relname, oid ORDER BY count(*) desc
     '''.format(in_clause=in_clause)
-    filename = 'gpcheckcat.verify.%s.%s.%s.%s.sql' % (GV.dbname, catname, checkname, GV.timestamp)
+    filename = 'hdbcheckcat.verify.%s.%s.%s.%s.sql' % (GV.dbname, catname, checkname, GV.timestamp)
     try:
         with open(filename, 'w') as fp:
             fp.write(verify_sql + '\n')
@@ -4252,7 +4252,7 @@ def truncate_batch_size(primaries):
         myprint("Truncated batch size to number of primaries: %d" % primaries)
 
 def check_gpexpand():
-    check_result, msg = conflict_with_gpexpand("gpcheckcat",
+    check_result, msg = conflict_with_gpexpand("hdbcheckcat",
                                                refuse_phase1=True,
                                                refuse_phase2=False)
     if not check_result:
@@ -4270,7 +4270,7 @@ def main():
         myprint("Error: only Greenplum database version >= 4.0 are supported\n")
         sys.exit(GV.retcode)
 
-    # gpcheckcat should check gpexpand runnning status
+    # hdbcheckcat should check gpexpand runnning status
     check_gpexpand()
 
     GV.cfg = getGPConfiguration()

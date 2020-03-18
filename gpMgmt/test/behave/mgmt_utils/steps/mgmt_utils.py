@@ -1529,13 +1529,13 @@ def impl(context, dbname):
     create_database(context, dbname)
 
 
-@then('validate and run gpcheckcat repair')
+@then('validate and run hdbcheckcat repair')
 def impl(context):
     context.execute_steps(u'''
-        Then gpcheckcat should print "repair script\(s\) generated in dir gpcheckcat.repair.*" to stdout
-        Then the path "gpcheckcat.repair.*" is found in cwd "1" times
-        Then run all the repair scripts in the dir "gpcheckcat.repair.*"
-        And the path "gpcheckcat.repair.*" is removed from current working directory
+        Then hdbcheckcat should print "repair script\(s\) generated in dir hdbcheckcat.repair.*" to stdout
+        Then the path "hdbcheckcat.repair.*" is found in cwd "1" times
+        Then run all the repair scripts in the dir "hdbcheckcat.repair.*"
+        And the path "hdbcheckcat.repair.*" is removed from current working directory
     ''')
 
 @given('there is a "{tabletype}" table "{tablename}" in "{dbname}" with "{numrows}" rows')
@@ -1715,7 +1715,7 @@ def impl(context, user_table, catalog_table, primary_key, db_name):
 @when('the timestamps in the repair dir are consistent')
 @then('the timestamps in the repair dir are consistent')
 def impl(_):
-    repair_regex = "gpcheckcat.repair.*"
+    repair_regex = "hdbcheckcat.repair.*"
     timestamp = ""
     repair_dir = ""
     for file in os.listdir('.'):
