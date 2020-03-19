@@ -588,7 +588,7 @@ SET_VERSION_SCRIPTS = \
 	bin/gpstate \
 	bin/gpstop \
 	bin/gpsys1 \
-	bin/lib/gpcheckcat \
+	bin/lib/hdbcheckcat \
 	sbin/gpconfig_helper.py \
 	sbin/gpcleansegmentdir.py \
 	sbin/gpgetstatususingtransition.py \

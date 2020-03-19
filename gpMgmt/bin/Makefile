@@ -7,12 +7,12 @@ ifneq "$(wildcard $(top_builddir)/src/Makefile.global)" ""
 include $(top_builddir)/src/Makefile.global
 endif
 
-SUBDIRS = stream gpcheckcat_modules gpconfig_modules gpssh_modules gppylib lib
+SUBDIRS = stream hdbcheckcat_modules gpconfig_modules gpssh_modules gppylib lib
 SUBDIRS += ifaddrs
 
 $(recurse)
 
-PROGRAMS= analyzedb gpactivatestandby gpaddmirrors gpcheckcat gpcheckperf \
+PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat gpcheckperf \
 	gpcheckresgroupimpl gpconfig gpdeletesystem gpexpand gpinitstandby \
 	gpinitsystem gpload gpload.py gplogfilter gpmovemirrors \
 	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys gpstart \
@@ -27,9 +27,9 @@ installprograms: installdirs
 		$(INSTALL_SCRIPT) $$file '$(DESTDIR)$(bindir)/'$$file ; \
 		$(PERL) $(top_builddir)/putversion '$(DESTDIR)$(bindir)/'$$file ; \
 	done
-	# Symlink gpcheckcat from bin to bin/lib to maintain backward compatibility
-	if [ ! -L $(DESTDIR)$(bindir)/lib/gpcheckcat  ]; then \
-		$(LN_S) ../gpcheckcat $(DESTDIR)$(bindir)/lib/gpcheckcat; \
+	# Symlink hdbcheckcat from bin to bin/lib to maintain backward compatibility
+	if [ ! -L $(DESTDIR)$(bindir)/lib/hdbcheckcat  ]; then \
+		$(LN_S) ../hdbcheckcat $(DESTDIR)$(bindir)/lib/hdbcheckcat; \
 	fi
 	$(INSTALL_DATA) gpload.bat '$(DESTDIR)$(bindir)/gpload.bat'
 
@@ -234,7 +234,7 @@ clean distclean:
 	rm -rf $(PYLIB_SRC)/$(PYGRESQL_DIR)/build
 	rm -rf $(PYLIB_SRC)/subprocess32/build
 	rm -rf *.pyc
-	rm -f analyzedbc gpactivatestandbyc gpaddmirrorsc gpcheckcatc \
+	rm -f analyzedbc gpactivatestandbyc gpaddmirrorsc hdbcheckcatc \
 		  gpcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc gpconfigc \
 		  gpdeletesystemc gpexpandc gpinitstandbyc gplogfilterc gpmovemirrorsc \
 		  gppkgc gprecoversegc gpreloadc gpscpc gpsdc gpssh-exkeysc gpsshc \
