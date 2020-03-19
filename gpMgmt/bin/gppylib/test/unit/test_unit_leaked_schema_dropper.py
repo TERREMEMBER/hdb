@@ -1,7 +1,7 @@
 from mock import *
 
 from gp_unittest import *
-from gpcheckcat_modules.leaked_schema_dropper import LeakedSchemaDropper
+from hdbcheckcat_modules.leaked_schema_dropper import LeakedSchemaDropper
 
 
 class LeakedSchemaDropperTestCase(GpTestCase):

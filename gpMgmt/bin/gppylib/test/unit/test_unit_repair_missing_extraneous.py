@@ -1,6 +1,6 @@
 from mock import *
 from gp_unittest import *
-from gpcheckcat_modules.repair_missing_extraneous import RepairMissingExtraneous
+from hdbcheckcat_modules.repair_missing_extraneous import RepairMissingExtraneous
 
 class RepairMissingExtraneousTestCase(GpTestCase):
     def setUp(self):

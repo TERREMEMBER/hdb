@@ -14,8 +14,8 @@ class GpCheckCatTestCase(GpTestCase):
         # if we had a gpcheckcat.py, this is equivalent to:
         #   import gpcheckcat
         #   self.subject = gpcheckcat
-        gpcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
-        self.subject = imp.load_source('gpcheckcat', gpcheckcat_file)
+        hdbcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
+        self.subject = imp.load_source('gpcheckcat', hdbcheckcat_file)
         self.subject.check_gpexpand = lambda : (True, "")
 
         self.db_connection = Mock(spec=['close', 'query'])
@@ -161,8 +161,8 @@ class GpCheckCatTestCase(GpTestCase):
         last_call = mock_log.call_args_list[0][0][2]
         self.assertEquals(last_call, "Truncated batch size to number of primaries: 50")
 
-    @patch('gpcheckcat_modules.repair.Repair', return_value=Mock())
-    @patch('gpcheckcat_modules.repair.Repair.create_repair_for_extra_missing', return_value="/tmp")
+    @patch('hdbcheckcat_modules.repair.Repair', return_value=Mock())
+    @patch('hdbcheckcat_modules.repair.Repair.create_repair_for_extra_missing', return_value="/tmp")
     def test_do_repair_for_extra__issues_repair(self, mock1, mock2):
         issues = {("pg_class", "oid"):"extra"}
         self.subject.GV.opt['-E'] = True

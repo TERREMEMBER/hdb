@@ -1,4 +1,4 @@
-# gpMgmt/bin/gpcheckcat_modules/Makefile
+# gpMgmt/bin/hdbcheckcat_modules/Makefile
 
 top_builddir = ../../..
 include $(top_builddir)/src/Makefile.global
@@ -8,16 +8,16 @@ PROGRAMS= __init__.py foreign_key_check.py leaked_schema_dropper.py \
 	repair_missing_extraneous.py unique_index_violation_check.py
 
 installdirs:
-	$(MKDIR_P) '$(DESTDIR)$(bindir)/gpcheckcat_modules'
+	$(MKDIR_P) '$(DESTDIR)$(bindir)/hdbcheckcat_modules'
 
 install: installdirs
 	for file in $(PROGRAMS); do \
-		$(INSTALL_SCRIPT) $$file '$(DESTDIR)$(bindir)/gpcheckcat_modules/'$$file ; \
+		$(INSTALL_SCRIPT) $$file '$(DESTDIR)$(bindir)/hdbcheckcat_modules/'$$file ; \
 	done
 
 uninstall:
 	for file in $(PROGRAMS); do \
-		rm -f '$(DESTDIR)$(bindir)/gpcheckcat_modules/'$$file ; \
+		rm -f '$(DESTDIR)$(bindir)/hdbcheckcat_modules/'$$file ; \
 	done
 
 clean distclean:

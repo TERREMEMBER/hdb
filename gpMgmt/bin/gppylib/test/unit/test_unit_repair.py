@@ -1,7 +1,7 @@
 from mock import *
 import os
 from gp_unittest import *
-from gpcheckcat_modules.repair import Repair
+from hdbcheckcat_modules.repair import Repair
 import tempfile
 import shutil
 
@@ -42,7 +42,7 @@ class RepairTestCase(GpTestCase):
         self.verify_repair_dir_contents("somedb_issuetype_timestamp.sql", sql_contents)
         self.verify_repair_dir_contents("runsql_timestamp.sh", bash_contents)
 
-    @patch('gpcheckcat_modules.repair.RepairMissingExtraneous', autospec=True)
+    @patch('hdbcheckcat_modules.repair.RepairMissingExtraneous', autospec=True)
     def test_create_repair_extra__normal(self, mock_repair):
         self.subject = Repair(self.context, "extra", "some desc")
         catalog_table_obj = Mock()

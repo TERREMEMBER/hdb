@@ -1,7 +1,7 @@
 import imp
 import os
 import sys
-from gpcheckcat_modules.foreign_key_check import ForeignKeyCheck
+from hdbcheckcat_modules.foreign_key_check import ForeignKeyCheck
 
 from mock import *
 
@@ -97,7 +97,7 @@ class GpCheckCatTestCase(GpTestCase):
         result_query = self.subject.get_fk_query_full_join("catname", "pkcatname", "fkeystr", "pkeystr", ["pkeys-1", "pkeys-2"], ["cat1pkeys-1", "cat1pkeys-2"], "filter")
         self.assertEquals(expected_query, result_query)
 
-    @patch('gpcheckcat_modules.foreign_key_check.ForeignKeyCheck.checkTableForeignKey')
+    @patch('hdbcheckcat_modules.foreign_key_check.ForeignKeyCheck.checkTableForeignKey')
     def test_runCheck(self, mock):
         tables = [self._get_mock_for_catalog_table("table1"), self._get_mock_for_catalog_table("table2")]
         self.subject.runCheck(tables)
@@ -107,9 +107,9 @@ class GpCheckCatTestCase(GpTestCase):
         for table in tables:
             self.assertIn(call(table), self.subject.checkTableForeignKey.call_args_list)
 
-    @patch('gpcheckcat_modules.foreign_key_check.ForeignKeyCheck.get_fk_query_full_join')
-    @patch('gpcheckcat_modules.foreign_key_check.ForeignKeyCheck.get_fk_query_left_join')
-    @patch('gpcheckcat_modules.foreign_key_check.log_literal')
+    @patch('hdbcheckcat_modules.foreign_key_check.ForeignKeyCheck.get_fk_query_full_join')
+    @patch('hdbcheckcat_modules.foreign_key_check.ForeignKeyCheck.get_fk_query_left_join')
+    @patch('hdbcheckcat_modules.foreign_key_check.log_literal')
     def test_checkTableForeignKey__returns_correct_join_query(self, log_literal_mock, fk_query_left_join_mock, fk_query_full_join_mock):
         #cat_tables_to_validate = set(['pg_attribute','gp_distribution_policy','pg_appendonly','pg_constraint','pg_index','pg_type','pg_window'])
         cat_tables_to_validate = set(['pg_attribute', 'pg_appendonly', 'pg_index','pg_type','pg_window'])

@@ -8,8 +8,8 @@ from gppylib.db import dbconn
 
 class GpCheckCatColumnsTestCase(unittest.TestCase):
     def test_TableMainColumn_tablenames_exist(self):
-        gpcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
-        subject = imp.load_source('gpcheckcat', gpcheckcat_file)
+        hdbcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
+        subject = imp.load_source('gpcheckcat', hdbcheckcat_file)
 
         dburl = dbconn.DbURL(hostname=os.getenv('HOSTNAME', 'localhost'), port=os.getenv('PGPORT', 5432),
                              dbname=os.getenv('PGDATABASE', 'postgres'))
