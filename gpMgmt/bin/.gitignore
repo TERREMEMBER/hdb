@@ -2,7 +2,7 @@ ext
 /analyzedbc
 /gpactivatestandbyc
 /gpaddmirrorsc
-/gpcheckcatc
+/hdbcheckcatc
 /gpcheckperfc
 /gpcheckresgroupimplc
 /gpchecksubnetcfgc

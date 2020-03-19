@@ -1,2 +1,2 @@
 /config_file
-/gpcheckcat.verify*sql
+/hdbcheckcat.verify*sql
