@@ -449,18 +449,18 @@ class GpRecoverSegmentProgram:
         # The design decision here is to squash any exceptions resulting from the
         # synchronization of packages. We should *not* disturb the user's attempts to recover.
         try:
-            self.logger.info('Syncing Greenplum Database extensions')
+            self.logger.info('Syncing inHybrid Database extensions')
             operations = [SyncPackages(host) for host in new_hosts]
             ParallelOperation(operations, self.__options.parallelDegree).run()
             # introspect outcomes
             for operation in operations:
                 operation.get_ret()
         except:
-            self.logger.exception('Syncing of Greenplum Database extensions has failed.')
+            self.logger.exception('Syncing of inHybrid Database extensions has failed.')
             self.logger.warning('Please run gppkg --clean after successful segment recovery.')
 
     def displayRecovery(self, mirrorBuilder, gpArray):
-        self.logger.info('Greenplum instance recovery parameters')
+        self.logger.info('inHybrid instance recovery parameters')
         self.logger.info('---------------------------------------------------------')
 
         if self.__options.recoveryConfigFile:
