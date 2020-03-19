@@ -120,8 +120,10 @@ def after_scenario(context, scenario):
             ''')
 
     # NOTE: gpconfig after_scenario cleanup is in the step `the gpconfig context is setup`
-    tags_to_skip = ['gpexpand', 'gpaddmirrors', 'gpstate', 'gpinitstandby','hdbinitsystem',
-                    'gpconfig', 'gpstop', 'gpinitsystem', 'cross_subnet']
+    tags_to_skip = ['gpexpand', 'gpaddmirrors', 'gpstate', 'gpinitstandby',
+                    'gpconfig', 'gpstop', 'gpinitsystem', 'cross_subnet',
+                    'hdbinitstandby','hdbinitsystem'
+                    ]
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
