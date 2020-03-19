@@ -83,17 +83,154 @@ Connection options:\
   -W, --password            force password prompt\
   --maintenance-db=DBNAME   alternate maintenance database\
 \
-Report bugs to <bugs\@inspur.com>\n"
-our $dropdb_version = "dropdb (inHybrid Database) 9.4.24\n"
+Report bugs to <bugs\@inspur.com>\n";
+our $dropdb_version = "dropdb (inHybrid Database) 9.4.24\n";
+###############################createuser###########################################
+our $createuser_help = "createuser creates a new PostgreSQL role.\
+\
+Usage:\
+  createuser [OPTION]... [ROLENAME]\
+\
+Options:\
+  -c, --connection-limit=N  connection limit for role (default: no limit)\
+  -d, --createdb            role can create new databases\
+  -D, --no-createdb         role cannot create databases (default)\
+  -e, --echo                show the commands being sent to the server\
+  -E, --encrypted           encrypt stored password\
+  -g, --role=ROLE           new role will be a member of this role\
+  -i, --inherit             role inherits privileges of roles it is a\
+                            member of (default)\
+  -I, --no-inherit          role does not inherit privileges\
+  -l, --login               role can login (default)\
+  -L, --no-login            role cannot login\
+  -N, --unencrypted         do not encrypt stored password\
+  -P, --pwprompt            assign a password to new role\
+  -r, --createrole          role can create new roles\
+  -R, --no-createrole       role cannot create roles (default)\
+  -s, --superuser           role will be superuser\
+  -S, --no-superuser        role will not be superuser (default)\
+  -V, --version             output version information, then exit\
+  --interactive             prompt for missing role name and attributes rather\
+                            than using defaults\
+  --replication             role can initiate replication\
+  --no-replication          role cannot initiate replication\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as (not the one to create)\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $createuser_version = "createuser (inHybrid Database) 9.4.24\n";
+###############################dropuser###########################################
+our $dropuser_help = "dropuser removes a PostgreSQL role.\
+\
+Usage:\
+  dropuser [OPTION]... [ROLENAME]\
+\
+Options:\
+  -e, --echo                show the commands being sent to the server\
+  -i, --interactive         prompt before deleting anything, and prompt for\
+                            role name if not specified\
+  -V, --version             output version information, then exit\
+  --if-exists               don't report error if user doesn't exist\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as (not the one to drop)\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $dropuser_version = "dropuser (inHybrid Database) 9.4.24\n";
+###############################createlang###########################################
+our $createlang_help = "createlang installs a procedural language into a PostgreSQL database.\
+\
+Usage:\
+  createlang [OPTION]... LANGNAME [DBNAME]\
+\
+Options:\
+  -d, --dbname=DBNAME       database to install language in\
+  -e, --echo                show the commands being sent to the server\
+  -l, --list                show a list of currently installed languages\
+  -V, --version             output version information, then exit\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $createlang_version = "createlang (inHybrid Database) 9.4.24\n";
+###############################droplang###########################################
+our $droplang_help = "droplang removes a procedural language from a database.\
+\
+Usage:
+  droplang [OPTION]... LANGNAME [DBNAME]\
+\
+Options:\
+  -d, --dbname=DBNAME       database from which to remove the language\
+  -e, --echo                show the commands being sent to the server\
+  -l, --list                show a list of currently installed languages\
+  -V, --version             output version information, then exit\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $droplang_version = "droplang (inHybrid Database) 9.4.24\n";
+###############################pg_isready###########################################
+our $pg_isready_help = "pg_isready issues a connection check to a PostgreSQL database.\
+\
+Usage:\
+  pg_isready [OPTION]...\
+\
+Options:\
+  -d, --dbname=DBNAME      database name\
+  -q, --quiet              run quietly\
+  -V, --version            output version information, then exit\
+  -?, --help               show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME      database server host or socket directory\
+  -p, --port=PORT          database server port\
+  -t, --timeout=SECS       seconds to wait when attempting connection, 0 disables (default: 3)\
+  -U, --username=USERNAME  user name to connect as\
+\
+Report bugs to <pgsql-bugs\@inspur.com>.\n";
+our $pg_isready_version = "pg_isready (inHybrid Database) 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
 ["createdb", $createdb_help],
-["createlang", $dropdb_help],
+["dropdb", $dropdb_help],
+["createuser", $createuser_help],
+["dropuser", $dropuser_help],
+["createlang", $createlang_help],
+["droplang", $droplang_help],
+["pg_isready", $pg_isready_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
 ["clusterdb", $clusterdb_version],
 ["createdb", $createdb_version],
-["createlang", $dropdb_version],
+["dropdb", $dropdb_version],
+["createuser", $createuser_version],
+["dropuser", $dropuser_version],
+["createlang", $createlang_version],
+["droplang", $droplang_version],
+["pg_isready", $pg_isready_version]
 );
