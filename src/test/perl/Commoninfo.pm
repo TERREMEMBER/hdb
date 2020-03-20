@@ -212,6 +212,69 @@ Connection options:\
 \
 Report bugs to <pgsql-bugs\@inspur.com>.\n";
 our $pg_isready_version = "pg_isready (inHybrid Database) 9.4.24\n";
+###############################reindexdb###########################################
+our $reindexdb_help = "reindexdb reindexes a PostgreSQL database.\
+\
+Usage:\
+  reindexdb [OPTION]... [DBNAME]\
+\
+Options:\
+  -a, --all                 reindex all databases\
+  -d, --dbname=DBNAME       database to reindex\
+  -e, --echo                show the commands being sent to the server\
+  -i, --index=INDEX         recreate specific index(es) only\
+  -q, --quiet               don't write any messages\
+  -s, --system              reindex system catalogs\
+  -t, --table=TABLE         reindex specific table(s) only\
+  -V, --version             output version information, then exit\
+  -?, --help                show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+  --maintenance-db=DBNAME   alternate maintenance database\
+\
+Read the description of the SQL command REINDEX for details.\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $reindexdb_version = "reindexdb (inHybrid Database) 9.4.24\n";
+###############################vacuumdb###########################################
+our $vacuumdb_help = "vacuumdb cleans and analyzes a PostgreSQL database.\
+\
+Usage:\
+  vacuumdb [OPTION]... [DBNAME]\
+\
+Options:\
+  -a, --all                       vacuum all databases\
+  -d, --dbname=DBNAME             database to vacuum\
+  -e, --echo                      show the commands being sent to the server\
+  -f, --full                      do full vacuuming\
+  -F, --freeze                    freeze row transaction information\
+  -q, --quiet                     don't write any messages\
+  -t, --table='TABLE[(COLUMNS)]'  vacuum specific table(s) only\
+  -v, --verbose                   write a lot of output\
+  -V, --version                   output version information, then exit\
+  -z, --analyze                   update optimizer statistics\
+  -Z, --analyze-only              only update optimizer statistics\
+      --analyze-in-stages         only update optimizer statistics, in multiple\
+                                  stages for faster results\
+  -?, --help                      show this help, then exit\
+\
+Connection options:\
+  -h, --host=HOSTNAME       database server host or socket directory\
+  -p, --port=PORT           database server port\
+  -U, --username=USERNAME   user name to connect as\
+  -w, --no-password         never prompt for password\
+  -W, --password            force password prompt\
+  --maintenance-db=DBNAME   alternate maintenance database\
+\
+Read the description of the SQL command VACUUM for details.\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $vacuumdb_version = "vacuumdb (inHybrid Database) 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
@@ -221,7 +284,9 @@ our @help_info=(
 ["dropuser", $dropuser_help],
 ["createlang", $createlang_help],
 ["droplang", $droplang_help],
-["pg_isready", $pg_isready_help]
+["pg_isready", $pg_isready_help],
+["reindexdb", $reindexdb_help],
+["vacuumdb", $vacuumdb_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
@@ -232,5 +297,7 @@ our @version_info=(
 ["dropuser", $dropuser_version],
 ["createlang", $createlang_version],
 ["droplang", $droplang_version],
-["pg_isready", $pg_isready_version]
+["pg_isready", $pg_isready_version],
+["reindexdb", $reindexdb_version],
+["vacuumdb", $vacuumdb_version]
 );
