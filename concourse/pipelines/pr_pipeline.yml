@@ -92,8 +92,6 @@ jobs:
             cd gpdb_src &&
             #git fetch http://10.110.27.118/fanwenchang/hdb.git --tags &&
             git fetch http://oauth2:GotJADg5KkyfSzNesG35@git.inspur.com/fanwenchang/hdb.git --tags &&
-            git branch 6X_STABLE_test2 &&
-            git checkout 6X_STABLE_test2 &&
             git submodule update --init --recursive
         inputs: [{ name: gpdb_pr }]
         outputs: [{ name: gpdb_src }]
@@ -105,5 +103,9 @@ jobs:
         TARGET_OS: ubuntu
         TARGET_OS_VERSION: 18.04 
         BLD_TARGETS: "clients loaders"
+        ## param ENABLE_BUILD_SUBMODULE's default values is 'none', it means do not build orca module and compile hdb project immediately, 
+        ## With no doubt, orca env has already been set automatically before run compile command.
+        ## if you want build orca module yourself, set param ENABLE_BUILD_SUBMODULE to 'none'
+        #ENABLE_BUILD_SUBMODULE: build_orca
       timeout: 2h
 

@@ -209,26 +209,37 @@ function export_gpdb_clients() {
 function fetch_orca_src {
   local orca_tag="${1}"
 
-  mkdir orca_src
-  #wget --quiet --output-document=- "https://github.com/greenplum-db/gporca/archive/${orca_tag}.tar.gz" \
-  wget --quiet --output-document=- "http://10.221.129.153:8088/gporca-3.92.0.tar.gz" \
-    | tar xzf - --strip-components=1 --directory=orca_src
+  if [ "build_orca" == "${ENABLE_BUILD_SUBMODULE}" ] ; then
+    #wget --quiet --output-document=- "https://github.com/greenplum-db/gporca/archive/${orca_tag}.tar.gz" \
+    mkdir orca_src
+    wget --quiet --output-document=- "http://10.221.129.153:8088/gporca-3.92.0.tar.gz" \
+      | tar xzf - --strip-components=1 --directory=orca_src
+  elif [ "none" == "${ENABLE_BUILD_SUBMODULE}" ] ; then
+    OUTPUT_DIR="gpdb_src/gpAux/ext/${BLD_ARCH}"
+    mkdir -p ${OUTPUT_DIR}
+    wget --quiet --output-document=- "http://10.221.129.153:8088/gporca-3.92.0-installation.tar.gz" \
+      | tar xzf - --strip-components=1 --directory=${OUTPUT_DIR}
+  fi
 }
 
 function build_xerces()
 {
     OUTPUT_DIR="gpdb_src/gpAux/ext/${BLD_ARCH}"
-    mkdir -p xerces_patch/concourse
-    cp -r orca_src/concourse/xerces-c xerces_patch/concourse
-    cp -r orca_src/patches/ xerces_patch
-    /usr/bin/python xerces_patch/concourse/xerces-c/build_xerces.py --output_dir=${OUTPUT_DIR}
-    rm -rf build
+    if [ "build_orca" == "${ENABLE_BUILD_SUBMODULE}" ] ; then
+      mkdir -p xerces_patch/concourse
+      cp -r orca_src/concourse/xerces-c xerces_patch/concourse
+      cp -r orca_src/patches/ xerces_patch
+      /usr/bin/python xerces_patch/concourse/xerces-c/build_xerces.py --output_dir=${OUTPUT_DIR}
+      rm -rf build
+    fi
 }
 
 function build_and_test_orca()
 {
     OUTPUT_DIR="gpdb_src/gpAux/ext/${BLD_ARCH}"
-    orca_src/concourse/build_and_test.py --build_type=RelWithDebInfo --output_dir=${OUTPUT_DIR}
+    if [ "build_orca" == "${ENABLE_BUILD_SUBMODULE}" ] ; then
+      orca_src/concourse/build_and_test.py --build_type=RelWithDebInfo --output_dir=${OUTPUT_DIR}
+    fi
 }
 
 function _main() {
