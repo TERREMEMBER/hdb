@@ -661,18 +661,18 @@ def get_standby_host():
         return []
 
 
-def run_gpinitstandby(context, hostname, port, standby_data_dir, options='', remote=False):
+def run_hdbinitstandby(context, hostname, port, standby_data_dir, options='', remote=False):
     if '-n' in options:
-        cmd = "gpinitstandby -a"
+        cmd = "hdbinitstandby -a"
     elif remote:
         #if standby_data_dir exists on $hostname, remove it
         remove_dir(hostname, standby_data_dir)
         # create the data dir on $hostname
         create_dir(hostname, os.path.dirname(standby_data_dir))
-        # We do not set port nor data dir here to test gpinitstandby's ability to autogather that info
-        cmd = "gpinitstandby -a -s %s" % hostname
+        # We do not set port nor data dir here to test hdbinitstandby's ability to autogather that info
+        cmd = "hdbinitstandby -a -s %s" % hostname
     else:
-        cmd = "gpinitstandby -a -s %s -P %s -S %s" % (hostname, port, standby_data_dir)
+        cmd = "hdbinitstandby -a -s %s -P %s -S %s" % (hostname, port, standby_data_dir)
 
     run_gpcommand(context, cmd + ' ' + options)
 
@@ -681,14 +681,14 @@ def run_gpinitstandby(context, hostname, port, standby_data_dir, options='', rem
 def impl(context):
     hostname = get_master_hostname('postgres')[0][0]
     temp_data_dir = tempfile.mkdtemp() + "/standby_datadir"
-    run_gpinitstandby(context, hostname, os.environ.get("PGPORT"), temp_data_dir)
+    run_hdbinitstandby(context, hostname, os.environ.get("PGPORT"), temp_data_dir)
 
 @when('the user initializes a standby on the same host as master and the same data directory')
 def impl(context):
     hostname = get_master_hostname('postgres')[0][0]
     master_port = int(os.environ.get("PGPORT"))
 
-    cmd = "gpinitstandby -a -s %s -P %d" % (hostname, master_port + 1)
+    cmd = "hdbinitstandby -a -s %s -P %d" % (hostname, master_port + 1)
     run_gpcommand(context, cmd)
 
 def init_standby(context, master_hostname, options, segment_hostname):
@@ -700,20 +700,20 @@ def init_standby(context, master_hostname, options, segment_hostname):
         context.standby_hostname = master_hostname
         context.standby_port = get_open_port()
         remote = False
-    # -n option assumes gpinitstandby already ran and put standby in catalog
+    # -n option assumes hdbinitstandby already ran and put standby in catalog
     if "-n" not in options:
         if remote:
             context.standby_data_dir = master_data_dir
         else:
             context.standby_data_dir = tempfile.mkdtemp() + "/standby_datadir"
-    run_gpinitstandby(context, context.standby_hostname, context.standby_port, context.standby_data_dir, options,
+    run_hdbinitstandby(context, context.standby_hostname, context.standby_port, context.standby_data_dir, options,
                       remote)
     context.master_hostname = master_hostname
     context.master_port = os.environ.get("PGPORT")
     context.standby_was_initialized = True
 
-@when('running gpinitstandby on host "{master}" to create a standby on host "{standby}"')
-@given('running gpinitstandby on host "{master}" to create a standby on host "{standby}"')
+@when('running hdbinitstandby on host "{master}" to create a standby on host "{standby}"')
+@given('running hdbinitstandby on host "{master}" to create a standby on host "{standby}"')
 def impl(context, master, standby):
     # XXX This code was cribbed from init_standby and modified to support remote
     # execution.
@@ -725,8 +725,8 @@ def impl(context, master, standby):
     remove_dir(standby, context.standby_data_dir)
     create_dir(standby, os.path.dirname(context.standby_data_dir))
 
-    # We do not set port nor data dir here to test gpinitstandby's ability to autogather that info
-    cmd = "gpinitstandby -a -s %s" % standby
+    # We do not set port nor data dir here to test hdbinitstandby's ability to autogather that info
+    cmd = "hdbinitstandby -a -s %s" % standby
 
     run_command_remote(context,
                        cmd,
@@ -738,9 +738,9 @@ def impl(context, master, standby):
     context.master_port = os.environ.get("PGPORT")
     context.standby_was_initialized = True
 
-@when('the user runs gpinitstandby with options "{options}"')
-@then('the user runs gpinitstandby with options "{options}"')
-@given('the user runs gpinitstandby with options "{options}"')
+@when('the user runs hdbinitstandby with options "{options}"')
+@then('the user runs hdbinitstandby with options "{options}"')
+@given('the user runs hdbinitstandby with options "{options}"')
 def impl(context, options):
     dbname = 'postgres'
     with dbconn.connect(dbconn.DbURL(port=os.environ.get("PGPORT"), dbname=dbname), unsetSearchPath=False) as conn:
@@ -797,10 +797,10 @@ def impl(context):
     shutil.rmtree(master_data_dir, ignore_errors=True)
 
     if context.master_hostname != context.standby_hostname:
-        # We do not set port nor data dir here to test gpinitstandby's ability to autogather that info
-        cmd = "gpinitstandby -a -s %s" % context.master_hostname
+        # We do not set port nor data dir here to test hdbinitstandby's ability to autogather that info
+        cmd = "hdbinitstandby -a -s %s" % context.master_hostname
     else:
-        cmd = "gpinitstandby -a -s %s -P %s -S %s" % (context.master_hostname, context.master_port, master_data_dir)
+        cmd = "hdbinitstandby -a -s %s -P %s -S %s" % (context.master_hostname, context.master_port, master_data_dir)
 
     context.execute_steps(u'''Then the user runs command "%s" from standby master''' % cmd)
 
@@ -1209,7 +1209,7 @@ def impl(context):
     if standby:
         context.cluster_had_standby = True
         context.standby_host = standby
-        run_gpcommand(context, 'gpinitstandby -ra')
+        run_gpcommand(context, 'hdbinitstandby -ra')
 
 @then('verify the standby master entries in catalog')
 def impl(context):
@@ -2618,17 +2618,17 @@ def impl(context):
 
 @when('initialize a cluster with standby using "{config_file}"')
 def impl(context, config_file):
-    run_gpcommand(context, 'gpinitsystem -a -I %s -l /tmp/gpinitsystemtest -s localhost -P 21100 -S $MASTER_DATA_DIRECTORY/newstandby -h ../gpAux/gpdemo/hostfile' % config_file)
+    run_gpcommand(context, 'hdbinitsystem -a -I %s -l /tmp/gpinitsystemtest -s localhost -P 21100 -S $MASTER_DATA_DIRECTORY/newstandby -h ../gpAux/gpdemo/hostfile' % config_file)
     check_return_code(context, 0)
 
 @when('initialize a cluster using "{config_file}"')
 def impl(context, config_file):
-    run_gpcommand(context, 'gpinitsystem -a -I %s -l /tmp/' % config_file)
+    run_gpcommand(context, 'hdbinitsystem -a -I %s -l /tmp/' % config_file)
     check_return_code(context, 0)
 
 @when('generate cluster config file "{config_file}"')
 def impl(context, config_file):
-    run_gpcommand(context, 'gpinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -O %s' % config_file)
+    run_gpcommand(context, 'hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -O %s' % config_file)
     check_return_code(context, 0)
 
 @when('check segment conf: postgresql.conf')

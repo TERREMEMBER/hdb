@@ -9,60 +9,61 @@ Feature: gpconfig integration tests
     # would be too slow), you must choose parameters with a sighup or weaker
     # context.
 
+    @configbase
     @concourse_cluster
     @demo_cluster
-    Scenario Outline: running gpconfig test case: <test_case>, for guc type: <type>
-      Given the user runs "gpstop -u"
-        And gpstop should return a return code of 0
-        And the gpconfig context is setup
-        And the user runs "gpconfig -c <guc> -v <seed_value>"
-        And gpconfig should return a return code of 0
+    Scenario Outline: running hdbconfig test case: <test_case>, for guc type: <type>
+      Given the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
+        And the hdbconfig context is setup
+        And the user runs "hdbconfig -c <guc> -v <seed_value>"
+        And hdbconfig should return a return code of 0
         # ensure <guc> is set to <seed_value> for the tests below
-        And the user runs "gpstop -u"
-        And gpstop should return a return code of 0
+        And the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
 
        # set same value on master and segments
-       When the user runs "gpconfig -c <guc> -v <value>"
-       Then gpconfig should return a return code of 0
+       When the user runs "hdbconfig -c <guc> -v <value>"
+       Then hdbconfig should return a return code of 0
         And verify that the last line of the file "postgresql.conf" in the master data directory contains the string "<guc>=<file_value>" escaped
         And verify that the last line of the file "postgresql.conf" in each segment data directory contains the string "<guc>=<file_value>"
 
        # set value on master only, leaving segments the same
-       When the user runs "gpconfig -c <guc> -v <value_master_only> --masteronly "
-       Then gpconfig should return a return code of 0
+       When the user runs "hdbconfig -c <guc> -v <value_master_only> --masteronly "
+       Then hdbconfig should return a return code of 0
         And verify that the last line of the file "postgresql.conf" in the master data directory contains the string "<guc>=<file_value_master_only>" escaped
         And verify that the last line of the file "postgresql.conf" in each segment data directory contains the string "<guc>=<file_value>"
 
        # set value on master with a different value from the segments
-       When the user runs "gpconfig -c <guc> -v <value> -m <value_master>"
-       Then gpconfig should return a return code of 0
+       When the user runs "hdbconfig -c <guc> -v <value> -m <value_master>"
+       Then hdbconfig should return a return code of 0
         And verify that the last line of the file "postgresql.conf" in the master data directory contains the string "<guc>=<file_value_master>" escaped
         And verify that the last line of the file "postgresql.conf" in each segment data directory contains the string "<guc>=<file_value>"
 
        # now make sure the last changes took full effect as seen by gpconfig
-       When the user runs "gpconfig -s <guc> --file"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: <file_value_master>" escaped to stdout
-        And gpconfig should print "Segment value: <file_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc> --file"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: <file_value_master>" escaped to stdout
+        And hdbconfig should print "Segment value: <file_value>" escaped to stdout
 
-       When the user runs "gpconfig -s <guc> --file-compare"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "GUCS ARE OUT OF SYNC" to stdout
-        And gpconfig should print "value: <seed_value> | file: <file_value_master>" escaped to stdout
-        And gpconfig should print "value: <seed_value> | file: <file_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc> --file-compare"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "GUCS ARE OUT OF SYNC" to stdout
+        And hdbconfig should print "value: <seed_value> | file: <file_value_master>" escaped to stdout
+        And hdbconfig should print "value: <seed_value> | file: <file_value>" escaped to stdout
 
-       When the user runs "gpstop -u"
-       Then gpstop should return a return code of 0
+       When the user runs "hdbstop -u"
+       Then hdbstop should return a return code of 0
 
-       When the user runs "gpconfig -s <guc> --file-compare"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: <live_value_master> | file: <file_value_master>" escaped to stdout
-        And gpconfig should print "Segment value: <live_value> | file: <file_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc> --file-compare"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: <live_value_master> | file: <file_value_master>" escaped to stdout
+        And hdbconfig should print "Segment value: <live_value> | file: <file_value>" escaped to stdout
 
-       When the user runs "gpconfig -s <guc>"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: <live_value_master>" escaped to stdout
-        And gpconfig should print "Segment value: <live_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc>"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: <live_value_master>" escaped to stdout
+        And hdbconfig should print "Segment value: <live_value>" escaped to stdout
 
     Examples:
         | test_case                              | guc                          | type       | seed_value | value     | file_value | live_value | value_master_only | file_value_master_only | value_master | file_value_master | live_value_master |
@@ -80,36 +81,37 @@ Feature: gpconfig integration tests
         | quoted single quotes                   | application_name             | string     | zzzzzz     | "'hi'"    | '''hi'''   | 'hi'       | "'hi'"            | '''hi'''               | "'hi'"       | '''hi'''          | 'hi'              |
         | escaped single quote                   | application_name             | string     | boo        | "\'"      | '\\'''     | \'         | "\'"              | '\\'''                 | "\'"         | '\\'''            | \'                |
         | multiple quoted single quotes          | application_name             | string     | boo        | "''''"    | '''''''''' | ''''       | "''"              | ''''''                 | "'"          | ''''              | '                 |
-        | utf-8 works                            | search_path                  | string     | boo        | Ομήρου    | 'Ομήρου'   | Ομήρου     | Ομήρου            | 'Ομήρου'               | Ομήρου       | 'Ομήρου'          | Ομήρου            |
+#       | utf-8 works                            | search_path                  | string     | boo        | Ομήρου    | 'Ομήρου'   | Ομήρου     | Ομήρου            | 'Ομήρου'               | Ομήρου       | 'Ομήρου'          | Ομήρου            |
 #       | integer with time unit with spaces     | statement_timeout            | int w/unit | 2min       | "'7 min'" | '7 min'    | 7min       | "'7 min'"         | '7 min'                | "'7 min'"    | '7 min'           | 7min              |
 # 'Integer with time unit with spaces' fails because the live server parses '7 min' as 7min, and our comparison logic does not handle this correctly.
 
+    @configbase1
     @concourse_cluster
     @demo_cluster
     Scenario Outline: write directly to postgresql.conf file: <type>
-      Given the user runs "gpstop -u"
-        And gpstop should return a return code of 0
-        And the gpconfig context is setup
+      Given the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
+        And the hdbconfig context is setup
         # we do this to make sure all segment files contain this <guc>, both in file and live
-        And the user runs "gpconfig -c <guc> -v <seed_value>"
+        And the user runs "hdbconfig -c <guc> -v <seed_value>"
         And gpconfig should return a return code of 0
-        And the user runs "gpstop -u"
-        And gpstop should return a return code of 0
+        And the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
 
        When the user writes "<guc>" as "<value>" to the master config file
        Then verify that the last line of the file "postgresql.conf" in the master data directory contains the string "<guc>=<value>" escaped
 
        # now make sure the last changes took full effect as seen by gpconfig
-       When the user runs "gpconfig -s <guc> --file"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: <file_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc> --file"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: <file_value>" escaped to stdout
 
-       When the user runs "gpstop -u"
-       Then gpstop should return a return code of 0
+       When the user runs "hdbstop -u"
+       Then hdbstop should return a return code of 0
 
-       When the user runs "gpconfig -s <guc>"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: <live_value>" escaped to stdout
+       When the user runs "hdbconfig -s <guc>"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: <live_value>" escaped to stdout
 
     # NOTE: <value> is directly entered into postgresql.conf
     Examples:
@@ -122,47 +124,49 @@ Feature: gpconfig integration tests
         | application_name             |  string  | xxxxxx     | 'bod hi' | 'bod hi'   | bod hi     |
         | application_name             |  string  | xxxxxx     | ''       | ''         |            |
 
+    @configbase2
     @concourse_cluster
     @demo_cluster
-    Scenario: write a newline using gpconfig
-      Given the user runs "gpstop -u"
-        And gpstop should return a return code of 0
-        And the gpconfig context is setup
+    Scenario: write a newline using hdbconfig
+      Given the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
+        And the hdbconfig context is setup
         # we do this to make sure all segment files contain this <guc>, both in file and live
         # todo: we should instead use a custom guc here once we fix the bug that prevents us from setting custom gucs
-        And the user runs "gpconfig -c default_text_search_config -v xxxxxx"
-        And gpconfig should return a return code of 0
-        And the user runs "gpstop -u"
-        And gpstop should return a return code of 0
+        And the user runs "hdbconfig -c default_text_search_config -v xxxxxx"
+        And hdbconfig should return a return code of 0
+        And the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
 
-       When the user runs "gpconfig -c default_text_search_config -v $'a\nb'"
+       When the user runs "hdbconfig -c default_text_search_config -v $'a\nb'"
        Then verify that the last line of the file "postgresql.conf" in the master data directory contains the string "default_text_search_config='a\nb'" escaped
 
        # now make sure the last changes took full effect as seen by gpconfig
-       When the user runs "gpconfig -s default_text_search_config --file"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: 'a\nb'" escaped to stdout
+       When the user runs "hdbconfig -s default_text_search_config --file"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: 'a\nb'" escaped to stdout
 
-       When the user runs "gpstop -u"
-       Then gpstop should return a return code of 0
+       When the user runs "hdbstop -u"
+       Then hdbstop should return a return code of 0
 
-       When the user runs "gpconfig -s default_text_search_config"
-       Then gpconfig should return a return code of 0
-        And gpconfig should print "Master  value: a\nb" to stdout
+       When the user runs "hdbconfig -s default_text_search_config"
+       Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Master  value: a\nb" to stdout
 
+    @configbase3
     @concourse_cluster
     @demo_cluster
-    Scenario Outline: gpconfig basic removal for type: <type>
-      Given the user runs "gpstop -u"
-        And gpstop should return a return code of 0
-        And the gpconfig context is setup
-        And the user runs "gpconfig -c <guc> -v <value>"
-        And gpconfig should return a return code of 0
+    Scenario Outline: hdbconfig basic removal for type: <type>
+      Given the user runs "hdbstop -u"
+        And hdbstop should return a return code of 0
+        And the hdbconfig context is setup
+        And the user runs "hdbconfig -c <guc> -v <value>"
+        And hdbconfig should return a return code of 0
         And verify that the file "postgresql.conf" in the master data directory has "some" line starting with "<guc>="
         And verify that the file "postgresql.conf" in each segment data directory has "some" line starting with "<guc>="
 
-       When the user runs "gpconfig -r <guc>"
-        And gpconfig should return a return code of 0
+       When the user runs "hdbconfig -r <guc>"
+        And hdbconfig should return a return code of 0
 
        Then verify that the file "postgresql.conf" in the master data directory has "no" line starting with "<guc>="
         And verify that the file "postgresql.conf" in the master data directory has "some" line starting with "#<guc>="

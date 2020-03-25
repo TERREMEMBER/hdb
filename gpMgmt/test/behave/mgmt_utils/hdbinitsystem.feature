@@ -3,19 +3,19 @@ Feature: hdbinitsystem tests
 
     Scenario: hdbinitsystem creates a cluster with data_checksums on
         Given the database is initialized with checksum "on"
-        When the user runs "gpconfig -s data_checksums"
-        Then gpconfig should return a return code of 0
-        And gpconfig should print "Values on all segments are consistent" to stdout
-        And gpconfig should print "Master  value: on" to stdout
-        And gpconfig should print "Segment value: on" to stdout
+        When the user runs "hdbconfig -s data_checksums"
+        Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Values on all segments are consistent" to stdout
+        And hdbconfig should print "Master  value: on" to stdout
+        And hdbconfig should print "Segment value: on" to stdout
 
     Scenario: hdbinitsystem creates a cluster with data_checksums off
         Given the database is initialized with checksum "off"
-        When the user runs "gpconfig -s data_checksums"
-        Then gpconfig should return a return code of 0
-        And gpconfig should print "Values on all segments are consistent" to stdout
-        And gpconfig should print "Master  value: off" to stdout
-        And gpconfig should print "Segment value: off" to stdout
+        When the user runs "hdbconfig -s data_checksums"
+        Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Values on all segments are consistent" to stdout
+        And hdbconfig should print "Master  value: off" to stdout
+        And hdbconfig should print "Segment value: off" to stdout
 
     Scenario: hdbinitsystem creates a cluster when the user confirms the dialog when --ignore-warnings is passed in
         Given create demo cluster config
@@ -59,15 +59,15 @@ Feature: hdbinitsystem tests
         When the user runs command "ln -s -f `which hdbinitsystem` /tmp/hdbinitsystem-link; . /tmp/hdbinitsystem-link --ignore-warnings" eok
         Then hdbinitsystem should return a return code of 2
 
-    Scenario: hdbinitsystem returns exit code 1 when gpinitstandby fails
+    Scenario: hdbinitsystem returns exit code 1 when hdbinitstandby fails
         Given create demo cluster config
-           # force gpinitstandby to fail by specifying a directory that does not exist (hdbinitsystem continues successfully)
+           # force hdbinitstandby to fail by specifying a directory that does not exist (hdbinitsystem continues successfully)
         When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -s localhost -S not-a-real-directory -P 21100 -h ../gpAux/gpdemo/hostfile"
         Then hdbinitsystem should return a return code of 1
 
-    Scenario: hdbinitsystem returns exit code 0 when gpinitstandby fails when passing the --ignore-warnings flag
+    Scenario: hdbinitsystem returns exit code 0 when hdbinitstandby fails when passing the --ignore-warnings flag
        Given create demo cluster config
-           # force gpinitstandby to fail by specifying a directory that does not exist (hdbinitsystem continues successfully)
+           # force hdbinitstandby to fail by specifying a directory that does not exist (hdbinitsystem continues successfully)
         When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -s localhost -S not-a-real-directory -P 21100 -h ../gpAux/gpdemo/hostfile --ignore-warnings"
         Then hdbinitsystem should return a return code of 0
 
@@ -83,11 +83,11 @@ Feature: hdbinitsystem tests
         Given create demo cluster config
         # log a warning
         And the user runs command "echo 'ARRAY_NAME=' >> ../gpAux/gpdemo/clusterConfigFile"
-       When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
-       Then hdbinitsystem should return a return code of 0
-      Given create demo cluster config
-       When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
-       Then hdbinitsystem should return a return code of 0
+        When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
+        Then hdbinitsystem should return a return code of 0
+        Given create demo cluster config
+        When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
+        Then hdbinitsystem should return a return code of 0
 
     Scenario: hdbinitsystem should warn but not fail when standby cannot be instantiated when using --ignore-warnings
         Given the database is running
@@ -143,11 +143,11 @@ Feature: hdbinitsystem tests
         And verify that the file "/tmp/output_config_file" contains "HEAP_CHECKSUM=on"
         And the user runs "hdbinitsystem -a -I /tmp/output_config_file -l /tmp/"
         Then hdbinitsystem should return a return code of 0
-        When the user runs "gpconfig -s data_checksums"
-        Then gpconfig should return a return code of 0
-        And gpconfig should print "Values on all segments are consistent" to stdout
-        And gpconfig should print "Master  value: on" to stdout
-        And gpconfig should print "Segment value: on" to stdout
+        When the user runs "hdbconfig -s data_checksums"
+        Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Values on all segments are consistent" to stdout
+        And hdbconfig should print "Master  value: on" to stdout
+        And hdbconfig should print "Segment value: on" to stdout
 
     Scenario: hdbinitsystem generates an output configuration file and then starts cluster with data_checksums off
         Given the cluster config is generated with data_checksums "off"
@@ -157,11 +157,11 @@ Feature: hdbinitsystem tests
         And verify that the file "/tmp/output_config_file" contains "HEAP_CHECKSUM=off"
         And the user runs "hdbinitsystem -a -I /tmp/output_config_file -l /tmp/"
         Then hdbinitsystem should return a return code of 0
-        When the user runs "gpconfig -s data_checksums"
-        Then gpconfig should return a return code of 0
-        And gpconfig should print "Values on all segments are consistent" to stdout
-        And gpconfig should print "Master  value: off" to stdout
-        And gpconfig should print "Segment value: off" to stdout
+        When the user runs "hdbconfig -s data_checksums"
+        Then hdbconfig should return a return code of 0
+        And hdbconfig should print "Values on all segments are consistent" to stdout
+        And hdbconfig should print "Master  value: off" to stdout
+        And hdbconfig should print "Segment value: off" to stdout
 
     Scenario: hdbinitsystem should warn but not fail when standby cannot be instantiated
         Given the database is running
@@ -250,7 +250,7 @@ Feature: hdbinitsystem tests
 # version test
         Scenario: version test
         When the user runs command "hdbinitsystem -v"
-        Then the hdbinitsystem should print "hdbinitsystem 6.3.0 build dev" to stdout
+        Then the hdbinitsystem should print "hdbinitsystem" to stdout
 # init test
      Scenario: init test
         Given create demo cluster config
@@ -261,6 +261,6 @@ Feature: hdbinitsystem tests
         And the user runs command "rm -rf /tmp/hdbinitsystemtest && mkdir /tmp/hdbinitsystemtest"
         When the user runs command "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -l /tmp/hdbinitsystemtest -P 21100 -h ../gpAux/gpdemo/hostfile"
         Then hdbinitsystem should return a return code of 0
-        And the hdbinitsystem should print "Commencing multi-home checks," to stdout
+        And the hdbinitsystem should print "inHybrid" to stdout
 
 

@@ -389,7 +389,7 @@ segment.
         Given the database is running
         And all the segments are running
         And the segments are synchronized
-        When the user runs "hdbrecoverseg -r"
+        When the user runs "hdbrecoverseg -ar"
         Then hdbrecoverseg should return a return code of 0
         And hdbrecoverseg should print "Starting hdbrecoverseg with args" to stdout
         And hdbrecoverseg should print "local inHybrid Version" to stdout

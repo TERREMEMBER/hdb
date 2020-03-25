@@ -82,8 +82,8 @@ Feature: Tests for gpaddmirrors
         And save the gparray to context
         And the database is not running
         And a cluster is created with no mirrors on "mdw" and "sdw1, sdw2, sdw3"
-        And the user runs gpinitstandby with options " "
-        Then gpinitstandby should return a return code of 0
+        And the user runs hdbinitstandby with options " "
+        Then hdbinitstandby should return a return code of 0
         And gpaddmirrors adds mirrors
         Then mirror hostlist matches the one saved in context
         And the user runs "gpstop -aqM fast"
@@ -125,8 +125,8 @@ Feature: Tests for gpaddmirrors
         When an FTS probe is triggered
         And the user runs "gpstop -a"
         And wait until the process "gpstop" goes down
-        And the user runs "gpstart -a"
-        And wait until the process "gpstart" goes down
+        And the user runs "hdbstart -a"
+        And wait until the process "hdbstart" goes down
         Then all the segments are running
         And the segments are synchronized
         And the user runs "gpstop -aqM fast"

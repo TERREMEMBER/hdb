@@ -31,7 +31,7 @@ if [ ${#GPPATH[@]} -eq 0 ];then
 fi
 
 #GP_UNIQUE_COMMAND is used to identify the binary directory
-GP_UNIQUE_COMMAND=gpstart
+GP_UNIQUE_COMMAND=hdbstart
 
 
 findCmdInPath() {
@@ -130,13 +130,13 @@ SCRIPTDIR="`$DIRNAME $PSQLBIN`/bin"
 #******************************************************************************
 # Greenplum Scripts
 #******************************************************************************
-GPINITSYSTEM=$SCRIPTDIR/gpinitsystem
-GPCONFIG=$SCRIPTDIR/gpconfig
-GPINITSTANDBY=$SCRIPTDIR/gpinitstandby
+HDBINITSYSTEM=$SCRIPTDIR/hdbinitsystem
+HDBCONFIG=$SCRIPTDIR/hdbconfig
+HDBINITSTANDBY=$SCRIPTDIR/hdbinitstandby
 GPRECOVERSEG=$SCRIPTDIR/gprecoverseg
-GPSTART=$SCRIPTDIR/gpstart
+HDBSTART=$SCRIPTDIR/hdbstart
 GPSTATE=$SCRIPTDIR/gpstate
-GPSTOP=$SCRIPTDIR/gpstop
+HDBSTOP=$SCRIPTDIR/hdbstop
 GPDOCDIR=${GPHOME}/docs/cli_help/
 #******************************************************************************
 # Greenplum Command Variables
@@ -924,7 +924,7 @@ CHK_DB_RUNNING () {
 		fi
 		if [ ! -f $MASTER_DATA_DIRECTORY/$PG_PID ]; then
 			LOG_MSG "[FATAL]:-No $MASTER_DATA_DIRECTORY/$PG_PID file" 1
-			ERROR_EXIT "[FATAL]:-Run gpstart to start the Greenplum database." 2
+			ERROR_EXIT "[FATAL]:-Run hdbstart to start the Greenplum database." 2
 		fi
 		GET_MASTER_PORT $MASTER_DATA_DIRECTORY
 		export $EXPORT_LIB_PATH;env PGOPTIONS="-c gp_session_role=utility" $PSQL -p $MASTER_PORT -d "$DEFAULTDB" -A -t -c"SELECT d.datname as \"Name\",
@@ -947,7 +947,7 @@ ORDER BY 1;" >> $LOG_FILE 2>&1
 				LOG_MSG "[WARN]:-Can access the Master instance in admin mode, but dispatch access failed" 1
 				LOG_MSG "[INFO]:-This could mean that the Master instance is in admin mode only" 1
 				LOG_MSG "[INFO]:-Run gpstop -m to shutdown Master instance from admin mode, and restart" 1
-				LOG_MSG "[INFO]:-the Greenplum database using gpstart" 1
+				LOG_MSG "[INFO]:-the Greenplum database using hdbstart" 1
 				EXIT_STATUS=1
 			else
 				EXIT_STATUS=0

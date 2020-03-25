@@ -184,5 +184,6 @@ Feature: hdbstop behave tests
 	  And the database is not running
 	  When the user runs "hdbstop --help"
 	  Then hdbstop should return a return code of 0
-	  And hdbstart should print "hdbstop" to stdout				
-	  And hdbstop should print "Stops a HDB Array" to stdout
+	  And hdbstart should print "inHybrid" to stdout				
+	  And hdbstop should print "hdbstop" to stdout
+	  And hdbstop should print "hdbstop --version" to stdout

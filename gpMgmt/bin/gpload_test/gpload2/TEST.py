@@ -52,7 +52,7 @@ def getPortMasterOnly(host = 'localhost',master_value = None,
                       mdd=os.environ['MASTER_DATA_DIRECTORY'],port = os.environ['PGPORT']):
 
     master_pattern = "Context:\s*-1\s*Value:\s*\d+"
-    command = "gpconfig -s %s" % ( "port" )
+    command = "hdbconfig -s %s" % ( "port" )
 
     cmd = "source %s/greenplum_path.sh; export MASTER_DATA_DIRECTORY=%s; export PGPORT=%s; %s" \
            % (gphome, mdd, port, command)

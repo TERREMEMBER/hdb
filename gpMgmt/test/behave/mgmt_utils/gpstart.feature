@@ -158,7 +158,7 @@ Feature: gpstart behave tests
           When the user runs "hdbstart --help"
           Then hdbstart should return a return code of 0
 	  And hdbstart should print "hdbstart" to stdout
-	   And hdbstart should print "Starts a HDB Array" to stdout
+	   And hdbstart should print "Starts a inHybrid Database system." to stdout
 		
      @startv
      @concourse_cluster
