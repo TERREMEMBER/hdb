@@ -34,7 +34,7 @@ Feature: expand the cluster by adding more segments
         And a working directory of the test as '/data/gpdata/gpexpand'
         And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
-        And the user runs gpinitstandby with options " "
+        And the user runs hdbinitstandby with options " "
         And database "gptest" exists
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1"
@@ -175,7 +175,7 @@ Feature: expand the cluster by adding more segments
         And a working directory of the test as '/data/gpdata/gpexpand'
         And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
-        And the user runs gpinitstandby with options " "
+        And the user runs hdbinitstandby with options " "
         And database "gptest" exists
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1,sdw2,sdw3"
@@ -193,7 +193,7 @@ Feature: expand the cluster by adding more segments
         And a working directory of the test as '/data/gpdata/gpexpand'
         And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
-        And the user runs gpinitstandby with options " "
+        And the user runs hdbinitstandby with options " "
         And database "gptest" exists
 	And a tablespace is created with data
 	And another tablespace is created with data
@@ -391,7 +391,7 @@ Feature: expand the cluster by adding more segments
         And the user runs command "rm -rf /data/gpdata/gpexpand/*"
         And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
-        And the user runs gpinitstandby with options " "
+        And the user runs hdbinitstandby with options " "
         And database "gptest" exists
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1"
@@ -431,7 +431,7 @@ Feature: expand the cluster by adding more segments
         And the user runs command "rm -rf /data/gpdata/gpexpand/*"
         And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
-        And the user runs gpinitstandby with options " "
+        And the user runs hdbinitstandby with options " "
         And database "gptest" exists
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1"

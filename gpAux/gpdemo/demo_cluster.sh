@@ -116,7 +116,7 @@ cleanDemo(){
 
     (export MASTER_DATA_DIRECTORY=$QDDIR/${SEG_PREFIX}-1;
      source ${GPHOME}/greenplum_path.sh;
-     gpstop -a)
+     hdbstop -a)
 
     ##
     ## Remove the files and directories created; allow test harnesses
@@ -210,7 +210,7 @@ cat <<-EOF
 
 EOF
 
-GPPATH=`find $GPSEARCH -name gpstart| tail -1`
+GPPATH=`find $GPSEARCH -name hdbstart| tail -1`
 RETVAL=$?
 
 if [ "$RETVAL" -ne 0 ]; then
@@ -223,7 +223,7 @@ if [ ! -x "$GPPATH" ]; then
     exit 1
 fi
 GPPATH=`dirname $GPPATH`
-if [ ! -x $GPPATH/gpinitsystem ]; then
+if [ ! -x $GPPATH/hdbinitsystem ]; then
     echo "No mgmt executables found for Greenplum installation in $GPPATH"
     exit 1
 fi
@@ -392,22 +392,22 @@ fi
 if [ -f "${CLUSTER_CONFIG_POSTGRES_ADDONS}" ]; then
     echo "=========================================================================================="
     echo "executing:"
-    echo "  $GPPATH/gpinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs -p ${CLUSTER_CONFIG_POSTGRES_ADDONS} ${STANDBY_INIT_OPTS} \"$@\""
+    echo "  $GPPATH/hdbinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs -p ${CLUSTER_CONFIG_POSTGRES_ADDONS} ${STANDBY_INIT_OPTS} \"$@\""
     echo "=========================================================================================="
     echo ""
-    $GPPATH/gpinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs -p ${CLUSTER_CONFIG_POSTGRES_ADDONS} ${STANDBY_INIT_OPTS} "$@"
+    $GPPATH/hdbinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs -p ${CLUSTER_CONFIG_POSTGRES_ADDONS} ${STANDBY_INIT_OPTS} "$@"
 else
     echo "=========================================================================================="
     echo "executing:"
-    echo "  $GPPATH/gpinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs ${STANDBY_INIT_OPTS} \"$@\""
+    echo "  $GPPATH/hdbinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs ${STANDBY_INIT_OPTS} \"$@\""
     echo "=========================================================================================="
     echo ""
-    $GPPATH/gpinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs ${STANDBY_INIT_OPTS} "$@"
+    $GPPATH/hdbinitsystem -a -c $CLUSTER_CONFIG -l $DATADIRS/gpAdminLogs ${STANDBY_INIT_OPTS} "$@"
 fi
 RETURN=$?
 
 echo "========================================"
-echo "gpinitsystem returned: ${RETURN}"
+echo "hdbinitsystem returned: ${RETURN}"
 echo "========================================"
 echo ""
 

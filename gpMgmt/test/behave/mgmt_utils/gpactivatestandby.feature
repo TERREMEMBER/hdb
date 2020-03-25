@@ -4,8 +4,8 @@ Feature: gpactivatestandby
     Scenario: gpactivatestandby works
         Given the database is running
         And the standby is not initialized
-        And the user runs gpinitstandby with options " "
-        Then gpinitstandby should return a return code of 0
+        And the user runs hdbinitstandby with options " "
+        Then hdbinitstandby should return a return code of 0
         And verify the standby master entries in catalog
         When there is a "heap" table "foobar" in "postgres" with data
         And the master goes down
@@ -19,8 +19,8 @@ Feature: gpactivatestandby
     Scenario: gpactivatestandby -f forces standby master to start
         Given the database is running
         And the standby is not initialized
-        And the user runs gpinitstandby with options " "
-        Then gpinitstandby should return a return code of 0
+        And the user runs hdbinitstandby with options " "
+        Then hdbinitstandby should return a return code of 0
         And verify the standby master entries in catalog
         When there is a "heap" table "foobar" in "postgres" with data
         And the master goes down
@@ -37,8 +37,8 @@ Feature: gpactivatestandby
     Scenario: gpactivatestandby should fail when given invalid data directory
         Given the database is running
         And the standby is not initialized
-        And the user runs gpinitstandby with options " "
-        Then gpinitstandby should return a return code of 0
+        And the user runs hdbinitstandby with options " "
+        Then hdbinitstandby should return a return code of 0
         And verify the standby master entries in catalog
         And the user runs gpactivatestandby with options "-d invalid_directory"
         Then gpactivatestandby should return a return code of 2
@@ -46,8 +46,8 @@ Feature: gpactivatestandby
     Scenario: gpstate after running gpactivatestandby works
         Given the database is running
         And the standby is not initialized
-        And the user runs gpinitstandby with options " "
-        Then gpinitstandby should return a return code of 0
+        And the user runs hdbinitstandby with options " "
+        Then hdbinitstandby should return a return code of 0
         And verify the standby master entries in catalog
         And the master goes down
         And the user runs gpactivatestandby with options " "
@@ -65,8 +65,8 @@ Feature: gpactivatestandby
         Given the database is running
           And the standby is not initialized
           And a tablespace is created with data
-         When the user runs gpinitstandby with options " "
-         Then gpinitstandby should return a return code of 0
+         When the user runs hdbinitstandby with options " "
+         Then hdbinitstandby should return a return code of 0
           And verify the standby master entries in catalog
 
          When the master goes down
@@ -84,8 +84,8 @@ Feature: gpactivatestandby
         Given the database is running
           And the standby is not initialized
           And a tablespace is created with data
-         When the user runs gpinitstandby with options " "
-         Then gpinitstandby should return a return code of 0
+         When the user runs hdbinitstandby with options " "
+         Then hdbinitstandby should return a return code of 0
           And verify the standby master entries in catalog
 
          When the master goes down

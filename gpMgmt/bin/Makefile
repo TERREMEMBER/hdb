@@ -13,13 +13,12 @@ SUBDIRS += ifaddrs
 $(recurse)
 
 PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat gpcheckperf \
-	gpcheckresgroupimpl gpconfig gpdeletesystem gpexpand gpinitstandby \
-	gpinitsystem gpload gpload.py gplogfilter gpmovemirrors \
-	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys gpstart \
-	gpstate gpstop gpsys1 minirepro hdbstart hdbstop \
+	gpcheckresgroupimpl gpdeletesystem gpexpand \
+        gpload gpload.py gplogfilter gpmovemirrors \
+	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys \
+	gpstate gpsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
 	hdbrecoverseg hdbconfig
-
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)/lib'
 

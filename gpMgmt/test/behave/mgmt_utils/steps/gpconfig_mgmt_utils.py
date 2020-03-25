@@ -19,9 +19,9 @@ class GpConfigContext:
         self.master_postgres_file = ''
         self.standby_postgres_file = ''
 
-@given('the gpconfig context is setup')
+@given('the hdbconfig context is setup')
 def impl(context):
-    make_temp_dir(context, path.join('/tmp', 'gpconfig'))
+    make_temp_dir(context, path.join('/tmp', 'hdbconfig'))
     temp_base_dir = context.temp_base_dir
     context.gpconfig_context.working_directory = temp_base_dir
     gparray = GpArray.initFromCatalog(dbconn.DbURL())
@@ -56,12 +56,12 @@ def impl(context):
     context.add_cleanup(restore_conf_files)
 
 
-@given('the user runs gpconfig sets guc "{guc}" with "{value}"')
+@given('the user runs hdbconfig sets guc "{guc}" with "{value}"')
 def impl(context, guc, value):
-    cmd = 'gpconfig -c %s -v %s' % (guc, value)
+    cmd = 'hdbconfig -c %s -v %s' % (guc, value)
     context.execute_steps(u'''
         Given the user runs "%s"
-        Then gpconfig should return a return code of 0
+        Then hdbconfig should return a return code of 0
     ''' % cmd)
 
 # FIXME: this assumes the standby host is the same as the master host

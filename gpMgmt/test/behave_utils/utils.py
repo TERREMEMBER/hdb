@@ -189,7 +189,7 @@ def start_database_if_not_started(context):
 
 
 def start_database(context):
-    run_gpcommand(context, 'gpstart -a')
+    run_gpcommand(context, 'hdbstart -a')
     if context.exception:
         raise context.exception
 
@@ -200,7 +200,7 @@ def stop_database_if_started(context):
 
 
 def stop_database(context):
-    run_gpcommand(context, 'gpstop -M fast -a')
+    run_gpcommand(context, 'hdbstop -M fast -a')
     if context.exception:
         raise context.exception
 

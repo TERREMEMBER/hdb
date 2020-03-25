@@ -24,7 +24,7 @@ class GpsshExkeysMgmtContext:
     def __init__(self, context):
         self.master_host = None
         self.segment_hosts = None
-        make_temp_dir(context, '/tmp/gpssh-exkeys', '0700')
+        make_temp_dir(context, '/tmp/hdbssh-exkeys', '0700')
         self.working_directory = context.temp_base_dir
 
     def allHosts(self):
@@ -33,25 +33,25 @@ class GpsshExkeysMgmtContext:
         return allHosts
 
 
-@given('the gpssh-exkeys master host is set to "{host}"')
+@given('the hdbssh-exkeys master host is set to "{host}"')
 def impl(context, host):
     context.gpssh_exkeys_context.master_host = host
 
-@given('the gpssh-exkeys segment host is set to "{hosts}"')
+@given('the hdbssh-exkeys segment host is set to "{hosts}"')
 def impl(context, hosts):
     context.gpssh_exkeys_context.segment_hosts = [ h.strip() for h in hosts.split(',') ]
 
 def run_exkeys(hosts, capture=False):
     """
-    Runs gpssh-exkeys for the given list of hosts. If capture is True, the
-    (returncode, stdout, stderr) from the gpssh-exkeys run is returned;
+    Runs hdbssh-exkeys for the given list of hosts. If capture is True, the
+    (returncode, stdout, stderr) from the hdbssh-exkeys run is returned;
     otherwise an exception is thrown on failure and all stdout/err is untouched.
     """
     host_opts = []
     for host in hosts:
         host_opts.extend(['-h', host])
 
-    args = [ 'gpssh-exkeys', '-v' ] + host_opts
+    args = [ 'hdbssh-exkeys', '-v' ] + host_opts
 
     if not capture:
         subprocess.check_call(args)
@@ -86,7 +86,7 @@ def run_exkeys(hosts, capture=False):
 
     return ret, stored_out, stored_err
 
-@then('gpssh-exkeys writes "{output}" to stderr')
+@then('hdbssh-exkeys writes "{output}" to stderr')
 def impl(context, output):
     if 'stderr' not in context:
         raise Exception('context has no stored stderr (did you run the correct steps?)')
@@ -95,7 +95,7 @@ def impl(context, output):
         msg = 'expected stderr content not found. stderr:\n%s' % context.stderr
         raise Exception(msg)
 
-@when('gpssh-exkeys is run')
+@when('hdbssh-exkeys is run')
 def impl(context):
     hosts = context.gpssh_exkeys_context.allHosts()
     code, stdout, stderr = run_exkeys(hosts, capture=True)
@@ -103,16 +103,16 @@ def impl(context):
     context.stdout = stdout
     context.stderr = stderr
 
-@when('gpssh-exkeys is run successfully')
+@when('hdbssh-exkeys is run successfully')
 def impl(context):
     run_exkeys(context.gpssh_exkeys_context.allHosts())
 
-@given('gpssh-exkeys is run successfully on hosts "{hosts}"')
-@when('gpssh-exkeys is run successfully on hosts "{hosts}"')
+@given('hdbssh-exkeys is run successfully on hosts "{hosts}"')
+@when('hdbssh-exkeys is run successfully on hosts "{hosts}"')
 def impl(context, hosts):
     run_exkeys([ h.strip() for h in hosts.split(',') ])
 
-@when('gpssh-exkeys is run successfully on additional hosts "{new_hosts}"')
+@when('hdbssh-exkeys is run successfully on additional hosts "{new_hosts}"')
 def impl(context, new_hosts):
     new_hosts = [ h.strip() for h in new_hosts.split(',') ]
     old_hosts = [
@@ -132,13 +132,13 @@ def impl(context, new_hosts):
         new_host_file.flush()
 
         subprocess.check_call([
-            'gpssh-exkeys',
+            'hdbssh-exkeys',
             '-v',
             '-e', old_host_file.name,
             '-x', new_host_file.name,
         ])
 
-@when('gpssh-exkeys is run successfully with a hostfile')
+@when('hdbssh-exkeys is run successfully with a hostfile')
 def impl(context):
     with tempfile.NamedTemporaryFile() as host_file:
         for h in context.gpssh_exkeys_context.allHosts():
@@ -146,12 +146,12 @@ def impl(context):
         host_file.flush()
 
         subprocess.check_call([
-            'gpssh-exkeys',
+            'hdbssh-exkeys',
             '-v',
             '-f', host_file.name,
         ])
 
-@when('gpssh-exkeys is run successfully with IPv6 addresses')
+@when('hdbssh-exkeys is run successfully with IPv6 addresses')
 def impl(context):
     ipv6_addrs = []
     for host in context.gpssh_exkeys_context.allHosts():
@@ -185,7 +185,7 @@ def impl(context, works):
     context.execute_steps(steps)
 
 
-# TODO: we are currently not using gpssh so we can control StrictHostKeyChecking=yes
+# TODO: we are currently not using hdbssh so we can control StrictHostKeyChecking=yes
 @then('the segment hosts "{works}" reach each other or themselves automatically')
 def impl(context, works):
     ret = 255
@@ -193,7 +193,7 @@ def impl(context, works):
         ret = 0
     # NOTE: we tried using scp with files instead, but -o BatchMode=yes -o StrictHostKeyChecking=yes
     # still asked us for a prompt.
-    # we're not using gpssh here because we want to test each connection
+    # we're not using hdbssh here because we want to test each connection
     for fromHost in context.gpssh_exkeys_context.segment_hosts:
         for toHost in context.gpssh_exkeys_context.segment_hosts:
             cmd = u'''
@@ -211,7 +211,7 @@ def impl(context, works):
         host_opts.extend(['-h', host])
 
     subprocess.check_call([
-        'gpssh',
+        'hdbssh',
         '-e',
         ] + host_opts + [
         '{}ssh -o BatchMode=yes -o StrictHostKeyChecking=yes mdw true'.format(
@@ -242,7 +242,7 @@ def impl(context):
 
     # Everything except authorized_keys is moved elsewhere.
     subprocess.check_call([
-        'gpssh',
+        'hdbssh',
         '-e',
         ] + host_opts + [(
         'mkdir -p /tmp/ssh.bak '
@@ -261,7 +261,7 @@ def impl(context):
     # Make sure the configuration is restored at the end.
     def cleanup():
         subprocess.check_call([
-            'gpssh',
+            'hdbssh',
             '-e',
             ] + host_opts + [
             'mv -f /tmp/ssh.bak/* ~/.ssh/',
@@ -300,7 +300,7 @@ def impl(context):
 
     # This blows away any existing authorized_keys file on the segments.
     subprocess.check_call([
-        'gpscp',
+        'hdbscp',
         '-v',
         ] + host_opts + [
         '~/.ssh/id_rsa.pub',
@@ -318,7 +318,7 @@ def impl(context, ssh_type):
     subprocess.check_call([ 'bash', '-c', '! sort %s | uniq -d | grep .' % path.join('~/.ssh',pipes.quote(ssh_type))])
 
     subprocess.check_call([
-        'gpssh',
+        'hdbssh',
         '-e',
         ] + host_opts + [
         '! sort %s | uniq -d | grep .' % path.join('~/.ssh',pipes.quote(ssh_type))

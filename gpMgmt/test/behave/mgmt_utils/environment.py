@@ -8,7 +8,7 @@ from test.behave_utils.utils import drop_database_if_exists, start_database_if_n
                                             run_command, check_user_permissions, run_gpcommand
 from steps.mirrors_mgmt_utils import MirrorMgmtContext
 from steps.gpconfig_mgmt_utils import GpConfigContext
-from steps.gpssh_exkeys_mgmt_utils import GpsshExkeysMgmtContext
+from steps.hdbssh_exkeys_mgmt_utils import GpsshExkeysMgmtContext
 from gppylib.db import dbconn
 
 def before_all(context):
@@ -18,7 +18,7 @@ def before_all(context):
 def before_feature(context, feature):
     # we should be able to run gpexpand without having a cluster initialized
     tags_to_skip = ['gpexpand', 'gpaddmirrors', 'gpstate', 'gpmovemirrors','hdbinitsystem',
-                    'gpconfig', 'gpssh-exkeys', 'gpstop', 'gpinitsystem', 'cross_subnet']
+                    'gpconfig', 'hdbssh-exkeys', 'gpstop', 'gpinitsystem', 'cross_subnet']
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
@@ -74,8 +74,8 @@ def after_feature(context, feature):
         context.conn.close()
     if 'gpconfig' in feature.tags:
         context.execute_steps(u'''
-            Then the user runs "gpstop -ar"
-            And gpstop should return a return code of 0
+            Then the user runs "hdbstop -ar"
+            And hdbstop should return a return code of 0
             ''')
 
 def before_scenario(context, scenario):
@@ -89,11 +89,11 @@ def before_scenario(context, scenario):
     if 'gpconfig' in context.feature.tags:
         context.gpconfig_context = GpConfigContext()
 
-    if 'gpssh-exkeys' in context.feature.tags:
+    if 'hdbssh-exkeys' in context.feature.tags:
         context.gpssh_exkeys_context = GpsshExkeysMgmtContext(context)
 
     tags_to_skip = ['gpexpand', 'gpaddmirrors', 'gpstate', 'gpmovemirrors','hdbinitsystem',
-                    'gpconfig', 'gpssh-exkeys', 'gpstop', 'gpinitsystem', 'cross_subnet']
+                    'gpconfig', 'hdbssh-exkeys', 'gpstop', 'gpinitsystem', 'cross_subnet']
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
@@ -115,8 +115,8 @@ def after_scenario(context, scenario):
     if 'gpstop' in scenario.effective_tags:
         context.execute_steps(u'''
             # restart the cluster so that subsequent tests re-use the existing demo cluster
-            Then the user runs "gpstart -a"
-            And gpstart should return a return code of 0
+            Then the user runs "hdbstart -a"
+            And hdbstart should return a return code of 0
             ''')
 
     # NOTE: gpconfig after_scenario cleanup is in the step `the gpconfig context is setup`
@@ -127,12 +127,12 @@ def after_scenario(context, scenario):
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
-    tags_to_cleanup = ['gpmovemirrors', 'gpssh-exkeys']
+    tags_to_cleanup = ['gpmovemirrors', 'hdbssh-exkeys']
     if set(context.feature.tags).intersection(tags_to_cleanup):
         if 'temp_base_dir' in context:
             shutil.rmtree(context.temp_base_dir)
 
-    tags_to_not_restart_db = ['analyzedb', 'gpssh-exkeys']
+    tags_to_not_restart_db = ['analyzedb', 'hdbssh-exkeys']
     if not set(context.feature.tags).intersection(tags_to_not_restart_db):
         start_database_if_not_started(context)
 
@@ -144,7 +144,7 @@ def after_scenario(context, scenario):
         if os.path.isdir('%s/gpAdminLogs.bk' % home_dir):
             shutil.move('%s/gpAdminLogs.bk' % home_dir, '%s/gpAdminLogs' % home_dir)
 
-    if 'gpssh' in context.feature.tags:
+    if 'hdbssh' in context.feature.tags:
         run_command(context, 'sudo tc qdisc del dev lo root netem')
 
     # for cleaning up after @given('"{path}" has its permissions set to "{perm}"')
