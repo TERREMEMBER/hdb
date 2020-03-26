@@ -1,5 +1,5 @@
-@gprecoverseg
-Feature: gprecoverseg tests
+@hdbrecoverseg
+Feature: hdbrecoverseg tests
     
     Scenario: incremental recovery works with tablespaces
         Given the database is running

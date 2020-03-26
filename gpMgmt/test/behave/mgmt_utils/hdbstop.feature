@@ -1,4 +1,4 @@
-@gpstop
+@hdbstop
 Feature: hdbstop behave tests
 
     @concourse_cluster
