@@ -19,24 +19,24 @@ Feature: hdbinitsystem tests
 
     Scenario: hdbinitsystem creates a cluster when the user confirms the dialog when --ignore-warnings is passed in
         Given create demo cluster config
-         When the user runs command "echo y | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
-         Then hdbinitsystem should return a return code of 0
-        Given the user runs "gpstate"
-         Then gpstate should return a return code of 0
+        When the user runs command "echo y | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile --ignore-warnings"
+        Then hdbinitsystem should return a return code of 0
+        Given the user runs "hdbstate"
+        Then hdbstate should return a return code of 0
 
     Scenario: hdbinitsystem exits with status 1 when the user enters nothing for the confirmation
         Given create demo cluster config
         When the user runs command "echo '' | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile" eok
         Then hdbinitsystem should return a return code of 1
-        Given the user runs "gpstate"
-        Then gpstate should return a return code of 2
+        Given the user runs "hdbstate"
+        Then hdbstate should return a return code of 2
 
     Scenario: hdbinitsystem exits with status 1 when the user enters no for the confirmation
         Given create demo cluster config
         When the user runs command "echo no | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile" eok
         Then hdbinitsystem should return a return code of 1
-        Given the user runs "gpstate"
-        Then gpstate should return a return code of 2
+        Given the user runs "hdbstate"
+        Then hdbstate should return a return code of 2
 
     Scenario: hdbinitsystem creates a cluster when the user confirms the dialog
         Given create demo cluster config
@@ -44,11 +44,11 @@ Feature: hdbinitsystem tests
         And the user runs command "rm -r ~/gpAdminLogs/hdbinitsystem*"
         When the user runs command "echo y | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile"
         Then hdbinitsystem should return a return code of 0
-        Given the user runs "gpstate"
-        Then gpstate should return a return code of 0
+        Given the user runs "hdbstate"
+        Then hdbstate should return a return code of 0
 
     Scenario: hdbinitsystem fails with exit code 2 when the functions file is not found
-       Given create demo cluster config
+        Given create demo cluster config
            # force a load error when trying to source gp_bash_functions.sh
         When the user runs command "ln -s -f `which hdbinitsystem` /tmp/hdbinitsystem-link; . /tmp/hdbinitsystem-link" eok
         Then hdbinitsystem should return a return code of 2
@@ -115,11 +115,11 @@ Feature: hdbinitsystem tests
         Given create demo cluster config
         # log a warning
         And the user runs command "echo 'ARRAY_NAME=' >> ../gpAux/gpdemo/clusterConfigFile"
-       When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile"
-       Then hdbinitsystem should return a return code of 1
-      Given create demo cluster config
-       When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile"
-       Then hdbinitsystem should return a return code of 1
+        When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile"
+        Then hdbinitsystem should return a return code of 1
+        Given create demo cluster config
+        When the user runs "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile"
+        Then hdbinitsystem should return a return code of 1
 
     Scenario: hdbinitsystem should fail when standby cannot be instantiated
         Given the database is running
@@ -261,6 +261,4 @@ Feature: hdbinitsystem tests
         And the user runs command "rm -rf /tmp/hdbinitsystemtest && mkdir /tmp/hdbinitsystemtest"
         When the user runs command "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -l /tmp/hdbinitsystemtest -P 21100 -h ../gpAux/gpdemo/hostfile"
         Then hdbinitsystem should return a return code of 0
-        And the hdbinitsystem should print "inHybrid" to stdout
-
-
+        And the hdbinitsystem should print "Reading inHybrid configuration file clusterConfigFile" to stdout
