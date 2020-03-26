@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 """
-gpcheckperf -- Check the hardware for Greenplum Database
+hdbcheckperf -- Check the hardware for Greenplum Database
 
-Usage: gpcheckperf <options>
+Usage: hdbcheckperf <options>
 
     --version  : print version information
     -d segdir  : where segdir is a directory on which to test I/O performance.
@@ -81,7 +81,8 @@ def strcmd(cmd):
 
 
 def gpssh(cmd):
-    c = ['%s/bin/gpssh' % GPHOME]
+    #c = ['%s/bin/gpssh' % GPHOME]
+    c = ['%s/bin/hdbssh' % GPHOME]
     if GV.opt['-V']:
         c.append('-v')
     if GV.opt['-f']:
@@ -102,7 +103,8 @@ def gpssh(cmd):
 
 
 def gpscp(src, dst):
-    c = ['%s/bin/gpscp' % GPHOME]
+    #c = ['%s/bin/gpscp' % GPHOME]
+    c = ['%s/bin/hdbscp' % GPHOME]
     if GV.opt['-V']:
         c.append('-v')
     if GV.opt['-f']:
@@ -316,7 +318,7 @@ def runTeardown():
         print '--------------------'
     dirs = ''
     for d in GV.opt['-d']:
-        dirs = '%s %s/gpcheckperf_$USER' % (dirs, d)
+        dirs = '%s %s/hdbcheckperf_$USER' % (dirs, d)
     try:
         gpssh('rm -rf ' + dirs)
     except:
@@ -350,16 +352,16 @@ def runSetup():
 
             # mkdir cperf
         if GV.opt['-v']:
-            print '[Info] making gpcheckperf directory on all hosts ... '
+            print '[Info] making hdbcheckperf directory on all hosts ... '
         dirs = ''
         for d in GV.opt['-d']:
-            dirs = '%s %s/gpcheckperf_$USER' % (dirs, d)
+            dirs = '%s %s/hdbcheckperf_$USER' % (dirs, d)
 
         cmd = 'rm -rf %s ; mkdir -p %s' % (dirs, dirs)
         (ok, out) = gpssh(cmd)
         if not ok:
             print 'failed gpssh: %s' % out
-            sys.exit("[Error] unable to make gpcheckperf directory. \n"
+            sys.exit("[Error] unable to make hdbcheckperf directory. \n"
                      + "        command failed: " + cmd)
 
     except:
@@ -370,7 +372,7 @@ def runSetup():
 def copyExecOver(fname):
     # copy to this dir
     d = GV.opt['-d'][0]
-    target = '%s/gpcheckperf_$USER/%s' % (d, fname)
+    target = '%s/hdbcheckperf_$USER/%s' % (d, fname)
     path = '%s/lib/%s' % (sys.path[0], fname)
 
     if not os.path.isfile(path):
@@ -439,7 +441,7 @@ def runDiskWriteTest(multidd):
 
     cmd = 'time -p ' + multidd
     for d in GV.opt['-d']:
-        cmd = cmd + (' -i /dev/zero -o %s/gpcheckperf_$USER/ddfile' % d)
+        cmd = cmd + (' -i /dev/zero -o %s/hdbcheckperf_$USER/ddfile' % d)
     if GV.opt['-B']:
         cmd = cmd + (' -B %d' % GV.opt['-B'])
     if GV.opt['-S']:
@@ -458,7 +460,7 @@ def runDiskReadTest(multidd):
 
     cmd = 'time -p ' + multidd
     for d in GV.opt['-d']:
-        cmd = cmd + (' -o /dev/null -i %s/gpcheckperf_$USER/ddfile' % d)
+        cmd = cmd + (' -o /dev/null -i %s/hdbcheckperf_$USER/ddfile' % d)
     if GV.opt['-B']:
         cmd = cmd + (' -B %d' % GV.opt['-B'])
     if GV.opt['-S']:

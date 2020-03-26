@@ -12,13 +12,14 @@ SUBDIRS += ifaddrs
 
 $(recurse)
 
-PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat gpcheckperf \
+PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl gpdeletesystem gpexpand \
         gpload gpload.py gplogfilter gpmovemirrors \
 	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys \
 	gpstate gpsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
 	hdbrecoverseg hdbconfig
+
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)/lib'
 
@@ -235,7 +236,7 @@ clean distclean:
 	rm -rf $(PYLIB_SRC)/subprocess32/build
 	rm -rf *.pyc
 	rm -f analyzedbc gpactivatestandbyc gpaddmirrorsc hdbcheckcatc \
-		  gpcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc gpconfigc \
+		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc gpconfigc \
 		  gpdeletesystemc gpexpandc gpinitstandbyc gplogfilterc gpmovemirrorsc \
 		  gppkgc gprecoversegc gpreloadc gpscpc gpsdc gpssh-exkeysc gpsshc \
 		  gpstartc gpstatec gpstopc gpsys1c minireproc
