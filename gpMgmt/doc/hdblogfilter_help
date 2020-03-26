@@ -1,41 +1,41 @@
-﻿COMMAND NAME: gplogfilter 
+﻿COMMAND NAME: hdblogfilter 
 
-Searches through Greenplum Database log files for specified entries. 
+Searches through inHybrid Database log files for specified entries. 
 
 ***************************************************** 
 SYNOPSIS 
 ***************************************************** 
 
-gplogfilter [<timestamp_options>] [<pattern_options>] [<output_options>] 
+hdblogfilter [<timestamp_options>] [<pattern_options>] [<output_options>] 
 [<input_options>] [<input_file>] 
 
-gplogfilter --help 
+hdblogfilter --help 
 
-gplogfilter --version 
+hdblogfilter --version 
 
 
 ***************************************************** 
 DESCRIPTION 
 ***************************************************** 
 
-The gplogfilter utility can be used to search through a Greenplum 
+The hdblogfilter utility can be used to search through a inHybrid 
 Database log file for entries matching the specified criteria. If an 
-input file is not supplied, then gplogfilter will use the 
-$MASTER_DATA_DIRECTORY environment variable to locate the Greenplum 
+input file is not supplied, then hdblogfilter will use the 
+$MASTER_DATA_DIRECTORY environment variable to locate the inHybrid 
 master log file in the standard logging location. To read from standard 
 input, use a dash (-) as the input file name. Input files may be 
 compressed using gzip. In an input file, a log entry is identified by 
 its timestamp in YYYY-MM-DD [hh:mm[:ss]] format. 
 
-You can also use gplogfilter to search through all segment log files at 
-once by running it through the gpssh utility. For example, to display 
+You can also use hdblogfilter to search through all segment log files at 
+once by running it through the hdbssh utility. For example, to display 
 the last three lines of each segment log file: 
 
- gpssh -f seg_host_file 
+ hdbssh -f seg_host_file 
  => source /usr/local/greenplum-db/greenplum_path.sh 
- => gplogfilter -n 3 /gpdata/*/pg_log/gpdb*.csv 
+ => hdblogfilter -n 3 /gpdata/*/pg_log/gpdb*.csv 
 
-By default, the output of gplogfilter is sent to standard output. Use 
+By default, the output of hdblogfilter is sent to standard output. Use 
 the -o option to send the output to a file or a directory. If you supply 
 an output file name ending in .gz, the output file will be compressed by 
 default using maximum compression. If the output destination is a 
@@ -58,7 +58,7 @@ TIMESTAMP OPTIONS
  single or double quotes. This example encloses the date and time in 
  single quotes: 
 
-  gplogfilter -b '2013-05-23 14:33' 
+  hdblogfilter -b '2013-05-23 14:33' 
 
   
 -e <datetime> | --end=<datetime> 
@@ -70,7 +70,7 @@ TIMESTAMP OPTIONS
  single or double quotes. This example encloses the date and time in 
  single quotes: 
 
-  gplogfilter -e '2013-05-23 14:33' 
+  hdblogfilter -e '2013-05-23 14:33' 
 
   
 -d <time> | --duration=<time> 
@@ -93,7 +93,7 @@ PATTERN MATCHING OPTIONS
  Selects specific columns from the log file. Specify the desired columns 
  as a comma-delimited string of column numbers beginning with 1, where 
  the second column from left is 2, the third is 3, and so on. See the 
- "Greenplum Database System Administrator Guide" for details about the log 
+ "inHybrid Database System Administrator Guide" for details about the log 
  file format and for a list of the available columns and their associated 
  number. 
 
@@ -170,8 +170,8 @@ INPUT OPTIONS
 <input_file> 
 
  The name of the input log file(s) to search through. If an input file is 
- not supplied, gplogfilter will use the $MASTER_DATA_DIRECTORY 
- environment variable to locate the Greenplum master log file. To read 
+ not supplied, hdblogfilter will use the $MASTER_DATA_DIRECTORY 
+ environment variable to locate the inHybrid master log file. To read 
  from standard input, use a dash (-) as the input file name. 
 
  
@@ -197,27 +197,27 @@ EXAMPLES
 
 Display the last three error messages in the master log file: 
 
- gplogfilter -t -n 3 
+ hdblogfilter -t -n 3 
 
 
 Display all log messages in the master log file timestamped in the last 
 10 minutes: 
 
- gplogfilter -d :10 
+ hdblogfilter -d :10 
 
 
 Display log messages in the master log file containing the string 
 '|con6 cmd11|': 
 
- gplogfilter -f '|con6 cmd11|' 
+ hdblogfilter -f '|con6 cmd11|' 
 
 
-Using gpssh, run gplogfilter on the segment hosts and search for log 
+Using hdbssh, run hdblogfilter on the segment hosts and search for log 
 messages in the segment log files containing the string 'con6' and save 
 output to a file. 
 
- gpssh -f seg_hosts_file -e 'source 
- /usr/local/greenplum-db/greenplum_path.sh ; gplogfilter -f con6 
+ hdbssh -f seg_hosts_file -e 'source 
+ /usr/local/greenplum-db/greenplum_path.sh ; hdblogfilter -f con6 
  /gpdata/*/pg_log/gpdb*.csv' > seglog.out 
 
  
@@ -225,5 +225,5 @@ output to a file.
 SEE ALSO 
 ***************************************************** 
 
-gpssh, gpscp 
+hdbssh, hdbscp 
 

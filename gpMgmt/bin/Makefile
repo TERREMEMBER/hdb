@@ -14,12 +14,11 @@ $(recurse)
 
 PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl gpdeletesystem gpexpand \
-        gpload gpload.py gplogfilter gpmovemirrors \
+        gpload gpload.py gpmovemirrors \
 	gppkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys \
 	gpstate gpsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
-	hdbrecoverseg hdbconfig
-
+	hdbrecoverseg hdbconfig hdblogfilter
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)/lib'
 
