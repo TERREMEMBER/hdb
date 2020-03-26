@@ -212,9 +212,9 @@ def impl(context, checksum_toggle):
     is_ok = check_database_is_running(context)
 
     if is_ok:
-        run_command(context, "gpconfig -s data_checksums")
+        run_command(context, "hdbconfig -s data_checksums")
         if context.ret_code != 0:
-            raise Exception("cannot run gpconfig: %s, stdout: %s" % (context.error_message, context.stdout_message))
+            raise Exception("cannot run hdbconfig: %s, stdout: %s" % (context.error_message, context.stdout_message))
 
         try:
             # will throw
