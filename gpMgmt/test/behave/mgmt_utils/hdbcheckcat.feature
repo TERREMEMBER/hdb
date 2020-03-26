@@ -9,7 +9,8 @@ Feature: hdbcheckcat tests
     Scenario: run all the checks in hdbcheckcat
         Given database "all_good" is dropped and recreated
         Then the user runs "hdbcheckcat -A"
-        Then hdbcheckcat should return a return code of 0
+	Then hdbcheckcat should return a return code of 0
+	Then hdbcheckcat should print "hdb version" to stdout
         And the user runs "dropdb all_good"
 
     Scenario: hdbcheckcat should drop leaked schemas
@@ -19,14 +20,14 @@ Feature: hdbcheckcat tests
         Then read pid from file "test/behave/mgmt_utils/steps/data/hdbcheckcat/pid_leak" and kill the process
         And the temporary file "test/behave/mgmt_utils/steps/data/hdbcheckcat/pid_leak" is removed
         And waiting "2" seconds
-        When the user runs "gpstop -ar"
-        Then gpstart should return a return code of 0
+        When the user runs "hdbstop -ar"
+        Then hdbstart should return a return code of 0
         When the user runs "psql leak_db -f test/behave/mgmt_utils/steps/data/hdbcheckcat/leaked_schema.sql"
         Then psql should return a return code of 0
         And psql should print "pg_temp_" to stdout
         And psql should print "(1 row)" to stdout
         When the user runs "hdbcheckcat leak_db"
-        Then gpchekcat should return a return code of 0
+        Then hdbchekcat should return a return code of 0
         Then hdbcheckcat should print "Found and dropped 2 unbound temporary schemas" to stdout
         And the user runs "psql leak_db -f test/behave/mgmt_utils/steps/data/hdbcheckcat/leaked_schema.sql"
         Then psql should return a return code of 0
