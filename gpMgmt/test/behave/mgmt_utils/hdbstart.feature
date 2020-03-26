@@ -1,5 +1,5 @@
-@gpstart
-Feature: gpstart behave tests
+@hdbstart
+Feature: hdbstart behave tests
 
     @concourse_cluster
     @demo_cluster

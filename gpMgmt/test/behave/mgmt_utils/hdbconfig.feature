@@ -1,5 +1,5 @@
-@gpconfig
-Feature: gpconfig integration tests
+@hdbconfig
+Feature: hdbconfig integration tests
 
     # Below, we use 2 change (-c) operations to prove that we have changed a
     # file, because any existing postgresql.conf file could already have the
