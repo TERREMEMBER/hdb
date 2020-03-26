@@ -44,9 +44,9 @@ List of Management Scripts Written in Python (gpmlib - old libraries)
 bin/gpaddmirrors        -  Adds mirrors to an array (needs rewrite)
 bin/gprecoverseg        -  Recovers a failed segment (needs rewrite)
 bin/gpcheckperf         -  Checks the hardware for Greenplum Database
-bin/gpscp               -  Copies files to many hosts
-bin/gpssh               -  Remote shell to many hosts
-bin/gpssh-exkeys        -  Exchange ssh keys between many hosts
+bin/hdbscp               -  Copies files to many hosts
+bin/hdbssh               -  Remote shell to many hosts
+bin/hdbssh-exkeys        -  Exchange ssh keys between many hosts
 
 
 List of Management Scripts Written in Python (gppylib - current libraries)
@@ -55,12 +55,12 @@ bin/gpactivatestandby   -  Activates the Standby Master
 bin/gpconfig_helper     -  Edits postgresql.conf file for all segments
 bin/gpdeletesystem      -  Deletes a Greenplum Database
 bin/gpexpand            -  Adds additional segments to a Greenplum Database
-bin/gpinitstandby       -  Initializes standby master
-bin/gplogfilter         -  Filters log files
-bin/gpstart             -  Start a Greenplum Database
-bin/gpstop              -  Stop a Greenplum Database
+bin/hdbinitstandby       -  Initializes standby master
+bin/hdblogfilter         -  Filters log files
+bin/hdbstart             -  Start a Greenplum Database
+bin/hdbstop              -  Stop a Greenplum Database
 
-sbin/gpconfig_helper.py -  Helper script for gpconfig
+sbin/hdbconfig_helper.py -  Helper script for gpconfig
 sbin/gpsegcopy          -  Helper script for gpexpand
 sbin/gpsegstart.py      -  Helper script for gpstart
 sbin/gpsegstop.py       -  Helper script for gpstop

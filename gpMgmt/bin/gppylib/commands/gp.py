@@ -1093,7 +1093,7 @@ class GpLogFilter(Command):
         if trouble:
             cmdfrags.append('-t')
         cmdfrags.append(filename)
-        self.cmdStr = "$GPHOME/bin/gplogfilter %s" % ' '.join(cmdfrags)
+        self.cmdStr = "$GPHOME/bin/hdblogfilter %s" % ' '.join(cmdfrags)
         Command.__init__(self, name, self.cmdStr, ctxt,remoteHost)
 
     @staticmethod
