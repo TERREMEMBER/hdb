@@ -5,7 +5,6 @@ Feature: hdbcheckcat tests
         When the user runs "hdbcheckcat -l"
         Then verify that the utility hdbcheckcat ever does logging into the user's "gpAdminLogs" directory
     
-    @mytest
     Scenario: run all the checks in hdbcheckcat
         Given database "all_good" is dropped and recreated
         Then the user runs "hdbcheckcat -A"

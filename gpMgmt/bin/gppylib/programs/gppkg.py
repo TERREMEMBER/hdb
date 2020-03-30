@@ -22,7 +22,7 @@ try:
     import yaml
     import platform
 except ImportError, ex:
-    sys.exit('Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(ex))
+    sys.exit('Cannot import modules.  Please check that you have sourced inhybrid_path.sh.  Detail: ' + str(ex))
 
 logger = gplog.get_default_logger()
 
@@ -53,7 +53,7 @@ class GpPkgProgram:
             raise ExceptionNoStackTraceNeeded('Exactly one of the following must be provided: --install, --remove, -update, --query, --clean, --migrate')
 
         if self.query:
-            # gppkg -q can be supplemented with --info, --list, --all
+            # hdbpkg -q can be supplemented with --info, --list, --all
             count = sum([1 for opt in ['info', 'list', 'all'] if options.__dict__[opt]])
             if count > 1:
                 raise ExceptionNoStackTraceNeeded('For --query, at most one of the following can be provided: --info, --list, --all')
@@ -71,16 +71,16 @@ class GpPkgProgram:
                 self.query = (None, args[0])
         elif self.migrate:
             if len(args) != 2:
-                raise ExceptionNoStackTraceNeeded('Invalid syntax, expecting "gppkg --migrate <from_gphome> <to_gphome>".')
+                raise ExceptionNoStackTraceNeeded('Invalid syntax, expecting "hdbpkg --migrate <from_hdbhome> <to_hdbhome>".')
             self.migrate = (args[0], args[1])
 
-        # gppkg should check gpexpand status unless in build mode.
+        # hdbpkg should check gpexpand status unless in build mode.
         #
         # Build mode does not use any information from the cluster and does not
         # affect its running status, in fact it does not require a cluster
         # exists at all.
         if not self.build:
-            check_result, msg = gp.conflict_with_gpexpand("gppkg",
+            check_result, msg = gp.conflict_with_gpexpand("hdbpkg",
                                                           refuse_phase1=True,
                                                           refuse_phase2=False)
             if not check_result:
@@ -89,7 +89,7 @@ class GpPkgProgram:
     @staticmethod
     def create_parser():
         parser = OptParser(option_class=OptChecker,
-            description="Greenplum Package Manager",
+            description="inHybrid Package Manager",
             version='%prog version $Revision: #1 $')
         parser.setHelp([])
 
@@ -105,20 +105,20 @@ class GpPkgProgram:
 
         # TODO: AK: Eventually, these options may need to be flexible enough to accept mutiple packages
         # in one invocation. If so, the structure of this parser may need to change.
-        add_to.add_option('-i', '--install', help='install the given gppkg', metavar='<package>')
-        add_to.add_option('-u', '--update', help='update the given gppkg', metavar='<package>')
-        add_to.add_option('-r', '--remove', help='remove the given gppkg', metavar='<name>-<version>')
-        add_to.add_option('-q', '--query', help='query the gppkg database or a particular gppkg', action='store_true')
-        add_to.add_option('-b', '--build', help='build a gppkg', metavar='<directory>')
-        add_to.add_option('-c', '--clean', help='clean the cluster of the given gppkg', action='store_true')
-        add_to.add_option('--migrate', help='migrate gppkgs from a separate $GPHOME', metavar='<from_gphome> <to_gphome>', action='store_true', default=False)
+        add_to.add_option('-i', '--install', help='install the given hdbpkg', metavar='<package>')
+        add_to.add_option('-u', '--update', help='update the given hdbpkg', metavar='<package>')
+        add_to.add_option('-r', '--remove', help='remove the given hdbpkg', metavar='<name>-<version>')
+        add_to.add_option('-q', '--query', help='query the hdbpkg database or a particular hdbpkg', action='store_true')
+        add_to.add_option('-b', '--build', help='build a hdbpkg', metavar='<directory>')
+        add_to.add_option('-c', '--clean', help='clean the cluster of the given hdbpkg', action='store_true')
+        add_to.add_option('--migrate', help='migrate hdbpkgs from a separate $HDBHOME', metavar='<from_hdbhome> <to_hdbhome>', action='store_true', default=False)
         add_to.add_option('-f', '--filename', help='set specific package name', metavar='<name>')
 
         add_to = OptionGroup(parser, 'Query Options')
         parser.add_option_group(add_to)
-        add_to.add_option('--info', action='store_true', help='print information about the gppkg including name, version, description')
-        add_to.add_option('--list', action='store_true', help='print all the files present in the gppkg')
-        add_to.add_option('--all', action='store_true', help='print all the gppkgs installed by gppkg')
+        add_to.add_option('--info', action='store_true', help='print information about the hdbpkg including name, version, description')
+        add_to.add_option('--list', action='store_true', help='print all the files present in the hdbpkg')
+        add_to.add_option('--all', action='store_true', help='print all the hdbpkgs installed by hdbpkg')
 
         return parser
 
@@ -196,7 +196,7 @@ class GpPkgProgram:
                 cmd = Command(name='Check for fakeroot', cmdStr='fakeroot --version')
                 cmd.run(validateAfter=True)
             except Exception, ex:
-                raise ExceptionNoStackTraceNeeded('fakeroot and dpkg are both required by gppkg')
+                raise ExceptionNoStackTraceNeeded('fakeroot and dpkg are both required by hdbpkg')
         else:
             try:
                 cmd = Command(name = 'Check for rpm', cmdStr = 'rpm --version')
@@ -205,12 +205,12 @@ class GpPkgProgram:
                 rpm_version_string = results.split(' ')[-1]
 
                 if not rpm_version_string.startswith('4.'):
-                    raise ExceptionNoStackTraceNeeded('gppkg requires rpm version 4.x')
+                    raise ExceptionNoStackTraceNeeded('hdbpkg requires rpm version 4.x')
 
             except ExecutionError, ex:
                 results = ex.cmd.get_results().stderr.strip()
                 if len(results) != 0 and 'not found' in results:
-                    raise ExceptionNoStackTraceNeeded('gppkg requires RPM to be available in PATH')
+                    raise ExceptionNoStackTraceNeeded('hdbpkg requires RPM to be available in PATH')
 
         if self.master_datadir is None:
             self.master_datadir = gp.get_masterdatadir()
@@ -258,7 +258,7 @@ class GpPkgProgram:
             logger.warning('called if the function references a package file that has been removed.')
             if self.interactive:
                 if not ask_yesno(None, 'Do you still want to continue ?', 'N'):
-                    logger.info('Skipping update of gppkg based on user input')
+                    logger.info('Skipping update of hdbpkg based on user input')
                     return
             pkg = Gppkg.from_package_path(self.update)
             UpdatePackage(pkg, self.master_host, self.standby_host, self.segment_host_list).run()

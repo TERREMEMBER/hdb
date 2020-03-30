@@ -1,6 +1,6 @@
-COMMAND NAME: gppkg
+COMMAND NAME: hdbpkg
 
-Installs Greenplum Database extensions such as 
+Installs inHybrid Database extensions such as 
 pgcrypto, PL/R, PL/Java, PL/Perl, MADlib and PostGIS, 
 along with their dependencies, across an entire cluster.
 
@@ -8,33 +8,33 @@ along with their dependencies, across an entire cluster.
 SYNOPSIS
 *****************************************************
 
-gppkg [-i <package>| -u <package> | -r <name-version> | -c] 
+hdbpkg [-i <package>| -u <package> | -r <name-version> | -c] 
 [-d <master_data_directory>] [-a] [-v]
 
-gppkg --migrate <GPHOME_1> <GPHOME_2> [-a] [-v]
+hdbpkg --migrate <HDBHOME_1> <HDBHOME_2> [-a] [-v]
 
-gppkg [-q | --query] query_option
+hdbpkg [-q | --query] query_option
 
-gppkg -? | --help | -h
+hdbpkg -? | --help | -h
 
-gppkg --version
+hdbpkg --version
 
 *****************************************************
 DESCRIPTION
 *****************************************************
-The Greenplum Package Manager (gppkg) utility installs 
-Greenplum Database extensions, including any dependencies,
+The inHybrid Package Manager (hdbpkg) utility installs 
+inHybrid Database extensions, including any dependencies,
 on all hosts across a cluster. It will also automatically 
 install database extensions on new hosts in the case of 
 system expansion and segment recovery.
 
 First, download one or more of the available packages 
 from the EMC Download Center (https://emc.subscribenet.com)
-then copy it to the master host. Use the Greenplum 
+then copy it to the master host. Use the inHybrid 
 Package Manager to install each package using the 
 options described below.
 
-NOTE: After a major upgrade to Greenplum Database, you must 
+NOTE: After a major upgrade to inHybrid Database, you must 
 download and install all extensions again.
 
 The following packages are available for download from the
@@ -46,7 +46,7 @@ EMC Download Center.
 * MADlib
 * Pgcrypto
 
-Note that Greenplum Package Manager installation files for extension 
+Note that inHybrid Package Manager installation files for extension 
 packages may release outside of standard Database release cycles. 
 Therefore, for the latest install and configuration information 
 regarding any supported database package/extension, go to the Support 
@@ -84,24 +84,24 @@ Options
  installation steps and installation of any dependencies.
 
  
---migrate <GPHOME_1> <GPHOME_2>
+--migrate <HDBHOME_1> <HDBHOME_2>
 
- Migrates packages from a separate $GPHOME. Carries over 
- packages from one version of Greenplum Database to another.
+ Migrates packages from a separate $HDBHOME. Carries over 
+ packages from one version of inHybrid Database to another.
  For example: 
-   gppkg --migrate /usr/local/greenplum-db-4.2.0.1 
-   /usr/local/greenplum-db-4.2.1.0
+   hdbpkg --migrate /usr/local/inhybrid-db-1.0.0 
+   /usr/local/inhybrid-db-1.0.0
 
  This option is automatically invoked by the installer 
  during minor upgrades. This option is given here for 
  cases when the user wants to migrate packages 
  manually.
  
- Migration can only proceed if gppkg is executed 
+ Migration can only proceed if hdbpkg is executed 
  from the installation directory to which packages 
- are being migrated. That is, GPHOME_2 must match 
- the $GPHOME from which the currently executing 
- gppkg is being run. 
+ are being migrated. That is, HDBHOME_2 must match 
+ the $HDBHOME from which the currently executing 
+ hdbpkg is being run. 
 
  
 -q | --query query_option

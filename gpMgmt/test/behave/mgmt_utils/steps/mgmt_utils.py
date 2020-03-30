@@ -58,18 +58,18 @@ def show_all_installed(gphome):
     else:
         raise Exception('UNKNOWN platform: %s' % str(x))
 
-def remove_native_package_command(gphome, full_gppkg_name):
+def remove_native_package_command(gphome, full_hdbpkg_name):
     x = platform.linux_distribution()
     name = x[0].lower()
     if 'ubuntu' in name:
-        return 'fakeroot dpkg --force-not-root --log=/dev/null --instdir=%s --admindir=%s/share/packages/database/deb -r %s' % (gphome, gphome, full_gppkg_name)
+        return 'fakeroot dpkg --force-not-root --log=/dev/null --instdir=%s --admindir=%s/share/packages/database/deb -r %s' % (gphome, gphome, full_hdbpkg_name)
     elif 'centos' in name:
-        return 'rpm -e %s --dbpath %s/share/packages/database' % (full_gppkg_name, gphome)
+        return 'rpm -e %s --dbpath %s/share/packages/database' % (full_hdbpkg_name, gphome)
     else:
         raise Exception('UNKNOWN platform: %s' % str(x))
 
-def remove_gppkg_archive_command(gphome, gppkg_name):
-    return 'rm -f %s/share/packages/archive/%s.gppkg' % (gphome, gppkg_name)
+def remove_hdbpkg_archive_command(gphome, hdbpkg_name):
+    return 'rm -f %s/share/packages/archive/%s.hdbpkg' % (gphome, hdbpkg_name)
 
 def create_local_demo_cluster(context, extra_config='', with_mirrors='true', with_standby='true', num_primaries=None):
     stop_database_if_started(context)
@@ -379,16 +379,16 @@ def impl(context, ret_code):
                         "stderr: %s" % (rc, stdout_value, stderr_value))
 
 
-@given('a user runs "{command}" with gphome "{gphome}"')
-@when('a user runs "{command}" with gphome "{gphome}"')
-@then('a user runs "{command}" with gphome "{gphome}"')
+@given('a user runs "{command}" with hdbhome "{hdbhome}"')
+@when('a user runs "{command}" with hdbhome "{hdbhome}"')
+@then('a user runs "{command}" with hdbhome "{hdbhome}"')
 def impl(context, command, gphome):
     masterhost = get_master_hostname()[0][0]
-    cmd = Command(name='Remove archive gppkg',
+    cmd = Command(name='Remove archive hdbpkg',
                   cmdStr=command,
                   ctxt=REMOTE,
                   remoteHost=masterhost,
-                  gphome=gphome)
+                  gphome=hdbhome)
     cmd.run()
     context.ret_code = cmd.get_return_code()
 
@@ -1901,8 +1901,8 @@ def impl(context):
     if os.path.exists(context.fake_timestamp_file):
         raise Exception("expected no file at: %s" % context.fake_timestamp_file)
 
-@then('"{gppkg_name}" gppkg files exist on all hosts')
-def impl(context, gppkg_name):
+@then('"{hdbpkg_name}" hdbpkg files exist on all hosts')
+def impl(context, hdbpkg_name):
     remote_gphome = os.environ.get('GPHOME')
     gparray = GpArray.initFromCatalog(dbconn.DbURL())
 
@@ -1912,20 +1912,20 @@ def impl(context, gppkg_name):
     command_list_all = show_all_installed(remote_gphome)
 
     for hostname in set(hostlist):
-        cmd = Command(name='check if internal gppkg is installed',
+        cmd = Command(name='check if internal hdbpkg is installed',
                       cmdStr=command_list_all,
                       ctxt=REMOTE,
                       remoteHost=hostname)
         cmd.run(validateAfter=True)
 
-        if not gppkg_name in cmd.get_stdout():
-            raise Exception( '"%s" gppkg is not installed on host: %s. \nInstalled packages: %s' % (gppkg_name, hostname, cmd.get_stdout()))
+        if not hdbpkg_name in cmd.get_stdout():
+            raise Exception( '"%s" hdbpkg is not installed on host: %s. \nInstalled packages: %s' % (hdbpkg_name, hostname, cmd.get_stdout()))
 
 
-@given('"{gppkg_name}" gppkg files do not exist on any hosts')
-@when('"{gppkg_name}" gppkg files do not exist on any hosts')
-@then('"{gppkg_name}" gppkg files do not exist on any hosts')
-def impl(context, gppkg_name):
+@given('"{hdbpkg_name}" hdbpkg files do not exist on any hosts')
+@when('"{hdbpkg_name}" hdbpkg files do not exist on any hosts')
+@then('"{hdbpkg_name}" hdbpkg files do not exist on any hosts')
+def impl(context, hdbpkg_name):
     remote_gphome = os.environ.get('GPHOME')
     hostlist = get_all_hostnames_as_list(context, 'template1')
 
@@ -1933,17 +1933,17 @@ def impl(context, gppkg_name):
     command_list_all = show_all_installed(remote_gphome)
 
     for hostname in set(hostlist):
-        cmd = Command(name='check if internal gppkg is installed',
+        cmd = Command(name='check if internal hdbpkg is installed',
                       cmdStr=command_list_all,
                       ctxt=REMOTE,
                       remoteHost=hostname)
         cmd.run(validateAfter=True)
 
-        if gppkg_name in cmd.get_stdout():
-            raise Exception( '"%s" gppkg is installed on host: %s. \nInstalled packages: %s' % (gppkg_name, hostname, cmd.get_stdout()))
+        if hdbpkg_name in cmd.get_stdout():
+            raise Exception( '"%s" hdbpkg is installed on host: %s. \nInstalled packages: %s' % (hdbpkg_name, hostname, cmd.get_stdout()))
 
 
-def _remove_gppkg_from_host(context, gppkg_name, is_master_host):
+def _remove_hdbpkg_from_host(context, hdbpkg_name, is_master_host):
     remote_gphome = os.environ.get('GPHOME')
 
     if is_master_host:
@@ -1963,50 +1963,50 @@ def _remove_gppkg_from_host(context, gppkg_name, is_master_host):
                   ctxt=REMOTE,
                   remoteHost=hostname)
     cmd.run(validateAfter=True)
-    installed_gppkgs = cmd.get_stdout_lines()
-    if not installed_gppkgs:
+    installed_hdbpkgs = cmd.get_stdout_lines()
+    if not installed_hdbpkgs:
         raise Exception("Found no packages installed")
 
-    full_gppkg_name = next((gppkg for gppkg in installed_gppkgs if gppkg_name in gppkg), None)
-    if not full_gppkg_name:
-        raise Exception("Found no matches for gppkg '%s'\n"
-                        "gppkgs installed:\n%s" % (gppkg_name, installed_gppkgs))
+    full_hdbpkg_name = next((hdbpkg for hdbpkg in installed_hdbpkgs if hdbpkg_name in hdbpkg), None)
+    if not full_hdbpkg_name:
+        raise Exception("Found no matches for hdbpkg '%s'\n"
+                        "hdbpkgs installed:\n%s" % (hdbpkg_name, installed_hdbpkgs))
 
-    remove_command = remove_native_package_command(remote_gphome, full_gppkg_name)
+    remove_command = remove_native_package_command(remote_gphome, full_hdbpkg_name)
     cmd = Command(name='Cleanly remove from the remove host',
                   cmdStr=remove_command,
                   ctxt=REMOTE,
                   remoteHost=hostname)
     cmd.run(validateAfter=True)
 
-    remove_archive_gppkg = remove_gppkg_archive_command(remote_gphome, gppkg_name)
-    cmd = Command(name='Remove archive gppkg',
-                  cmdStr=remove_archive_gppkg,
+    remove_archive_hdbpkg = remove_hdbpkg_archive_command(remote_gphome, hdbpkg_name)
+    cmd = Command(name='Remove archive hdbpkg',
+                  cmdStr=remove_archive_hdbpkg,
                   ctxt=REMOTE,
                   remoteHost=hostname)
     cmd.run(validateAfter=True)
 
 
-@when('gppkg "{gppkg_name}" is removed from a segment host')
-def impl(context, gppkg_name):
-    _remove_gppkg_from_host(context, gppkg_name, is_master_host=False)
+@when('hdbpkg "{hdbpkg_name}" is removed from a segment host')
+def impl(context, hdbpkg_name):
+    _remove_hdbpkg_from_host(context, hdbpkg_name, is_master_host=False)
 
 
-@when('gppkg "{gppkg_name}" is removed from master host')
-def impl(context, gppkg_name):
-    _remove_gppkg_from_host(context, gppkg_name, is_master_host=True)
+@when('hdbpkg "{hdbpkg_name}" is removed from master host')
+def impl(context, hdbpkg_name):
+    _remove_hdbpkg_from_host(context, hdbpkg_name, is_master_host=True)
 
 
-@given('a gphome copy is created at {location} on all hosts')
+@given('a hdbhome copy is created at {location} on all hosts')
 def impl(context, location):
     """
-    Copies the contents of GPHOME from the local machine into a different
+    Copies the contents of HDBHOME from the local machine into a different
     directory location for all hosts in the cluster.
     """
     gphome = os.environ["GPHOME"]
     greenplum_path = path.join(gphome, 'greenplum_path.sh')
 
-    # First replace the GPHOME envvar in greenplum_path.sh.
+    # First replace the HDBHOME envvar in inhybrid_path.sh.
     subprocess.check_call([
         'sed',
         '-i.bak', # we use this backup later
@@ -2031,7 +2031,7 @@ def impl(context, location):
         ])
 
     finally:
-        # Put greenplum_path.sh back the way it was.
+        # Put inhybrid_path.sh back the way it was.
         subprocess.check_call([
             'mv', '{}.bak'.format(greenplum_path), greenplum_path
         ])

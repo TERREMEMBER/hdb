@@ -1,0 +1,8 @@
+Package: sample
+Version: #version
+Section: base
+Priority: optional
+Architecture: #arch
+Maintainer: HDB Extension <hdb-extension@inspur.com>
+Description: sample
+  This is a sample control file to build deb packge in gppkg for inHybrid Database.

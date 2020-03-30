@@ -49,8 +49,8 @@ def dereference_symlink(path):
 
 GPHOME = dereference_symlink(gp.get_gphome())
 
-GPPKG_EXTENSION = '.gppkg'
-SPECFILE_NAME = 'gppkg_spec.yml'
+GPPKG_EXTENSION = '.hdbpkg'
+SPECFILE_NAME = 'hdbpkg_spec.yml'
 SPECFILE_REQUIRED_TAGS = ['pkgname', 'version', 'architecture', 'os', 'description', 'gpdbversion']
 SPECFILE_OPTIONAL_TAGS = ['preinstall', 'postinstall', 'preuninstall', 'postuninstall', 'postupdate']
 
