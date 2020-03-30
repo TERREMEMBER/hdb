@@ -41,7 +41,7 @@ function determine_os() {
 OS=`determine_os`
 ARCH=`uname -m`
 
-DESTINATION_GPPKG_PATH=/tmp/sample-gppkg
+DESTINATION_GPPKG_PATH=/tmp/sample-hdbpkg
 rm -rf ${DESTINATION_GPPKG_PATH}
 mkdir -p ${DESTINATION_GPPKG_PATH}/deps
 
@@ -85,7 +85,7 @@ ubuntu*)
 esac
 }
 
-function buildGppkg() {
+function buildHdbpkg() {
 case "$OS" in
 centos*)
 	cp ${CWDIR}/data/sample*.rpm ${DESTINATION_GPPKG_PATH}/
@@ -99,22 +99,22 @@ ubuntu*)
 ;;
 esac
 
-cat ${DIR}/gppkg_spec.yml.in | sed "s/#arch/${ARCH}/g" | sed "s/#os/${OS}/g" | sed "s/#gppkgver/${VERSION}.${RELEASE}/g" > ${DESTINATION_GPPKG_PATH}/gppkg_spec.yml.in
+cat ${DIR}/hdbpkg_spec.yml.in | sed "s/#arch/${ARCH}/g" | sed "s/#os/${OS}/g" | sed "s/#gppkgver/${VERSION}.${RELEASE}/g" > ${DESTINATION_GPPKG_PATH}/hdbpkg_spec.yml.in
 
-make -f ${CWDIR}/build_gppkg.mk -C ${DESTINATION_GPPKG_PATH} gppkg
+make -f ${CWDIR}/build_hdbpkg.mk -C ${DESTINATION_GPPKG_PATH} hdbpkg
 
 # --define "%_topdir ${BUILDROOT}" tells where to find SOURCES
 #pushd ${DESTINATION_GPPKG_PATH}
-#tar czf sample.gppkg *
+#tar czf sample.hdbpkg *
 #popd
 }
 
 case "$1" in
 buildNative)
 	buildNativePackage ;;
-buildGppkg)
-	buildGppkg ;;
+buildHdbpkg)
+	buildHdbpkg ;;
 *)
-	echo "usage: $0 {buildNative | buildGppkg}"
+	echo "usage: $0 {buildNative | buildHdbpkg}"
 	;;
 esac

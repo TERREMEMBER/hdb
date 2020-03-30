@@ -1,7 +1,7 @@
 # Pre-Requirements
 
-This document is used to generate a sample.gppkg or build a native rpm/deb package
-## How to build a native(rpm/deb) package for sample.gppkg ?
+This document is used to generate a sample.hdbpkg or build a native rpm/deb package
+## How to build a native(rpm/deb) package for sample.hdbpkg ?
 `bash generate_sample_gppkg.sh buildNative`
 ## How to build a gppkg from the above or existing native package ?
 `bash generate_sample_gppkg.sh buildGppkg`
@@ -13,7 +13,7 @@ yum -y install rpmdevtools rpmlint
 ```
 
 
-# How to Create a Greenplum Package that can be manipulated with *gppkg* 
+# How to Create a inHybrid Package that can be manipulated with *gppkg* 
 
 Run the following script on Centos6 or Redhat6. The destination directory is hardcoded for simplicity.
 
@@ -30,9 +30,9 @@ cp sample.spec ${DIR}
 
 Your sample package will be at:
 
-`ls /tmp/sample-gppkg/sample.gppkg`
+`ls /tmp/sample-gppkg/sample.hdbpkg`
 
-# Using Makefile to create a Greenplum Package
+# Using Makefile to create a inHybrid Package
 
 To integrate build gppkg into a Makefile, it needs to include the following .mk file
 ```
