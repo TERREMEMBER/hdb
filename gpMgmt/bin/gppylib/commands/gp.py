@@ -42,7 +42,7 @@ COMMAND_NOT_FOUND=127
 DEFAULT_GPSTART_NUM_WORKERS=64
 
 # Application name used by the pg_rewind instance that gprecoverseg starts
-# during incremental recovery. gpstate uses this to figure out when incremental
+# during incremental recovery. hdbstate uses this to figure out when incremental
 # recovery is active.
 RECOVERY_REWIND_APPNAME = '__gprecoverseg_pg_rewind__'
 
@@ -418,7 +418,7 @@ class SegmentRewind(Command):
                  verbose=False, ctxt=REMOTE):
 
         # Construct the source server libpq connection string
-        # We set application_name here so gpstate can identify whether an
+        # We set application_name here so hdbstate can identify whether an
         # incremental recovery is occurring.
         source_server = "host={} port={} dbname=template1 application_name={}".format(
             source_host, source_port, RECOVERY_REWIND_APPNAME

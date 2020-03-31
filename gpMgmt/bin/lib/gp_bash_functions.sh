@@ -135,7 +135,7 @@ HDBCONFIG=$SCRIPTDIR/hdbconfig
 HDBINITSTANDBY=$SCRIPTDIR/hdbinitstandby
 GPRECOVERSEG=$SCRIPTDIR/gprecoverseg
 HDBSTART=$SCRIPTDIR/hdbstart
-GPSTATE=$SCRIPTDIR/gpstate
+HDBSTATE=$SCRIPTDIR/hdbstate
 HDBSTOP=$SCRIPTDIR/hdbstop
 GPDOCDIR=${GPHOME}/docs/cli_help/
 #******************************************************************************

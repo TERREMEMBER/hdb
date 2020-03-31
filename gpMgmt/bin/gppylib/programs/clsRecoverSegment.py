@@ -641,7 +641,7 @@ class GpRecoverSegmentProgram:
                                      " Please review the output in the gprecoverseg log.")
                 self.logger.info("There is a resynchronization running in the background to bring all")
                 self.logger.info("segments in sync.")
-                self.logger.info("Use gpstate -e to check the resynchronization progress.")
+                self.logger.info("Use hdbstate -e to check the resynchronization progress.")
                 self.logger.info("******************************************************************")
 
         elif len(mirrorBuilder.getMirrorsToBuild()) == 0:
@@ -674,7 +674,7 @@ class GpRecoverSegmentProgram:
             self.logger.info("******************************************************************")
             self.logger.info("Updating segments for streaming is completed.")
             self.logger.info("For segments updated successfully, streaming will continue in the background.")
-            self.logger.info("Use  gpstate -s  to check the streaming progress.")
+            self.logger.info("Use  hdbstate -s  to check the streaming progress.")
             self.logger.info("******************************************************************")
 
         sys.exit(0)

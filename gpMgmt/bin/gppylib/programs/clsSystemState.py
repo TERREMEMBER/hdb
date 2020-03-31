@@ -808,7 +808,7 @@ class GpSystemStateProgram:
 
 
     def __printSampleExternalTableSqlForSegmentStatus(self, gpEnv):
-        scriptName = "%s/gpstate --segmentStatusPipeSeparatedForTableUse -q -d %s" % \
+        scriptName = "%s/hdbstate --segmentStatusPipeSeparatedForTableUse -q -d %s" % \
                         (sys.path[0], gpEnv.getMasterDataDir()) # todo: ideally, would escape here
         columns = ["%s %s" % (f.getColumnName(), f.getColumnType()) for f in self.__getSegmentStatusColumns()]
 
@@ -853,7 +853,7 @@ class GpSystemStateProgram:
         conn.close()
 
         try:
-            # note: this is how old gpstate did this but ... can we do it without requiring a non-utility-mode
+            # note: this is how old hdbstate did this but ... can we do it without requiring a non-utility-mode
             #  connection?  non-utility-mode connections can take a long time to quit out if there
             #  are segment failures and you need to wait for the prober (and this would print
             #  role as "utility" even though it's really a failed-dispatcher.
@@ -1498,7 +1498,7 @@ class GpSystemStateProgram:
         addTo.add_option("--printSampleExternalTableSql", None, default=False, action="store_true",
                          dest="printSampleExternalTableSqlForSegmentStatus",
                          metavar="<printSampleExternalTableSqlForSegmentStatus>",
-                         help="Print sample sql that can be run to create an external table on stop of gpstate --segmentStatusPipeSeparatedForTableUse")
+                         help="Print sample sql that can be run to create an external table on stop of hdbstate --segmentStatusPipeSeparatedForTableUse")
 
         addTo = OptionGroup(parser, "Other Options")
         parser.add_option_group(addTo)

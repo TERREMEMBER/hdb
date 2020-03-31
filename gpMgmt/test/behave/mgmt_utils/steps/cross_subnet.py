@@ -51,8 +51,8 @@ def impl(context, segment):
         context.new_standby_data_dir = '%s_1' % master_data_dir
         context.execute_steps(u"""
          When the master goes down
-          And the user runs command "gpactivatestandby -a" from standby master
-         Then gpactivatestandby should return a return code of 0
+          And the user runs command "hdbactivatestandby -a" from standby master
+         Then hdbactivatestandby should return a return code of 0
          """)
         os.environ['PGHOST'] = 'mdw-2'
 
@@ -82,7 +82,7 @@ def impl(context, segment):
          Then gpinitstandby should return a return code of 0
          """.format(datadir=context.new_standby_data_dir))
         os.environ['MASTER_DATA_DIRECTORY'] = context.new_standby_data_dir
-        # NOTE: this must be set before gpactivatestandby is called
+        # NOTE: this must be set before hdbactivatestandby is called
         if orig_PGHOST is None:
             del os.environ['PGHOST']
         else:
@@ -90,8 +90,8 @@ def impl(context, segment):
         context.standby_hostname = 'mdw-1'
         context.execute_steps(u"""
          When the master goes down on "mdw-2"
-          And the user runs "gpactivatestandby -a"
-         Then gpactivatestandby should return a return code of 0
+          And the user runs "hdbactivatestandby -a"
+         Then hdbactivatestandby should return a return code of 0
         """)
 
         context.execute_steps(u"""
