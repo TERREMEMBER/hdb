@@ -1,4 +1,4 @@
-COMMAND NAME: gpsys1
+COMMAND NAME: hdbsys1
 
 Displays information about your operating system.
 
@@ -7,11 +7,11 @@ SYNOPSIS
 *****************************************************
 
 
-gpsys1 [ -a | -m | -p ]
+hdbsys1 [ -a | -m | -p ]
 
-gpsys1 -? 
+hdbsys1 -? 
 
-gpsys1 --version
+hdbsys1 --version
 
 
 *****************************************************
@@ -19,7 +19,7 @@ DESCRIPTION
 *****************************************************
 
 
-gpsys1 displays the platform and installed memory (in bytes) 
+hdbsys1 displays the platform and installed memory (in bytes) 
 of the current host. For example:
 
 linux 1073741824
@@ -62,11 +62,11 @@ EXAMPLES
 
 Show information about the current host operating system:
 
-gpsys1
+hdbsys1
 
 
 *****************************************************
 SEE ALSO
 *****************************************************
 
-gpcheckperf
+hdbcheckperf
