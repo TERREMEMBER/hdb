@@ -14,9 +14,9 @@ $(recurse)
 
 PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl gpdeletesystem gpexpand \
-    gpload gpload.py gpmovemirrors \
-	hdbpkg gprecoverseg gpreload gpscp gpsd gpssh gpssh-exkeys \
-	gpstate gpsys1 minirepro hdbstart hdbstop \
+        gpload gpload.py gpmovemirrors \
+	hdbpkg gprecoverseg gpreload \
+	gpstate hdbsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
 	hdbrecoverseg hdbconfig hdblogfilter
 installdirs:
@@ -235,8 +235,8 @@ clean distclean:
 	rm -rf $(PYLIB_SRC)/subprocess32/build
 	rm -rf *.pyc
 	rm -f analyzedbc gpactivatestandbyc gpaddmirrorsc hdbcheckcatc \
-		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc gpconfigc \
-		  gpdeletesystemc gpexpandc gpinitstandbyc gplogfilterc gpmovemirrorsc \
-		  hdbpkgc gprecoversegc gpreloadc gpscpc gpsdc gpssh-exkeysc gpsshc \
-		  gpstartc gpstatec gpstopc gpsys1c minireproc
+		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
+		  gpdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
+		  hdbpkgc hdbrecoversegc gpreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
+		  hdbstartc hdbstatec hdbstopc hdbsys1c minireproc
 	rm -f gpconfig_modules/gucs_disallowed_in_file.txt
