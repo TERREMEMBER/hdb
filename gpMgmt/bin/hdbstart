@@ -599,14 +599,14 @@ class GpStart:
             logger.warning("Review %s" % get_logfile())
             if not willShutdownSegments:
                 logger.warning("For more details on segment startup failure(s)")
-                logger.warning("Run  gpstate -s  to review current segment instance status")
+                logger.warning("Run  hdbstate -s  to review current segment instance status")
 
             logger.info("----------------------------------------------------")
 
         if len(invalidSegments) > 0:
             logger.warning("****************************************************************************")
             logger.warning("There are %d segment(s) marked down in the database" % len(invalidSegments))
-            logger.warning("To recover from this current state, review usage of the gprecoverseg")
+            logger.warning("To recover from this current state, review usage of the hdbrecoverseg")
             logger.warning("management utility which will recover failed segment instance databases.")
             logger.warning("****************************************************************************")
 
@@ -626,7 +626,7 @@ class GpStart:
 
         if (len(failedToStart) > 0 or len(invalidSegments) > 0 or
                     msg is not None):
-            logger.info("Check status of database with gpstate utility")
+            logger.info("Check status of database with hdbstate utility")
         else:
             logger.info("Database successfully started")
 
@@ -639,7 +639,7 @@ class GpStart:
             After starting the master we connect to it.  This is done both as a check that the system is
             actually started but its also done because certain backend processes don't get kickstarted
             until the first connection.  The DTM is an example of this and it allows those initialization
-            messages to end up in the gpstart log as opposed to the user's psql session.
+            messages to end up in the hdbstart log as opposed to the user's psql session.
             Returns a tuple of (result[bool], message[string])
         """
         restrict_txt = ""

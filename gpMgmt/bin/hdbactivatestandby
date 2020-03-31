@@ -4,7 +4,7 @@
 # Invalid name  - pylint: disable=C0103
 #
 # Copyright (c) EMC 2011
-# Copyright (c) Greenplum Inc 2010
+# Copyright (c) inHybrid Inc 2010
 # All Rights Reserved. 
 #
 """
@@ -22,7 +22,7 @@ import shutil
 import tempfile
 from datetime import datetime, timedelta
 
-# import GPDB modules
+# import HDB modules
 try:
     from pygresql import pg as pygresql
     from gppylib.commands import unix, gp, pg
@@ -125,7 +125,7 @@ def parseargs():
         logger.fatal('Log directory %s does not exist.' % options.logfile)
         parser.exit(2, None)
 
-    # The default logging for gpactivatestandby is verbose
+    # The default logging for hdbactivatestandby is verbose
     if not options.quiet:
         enable_verbose_logging()
 
@@ -156,7 +156,7 @@ def print_results(array, hostname, options):
     logger.info('to set this value.')
     logger.info('MASTER_PORT is now %d, if this has changed, you' % array.master.getSegmentPort())
     logger.info('may need to make additional configuration changes to allow access')
-    logger.info('to the Greenplum instance.')
+    logger.info('to the inHybrid instance.')
     logger.info('Refer to the Administrator Guide for instructions on how to re-activate')
     logger.info('the master to its previous state once it becomes available.')
     logger.info('Query planner statistics must be updated on all databases')
@@ -211,7 +211,7 @@ def check_original_master_status(options):
 
     recovery_conf_file_location = os.path.join(options.master_data_dir, GP_RECOVERY_CONF_FILE) 
     if not os.path.exists(recovery_conf_file_location):
-        logger.warn('Please make sure the command gpactivatestandby is executed on current Standby host')
+        logger.warn('Please make sure the command hdbactivatestandby is executed on current Standby host')
         raise GpActivateStandbyException('Critical required file on standby \"%s\" is not present.' % recovery_conf_file_location)
 
     with open(recovery_conf_file_location) as read_file:
@@ -302,14 +302,14 @@ def start_master(options):
     """Starts the master."""
 
     logger.info('Starting standby master database in utility mode...')
-    gp.NewGpStart.local('Start GPDB', masterOnly=True, masterDirectory=options.master_data_dir)
+    gp.NewGpStart.local('Start HDB', masterOnly=True, masterDirectory=options.master_data_dir)
 
 #-------------------------------------------------------------------------
 def stop_master():
     """Stops the master."""
     
     logger.info('Stopping standby master...')
-    gp.GpStop.local('Stop GPDB', masterOnly=True, fast=True)
+    gp.GpStop.local('Stop HDB', masterOnly=True, fast=True)
  
 #-------------------------------------------------------------------------
 def promote_standby(master_data_dir):
@@ -359,7 +359,7 @@ try:
 
     # disable keyboard interrupt to prevent users from canceling
     # out of the process at a very bad time.  If there is a partial
-    # update to the gp_configuration catalog and the user cancels
+    # update to the hdb_configuration catalog and the user cancels
     # you get stuck where you can't go forward and you can't go
     # backwards.
     signal.signal(signal.SIGINT, signal.SIG_IGN)
@@ -380,7 +380,7 @@ try:
     # If we forced to start utility master, this is the time to restart
     # cluster so that the new master becomes dispatch mode.
     if requires_restart:
-        cmd = gp.GpStop.local('GPDB restart', restart=True, datadir=options_.master_data_dir)
+        cmd = gp.GpStop.local('HDB restart', restart=True, datadir=options_.master_data_dir)
 
     # At this point, cancel isn't all that bad so re-enable 
     # keyboard interrupt.

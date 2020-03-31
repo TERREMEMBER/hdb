@@ -591,7 +591,7 @@ class GpAddMirrorsProgram:
             logger.info("******************************************************************")
             logger.info("Mirror segments have been added; data synchronization is in progress.")
             logger.info("Data synchronization will continue in the background.")
-            logger.info("Use  gpstate -s  to check the resynchronization progress.")
+            logger.info("Use  hdbstate -s  to check the resynchronization progress.")
             logger.info("******************************************************************")
 
         return 0  # success -- exit code 0!

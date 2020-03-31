@@ -756,10 +756,10 @@ def impl(context, options):
     # if we have two hosts, assume we're testing on a multinode cluster
     init_standby(context, master_hostname, options, segment_hostname)
 
-@when('the user runs gpactivatestandby with options "{options}"')
-@then('the user runs gpactivatestandby with options "{options}"')
+@when('the user runs hdbactivatestandby with options "{options}"')
+@then('the user runs hdbactivatestandby with options "{options}"')
 def impl(context, options):
-    context.execute_steps(u'''Then the user runs command "gpactivatestandby -a %s" from standby master''' % options)
+    context.execute_steps(u'''Then the user runs command "hdbactivatestandby -a %s" from standby master''' % options)
     context.standby_was_activated = True
 
 @when('the user runs command "{command}" from standby master')
@@ -808,7 +808,7 @@ def impl(context):
                         remoteHost=context.standby_hostname)
     master.run()
 
-    cmd = "gpactivatestandby -a -d %s" % master_data_dir
+    cmd = "hdbactivatestandby -a -d %s" % master_data_dir
     run_gpcommand(context, cmd)
 
 # from https://stackoverflow.com/questions/2838244/get-open-tcp-port-in-python/2838309#2838309
@@ -1839,8 +1839,8 @@ def impl(context):
         context.execute_steps(u'''
                               When the database is not running
                               Then wait until the process "postgres" goes down
-                              When the user runs "gpstart -a"
-                              Then gpstart should return a return code of 0
+                              When the user runs "hdbstart -a"
+                              Then hdbstart should return a return code of 0
                               And verify that a role "gpmon" exists in database "gpperfmon"
                               And verify that the last line of the file "postgresql.conf" in the master data directory contains the string "gpperfmon_log_alert_level=warning"
                               And verify that there is a "heap" table "database_history" in "gpperfmon"
@@ -2564,38 +2564,38 @@ def impl(context):
     with dbconn.connect(dbconn.DbURL(dbname='postgres'), unsetSearchPath=False) as conn:
         dbconn.execSQLForSingleton(conn, "SELECT gp_request_fts_probe_scan()")
 
-@then('verify that gpstart on original master fails due to lower Timeline ID')
+@then('verify that hdbstart on original master fails due to lower Timeline ID')
 def step_impl(context):
-    ''' This assumes that gpstart still checks for Timeline ID if a standby master is present '''
+    ''' This assumes that hdbstart still checks for Timeline ID if a standby master is present '''
     context.execute_steps(u'''
-                            When the user runs "gpstart -a"
-                            Then gpstart should return a return code of 2
-                            And gpstart should print "Standby activated, this node no more can act as master." to stdout
+                            When the user runs "hdbstart -a"
+                            Then hdbstart should return a return code of 2
+                            And hdbstart should print "Standby activated, this node no more can act as master." to stdout
                             ''')
 
-@then('verify gpstate with options "{options}" output is correct')
+@then('verify hdbstate with options "{options}" output is correct')
 def step_impl(context, options):
     if '-f' in options:
         if context.standby_hostname not in context.stdout_message or \
                 context.standby_data_dir not in context.stdout_message or \
                 str(context.standby_port) not in context.stdout_message:
-            raise Exception("gpstate -f output is missing expected standby master information")
+            raise Exception("hdbstate -f output is missing expected standby master information")
     elif '-s' in options:
         if context.standby_hostname not in context.stdout_message or \
                 context.standby_data_dir not in context.stdout_message or \
                 str(context.standby_port) not in context.stdout_message:
-            raise Exception("gpstate -s output is missing expected master information")
+            raise Exception("hdbstate -s output is missing expected master information")
     elif '-Q' in options:
         for stdout_line in context.stdout_message.split('\n'):
             if 'up segments, from configuration table' in stdout_line:
                 segments_up = int(re.match(".*of up segments, from configuration table\s+=\s+([0-9]+)", stdout_line).group(1))
                 if segments_up <= 1:
-                    raise Exception("gpstate -Q output does not match expectations of more than one segment up")
+                    raise Exception("hdbstate -Q output does not match expectations of more than one segment up")
 
             if 'down segments, from configuration table' in stdout_line:
                 segments_down = int(re.match(".*of down segments, from configuration table\s+=\s+([0-9]+)", stdout_line).group(1))
                 if segments_down != 0:
-                    raise Exception("gpstate -Q output does not match expectations of all segments up")
+                    raise Exception("hdbstate -Q output does not match expectations of all segments up")
                 break ## down segments comes after up segments, so we can break here
     elif '-m' in options:
         dbname = 'postgres'
@@ -2607,9 +2607,9 @@ def step_impl(context, options):
             datadir, port = cursor.fetchone()
             if datadir not in context.stdout_message or \
                 str(port) not in context.stdout_message:
-                    raise Exception("gpstate -m output missing expected mirror info, datadir %s port %d" %(datadir, port))
+                    raise Exception("hdbstate -m output missing expected mirror info, datadir %s port %d" %(datadir, port))
     else:
-        raise Exception("no verification for gpstate option given")
+        raise Exception("no verification for hdbstate option given")
 
 @given('ensure the standby directory does not exist')
 def impl(context):

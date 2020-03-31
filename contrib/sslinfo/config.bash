@@ -1,7 +1,7 @@
 # This bash script is internally used by sslinfo test
 function sslinfo_prepare() {
 echo "Enable SSL in postgresql.conf with master only..."
-standby_data=`gpstate -f | sed -n '/Standby data directory/s/.*Standby data directory\s\+=\s*//p'`
+standby_data=`hdbstate -f | sed -n '/Standby data directory/s/.*Standby data directory\s\+=\s*//p'`
 
 echo "#BEGIN SSLINFO CONF : BEGIN ANCHOR##" >> $MASTER_DATA_DIRECTORY/postgresql.conf
 echo "ssl=on" >> $MASTER_DATA_DIRECTORY/postgresql.conf
@@ -45,7 +45,7 @@ chmod 644 ~/.postgresql/root.crt
 
 function sslinfo_clean() {
 echo "restore SSL in postgresql.conf with master only"
-standby_data=`gpstate -f | sed -n '/Standby data directory/s/.*Standby data directory\s\+=\s*//p'`
+standby_data=`hdbstate -f | sed -n '/Standby data directory/s/.*Standby data directory\s\+=\s*//p'`
 sed -i '/#BEGIN SSLINFO CONF : BEGIN ANCHOR##/,/#END SSLINFO CONF : END ANCHOR##/d' $MASTER_DATA_DIRECTORY/postgresql.conf
 sed -i '/#BEGIN SSLINFO CONF : BEGIN ANCHOR##/,/#END SSLINFO CONF : END ANCHOR##/d' $standby_data/postgresql.conf
 }

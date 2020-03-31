@@ -568,25 +568,25 @@ pvk : gccVersionCheck version GPROOTDEP
 #---------------------------------------------------------------------
 
 SET_VERSION_SCRIPTS = \
-	bin/gpactivatestandby \
+	bin/hdbactivatestandby \
 	bin/gpaddmirrors \
 	bin/gpcheckperf \
 	bin/gpdeletesystem \
 	bin/gpexpand \
 	bin/gpfilespace \
-	bin/gpinitstandby \
-	bin/gpinitsystem \
+	bin/hdbinitstandby \
+	bin/hdbinitsystem \
 	bin/gpload.py \
 	bin/gplogfilter \
 	bin/gpmovemirrors \
 	bin/gprecoverseg \
 	bin/gpreload \
-	bin/gpscp \
-	bin/gpssh \
-	bin/gpssh-exkeys \
-	bin/gpstart \
-	bin/gpstate \
-	bin/gpstop \
+	bin/hdbscp \
+	bin/hdbssh \
+	bin/hdbssh-exkeys \
+	bin/hdbstart \
+	bin/hdbstate \
+	bin/hdbstop \
 	bin/gpsys1 \
 	bin/lib/hdbcheckcat \
 	sbin/gpconfig_helper.py \

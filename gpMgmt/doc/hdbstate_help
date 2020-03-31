@@ -1,29 +1,29 @@
-COMMAND NAME: gpstate
+COMMAND NAME: hdbstate
 
-Shows the status of a running Greenplum Database system.
+Shows the status of a running inHybrid Database system.
 
 
 *****************************************************
 SYNOPSIS
 *****************************************************
 
-gpstate [-d <master_data_directory>] [-B <parallel_processes>] 
+hdbstate [-d <master_data_directory>] [-B <parallel_processes>] 
         [-s | -b | -Q | -e] [-m | -c] [-p] [-i] [-f] 
         [-v | -q] [-l <log_directory>]
 
 
-gpstate -? | -h | --help
+hdbstate -? | -h | --help
 
 *****************************************************
 DESCRIPTION
 *****************************************************
 
-The gpstate utility displays information about a running 
-Greenplum Database instance. There is additional information 
-you may want to know about a Greenplum Database system, since 
+The hdbstate utility displays information about a running 
+inHybrid Database instance. There is additional information 
+you may want to know about a inHybrid Database system, since 
 it is comprised of multiple PostgreSQL database instances (segments) 
-spanning multiple machines. The gpstate utility provides 
-additional status information for a Greenplum Database system, 
+spanning multiple machines. The hdbstate utility provides 
+additional status information for a inHybrid Database system, 
 such as:
 * Which segments are down.
 * Master and segment configuration information (hosts, 
@@ -39,7 +39,7 @@ OPTIONS
 -b (brief status)
 
   Optional. Display a brief summary of the state of the 
-  Greenplum Database system. This is the default option.
+  inHybrid Database system. This is the default option.
 
 
 -B <parallel_processes>
@@ -78,9 +78,9 @@ OPTIONS
   Display details of the standby master host if configured.
 
 
--i (show Greenplum Database version)
+-i (show inHybrid Database version)
   
-  Display the Greenplum Database software version information 
+  Display the inHybrid Database software version information 
   for each instance.
 
 
@@ -97,13 +97,13 @@ OPTIONS
 
 -p (show ports)
 
-  List the port numbers used throughout the Greenplum Database 
+  List the port numbers used throughout the inHybrid Database 
   system.
 
 
 -x (expand)
 
-  Optional. Display details of any current gpexpand.
+  Optional. Display details of any current hdbexpand.
 
 
 -q (no screen output)
@@ -122,7 +122,7 @@ OPTIONS
 -s (detailed status)
 
   Optional. Displays detailed status information for the 
-  Greenplum Database system.
+  inHybrid Database system.
 
 
 -v (verbose output)
@@ -155,18 +155,18 @@ MASTER OUTPUT DATA
 * Master current role - dispatch = regular operating mode 
                         utility = maintenance mode 
 
-* Greenplum array configuration type - Standard = one NIC per host 
+* inHybrid array configuration type - Standard = one NIC per host 
                                        Multi-Home = multiple NICs per host
 
-* Greenplum initsystem version - version of Greenplum Database when 
+* inHybrid initsystem version - version of inHybrid Database when 
                                  system was first initialized
 
-* Greenplum current version - current version of Greenplum Database
+* inHybrid current version - current version of inHybrid Database
 
-* Postgres version - version of PostgreSQL that Greenplum Database 
+* Postgres version - version of PostgreSQL that inHybrid Database 
                      is based on
 
-* Greenplum mirroring status - physical mirroring, SAN or none
+* inHybrid mirroring status - physical mirroring, SAN or none
 
 * Master standby - host name of the standby master
 
@@ -220,7 +220,7 @@ SEGMENT OUTPUT DATA
 * Master reports status as - segment status as reported in the system catalog: 
                            Up or Down
 
-Database status - status of Greenplum Database to incoming requests: 
+Database status - status of inHybrid Database to incoming requests: 
                 Up, Down, or Suspended. A Suspended state means database 
                 activity is temporarily paused while a segment transitions from 
                 one state to another.
@@ -229,38 +229,38 @@ Database status - status of Greenplum Database to incoming requests:
 EXAMPLES
 *****************************************************
 
-Show detailed status information of a Greenplum Database system:
+Show detailed status information of a inHybrid Database system:
 
-   gpstate -s
+   hdbstate -s
 
 
 Do a quick check for down segments in the master host system catalog:
 
-   gpstate -Q
+   hdbstate -Q
 
 
 Show information about mirror segment instances:
 
-   gpstate -m
+   hdbstate -m
 
 
 Show information about the standby master configuration:
 
-   gpstate -f
+   hdbstate -f
 
 
-Show details of any current gpexpand:
+Show details of any current hdbexpand:
 
-   gpstate -x
+   hdbstate -x
 
 
-Display the Greenplum software version information:
+Display the inHybrid software version information:
 
-   gpstate -i
+   hdbstate -i
 
 
 *****************************************************
 SEE ALSO
 *****************************************************
 
-gpstart, gplogfilter
+hdbstart, hdblogfilter

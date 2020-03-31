@@ -2,7 +2,7 @@ import re
 
 from behave import given, when, then
 
-@then('gpstate output looks like')
+@then('hdbstate output looks like')
 def impl(context):
     # Check the header line first.
     header_pattern = r'[ \t]+'.join(context.table.headings)
@@ -11,12 +11,12 @@ def impl(context):
     check_rows_exist(context)
 
 
-@then('gpstate output has rows')
+@then('hdbstate output has rows')
 def impl(context):
     check_rows_exist(context)
 
 
-@then('gpstate output has rows with keys values')
+@then('hdbstate output has rows with keys values')
 def impl(context):
     # Check that every row exists in the standard out in the specified order.
     # We accept any amount of horizontal whitespace in between columns.

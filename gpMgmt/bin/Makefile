@@ -12,13 +12,13 @@ SUBDIRS += ifaddrs
 
 $(recurse)
 
-PROGRAMS= analyzedb gpactivatestandby gpaddmirrors hdbcheckcat hdbcheckperf \
+PROGRAMS= analyzedb gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl gpdeletesystem gpexpand \
         gpload gpload.py gpmovemirrors \
 	hdbpkg gprecoverseg gpreload \
-	gpstate hdbsys1 minirepro hdbstart hdbstop \
+	hdbstate hdbsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
-	hdbrecoverseg hdbconfig hdblogfilter
+	hdbrecoverseg hdbconfig hdblogfilter hdbactivatestandby
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)/lib'
 
@@ -234,7 +234,7 @@ clean distclean:
 	rm -rf $(PYLIB_SRC)/$(PYGRESQL_DIR)/build
 	rm -rf $(PYLIB_SRC)/subprocess32/build
 	rm -rf *.pyc
-	rm -f analyzedbc gpactivatestandbyc gpaddmirrorsc hdbcheckcatc \
+	rm -f analyzedbc hdbactivatestandbyc gpaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
 		  gpdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
 		  hdbpkgc hdbrecoversegc gpreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \

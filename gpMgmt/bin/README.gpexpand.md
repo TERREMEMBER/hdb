@@ -190,4 +190,4 @@ During expansion, backup and restore is not supported.
 
 During initialization phase, utilities like gpconfig, gppkg does not work.
 
-gpstate shows expansion status if there are expanding in progress.
+hdbstate shows expansion status if there are expanding in progress.

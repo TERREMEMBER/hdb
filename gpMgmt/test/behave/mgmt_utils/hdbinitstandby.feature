@@ -48,14 +48,14 @@ Feature: Tests for hdbinitstandby feature
         And the file "promote/testfile" does not exist under standby master data directory
         ## maybe clean up the directories created in the master data directory
 
-    Scenario: gpstate -f shows standby master information after running hdbinitstandby
+    Scenario: hdbstate -f shows standby master information after running hdbinitstandby
         Given the database is running
         And the standby is not initialized
         And the user runs hdbinitstandby with options " "
         Then hdbinitstandby should return a return code of 0
         And verify the standby master entries in catalog
-        Then the user runs command "gpstate -f"
-        And verify gpstate with options "-f" output is correct
+        Then the user runs command "hdbstate -f"
+        And verify hdbstate with options "-f" output is correct
 
     Scenario: hdbinitstandby should not throw stacktrace when $GPHOME/share directory is non-writable
         Given the database is running
