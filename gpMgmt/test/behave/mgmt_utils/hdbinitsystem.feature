@@ -259,6 +259,6 @@ Feature: hdbinitsystem tests
         And the user runs command "mkdir ../gpAux/gpdemo/datadirs/qddir; mkdir ../gpAux/gpdemo/datadirs/dbfast1; mkdir ../gpAux/gpdemo/datadirs/dbfast2; mkdir ../gpAux/gpdemo/datadirs/dbfast3"
         And the user runs command "mkdir ../gpAux/gpdemo/datadirs/dbfast_mirror1; mkdir ../gpAux/gpdemo/datadirs/dbfast_mirror2; mkdir ../gpAux/gpdemo/datadirs/dbfast_mirror3"
         And the user runs command "rm -rf /tmp/hdbinitsystemtest && mkdir /tmp/hdbinitsystemtest"
-        When the user runs command "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -l /tmp/hdbinitsystemtest -P 21100 -h ../gpAux/gpdemo/hostfile"
+        When the user runs command "hdbinitsystem -a -c ../gpAux/gpdemo/clusterConfigFile -l /tmp/hdbinitsystemtest"
         Then hdbinitsystem should return a return code of 0
-        And the hdbinitsystem should print "Reading inHybrid configuration file clusterConfigFile" to stdout
+        And the hdbinitsystem should print "Reading inHybrid configuration file" to stdout
