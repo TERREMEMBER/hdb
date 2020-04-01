@@ -963,7 +963,7 @@ class GpArray:
             version_str = row[0]
         version = GpVersion(version_str)
         if not version.isVersionCurrentRelease():
-            raise Exception("Cannot connect to GPDB version %s from installed version %s"%(version.getVersionRelease(), MAIN_VERSION[0]))
+            raise Exception("Cannot connect to HDB version %s from installed version %s"%(version.getVersionRelease(), MAIN_VERSION[0]))
 
         config_rows = dbconn.execSQL(conn, '''
         SELECT dbid, content, role, preferred_role, mode, status,
