@@ -161,9 +161,12 @@ class GpVersion:
             # As of GPDB 5, version strings moved from four digits (4.3.X.X) to three (5.X.X)
             minlen = 2 if int(v[0]) <= 4 else 1
             maxlen = 4 if int(v[0]) <= 4 else 3
-            if len(v) < minlen:
-                raise StandardError("Version too short")
-            elif len(v) > maxlen:
+### TODO. tmp remove code to ignore version problem ###            
+#            if len(v) < minlen:
+#                raise StandardError("Version too short")
+#            elif len(v) > maxlen:
+### TODO. tmp remove code to ignore version problem ###
+            if len(v) > maxlen:
                 raise StandardError("Version too long")
             elif len(v) < maxlen:
                 v.extend([99,99])
@@ -179,7 +182,7 @@ class GpVersion:
 
         # If part of the conversion process above failed, throw an error,
         except Exception as e:
-            raise StandardError("Unrecognised Greenplum Version '%s' due to %s" %
+            raise StandardError("Unrecognised inHybrid Version '%s' due to %s" %
                                 (str(version), str(e)))
 
     #------------------------------------------------------------

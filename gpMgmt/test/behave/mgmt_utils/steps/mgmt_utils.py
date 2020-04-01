@@ -382,7 +382,7 @@ def impl(context, ret_code):
 @given('a user runs "{command}" with hdbhome "{hdbhome}"')
 @when('a user runs "{command}" with hdbhome "{hdbhome}"')
 @then('a user runs "{command}" with hdbhome "{hdbhome}"')
-def impl(context, command, gphome):
+def impl(context, command, hdbhome):
     masterhost = get_master_hostname()[0][0]
     cmd = Command(name='Remove archive hdbpkg',
                   cmdStr=command,
