@@ -10,12 +10,12 @@ from gp_unittest import GpTestCase
 
 class GpSshTestCase(GpTestCase):
     def setUp(self):
-        # because gpssh does not have a .py extension, we have to use imp to import it
-        # if we had a gpssh.py, this is equivalent to:
-        #   import gpssh
-        #   self.subject = gpssh
-        gpssh_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpssh")
-        self.subject = imp.load_source('gpssh', gpssh_file)
+        # because hdbssh does not have a .py extension, we have to use imp to import it
+        # if we had a hdbssh.py, this is equivalent to:
+        #   import hdbssh
+        #   self.subject = hdbssh
+        hdbssh_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbssh")
+        self.subject = imp.load_source('gpssh', hdbssh_file)
 
         self.old_sys_argv = sys.argv
         sys.argv = []

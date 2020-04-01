@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) Greenplum Inc 2010. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2010. All Rights Reserved.
 #
 
 # System imports
@@ -10,7 +10,7 @@ import sys
 import signal
 from optparse import OptionGroup
 
-# import GPDB modules
+# import HDB modules
 try:
     from gppylib.db import dbconn
     from gppylib.gpparseopts import OptParser, OptChecker
@@ -141,19 +141,19 @@ def parseargs():
 # -------------------------------------------------------------------------
 def display_params(options, dburl, standby, segments, dumpDirsExist):
     global g_warnings_generated
-    logger.info('Greenplum Instance Deletion Parameters')
+    logger.info('inHybrid Instance Deletion Parameters')
     logger.info('--------------------------------------')
-    logger.info('Greenplum Master hostname                  = %s' % dburl.pghost)
-    logger.info('Greenplum Master data directory            = %s' % options.master_data_dir)
-    logger.info('Greenplum Master port                      = %s' % dburl.pgport)
+    logger.info('inHybrid Master hostname                  = %s' % dburl.pghost)
+    logger.info('inHybrid Master data directory            = %s' % options.master_data_dir)
+    logger.info('inHybrid Master port                      = %s' % dburl.pgport)
     if standby:
-        logger.info('Greenplum Master standby host              = %s' % standby.getSegmentHostName())
-        logger.info('Greenplum Master standby data directory    = %s' % standby.getSegmentDataDirectory())
-        logger.info('Greenplum Master standby port              = %s' % standby.getSegmentPort())
+        logger.info('inHybrid Master standby host              = %s' % standby.getSegmentHostName())
+        logger.info('inHybrid Master standby data directory    = %s' % standby.getSegmentDataDirectory())
+        logger.info('inHybrid Master standby port              = %s' % standby.getSegmentPort())
     if options.force:
-        logger.info('Greenplum Force delete of dump files       = ON')
+        logger.info('inHybrid Force delete of dump files       = ON')
     else:
-        logger.info('Greenplum Force delete of dump files       = OFF')
+        logger.info('inHybrid Force delete of dump files       = OFF')
     logger.info('Batch size                                 = %s' % options.batch_size)
     logger.info('--------------------------------------')
     logger.info(' Segment Instance List ')
@@ -165,14 +165,14 @@ def display_params(options, dburl, standby, segments, dumpDirsExist):
         port = segdb.getSegmentPort()
         logger.info('%s:%s:%s' % (host, datadir, port))
 
-    yn = ask_yesno('', 'Continue with Greenplum instance deletion?', 'N')
+    yn = ask_yesno('', 'Continue with inHybrid instance deletion?', 'N')
     if yn:
-        logger.info('FINAL WARNING, you are about to delete the Greenplum instance')
+        logger.info('FINAL WARNING, you are about to delete the inHybrid instance')
         logger.info('on master host %s.' % dburl.pghost)
         if dumpDirsExist and options.force:
             logger.warn('There are database dump files, these will be DELETED if you continue!')
             g_warnings_generated = True
-        yn = ask_yesno('', 'Continue with Greenplum instance deletion?', 'N')
+        yn = ask_yesno('', 'Continue with inHybrid instance deletion?', 'N')
         if not yn:
             raise GpDeleteSystemException('User canceled')
     else:
@@ -212,7 +212,7 @@ def getTablespaceDirs():
     return tblspclocs
 
 # -------------------------------------------------------------------------
-# delete_system() - deletes a GPDB system
+# delete_system() - deletes a HDB system
 # -------------------------------------------------------------------------
 def delete_cluster(options):
     global g_warnings_generated

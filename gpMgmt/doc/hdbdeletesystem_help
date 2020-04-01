@@ -1,26 +1,26 @@
-COMMAND NAME: gpdeletesystem
+COMMAND NAME: hdbdeletesystem
 
-Deletes a Greenplum Database system that was initialized 
-using gpinitsystem.
+Deletes a inHybrid Database system that was initialized 
+using hdbinitsystem.
 
 
 *****************************************************
 SYNOPSIS
 *****************************************************
 
-gpdeletesystem -d <master_data_directory> [-B <parallel_processes>] 
+hdbdeletesystem -d <master_data_directory> [-B <parallel_processes>] 
 [-f] [-l <logfile_directory>] [-D] 
 
-gpdeletesystem -? 
+hdbdeletesystem -? 
 
-gpdeletesystem -v
+hdbdeletesystem -v
 
 
 *****************************************************
 DESCRIPTION
 *****************************************************
 
-The gpdeletesystem script will perform the following actions:
+The hdbdeletesystem script will perform the following actions:
 
 * Stop all postmaster processes (the segment instances and master instance).
 
@@ -29,7 +29,7 @@ The gpdeletesystem script will perform the following actions:
 Before running this script, you should move any backup files
 (created by gp_dump) out of the master and segment data directories.
 
-This script will not uninstall the Greenplum Database software.
+This script will not uninstall the inHybrid Database software.
 
 
 *****************************************************
@@ -54,7 +54,7 @@ segment instances it needs to delete.
 -f (force)
 
 Force a delete even if backup files are found in the data directories. 
-The default is to not delete Greenplum Database instances if backup 
+The default is to not delete inHybrid Database instances if backup 
 files (created by gp_dump) are present.
 
 
@@ -82,19 +82,19 @@ Displays the version, status, last updated date, and check sum of this script.
 EXAMPLES
 *****************************************************
 
-Delete a Greenplum Database system:
+Delete a inHybrid Database system:
 
-gpdeletesystem -d /gpdata/gp-1
+hdbdeletesystem -d /gpdata/gp-1
 
 
-Delete a Greenplum Database system even if backup files are present:
+Delete a inHybrid Database system even if backup files are present:
 
-gpdeletesystem -d /gpdata/gp-1 -f
+hdbdeletesystem -d /gpdata/gp-1 -f
 
 
 *****************************************************
 SEE ALSO
 *****************************************************
 
-gpinitsystem, gp_dump
+hdbinitsystem, gp_dump
 

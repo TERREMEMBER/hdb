@@ -571,13 +571,13 @@ SET_VERSION_SCRIPTS = \
 	bin/hdbactivatestandby \
 	bin/gpaddmirrors \
 	bin/gpcheckperf \
-	bin/gpdeletesystem \
+	bin/hdbdeletesystem \
 	bin/gpexpand \
 	bin/gpfilespace \
 	bin/hdbinitstandby \
 	bin/hdbinitsystem \
 	bin/gpload.py \
-	bin/gplogfilter \
+	bin/hdblogfilter \
 	bin/gpmovemirrors \
 	bin/gprecoverseg \
 	bin/gpreload \
@@ -587,7 +587,7 @@ SET_VERSION_SCRIPTS = \
 	bin/hdbstart \
 	bin/hdbstate \
 	bin/hdbstop \
-	bin/gpsys1 \
+	bin/hdbsys1 \
 	bin/lib/hdbcheckcat \
 	sbin/gpconfig_helper.py \
 	sbin/gpcleansegmentdir.py \

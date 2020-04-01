@@ -10,11 +10,11 @@ from gppylib.gpcatalog import GPCatalogTable
 
 class GpCheckCatTestCase(GpTestCase):
     def setUp(self):
-        # because gpcheckcat does not have a .py extension, we have to use imp to import it
-        # if we had a gpcheckcat.py, this is equivalent to:
-        #   import gpcheckcat
+        # because hdbcheckcat does not have a .py extension, we have to use imp to import it
+        # if we had a hdbcheckcat.py, this is equivalent to:
+        #   import hdbcheckcat
         #   self.subject = gpcheckcat
-        hdbcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpcheckcat")
+        hdbcheckcat_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbcheckcat")
         self.subject = imp.load_source('gpcheckcat', hdbcheckcat_file)
         self.subject.check_gpexpand = lambda : (True, "")
 

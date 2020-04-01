@@ -53,7 +53,7 @@ List of Management Scripts Written in Python (gppylib - current libraries)
 --------------------------------------------------------------------------
 bin/gpactivatestandby   -  Activates the Standby Master
 bin/gpconfig_helper     -  Edits postgresql.conf file for all segments
-bin/gpdeletesystem      -  Deletes a Greenplum Database
+bin/hdbdeletesystem      -  Deletes a Greenplum Database
 bin/gpexpand            -  Adds additional segments to a Greenplum Database
 bin/hdbinitstandby       -  Initializes standby master
 bin/hdblogfilter         -  Filters log files

@@ -13,7 +13,7 @@ SUBDIRS += ifaddrs
 $(recurse)
 
 PROGRAMS= analyzedb gpaddmirrors hdbcheckcat hdbcheckperf \
-	gpcheckresgroupimpl gpdeletesystem gpexpand \
+	gpcheckresgroupimpl hdbdeletesystem gpexpand \
         gpload gpload.py gpmovemirrors \
 	hdbpkg gprecoverseg gpreload \
 	hdbstate hdbsys1 minirepro hdbstart hdbstop \
@@ -236,7 +236,7 @@ clean distclean:
 	rm -rf *.pyc
 	rm -f analyzedbc hdbactivatestandbyc gpaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
-		  gpdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
+		  hdbdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
 		  hdbpkgc hdbrecoversegc gpreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
 		  hdbstartc hdbstatec hdbstopc hdbsys1c minireproc
 	rm -f gpconfig_modules/gucs_disallowed_in_file.txt
