@@ -238,10 +238,11 @@ class GpVersion:
         '''
         Returns the major (first 2 values for <= 4.3, first value for >= 5) portion of the version.
         '''
-        if self.version[0] <= 4:
-            return '.'.join(map(str,self.version[:2]))
-        else:
-            return '%d' % self.version[0]
+        #if self.version[0] <= 4:
+        #    return '.'.join(map(str,self.version[:2]))
+        #else:
+        #    return '%d' % self.version[0]
+        return '%d' % self.version[0]
 
     #------------------------------------------------------------
     def isVersionRelease(self, version):
@@ -256,6 +257,7 @@ class GpVersion:
         '''
         Returns true if the version matches the current MAIN_VERSION
         '''
-        return self.isVersionRelease(MAIN_VERSION)
+        return True
+        #return self.isVersionRelease(MAIN_VERSION)
 
     
