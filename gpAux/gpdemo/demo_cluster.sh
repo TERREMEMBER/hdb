@@ -115,7 +115,7 @@ cleanDemo(){
     ##
 
     (export MASTER_DATA_DIRECTORY=$QDDIR/${SEG_PREFIX}-1;
-     source ${GPHOME}/greenplum_path.sh;
+     source ${HDBHOME}/inHybrid_path.sh;
      hdbstop -a)
 
     ##
@@ -171,7 +171,7 @@ do
 	esac
 done
 
-if [ -z "${GPHOME}" ]; then
+if [ -z "${HDBHOME}" ]; then
     echo "FATAL: The GPHOME environment variable is not set."
     echo ""
     echo "  You can set it by sourcing the greenplum_path.sh"
@@ -179,7 +179,7 @@ if [ -z "${GPHOME}" ]; then
     echo ""
     exit 1
 else
-    GPSEARCH=$GPHOME
+    GPSEARCH=$HDBHOME
 fi
 
 cat <<-EOF
@@ -194,7 +194,7 @@ cat <<-EOF
 	  a cluster installation with master and `expr 2 \* ${NUM_PRIMARY_MIRROR_PAIRS}` segment instances
 	  (${NUM_PRIMARY_MIRROR_PAIRS} primary & ${NUM_PRIMARY_MIRROR_PAIRS} mirror).
 
-	    GPHOME ................. : ${GPHOME}
+	    GPHOME ................. : ${HDBHOME}
 	    MASTER_DATA_DIRECTORY .. : ${QDDIR}/${SEG_PREFIX}-1
 
 	    MASTER PORT (PGPORT) ... : ${MASTER_DEMO_PORT}

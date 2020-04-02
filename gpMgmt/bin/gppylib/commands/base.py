@@ -34,7 +34,7 @@ from pygresql.pg import DB
 
 logger = gplog.get_default_logger()
 
-GPHOME = os.environ.get('GPHOME')
+HDBHOME = os.environ.get('HDBHOME')
 
 # Maximum retries if sshd rejects the connection due to too many
 # unauthenticated connections.
@@ -486,7 +486,7 @@ class RemoteExecutionContext(LocalExecutionContext):
         if gphome:
             self.gphome = gphome
         else:
-            self.gphome = GPHOME
+            self.gphome = HDBHOME
 
     def execute(self, cmd):
         # prepend env. variables from ExcecutionContext.propagate_env_map
@@ -502,7 +502,7 @@ class RemoteExecutionContext(LocalExecutionContext):
         cmd.cmdStr = cmd.cmdStr.replace('"', '\\"')
         cmd.cmdStr = "ssh -o StrictHostKeyChecking=no -o ServerAliveInterval=60 " \
                      "{targethost} \"{gphome} {cmdstr}\"".format(targethost=self.targetHost,
-                                                                 gphome=". %s/greenplum_path.sh;" % self.gphome,
+                                                                 gphome=". %s/inhybrid_path.sh;" % self.gphome,
                                                                  cmdstr=cmd.cmdStr)
         LocalExecutionContext.execute(self, cmd)
         if (cmd.get_results().stderr.startswith('ssh_exchange_identification: Connection closed by remote host')):
