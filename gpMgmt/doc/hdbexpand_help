@@ -1,4 +1,4 @@
-COMMAND NAME:  gpexpand
+COMMAND NAME:  hdbexpand
 
 Expands an existing Greenplum Database across new hosts in the array.
 
@@ -6,7 +6,7 @@ Expands an existing Greenplum Database across new hosts in the array.
 SYNOPSIS
 ******************************************************
 
-gpexpand 
+hdbexpand 
       [-f <hosts_file>]
       | -i <input_file> [-B <batch_size>] [-V] [-t segment_tar_dir] [-S]
       | {-d <hh:mm:ss> | -e '<YYYY-MM-DD hh:mm:ss>'} 
@@ -16,41 +16,41 @@ gpexpand
       | --clean
 [--verbose] [--silent]
 
-gpexpand -? | -h | --help 
+hdbexpand -? | -h | --help 
 
-gpexpand --version
+hdbexpand --version
 
 
 ******************************************************
 PREREQUISITES
 ******************************************************
 
-* You are logged in as the Greenplum Database superuser (gpadmin).
+* You are logged in as the inHybrid Database superuser (hdbadmin).
 
 * The new segment hosts have been installed and configured as per 
   the existing segment hosts. This involves:
 
   * Configuring the hardware and OS
-  * Installing the Greenplum software
-  * Creating the gpadmin user account
+  * Installing the inHybrid software
+  * Creating the hdbadmin user account
   * Exchanging SSH keys. 
 
 * Enough disk space on your segment hosts to temporarily hold a 
   copy of your largest table. 
-* When redistributing data, Greenplum Database must be running in 
-  production mode. Greenplum Database cannot be restricted mode or in 
-  master mode. The gpstart options -R or -m cannot be specified to start 
-  Greenplum Database. 
+* When redistributing data, inHybrid Database must be running in 
+  production mode. inHybrid Database cannot be restricted mode or in 
+  master mode. The hdbstart options -R or -m cannot be specified to start 
+  inHybrid Database. 
   
   
 ******************************************************
 DESCRIPTION
 ******************************************************
 
-The gpexpand utility performs system expansion in two phases: segment 
+The hdbexpand utility performs system expansion in two phases: segment 
 initialization and then table redistribution.
  
-In the initialization phase, gpexpand runs with an input file that 
+In the initialization phase, hdbexpand runs with an input file that 
 specifies data directories, dbid values, and other characteristics 
 of the new segments. You can create the input file manually, or by 
 following the prompts in an interactive interview.
@@ -69,12 +69,12 @@ performs these actions:
   The original distribution policies are later restored in the 
   redistribution phase.
 
-To begin the redistribution phase, you must run gpexpand with either 
+To begin the redistribution phase, you must run hdbexpand with either 
 the -d (duration) or -e (end time) options. Until the specified end 
 time or duration is reached, the utility will redistribute tables in 
 the expansion schema. Each table is reorganized using ALTER TABLE 
 commands to rebalance the tables across new segments, and to set 
-tables to their original distribution policy. If gpexpand completes 
+tables to their original distribution policy. If hdbexpand completes 
 the reorganization of all tables before the specified duration, 
 it displays a success message and ends. 
 
@@ -93,13 +93,13 @@ OPTIONS
 -B <batch_size>
  Batch size of remote commands to send to a given host before 
  making a one-second pause. Default is 16. Valid values are 1-128.
- The gpexpand utility issues a number of setup commands that may exceed 
+ The hdbexpand utility issues a number of setup commands that may exceed 
  the host's maximum threshold for authenticated connections as defined 
  by MaxStartups in the SSH daemon configuration. The one-second pause 
- allows authentications to be completed before gpexpand issues any 
+ allows authentications to be completed before hdbexpand issues any 
  more commands. The default value does not normally need to be changed. 
  However, it may be necessary to reduce the maximum number of commands 
- if gpexpand fails with connection errors such as 
+ if hdbexpand fails with connection errors such as 
  'ssh_exchange_identification: Connection closed by remote host.'
 
 
@@ -119,7 +119,7 @@ OPTIONS
  Specifies the name of a file that contains a list of new hosts for 
  system expansion. Each line of the file must contain a single 
  host name. This file can contain hostnames with or without network 
- interfaces specified. The gpexpand utility handles either case, 
+ interfaces specified. The hdbexpand utility handles either case, 
  adding interface numbers to end of the hostname if the original nodes 
  are configured with multiple network interfaces.
 
@@ -184,20 +184,20 @@ OPTIONS
 EXAMPLES
 ******************************************************
 
-Run gpexpand with an input file to initialize new segments and 
+Run hdbexpand with an input file to initialize new segments and 
 create the expansion schema in the default database:
 
-  $ gpexpand -i input_file
+  $ hdbexpand -i input_file
 
 
-Run gpexpand for sixty hours maximum duration to redistribute 
+Run hdbexpand for sixty hours maximum duration to redistribute 
 tables to new segments:
 
-  $ gpexpand -d 60:00:00
+  $ hdbexpand -d 60:00:00
 
 ******************************************************
 SEE ALSO
 ******************************************************
 
-gpssh-exkeys
+hdbssh-exkeys
 
