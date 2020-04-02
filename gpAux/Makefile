@@ -692,7 +692,7 @@ copylibs : thirdparty-dist
 greenplum_path:
 	mkdir -p $(INSTLOC)
 	unset LIBPATH; \
-	  releng/generate-greenplum-path.sh $(INSTLOC) > $(INSTLOC)/greenplum_path.sh
+	  releng/generate-greenplum-path.sh $(INSTLOC) > $(INSTLOC)/inhybrid_path.sh
 
 copylicense:
 	for proddir in $(INSTLOC) $(CLIENTSINSTLOC); do \
