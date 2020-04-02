@@ -4266,9 +4266,9 @@ def main():
         sys.exit(GV.retcode)
 
     GV.version = getversion()
-    if GV.version < "4.0":
-        myprint("Error: only inHybrid database version >= 4.0 are supported\n")
-        sys.exit(GV.retcode)
+#    if GV.version < "4.0":
+#        myprint("Error: only inHybrid database version >= 4.0 are supported\n")
+#        sys.exit(GV.retcode)
 
     # hdbcheckcat should check gpexpand runnning status
     check_gpexpand()
