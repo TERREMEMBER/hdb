@@ -23,13 +23,13 @@ except:
 
 class GpStop(GpTestCase):
     def setUp(self):
-        # because gpstop does not have a .py extension,
+        # because hdbstop does not have a .py extension,
         # we have to use imp to import it
-        # if we had a gpstop.py, this is equivalent to:
+        # if we had a hdbstop.py, this is equivalent to:
         #   import gpstop
         #   self.subject = gpstop
-        gpstop_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpstop")
-        self.subject = imp.load_source('gpstop', gpstop_file)
+        hdbstop_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbstop")
+        self.subject = imp.load_source('gpstop', hdbstop_file)
         self.subject.logger = Mock(spec=['log', 'warn', 'info', 'debug', 'error', 'warning', 'fatal'])
 
         self.mock_gp = Mock()

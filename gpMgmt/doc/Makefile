@@ -8,7 +8,7 @@ SUBDIRS= gpconfigs
 $(recurse)
 
 DOCS= hdbactivatestandby_help gpaddmirrors_help hdbcheckperf_help \
-	gpdeletesystem_help gpexpand_help gpfdist_help \
+	hdbdeletesystem_help gpexpand_help gpfdist_help \
 	gpload_help gpmapreduce_help gpperfmon_install_help hdbpkg_help gpreload_help \
 	hdbstate_help hdbsys1_help \
 	hdbinitsystem_help hdbinitstandby_help hdbscp_help hdbssh_help hdbssh-exkeys_help \

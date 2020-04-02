@@ -1199,7 +1199,7 @@ def validate_tables(conn, tablenames):
     tables needs to be a list of 'schema.table's
     """
 
-    # since the number of target entries cannot be greater than 1664 in GPDB/HAWQ,
+    # since the number of target entries cannot be greater than 1664 in HDB/HAWQ,
     # we validate the tables in batches of 1500
     # XXX: We use a VALUES list now. What's the maximum size of that?
     batch_size = 1500

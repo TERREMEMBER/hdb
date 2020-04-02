@@ -5,12 +5,12 @@ import inspect
 from gppylib.commands.base import Command
 
 class GpDeleteSystem(Command):
-    """This is a wrapper for gpdeletesystem."""
+    """This is a wrapper for hdbdeletesystem."""
     def __init__(self, mdd=None):
         if not mdd:
             mdd = os.getenv('MASTER_DATA_DIRECTORY')
-        cmd_str = "export MASTER_DATA_DIRECTORY=%s; echo -e \"y\\ny\\n\" | gpdeletesystem -d %s" % (mdd, mdd)
-        Command.__init__(self, 'run gpdeletesystem', cmd_str)
+        cmd_str = "export MASTER_DATA_DIRECTORY=%s; echo -e \"y\\ny\\n\" | hdbdeletesystem -d %s" % (mdd, mdd)
+        Command.__init__(self, 'run hdbdeletesystem', cmd_str)
 
     def run(self, validate=True):
         print "Running delete system: %s" % self

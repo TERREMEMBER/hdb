@@ -35,13 +35,13 @@ class GpConfig(GpTestCase):
         with open(postgresql_conf, "w") as postgresql:
             postgresql.close()
 
-        # because gpconfig does not have a .py extension,
+        # because hdbconfig does not have a .py extension,
         # we have to use imp to import it
-        # if we had a gpconfig.py, this is equivalent to:
-        #   import gpconfig
-        #   self.subject = gpconfig
-        gpconfig_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpconfig")
-        self.subject = imp.load_source('gpconfig', gpconfig_file)
+        # if we had a hdbconfig.py, this is equivalent to:
+        #   import hdbconfig
+        #   self.subject = hdbconfig
+        hdbconfig_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbconfig")
+        self.subject = imp.load_source('gpconfig', hdbconfig_file)
         self.subject.LOGGER = Mock(spec=['log', 'warn', 'info', 'debug', 'error', 'warning', 'fatal'])
         self.subject.check_gpexpand = lambda : (True, "")
 

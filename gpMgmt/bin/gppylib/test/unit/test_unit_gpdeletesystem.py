@@ -9,10 +9,10 @@ class GpDeleteSystemTestCase(GpTestCase):
     def setUp(self):
         # because gpdeletesystem does not have a .py extension, we have to use imp to import it
         # if we had a gpdeletesystem.py, this is equivalent to:
-        #   import gpdeletesystem
-        #   self.subject = gpdeletesystem
-        gpdeletesystem_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpdeletesystem")
-        self.subject = imp.load_source('gpdeletesystem', gpdeletesystem_file)
+        #   import hdbdeletesystem
+        #   self.subject = hdbdeletesystem
+        hdbdeletesystem_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbdeletesystem")
+        self.subject = imp.load_source('gpdeletesystem', hdbdeletesystem_file)
         self.tmpDir = tempfile.mkdtemp()
         os.chmod(self.tmpDir, 0777)
         self.options = Values()

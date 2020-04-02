@@ -16,13 +16,13 @@ from gppylib.mainUtils import UserAbortedException
 
 class GpStart(GpTestCase):
     def setUp(self):
-        # because gpstart does not have a .py extension,
+        # because hdbstart does not have a .py extension,
         # we have to use imp to import it
-        # if we had a gpstart.py, this is equivalent to:
+        # if we had a hdbstart.py, this is equivalent to:
         #   import gpstart
         #   self.subject = gpstart
-        gpstart_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpstart")
-        self.subject = imp.load_source('gpstart', gpstart_file)
+        hdbstart_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbstart")
+        self.subject = imp.load_source('hdbstart', hdbstart_file)
         self.subject.logger = Mock(
             spec=['log', 'warn', 'info', 'debug', 'error', 'warning', 'fatal', 'warning_to_file_only'])
 
