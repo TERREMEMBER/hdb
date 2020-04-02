@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
 if [ x$1 != x ] ; then
-    GPHOME_PATH=$1
+    HDBHOME_PATH=$1
 else
-    GPHOME_PATH="\`pwd\`"
+    HDBHOME_PATH="\`pwd\`"
 fi
 
 if [ "$2" = "ISO" ] ; then
 	cat <<-EOF
 		if [ "\${BASH_SOURCE:0:1}" == "/" ]
 		then
-		    GPHOME=\`dirname "\$BASH_SOURCE"\`
+		    HDBHOME=\`dirname "\$BASH_SOURCE"\`
 		else
-		    GPHOME=\`pwd\`/\`dirname "\$BASH_SOURCE"\`
+		    HDBHOME=\`pwd\`/\`dirname "\$BASH_SOURCE"\`
 		fi
 	EOF
 else
 	cat <<-EOF
-		GPHOME=${GPHOME_PATH}
+		HDBHOME=${HDBHOME_PATH}
 	EOF
 fi
 
@@ -31,35 +31,35 @@ fi
 cat << EOF
 
 # Replace with symlink path if it is present and correct
-if [ -h \${GPHOME}/../greenplum-db ]; then
-    GPHOME_BY_SYMLINK=\`(cd \${GPHOME}/../greenplum-db/ && pwd -P)\`
-    if [ x"\${GPHOME_BY_SYMLINK}" = x"\${GPHOME}" ]; then
-        GPHOME=\`(cd \${GPHOME}/../greenplum-db/ && pwd -L)\`/.
+if [ -h \${HDBHOME}/../inhybrid-db ]; then
+    HDBHOME_BY_SYMLINK=\`(cd \${HDBHOME}/../inhybrid-db/ && pwd -P)\`
+    if [ x"\${HDBHOME_BY_SYMLINK}" = x"\${HDBHOME}" ]; then
+        HDBHOME=\`(cd \${HDBHOME}/../inhybrid-db/ && pwd -L)\`/.
     fi
-    unset GPHOME_BY_SYMLINK
+    unset HDBHOME_BY_SYMLINK
 fi
 EOF
 
 cat <<EOF
 #setup PYTHONHOME
-if [ -x \$GPHOME/ext/python/bin/python ]; then
-    PYTHONHOME="\$GPHOME/ext/python"
+if [ -x \$HDBHOME/ext/python/bin/python ]; then
+    PYTHONHOME="\$HDBHOME/ext/python"
     export PYTHONHOME
 fi
 EOF
 
 #setup PYTHONPATH
 if [ "x${PYTHONPATH}" == "x" ]; then
-    PYTHONPATH="\$GPHOME/lib/python"
+    PYTHONPATH="\$HDBHOME/lib/python"
 else
-    PYTHONPATH="\$GPHOME/lib/python:${PYTHONPATH}"
+    PYTHONPATH="\$HDBHOME/lib/python:${PYTHONPATH}"
 fi
 cat <<EOF
 PYTHONPATH=${PYTHONPATH}
 EOF
 
-GP_BIN_PATH=\$GPHOME/bin
-GP_LIB_PATH=\$GPHOME/lib
+GP_BIN_PATH=\$HDBHOME/bin
+GP_LIB_PATH=\$HDBHOME/lib
 
 if [ -n "$PYTHONHOME" ]; then
     GP_BIN_PATH=${GP_BIN_PATH}:\$PYTHONHOME/bin
@@ -78,24 +78,24 @@ EOF
 # Also, Python on AIX requires special copies of some libraries.  Hence, lib/pware.
 if [ "${PLAT}" = "AIX" ]; then
 cat <<EOF
-PYTHONPATH=\${GPHOME}/ext/python/lib/python2.7:\${PYTHONPATH}
-LIBPATH=\${GPHOME}/lib/pware:\${GPHOME}/lib:\${GPHOME}/ext/python/lib:/usr/lib/threads:\${LIBPATH}
+PYTHONPATH=\${HDBHOME}/ext/python/lib/python2.7:\${PYTHONPATH}
+LIBPATH=\${HDBHOME}/lib/pware:\${HDBHOME}/lib:\${HDBHOME}/ext/python/lib:/usr/lib/threads:\${LIBPATH}
 export LIBPATH
-GP_LIBPATH_FOR_PYTHON=\${GPHOME}/lib/pware
+GP_LIBPATH_FOR_PYTHON=\${HDBHOME}/lib/pware
 export GP_LIBPATH_FOR_PYTHON
 EOF
 fi
 
 # openssl configuration file path
 cat <<EOF
-if [ -e \$GPHOME/etc/openssl.cnf ]; then
-OPENSSL_CONF=\$GPHOME/etc/openssl.cnf
+if [ -e \$HDBHOME/etc/openssl.cnf ]; then
+OPENSSL_CONF=\$HDBHOME/etc/openssl.cnf
 export OPENSSL_CONF
 fi
 EOF
 
 cat <<EOF
-export GPHOME
+export HDBHOME
 export PATH
 EOF
 
