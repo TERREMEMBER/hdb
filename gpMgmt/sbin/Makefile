@@ -8,8 +8,8 @@ endif
 PYCS= gpconfig_helper.pyc gpoperation.pyc gpsegstop.pyc gpcleansegmentdir.pyc \
 	gpgetstatususingtransition.pyc gpsegstart.pyc
 
-PROGRAMS= gpconfig_helper.py gpoperation.py gpsegstop.py gpcleansegmentdir.py \
-	gpgetstatususingtransition.py gpsegstart.py packcore hdbsegstop.py hdbsegstart.py
+PROGRAMS= gpconfig_helper.py gpoperation.py gpcleansegmentdir.py \
+	gpgetstatususingtransition.py packcore hdbsegstop.py hdbsegstart.py
 
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(sbindir)'

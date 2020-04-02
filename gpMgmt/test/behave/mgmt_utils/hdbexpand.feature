@@ -1,12 +1,13 @@
-@gpexpand
+@hdbexpand
 Feature: expand the cluster by adding more segments
 
+    @hdbexpand1
     @gpexpand_no_mirrors
     @gpexpand_timing
     Scenario: after resuming a duration interrupted redistribution, tables are restored
 	Given the database is not running
-	And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+	And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -26,13 +27,14 @@ Feature: expand the cluster by adding more segments
         Then the tables have finished expanding
         And verify that the master pid has not been changed
 
+    @gpexpand2
     @gpexpand_no_mirrors
     @gpexpand_timing
     @gpexpand_standby
     Scenario: after a duration interrupted redistribution, state file on standby matches master
     	Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the user runs hdbinitstandby with options " "
         And database "gptest" exists
@@ -47,12 +49,13 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand to redistribute with duration "00:00:02"
         Then gpexpand should print "End time reached.  Stopping expansion." to stdout
 
+    @gpexpand3
     @gpexpand_no_mirrors
     @gpexpand_timing
     Scenario: after resuming an end time interrupted redistribution, tables are restored
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -70,12 +73,13 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand to redistribute
         Then the tables have finished expanding
 
+    @gpexpand4
     @gpexpand_no_mirrors
     @gpexpand_segment
     Scenario: expand a cluster that has no mirrors
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -85,12 +89,14 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         Then verify that the cluster has 2 new segments
 
+
+    @gpexpand5
     @gpexpand_no_mirrors
     @gpexpand_host
     Scenario: expand a cluster that has no mirrors with one new hosts
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -101,12 +107,13 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         Then verify that the cluster has 2 new segments
 
+    @gpexpand6
     @gpexpand_no_mirrors
     @gpexpand_host_and_segment
     Scenario: expand a cluster that has no mirrors with one new hosts
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -117,12 +124,13 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         Then verify that the cluster has 4 new segments
 
+    @gpexpand7
     @gpexpand_mirrors
     @gpexpand_segment
     Scenario: expand a cluster that has mirrors
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -131,15 +139,22 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with a static inputfile for a single-node cluster with mirrors
         Then verify that the cluster has 4 new segments
 
+    #TODO 
+    # to delete 
+    #/tmp/gpexpand_behave/two_nodes/data/primary/gpseg3
+    #/tmp/gpexpand_behave/two_nodes/data/primary/gpseg2
+    @gpexpand8
     @gpexpand_mirrors
     @gpexpand_segment
     Scenario: expand a cluster that has mirrors and recover a failed segment
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1"
+        And the user runs command "rm -rf /tmp/gpexpand_behave/two_nodes/data/primary/gpseg3"
+        And the user runs command "rm -rf /tmp/gpexpand_behave/two_nodes/data/primary/gpseg2"
         And the user runs gpexpand with a static inputfile for a two-node cluster with mirrors
         And expanded preferred primary on segment "3" has failed
         When the user runs "gprecoverseg -a"
@@ -151,12 +166,13 @@ Feature: expand the cluster by adding more segments
         And all the segments are running
         And the segments are synchronized
 
+    @gpexpand9
     @gpexpand_mirrors
     @gpexpand_host
     Scenario: expand a cluster that has mirrors with one new hosts
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And database "gptest" exists
         And there are no gpexpand_inputfiles
@@ -167,13 +183,14 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         Then verify that the cluster has 8 new segments
 
+    @gpexpand10
     @gpexpand_mirrors
     @gpexpand_host_and_segment
     @gpexpand_standby
     Scenario: expand a cluster that has mirrors with one new host
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And the user runs hdbinitstandby with options " "
         And database "gptest" exists
@@ -185,13 +202,14 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         Then verify that the cluster has 14 new segments
 
+    @gpexpand11
     @gpexpand_mirrors
     @gpexpand_host_and_segment
     @gpexpand_standby
     Scenario: expand a cluster with tablespace that has mirrors with one new host
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And the user runs hdbinitstandby with options " "
         And database "gptest" exists
@@ -207,11 +225,12 @@ Feature: expand the cluster by adding more segments
 	When the user runs gpexpand to redistribute
 	Then the tablespace is valid after gpexpand
 
+    @gpexpand12
     @gpexpand_verify_redistribution
     Scenario: Verify data is correctly redistributed after expansion
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And the cluster is generated with "1" primaries only
         And database "gptest" exists
         And the user connects to "gptest" with named connection "default"
@@ -229,11 +248,12 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand to redistribute
         Then distribution information from table "public.redistribute" with data in "gptest" is verified against saved data
 
+    @gpexpand13
     @gpexpand_verify_writable_external_redistribution
     Scenario: Verify policy of writable external table is correctly updated after redistribution
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And the cluster is generated with "1" primaries only
         And database "gptest" exists
         And the user create a writable external table with name "ext_test"
@@ -246,14 +266,15 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand to redistribute
         Then the numsegments of table "ext_test" is 4
 
+    @gpexpand14
     @gpexpand_icw_db_concourse
     Scenario: Use a dump of the ICW database for expansion
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And database "gptest" exists
-        And the user runs psql with "-f /home/gpadmin/sqldump/dump.sql" against database "gptest"
+        #And the user runs psql with "-f /home/gpadmin/sqldump/dump.sql" against database "gptest"
         And there are no gpexpand_inputfiles
         And the cluster is setup for an expansion on hosts "mdw,sdw1,sdw2,sdw3"
         And the new host "sdw2,sdw3" is ready to go
@@ -262,14 +283,15 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand with the latest gpexpand_inputfile with additional parameters "--silent"
         And verify that the cluster has 14 new segments
 
+    @gpexpand15
     @gpexpand_no_mirrors
     @gpexpand_no_restart
     @gpexpand_catalog_copied
     Scenario: expand a cluster without restarting db and catalog has been copied
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -286,14 +308,15 @@ Feature: expand the cluster by adding more segments
         And table "test" exists in "gptest" on specified segment sdw1:20503
         And verify that the master pid has not been changed
 
+    @gpexpand16
     @gpexpand_no_mirrors
     @gpexpand_no_restart
     @gpexpand_conf_copied
     Scenario: expand a cluster without restarting db and conf has been copie
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -308,14 +331,15 @@ Feature: expand the cluster by adding more segments
         And check segment conf: postgresql.conf
         And verify that the master pid has not been changed
 
+    @gpexpand17
     @gpexpand_no_mirrors
     @gpexpand_no_restart
     @gpexpand_long_run_read_only
     Scenario: expand a cluster without restarting db with long-run read-only transaction
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -333,14 +357,15 @@ Feature: expand the cluster by adding more segments
         And verify that the master pid has not been changed
         And verify that long-run read-only transaction still exists on "test"
 
+    @gpexpand18
     @gpexpand_no_mirrors
     @gpexpand_no_restart
     @gpexpand_change_catalog_abort
     Scenario: expand a cluster without restarting db and any transaction which wants to change the catalog must be aborted
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -356,14 +381,15 @@ Feature: expand the cluster by adding more segments
         And verify that the master pid has not been changed
         And verify that long-run transaction aborted for changing the catalog by creating table "test"
 
+    @gpexpand19
     @gpexpand_no_mirrors
     @gpexpand_no_restart
     @gpexpand_dml
     Scenario: expand a cluster without restarting db and any transaction which wants to do dml work well
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with no mirrors on "mdw" and "sdw1"
         And the master pid has been saved
         And database "gptest" exists
@@ -383,13 +409,14 @@ Feature: expand the cluster by adding more segments
         # Temporarily comment the verifys until redistribute is fixed. This allows us to commit a resource to get a dump of the ICW dump for other tests to use
         # Then distribution information from table "public.redistribute" with data in "gptest" is verified against saved data
 
+    @gpexpand20
     @gpexpand_mirrors
     @gpexpand_rollback
     Scenario: inject a fail and test if rollback is ok
         Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And the user runs hdbinitstandby with options " "
         And database "gptest" exists
@@ -403,6 +430,7 @@ Feature: expand the cluster by adding more segments
         And verify the gp_segment_configuration has been restored
         And unset fault inject
 
+    @gpexpand21
     @gpexpand_no_mirrors
     @gpexpand_with_special_character
     Scenario: create database,schema,table with special character
@@ -423,13 +451,14 @@ Feature: expand the cluster by adding more segments
         When the user runs gpexpand to redistribute
         Then the tables have finished expanding
 
+    @gpexpand22
     @gpexpand_mirrors
     @gpexpand_retry_failing_work_in_phase1_after_releasing_catalog_lock
     Scenario: inject a fail and test if retry is ok
     	Given the database is not running
-        And a working directory of the test as '/data/gpdata/gpexpand'
-        And the user runs command "rm -rf /data/gpdata/gpexpand/*"
-        And a temporary directory under "/data/gpdata/gpexpand/expandedData" to expand into
+        And a working directory of the test as '/home/gpadmin/data/gpdata/gpexpand'
+        And the user runs command "rm -rf /home/gpadmin/data/gpdata/gpexpand/*"
+        And a temporary directory under "/home/gpadmin/data/gpdata/gpexpand/expandedData" to expand into
         And a cluster is created with mirrors on "mdw" and "sdw1"
         And the user runs hdbinitstandby with options " "
         And database "gptest" exists

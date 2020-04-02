@@ -36,7 +36,7 @@ class Gpexpand:
 
         # If working_directory is None, then Popen will use the directory where
         # the python code is being ran.
-        p1 = Popen(["gpexpand"], stdout=PIPE, stdin=PIPE,
+        p1 = Popen(["hdbexpand"], stdout=PIPE, stdin=PIPE,
                    cwd=self.working_directory)
 
         # Very raw form of doing the interview part of gpexpand.
@@ -71,7 +71,7 @@ class Gpexpand:
         fns = filter(lambda fn: not fn.endswith(".ts"),
                      glob.glob('%s/gpexpand_inputfile*' % self.working_directory))
         input_files = sorted(fns)
-        return run_gpcommand(self.context, "gpexpand -i %s %s" % (input_files[-1], additional_params))
+        return run_gpcommand(self.context, "hdbexpand -i %s %s" % (input_files[-1], additional_params))
 
     def get_redistribute_status(self):
         sql = 'select status from gpexpand.status order by updated desc limit 1'
@@ -95,13 +95,13 @@ class Gpexpand:
         else:
             flags = ""
 
-        rc, stderr, stdout = run_gpcommand(self.context, "gpexpand %s" % (flags))
+        rc, stderr, stdout = run_gpcommand(self.context, "hdbexpand %s" % (flags))
         if rc == 0:
             rc = self.get_redistribute_status()
         return (rc, stderr, stdout)
 
     def rollback(self):
-        return run_gpcommand(self.context, "gpexpand -r")
+        return run_gpcommand(self.context, "hdbexpand -r")
 
 if __name__ == '__main__':
     gpexpand = Gpexpand()

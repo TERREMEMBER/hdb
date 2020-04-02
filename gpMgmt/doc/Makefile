@@ -12,7 +12,7 @@ DOCS= hdbactivatestandby_help gpaddmirrors_help hdbcheckperf_help \
 	gpload_help gpmapreduce_help gpperfmon_install_help hdbpkg_help gpreload_help \
 	hdbstate_help hdbsys1_help \
 	hdbinitsystem_help hdbinitstandby_help hdbscp_help hdbssh_help hdbssh-exkeys_help \
-	hdbstart_help hdbstop_help hdbrecoverseg_help hdbconfig_help hdblogfilter_help
+	hdbstart_help hdbstop_help hdbrecoverseg_help hdbconfig_help hdblogfilter_help hdbexpand_help
 
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(prefix)/docs/cli_help'

@@ -56,7 +56,7 @@ DBNAME = 'postgres'
 _gp_expand = None
 
 description = ("""
-Adds additional segments to a pre-existing GPDB Array.
+Adds additional segments to a pre-existing HDB Array.
 """)
 
 _help = ["""
@@ -66,7 +66,7 @@ to add with the format:
   <hostname>:<port>:<data_directory>:<dbid>:<content>:<definedprimary>
 """,
          """
-         If an input file is not specified, gpexpand will ask a series of questions
+         If an input file is not specified, hdbexpand will ask a series of questions
          and create one.
          """,
          ]
@@ -82,10 +82,10 @@ Remaining TODO items:
          """* make sure system isn't in "readonly mode" during setup. """,
 
          """* need a startup validation where we check the status detail
-             with gp_distribution_policy and make sure that our book
+             with hdb_distribution_policy and make sure that our book
              keeping matches reality. we don't have a perfect transactional
              model since the tables can be in a different database from
-             where the gpexpand schema is kept. """,
+             where the hdbexpand schema is kept. """,
 
          """* currently requires that GPHOME and PYTHONPATH be set on all of the remote hosts of
               the system.  should get rid of this requirement. """
@@ -93,16 +93,16 @@ Remaining TODO items:
 
 _usage = """[-f hosts_file]
 
-gpexpand -i input_file [-B batch_size] [-V] [-t segment_tar_dir] [-S]
+hdbexpand -i input_file [-B batch_size] [-V] [-t segment_tar_dir] [-S]
 
-gpexpand [-d duration[hh][:mm[:ss]] | [-e 'YYYY-MM-DD hh:mm:ss']]
+hdbexpand [-d duration[hh][:mm[:ss]] | [-e 'YYYY-MM-DD hh:mm:ss']]
          [-a] [-n parallel_processes]
 
-gpexpand -r
+hdbexpand -r
 
-gpexpand -c
+hdbexpand -c
 
-gpexpand -? | -h | --help | --verbose | -v"""
+hdbexpand -? | -h | --help | --verbose | -v"""
 
 EXECNAME = os.path.split(__file__)[-1]
 
@@ -398,7 +398,7 @@ class GpExpandStatus():
 
     def _read_status_file(self):
         """Reads in an existing gpexpand status file"""
-        self.logger.debug("Trying to read in a pre-existing gpexpand status file")
+        self.logger.debug("Trying to read in a pre-existing hdbexpand status file")
         try:
             self._fp = open(self._status_filename, 'a+')
             self._fp.seek(0)
@@ -448,7 +448,7 @@ class GpExpandStatus():
         cpCmd.run(validateAfter=True)
 
     def set_status(self, status, status_info=None, force=False):
-        """Sets the current status.  gpexpand status must be set in
+        """Sets the current status.  hdbexpand status must be set in
            proper order.  Any out of order status result in an
            InvalidStatusError exception. But if force is True, setting
            status out of order is allowded"""
@@ -457,7 +457,7 @@ class GpExpandStatus():
         if not self._fp:
             raise InvalidStatusError('The status file is invalid and cannot be written to')
         if not self._status_values.has_key(status):
-            raise InvalidStatusError('%s is an invalid gpexpand status' % status)
+            raise InvalidStatusError('%s is an invalid hdbexpand status' % status)
         # Only allow state transitions forward or backward 1
         # If force is True, allow write any status
         if self._status and \
@@ -972,11 +972,11 @@ class gpexpand:
         gpexpand_db_status = None
 
         if not status_file_exists:
-            logger.info('Querying gpexpand schema for current expansion state')
+            logger.info('Querying hdbexpand schema for current expansion state')
             try:
                 gpexpand_db_status = gpexpand.get_status_from_db(dburl, options)
             except Exception, e:
-                raise Exception('Error while trying to query the gpexpand schema: %s' % e)
+                raise Exception('Error while trying to query the hdbexpand schema: %s' % e)
             logger.debug('Expansion status returned is %s' % gpexpand_db_status)
 
         return gpexpand_db_status
@@ -1016,7 +1016,7 @@ class gpexpand:
                                                    "SELECT count(n.nspname) FROM pg_catalog.pg_namespace n WHERE n.nspname = 'gpexpand'")
                 if count > 0:
                     raise ExpansionError(
-                        "Existing expansion state could not be determined, but a gpexpand schema already exists. Cannot proceed.")
+                        "Existing expansion state could not be determined, but a hdbexpand schema already exists. Cannot proceed.")
 
         return gpexpand_db_status
 
@@ -1034,7 +1034,7 @@ class gpexpand:
         if max_connections < self.options.parallel * 2 + 1:
             self.logger.error('max_connections is too small to expand %d tables at' % self.options.parallel)
             self.logger.error('a time.  This will lead to connection errors.  Either')
-            self.logger.error('reduce the value for -n passed to gpexpand or raise')
+            self.logger.error('reduce the value for -n passed to hdbexpand or raise')
             self.logger.error('max_connections in postgresql.conf')
             return False
 
@@ -1428,7 +1428,7 @@ class gpexpand:
         backupFile = self.statusLogger.get_gp_segment_configuration_backup()
 
         if not os.path.exists(backupFile):
-            raise ExpansionError('gp_segment_configuration backup file %s does not exist' % backupFile)
+            raise ExpansionError('hdb_segment_configuration backup file %s does not exist' % backupFile)
 
         # Create a new gpArray from the backup file
         array = GpArray.initFromFile(backupFile)
@@ -1557,7 +1557,7 @@ class gpexpand:
             dbname = db[0]
             if dbname == 'template0':
                 continue
-            self.logger.info('Populating gpexpand.status_detail with data from database %s' % (
+            self.logger.info('Populating hdbexpand.status_detail with data from database %s' % (
                 dbname.decode('utf-8')))
             self._populate_regular_tables(dbname)
             self._populate_partitioned_tables(dbname)
@@ -1770,12 +1770,12 @@ ORDER BY fq_name, tableoid desc
                 expansionStopped)
             cursor = dbconn.execSQL(self.conn, sql)
             self.conn.commit()
-            logger.info('You can resume expansion by running gpexpand again')
+            logger.info('You can resume expansion by running hdbexpand again')
         elif table_expand_error:
             logger.warn('**************************************************')
             logger.warn('One or more tables failed to expand successfully.')
             logger.warn('Please check the log file, correct the problem and')
-            logger.warn('run gpexpand again to finish the expansion process')
+            logger.warn('run hdbexpand again to finish the expansion process')
             logger.warn('**************************************************')
             # We'll try to update the status, but if the errors were caused by
             # going into read only mode, this will fail.  That's ok though as
@@ -1796,7 +1796,7 @@ ORDER BY fq_name, tableoid desc
 
     def shutdown(self):
         """used if the script is closed abrubtly"""
-        logger.info('Shutting down gpexpand...')
+        logger.info('Shutting down hdbexpand...')
         if self.pool:
             self.pool.haltWork()
             self.pool.joinWorkers()
@@ -1852,13 +1852,13 @@ ORDER BY fq_name, tableoid desc
 
         # See if user wants to dump the status_detail table to file
         c = dbconn.connect(self.dburl, encoding='UTF8')
-        if ask_yesno('', "Do you want to dump the gpexpand.status_detail table to file?", 'Y'):
+        if ask_yesno('', "Do you want to dump the hdbexpand.status_detail table to file?", 'Y'):
             self.logger.info(
-                "Dumping gpexpand.status_detail to %s/gpexpand.status_detail" % self.options.master_data_directory)
+                "Dumping gpexpand.status_detail to %s/hdbexpand.status_detail" % self.options.master_data_directory)
             copy_gpexpand_status_detail_sql = "COPY gpexpand.status_detail TO '%s/gpexpand.status_detail'" % self.options.master_data_directory
             dbconn.execSQL(c, copy_gpexpand_status_detail_sql)
 
-        self.logger.info("Removing gpexpand schema")
+        self.logger.info("Removing hdbexpand schema")
         dbconn.execSQL(c, drop_schema_sql)
         c.commit()
         c.close()
@@ -1875,7 +1875,7 @@ ORDER BY fq_name, tableoid desc
         synchronization of packages. We should *not* disturb the user's attempts to expand.
         """
         try:
-            logger.info('Syncing Greenplum Database extensions')
+            logger.info('Syncing inHybrid Database extensions')
             new_segment_list = self.gparray.getExpansionSegDbList()
             new_host_set = set([h.getSegmentHostName() for h in new_segment_list])
             operations = [SyncPackages(host) for host in new_host_set]
@@ -1884,8 +1884,8 @@ ORDER BY fq_name, tableoid desc
             for operation in operations:
                 operation.get_ret()
         except Exception:
-            logger.exception('Syncing of Greenplum Database extensions has failed.')
-            logger.warning('Please run gppkg --clean after successful expansion.')
+            logger.exception('Syncing of inHybrid Database extensions has failed.')
+            logger.warning('Please run hdbpkg --clean after successful expansion.')
 
     def validate_heap_checksums(self):
         num_workers = min(len(self.gparray.get_hostlist()), MAX_PARALLEL_EXPANDS)
@@ -1910,7 +1910,7 @@ ORDER BY fq_name, tableoid desc
                               % (len(inconsistent_segment_msgs), len(self.gparray.segmentPairs)))
             self.logger.fatal("Review %s for details" % get_logfile())
             log_to_file_only("Failed checksum consistency validation:", logging.WARN)
-            self.logger.fatal("gpexpand error: Cluster will not be modified as checksum settings are not consistent "
+            self.logger.fatal("hdbexpand error: Cluster will not be modified as checksum settings are not consistent "
                               "across the cluster.")
 
             for msg in inconsistent_segment_msgs:
@@ -2211,11 +2211,11 @@ def read_hosts_file(hosts_file):
 
 def interview_setup(gparray, options):
     help = """
-System Expansion is used to add segments to an existing GPDB array.
-gpexpand did not detect a System Expansion that is in progress.
+System Expansion is used to add segments to an existing HDB array.
+hdbexpand did not detect a System Expansion that is in progress.
 
 Before initiating a System Expansion, you need to provision and burn-in
-the new hardware.  Please be sure to run gpcheckperf to make sure the
+the new hardware.  Please be sure to run hdbcheckperf to make sure the
 new hardware is working properly.
 
 Please refer to the Admin Guide for more information."""
@@ -2237,9 +2237,9 @@ the --input <file>.  Please see the docs for the format of this file. """
        """
         help = help + message
         help = help + """
-       gpexpand may not be able to symmetrically distribute the new segments appropriately.
+       hdbexpand may not be able to symmetrically distribute the new segments appropriately.
        It is recommended that you specify your own input file with appropriate values."""
-        if not ask_yesno(help, "Are you sure you want to continue with this gpexpand session?", 'N'):
+        if not ask_yesno(help, "Are you sure you want to continue with this hdbexpand session?", 'N'):
             logger.info("User Aborted. Exiting...")
             sys.exit(0)
 
@@ -2336,7 +2336,7 @@ before continuing by re-running this utility and providing the input file. """
         except Exception, ex:
             if ex.__str__().find('Port') == 0:
                 raise ExpansionError(
-                    'Current primary and mirror ports are contiguous.  The input file for gpexpand will need to be created manually.')
+                    'Current primary and mirror ports are contiguous.  The input file for hdbexpand will need to be created manually.')
     elif num_new_hosts == 0:
         raise ExpansionError('No new hosts or segments were entered.')
 
@@ -2355,7 +2355,7 @@ before continuing by re-running this utility and providing the input file. """
     print
 
     print """Please review the file and make sure that it is correct then re-run
-with: gpexpand -i %s
+with: hdbexpand -i %s
                 """ % (outfile)
 
 
@@ -2391,8 +2391,8 @@ def main(options, args, parser):
             enable_verbose_logging()
 
         if is_gpexpand_running(options.master_data_directory):
-            logger.error('gpexpand is already running.  Only one instance')
-            logger.error('of gpexpand is allowed at a time.')
+            logger.error('hdbexpand is already running.  Only one instance')
+            logger.error('of hdbexpand is allowed at a time.')
             remove_pid = False
             sys.exit(1)
         else:
@@ -2413,9 +2413,9 @@ def main(options, args, parser):
             gparray = GpArray.initFromCatalog(dburl, utility=True)
         except DatabaseError, ex:
             logger.error('Failed to connect to database.  Make sure the')
-            logger.error('Greenplum instance you wish to expand is running')
+            logger.error('inHybrid instance you wish to expand is running')
             logger.error('and that your environment is correct, then rerun')
-            logger.error('gexpand ' + ' '.join(sys.argv[1:]))
+            logger.error('hdbexpand ' + ' '.join(sys.argv[1:]))
             sys.exit(1)
 
         _gp_expand = gpexpand(logger, gparray, dburl, options, parallel=options.parallel)
@@ -2458,8 +2458,8 @@ def main(options, args, parser):
             _gp_expand.perform_expansion()
         elif gpexpand_db_status == 'EXPANSION COMPLETE':
             logger.info('Expansion has already completed.')
-            logger.info('If you want to expand again, run gpexpand -c to remove')
-            logger.info('the gpexpand schema and begin a new expansion')
+            logger.info('If you want to expand again, run hdbexpand -c to remove')
+            logger.info('the hdbexpand schema and begin a new expansion')
         elif gpexpand_db_status is None and gpexpand_file_status is None and options.filename:
             _gp_expand.validate_heap_checksums()
             newSegList = _gp_expand.read_input_files()
@@ -2479,16 +2479,16 @@ def main(options, args, parser):
             logger.info('************************************************')
             logger.info('Initialization of the system expansion complete.')
             logger.info('To begin table expansion onto the new segments')
-            logger.info('rerun gpexpand')
+            logger.info('rerun hdbexpand')
             logger.info('************************************************')
         elif gpexpand_file_status is not None and not _gp_expand.statusLogger.can_rollback(gpexpand_file_status):
             """
             gpexpand cannot rollback if new segments are online and catalog lock has been released in phase1
             So if gpexpand fails after releasing catalog lock in phase1, it must retry the failing work
             """
-            logger.warn('The last gpexpand setup did not complete successfully.')
+            logger.warn('The last hdbexpand setup did not complete successfully.')
             logger.warn('But you can not rollback to the original state, for new segments have been online.')
-            logger.warn('So retry the failing work again in gpexpand setup.')
+            logger.warn('So retry the failing work again in hdbexpand setup.')
 
             """Clean the schema first"""
             conn = dbconn.connect(_gp_expand.dburl, encoding='UTF8')
@@ -2509,34 +2509,34 @@ def main(options, args, parser):
             logger.info('************************************************')
             logger.info('Initialization of the system expansion complete.')
             logger.info('To begin table expansion onto the new segments')
-            logger.info('rerun gpexpand')
+            logger.info('rerun hdbexpand')
             logger.info('************************************************')
         elif options.filename is None and gpexpand_file_status is None:
             interview_setup(gparray, options)
         else:
-            logger.error('The last gpexpand setup did not complete successfully.')
-            logger.error('Please run gpexpand -r to rollback to the original state.')
+            logger.error('The last hdbexpand setup did not complete successfully.')
+            logger.error('Please run hdbexpand -r to rollback to the original state.')
 
         logger.info("Exiting...")
         sys.exit(0)
 
     except ValidationError:
-        logger.info('Bringing Greenplum Database back online...')
+        logger.info('Bringing inHybrid Database back online...')
         if _gp_expand is not None:
             _gp_expand.shutdown()
         sys.exit()
     except Exception, e:
         if options and options.verbose:
-            logger.exception("gpexpand failed. exiting...")
+            logger.exception("hdbexpand failed. exiting...")
         else:
-            logger.error("gpexpand failed: %s \n\nExiting..." % e)
+            logger.error("hdbexpand failed: %s \n\nExiting..." % e)
         if _gp_expand is not None and _gp_expand.pastThePointOfNoReturn == True:
             logger.error(
-                'gpexpand is past the point of rollback. Any remaining issues must be addressed outside of gpexpand.')
+                'hdbexpand is past the point of rollback. Any remaining issues must be addressed outside of hdbexpand.')
         if _gp_expand is not None:
             if not (gpexpand_db_status is None and _gp_expand.get_state() is None):
                 if _gp_expand.pastThePointOfNoReturn == False:
-                    logger.error('Please run \'gpexpand -r\' to rollback to the original state.')
+                    logger.error('Please run \'hdbexpand -r\' to rollback to the original state.')
             _gp_expand.shutdown()
         sys.exit(3)
     except KeyboardInterrupt:

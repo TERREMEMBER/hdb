@@ -108,8 +108,8 @@ class TestCluster:
         # run gpinitsystem
         clean_env = 'unset MASTER_DATA_DIRECTORY; unset PGPORT;'
         segment_mirroring_option = '--mirror-mode=spread' if mirroring_configuration == 'spread' else ''
-        gpinitsystem_cmd = clean_env + 'gpinitsystem -a -c  %s %s' % (self.init_file, segment_mirroring_option)
-        res = run_shell_command(gpinitsystem_cmd, 'run gpinitsystem', verbose=True)
+        gpinitsystem_cmd = clean_env + 'hdbinitsystem -a -c  %s %s' % (self.init_file, segment_mirroring_option)
+        res = run_shell_command(gpinitsystem_cmd, 'run hdbinitsystem', verbose=True)
         if res['rc'] != 0:
             raise Exception("Failed initializing the cluster. Look into gpAdminLogs for more information")
         self._generate_env_file()
