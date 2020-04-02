@@ -29,7 +29,7 @@ from gppylib.utils import writeLinesToFile, createFromSingleHostFile, shellEscap
 logger = get_default_logger()
 
 #TODO:  need a better way of managing environment variables.
-GPHOME=os.environ.get('GPHOME')
+HDBHOME=os.environ.get('HDBHOME')
 
 #Default timeout for segment start
 SEGMENT_TIMEOUT_DEFAULT=600
@@ -221,7 +221,7 @@ class PgCtlStartArgs(CmdArgs):
 
     >>> a = PgCtlStartArgs("/data1/master/gpseg-1", str(PgCtlBackendOptions(5432, 1, 2)), 123, None, None, True, 600)
     >>> str(a).split(' ') #doctest: +NORMALIZE_WHITESPACE
-    ['env', GPERA=123', '$GPHOME/bin/pg_ctl', '-D', '/data1/master/gpseg-1', '-l',
+    ['env', GPERA=123', '$HDBHOME/bin/pg_ctl', '-D', '/data1/master/gpseg-1', '-l',
      '/data1/master/gpseg-1/pg_log/startup.log', '-w', '-t', '600',
      '-o', '"', '-p', '5432', '--silent-mode=true', '"', 'start']
     """
@@ -241,7 +241,7 @@ class PgCtlStartArgs(CmdArgs):
             "env",
             "GPSESSID=0000000000", 	# <- overwritten with gp_session_id to help identify orphans
             "GPERA=%s" % str(era),	# <- master era used to help identify orphans
-            "$GPHOME/bin/pg_ctl",
+            "$HDBHOME/bin/pg_ctl",
             "-D", str(datadir),
             "-l", "%s/pg_log/startup.log" % datadir,
         ])
@@ -259,7 +259,7 @@ class PgCtlStopArgs(CmdArgs):
     to stop a backend postmaster
 
     >>> str(PgCtlStopArgs("/data1/master/gpseg-1", "smart", True, 600))
-    '$GPHOME/bin/pg_ctl -D /data1/master/gpseg-1 -m smart -w -t 600 stop'
+    '$HDBHOME/bin/pg_ctl -D /data1/master/gpseg-1 -m smart -w -t 600 stop'
 
     """
 
@@ -271,7 +271,7 @@ class PgCtlStopArgs(CmdArgs):
         @param timeout: number of seconds to wait before giving up
         """
         CmdArgs.__init__(self, [
-            "$GPHOME/bin/pg_ctl",
+            "$HDBHOME/bin/pg_ctl",
             "-D", str(datadir),
             "-m", str(mode),
         ])
@@ -393,7 +393,7 @@ class SegmentIsShutDown(Command):
     Get the pg_controldata status, and check that it says 'shut down'
     """
     def __init__(self,name,directory,ctxt=LOCAL,remoteHost=None):
-        cmdStr = "$GPHOME/bin/pg_controldata %s" % directory
+        cmdStr = "$HDBHOME/bin/pg_controldata %s" % directory
         Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 
     def is_shutdown(self):
@@ -427,7 +427,7 @@ class SegmentRewind(Command):
         # Build the pg_rewind command. Do not run pg_rewind if recovery.conf
         # file exists in target data directory because the target instance can
         # be started up normally as a mirror for WAL replication catch up.
-        rewind_cmd = '[ -f %s/recovery.conf ] || PGOPTIONS="-c gp_session_role=utility" $GPHOME/bin/pg_rewind --write-recovery-conf --slot="internal_wal_replication_slot" --source-server="%s" --target-pgdata=%s' % (target_datadir, source_server, target_datadir)
+        rewind_cmd = '[ -f %s/recovery.conf ] || PGOPTIONS="-c gp_session_role=utility" $HDBHOME/bin/pg_rewind --write-recovery-conf --slot="internal_wal_replication_slot" --source-server="%s" --target-pgdata=%s' % (target_datadir, source_server, target_datadir)
 
         if verbose:
             rewind_cmd = rewind_cmd + ' --progress'
@@ -483,7 +483,7 @@ class GpGetStatusUsingTransitionArgs(CmdArgs):
     --------
 
     >>> str(GpGetStatusUsingTransitionArgs([],'request'))
-    '$GPHOME/sbin/gpgetstatususingtransition.py -s request'
+    '$HDBHOME/sbin/gpgetstatususingtransition.py -s request'
     """
 
     def __init__(self, segments, status_request):
@@ -491,7 +491,7 @@ class GpGetStatusUsingTransitionArgs(CmdArgs):
         @param status_request
         """
         CmdArgs.__init__(self, [
-            "$GPHOME/sbin/gpgetstatususingtransition.py",
+            "$HDBHOME/sbin/gpgetstatususingtransition.py",
             "-s", str(status_request)
         ])
         self.set_segments(segments)
@@ -558,7 +558,7 @@ class GpSegStartArgs(CmdArgs):
     --------
 
     >>> str(GpSegStartArgs('en_US.utf-8:en_US.utf-8:en_US.utf-8', 'mirrorless', 'gpversion', 1, 123, 600))
-    "$GPHOME/sbin/gpsegstart.py -M mirrorless -V 'gpversion' -n 1 --era 123 -t 600"
+    "$HDBHOME/sbin/gpsegstart.py -M mirrorless -V 'gpversion' -n 1 --era 123 -t 600"
     """
 
     def __init__(self, mirrormode, gpversion, num_cids, era, master_checksum_value, timeout):
@@ -570,7 +570,7 @@ class GpSegStartArgs(CmdArgs):
         @param timeout - seconds to wait before giving up
         """
         default_args = [
-            "$GPHOME/sbin/hdbsegstart.py",
+            "$HDBHOME/sbin/hdbsegstart.py",
             "-M", str(mirrormode),
             "-V '%s'" % gpversion,
             "-n", str(num_cids),
@@ -661,7 +661,7 @@ class GpSegStopCmd(Command):
         else:
             setverbose=""
 
-        self.cmdStr="$GPHOME/sbin/hdbsegstop.py %s -D %s -m %s -t %s -V '%s'"  %\
+        self.cmdStr="$HDBHOME/sbin/hdbsegstop.py %s -D %s -m %s -t %s -V '%s'"  %\
                         (setverbose,dirstr,mode,timeout,version)
 
         if (logfileDirectory):
@@ -713,7 +713,7 @@ class GpStandbyStart(MasterStart, object):
 #-----------------------------------------------
 class GpStart(Command):
     def __init__(self, name, masterOnly=False, restricted=False, verbose=False,ctxt=LOCAL, remoteHost=None):
-        self.cmdStr="$GPHOME/bin/hdbstart -a"
+        self.cmdStr="$HDBHOME/bin/hdbstart -a"
         if masterOnly:
             self.cmdStr += " -m"
             self.propagate_env_map['GPSTART_INTERNAL_MASTER_ONLY'] = 1
@@ -731,7 +731,7 @@ class GpStart(Command):
 #-----------------------------------------------
 class NewGpStart(Command):
     def __init__(self, name, masterOnly=False, restricted=False, verbose=False,nostandby=False,ctxt=LOCAL, remoteHost=None, masterDirectory=None):
-        self.cmdStr="$GPHOME/bin/hdbstart -a"
+        self.cmdStr="$HDBHOME/bin/hdbstart -a"
         if masterOnly:
             self.cmdStr += " -m"
             self.propagate_env_map['GPSTART_INTERNAL_MASTER_ONLY'] = 1
@@ -756,7 +756,7 @@ class NewGpStart(Command):
 #-----------------------------------------------
 class NewGpStop(Command):
     def __init__(self, name, masterOnly=False, restart=False, fast=False, force=False, verbose=False, ctxt=LOCAL, remoteHost=None):
-        self.cmdStr="$GPHOME/bin/hdbstop -a"
+        self.cmdStr="$HDBHOME/bin/hdbstop -a"
         if masterOnly:
             self.cmdStr += " -m"
         if verbose or logging_is_verbose():
@@ -777,7 +777,7 @@ class NewGpStop(Command):
 #-----------------------------------------------
 class GpStop(Command):
     def __init__(self, name, masterOnly=False, verbose=False, quiet=False, restart=False, fast=False, force=False, datadir=None, parallel=None, reload=False, ctxt=LOCAL, remoteHost=None, logfileDirectory=False):
-        self.cmdStr="$GPHOME/bin/hdbstop -a"
+        self.cmdStr="$HDBHOME/bin/hdbstop -a"
         if masterOnly:
             self.cmdStr += " -m"
         if restart:
@@ -859,7 +859,7 @@ class GpCleanSegmentDirectories(Command):
     """
     def __init__(self, name, segmentsToClean, ctxt, remoteHost):
         pickledSegmentsStr = base64.urlsafe_b64encode(pickle.dumps(segmentsToClean))
-        cmdStr = "$GPHOME/sbin/gpcleansegmentdir.py -p %s" % pickledSegmentsStr
+        cmdStr = "$HDBHOME/sbin/gpcleansegmentdir.py -p %s" % pickledSegmentsStr
         Command.__init__(self, name, cmdStr, ctxt, remoteHost)
 
 #-----------------------------------------------
@@ -891,7 +891,7 @@ class ConfigureNewSegment(Command):
                  batchSize=None, verbose=False,ctxt=LOCAL, remoteHost=None, validationOnly=False, writeGpIdFileOnly=False,
                  forceoverwrite=False):
 
-        cmdStr = '$GPHOME/bin/lib/gpconfigurenewsegment -c \"%s\" -l %s' % (confinfo, pipes.quote(logdir))
+        cmdStr = '$HDBHOME/bin/lib/gpconfigurenewsegment -c \"%s\" -l %s' % (confinfo, pipes.quote(logdir))
 
         if newSegments:
             cmdStr += ' -n'
@@ -980,7 +980,7 @@ class GpVersion(Command):
 
         self.gphome=gphome
         #self.cmdStr="%s/bin/postgres --gp-version" % gphome
-        self.cmdStr="$GPHOME/bin/postgres --gp-version"
+        self.cmdStr="$HDBHOME/bin/postgres --gp-version"
         Command.__init__(self,name,self.cmdStr,ctxt,remoteHost)
 
     def get_version(self):
@@ -1003,7 +1003,7 @@ class GpCatVersion(Command):
         # requires further investigation.
         self.gphome=gphome
         #cmdStr="%s/bin/postgres --catalog-version" % gphome
-        cmdStr="$GPHOME/bin/postgres --catalog-version"
+        cmdStr="$HDBHOME/bin/postgres --catalog-version"
         Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 
     def get_version(self):
@@ -1024,7 +1024,7 @@ class GpCatVersionDirectory(Command):
     Get the catalog version of a given database directory
     """
     def __init__(self,name,directory,ctxt=LOCAL,remoteHost=None):
-        cmdStr = "$GPHOME/bin/pg_controldata %s" % directory
+        cmdStr = "$HDBHOME/bin/pg_controldata %s" % directory
         Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 
     def get_version(self):
@@ -1053,7 +1053,7 @@ class GpConfigHelper(Command):
         if removeParameter:
             args = '--remove-parameter %s' % name
 
-        cmdStr = "$GPHOME/sbin/gpconfig_helper.py --file %s %s" % (
+        cmdStr = "$HDBHOME/sbin/gpconfig_helper.py --file %s %s" % (
             os.path.join(postgresconf_dir, 'postgresql.conf'),
             args)
 
@@ -1093,7 +1093,7 @@ class GpLogFilter(Command):
         if trouble:
             cmdfrags.append('-t')
         cmdfrags.append(filename)
-        self.cmdStr = "$GPHOME/bin/hdblogfilter %s" % ' '.join(cmdfrags)
+        self.cmdStr = "$HDBHOME/bin/hdblogfilter %s" % ' '.join(cmdfrags)
         Command.__init__(self, name, self.cmdStr, ctxt,remoteHost)
 
     @staticmethod
@@ -1126,9 +1126,9 @@ class GpError(Exception): pass
 
 ######
 def get_gphome():
-    gphome=os.getenv('GPHOME',None)
+    gphome=os.getenv('HDBHOME',None)
     if not gphome:
-        raise GpError('Environment Variable GPHOME not set')
+        raise GpError('Environment Variable HDBHOME not set')
     return gphome
 
 
@@ -1457,7 +1457,7 @@ def recovery_startup(datadir, port=None):
 
 # these match names from gp_bash_functions.sh
 def chk_gpdb_id(username):
-    path="%s/bin/initdb" % GPHOME
+    path="%s/bin/initdb" % HDBHOME
     if not os.access(path,os.X_OK):
         raise GpError("File permission mismatch.  The current user %s does not have sufficient"
                       " privileges to run the Greenplum binaries and management utilities." % username )
@@ -1574,12 +1574,12 @@ class GpRecoverSeg(Command):
        self.ctxt = ctxt
        self.remoteHost = remoteHost
 
-       cmdStr = "$GPHOME/bin/gprecoverseg %s" % (options)
+       cmdStr = "$HDBHOME/bin/gprecoverseg %s" % (options)
        Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 class IfAddrs:
     @staticmethod
     def list_addrs(hostname=None, include_loopback=False):
-        cmd = ['%s/libexec/ifaddrs' % GPHOME]
+        cmd = ['%s/libexec/ifaddrs' % HDBHOME]
         if not include_loopback:
             cmd.append('--no-loopback')
         if hostname:

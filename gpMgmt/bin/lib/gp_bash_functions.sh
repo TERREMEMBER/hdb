@@ -22,9 +22,9 @@ CMDPATH=(/usr/kerberos/bin /usr/sfw/bin /opt/sfw/bin /usr/local/bin /bin /usr/bi
 
 #GPPATH is the list of possible locations for the Greenplum Database binaries, in precedence order
 declare -a GPPATH
-GPPATH=( $GPHOME $MPPHOME $BIZHOME )
+GPPATH=( $HDBHOME $MPPHOME $BIZHOME )
 if [ ${#GPPATH[@]} -eq 0 ];then
-	echo "[FATAL]:-GPHOME environment variable is required to run GPDB but could not be found."
+	echo "[FATAL]:-HDBHOME environment variable is required to run GPDB but could not be found."
 	echo "Please set it by sourcing the  greenplum_path.sh  in your GPDB installation directory."
 	echo "Example: ''. /usr/local/gpdb/greenplum_path.sh''"
 	exit 2
@@ -89,7 +89,7 @@ MKDIR=`findCmdInPath mkdir`
 NETSTAT=`findCmdInPath netstat`
 PING=`findCmdInPath ping`
 PS=`findCmdInPath ps`
-PYTHON=${GPHOME}/ext/python/bin/python
+PYTHON=${HDBHOME}/ext/python/bin/python
 RM=`findCmdInPath rm`
 SCP=`findCmdInPath scp`
 SED=`findCmdInPath sed`
@@ -121,7 +121,7 @@ PSQLBIN=`findMppPath`
 
 if [ x"$PSQLBIN" = x"" ];then
 		echo "Problem in gp_bash_functions, command '$GP_UNIQUE_COMMAND' not found in Greenplum path."
-		echo "Try setting GPHOME to the location of your Greenplum distribution."
+		echo "Try setting HDBHOME to the location of your Greenplum distribution."
 		exit 99
 fi
 
@@ -137,7 +137,7 @@ GPRECOVERSEG=$SCRIPTDIR/gprecoverseg
 HDBSTART=$SCRIPTDIR/hdbstart
 HDBSTATE=$SCRIPTDIR/hdbstate
 HDBSTOP=$SCRIPTDIR/hdbstop
-GPDOCDIR=${GPHOME}/docs/cli_help/
+GPDOCDIR=${HDBHOME}/docs/cli_help/
 #******************************************************************************
 # Greenplum Command Variables
 #******************************************************************************
@@ -243,10 +243,10 @@ POSTGRES_VERSION_CHK() {
     LOG_MSG "[INFO]:-Start Function $FUNCNAME"
     HOST=$1;shift
 
-    CURRENT_VERSION=`$EXPORT_GPHOME; $EXPORT_LIB_PATH; $GPHOME/bin/postgres --gp-version`
+    CURRENT_VERSION=`$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --gp-version`
     VERSION_MATCH=0
 
-    VER=`$TRUSTED_SHELL $HOST "$EXPORT_GPHOME; $EXPORT_LIB_PATH; $GPHOME/bin/postgres --gp-version"`
+    VER=`$TRUSTED_SHELL $HOST "$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --gp-version"`
     if [ $? -ne 0 ] ; then
 	LOG_MSG "[WARN]:- Failed to obtain postgres version on $HOST" 1
 	EXIT_STATUS=1
@@ -805,9 +805,9 @@ BUILD_MASTER_PG_HBA_FILE () {
         # Add the samehost replication entry to support single-host development
         $ECHO "host     replication $USER_NAME         samehost       trust" >> ${GP_DIR}/$PG_HBA
         if [ $HBA_HOSTNAMES -eq 0 ];then
-            local MASTER_IP_ADDRESS_NO_LOOPBACK=($("$GPHOME"/libexec/ifaddrs --no-loopback))
+            local MASTER_IP_ADDRESS_NO_LOOPBACK=($("$HDBHOME"/libexec/ifaddrs --no-loopback))
             if [ x"" != x"$STANDBY_HOSTNAME" ] && [ "$STANDBY_HOSTNAME" != "$MASTER_HOSTNAME" ];then
-                local STANDBY_IP_ADDRESS_NO_LOOPBACK=($($TRUSTED_SHELL $STANDBY_HOSTNAME "$GPHOME"/libexec/ifaddrs --no-loopback))
+                local STANDBY_IP_ADDRESS_NO_LOOPBACK=($($TRUSTED_SHELL $STANDBY_HOSTNAME "$HDBHOME"/libexec/ifaddrs --no-loopback))
             fi
             for ADDR in "${MASTER_IP_ADDRESS_NO_LOOPBACK[@]}" "${STANDBY_IP_ADDRESS_NO_LOOPBACK[@]}"
             do
@@ -1368,7 +1368,7 @@ GP_LIBRARY_PATH=`$DIRNAME \`$DIRNAME $INITDB\``/lib
 ##
 # we setup some EXPORT foo='blah' commands for when we dispatch to segments and standby master
 ##
-EXPORT_GPHOME='export GPHOME='$GPHOME
+EXPORT_GPHOME='export HDBHOME='$HDBHOME
 if [ x"$LIB_TYPE" == x"LD_LIBRARY_PATH" ]; then
     EXPORT_LIB_PATH="export LD_LIBRARY_PATH=$LD_LIBRARY_PATH"
 else

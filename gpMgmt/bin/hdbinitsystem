@@ -212,7 +212,7 @@ CHK_PARAMS () {
 		if [ $USER_NAME == "root" ]; then
 				ERROR_EXIT "[FATAL]:-Unable to run this script as $USER" 2
 		fi
-		if [ x"" = x"$GPHOME" ]; then
+		if [ x"" = x"$HDBHOME" ]; then
 				LOG_MSG "[FATAL]:-Environment variable \$GPHOME not set" 1
 				ERROR_EXIT "[FATAL]:-Unable to continue" 2
 		fi
@@ -2071,7 +2071,7 @@ LOG_MSG "[INFO]:-has been configured to allow all hosts within this new" 1
 LOG_MSG "[INFO]:-array to intercommunicate. Any hosts external to this" 1
 LOG_MSG "[INFO]:-new array must be explicitly added to this file" 1
 LOG_MSG "[INFO]:-Refer to the inHybrid Admin support guide which is" 1
-LOG_MSG "[INFO]:-located in the $GPHOME/docs directory" 1
+LOG_MSG "[INFO]:-located in the $HDBHOME/docs directory" 1
 LOG_MSG "[INFO]:-------------------------------------------------------" 1
 
 # Make sure that the user sees that there's an error with the standby
