@@ -410,9 +410,6 @@ class IsVersionCompatible(Operation):
         self.gppkg = gppkg
 
     def execute(self):
-### TODO. tmp remove code to ignore version problem ###
-        return True
-### TODO. tmp remove code to ignore version problem ###
         gppkg = self.gppkg
 
         gpdb_version = self._get_gpdb_version()

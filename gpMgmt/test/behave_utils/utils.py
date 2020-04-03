@@ -107,9 +107,9 @@ def run_command_remote(context, command, host, source_file, export_mdd, validate
 
 def run_gpcommand(context, command, cmd_prefix=''):
     context.exception = None
-    cmd = Command(name='run %s' % command, cmdStr='$GPHOME/bin/%s' % (command))
+    cmd = Command(name='run %s' % command, cmdStr='$HDBHOME/bin/%s' % (command))
     if cmd_prefix:
-        cmd = Command(name='run %s' % command, cmdStr='%s;$GPHOME/bin/%s' % (cmd_prefix, command))
+        cmd = Command(name='run %s' % command, cmdStr='%s;$HDBHOME/bin/%s' % (cmd_prefix, command))
     try:
         cmd.run(validateAfter=True)
     except ExecutionError, e:
