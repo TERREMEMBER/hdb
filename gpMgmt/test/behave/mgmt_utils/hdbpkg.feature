@@ -144,7 +144,7 @@ Feature: hdbpkg tests
         Then hdbpkg should return a return code of 0
         And "sample" hdbpkg files do not exist on any hosts
         And the user runs "hdbstop -a && hdbstart -a -m"
-        When the user runs "hdbpkg --migrate /tmp/hdbpkg_migrate $GPHOME"
+        When the user runs "hdbpkg --migrate /tmp/hdbpkg_migrate $HDBHOME"
         Then hdbpkg should return a return code of 0
         And hdbpkg should print "Installing sample.hdbpkg locally" to stdout
         And hdbpkg should print "The following packages will be installed on .*: sample.hdbpkg" to stdout

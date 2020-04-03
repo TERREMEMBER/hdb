@@ -433,10 +433,10 @@ def impl(context, filepath, HOST, port):
 @then('the user starts the gpfdist on host "{HOST}" and port "{port}" in work directory "{dir}" from remote "{ctxt}"')
 def impl(context, HOST, port, dir, ctxt):
     host = os.environ.get(HOST)
-    remote_gphome = os.environ.get('GPHOME')
+    remote_gphome = os.environ.get('HDBHOME')
     if not dir.startswith("/"):
         dir = os.environ.get(dir)
-    gp_source_file = os.path.join(remote_gphome, 'greenplum_path.sh')
+    gp_source_file = os.path.join(remote_gphome, 'inhybrid_path.sh')
     gpfdist = Gpfdist('gpfdist on host %s' % host, dir, port, os.path.join(dir, 'gpfdist.pid'), int(ctxt), host,
                       gp_source_file)
     gpfdist.startGpfdist()
@@ -446,10 +446,10 @@ def impl(context, HOST, port, dir, ctxt):
 @then('the user stops the gpfdist on host "{HOST}" and port "{port}" in work directory "{dir}" from remote "{ctxt}"')
 def impl(context, HOST, port, dir, ctxt):
     host = os.environ.get(HOST)
-    remote_gphome = os.environ.get('GPHOME')
+    remote_gphome = os.environ.get('HDBHOME')
     if not dir.startswith("/"):
         dir = os.environ.get(dir)
-    gp_source_file = os.path.join(remote_gphome, 'greenplum_path.sh')
+    gp_source_file = os.path.join(remote_gphome, 'inhybrid_path.sh')
     gpfdist = Gpfdist('gpfdist on host %s' % host, dir, port, os.path.join(dir, 'gpfdist.pid'), int(ctxt), host,
                       gp_source_file)
     gpfdist.cleanupGpfdist()
@@ -598,7 +598,7 @@ def impl(context, filepath):
         run_command_remote(context,
                            cmd,
                            context.standby_hostname,
-                           os.getenv("GPHOME") + '/greenplum_path.sh',
+                           os.getenv("HDBHOME") + '/inhybrid_path.sh',
                            'export MASTER_DATA_DIRECTORY=%s' % context.standby_data_dir,
                            validateAfter=True)
     except:
@@ -731,7 +731,7 @@ def impl(context, master, standby):
     run_command_remote(context,
                        cmd,
                        context.master_hostname,
-                       os.getenv("GPHOME") + '/greenplum_path.sh',
+                       os.getenv("HDBHOME") + '/inhybrid_path.sh',
                        'export MASTER_DATA_DIRECTORY=%s' % context.standby_data_dir)
 
     context.stdout_position = 0
@@ -769,7 +769,7 @@ def impl(context, command):
     run_command_remote(context,
                        cmd,
                        context.standby_hostname,
-                       os.getenv("GPHOME") + '/greenplum_path.sh',
+                       os.getenv("HDBHOME") + '/inhybrid_path.sh',
                        'export MASTER_DATA_DIRECTORY=%s' % context.standby_data_dir,
                        validateAfter=False)
 
@@ -844,7 +844,7 @@ def impl(context):
     run_command_remote(context,
                        cmd,
                        context.standby_hostname,
-                       os.getenv("GPHOME") + '/greenplum_path.sh',
+                       os.getenv("HDBHOME") + '/inhybrid_path.sh',
                        'export MASTER_DATA_DIRECTORY=%s' % context.standby_data_dir)
 
 
@@ -883,8 +883,8 @@ def stop_segments(context, segment_type):
         # For demo_cluster tests that run on the CI gives the error 'bash: pg_ctl: command not found'
         # Thus, need to add pg_ctl to the path when ssh'ing to a demo cluster.
         subprocess.check_call(['ssh', seg.getSegmentHostName(),
-                               'source %s/greenplum_path.sh && pg_ctl stop -m fast -D %s -w' % (
-                                   pipes.quote(os.environ.get("GPHOME")), pipes.quote(seg.getSegmentDataDirectory()))
+                               'source %s/inhybrid_path.sh && pg_ctl stop -m fast -D %s -w' % (
+                                   pipes.quote(os.environ.get("HDBHOME")), pipes.quote(seg.getSegmentDataDirectory()))
                                ])
 
 
@@ -1470,8 +1470,8 @@ def impl(context, filename, output):
 
 @given('the gpfdists occupying port {port} on host "{hostfile}"')
 def impl(context, port, hostfile):
-    remote_gphome = os.environ.get('GPHOME')
-    gp_source_file = os.path.join(remote_gphome, 'greenplum_path.sh')
+    remote_gphome = os.environ.get('HDBHOME')
+    gp_source_file = os.path.join(remote_gphome, 'inhybrid_path.sh')
     source_map_file = os.environ.get(hostfile)
     dir = '/tmp'
     ctxt = 2
@@ -1487,8 +1487,8 @@ def impl(context, port, hostfile):
 
 @then('the gpfdists running on port {port} get cleaned up from host "{hostfile}"')
 def impl(context, port, hostfile):
-    remote_gphome = os.environ.get('GPHOME')
-    gp_source_file = os.path.join(remote_gphome, 'greenplum_path.sh')
+    remote_gphome = os.environ.get('HDBHOME')
+    gp_source_file = os.path.join(remote_gphome, 'inhybrid_path.sh')
     source_map_file = os.environ.get(hostfile)
     dir = '/tmp'
     ctxt = 2
@@ -1590,7 +1590,7 @@ def impl(context, table, dbname, segid):
     port = port.strip()
     host = host.strip()
     user = os.environ.get('USER')
-    source_file = os.path.join(os.environ.get('GPHOME'), 'greenplum_path.sh')
+    source_file = os.path.join(os.environ.get('HDBHOME'), 'inhybrid_path.sh')
     # Yes, the below line is ugly.  It looks much uglier when done with separate strings, given the multiple levels of escaping required.
     remote_cmd = """
 ssh %s "source %s; export PGUSER=%s; export PGPORT=%s; export PGOPTIONS=\\\"-c gp_session_role=utility\\\"; psql -d %s -c \\\"SET allow_system_table_mods=true; DELETE FROM pg_attribute where attrelid=\'%s\'::regclass::oid;\\\""
@@ -1903,12 +1903,12 @@ def impl(context):
 
 @then('"{hdbpkg_name}" hdbpkg files exist on all hosts')
 def impl(context, hdbpkg_name):
-    remote_gphome = os.environ.get('GPHOME')
+    remote_gphome = os.environ.get('HDBHOME')
     gparray = GpArray.initFromCatalog(dbconn.DbURL())
 
     hostlist = get_all_hostnames_as_list(context, 'template1')
 
-    # We can assume the GPDB is installed at the same location for all hosts
+    # We can assume the HDB is installed at the same location for all hosts
     command_list_all = show_all_installed(remote_gphome)
 
     for hostname in set(hostlist):
@@ -1926,7 +1926,7 @@ def impl(context, hdbpkg_name):
 @when('"{hdbpkg_name}" hdbpkg files do not exist on any hosts')
 @then('"{hdbpkg_name}" hdbpkg files do not exist on any hosts')
 def impl(context, hdbpkg_name):
-    remote_gphome = os.environ.get('GPHOME')
+    remote_gphome = os.environ.get('HDBHOME')
     hostlist = get_all_hostnames_as_list(context, 'template1')
 
     # We can assume the GPDB is installed at the same location for all hosts
@@ -1944,14 +1944,14 @@ def impl(context, hdbpkg_name):
 
 
 def _remove_hdbpkg_from_host(context, hdbpkg_name, is_master_host):
-    remote_gphome = os.environ.get('GPHOME')
+    remote_gphome = os.environ.get('HDBHOME')
 
     if is_master_host:
         hostname = get_master_hostname()[0][0] # returns a list of list
     else:
         hostlist = get_segment_hostlist()
         if not hostlist:
-            raise Exception("Current GPDB setup is not a multi-host cluster.")
+            raise Exception("Current HDB setup is not a multi-host cluster.")
 
         # Let's just pick whatever is the first host in the list, it shouldn't
         # matter which one we remove from
@@ -2003,14 +2003,14 @@ def impl(context, location):
     Copies the contents of HDBHOME from the local machine into a different
     directory location for all hosts in the cluster.
     """
-    gphome = os.environ["GPHOME"]
-    greenplum_path = path.join(gphome, 'greenplum_path.sh')
+    gphome = os.environ["HDBHOME"]
+    greenplum_path = path.join(gphome, 'inhybrid_path.sh')
 
     # First replace the HDBHOME envvar in inhybrid_path.sh.
     subprocess.check_call([
         'sed',
         '-i.bak', # we use this backup later
-        '-e', r's|^GPHOME=.*$|GPHOME={}|'.format(location),
+        '-e', r's|^HDBHOME=.*$|HDBHOME={}|'.format(location),
         greenplum_path,
     ])
 
@@ -2026,7 +2026,7 @@ def impl(context, location):
             'gpscp',
             '-rv',
             ] + host_opts + [
-            os.getenv('GPHOME'),
+            os.getenv('HDBHOME'),
             '=:{}'.format(location),
         ])
 
@@ -2046,9 +2046,9 @@ def impl(context, expected_file):
 
 @given('"{filepath}" is copied to the install directory')
 def impl(context, filepath):
-    gphome = os.getenv("GPHOME")
+    gphome = os.getenv("HDBHOME")
     if not gphome:
-        raise Exception("GPHOME must be set")
+        raise Exception("HDBHOME must be set")
     shutil.copy(filepath, os.path.join(gphome, "bin"))
 
 

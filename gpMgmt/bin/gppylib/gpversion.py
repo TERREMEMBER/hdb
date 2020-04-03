@@ -18,7 +18,7 @@ if sys.version_info < (2, 5, 0) or sys.version_info >= (3, 0, 0):
                      % os.path.split(__file__)[-1])
     sys.exit(1)
 
-MAIN_VERSION = [6,99,99]    # version number for main
+MAIN_VERSION = [1,99,99]    # version number for main
 
 
 #============================================================
@@ -206,11 +206,11 @@ class GpVersion:
         '''
         if self.version == MAIN_VERSION:
             v = 'main'
-        elif self.version[0] <= 4:
-            if self.version[2] == 99 and self.version[3] == 99:
-                v = '.'.join(map(str,self.version[:2]))
-            else:
-                v = '.'.join(map(str,self.version[:4]))
+#        elif self.version[0] <= 4:
+#            if self.version[2] == 99 and self.version[3] == 99:
+#                v = '.'.join(map(str,self.version[:2]))
+#            else:
+#                v = '.'.join(map(str,self.version[:4]))
         else:
             if self.version[1] == 99 and self.version[2] == 99:
                 v = '%d' % self.version[0]
@@ -241,10 +241,10 @@ class GpVersion:
         '''
         Returns the major (first 2 values for <= 4.3, first value for >= 5) portion of the version.
         '''
-        #if self.version[0] <= 4:
-        #    return '.'.join(map(str,self.version[:2]))
-        #else:
-        #    return '%d' % self.version[0]
+#        if self.version[0] <= 4:
+#            return '.'.join(map(str,self.version[:2]))
+#        else:
+#            return '%d' % self.version[0]
         return '%d' % self.version[0]
 
     #------------------------------------------------------------
@@ -260,7 +260,6 @@ class GpVersion:
         '''
         Returns true if the version matches the current MAIN_VERSION
         '''
-        return True
-        #return self.isVersionRelease(MAIN_VERSION)
+        return self.isVersionRelease(MAIN_VERSION)
 
     
