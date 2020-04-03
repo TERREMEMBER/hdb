@@ -97,7 +97,7 @@ def run_cmd(command):
 
 def run_command_remote(context, command, host, source_file, export_mdd, validateAfter=True):
     cmd = Command(name='run command %s' % command,
-                  cmdStr='gpssh -h %s -e \'source %s; %s; %s\'' % (host, source_file, export_mdd, command))
+                  cmdStr='hdbssh -h %s -e \'source %s; %s; %s\'' % (host, source_file, export_mdd, command))
     cmd.run(validateAfter=validateAfter)
     result = cmd.get_results()
     context.ret_code = result.rc
@@ -125,7 +125,7 @@ def run_gpcommand(context, command, cmd_prefix=''):
 
 
 def run_gpcommand_async(context, command):
-    cmd = Command(name='run %s' % command, cmdStr='$GPHOME/bin/%s' % (command))
+    cmd = Command(name='run %s' % command, cmdStr='$HDBHOME/bin/%s' % (command))
     asyncproc = cmd.runNoWait()
     if 'asyncproc' not in context:
         context.asyncproc = asyncproc
@@ -216,8 +216,8 @@ def stop_primary(context, content_id):
     # For demo_cluster tests that run on the CI gives the error 'bash: pg_ctl: command not found'
     # Thus, need to add pg_ctl to the path when ssh'ing to a demo cluster.
     subprocess.check_call(['ssh', seg_host,
-                           'source %s/greenplum_path.sh && pg_ctl stop -m fast -D %s' % (
-                               pipes.quote(os.environ.get("GPHOME")), pipes.quote(seg_data_dir))
+                           'source %s/inhybrid_path.sh && pg_ctl stop -m fast -D %s' % (
+                               pipes.quote(os.environ.get("HDBHOME")), pipes.quote(seg_data_dir))
                            ])
 
 
@@ -690,12 +690,12 @@ def modify_sql_file(file, hostport):
 
 
 def remove_dir(host, directory):
-    cmd = 'gpssh -h %s -e \'rm -rf %s\'' % (host, directory)
+    cmd = 'hdbssh -h %s -e \'rm -rf %s\'' % (host, directory)
     run_cmd(cmd)
 
 
 def create_dir(host, directory):
-    cmd = 'gpssh -h %s -e \'mkdir -p %s\'' % (host, directory)
+    cmd = 'hdbssh -h %s -e \'mkdir -p %s\'' % (host, directory)
     run_cmd(cmd)
 
 

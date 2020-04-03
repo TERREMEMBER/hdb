@@ -35,7 +35,7 @@ try:
     from gppylib.operations.utils import ParallelOperation, RemoteOperation
     from gppylib.operations.rebalanceSegments import ReconfigDetectionSQLQueryCommand
 except ImportError, e:
-    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(e))
+    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced inHybrid_path.sh.  Detail: ' + str(e))
 
 DEFAULT_NUM_WORKERS = 64
 logger = get_default_logger()

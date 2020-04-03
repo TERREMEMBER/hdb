@@ -25,7 +25,7 @@ try:
     from yaml.scanner import ScannerError
 except ImportError, ex:
     sys.exit(
-        'Operation: Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(ex))
+        'Operation: Cannot import modules.  Please check that you have sourced inhybrid_path.sh.  Detail: ' + str(ex))
 
 logger = gplog.get_default_logger()
 

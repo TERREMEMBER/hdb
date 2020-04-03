@@ -34,7 +34,7 @@ try:
     from gppylib.utils import TableLogger
     from gppylib.gp_era import GpEraFile
 except ImportError, e:
-    sys.exit('Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(e))
+    sys.exit('Cannot import modules.  Please check that you have sourced inhybrid_path.sh.  Detail: ' + str(e))
 
 logger = get_default_logger()
 
@@ -203,7 +203,7 @@ class GpStart:
         self.gpversion = gp.GpVersion.local('local GP software version check', self.gphome)
         logger.info("HDB Binary Version: '%s'" % self.gpversion)
 
-        # It would be nice to work out the catalog version => greenplum version
+        # It would be nice to work out the catalog version => inHybrid version
         # calculation so that we can print out nicer error messages when
         # version doesn't match.
         bin_catversion = gp.GpCatVersion.local('local GP software catalag version check', self.gphome)

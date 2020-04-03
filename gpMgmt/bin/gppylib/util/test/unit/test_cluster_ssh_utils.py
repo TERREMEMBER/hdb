@@ -7,9 +7,9 @@ from StringIO import StringIO
 from mock import patch
 
 try:
-    gphome = os.environ.get('GPHOME')
+    gphome = os.environ.get('HDBHOME')
     if not gphome:
-        raise Exception("GPHOME not set")
+        raise Exception("HDbHOME not set")
     location = "%s/bin/lib" % gphome
     sys.path.append(location)
     from gppylib.util.ssh_utils import HostList, Session, pxssh

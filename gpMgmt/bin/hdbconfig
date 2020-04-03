@@ -34,7 +34,7 @@ try:
     from gpconfig_modules.parse_guc_metadata import ParseGuc
 except ImportError as err:
     sys.exit('Cannot import modules.  Please check that you have sourced '
-             'greenplum_path.sh.  Detail: ' + str(err))
+             'inhybrid_path.sh.  Detail: ' + str(err))
 
 EXECNAME = os.path.split(__file__)[-1]
 
@@ -88,9 +88,9 @@ def validate_mutual_options(options):
     if user is None or user == ' ':
         log_and_raise("USER environment variable must be set.")
 
-    gphome = os.getenv('GPHOME')
+    gphome = os.getenv('HDBHOME')
     if not gphome:
-        log_and_raise("GPHOME environment variable must be set.")
+        log_and_raise("HDBHOME environment variable must be set.")
 
     if options.file and not options.show:
         log_and_raise("'--file' option must accompany '--show' option")
@@ -395,7 +395,7 @@ sql. We work around that by making use of a file already created during 'make in
  storing all properties with GUC_DISALLOW_IN_FILE into a file.)
     """
 
-    gphome = os.getenv('GPHOME')
+    gphome = os.getenv('HDBHOME')
     gpconfig_modules_dir = os.path.join(gphome, ParseGuc.DESTINATION_DIR)
     disallowed_guc_file = os.path.abspath(os.path.join(gpconfig_modules_dir, ParseGuc.DESTINATION_FILENAME))
     if os.path.exists(disallowed_guc_file):

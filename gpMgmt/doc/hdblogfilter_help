@@ -32,7 +32,7 @@ once by running it through the hdbssh utility. For example, to display
 the last three lines of each segment log file: 
 
  hdbssh -f seg_host_file 
- => source /usr/local/greenplum-db/greenplum_path.sh 
+ => source /usr/local/greenplum-db/inhybrid_path.sh 
  => hdblogfilter -n 3 /gpdata/*/pg_log/gpdb*.csv 
 
 By default, the output of hdblogfilter is sent to standard output. Use 
@@ -217,7 +217,7 @@ messages in the segment log files containing the string 'con6' and save
 output to a file. 
 
  hdbssh -f seg_hosts_file -e 'source 
- /usr/local/greenplum-db/greenplum_path.sh ; hdblogfilter -f con6 
+ /usr/local/greenplum-db/inhybrid_path.sh ; hdblogfilter -f con6 
  /gpdata/*/pg_log/gpdb*.csv' > seglog.out 
 
  

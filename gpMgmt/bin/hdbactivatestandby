@@ -33,7 +33,7 @@ try:
     from gppylib.userinput import ask_yesno
 except ImportError, e_:
     sys.exit('ERROR: Cannot import modules.  Please check that you '
-             'have sourced greenplum_path.sh.  Detail: ' + str(e_))
+             'have sourced inhybrid_path.sh.  Detail: ' + str(e_))
 
 EXECNAME = os.path.split(__file__)[-1]
 

@@ -37,7 +37,7 @@ class Gpfdist:
                     '/dev/null & echo \\$! > %s' % (self.dir, self.port,
                                                     self.pid_file)
         else:
-            cmdStr = 'gpssh -h %s -e "source %s; nohup gpfdist -d %s -p %s > /dev/null 2> /dev/null < ' \
+            cmdStr = 'hdbssh -h %s -e "source %s; nohup gpfdist -d %s -p %s > /dev/null 2> /dev/null < ' \
                     '/dev/null & echo \\$! > %s"' % (self.host, self.source_file, self.dir, self.port,
                                                     self.pid_file)             
 
@@ -57,7 +57,7 @@ class Gpfdist:
         if self.host in ('127.0.0.1',socket.gethostbyname(socket.gethostname()),socket.gethostname(),'localhost'):
             cmdStr = "%s -ef | grep \'gpfdist -d %s -p %s\' | grep -v grep"%(self.ps_command, self.dir, port)
         else:
-            cmdStr = 'gpssh -h %s -e "%s -ef | grep \'gpfdist -d %s -p %s\' |grep -v grep"'%(self.host, self.ps_command, self.dir, port)
+            cmdStr = 'hdbssh -h %s -e "%s -ef | grep \'gpfdist -d %s -p %s\' |grep -v grep"'%(self.host, self.ps_command, self.dir, port)
         cmd = Command(self.name, cmdStr, self.ctxt, self.host)
         # run the command for 5 time
         while count < wait:
@@ -100,7 +100,7 @@ class Gpfdist:
         if self.host in ('127.0.0.1',socket.gethostbyname(socket.gethostname()),socket.gethostname(),'localhost'):
             cmdStr = "netstat -an |grep %s"%port
         else:
-            cmdStr = 'gpssh -h %s -e "netstat -an |grep %s"'%(self.host, port)
+            cmdStr = 'hdbssh -h %s -e "netstat -an |grep %s"'%(self.host, port)
         cmd = Command(self.name, cmdStr, self.ctxt, self.host)
         cmd.run()
         results = cmd.get_results()
@@ -120,7 +120,7 @@ class Gpfdist:
         if self.host in ('127.0.0.1',socket.gethostbyname(socket.gethostname()),socket.gethostname(),'localhost'):
             cmdStr = '%s -ef | grep "gpfdist -d %s -p %s" | grep -v grep | awk \'{print $2}\' | xargs kill 2>&1 > /dev/null'%(self.ps_command, self.dir, port)
         else:
-            cmdStr = 'gpssh -h %s -e "%s -ef | grep \'gpfdist -d %s -p %s\' | grep -v grep | awk \'{print $2}\' | xargs kill 2>&1 > /dev/null"'%(self.host, self.ps_command, self.dir, port)
+            cmdStr = 'hdbssh -h %s -e "%s -ef | grep \'gpfdist -d %s -p %s\' | grep -v grep | awk \'{print $2}\' | xargs kill 2>&1 > /dev/null"'%(self.host, self.ps_command, self.dir, port)
         cmd = Command(self.name, cmdStr, self.ctxt, self.host)
         cmd.run()
         is_released = False

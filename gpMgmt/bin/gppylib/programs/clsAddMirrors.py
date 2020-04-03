@@ -532,8 +532,8 @@ class GpAddMirrorsProgram:
                         cidr = ip + cidr_suffix
                         hba_line_entry = "host replication {username} {cidr} trust".format(username=unix.getUserName(), cidr=cidr)
                         entries.append(hba_line_entry)
-                cmdStr = ". {gphome}/greenplum_path.sh; echo '{entries}' >> {datadir}/pg_hba.conf; pg_ctl -D {datadir} reload".format(
-                    gphome=os.environ["GPHOME"],
+                cmdStr = ". {gphome}/inhybrid_path.sh; echo '{entries}' >> {datadir}/pg_hba.conf; pg_ctl -D {datadir} reload".format(
+                    gphome=os.environ["HDBHOME"],
                     entries="\n".join(entries),
                     datadir=segmentPair.primaryDB.datadir)
                 logger.debug(cmdStr)

@@ -126,7 +126,7 @@ def impl(context, segment):
             'ssh', '-n', mirror_hostname,
             'PGOPTIONS="-c gp_session_role=utility"',
             '{gphome}/bin/psql -h {host} -p {port} "dbname=postgres replication=database" -c "IDENTIFY_SYSTEM;"'.format(
-                gphome=os.environ['GPHOME'],
+                gphome=os.environ['HDBHOME'],
                 host=primary.address, # use the "internal" routing address
                 port=primary.port,
             )

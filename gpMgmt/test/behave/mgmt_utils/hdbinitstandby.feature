@@ -57,10 +57,10 @@ Feature: Tests for hdbinitstandby feature
         Then the user runs command "hdbstate -f"
         And verify hdbstate with options "-f" output is correct
 
-    Scenario: hdbinitstandby should not throw stacktrace when $GPHOME/share directory is non-writable
+    Scenario: hdbinitstandby should not throw stacktrace when $HDBHOME/share directory is non-writable
         Given the database is running
         And the standby is not initialized
-        And "$GPHOME/share" has its permissions set to "555"
+        And "$HDBHOME/share" has its permissions set to "555"
         And the user runs hdbinitstandby with options " "
         Then hdbinitstandby should return a return code of 0
         And hdbinitstandby should not print "Traceback" to stdout

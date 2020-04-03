@@ -35,13 +35,13 @@ RUNNING GP DEMO
 
 	cd gpAux/gpdemo
 
-3. Source greenplum_path.sh
+3. Source inhybrid_path.sh
 
-	. /usr/local/greenplum-db/greenplum_path.sh
+	. /usr/local/greenplum-db/inhybrid_path.sh
 
    Note: There is a space between the dot and the slash.
 
-   The "." will source the greenplum_path.sh into the current
+   The "." will source the inhybrid_path.sh into the current
    shell, instead of starting a subprocess.
 
 4. Create the cluster:

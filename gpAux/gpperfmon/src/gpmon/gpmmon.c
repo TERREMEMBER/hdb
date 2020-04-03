@@ -59,7 +59,7 @@ static struct
 {
 	int port; /* port of gpsmon */
 	apr_pool_t* pool; /* pool */
-	char* gphome; /* GPHOME env variable */
+	char* gphome; /* HDBHOME env variable */
 	apr_int64_t signature; /* a large random number */
 
 	host_t* hosttab; /* multi-home filtered machines */
@@ -910,10 +910,10 @@ static void gpmmon_main(void)
 		gpmon_fatalx(FLINE, e, "apr_pool_create_alloc failed");
 	}
 
-	if (0 != (e = apr_env_get(&ax.gphome, "GPHOME", ax.pool)))
+	if (0 != (e = apr_env_get(&ax.gphome, "HDBHOME", ax.pool)))
 	{
 		interuptable_sleep(30); // sleep to prevent loop of forking process and failing
-		gpmon_fatalx(FLINE, e, "GPHOME environment variable not set");
+		gpmon_fatalx(FLINE, e, "HDBHOME environment variable not set");
 	}
 
 	/* Create mutexes */

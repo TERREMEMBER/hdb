@@ -17,12 +17,12 @@ CACHEFILE = os.path.join(FILEDIR, FILENAME)
 logger = gplog.get_unittest_logger()
 
 try:
-    if os.getenv('GPHOME') is '':
-        raise Exception("Environment variable GPHOME not set")
+    if os.getenv('HDBHOME') is '':
+        raise Exception("Environment variable HDBHOME not set")
 except Exception, e:
     sys.stderr.write("Exception found: %s \n" % str(e))
 
-GPHOSTLOOKUP = os.path.join(os.getenv('GPHOME'), 'bin/lib/', 'gphostcachelookup.py')
+GPHOSTLOOKUP = os.path.join(os.getenv('HDBHOME'), 'bin/lib/', 'gphostcachelookup.py')
 
 class GpHostCacheLookupTestCase(unittest.TestCase):
 
