@@ -159,22 +159,24 @@ class GpVersion:
                 raise StandardError("Internal coding error")
 
             # As of GPDB 5, version strings moved from four digits (4.3.X.X) to three (5.X.X)
-            minlen = 2 if int(v[0]) <= 4 else 1
-            maxlen = 4 if int(v[0]) <= 4 else 3
+            minlen = 1
+            maxlen = 3
 ### TODO. tmp remove code to ignore version problem ###            
-#            if len(v) < minlen:
-#                raise StandardError("Version too short")
-#            elif len(v) > maxlen:
+#            minlen = 2 if int(v[0]) <= 4 else 1
+#            maxlen = 4 if int(v[0]) <= 4 else 3
 ### TODO. tmp remove code to ignore version problem ###
-            if len(v) > maxlen:
+            if len(v) < minlen:
+                raise StandardError("Version too short")
+            elif len(v) > maxlen:
                 raise StandardError("Version too long")
             elif len(v) < maxlen:
                 v.extend([99,99])
             v = map(int, v)  # Convert to integers
-            if v[0] <= 4:
-                self.version = v[:4]
-            else:
-                self.version = v[:3]
+#            if v[0] <= 4:
+#                self.version = v[:4]
+#            else:
+#                self.version = v[:3]
+            self.version = v[:3]
 
             if not self.build:
                 self.build = 'dev'
