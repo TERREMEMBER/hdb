@@ -83,7 +83,7 @@ Connection options:\
   -W, --password            force password prompt\
   --maintenance-db=DBNAME   alternate maintenance database\
 \
-Report bugs to <bugs\@inspur.com>\n";
+Report bugs to <bugs\@inspur.com>.\n";
 our $dropdb_version = "dropdb (inHybrid Database) 9.4.24\n";
 ###############################createuser###########################################
 our $createuser_help = "createuser creates a new PostgreSQL role.\

@@ -43,9 +43,9 @@ try:
 except ImportError, e:
     sys.exit('Error: unable to import module: ' + str(e))
 
-GPHOME = os.getenv('GPHOME')
-if GPHOME is None:
-    sys.exit('Please set GPHOME environment variable')
+HDBHOME = os.getenv('HDBHOME')
+if HDBHOME is None:
+    sys.exit('Please set HDBHOME environment variable')
 
 USER = os.getenv('USER')
 if USER is None or USER is ' ':
@@ -81,8 +81,7 @@ def strcmd(cmd):
 
 
 def gpssh(cmd):
-    #c = ['%s/bin/gpssh' % GPHOME]
-    c = ['%s/bin/hdbssh' % GPHOME]
+    c = ['%s/bin/hdbssh' % HDBHOME]
     if GV.opt['-V']:
         c.append('-v')
     if GV.opt['-f']:
@@ -103,8 +102,7 @@ def gpssh(cmd):
 
 
 def gpscp(src, dst):
-    #c = ['%s/bin/gpscp' % GPHOME]
-    c = ['%s/bin/hdbscp' % GPHOME]
+    c = ['%s/bin/hdbscp' % HDBHOME]
     if GV.opt['-V']:
         c.append('-v')
     if GV.opt['-f']:
