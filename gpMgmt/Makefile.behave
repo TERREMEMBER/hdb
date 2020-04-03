@@ -1,4 +1,4 @@
-PEXPECT_LIB=$(GPHOME)/bin/lib
+PEXPECT_LIB=$(HDBHOME)/bin/lib
 
 # To pass in custom flags as behave args(such as multiple flags),
 # use flags=--tags=foo, --tags=-bar

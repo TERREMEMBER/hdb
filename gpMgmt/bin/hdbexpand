@@ -42,7 +42,7 @@ try:
     from gppylib.mainUtils import ExceptionNoStackTraceNeeded
 
 except ImportError, e:
-    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(e))
+    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced inhybrid_path.sh.  Detail: ' + str(e))
 
 # constants
 MAX_PARALLEL_EXPANDS = 96

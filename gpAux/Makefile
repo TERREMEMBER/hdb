@@ -538,8 +538,8 @@ endif
 #---------------------------------------------------------------------
 
 PVK_SCRIPTS = \
-	bin/gpscp			\
-	bin/gpssh			\
+	bin/hdbscp			\
+	bin/hdbssh			\
 	bin/gpcheckperf			\
 	$(NULL)
 

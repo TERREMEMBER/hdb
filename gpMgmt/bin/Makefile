@@ -77,7 +77,7 @@ PYGRESQL_DIR=PyGreSQL-$(PYGRESQL_VERSION)
 
 pygresql:
 	@echo "--- PyGreSQL"
-	if [ ! -f $(DESTDIR)$(prefix)/greenplum_path.sh ]; then \
+	if [ ! -f $(DESTDIR)$(prefix)/inhybrid_path.sh ]; then \
 		unset LIBPATH; \
 		./generate-greenplum-path.sh $(prefix) > $(DESTDIR)$(prefix)/inhybrid_path.sh ; \
 	fi

@@ -115,7 +115,7 @@ cleanDemo(){
     ##
 
     (export MASTER_DATA_DIRECTORY=$QDDIR/${SEG_PREFIX}-1;
-     source ${HDBHOME}/inHybrid_path.sh;
+     source ${HDBHOME}/inhybrid_path.sh;
      hdbstop -a)
 
     ##
@@ -172,9 +172,9 @@ do
 done
 
 if [ -z "${HDBHOME}" ]; then
-    echo "FATAL: The GPHOME environment variable is not set."
+    echo "FATAL: The HDBHOME environment variable is not set."
     echo ""
-    echo "  You can set it by sourcing the greenplum_path.sh"
+    echo "  You can set it by sourcing the inhybrid_path.sh"
     echo "  file in your Greenplum installation directory."
     echo ""
     exit 1
@@ -194,7 +194,11 @@ cat <<-EOF
 	  a cluster installation with master and `expr 2 \* ${NUM_PRIMARY_MIRROR_PAIRS}` segment instances
 	  (${NUM_PRIMARY_MIRROR_PAIRS} primary & ${NUM_PRIMARY_MIRROR_PAIRS} mirror).
 
+<<<<<<< HEAD
+	    HDBHOME ................. : ${HDBHOME}
+=======
 	    GPHOME ................. : ${HDBHOME}
+>>>>>>> hdb_master
 	    MASTER_DATA_DIRECTORY .. : ${QDDIR}/${SEG_PREFIX}-1
 
 	    MASTER PORT (PGPORT) ... : ${MASTER_DEMO_PORT}

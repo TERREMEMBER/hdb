@@ -173,17 +173,17 @@ def reset_hosts(hosts, test_base_dir):
     master_dir = os.path.join(test_base_dir, 'data', 'master')
 
     host_args = " ".join(map(lambda x: "-h %s" % x, hosts))
-    reset_primary_dirs_cmd = "gpssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, primary_dir, primary_dir)
+    reset_primary_dirs_cmd = "hdbssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, primary_dir, primary_dir)
     res = run_shell_command(reset_primary_dirs_cmd, 'reset segment dirs', verbose=True)
     if res['rc'] > 0:
         raise Exception("Failed to reset segment directories")
 
-    reset_mirror_dirs_cmd = "gpssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, mirror_dir, mirror_dir)
+    reset_mirror_dirs_cmd = "hdbssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, mirror_dir, mirror_dir)
     res = run_shell_command(reset_mirror_dirs_cmd, 'reset segment dirs', verbose=True)
     if res['rc'] > 0:
         raise Exception("Failed to reset segment directories")
 
-    reset_master_dirs_cmd = "gpssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, master_dir, master_dir)
+    reset_master_dirs_cmd = "hdbssh %s -e 'rm -rf %s; mkdir -p %s'" % (host_args, master_dir, master_dir)
     res = run_shell_command(reset_master_dirs_cmd, 'reset segment dirs', verbose=True)
     if res['rc'] > 0:
         raise Exception("Failed to reset segment directories")

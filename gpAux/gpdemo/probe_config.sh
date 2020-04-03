@@ -3,9 +3,9 @@
 #***********************************************************
 # Look for Greenplum executables to find path
 #***********************************************************
-if [ x"$GPHOME" = x ]; then
+if [ x"$HDBHOME" = x ]; then
   if [ x"$BIZHOME" = x ]; then
-    echo "Neither GPHOME or BIZHOME are set.  Set one of these variables to point to the location"
+    echo "Neither HDBHOME or BIZHOME are set.  Set one of these variables to point to the location"
 	echo "of the Greenplum installation directory."
     echo ""
 	exit 1
@@ -13,7 +13,7 @@ if [ x"$GPHOME" = x ]; then
     GPSEARCH=$BIZHOME
   fi
 else
-  GPSEARCH=$GPHOME
+  GPSEARCH=$HDBHOME
 fi
 
 GPPATH=`find $GPSEARCH -name gpstart | tail -1`

@@ -17,7 +17,7 @@ Assumptions:
 1. Greenplum cluster was compiled with --enable-segwalrep
 2. Greenplum cluster was initialized without mirror segments.
 3. Cluster is all on one host
-4. Greenplum environment is all setup (greenplum_path.sh, MASTER_DATA_DIRECTORY, PGPORT, etc.)
+4. Greenplum environment is all setup (inhybrid_path.sh, MASTER_DATA_DIRECTORY, PGPORT, etc.)
 5. Greenplum environment is started
 6. Greenplum environment is the same throughout tool usage
 

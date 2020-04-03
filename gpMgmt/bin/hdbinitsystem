@@ -444,7 +444,7 @@ CHK_PARAMS () {
 			if [ $NUM_QES -eq 1 ];then
 				# This is a single host array, re-tune the BATCH_DEFAULT to 4
 				if [ $BATCH_DEFAULT -gt $SINGLE_HOST_BATCH_LIMIT ];then
-				LOG_MSG "[INFO]:-Detected a single host GPDB array build, reducing value of BATCH_DEFAULT from $BATCH_DEFAULT to $SINGLE_HOST_BATCH_LIMIT" 1
+				LOG_MSG "[INFO]:-Detected a single host HDB array build, reducing value of BATCH_DEFAULT from $BATCH_DEFAULT to $SINGLE_HOST_BATCH_LIMIT" 1
 				BATCH_DEFAULT=$SINGLE_HOST_BATCH_LIMIT
 				fi
 			fi
@@ -634,7 +634,7 @@ END_PYTHON_CODE
                     LOG_MSG "[FATAL]:-Inconsistency between number of multi-home hostnames and number of segments per host" 1
                     LOG_MSG "[INFO]:-Have $NUM_DATADIR data directories and $NUM_MHOST_NODE multi-home hostnames for each host" 1
                     LOG_MSG "[INFO]:-For multi-home configuration, number of segment instance data directories per host must be multiple of" 1
-                    LOG_MSG "[INFO]:-the number of multi-home hostnames within the GPDB array" 1
+                    LOG_MSG "[INFO]:-the number of multi-home hostnames within the HDB array" 1
                     ERROR_EXIT "[FATAL]:-Unable to continue" 2
                 fi
 
@@ -2044,7 +2044,7 @@ LOG_MSG "[INFO]:-inHybrid Database instance successfully created" 1
 LOG_MSG "[INFO]:-------------------------------------------------------" 1
 LOG_MSG "[INFO]:-To complete the environment configuration, please " 1
 LOG_MSG "[INFO]:-update $USER_NAME .bashrc file with the following" 1
-LOG_MSG "[INFO]:-1. Ensure that the greenplum_path.sh file is sourced" 1
+LOG_MSG "[INFO]:-1. Ensure that the inhybrid_path.sh file is sourced" 1
 LOG_MSG "[INFO]:-2. Add \"export MASTER_DATA_DIRECTORY=${MASTER_DIRECTORY}/${SEG_PREFIX}-1\"" 1
 LOG_MSG "[INFO]:-   to access the inHybrid scripts for this instance:" 1
 LOG_MSG "[INFO]:-   or, use -d ${MASTER_DIRECTORY}/${SEG_PREFIX}-1 option for the inHybrid scripts" 1
