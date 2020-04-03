@@ -715,7 +715,7 @@ class GpStart:
     def createParser():
         parser = OptParser(option_class=OptChecker,
                            description="Starts a HDB Array.",
-                           version='%prog version 6.3.0 build dev')
+                           version='%prog version $Revision$')
         parser.setHelp([])
 
         addStandardLoggingAndHelpOptions(parser, includeNonInteractiveOption=True)
