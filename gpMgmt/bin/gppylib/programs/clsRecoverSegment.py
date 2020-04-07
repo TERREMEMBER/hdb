@@ -305,7 +305,7 @@ class GpRecoverSegmentProgram:
                 raise Exception("No peer found for dbid %s" % failedSegments[i].getSegmentDbId())
             elif peer.isSegmentDown():
                 raise Exception(
-                    "Both segments for content %s are down; Try restarting Greenplum DB and running %s again." %
+                    "Both segments for content %s are down; Try restarting inHybrid DB and running %s again." %
                     (peer.getSegmentContentId(), getProgramName()))
         return peersForFailedSegments
 
@@ -457,7 +457,7 @@ class GpRecoverSegmentProgram:
                 operation.get_ret()
         except:
             self.logger.exception('Syncing of inHybrid Database extensions has failed.')
-            self.logger.warning('Please run gppkg --clean after successful segment recovery.')
+            self.logger.warning('Please run hdbpkg --clean after successful segment recovery.')
 
     def displayRecovery(self, mirrorBuilder, gpArray):
         self.logger.info('inHybrid instance recovery parameters')
@@ -579,7 +579,7 @@ class GpRecoverSegmentProgram:
 
         if not gpArray.hasMirrors:
             raise ExceptionNoStackTraceNeeded(
-                'GPDB Mirroring replication is not configured for this Greenplum Database instance.')
+                'HDB Mirroring replication is not configured for this inHybrid Database instance.')
 
         # We have phys-rep/filerep mirrors.
 

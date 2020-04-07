@@ -226,7 +226,7 @@ def trigger_fts_probe():
 
 
 def run_gprecoverseg():
-    run_cmd('gprecoverseg -a -v')
+    run_cmd('hdbrecoverseg -a -v')
 
 
 def getRows(dbname, exec_sql):
