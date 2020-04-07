@@ -77,7 +77,7 @@ class GpReload:
 
             if partition_level != max_level:
                 logger.error('Partition level of the table = %s, Max partition level = %s' % (partition_level, max_level))
-                raise Exception('Mid Level partition %s.%s is not supported by gpreload. Please specify only leaf partitions or parent table name' % (schema_name, table_name))
+                raise Exception('Mid Level partition %s.%s is not supported by hdbreload. Please specify only leaf partitions or parent table name' % (schema_name, table_name))
 
     def validate_options(self):
         if self.table_file is None:

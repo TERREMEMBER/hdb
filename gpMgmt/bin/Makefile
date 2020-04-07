@@ -15,7 +15,7 @@ $(recurse)
 PROGRAMS= analyzedb gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
 	gpload gpload.py gpmovemirrors \
-	hdbpkg gpreload \
+	hdbpkg hdbreload \
 	hdbstate hdbsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
 	hdbrecoverseg hdbconfig hdblogfilter hdbactivatestandby
@@ -237,6 +237,6 @@ clean distclean:
 	rm -f analyzedbc hdbactivatestandbyc gpaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
 		  hdbdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
-		  hdbpkgc hdbrecoversegc gpreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
+		  hdbpkgc hdbrecoversegc hdbreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
 		  hdbstartc hdbstatec hdbstopc hdbsys1c minireproc
 	rm -f gpconfig_modules/gucs_disallowed_in_file.txt

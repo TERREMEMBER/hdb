@@ -1,23 +1,23 @@
-COMMAND NAME: gpreload
+COMMAND NAME: hdbreload
 
-Reloads Greenplum Database table data sorting the data 
+Reloads inHybrid Database table data sorting the data 
 based on specified columns. 
 
 *****************************************************
 SYNOPSIS
 *****************************************************
 
-gpreload -d <database> [-p <port>] 
+hdbreload -d <database> [-p <port>] 
    {-t |--table-file} <path_to_file>  [-a ]
 
-gpreload -h | --version
+hdbreload -h | --version
 
 
 *****************************************************
 DESCRIPTION
 *****************************************************
 
-The gpreload utility reloads table data with column data sorted. For 
+The hdbreload utility reloads table data with column data sorted. For 
 tables that were created with the table storage option APPENDONLY=TRUE 
 and compression enabled, reloading the data with sorted data can improve 
 table compression. You specify a list of tables to be reloaded the table 
@@ -35,7 +35,7 @@ result in better compression than listing city then state.
  public.cust_table: state, city
  public.cust_table: city, state
 
-For information about the format of the file used with gpreload, see the 
+For information about the format of the file used with hdbreload, see the 
 --table-file option.
 
 
@@ -57,19 +57,19 @@ OPTIONS
 
 -a
 
- Optional. If specified, the gpreload utility does not prompt the user
+ Optional. If specified, the hdbreload utility does not prompt the user
  for confirmation. 
 
  
 -d <database>
 
- The database that contains the tables to be reloaded. The gpreload 
+ The database that contains the tables to be reloaded. The hdbreload 
  utility connects to the database as the user running the utility. 
 
 
 -p <port> 
 
- The Greenplum Database master port. If not specified, the value of the 
+ The inHybrid Database master port. If not specified, the value of the 
  PGPORT environment variable is used. If the value is not available, an 
  error is returned. 
 
@@ -77,11 +77,11 @@ OPTIONS
 {-t | --table-file } <path_to_file> 
 
  The location and name of file containing list of schema qualified table 
- names to reload and the column names to reorder from the Greenplum 
+ names to reload and the column names to reorder from the inHybrid 
  Database. Only user defined tables are supported. Views or system 
  catalog tables are not supported. 
 
- If indexes are defined on table listed in the file, gpreload prompts to 
+ If indexes are defined on table listed in the file, hdbreload prompts to 
  continue. 
 
  Each line specifies a table name and the list of columns to sort. This 
@@ -97,7 +97,7 @@ OPTIONS
 
  Wildcard characters are not supported. 
 
- If there are errors in the file, gpreload reports the first error and 
+ If there are errors in the file, hdbreload reports the first error and 
  exits. No data is reloaded. 
 
  The following example reloads three tables. 
@@ -128,12 +128,12 @@ EXAMPLE
 This example command reloads the tables in the database mytest that are 
 listed in the file data-tables.txt. 
 
- gpreload -d mytest --file data-tables.txt
+ hdbreload -d mytest --file data-tables.txt
 
 
 *****************************************************
 SEE ALSO
 *****************************************************
 
-The CREATE TABLE command in the "Greenplum Database Reference Guide."
+The CREATE TABLE command in the "inHybrid Database Reference Guide."
 
