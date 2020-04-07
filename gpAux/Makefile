@@ -580,7 +580,7 @@ SET_VERSION_SCRIPTS = \
 	bin/hdblogfilter \
 	bin/gpmovemirrors \
 	bin/gprecoverseg \
-	bin/gpreload \
+	bin/hdbreload \
 	bin/hdbscp \
 	bin/hdbssh \
 	bin/hdbssh-exkeys \
