@@ -395,7 +395,7 @@ class GpMirrorListToBuild:
             if not cmd.was_successful():
                 dbid = int(cmd.name.split(':')[1].strip())
                 self.__logger.debug("%s failed" % cmd.name)
-                self.__logger.warning("Incremental recovery failed for dbid %d. You must use gprecoverseg -F to recover the segment." % dbid)
+                self.__logger.warning("Incremental recovery failed for dbid %d. You must use hdbrecoverseg -F to recover the segment." % dbid)
                 rewindFailedSegments.append(rewindInfo[dbid].targetSegment)
 
         self.__pool.empty_completed_items()

@@ -48,7 +48,7 @@ except ImportError, e:
 MAX_PARALLEL_EXPANDS = 96
 MAX_BATCH_SIZE = 128
 
-SEGMENT_CONFIGURATION_BACKUP_FILE = "gpexpand.gp_segment_configuration"
+SEGMENT_CONFIGURATION_BACKUP_FILE = "hdbexpand.gp_segment_configuration"
 
 DBNAME = 'postgres'
 
@@ -575,7 +575,7 @@ class SegmentTemplate:
     def __init__(self, logger, statusLogger, pool,
                  gparray, masterDataDirectory,
                  dburl, conn, tempDir, batch_size, is_hba_hostnames,
-                 segTarDir='.', schemaTarFile='gpexpand_schema.tar'):
+                 segTarDir='.', schemaTarFile='hdbexpand_schema.tar'):
         self.logger = logger
         self.statusLogger = statusLogger
         self.pool = pool
@@ -883,6 +883,7 @@ class SegmentTemplate:
         rmCmd.run(validateAfter=True)
         rmCmd = RemoveFile('gpexpand remove segment template file', tarFile)
         rmCmd.run(validateAfter=True)
+        print(rmCmd)
 
     @staticmethod
     def cleanup_build_new_segments(pool, tarFile, gparray, hosts=None, removeDataDirs=False):
@@ -1055,7 +1056,7 @@ class gpexpand:
 
             elif status[0] == 'BUILD_SEGMENT_TEMPLATE_STARTED':
                 self.logger.info('Rolling back segment template build')
-                SegmentTemplate.cleanup_build_segment_template('gpexpand_schema.tar', status[1])
+                SegmentTemplate.cleanup_build_segment_template('hdbexpand_schema.tar', status[1])
 
             elif status[0] == 'BUILD_SEGMENTS_STARTED':
                 self.logger.info('Rolling back building of new segments')
@@ -1085,7 +1086,7 @@ class gpexpand:
     def generate_inputfile(self):
         """Writes a gpexpand input file based on expansion segments
         added to gparray by the gpexpand interview"""
-        outputfile = 'gpexpand_inputfile_' + strftime("%Y%m%d_%H%M%S")
+        outputfile = 'hdbexpand_inputfile_' + strftime("%Y%m%d_%H%M%S")
         outfile = open(outputfile, 'w')
 
         logger.info("Generating input file...")
@@ -1349,7 +1350,7 @@ class gpexpand:
         dbconn.execSQL(self.conn, "select gp_expand_bump_version()")
         self.conn.close()
 
-        inject_fault('gpexpand rollback test fault injection')
+        inject_fault('hdbexpand rollback test fault injection')
 
         self.statusLogger.set_status('UPDATE_CATALOG_DONE')
         self.pastThePointOfNoReturn = True;
@@ -1854,7 +1855,7 @@ ORDER BY fq_name, tableoid desc
         c = dbconn.connect(self.dburl, encoding='UTF8')
         if ask_yesno('', "Do you want to dump the hdbexpand.status_detail table to file?", 'Y'):
             self.logger.info(
-                "Dumping gpexpand.status_detail to %s/hdbexpand.status_detail" % self.options.master_data_directory)
+                "Dumping hdbexpand.status_detail to %s/hdbexpand.status_detail" % self.options.master_data_directory)
             copy_gpexpand_status_detail_sql = "COPY gpexpand.status_detail TO '%s/gpexpand.status_detail'" % self.options.master_data_directory
             dbconn.execSQL(c, copy_gpexpand_status_detail_sql)
 

@@ -1574,7 +1574,7 @@ class GpRecoverSeg(Command):
        self.ctxt = ctxt
        self.remoteHost = remoteHost
 
-       cmdStr = "$HDBHOME/bin/gprecoverseg %s" % (options)
+       cmdStr = "$HDBHOME/bin/hdbrecoverseg %s" % (options)
        Command.__init__(self,name,cmdStr,ctxt,remoteHost)
 class IfAddrs:
     @staticmethod
