@@ -2191,8 +2191,8 @@ def impl(context, master_host, segment_host_list):
 def impl(context, mirroring_configuration, master_host, segment_host_list):
     _create_cluster(context, master_host, segment_host_list, with_mirrors=True, mirroring_configuration=mirroring_configuration)
 
-@given('the user runs gpexpand interview to add {num_of_segments} new segment and {num_of_hosts} new host "{hostnames}"')
-@when('the user runs gpexpand interview to add {num_of_segments} new segment and {num_of_hosts} new host "{hostnames}"')
+@given('the user runs hdbexpand interview to add {num_of_segments} new segment and {num_of_hosts} new host "{hostnames}"')
+@when('the user runs hdbexpand interview to add {num_of_segments} new segment and {num_of_hosts} new host "{hostnames}"')
 def impl(context, num_of_segments, num_of_hosts, hostnames):
     num_of_segments = int(num_of_segments)
     num_of_hosts = int(num_of_hosts)
@@ -2226,31 +2226,31 @@ def impl(context, num_of_segments, num_of_hosts, hostnames):
     if returncode != 0:
         raise Exception("*****An error occured*****:\n %s" % output)
 
-@given('there are no gpexpand_inputfiles')
+@given('there are no hdbexpand_inputfiles')
 def impl(context):
-    map(os.remove, glob.glob("gpexpand_inputfile*"))
+    map(os.remove, glob.glob("hdbexpand_inputfile*"))
 
-@when('the user runs gpexpand with the latest gpexpand_inputfile with additional parameters {additional_params}')
+@when('the user runs hdbexpand with the latest hdbexpand_inputfile with additional parameters {additional_params}')
 def impl(context, additional_params=''):
     gpexpand = Gpexpand(context, working_directory=context.working_directory)
     ret_code, std_err, std_out = gpexpand.initialize_segments(additional_params)
     if ret_code != 0:
-        raise Exception("gpexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
+        raise Exception("hdbexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
 
-@when('the user runs gpexpand with the latest gpexpand_inputfile without ret code check')
+@when('the user runs hdbexpand with the latest hdbexpand_inputfile without ret code check')
 def impl(context):
     gpexpand = Gpexpand(context, working_directory=context.working_directory)
     gpexpand.initialize_segments()
 
-@when('the user runs gpexpand to redistribute with duration "{duration}"')
+@when('the user runs hdbexpand to redistribute with duration "{duration}"')
 def impl(context, duration):
     _gpexpand_redistribute(context, duration)
 
-@when('the user runs gpexpand to redistribute with the --end flag')
+@when('the user runs hdbexpand to redistribute with the --end flag')
 def impl(context):
     _gpexpand_redistribute(context, endtime=True)
 
-@when('the user runs gpexpand to redistribute')
+@when('the user runs hdbexpand to redistribute')
 def impl(context):
     _gpexpand_redistribute(context)
 
@@ -2263,16 +2263,16 @@ def _gpexpand_redistribute(context, duration=False, endtime=False):
             # gpexpand exited on time, it's expected
             return
         else:
-            raise Exception("gpexpand didn't stop at duration / endtime.\nstderr=%s\nstdout=%s" % (std_err, std_out))
+            raise Exception("hdbexpand didn't stop at duration / endtime.\nstderr=%s\nstdout=%s" % (std_err, std_out))
     if ret_code != 0:
-        raise Exception("gpexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
+        raise Exception("hdbexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
 
 @given('expanded preferred primary on segment "{segment_id}" has failed')
 def step_impl(context, segment_id):
     stop_primary(context, int(segment_id))
     wait_for_unblocked_transactions(context)
 
-@given('the user runs gpexpand with a static inputfile for a two-node cluster with mirrors')
+@given('the user runs hdbexpand with a static inputfile for a two-node cluster with mirrors')
 def impl(context):
     inputfile_contents = """
 sdw1|sdw1|20502|/tmp/gpexpand_behave/two_nodes/data/primary/gpseg2|6|2|p
@@ -2280,37 +2280,37 @@ sdw2|sdw2|21502|/tmp/gpexpand_behave/two_nodes/data/mirror/gpseg2|8|2|m
 sdw2|sdw2|20503|/tmp/gpexpand_behave/two_nodes/data/primary/gpseg3|7|3|p
 sdw1|sdw1|21503|/tmp/gpexpand_behave/two_nodes/data/mirror/gpseg3|9|3|m"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    inputfile_name = "%s/gpexpand_inputfile_%s" % (context.working_directory, timestamp)
+    inputfile_name = "%s/hdbexpand_inputfile_%s" % (context.working_directory, timestamp)
     with open(inputfile_name, 'w') as fd:
         fd.write(inputfile_contents)
 
     gpexpand = Gpexpand(context, working_directory=context.working_directory)
     ret_code, std_err, std_out = gpexpand.initialize_segments()
     if ret_code != 0:
-        raise Exception("gpexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
+        raise Exception("hdbexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
 
-@when('the user runs gpexpand with a static inputfile for a single-node cluster with mirrors')
+@when('the user runs hdbexpand with a static inputfile for a single-node cluster with mirrors')
 def impl(context):
     inputfile_contents = """sdw1|sdw1|20502|/tmp/gpexpand_behave/data/primary/gpseg2|6|2|p
 sdw1|sdw1|21502|/tmp/gpexpand_behave/data/mirror/gpseg2|8|2|m
 sdw1|sdw1|20503|/tmp/gpexpand_behave/data/primary/gpseg3|7|3|p
 sdw1|sdw1|21503|/tmp/gpexpand_behave/data/mirror/gpseg3|9|3|m"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    inputfile_name = "%s/gpexpand_inputfile_%s" % (context.working_directory, timestamp)
+    inputfile_name = "%s/hdbexpand_inputfile_%s" % (context.working_directory, timestamp)
     with open(inputfile_name, 'w') as fd:
         fd.write(inputfile_contents)
 
     gpexpand = Gpexpand(context, working_directory=context.working_directory)
     ret_code, std_err, std_out = gpexpand.initialize_segments()
     if ret_code != 0:
-        raise Exception("gpexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
+        raise Exception("hdbexpand exited with return code: %d.\nstderr=%s\nstdout=%s" % (ret_code, std_err, std_out))
 
-@when('the user runs gpexpand with a static inputfile for a single-node cluster with mirrors without ret code check')
+@when('the user runs hdbexpand with a static inputfile for a single-node cluster with mirrors without ret code check')
 def impl(context):
-    inputfile_contents = """sdw1|sdw1|20502|/data/gpdata/gpexpand/data/primary/gpseg2|7|2|p
-sdw1|sdw1|21502|/data/gpdata/gpexpand/data/mirror/gpseg2|8|2|m"""
+    inputfile_contents = """sdw1|sdw1|20502|/home/gpadmin/data/gpdata/gpexpand/data/primary/gpseg2|7|2|p
+sdw1|sdw1|21502|/home/gpadmin/data/gpdata/gpexpand/data/mirror/gpseg2|8|2|m"""
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    inputfile_name = "%s/gpexpand_inputfile_%s" % (context.working_directory, timestamp)
+    inputfile_name = "%s/hdbexpand_inputfile_%s" % (context.working_directory, timestamp)
     with open(inputfile_name, 'w') as fd:
         fd.write(inputfile_contents)
 
@@ -2355,9 +2355,9 @@ def impl(context):
         query = """SELECT count(*) from gp_segment_configuration where -1 < content"""
         context.start_data_segments = dbconn.execSQLForSingleton(conn, query)
 
-@given('the gp_segment_configuration have been saved')
-@when('the gp_segment_configuration have been saved')
-@then('the gp_segment_configuration have been saved')
+@given('the hdb_segment_configuration have been saved')
+@when('the hdb_segment_configuration have been saved')
+@then('the hdb_segment_configuration have been saved')
 def impl(context):
     dbname = 'gptest'
     gp_segment_conf_backup = {}
@@ -2381,9 +2381,9 @@ def impl(context):
             gp_segment_conf_backup[dbid]['datadir'] = datadir
     context.gp_segment_conf_backup = gp_segment_conf_backup
 
-@given('verify the gp_segment_configuration has been restored')
-@when('verify the gp_segment_configuration has been restored')
-@then('verify the gp_segment_configuration has been restored')
+@given('verify the hdb_segment_configuration has been restored')
+@when('verify the hdb_segment_configuration has been restored')
+@then('verify the hdb_segment_configuration has been restored')
 def impl(context):
     dbname = 'gptest'
     gp_segment_conf_backup = {}
@@ -2946,17 +2946,17 @@ def impl(context, dbname):
         """)
         conn.commit()
 
-@then('verify status file and gp_segment_configuration backup file exist on standby')
+@then('verify status file and hdb_segment_configuration backup file exist on standby')
 def impl(context):
     status_file = 'gpexpand.status'
-    gp_segment_configuration_backup = 'gpexpand.gp_segment_configuration'
+    gp_segment_configuration_backup = 'hdbexpand.gp_segment_configuration'
 
     query = "select hostname, datadir from gp_segment_configuration where content = -1 order by dbid"
     conn = dbconn.connect(dbconn.DbURL(dbname='postgres'), unsetSearchPath=False)
     res = dbconn.execSQL(conn, query).fetchall()
+    print(res)
     master = res[0]
     standby = res[1]
-
     master_datadir = master[1]
     standby_host = standby[0]
     standby_datadir = standby[1]
@@ -2966,8 +2966,7 @@ def impl(context):
     standby_remote_gp_segment_configuration_file = "%s:%s/%s" % \
             (standby_host, standby_datadir, gp_segment_configuration_backup)
     standby_local_gp_segment_configuration_file = "%s/%s.standby" % \
-            (master_datadir, gp_segment_configuration_backup)
-
+            (master_datadir, gp_segment_configuration_backup) 
     cmd = Command(name="Copy standby file to master", cmdStr='scp %s %s' % \
             (standby_remote_statusfile, standby_local_statusfile))
     cmd.run(validateAfter=True)

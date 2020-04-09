@@ -427,8 +427,8 @@ try:
     recoversegOptions = "-i " + newConfig.inputFile + " -v -a -d " + options.master_data_directory
     if options.logfile_directory != None:
         recoversegOptions = recoversegOptions + " -l " + str(options.logfile_directory)
-    logger.info('About to run gprecoverseg with options: ' + recoversegOptions)
-    cmd = GpRecoverSeg("Running gprecoverseg", options=recoversegOptions)
+    logger.info('About to run hdbrecoverseg with options: ' + recoversegOptions)
+    cmd = GpRecoverSeg("Running hdbrecoverseg", options=recoversegOptions)
     cmd.run(validateAfter=True)
 
     """ Delete old mirror directories. """

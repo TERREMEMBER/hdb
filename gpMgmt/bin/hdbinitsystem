@@ -70,8 +70,8 @@ GP_PASSWD=gparray
 TMP_PG_HBA=/tmp/pg_hba_conf_master.$$
 TMP_FILE=/tmp/cluster_tmp_file.$$
 TMP_HOSTNAME_FILE=/tmp/hostname_test_file.$$
-PARALLEL_STATUS_FILE=/tmp/gpinitsystem_parallel_status_file.$$
-GPCREATESEG=$WORKDIR/lib/gpcreateseg.sh
+PARALLEL_STATUS_FILE=/tmp/hdbinitsystem_parallel_status_file.$$
+GPCREATESEG=$WORKDIR/lib/hdbcreateseg.sh
 ULIMIT_WARN=0
 MIRROR_TYPE=0 # 0 = group, 1 = spread
 REMOTE_HOST_COUNT=0
@@ -1998,7 +1998,7 @@ if [ $REPORT_FAIL -ne 0 ];then
 	LOG_MSG "[INFO]:-Dumped contents of status file to the log file" 1
 	# Need to build a central backout file
 	LOG_MSG "[INFO]:-Building composite backout file" 1
-	for I in /tmp/gpsegcreate.sh_backout*
+	for I in /tmp/hdbsegcreate.sh_backout*
 	do
 		$CAT $I >> $BACKOUT_FILE
 		$RM -f $I
@@ -2007,7 +2007,7 @@ if [ $REPORT_FAIL -ne 0 ];then
 	ERROR_EXIT "[FATAL]:-Failures detected, see log file $LOG_FILE for more detail" 2
 else
 	LOG_MSG "[INFO]:-Deleting distributed backout files" 1
-	for I in ls /tmp/gpsegcreate.sh_backout*
+	for I in ls /tmp/hdbsegcreate.sh_backout*
 	do
 		$RM -f $I
 	done
