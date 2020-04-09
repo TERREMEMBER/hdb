@@ -194,13 +194,8 @@ cat <<-EOF
 	  a cluster installation with master and `expr 2 \* ${NUM_PRIMARY_MIRROR_PAIRS}` segment instances
 	  (${NUM_PRIMARY_MIRROR_PAIRS} primary & ${NUM_PRIMARY_MIRROR_PAIRS} mirror).
 
-<<<<<<< HEAD
 	    HDBHOME ................. : ${HDBHOME}
-=======
-	    GPHOME ................. : ${HDBHOME}
->>>>>>> hdb_master
 	    MASTER_DATA_DIRECTORY .. : ${QDDIR}/${SEG_PREFIX}-1
-
 	    MASTER PORT (PGPORT) ... : ${MASTER_DEMO_PORT}
 	    STANDBY PORT ........... : ${STANDBY_DEMO_PORT}
 	    SEGMENT PORTS .......... : ${DEMO_SEG_PORTS_LIST}
