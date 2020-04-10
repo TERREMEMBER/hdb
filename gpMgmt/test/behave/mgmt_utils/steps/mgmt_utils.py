@@ -2023,7 +2023,7 @@ def impl(context, location):
             host_opts.extend(['-h', host])
 
         subprocess.check_call([
-            'gpscp',
+            'hdbscp',
             '-rv',
             ] + host_opts + [
             os.getenv('HDBHOME'),
