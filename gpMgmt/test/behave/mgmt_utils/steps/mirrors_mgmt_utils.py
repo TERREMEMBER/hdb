@@ -205,17 +205,17 @@ def impl(context):
             % (key, old_content_to_host[key], curr_content_to_host[key]))
 
 
-@given('a gpmovemirrors cross_subnet input file is created')
+@given('a hdbmovemirrors cross_subnet input file is created')
 def impl(context):
     context.expected_segs = []
 
-    context.expected_segs.append("sdw1-1|21500|/tmp/gpmovemirrors/data/mirror/gpseg2_moved")
-    context.expected_segs.append("sdw1-2|22501|/tmp/gpmovemirrors/data/mirror/gpseg3")
+    context.expected_segs.append("sdw1-1|21500|/tmp/hdbmovemirrors/data/mirror/gpseg2_moved")
+    context.expected_segs.append("sdw1-2|22501|/tmp/hdbmovemirrors/data/mirror/gpseg3")
 
-    input_filename = "/tmp/gpmovemirrors_input_cross_subnet"
+    input_filename = "/tmp/hdbmovemirrors_input_cross_subnet"
     with open(input_filename, "w") as fd:
-        fd.write("sdw1-1|21500|/tmp/gpmovemirrors/data/mirror/gpseg2 %s\n" % context.expected_segs[0])
-        fd.write("sdw1-1|21501|/tmp/gpmovemirrors/data/mirror/gpseg3 %s" % context.expected_segs[1])
+        fd.write("sdw1-1|21500|/tmp/hdbmovemirrors/data/mirror/gpseg2 %s\n" % context.expected_segs[0])
+        fd.write("sdw1-1|21501|/tmp/hdbmovemirrors/data/mirror/gpseg3 %s" % context.expected_segs[1])
 
 
 @then('verify that mirror segments are in new cross_subnet configuration')
@@ -294,13 +294,13 @@ def impl(context, mirror_config):
                 raise Exception('Expected primaries on %s to all be mirrored to the same host, but they are mirrored to %d different hosts' %
                         (primary_host, num_mirror_hosts))
 
-@given("a gpmovemirrors directory under '{parent_dir}' with mode '{mode}' is created")
+@given("a hdbmovemirrors directory under '{parent_dir}' with mode '{mode}' is created")
 def impl(context, parent_dir, mode):
     make_temp_dir(context,parent_dir, mode)
     context.mirror_context.working_directory = context.temp_base_dir
 
 
-@given("a '{file_type}' gpmovemirrors file is created")
+@given("a '{file_type}' hdbmovemirrors file is created")
 def impl(context, file_type):
     segments = GpArray.initFromCatalog(dbconn.DbURL()).getSegmentList()
     mirror = segments[0].mirrorDB
@@ -338,21 +338,21 @@ def impl(context, file_type):
         )
         contents = '%s %s' % (valid_config, valid_config_with_different_dir)
     else:
-        raise Exception('unknown gpmovemirrors file_type specified')
+        raise Exception('unknown hdbmovemirrors file_type specified')
 
-    context.mirror_context.input_file = "gpmovemirrors_%s.txt" % file_type
+    context.mirror_context.input_file = "hdbmovemirrors_%s.txt" % file_type
     with open(context.mirror_context.input_file_path(), 'w') as fd:
         fd.write(contents)
 
 
-@when('the user runs gpmovemirrors')
+@when('the user runs hdbmovemirrors')
 def impl(context):
     run_gpmovemirrors(context)
 
 
-@when('the user runs gpmovemirrors with additional args "{extra_args}"')
+@when('the user runs hdbmovemirrors with additional args "{extra_args}"')
 def run_gpmovemirrors(context, extra_args=''):
-    cmd = "gpmovemirrors --input=%s %s" % (
+    cmd = "hdbmovemirrors --input=%s %s" % (
         context.mirror_context.input_file_path(), extra_args)
     run_gpcommand(context, cmd)
 
@@ -369,13 +369,13 @@ def impl(context):
     And the segments are synchronized''')
 
 
-@given('a sample gpmovemirrors input file is created in "{mirror_config}" configuration')
+@given('a sample hdbmovemirrors input file is created in "{mirror_config}" configuration')
 def impl(context, mirror_config):
     if mirror_config not in ["group", "spread"]:
         raise Exception('"%s" is not a valid mirror configuration for this step; options are "group" and "spread".')
 
     # Port numbers and addresses are hardcoded to TestCluster values, assuming a 3-host 2-segment cluster.
-    input_filename = "/tmp/gpmovemirrors_input_%s" % mirror_config
+    input_filename = "/tmp/hdbmovemirrors_input_%s" % mirror_config
     line_template = "%s|%d|%s %s|%d|%s\n"
 
     # The mirrors for contents 0 and 3 are excluded from the two maps below because they are the same in either configuration
@@ -383,12 +383,12 @@ def impl(context, mirror_config):
     #   gpinitsystem task.  The maps below are from {contentID : (port|hostname)}.
 
     # Group mirroring (TestCluster default): sdw1 mirrors to sdw2, sdw2 mirrors to sdw3, sdw3 mirrors to sdw2
-    group_port_map = {0: 21000, 1: 21001, 2: 21000, 3: 21001, 4: 21000, 5: 21001}
-    group_address_map = {0: "sdw2", 1: "sdw2", 2: "sdw3", 3: "sdw3", 4: "sdw1", 5: "sdw1"}
+    group_port_map = {0: 20000, 1: 20001, 2: 20000, 3: 20001, 4: 20000, 5: 20001}
+    group_address_map = {0: "sdw1", 1: "sdw1", 2: "sdw2", 3: "sdw2", 4: "mdw", 5: "mdw"}
 
     # Spread mirroring: each host mirrors one primary to each of the other two hosts
-    spread_port_map = {0: 21000, 1: 21000, 2: 21000, 3: 21001, 4: 21001, 5: 21001}
-    spread_address_map = {0: "sdw2", 1: "sdw3", 2: "sdw1", 3: "sdw3", 4: "sdw1", 5: "sdw2"}
+    spread_port_map = {0: 20000, 1: 20000, 2: 20000, 3: 20001, 4: 20001, 5: 20001}
+    spread_address_map = {0: "sdw1", 1: "sdw2", 2: "mdw", 3: "sdw2", 4: "mdw", 5: "sdw1"}
 
     # Create a map from each host to the hosts holding the mirrors of all the
     # primaries on the original host, e.g. the primaries for contents 0 and 1
@@ -411,7 +411,6 @@ def impl(context, mirror_config):
 
             mirrors = map(lambda segmentPair: segmentPair.mirrorDB, gparray.getSegmentList())
             mirror = next(iter(filter(lambda mirror: mirror.getSegmentContentId() == content, mirrors)), None)
-
             old_directory = mirror.getSegmentDataDirectory()
             new_directory = '%s_moved' % old_directory
 

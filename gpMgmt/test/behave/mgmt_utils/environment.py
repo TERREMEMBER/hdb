@@ -17,7 +17,7 @@ def before_all(context):
 
 def before_feature(context, feature):
     # we should be able to run gpexpand without having a cluster initialized
-    tags_to_skip = ['hdbexpand', 'gpaddmirrors', 'hdbstate', 'gpmovemirrors', 'hdbinitsystem',
+    tags_to_skip = ['hdbexpand', 'gpaddmirrors', 'hdbstate', 'hdbmovemirrors', 'hdbinitsystem',
                     'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload']
 
     if set(context.feature.tags).intersection(tags_to_skip):
@@ -84,7 +84,7 @@ def before_scenario(context, scenario):
         scenario.skip("skipping scenario tagged with @skip")
         return
 
-    if 'gpmovemirrors' in context.feature.tags:
+    if 'hdbmovemirrors' in context.feature.tags:
         context.mirror_context = MirrorMgmtContext()
 
     if 'hdbconfig' in context.feature.tags:
@@ -93,7 +93,7 @@ def before_scenario(context, scenario):
     if 'hdbssh-exkeys' in context.feature.tags:
         context.gpssh_exkeys_context = GpsshExkeysMgmtContext(context)
 
-    tags_to_skip = ['hdbexpand', 'gpaddmirrors', 'hdbstate', 'gpmovemirrors', 'hdbinitsystem',
+    tags_to_skip = ['hdbexpand', 'gpaddmirrors', 'hdbstate', 'hdbmovemirrors', 'hdbinitsystem',
                     'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload']
 
     if set(context.feature.tags).intersection(tags_to_skip):
@@ -127,7 +127,7 @@ def after_scenario(context, scenario):
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
-    tags_to_cleanup = ['gpmovemirrors', 'hdbssh-exkeys']
+    tags_to_cleanup = ['hdbmovemirrors', 'hdbssh-exkeys']
     if set(context.feature.tags).intersection(tags_to_cleanup):
         if 'temp_base_dir' in context:
             shutil.rmtree(context.temp_base_dir)
@@ -141,8 +141,8 @@ def after_scenario(context, scenario):
                                                          and context.orig_write_permission:
             run_command(context, 'sudo chmod u+w %s' % home_dir)
 
-        if os.path.isdir('%s/gpAdminLogs.bk' % home_dir):
-            shutil.move('%s/gpAdminLogs.bk' % home_dir, '%s/gpAdminLogs' % home_dir)
+        if os.path.isdir('%s/hdbAdminLogs.bk' % home_dir):
+            shutil.move('%s/hdbAdminLogs.bk' % home_dir, '%s/hdbAdminLogs' % home_dir)
 
     if 'hdbssh' in context.feature.tags:
         run_command(context, 'sudo tc qdisc del dev lo root netem')

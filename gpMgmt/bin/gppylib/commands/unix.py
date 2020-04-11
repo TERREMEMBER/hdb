@@ -30,14 +30,14 @@ platform_list = [LINUX, DARWIN, FREEBSD, OPENBSD]
 
 curr_platform = platform.uname()[0].lower()
 
-GPHOME = os.environ.get('GPHOME', None)
+HDBHOME = os.environ.get('HDBHOME', None)
 
 # ---------------command path--------------------
 CMDPATH = ['/usr/kerberos/bin', '/usr/sfw/bin', '/opt/sfw/bin', '/bin', '/usr/local/bin',
            '/usr/bin', '/sbin', '/usr/sbin', '/usr/ucb', '/sw/bin', '/opt/Navisphere/bin']
 
-if GPHOME:
-    CMDPATH.append(GPHOME)
+if HDBHOME:
+    CMDPATH.append(HDBHOME)
 
 CMD_CACHE = {}
 
