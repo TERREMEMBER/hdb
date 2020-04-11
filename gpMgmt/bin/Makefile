@@ -14,7 +14,7 @@ $(recurse)
 
 PROGRAMS= analyzedb gpaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
-	gpload gpload.py gpmovemirrors \
+	gpload gpload.py hdbmovemirrors \
 	hdbpkg hdbreload \
 	hdbstate hdbsys1 minirepro hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \

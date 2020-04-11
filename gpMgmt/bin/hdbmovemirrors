@@ -27,7 +27,7 @@ try:
     from gppylib.parseutils import line_reader, check_values, canonicalize_address
 
 except ImportError, e:
-    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced greenplum_path.sh.  Detail: ' + str(e))
+    sys.exit('ERROR: Cannot import modules.  Please check that you have sourced inhybrid_path.sh.  Detail: ' + str(e))
 
 # constants
 MAX_BATCH_SIZE = 128
@@ -74,8 +74,8 @@ def parseargs():
     parser.add_option('-v', '--verbose', dest="verbose", action='store_true',
                       help='debug output.')
     parser.add_option('-l', '--log-file-directory', dest="logfile_directory",
-                      help='The directory where the gpmovemirrors log file should be put. \
-                            The default location is ~/gpAdminLogs.')
+                      help='The directory where the hdbmovemirrors log file should be put. \
+                            The default location is ~/hdbAdminLogs.')
     parser.add_option('-C', '--continue', dest='continue_move', action='store_true',
                       help='Continue moving mirrors')
     parser.add_option('', '--hba-hostnames', action='store_true', dest='hba_hostnames',
@@ -123,7 +123,7 @@ def parseargs():
 # -------------------------------------------------------------------------
 def logOptionValues(options):
     """ """
-    logger.info("Option values for this invocation of gpmovemirrors are:")
+    logger.info("Option values for this invocation of hdbmovemirrors are:")
     logger.info("")
     logger.info("  --input                 = " + str(options.input_filename))
     logger.info("  --master-data-directory = " + str(options.master_data_directory))
@@ -141,7 +141,7 @@ pool = None
 
 def shutdown():
     """used if the script is closed abrubtly"""
-    logger.info('Shutting down gpmovemirrors...')
+    logger.info('Shutting down hdbmovemirrors...')
     if pool != None:
         pool.haltWork()
         pool.joinWorkers()
@@ -222,13 +222,14 @@ class Configuration:
 
     def read_input_file(self, inputFile):
         self.inputFile = inputFile
-
+        print("11111111111111111111111111111111")
         with open(inputFile) as f:
             for lineno, line in line_reader(f):
+                print(lineno)
+                print(line)
                 try:
                     (oldAddress, oldPort, oldDataDirectory), (newAddress, newPort, newDataDirectory) = \
                         self._getParsedRow(lineno, line)
-
                     oldGpdb = lookupGpdb(oldAddress, oldPort, oldDataDirectory)
                     if oldGpdb is None or oldGpdb.getSegmentRole() != ROLE_MIRROR:
                         if oldGpdb is None:
@@ -255,9 +256,9 @@ class Configuration:
                     self.oldMirrorList.append(oldMirror)
                     self.newMirrorList.append(newMirror)
                 except ValueError:
-                    raise ValueError('Missing or invalid value on line %d of file: %s.' % (line, inputFile))
+                    raise ValueError('Missing or invalid value on line %s of file: %s.' % (line, inputFile))
                 except Exception, e:
-                    raise Exception('Invalid input file on line %d of file %s: %s' % (line, inputFile, str(e)))
+                    raise Exception('Invalid input file on line %s of file %s: %s' % (line, inputFile, str(e)))
 
     def write_output_file(self, filename, oldToNew=True):
         """ Write out the configuration in a format appropriate for use with the -i option. """
@@ -314,10 +315,10 @@ try:
     sml = SimpleMainLock(mainOptions)
     otherpid = sml.acquire()
     if otherpid is not None:
-        logger.error("An instance of %s is already running (pid %s)" % ("gpmovemirrors", otherpid))
+        logger.error("An instance of %s is already running (pid %s)" % ("hdbmovemirrors", otherpid))
         sys.exit(1)
 
-    logger.info("Invocation of gpmovemirrors mirrors")
+    logger.info("Invocation of hdbmovemirrors mirrors")
     logOptionValues(options)
 
     dburl = dbconn.DbURL()
@@ -329,7 +330,7 @@ try:
         logger.error('Failed to connect to database.  Make sure the')
         logger.error('Greenplum instance is running, and that')
         logger.error('your environment is correct, then rerun')
-        logger.error('gpmovemirrors ' + ' '.join(sys.argv[1:]))
+        logger.error('hdbmovemirrors ' + ' '.join(sys.argv[1:]))
         sys.exit(1)
 
     """ Get the old to new mirror configuration. """
@@ -391,8 +392,8 @@ try:
                         cidr_suffix = '/128' if ':' in ip else '/32'
                         cidr = ip + cidr_suffix
                         entries.append("host replication {username} {cidr} trust".format(username=unix.getUserName(), cidr=cidr))
-                cmdStr = ". {gphome}/greenplum_path.sh; echo '{entries}' >> {datadir}/pg_hba.conf; pg_ctl -D {datadir} reload".format(
-                    gphome=os.environ["GPHOME"],
+                cmdStr = ". {gphome}/inhybrid_path.sh; echo '{entries}' >> {datadir}/pg_hba.conf; pg_ctl -D {datadir} reload".format(
+                    gphome=os.environ["HDBHOME"],
                     entries="\n".join(entries),
                     datadir=primary_datadir
                 )
@@ -464,9 +465,9 @@ try:
 
 except Exception, e:
     if options is not None and options.verbose:
-        logger.exception("gpmovemirrors failed. exiting...")
+        logger.exception("hdbmovemirrors failed. exiting...")
     else:
-        logger.error("gpmovemirrors failed: %s \n\nExiting..." % e)
+        logger.error("hdbmovemirrors failed: %s \n\nExiting..." % e)
     sys.exit(3)
 
 except KeyboardInterrupt:
