@@ -5,7 +5,7 @@ from test.behave_utils.utils import *
 
 from mgmt_utils import *
 
-# This file contains steps for gpaddmirrors and gpmovemirrors tests
+# This file contains steps for hdbaddmirrors and gpmovemirrors tests
 
 # This class is intended to store per-Scenario state that is built up over
 # a series of steps.
@@ -25,7 +25,7 @@ class MirrorMgmtContext:
 def _generate_input_config(spread=False):
     datadir_config = _write_datadir_config()
     mirror_config_output_file = "/tmp/test_gpaddmirrors.config"
-    cmd_str = 'gpaddmirrors -a -o %s -m %s' % (mirror_config_output_file, datadir_config)
+    cmd_str = 'hdbaddmirrors -a -o %s -m %s' % (mirror_config_output_file, datadir_config)
     if spread:
         cmd_str += " -s"
     Command('generate mirror_config file', cmd_str).run(validateAfter=True)
@@ -60,19 +60,19 @@ def _write_datadir_config_for_three_mirrors():
     return datadir_config
 
 
-@when("gpaddmirrors adds 3 mirrors")
+@when("hdbaddmirrors adds 3 mirrors")
 def add_three_mirrors(context):
     datadir_config = _write_datadir_config_for_three_mirrors()
     mirror_config_output_file = "/tmp/test_gpaddmirrors.config"
-    cmd_str = 'gpaddmirrors -o %s -m %s' % (mirror_config_output_file, datadir_config)
+    cmd_str = 'hdbaddmirrors -o %s -m %s' % (mirror_config_output_file, datadir_config)
     Command('generate mirror_config file', cmd_str).run(validateAfter=True)
-    cmd = Command('gpaddmirrors ', 'gpaddmirrors -a -i %s ' % mirror_config_output_file)
+    cmd = Command('hdbaddmirrors ', 'hdbaddmirrors -a -i %s ' % mirror_config_output_file)
     cmd.run(validateAfter=True)
 
 
 def add_mirrors(context, options):
     context.mirror_config = _generate_input_config()
-    cmd = Command('gpaddmirrors ', 'gpaddmirrors -a -i %s %s' % (context.mirror_config, options))
+    cmd = Command('hdbaddmirrors ', 'hdbaddmirrors -a -i %s %s' % (context.mirror_config, options))
     cmd.run(validateAfter=True)
 
 
@@ -148,32 +148,32 @@ def impl(context):
         raise Exception('No mirrors found')
 
 
-@given('gpaddmirrors adds mirrors with options "{options}"')
-@when('gpaddmirrors adds mirrors with options "{options}"')
-@given('gpaddmirrors adds mirrors')
-@when('gpaddmirrors adds mirrors')
-@when('gpaddmirrors adds mirrors with options ""')
-@then('gpaddmirrors adds mirrors')
+@given('hdbaddmirrors adds mirrors with options "{options}"')
+@when('hdbaddmirrors adds mirrors with options "{options}"')
+@given('hdbaddmirrors adds mirrors')
+@when('hdbaddmirrors adds mirrors')
+@when('hdbaddmirrors adds mirrors with options ""')
+@then('hdbaddmirrors adds mirrors')
 def impl(context, options=" "):
     add_mirrors(context, options)
 
 
-@given('gpaddmirrors adds mirrors with temporary data dir')
+@given('hdbaddmirrors adds mirrors with temporary data dir')
 def impl(context):
     context.mirror_config = _generate_input_config()
     mdd = os.getenv('MASTER_DATA_DIRECTORY', "")
     del os.environ['MASTER_DATA_DIRECTORY']
     try:
-        cmd = Command('gpaddmirrors ', 'gpaddmirrors -a -i %s -d %s' % (context.mirror_config, mdd))
+        cmd = Command('hdbaddmirrors ', 'hdbaddmirrors -a -i %s -d %s' % (context.mirror_config, mdd))
         cmd.run(validateAfter=True)
     finally:
         os.environ['MASTER_DATA_DIRECTORY'] = mdd
 
 
-@given('gpaddmirrors adds mirrors in spread configuration')
+@given('hdbaddmirrors adds mirrors in spread configuration')
 def impl(context):
     context.mirror_config = _generate_input_config(spread=True)
-    cmd = Command('gpaddmirrors ', 'gpaddmirrors -a -i %s ' % context.mirror_config)
+    cmd = Command('hdbaddmirrors ', 'hdbaddmirrors -a -i %s ' % context.mirror_config)
     cmd.run(validateAfter=True)
 
 

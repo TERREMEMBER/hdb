@@ -12,7 +12,7 @@ SUBDIRS += ifaddrs
 
 $(recurse)
 
-PROGRAMS= analyzedb gpaddmirrors hdbcheckcat hdbcheckperf \
+PROGRAMS= analyzedb hdbaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
 	gpload gpload.py hdbmovemirrors \
 	hdbpkg hdbreload \
@@ -234,7 +234,7 @@ clean distclean:
 	rm -rf $(PYLIB_SRC)/$(PYGRESQL_DIR)/build
 	rm -rf $(PYLIB_SRC)/subprocess32/build
 	rm -rf *.pyc
-	rm -f analyzedbc hdbactivatestandbyc gpaddmirrorsc hdbcheckcatc \
+	rm -f analyzedbc hdbactivatestandbyc hdbaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
 		  hdbdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
 		  hdbpkgc hdbrecoversegc hdbreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \

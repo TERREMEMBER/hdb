@@ -1,7 +1,7 @@
 ext
 /analyzedbc
 /hdbactivatestandbyc
-/gpaddmirrorsc
+/hdbaddmirrorsc
 /hdbcheckcatc
 /gpcheckperfc
 /gpcheckresgroupimplc

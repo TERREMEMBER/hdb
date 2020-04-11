@@ -71,14 +71,14 @@ class GpAddMirrorsTest(GpTestCase):
         self.master.heap_checksum = 1
         self.mock_heap_checksum.return_value.check_segment_consistency.return_value = (
             [self.primary0], [self.primary1], self.master.heap_checksum)
-        sys.argv = ['gpaddmirrors', '-a']
+        sys.argv = ['hdbaddmirrors', '-a']
         options, args = self.parser.parse_args()
         command_obj = self.subject.createProgram(options, args)
         with self.assertRaisesRegexp(Exception, 'Segments have heap_checksum set inconsistently to master'):
             command_obj.run()
 
     def test_option_batch_of_size_0_will_raise(self):
-        sys.argv = ['gpaddmirrors', '-B', '0']
+        sys.argv = ['hdbaddmirrors', '-B', '0']
         options, _ = self.parser.parse_args()
         self.subject = GpAddMirrorsProgram(options)
         with self.assertRaises(ProgramArgumentValidationException):
@@ -86,17 +86,17 @@ class GpAddMirrorsTest(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO.StringIO)
     def test_option_version(self, mock_stdout):
-        sys.argv = ['gpaddmirrors', '--version']
+        sys.argv = ['hdbaddmirrors', '--version']
         with self.assertRaises(SystemExit) as cm:
             options, _ = self.parser.parse_args()
 
-        self.assertIn("gpaddmirrors version $Revision$", mock_stdout.getvalue())
+        self.assertIn("hdbaddmirrors version $Revision$", mock_stdout.getvalue())
         self.assertEquals(cm.exception.code, 0)
 
     def test_generated_file_contains_default_port_offsets(self):
         datadir_config = _write_datadir_config(self.mdd)
-        mirror_config_output_file = "/tmp/test_gpaddmirrors.config"
-        sys.argv = ['gpaddmirrors', '-o', mirror_config_output_file, '-m', datadir_config]
+        mirror_config_output_file = "/tmp/test_hdbaddmirrors.config"
+        sys.argv = ['hdbaddmirrors', '-o', mirror_config_output_file, '-m', datadir_config]
         self.config_provider_mock.loadSystemConfig.return_value = GpArray([self.master, self.primary0, self.primary1])
         options, _ = self.parser.parse_args()
         self.subject = GpAddMirrorsProgram(options)
@@ -109,8 +109,8 @@ class GpAddMirrorsTest(GpTestCase):
 
     def test_generated_file_contains_port_offsets(self):
         datadir_config = _write_datadir_config(self.mdd)
-        mirror_config_output_file = "/tmp/test_gpaddmirrors.config"
-        sys.argv = ['gpaddmirrors', '-p', '5000', '-o', mirror_config_output_file, '-m', datadir_config]
+        mirror_config_output_file = "/tmp/test_hdbaddmirrors.config"
+        sys.argv = ['hdbaddmirrors', '-p', '5000', '-o', mirror_config_output_file, '-m', datadir_config]
         options, _ = self.parser.parse_args()
         self.config_provider_mock.loadSystemConfig.return_value = GpArray([self.master, self.primary0, self.primary1])
         self.subject = GpAddMirrorsProgram(options)
@@ -125,7 +125,7 @@ class GpAddMirrorsTest(GpTestCase):
     @patch('gppylib.programs.clsAddMirrors.unix.InterfaceAddrs.remote', return_value=['192.168.2.1', '192.168.1.1'])
     @patch('gppylib.programs.clsAddMirrors.gp.IfAddrs.list_addrs', return_value=['192.168.2.1', '192.168.1.1'])
     def test_pghbaconf_updated_successfully(self, mock1, mock2, mock3):
-        sys.argv = ['gpaddmirrors', '-i', '/tmp/nonexistent/file']
+        sys.argv = ['hdbaddmirrors', '-i', '/tmp/nonexistent/file']
         options, _ = self.parser.parse_args()
         self.subject = GpAddMirrorsProgram(options)
         self.subject.config_primaries_for_replication(self.gparrayMock)
@@ -136,7 +136,7 @@ class GpAddMirrorsTest(GpTestCase):
     @patch('gppylib.programs.clsAddMirrors.unix.InterfaceAddrs.remote', return_value=['192.168.2.1', '192.168.1.1'])
     @patch('gppylib.programs.clsAddMirrors.gp.IfAddrs.list_addrs', return_value=['192.168.2.1', '192.168.1.1'])
     def test_pghbaconf_updated_fails(self, mock1, mock2, mock3):
-        sys.argv = ['gpaddmirrors', '-i', '/tmp/nonexistent/file']
+        sys.argv = ['hdbaddmirrors', '-i', '/tmp/nonexistent/file']
         options, _ = self.parser.parse_args()
         self.subject = GpAddMirrorsProgram(options)
         with self.assertRaisesRegexp(Exception, "boom"):
@@ -146,7 +146,7 @@ class GpAddMirrorsTest(GpTestCase):
 
     def test_datadir_interview(self):
         self.raw_input_mock.side_effect = ["/tmp/datadirs/mirror1", "/tmp/datadirs/mirror2", "/tmp/datadirs/mirror3"]
-        sys.argv = ['gpaddmirrors', '-p', '5000']
+        sys.argv = ['hdbaddmirrors', '-p', '5000']
         options, _ = self.parser.parse_args()
         self.config_provider_mock.loadSystemConfig.return_value = GpArray([self.master, self.primary0, self.primary1])
         self.subject = GpAddMirrorsProgram(options)
@@ -173,7 +173,7 @@ def _write_datadir_config(mdd):
     mirror_data_dir = os.path.join(mdd_parent_parent, 'mirror')
     if not os.path.exists(mirror_data_dir):
         os.mkdir(mirror_data_dir)
-    datadir_config = '/tmp/gpaddmirrors_datadir_config'
+    datadir_config = '/tmp/hdbaddmirrors_datadir_config'
     contents = \
 """
 {0}

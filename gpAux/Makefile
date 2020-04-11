@@ -569,10 +569,10 @@ pvk : gccVersionCheck version GPROOTDEP
 
 SET_VERSION_SCRIPTS = \
 	bin/hdbactivatestandby \
-	bin/gpaddmirrors \
+	bin/hdbaddmirrors \
 	bin/gpcheckperf \
 	bin/hdbdeletesystem \
-	bin/gpexpand \
+	bin/hdbexpand \
 	bin/gpfilespace \
 	bin/hdbinitstandby \
 	bin/hdbinitsystem \
