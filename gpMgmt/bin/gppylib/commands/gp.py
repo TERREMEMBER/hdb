@@ -38,10 +38,10 @@ SEGMENT_STOP_TIMEOUT_DEFAULT=120
 #"Command not found" return code in bash
 COMMAND_NOT_FOUND=127
 
-#Default size of thread pool for gpstart and gpsegstart
+#Default size of thread pool for hdbstart and gpsegstart
 DEFAULT_GPSTART_NUM_WORKERS=64
 
-# Application name used by the pg_rewind instance that gprecoverseg starts
+# Application name used by the pg_rewind instance that hdbrecoverseg starts
 # during incremental recovery. hdbstate uses this to figure out when incremental
 # recovery is active.
 RECOVERY_REWIND_APPNAME = '__gprecoverseg_pg_rewind__'
@@ -1565,7 +1565,7 @@ def createTempDirectoryName(masterDataDirectory, tempDirPrefix):
 #-------------------------------------------------------------------------
 class GpRecoverSeg(Command):
    """
-   This command will execute the gprecoverseg utility
+   This command will execute the hdbrecoverseg utility
    """
 
    def __init__(self, name, options = "", ctxt = LOCAL, remoteHost = None):

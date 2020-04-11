@@ -41,7 +41,7 @@ DEFAULT_BATCH_SIZE=16
 # backup filename
 PG_HBA_BACKUP = 'pg_hba.conf.gpinitstandby.bak'
 
-_description = """The gpinitstandby utility adds a backup master host to your
+_description = """The hdbinitstandby utility adds a backup master host to your
 inHybrid Database system. If your system has an existing backup
 master host configured, use the -r option to remove it before adding 
 the new standby master host.

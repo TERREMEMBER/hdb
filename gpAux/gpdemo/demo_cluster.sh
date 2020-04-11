@@ -111,7 +111,7 @@ USAGE(){
 cleanDemo(){
 
     ##
-    ## Attempt to bring down using GPDB cluster instance using gpstop
+    ## Attempt to bring down using GPDB cluster instance using hdbstop
     ##
 
     (export MASTER_DATA_DIRECTORY=$QDDIR/${SEG_PREFIX}-1;

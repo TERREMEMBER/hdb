@@ -212,7 +212,7 @@ class Session(cmd.Cmd):
                     elif type(e) is pxssh.EOF:
                         print 'Could not acquire connection.'
                     else:
-                        print 'hint: use gpssh-exkeys to setup public-key authentication between hosts'
+                        print 'hint: use hdbssh-exkeys to setup public-key authentication between hosts'
 
         thread_list = []
         for host in hostList:

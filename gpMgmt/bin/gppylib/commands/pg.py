@@ -197,7 +197,7 @@ class PgBaseBackup(Command):
         cmd_tokens.append(str(target_gp_dbid))
 
         # We exclude certain unnecessary directories from being copied as they will greatly
-        # slow down the speed of gpinitstandby if containing a lot of data
+        # slow down the speed of hdbinitstandby if containing a lot of data
         if excludePaths is None or len(excludePaths) == 0:
             cmd_tokens.append('-E')
             cmd_tokens.append('./db_dumps')

@@ -77,7 +77,7 @@ The "gp_ao_co_diagnostics" shared library contains nine functions.
 
   1. Copy the gp_ao_co_diagnostics library file to each host in the cluster. For example,
 
-       gpscp -f hosts gp_ao_co_diagnostics.so =:$GPHOME/lib   
+       hdbscp -f hosts gp_ao_co_diagnostics.so =:$GPHOME/lib   
 
   2. Create a postgresql function references on the master to the functions.
 

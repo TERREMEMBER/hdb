@@ -50,7 +50,7 @@ class GpConfig(GpTestCase):
 
         self.os_env = dict(USER="my_user")
         self.os_env["MASTER_DATA_DIRECTORY"] = self.temp_dir
-        self.os_env["GPHOME"] = self.temp_dir
+        self.os_env["HDBHOME"] = self.temp_dir
         self.gparray = self._create_gparray_with_2_primary_2_mirrors()
         self.host_cache = Mock()
 
@@ -87,7 +87,7 @@ class GpConfig(GpTestCase):
             patch('gpconfig.GpArray.initFromCatalog', return_value=self.gparray),
             patch('gpconfig.WorkerPool', return_value=self.pool)
         ])
-        sys.argv = ["gpconfig"]  # reset to relatively empty args list
+        sys.argv = ["hdbconfig"]  # reset to relatively empty args list
 
         # GUC object for testing string quoting
         self.guc = Mock()
@@ -110,25 +110,25 @@ class GpConfig(GpTestCase):
         self.subject.LOGGER.error.assert_called_once_with("No action specified.  See the --help info.")
 
     def test_option_list_parses(self):
-        sys.argv = ["gpconfig", "--list"]
+        sys.argv = ["hdbconfig", "--list"]
         options = self.subject.parseargs()
 
         self.assertEquals(options.list, True)
 
     def test_option_value_must_accompany_option_change_raise(self):
-        sys.argv = ["gpconfig", "--change", "statement_mem"]
+        sys.argv = ["hdbconfig", "--change", "statement_mem"]
         with self.assertRaisesRegexp(Exception, "change requested but value not specified"):
             self.subject.parseargs()
         self.subject.LOGGER.error.assert_called_once_with("change requested but value not specified")
 
     def test_option_show_without_master_data_dir_will_succeed(self):
-        sys.argv = ["gpconfig", "--show", "statement_mem"]
+        sys.argv = ["hdbconfig", "--show", "statement_mem"]
         del self.os_env["MASTER_DATA_DIRECTORY"]
         self.subject.parseargs()
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_show_with_port_will_succeed(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "port"]
+        sys.argv = ["hdbconfig", "--show", "port"]
 
         # mocked database values
         # select * from gp_toolkit.gp_param_setting('port');                                                                                                                     ;
@@ -142,32 +142,32 @@ class GpConfig(GpTestCase):
                       mock_stdout.getvalue())
 
     def test_option_f_parses(self):
-        sys.argv = ["gpconfig", "--file", "--show", "statement_mem"]
+        sys.argv = ["hdbconfig", "--file", "--show", "statement_mem"]
         options = self.subject.parseargs()
 
         self.assertEquals(options.show, "statement_mem")
         self.assertEquals(options.file, True)
 
     def test_option_file_with_option_change_will_raise(self):
-        sys.argv = ["gpconfig", "--file", "--change", "statement_mem"]
+        sys.argv = ["hdbconfig", "--file", "--change", "statement_mem"]
         with self.assertRaisesRegexp(Exception, "'--file' option must accompany '--show' option"):
             self.subject.parseargs()
         self.subject.LOGGER.error.assert_called_once_with("'--file' option must accompany '--show' option")
 
     def test_option_file_compare_with_file_will_raise(self):
-        sys.argv = ["gpconfig", "--file", "--show", "statement_mem", "--file-compare", ]
+        sys.argv = ["hdbconfig", "--file", "--show", "statement_mem", "--file-compare", ]
         with self.assertRaisesRegexp(Exception, "'--file' option and '--file-compare' option cannot be used together"):
             self.subject.parseargs()
         self.subject.LOGGER.error.assert_called_once_with("'--file' option and '--file-compare' option cannot be used together")
 
     def test_option_file_with_option_list_will_raise(self):
-        sys.argv = ["gpconfig", "--file", "--list", "statement_mem"]
+        sys.argv = ["hdbconfig", "--file", "--list", "statement_mem"]
         with self.assertRaisesRegexp(Exception, "'--file' option must accompany '--show' option"):
             self.subject.parseargs()
         self.subject.LOGGER.error.assert_called_once_with("'--file' option must accompany '--show' option")
 
     def test_option_file_without_master_data_dir_will_raise(self):
-        sys.argv = ["gpconfig", "--file", "--show", "statement_mem"]
+        sys.argv = ["hdbconfig", "--file", "--show", "statement_mem"]
         del self.os_env["MASTER_DATA_DIRECTORY"]
         with self.assertRaisesRegexp(Exception, "--file option requires that MASTER_DATA_DIRECTORY be set"):
             self.subject.parseargs()
@@ -175,7 +175,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_presence_of_setting(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
 
         self.subject.do_main()
 
@@ -189,7 +189,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_absence_of_setting_on_master(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
         self.master_file.get_value.return_value = None
         self.seg0_file.get_value.return_value = "seg_value"
 
@@ -200,7 +200,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_absence_of_setting_on_segment(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
         self.master_file.get_value.return_value = "master_value"
         self.seg0_file.get_value.return_value = None
 
@@ -211,7 +211,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_absence_of_setting_on_both(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
         self.master_file.get_value.return_value = None
         self.seg0_file.get_value.return_value = None
 
@@ -222,7 +222,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_difference_segments_out_of_sync(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
 
         self.master_file.get_value.return_value = 'foo'
         self.seg0_file.get_value.return_value = 'bar'
@@ -247,7 +247,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_f_will_report_difference_segments_out_of_sync_when_unset(self, mock_stdout):
-        sys.argv = ["gpconfig", "--show", "my_property_name", "--file"]
+        sys.argv = ["hdbconfig", "--show", "my_property_name", "--file"]
 
         self.master_file.get_value.return_value = 'foo'
         self.seg0_file.get_value.return_value = 'bar'
@@ -273,7 +273,7 @@ class GpConfig(GpTestCase):
     def test_option_change_value_master_separate_succeed(self):
         db_singleton_side_effect_list.append("some happy result")
         entry = 'my_property_name'
-        sys.argv = ["gpconfig", "-c", entry, "-v", "100", "-m", "20"]
+        sys.argv = ["hdbconfig", "-c", entry, "-v", "100", "-m", "20"]
 
         # mocked database values
         # 'SELECT name, setting, unit, short_desc, context, vartype, min_val, max_val FROM pg_settings'
@@ -296,7 +296,7 @@ class GpConfig(GpTestCase):
     def test_option_change_value_masteronly_succeed(self):
         db_singleton_side_effect_list.append("some happy result")
         entry = 'my_property_name'
-        sys.argv = ["gpconfig", "-c", entry, "-v", "100", "--masteronly"]
+        sys.argv = ["hdbconfig", "-c", entry, "-v", "100", "--masteronly"]
 
         # mocked database values
         # 'SELECT name, setting, unit, short_desc, context, vartype, min_val, max_val FROM pg_settings'
@@ -316,13 +316,13 @@ class GpConfig(GpTestCase):
         db_singleton_side_effect_list.append("DatabaseError")
 
         with self.assertRaisesRegexp(Exception, "not a valid GUC: my_property_name"):
-            sys.argv = ["gpconfig", "-c", "my_property_name", "-v", "100", "-m", "20"]
+            sys.argv = ["hdbconfig", "-c", "my_property_name", "-v", "100", "-m", "20"]
             self.subject.do_main()
 
         self.assertEqual(self.subject.LOGGER.fatal.call_count, 1)
 
     def test_option_change_value_hidden_guc_with_skipvalidation(self):
-        sys.argv = ["gpconfig", "-c", "my_hidden_guc_name", "-v", "100", "--skipvalidation"]
+        sys.argv = ["hdbconfig", "-c", "my_hidden_guc_name", "-v", "100", "--skipvalidation"]
         self.subject.do_main()
 
         self.subject.LOGGER.info.assert_called_with("completed successfully with parameters '-c my_hidden_guc_name -v 100 --skipvalidation'")
@@ -338,17 +338,17 @@ class GpConfig(GpTestCase):
         db_singleton_side_effect_list.append("my happy result")
 
         with self.assertRaisesRegexp(Exception, "GUC Validation Failed: my_hidden_guc_name cannot be changed under "
-                                                "normal conditions. Please refer to gpconfig documentation."):
-            sys.argv = ["gpconfig", "-c", "my_hidden_guc_name", "-v", "100"]
+                                                "normal conditions. Please refer to hdbconfig documentation."):
+            sys.argv = ["hdbconfig", "-c", "my_hidden_guc_name", "-v", "100"]
             self.subject.do_main()
 
         self.subject.LOGGER.fatal.assert_called_once_with("GUC Validation Failed: my_hidden_guc_name cannot be "
                                                           "changed under normal conditions. "
-                                                          "Please refer to gpconfig documentation.")
+                                                          "Please refer to hdbconfig documentation.")
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_file_compare_returns_same_value(self, mock_stdout):
-        sys.argv = ["gpconfig", "-s", "my_property_name", "--file-compare"]
+        sys.argv = ["hdbconfig", "-s", "my_property_name", "--file-compare"]
 
         seg_1 = Mock(name='seg1')
         seg_1.segInfo.getSegmentContentId.return_value = 1
@@ -371,7 +371,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_file_compare_works_with_unset_values(self, mock_stdout):
-        sys.argv = ["gpconfig", "-s", "my_property_name", "--file-compare"]
+        sys.argv = ["hdbconfig", "-s", "my_property_name", "--file-compare"]
 
         self.master_file.get_value.return_value = None
         self.seg0_file.get_value.return_value = None
@@ -397,7 +397,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_file_compare_returns_different_value(self, mock_stdout):
-        sys.argv = ["gpconfig", "-s", "my_property_name", "--file-compare"]
+        sys.argv = ["hdbconfig", "-s", "my_property_name", "--file-compare"]
 
         seg_1 = Mock(name='seg1')
         seg_1.segInfo.getSegmentContentId.return_value = 1
@@ -424,7 +424,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_file_compare_with_unset_values_on_some_segments(self, mock_stdout):
-        sys.argv = ["gpconfig", "-s", "my_property_name", "--file-compare"]
+        sys.argv = ["hdbconfig", "-s", "my_property_name", "--file-compare"]
 
         seg2_file = Mock(name='seg2')
         seg2_file.segInfo.getSegmentContentId.return_value = 1
@@ -451,7 +451,7 @@ class GpConfig(GpTestCase):
 
     @patch('sys.stdout', new_callable=StringIO)
     def test_option_file_compare_with_standby_master_with_different_file_value_will_report_failure(self, mock_stdout):
-        sys.argv = ["gpconfig", "-s", "my_property_name", "--file-compare"]
+        sys.argv = ["hdbconfig", "-s", "my_property_name", "--file-compare"]
 
         standby_master = Mock(name='standby_master')
         standby_master.segInfo.getSegmentContentId.return_value = -1
@@ -474,12 +474,12 @@ class GpConfig(GpTestCase):
 
     def test_setting_guc_when_guc_is_readonly_will_fail(self):
         self.subject.read_only_gucs.add("is_superuser")
-        sys.argv = ["gpconfig", "-c", "is_superuser", "-v", "on"]
+        sys.argv = ["hdbconfig", "-c", "is_superuser", "-v", "on"]
         with self.assertRaisesRegexp(Exception, "not a modifiable GUC: 'is_superuser'"):
             self.subject.do_main()
 
     def test_change_will_populate_read_only_gucs_set(self):
-        sys.argv = ["gpconfig", "--change", "foobar", "--value", "baz"]
+        sys.argv = ["hdbconfig", "--change", "foobar", "--value", "baz"]
         try:
             self.subject.do_main()
         except Exception:
@@ -523,7 +523,7 @@ class GpConfig(GpTestCase):
         self.assertEqual(result, expected)
 
     def setup_for_testing_quoting_string_values(self, vartype, value, additional_args=None):
-        sys.argv = ["gpconfig", "--change", "my_property_name", "--value", value]
+        sys.argv = ["hdbconfig", "--change", "my_property_name", "--value", value]
         if additional_args:
             sys.argv.extend(additional_args)
 
@@ -575,7 +575,7 @@ class GpConfig(GpTestCase):
         os.remove(self.guc_disallowed_readonly_file)
         db_singleton_side_effect_list.append("some happy result")
         entry = 'my_property_name'
-        sys.argv = ["gpconfig", "-c", entry, "-v", "100", "--masteronly"]
+        sys.argv = ["hdbconfig", "-c", entry, "-v", "100", "--masteronly"]
 
         # mocked database values
         # 'SELECT name, setting, unit, short_desc, context, vartype, min_val, max_val FROM pg_settings'
@@ -588,10 +588,10 @@ class GpConfig(GpTestCase):
         self.subject.LOGGER.warning.assert_called_with(target_warning)
 
     def test_when_gphome_env_unset_raises(self):
-        self.os_env['GPHOME'] = None
-        sys.argv = ["gpconfig", "-c", 'my_property_name', "-v", "100", "--masteronly"]
+        self.os_env['HDBHOME'] = None
+        sys.argv = ["hdbconfig", "-c", 'my_property_name', "-v", "100", "--masteronly"]
 
-        with self.assertRaisesRegexp(Exception, "GPHOME environment variable must be set"):
+        with self.assertRaisesRegexp(Exception, "HDBHOME environment variable must be set"):
             self.subject.do_main()
 
     def test_gpconfig_logs_successful_guc_change(self):

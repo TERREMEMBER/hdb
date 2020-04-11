@@ -35,7 +35,7 @@ class SimpleGppkgTestCase(GppkgTestCase):
         self.install(gppkg_file)
         self.remove(gppkg_file)
 
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         results = results.split('\n')[self.start_output:self.end_output]
         
         self.assertEqual(results, [])
@@ -44,11 +44,11 @@ class SimpleGppkgTestCase(GppkgTestCase):
         help_options = ["--help", "-h", "-?"] 
 
         for opt in help_options:
-            results = run_command("gppkg " + opt)
+            results = run_command("hdbpkg " + opt)
             self.assertNotEqual(results, "")
 
     def test05_version(self):
-        results = run_command("gppkg --version")
+        results = run_command("hdbpkg --version")
         self.assertNotEqual(results, "")
 
 if __name__ == "__main__":

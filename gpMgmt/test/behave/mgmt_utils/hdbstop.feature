@@ -13,7 +13,7 @@ Feature: hdbstop behave tests
 
     @concourse_cluster
     @demo_cluster
-    Scenario: when there are user connections gpstop waits to shutdown until user switches to fast mode
+    Scenario: when there are user connections hdbstop waits to shutdown until user switches to fast mode
         Given the database is running
           And the user asynchronously runs "psql postgres" and the process is saved
          When the user runs hdbstop -a -t 4 --skipvalidation and selects f

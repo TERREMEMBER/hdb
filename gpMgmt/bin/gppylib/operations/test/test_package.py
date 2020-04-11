@@ -225,7 +225,7 @@ class BuildGppkg(Operation):
             with open(os.path.join(gppkg_dir, "gppkg_spec.yml"), "w") as f:
                 f.write(gppkg_spec_file)
 
-            run_command("gppkg --build " + gppkg_dir)
+            run_command("hdbpkg --build " + gppkg_dir)
         finally:
             shutil.rmtree(gppkg_dir)
             shutil.rmtree(SCRATCH_SPACE)
@@ -252,11 +252,11 @@ class GppkgTestCase(unittest.TestCase):
             os.remove(gppkg)
 
     def cleanup(self):
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         gppkgs = results.split('\n')[1:]  # The first line is 'Starting gppkg with args', which we want to ignore.
 
         for gppkg in gppkgs:
-            run_command("gppkg --remove " + gppkg)
+            run_command("hdbpkg --remove " + gppkg)
 
     def build(self, gppkg_spec, rpm_spec, dep_rpm_specs=[]):
         gppkg_file = BuildGppkg(gppkg_spec, rpm_spec, dep_rpm_specs).run()
@@ -268,11 +268,11 @@ class GppkgTestCase(unittest.TestCase):
         return (gppkg_file == (gppkg_spec.get_filename()))
 
     def install(self, gppkg_filename):
-        run_command("gppkg --install %s" % gppkg_filename)
+        run_command("hdbpkg --install %s" % gppkg_filename)
         self.assertTrue(self.check_install(gppkg_filename))
 
     def check_install(self, gppkg_filename):
-        cmd = "gppkg -q %s" % gppkg_filename
+        cmd = "hdbpkg -q %s" % gppkg_filename
         results = run_command(cmd)
         results = results[1:]
         test_str = ''.join(gppkg_filename.split('-')[:1]) + " is installed"
@@ -281,11 +281,11 @@ class GppkgTestCase(unittest.TestCase):
 
     def remove(self, gppkg_filename):
         gppkg_package_name = gppkg_filename.split('-')[0] + '-' + gppkg_filename.split('-')[1]
-        run_command("gppkg --remove %s" % gppkg_package_name)
+        run_command("hdbpkg --remove %s" % gppkg_package_name)
         self.assertFalse(self.check_install(gppkg_filename))
 
     def update(self, old_gppkg_filename, new_gppkg_filename):
-        run_command("gppkg --update %s" % new_gppkg_filename)
+        run_command("hdbpkg --update %s" % new_gppkg_filename)
         self.assertTrue(self.check_install(new_gppkg_filename))
 
 
@@ -321,7 +321,7 @@ class SimpleGppkgTestCase(GppkgTestCase):
         self.install(gppkg_file)
         self.remove(gppkg_file)
 
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         results = results.split('\n')[1:]
 
         self.assertEquals(results, [])
@@ -330,11 +330,11 @@ class SimpleGppkgTestCase(GppkgTestCase):
         help_options = ["--help", "-h", "-?"]
 
         for opt in help_options:
-            results = run_command("gppkg " + opt)
+            results = run_command("hdbpkg " + opt)
             self.assertNotEquals(results, "")
 
     def test05_version(self):
-        results = run_command("gppkg --version")
+        results = run_command("hdbpkg --version")
         self.assertNotEquals(results, "")
 
 
@@ -349,7 +349,7 @@ class QueryTestCases(GppkgTestCase):
     def tearDown(self):
         '''
             Overriding the teardown here as successive tests
-            in the suite make use of gppkg installed in the
+            in the suite make use of hdbpkg installed in the
             previous test.
         '''
         pass
@@ -362,27 +362,27 @@ class QueryTestCases(GppkgTestCase):
         self.install(gppkg_file2)
 
     def test01_query_all(self):
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         self.assertEquals(results.split('\n')[1:],
                           [self.gppkg_spec1.get_package_name(), self.gppkg_spec2.get_package_name()])
 
-        results = run_command("gppkg --all -q")
+        results = run_command("hdbpkg --all -q")
         self.assertEquals(results.split('\n')[1:],
                           [self.gppkg_spec1.get_package_name(), self.gppkg_spec2.get_package_name()])
 
-        self.assertRaises(ExecutionError, run_command, "gppkg -qall")
+        self.assertRaises(ExecutionError, run_command, "hdbpkg -qall")
 
     def test02_query_info(self):
         expected_info_result = ['Nametest', 'Version1.0', 'Architecturex86_64', 'OSLinux', 'GPDBVersionmainbuilddev',
                                 'DescriptionTemporaryTestPackage']
         # Normal order of the options
-        results = run_command("gppkg -q --info %s" % self.gppkg_spec1.get_filename())
+        results = run_command("hdbpkg -q --info %s" % self.gppkg_spec1.get_filename())
         self.assertTrue(len(results.split('\n')) > 1)
         results = remove_timestamp(results)
         self.assertEquals(results, expected_info_result)
 
         # Reverse order of the options
-        results = run_command("gppkg --info -q %s" % self.gppkg_spec1.get_filename())
+        results = run_command("hdbpkg --info -q %s" % self.gppkg_spec1.get_filename())
         self.assertTrue(len(results.split('\n')) > 1)
         results = remove_timestamp(results)
         self.assertEquals(results, expected_info_result)
@@ -392,12 +392,12 @@ class QueryTestCases(GppkgTestCase):
         with closing(tarfile.open(self.gppkg_spec1.get_filename(), 'r:gz')) as tarinfo:
             expected_list_result = tarinfo.getnames()
 
-        results = run_command("gppkg -q --list %s" % self.gppkg_spec1.get_filename())
+        results = run_command("hdbpkg -q --list %s" % self.gppkg_spec1.get_filename())
         self.assertTrue(len(results.split('\n')) > 1)
         results = results.split('\n')[1:]
         self.assertEquals(results, expected_list_result)
 
-        results = run_command("gppkg --list -q %s" % self.gppkg_spec1.get_filename())
+        results = run_command("hdbpkg --list -q %s" % self.gppkg_spec1.get_filename())
         self.assertTrue(len(results.split('\n')) > 1)
         results = results.split('\n')[1:]
         self.assertEquals(results, expected_list_result)
@@ -422,7 +422,7 @@ class MiscTestCases(GppkgTestCase):
 
         self.assertTrue(self.check_install(gppkg_file))
 
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         self.assertTrue(''.join(gppkg_file.split('-')[:1]) in results)
 
 

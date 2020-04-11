@@ -20,7 +20,7 @@ fi
 declare -a CMDPATH
 CMDPATH=(/usr/kerberos/bin /usr/sfw/bin /opt/sfw/bin /usr/local/bin /bin /usr/bin /sbin /usr/sbin /usr/ucb /sw/bin)
 
-#GPPATH is the list of possible locations for the Greenplum Database binaries, in precedence order
+#GPPATH is the list of possible locations for the inHybrid Database binaries, in precedence order
 declare -a GPPATH
 GPPATH=( $HDBHOME $MPPHOME $BIZHOME )
 if [ ${#GPPATH[@]} -eq 0 ];then
@@ -115,20 +115,20 @@ PROG_PIDNAME=`echo $$ $PROG_NAME | awk '{printf "%06d %s\n", $1, $2}'`
 CALL_HOST=`$HOSTNAME|$CUT -d. -f1`
 
 #******************************************************************************
-# Locate the postgres routines from the Greenplum release
+# Locate the postgres routines from the inHybrid release
 #******************************************************************************
 PSQLBIN=`findMppPath`
 
 if [ x"$PSQLBIN" = x"" ];then
-		echo "Problem in gp_bash_functions, command '$GP_UNIQUE_COMMAND' not found in Greenplum path."
-		echo "Try setting HDBHOME to the location of your Greenplum distribution."
+		echo "Problem in gp_bash_functions, command '$GP_UNIQUE_COMMAND' not found in inHybrid path."
+		echo "Try setting HDBHOME to the location of your inHybrid distribution."
 		exit 99
 fi
 
 PSQLBIN=`$DIRNAME $PSQLBIN`
 SCRIPTDIR="`$DIRNAME $PSQLBIN`/bin"
 #******************************************************************************
-# Greenplum Scripts
+# inHybrid Scripts
 #******************************************************************************
 HDBINITSYSTEM=$SCRIPTDIR/hdbinitsystem
 HDBCONFIG=$SCRIPTDIR/hdbconfig
@@ -139,7 +139,7 @@ HDBSTATE=$SCRIPTDIR/hdbstate
 HDBSTOP=$SCRIPTDIR/hdbstop
 GPDOCDIR=${HDBHOME}/docs/cli_help/
 #******************************************************************************
-# Greenplum Command Variables
+# inHybrid Command Variables
 #******************************************************************************
 INITDB=$PSQLBIN/initdb
 PG_CTL=$PSQLBIN/pg_ctl
@@ -156,7 +156,7 @@ FROM pg_catalog.pg_database d
   JOIN pg_catalog.pg_authid r ON d.datdba = r.oid
 ORDER BY 1;"
 #******************************************************************************
-# Greenplum OS Settings
+# inHybrid OS Settings
 #******************************************************************************
 OS_OPENFILES=65535
 #******************************************************************************
@@ -277,7 +277,7 @@ ERROR_EXIT () {
 		DEBUG_LEVEL=1
 		if [ $BACKOUT_FILE ]; then
 				if [ -s $BACKOUT_FILE ]; then
-						LOG_MSG "[WARN]:-Script has left Greenplum Database in an incomplete state"
+						LOG_MSG "[WARN]:-Script has left inHybrid Database in an incomplete state"
 						LOG_MSG "[WARN]:-Run command bash $BACKOUT_FILE to remove these changes"
 						BACKOUT_COMMAND "if [ x$MASTER_HOSTNAME != x\`$HOSTNAME\` ];then $ECHO \"[FATAL]:-Not on original master host $MASTER_HOSTNAME, backout script exiting!\";exit 2;fi"
 						$ECHO "$RM -f $BACKOUT_FILE" >> $BACKOUT_FILE
@@ -924,7 +924,7 @@ CHK_DB_RUNNING () {
 		fi
 		if [ ! -f $MASTER_DATA_DIRECTORY/$PG_PID ]; then
 			LOG_MSG "[FATAL]:-No $MASTER_DATA_DIRECTORY/$PG_PID file" 1
-			ERROR_EXIT "[FATAL]:-Run hdbstart to start the Greenplum database." 2
+			ERROR_EXIT "[FATAL]:-Run hdbstart to start the inHybrid database." 2
 		fi
 		GET_MASTER_PORT $MASTER_DATA_DIRECTORY
 		export $EXPORT_LIB_PATH;env PGOPTIONS="-c gp_session_role=utility" $PSQL -p $MASTER_PORT -d "$DEFAULTDB" -A -t -c"SELECT d.datname as \"Name\",
@@ -946,8 +946,8 @@ ORDER BY 1;" >> $LOG_FILE 2>&1
 			if [ $? -ne 0 ];then
 				LOG_MSG "[WARN]:-Can access the Master instance in admin mode, but dispatch access failed" 1
 				LOG_MSG "[INFO]:-This could mean that the Master instance is in admin mode only" 1
-				LOG_MSG "[INFO]:-Run gpstop -m to shutdown Master instance from admin mode, and restart" 1
-				LOG_MSG "[INFO]:-the Greenplum database using hdbstart" 1
+				LOG_MSG "[INFO]:-Run hdbstop -m to shutdown Master instance from admin mode, and restart" 1
+				LOG_MSG "[INFO]:-the inHybrid database using hdbstart" 1
 				EXIT_STATUS=1
 			else
 				EXIT_STATUS=0
@@ -1256,9 +1256,9 @@ CHK_GPDB_ID () {
 		elif [ x$GPDB_GROUPID_CHK == x$MASTER_INITDB_GROUPID ] && [ x"x" == x"$GROUP_EXECUTE" ] ; then
 		    LOG_MSG "[INFO]:-Current group id of $GPDB_GROUPID, matches initdb group id of $MASTER_INITDB_GROUPID"
 		else
-			LOG_MSG "[WARN]:-File permission mismatch.  The $GPDB_ID_CHK owns the Greenplum Database installation directory."
+			LOG_MSG "[WARN]:-File permission mismatch.  The $GPDB_ID_CHK owns the inHybrid Database installation directory."
 			LOG_MSG "[WARN]:-You are currently logged in as $MASTER_INITDB_ID and may not have sufficient"
-			LOG_MSG "[WARN]:-permissions to run the Greenplum binaries and management utilities."
+			LOG_MSG "[WARN]:-permissions to run the inHybrid binaries and management utilities."
 		fi
 
 		if [ x"" != x"$USER" ];then

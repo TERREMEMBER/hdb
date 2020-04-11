@@ -26,7 +26,7 @@ class Operation(object):
                           Consider ParallelOperation, RemoteOperation, SerialOperation, etc.
         3. Readability  - We no longer have to create nested, segment-facing scripts 
                           to perform work on segment hosts: e.g. figuring out how 
-                          gpstart -> startSegments -> gpsegstart.py propagates information is 
+                          hdbstart -> startSegments -> gpsegstart.py propagates information is 
                           unnecessarily confusing.
         4. Reusability  - This makes core functionality more accessible to other clients 
                           of this code; e.g. a Python web backend

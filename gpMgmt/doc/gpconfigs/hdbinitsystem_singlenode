@@ -1,9 +1,9 @@
-# FILE NAME: gpinitsystem_singlenode
+# FILE NAME: hdbinitsystem_singlenode
 
-# A configuration file is needed by the gpinitsystem utility.
+# A configuration file is needed by the hdbinitsystem utility.
 # This sample file initializes a Greenplum Database Single Node
 # Edition (SNE) system with one master and  two segment instances 
-# on the local host. This file is referenced when you run gpinitsystem. 
+# on the local host. This file is referenced when you run hdbinitsystem. 
 
 ################################################
 # REQUIRED PARAMETERS
@@ -19,7 +19,7 @@ ARRAY_NAME="GPDB SINGLENODE"
 # that comprise the Greenplum system. For a single-node system, this
 # file contains the local OS-configured hostname (as output by the 
 # hostname command). If the file does not reside in the same 
-# directory where the gpinitsystem utility is executed, specify 
+# directory where the hdbinitsystem utility is executed, specify 
 # the absolute path to the file.
 
 MACHINE_LIST_FILE=./hostlist_singlenode
@@ -52,10 +52,10 @@ PORT_BASE=6000
 # if you want your data directories created in the same location. The 
 # number of data directory locations specified will determine the number 
 # of primary segment instances created per host.
-# You must make sure that the user who runs gpinitsystem (for example, 
+# You must make sure that the user who runs hdbinitsystem (for example, 
 # the gpadmin user) has permissions to write to these directories. You 
 # may want to create these directories on the segment hosts before running 
-# gpinitsystem and chown them to the appropriate user.
+# hdbinitsystem and chown them to the appropriate user.
 
 declare -a DATA_DIRECTORY=(/gpdata1 /gpdata2)
 
@@ -67,10 +67,10 @@ MASTER_HOSTNAME=hostname_of_machine
 
 # The location where the data directory will be created on the  
 # Greenplum master host. 
-# You must make sure that the user who runs gpinitsystem
+# You must make sure that the user who runs hdbinitsystem
 # has permissions to write to this directory. You may want to 
 # create this directory on the master host before running 
-# gpinitsystem and chown it to the appropriate user.
+# hdbinitsystem and chown it to the appropriate user.
 
 MASTER_DIRECTORY=/gpmaster
 
@@ -82,10 +82,10 @@ MASTER_DIRECTORY=/gpmaster
 MASTER_PORT=5432
 
 
-# The shell the gpinitsystem script uses to execute 
+# The shell the hdbinitsystem script uses to execute 
 # commands on remote hosts. Allowed value is ssh. You must set up 
-# your trusted host environment before running the gpinitsystem 
-# script. You can use gpssh-exkeys to do this.
+# your trusted host environment before running the hdbinitsystem 
+# script. You can use hdbssh-exkeys to do this.
 
 TRUSTED_SHELL=ssh
 
@@ -103,7 +103,7 @@ CHECK_POINT_SEGMENTS=8
 # same character sets as PostgreSQL. See 'Character Set Support'
 # in the PostgreSQL documentation for allowed character sets.
 # Should correspond to the OS locale specified with the 
-# gpinitsystem -n option. 
+# hdbinitsystem -n option. 
 
 ENCODING=UNICODE
 

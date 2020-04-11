@@ -1,6 +1,6 @@
-# FILE NAME: gpinitsystem_config
+# FILE NAME: hdbinitsystem_config
 
-# Configuration file needed by the gpinitsystem
+# Configuration file needed by the hdbinitsystem
 
 ################################################
 #### REQUIRED PARAMETERS
@@ -66,5 +66,5 @@ declare -a MIRROR_DATA_DIRECTORY=(/media/ephemeral1/mirror /media/ephemeral1/mir
 #DATABASE_NAME=name_of_database
 
 #### Specify the location of the host address file here instead of
-#### with the the -h option of gpinitsystem.
-MACHINE_LIST_FILE=hostfile_gpinitsystem
+#### with the the -h option of hdbinitsystem.
+MACHINE_LIST_FILE=hostfile_hdbinitsystem

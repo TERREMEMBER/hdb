@@ -9,7 +9,7 @@ This file provides a rudimentary framework to support top-level option
 parsing, initialization and cleanup logic common to multiple programs.
 
 The primary interface function is 'simple_main'.  For an example of
-how it is expected to be used, see gprecoverseg.
+how it is expected to be used, see hdbrecoverseg.
 
 It is anticipated that the functionality of this file will grow as we
 extend common functions of our gp utilities.  Please keep this in mind
@@ -44,13 +44,13 @@ def getProgramName():
 
 class SimpleMainLock:
     """
-    Tools like gprecoverseg prohibit running multiple instances at the same time
+    Tools like hdbrecoverseg prohibit running multiple instances at the same time
     via a simple lock file created in the MASTER_DATA_DIRECTORY.  This class takes
     care of the work to manage this lock as appropriate based on the mainOptions
     specified.
 
     Note that in some cases, the utility may want to recursively invoke
-    itself (e.g. gprecoverseg -r).  To handle this, the caller may specify
+    itself (e.g. hdbrecoverseg -r).  To handle this, the caller may specify
     the name of an environment variable holding the pid already acquired by
     the parent process.
     """

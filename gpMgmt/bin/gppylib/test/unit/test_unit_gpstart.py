@@ -22,7 +22,7 @@ class GpStart(GpTestCase):
         #   import gpstart
         #   self.subject = gpstart
         hdbstart_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbstart")
-        self.subject = imp.load_source('hdbstart', hdbstart_file)
+        self.subject = imp.load_source('gpstart', hdbstart_file)
         self.subject.logger = Mock(
             spec=['log', 'warn', 'info', 'debug', 'error', 'warning', 'fatal', 'warning_to_file_only'])
 
@@ -75,7 +75,7 @@ class GpStart(GpTestCase):
         self.mock_gp.GpCatVersion.local.return_value = 1
         self.mock_gp.GpCatVersionDirectory.local.return_value = 1
         self.mock_gp.DEFAULT_GPSTART_NUM_WORKERS = gp.DEFAULT_GPSTART_NUM_WORKERS
-        sys.argv = ["gpstart"]  # reset to relatively empty args list
+        sys.argv = ["hdbstart"]  # reset to relatively empty args list
 
     def tearDown(self):
         super(GpStart, self).tearDown()
@@ -87,7 +87,7 @@ class GpStart(GpTestCase):
         return gpstart
 
     def test_option_master_success_without_auto_accept(self):
-        sys.argv = ["gpstart", "-m"]
+        sys.argv = ["hdbstart", "-m"]
         self.mock_userinput.ask_yesno.return_value = True
         self.subject.unix.PgPortIsActive.local.return_value = False
 
@@ -103,7 +103,7 @@ class GpStart(GpTestCase):
         self.assertEqual(return_code, 0)
 
     def test_option_master_success_with_auto_accept(self):
-        sys.argv = ["gpstart", "-m", "-a"]
+        sys.argv = ["hdbstart", "-m", "-a"]
         self.mock_userinput.ask_yesno.return_value = True
         self.subject.unix.PgPortIsActive.local.return_value = False
 
@@ -118,7 +118,7 @@ class GpStart(GpTestCase):
         self.assertEqual(return_code, 0)
 
     def test_output_to_stdout_and_log_for_master_only_happens_before_heap_checksum(self):
-        sys.argv = ["gpstart", "-m"]
+        sys.argv = ["hdbstart", "-m"]
         self.mock_userinput.ask_yesno.return_value = True
         self.subject.unix.PgPortIsActive.local.return_value = False
         self.mock_os_path_exists.side_effect = os_exists_check
@@ -135,7 +135,7 @@ class GpStart(GpTestCase):
         self.assertEquals(self.mock_gplog_log_to_file_only.call_count, 0)
 
     def test_skip_checksum_validation_succeeds(self):
-        sys.argv = ["gpstart", "-a", "--skip-heap-checksum-validation"]
+        sys.argv = ["hdbstart", "-a", "--skip-heap-checksum-validation"]
         self.mock_heap_checksum.return_value.get_segments_checksum_settings.return_value = ([1], [1])
         self.subject.unix.PgPortIsActive.local.return_value = False
         self.mock_os_path_exists.side_effect = os_exists_check
@@ -151,7 +151,7 @@ class GpStart(GpTestCase):
                                                     'will not be checked between master and segments')
 
     def test_log_when_heap_checksum_validation_fails(self):
-        sys.argv = ["gpstart", "-a", "-S"]
+        sys.argv = ["hdbstart", "-a", "-S"]
         self.mock_os_path_exists.side_effect = os_exists_check
         self.mock_heap_checksum.return_value.get_master_value.return_value = 1
         start_failure = StartSegmentsResult()
@@ -166,7 +166,7 @@ class GpStart(GpTestCase):
         self.assertIn("DBID:5  FAILED  host:'sdw1' datadir:'/data/mirror1' with reason:'fictitious reason'", messages)
 
     def test_standby_startup_skipped(self):
-        sys.argv = ["gpstart", "-a", "-y"]
+        sys.argv = ["hdbstart", "-a", "-y"]
 
         gpstart = self.setup_gpstart()
 
@@ -176,7 +176,7 @@ class GpStart(GpTestCase):
         self.assertIn("No standby master configured.  skipping...", messages)
 
     def test_prepare_segment_start_returns_up_and_down_segments(self):
-        # Boilerplate: create a gpstart object
+        # Boilerplate: create a hdbstart object
         parser = self.subject.GpStart.createParser()
         options, args = parser.parse_args([])
         gpstart = self.subject.GpStart.createProgram(options, args)

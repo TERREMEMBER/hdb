@@ -25,7 +25,7 @@ description = ("""
 
 Configure segment directories for installation into a pre-existing GPDB array.
 
-Used by at least gpexpand, gprecoverseg, and hdbaddmirrors
+Used by at least hdbexpand, hdbrecoverseg, and hdbaddmirrors
 
 """)
 
@@ -279,7 +279,7 @@ def parseargs():
     parser = OptParser(option_class=OptChecker,
                 description=' '.join(description.split()),
                 version='%prog version $Revision: $')
-    parser.set_usage('%prog is a utility script used by gpexpand, gprecoverseg, and hdbaddmirrors and is not intended to be run separately.')
+    parser.set_usage('%prog is a utility script used by hdbexpand, hdbrecoverseg, and hdbaddmirrors and is not intended to be run separately.')
     parser.remove_option('-h')
 
     parser.add_option('-v','--verbose', action='store_true', help='debug output.')

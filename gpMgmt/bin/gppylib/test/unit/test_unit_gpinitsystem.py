@@ -10,7 +10,7 @@ except:
 class GpInitSystemTest(GpTestCase):
     def setUp(self):
         # resolve the gpinitsystem path
-        self.gpinitsystem_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../../gpinitsystem'))
+        self.gpinitsystem_path = os.path.realpath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../../hdbinitsystem'))
 
     def test_option_cluster_configfile_and_input_configfile_should_error(self):
         p = Popen([self.gpinitsystem_path, '-c', 'cluster_configfile', '-I', 'input_configfile'], stdout=PIPE)

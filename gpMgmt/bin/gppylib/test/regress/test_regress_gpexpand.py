@@ -125,7 +125,7 @@ class GpExpandTestCase(unittest.TestCase):
     def test00_pg_hba_conf_file(self):
         os.environ[self.GP_COMMAND_FAULT_POINT] = 'gpexpand tar segment template'
 
-        cmd = Command(name='run gpexpand', cmdStr='gpexpand -i %s' % (self.EXPANSION_INPUT_FILE))
+        cmd = Command(name='run gpexpand', cmdStr='hdbexpand -i %s' % (self.EXPANSION_INPUT_FILE))
         with self.assertRaisesRegexp(ExecutionError, 'Fault Injection'):
             cmd.run(validateAfter=True)
 
@@ -152,7 +152,7 @@ class GpExpandTestCase(unittest.TestCase):
         self.assertEqual(actual_values, expected_values)
 
         GpStart(name='start the database in master only mode', masterOnly=True).run(validateAfter=True)
-        Command(name='rollback the expansion', cmdStr='gpexpand -r').run(validateAfter=True)
+        Command(name='rollback the expansion', cmdStr='hdbexpand -r').run(validateAfter=True)
         GpStart(name='start the database').run(validateAfter=True)
 
     def test01_distribution_policy(self):
@@ -162,11 +162,11 @@ class GpExpandTestCase(unittest.TestCase):
         try:
             os.environ[self.GPMGMT_FAULT_POINT] = 'gpexpand MPP-14620 fault injection'
             original_dist_policies = self._get_dist_policies()
-            cmd = Command(name='run gpexpand', cmdStr='gpexpand -i %s' % (self.EXPANSION_INPUT_FILE))
+            cmd = Command(name='run gpexpand', cmdStr='hdbexpand -i %s' % (self.EXPANSION_INPUT_FILE))
             with self.assertRaisesRegexp(ExecutionError, 'Fault Injection'):
                 cmd.run(validateAfter=True)
 
-            rollback = Command(name='rollback expansion', cmdStr='gpexpand -r')
+            rollback = Command(name='rollback expansion', cmdStr='hdbexpand -r')
             rollback.run(validateAfter=True)
 
             dist_policies = self._get_dist_policies()

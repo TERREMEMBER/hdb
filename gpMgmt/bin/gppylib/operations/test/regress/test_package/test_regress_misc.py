@@ -26,7 +26,7 @@ class MiscTestCase(GppkgTestCase):
 
         self.assertTrue(self.check_install(gppkg_file))
 
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         self.assertTrue(''.join(gppkg_file.split('-')[:1]) in results)
 
 if __name__ == "__main__":

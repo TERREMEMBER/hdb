@@ -83,7 +83,7 @@ class UtilsTestCase(GpTestCase):
             self.fail("""A pg.DatabaseError should have been raised remotely, and because it cannot
                          be pickled cleanly (due to a strange import in pickle.py),
                          an ExecutionError should have ultimately been caused.""")
-            # TODO: Check logs on disk. With gplogfilter?
+            # TODO: Check logs on disk. With hdblogfilter?
 
     def test_ParallelOperation_succeeds(self):
         ops = ParallelOperation([ListFiles("/tmp")], 1)

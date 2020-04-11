@@ -3,12 +3,12 @@ ext
 /hdbactivatestandbyc
 /hdbaddmirrorsc
 /hdbcheckcatc
-/gpcheckperfc
+/hdbcheckperfc
 /gpcheckresgroupimplc
 /gpchecksubnetcfgc
 /hdbconfigc
 /hdbdeletesystemc
-/gpexpandc
+/hdbexpandc
 /hdbinitstandbyc
 /hdblogfilterc
 /gpmovemirrorsc
