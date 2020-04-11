@@ -6,7 +6,7 @@
   parseutils.py
     
   Routines to parse "flexible" configuration files for tools like 
-    gpaddmirrors, gprecoverseg, gpexpand, etc.
+    hdbaddmirrors, hdbrecoverseg, hdbexpand, etc.
 
   Copyright (c) EMC/Greenplum Inc 2011. All Rights Reserved. 
 """

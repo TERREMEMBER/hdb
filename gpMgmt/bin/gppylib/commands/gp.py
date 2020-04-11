@@ -883,7 +883,7 @@ class GpDirsExist(Command):
 #-----------------------------------------------
 class ConfigureNewSegment(Command):
     """
-    Configure a new segment, usually from a template, as is done during gpexpand, gpaddmirrors, gprecoverseg (full),
+    Configure a new segment, usually from a template, as is done during hdbexpand, hdbaddmirrors, hdbrecoverseg (full),
       etc.
     """
 
@@ -1155,8 +1155,8 @@ def check_permissions(username):
 
 class _GpExpandStatus(object):
     '''
-    Internal class to store gpexpand status, note it's different with the
-    GpExpandStatus class inside the gpexpand command.
+    Internal class to store hdbexpand status, note it's different with the
+    GpExpandStatus class inside the hdbexpand command.
     '''
 
     dbname = 'postgres'
@@ -1248,7 +1248,7 @@ class _GpExpandStatus(object):
 
     def get_status(self):
         '''
-        Get gpexpand status, such as whether an expansion is in progress,
+        Get hdbexpand status, such as whether an expansion is in progress,
         which expansion phase it is.
         '''
 
@@ -1278,9 +1278,9 @@ def get_gpexpand_status():
 
 def conflict_with_gpexpand(utility, refuse_phase1=True, refuse_phase2=False):
     '''
-    Generate error message when gpexpand is running in specified phases.
-    Some utilities can not run in parallel with gpexpand, this function can be
-    used to simplify the checks on gpexpand status.
+    Generate error message when hdbexpand is running in specified phases.
+    Some utilities can not run in parallel with hdbexpand, this function can be
+    used to simplify the checks on hdbexpand status.
     '''
     status = get_gpexpand_status()
 

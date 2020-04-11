@@ -38,12 +38,12 @@ Feature: Tests for a cross_subnet cluster
           And verify that mirror segments are in new cross_subnet configuration
           And the mirrors replicate and fail over and back correctly
 
-     Scenario Outline: gpaddmirrors works cross-subnet with pg_hba.conf using HBA_HOSTNAMES: <hba_hostnames>
+     Scenario Outline: hdbaddmirrors works cross-subnet with pg_hba.conf using HBA_HOSTNAMES: <hba_hostnames>
         Given the database is not running
           And a working directory of the test as '/tmp/gpaddmirrors'
          When with HBA_HOSTNAMES "<hba_hostnames>" a cross-subnet cluster without a standby is created with no mirrors on "mdw-1" and "sdw1-1, sdw1-2"
 
-         When gpaddmirrors adds mirrors with options "<options>"
+         When hdbaddmirrors adds mirrors with options "<options>"
          Then verify the database has mirrors
           And the primaries and mirrors excluding masterStandby are on different subnets
           And the mirrors replicate and fail over and back correctly

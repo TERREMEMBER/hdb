@@ -41,7 +41,7 @@ bin/gpsys1              -  Print system information on a host  (???)
 
 List of Management Scripts Written in Python (gpmlib - old libraries)
 ---------------------------------------------------------------------
-bin/gpaddmirrors        -  Adds mirrors to an array (needs rewrite)
+bin/hdbaddmirrors        -  Adds mirrors to an array (needs rewrite)
 bin/gprecoverseg        -  Recovers a failed segment (needs rewrite)
 bin/gpcheckperf         -  Checks the hardware for Greenplum Database
 bin/hdbscp               -  Copies files to many hosts

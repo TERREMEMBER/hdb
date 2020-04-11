@@ -70,9 +70,9 @@ class GpMirrorBuildCalculator:
         if standard == False:
             logger.warn('The current system appears to be non-standard.')
             logger.warn(message)
-            logger.warn('gpaddmirrors will not be able to symmetrically distribute the new mirrors.')
+            logger.warn('hdbaddmirrors will not be able to symmetrically distribute the new mirrors.')
             logger.warn('It is recommended that you specify your own input file with appropriate values.')
-            if self.__options.interactive and not ask_yesno('', "Are you sure you want to continue with this gpaddmirrors session?", 'N'):
+            if self.__options.interactive and not ask_yesno('', "Are you sure you want to continue with this hdbaddmirrors session?", 'N'):
                 logger.info("User Aborted. Exiting...")
                 sys.exit(0)
             self.__isStandard = False
@@ -255,7 +255,7 @@ class GpMirrorBuildCalculator:
 
 class GpAddMirrorsProgram:
     """
-    The implementation of gpaddmirrors
+    The implementation of hdbaddmirrors
 
     """
 
@@ -490,7 +490,7 @@ class GpAddMirrorsProgram:
                               % (len(inconsistent_segment_msgs), len(gpArray.segmentPairs)))
             logger.fatal("Review %s for details" % get_logfile())
             log_to_file_only("Failed checksum consistency validation:", logging.WARN)
-            logger.fatal("gpaddmirrors error: Cluster will not be modified as checksum settings are not consistent "
+            logger.fatal("hdbaddmirrors error: Cluster will not be modified as checksum settings are not consistent "
                               "across the cluster.")
 
             for msg in inconsistent_segment_msgs:
@@ -568,7 +568,7 @@ class GpAddMirrorsProgram:
         # check that we actually have mirrors
         if gpArray.hasMirrors:
             raise ExceptionNoStackTraceNeeded( \
-                "GPDB physical mirroring cannot be added.  The cluster is already configured with Mirrors.")
+                "HDB physical mirroring cannot be added.  The cluster is already configured with Mirrors.")
 
         # figure out what needs to be done (AND update the gpArray!)
         mirrorBuilder = self.__getMirrorsToBuildBasedOnOptions(gpEnv, gpArray)

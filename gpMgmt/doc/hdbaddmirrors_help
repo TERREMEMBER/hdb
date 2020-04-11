@@ -1,6 +1,6 @@
-COMMAND NAME: gpaddmirrors
+COMMAND NAME: hdbaddmirrors
 
-Adds mirror segments to a Greenplum Database system that was 
+Adds mirror segments to a inHybrid Database system that was 
 initially configured without mirroring.
 
 
@@ -9,32 +9,32 @@ SYNOPSIS
 *****************************************************
 
 
-gpaddmirrors [-p <port_offset>] [-m <datadir_config_file> [-a]] [-s] 
+hdbaddmirrors [-p <port_offset>] [-m <datadir_config_file> [-a]] [-s] 
              [-d <master_data_directory>] [-B <parallel_processes>] 
              [-l <logfile_directory>] [-v]
 
-gpaddmirrors -i <mirror_config_file> [-s] [-a] 
+hdbaddmirrors -i <mirror_config_file> [-s] [-a] 
              [-d <master_data_directory>] [-B <parallel_processes>] 
              [-l <logfile_directory>] [-v]
 
-gpaddmirrors -o <output_sample_mirror_config> [-m <datadir_config_file>]
+hdbaddmirrors -o <output_sample_mirror_config> [-m <datadir_config_file>]
 
-gpaddmirrors -? 
+hdbaddmirrors -? 
 
-gpaddmirrors --version
+hdbaddmirrors --version
 
 
 *****************************************************
 DESCRIPTION
 *****************************************************
-The gpaddmirrors utility configures mirror segment instances for an 
-existing Greenplum Database system that was initially configured with 
+The hdbaddmirrors utility configures mirror segment instances for an 
+existing inHybrid Database system that was initially configured with 
 primary segment instances only. The utility will create the mirror 
 instances and begin the online replication process between the primary 
 and mirror segment instances. Once all mirrors are synchronized with 
-their primaries, your Greenplum Database system is fully data redundant.
+their primaries, your inHybrid Database system is fully data redundant.
 
-IMPORTANT: During the online replication process, Greenplum Database 
+IMPORTANT: During the online replication process, inHybrid Database 
 should be in a quiescent state, workloads and other queries should not 
 be running. 
 
@@ -54,13 +54,13 @@ the same directory name multiple times if you want your mirror data
 directories created in the same location, or you can enter a different 
 data location for each mirror. Enter the absolute path. For example:
 
-Enter mirror segment data directory location 1 of 2 > /gpdb/mirror
-Enter mirror segment data directory location 2 of 2 > /gpdb/mirror
+Enter mirror segment data directory location 1 of 2 > /hdb/mirror
+Enter mirror segment data directory location 2 of 2 > /hdb/mirror
 OR
-Enter mirror segment data directory location 1 of 2 > /gpdb/m1
-Enter mirror segment data directory location 2 of 2 > /gpdb/m2
+Enter mirror segment data directory location 1 of 2 > /hdb/m1
+Enter mirror segment data directory location 2 of 2 > /hdb/m2
 
-Alternatively, you can run the gpaddmirrors utility and supply a 
+Alternatively, you can run the hdbaddmirrors utility and supply a 
 detailed configuration file using the -i option. This is useful if 
 you want your mirror segments on a completely different set of hosts 
 than your primary segments. The format of the mirror configuration file is:
@@ -69,8 +69,8 @@ than your primary segments. The format of the mirror configuration file is:
 
 For example:
 
-0|sdw1-1|60000|/gpdata/mirror1/gp0
-1|sdw1-1|60001|/gpdata/mirror2/gp1
+0|sdw1-1|60000|/hdbdata/mirror1/hdb0
+1|sdw1-1|60001|/hdbdata/mirror2/hdb1
 
 The gp_segment_configuration system catalog tables can help you determine
 your current primary segment configuration so that you can plan your
@@ -81,15 +81,15 @@ mirror segment configuration. For example, run the following query:
    ORDER BY dbid;
 
 If creating your mirrors on alternate mirror hosts, the new 
-mirror segment hosts must be pre-installed with the Greenplum 
+mirror segment hosts must be pre-installed with the inHybrid 
 Database software and configured exactly the same as the 
 existing primary segment hosts. 
 
-You must make sure that the user who runs gpaddmirrors (the 
-gpadmin user) has permissions to write to the data directory 
+You must make sure that the user who runs hdbaddmirrors (the 
+hdbadmin user) has permissions to write to the data directory 
 locations specified. You may want to create these directories 
 on the segment hosts and chown them to the appropriate user 
-before running gpaddmirrors.
+before running hdbaddmirrors.
 
 
 *****************************************************
@@ -137,16 +137,16 @@ OPTIONS
  the mirror data directories will be created. If not supplied, the 
  utility will prompt you for locations. Each line in the file specifies 
  a mirror data directory location. For example:
-   /gpdata/m1
-   /gpdata/m2
-   /gpdata/m3
-   /gpdata/m4
+   /hdbdata/m1
+   /hdbdata/m2
+   /hdbdata/m3
+   /hdbdata/m4
 
 
 -o <output_sample_mirror_config>
 
  If you are not sure how to lay out the mirror configuration file 
- used by the -i option, you can run gpaddmirrors with this option 
+ used by the -i option, you can run hdbaddmirrors with this option 
  to generate a sample mirror configuration file based on your 
  primary segment configuration. The utility will prompt you for 
  your mirror segment data directory locations (unless you provide 
@@ -169,7 +169,7 @@ OPTIONS
  Spreads the mirror segments across the available hosts. The 
  default is to group a set of mirror segments together on an 
  alternate host from their primary segment set. Mirror spreading 
- will place each mirror on a different host within the Greenplum 
+ will place each mirror on a different host within the inHybrid 
  Database array. Spreading is only allowed if there is a sufficient 
  number of hosts in the array (number of hosts is greater than 
  or equal to the number of segment instances per host).
@@ -199,34 +199,34 @@ OPTIONS
 EXAMPLES
 *****************************************************
 
-Add mirroring to an existing Greenplum Database system using 
+Add mirroring to an existing inHybrid Database system using 
 the same set of hosts as your primary data. Calculate the mirror 
 database ports by adding 100 to the current primary segment port
 numbers:
 
-  $ gpaddmirrors -p 100
+  $ hdbaddmirrors -p 100
 
 
-Add mirroring to an existing Greenplum Database system using a 
+Add mirroring to an existing inHybrid Database system using a 
 different set of hosts from your primary data:
 
-$ gpaddmirrors -i mirror_config_file
+$ hdbaddmirrors -i mirror_config_file
 
 Where the mirror_config_file looks something like this:
 
-0|sdw1-1|52001|53001|54001|/gpdata/mir1/gp0
-1|sdw1-2|52002|53002|54002|/gpdata/mir2/gp1
-2|sdw2-1|52001|53001|54001|/gpdata/mir1/gp2
-3|sdw2-2|52002|53002|54002|/gpdata/mir2/gp3
+0|sdw1-1|52001|53001|54001|/hdbdata/mir1/hdb0
+1|sdw1-2|52002|53002|54002|/hdbdata/mir2/hdb1
+2|sdw2-1|52001|53001|54001|/hdbdata/mir1/hdb2
+3|sdw2-2|52002|53002|54002|/hdbdata/mir2/hdb3
 
 
-Output a sample mirror configuration file to use with gpaddmirrors -i:
+Output a sample mirror configuration file to use with hdbaddmirrors -i:
 
-  $ gpaddmirrors -o /home/gpadmin/sample_mirror_config
+  $ hdbaddmirrors -o /home/hdbadmin/sample_mirror_config
 
 
 *****************************************************
 SEE ALSO
 *****************************************************
 
-gpinitsystem, gpinitstandby, gpactivatestandby
+hdbinitsystem, hdbinitstandby, hdbactivatestandby
