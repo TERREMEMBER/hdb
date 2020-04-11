@@ -250,7 +250,7 @@ Feature: hdbinitsystem tests
 # version test
         Scenario: version test
         When the user runs command "hdbinitsystem -v"
-        Then the hdbinitsystem should print "hdbinitsystem version 1.0.0" escaped to stdout
+        Then the hdbinitsystem should print "hdbinitsystem 1.0.0" escaped to stdout
 # init test
      Scenario: init test
         Given create demo cluster config

@@ -194,16 +194,16 @@ if __name__ == '__main__':
         commands.append(cmd)
         ################################################
 
-        cmd = Command("PGPORT=%d gpconfig -c gp_enable_gpperfmon -v on" % (options.port))
+        cmd = Command("PGPORT=%d hdbconfig -c gp_enable_gpperfmon -v on" % (options.port))
         commands.append(cmd)
 
-        cmd = Command("PGPORT=%d gpconfig -c gpperfmon_port -v %d" % (options.port, options.gpperfmonport))
+        cmd = Command("PGPORT=%d hdbconfig -c gpperfmon_port -v %d" % (options.port, options.gpperfmonport))
         commands.append(cmd)
 
-        cmd = Command("PGPORT=%d gpconfig -c gp_external_enable_exec -v on --masteronly" % (options.port))
+        cmd = Command("PGPORT=%d hdbconfig -c gp_external_enable_exec -v on --masteronly" % (options.port))
         commands.append(cmd)
 
-        cmd = Command("PGPORT=%d gpconfig -c gpperfmon_log_alert_level -v warning" % (options.port))
+        cmd = Command("PGPORT=%d hdbconfig -c gpperfmon_log_alert_level -v warning" % (options.port))
         commands.append(cmd)
 
     command = None

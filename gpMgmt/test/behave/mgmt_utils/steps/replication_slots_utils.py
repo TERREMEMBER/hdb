@@ -94,7 +94,7 @@ def step_impl(context):
 
     # If the kill succeeds, recover the mirror when this test is done.
     def recover():
-        run_command(context, "gprecoverseg -a")
+        run_command(context, "hdbrecoverseg -a")
     context.add_cleanup(recover)
 
     wait_for_unblocked_transactions(context)

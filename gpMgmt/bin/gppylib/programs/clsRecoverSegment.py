@@ -128,7 +128,7 @@ class GpRecoverSegmentProgram:
         self.logger = logger
 
         # If user did not specify a value for showProgressInplace and
-        # stdout is a tty then send escape sequences to gprecoverseg
+        # stdout is a tty then send escape sequences to hdbrecoverseg
         # output. Otherwise do not show progress inplace.
         if self.__options.showProgressInplace is None:
             self.__options.showProgressInplace = sys.stdout.isatty()
@@ -638,7 +638,7 @@ class GpRecoverSegmentProgram:
                     self.logger.info("The rebalance operation has completed successfully.")
                 else:
                     self.logger.info("The rebalance operation has completed with WARNINGS."
-                                     " Please review the output in the gprecoverseg log.")
+                                     " Please review the output in the hdbrecoverseg log.")
                 self.logger.info("There is a resynchronization running in the background to bring all")
                 self.logger.info("segments in sync.")
                 self.logger.info("Use hdbstate -e to check the resynchronization progress.")
@@ -785,8 +785,8 @@ class GpRecoverSegmentProgram:
     def mainOptions():
         """
         The dictionary this method returns instructs the simple_main framework
-        to check for a gprecoverseg.pid file under MASTER_DATA_DIRECTORY to
+        to check for a hdbrecoverseg.pid file under MASTER_DATA_DIRECTORY to
         prevent the customer from trying to run more than one instance of
-        gprecoverseg at the same time.
+        hdbrecoverseg at the same time.
         """
         return {'pidfilename': 'gprecoverseg.pid', 'parentpidvar': 'GPRECOVERPID'}

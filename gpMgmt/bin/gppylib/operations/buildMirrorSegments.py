@@ -583,11 +583,11 @@ class GpMirrorListToBuild:
         # Configure a new segment
         #
         # Recover segments using gpconfigurenewsegment, which
-        # uses pg_basebackup. gprecoverseg generates a log filename which is
-        # passed to gpconfigurenewsegment as a confinfo parameter. gprecoverseg
+        # uses pg_basebackup. hdbrecoverseg generates a log filename which is
+        # passed to gpconfigurenewsegment as a confinfo parameter. hdbrecoverseg
         # tails this file to show recovery progress to the user, and removes the
         # file when one done. A new file is generated for each run of
-        # gprecoverseg based on a timestamp.
+        # hdbrecoverseg based on a timestamp.
         #
         # There is race between when the pg_basebackup log file is created and
         # when the progress command is run. Thus, the progress command touches

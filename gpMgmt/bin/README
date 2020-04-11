@@ -29,21 +29,21 @@ Where Things Go
 
 List of Management Scripts Written in Bash
 ------------------------------------------
-bin/gpinitsystem        -  Creates a new Greenplum Database
+bin/hdbinitsystem        -  Creates a new inHybrid Database
 bin/gpload              -  Sets env variables and calls gpload.py
 
 
 List of Management Scripts Written in Python (no libraries)
 -----------------------------------------------------------
-bin/gpload.py           -  Loads data into a Greenplum Database
-bin/gpsys1              -  Print system information on a host  (???)
+bin/gpload.py           -  Loads data into a inHybrid Database
+bin/hdbsys1              -  Print system information on a host  (???)
 
 
 List of Management Scripts Written in Python (gpmlib - old libraries)
 ---------------------------------------------------------------------
 bin/hdbaddmirrors        -  Adds mirrors to an array (needs rewrite)
-bin/gprecoverseg        -  Recovers a failed segment (needs rewrite)
-bin/gpcheckperf         -  Checks the hardware for Greenplum Database
+bin/hdbrecoverseg        -  Recovers a failed segment (needs rewrite)
+bin/hdbcheckperf         -  Checks the hardware for inHybrid Database
 bin/hdbscp               -  Copies files to many hosts
 bin/hdbssh               -  Remote shell to many hosts
 bin/hdbssh-exkeys        -  Exchange ssh keys between many hosts
@@ -51,19 +51,19 @@ bin/hdbssh-exkeys        -  Exchange ssh keys between many hosts
 
 List of Management Scripts Written in Python (gppylib - current libraries)
 --------------------------------------------------------------------------
-bin/gpactivatestandby   -  Activates the Standby Master
-bin/gpconfig_helper     -  Edits postgresql.conf file for all segments
-bin/hdbdeletesystem      -  Deletes a Greenplum Database
-bin/gpexpand            -  Adds additional segments to a Greenplum Database
+bin/hdbactivatestandby   -  Activates the Standby Master
+bin/hdbconfig_helper     -  Edits postgresql.conf file for all segments
+bin/hdbdeletesystem      -  Deletes a inHybrid Database
+bin/hdbexpand            -  Adds additional segments to a inHybrid Database
 bin/hdbinitstandby       -  Initializes standby master
 bin/hdblogfilter         -  Filters log files
-bin/hdbstart             -  Start a Greenplum Database
-bin/hdbstop              -  Stop a Greenplum Database
+bin/hdbstart             -  Start a inHybrid Database
+bin/hdbstop              -  Stop a inHybrid Database
 
-sbin/hdbconfig_helper.py -  Helper script for gpconfig
-sbin/gpsegcopy          -  Helper script for gpexpand
-sbin/gpsegstart.py      -  Helper script for gpstart
-sbin/gpsegstop.py       -  Helper script for gpstop
+sbin/hdbconfig_helper.py -  Helper script for hdbconfig
+sbin/gpsegcopy          -  Helper script for hdbexpand
+sbin/gpsegstart.py      -  Helper script for hdbstart
+sbin/gpsegstop.py       -  Helper script for hdbstop
 
 
 Overview of gppylib
@@ -78,7 +78,7 @@ gparray.py
    +-  SegmentPair - Configuration information for a single content id
    |     \-  Contains multiple Segment objects
    |
-   +-  GpArray   - Configuration information for a Greenplum Database
+   +-  GpArray   - Configuration information for a inHybrid Database
          \-  Contains multiple SegmentPair objects
 
 gphostcache.py   
@@ -87,9 +87,9 @@ gphostcache.py
   |    \- Contains all the Segment objects on the host
   |
   +- GpHostCache - Helps resolve interface->hostname lookups
-       \- Contains all the GpHosts referenced in a Greenplum Database
+       \- Contains all the GpHosts referenced in a inHybrid Database
 
-gplog.py         - Utility functions to assist in Greenplum standard logging
+gplog.py         - Utility functions to assist in inHybrid standard logging
 
 gpparseopts.py   - Wrapper around optparse library to aid in locating help files
 
@@ -153,9 +153,9 @@ db/dbconn.py       - Connections to the database
   |
   +- Should have a wrapper class around a pygresql connection object!
 
-util/gp_utils.py     - Greenplum related utility functions that are not Commands
+util/gp_utils.py     - inHybrid related utility functions that are not Commands
 util/ssh_session.py  - SSH and SCP related utility functions brought in from gpmlib.py/gplib.py
-                       that are used by gpssh, gpscp and gpssh-exkeys
+                       that are used by hdbssh, hdbscp and hdbssh-exkeys
 
 
 Testing Management Scripts

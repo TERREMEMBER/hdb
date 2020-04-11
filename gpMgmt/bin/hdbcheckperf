@@ -297,7 +297,7 @@ def run(cmd):
     if out and out.find('Permission denied') >= 0 and out.find('publickey') >= 0:
         if not GV.opt['-v']:
             print out
-        print 'Please use gpssh-exkeys to exchange keys ...'
+        print 'Please use hdbssh-exkeys to exchange keys ...'
         sys.exit(1)
 
     return ok, out
@@ -391,7 +391,7 @@ def copyExecOver(fname):
 
     (ok, out) = gpscp(path, '=:%s' % target)
     if not ok:
-        sys.exit('[Error] command failed: gpscp %s =:%s with output: %s' % (path, target, out))
+        sys.exit('[Error] command failed: hdbscp %s =:%s with output: %s' % (path, target, out))
 
     # chmod +x file
     (ok, out) = gpssh('chmod a+rx %s' % target)
@@ -563,7 +563,7 @@ def reapNetperfTest(proc, x, y):
     if out and out.find('Permission denied') >= 0 and out.find('publickey') >= 0:
         if not GV.opt['-v']:
             print out
-        print '[Error] Please use gpssh-exkeys to exchange keys ...'
+        print '[Error] Please use hdbssh-exkeys to exchange keys ...'
         sys.exit(1)
 
     if not ok:

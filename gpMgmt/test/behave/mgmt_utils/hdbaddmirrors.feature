@@ -15,8 +15,8 @@ Feature: Tests for hdbaddmirrors
          Then the tablespace is valid
 #-----------------
 #version test
-    Scenario: hdbaddmirror version test
-         When the user runs command "hdbaddmirror --version"
+    Scenario: hdbaddmirrors version test
+         When the user runs command "hdbaddmirrors --version"
          Then the hdbreload should print "hdbaddmirrors version 1.0.0" escaped to stdout
 ########################### @concourse_cluster tests ###########################
 # The @concourse_cluster tag denotes the scenario that requires a remote cluster

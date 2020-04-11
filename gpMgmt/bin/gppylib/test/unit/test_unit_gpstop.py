@@ -59,7 +59,7 @@ class GpStop(GpTestCase):
             patch('gpstop.print_progress'),
         ])
 
-        sys.argv = ["gpstop"]  # reset to relatively empty args list
+        sys.argv = ["hdbstop"]  # reset to relatively empty args list
 
         # TODO: We are not unit testing how we report the segment stops. We've currently mocked it out
         self.mock_workerpool = self.get_mock_from_apply_patch('WorkerPool')
@@ -103,7 +103,7 @@ class GpStop(GpTestCase):
 
     @patch('gpstop.userinput', return_value=Mock(spec=['ask_yesno']))
     def test_option_master_success_without_auto_accept(self, mock_userinput):
-        sys.argv = ["gpstop", "-m"]
+        sys.argv = ["hdbstop", "-m"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -115,7 +115,7 @@ class GpStop(GpTestCase):
 
     @patch('gpstop.userinput', return_value=Mock(spec=['ask_yesno']))
     def test_option_master_success_with_auto_accept(self, mock_userinput):
-        sys.argv = ["gpstop", "-m", "-a"]
+        sys.argv = ["hdbstop", "-m", "-a"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -125,7 +125,7 @@ class GpStop(GpTestCase):
         self.assertEqual(mock_userinput.ask_yesno.call_count, 0)
 
     def test_option_hostonly_succeeds(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -141,7 +141,7 @@ class GpStop(GpTestCase):
         self.assertIn("Successfully shutdown 4 of 8 segment instances ", log_messages)
 
     def test_host_missing_from_config(self):
-        sys.argv = ["gpstop", "-a", "--host", "nothere"]
+        sys.argv = ["hdbstop", "-a", "--host", "nothere"]
         host_names = self.gparray.getSegmentsByHostName(self.gparray.getDbList()).keys()
 
         parser = self.subject.GpStop.createParser()
@@ -156,7 +156,7 @@ class GpStop(GpTestCase):
 
     @patch('gpstop.userinput', return_value=Mock(spec=['ask_yesno']))
     def test_happypath_in_interactive_mode(self, mock_userinput):
-        sys.argv = ["gpstop", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -190,7 +190,7 @@ class GpStop(GpTestCase):
         self.assertIn("Successfully shutdown 4 of 8 segment instances ", log_messages)
 
     def test_host_option_segment_in_change_tracking_mode_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -211,7 +211,7 @@ class GpStop(GpTestCase):
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_segment_in_resynchronizing_mode_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -232,7 +232,7 @@ class GpStop(GpTestCase):
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_segment_down_is_skipped_succeeds(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -257,7 +257,7 @@ class GpStop(GpTestCase):
         self.assertIn("Successfully shutdown 3 of 8 segment instances ", log_messages)
 
     def test_host_option_segment_on_same_host_with_mirror_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -277,7 +277,7 @@ class GpStop(GpTestCase):
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_if_master_running_on_the_host_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "mdw"]
+        sys.argv = ["hdbstop", "-a", "--host", "mdw"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -291,13 +291,13 @@ class GpStop(GpTestCase):
 
         gpstop = self.subject.GpStop.createProgram(options, args)
 
-        with self.assertRaisesRegexp(Exception,"Specified host '%s' has the master or standby master on it. This node can only be stopped as part of a full-cluster gpstop, without '--host'." %
+        with self.assertRaisesRegexp(Exception,"Specified host '%s' has the master or standby master on it. This node can only be stopped as part of a full-cluster hdbstop, without '--host'." %
                                      self.master.getSegmentHostName()):
             gpstop.run()
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_if_standby_running_on_the_host_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw1"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw1"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -313,13 +313,13 @@ class GpStop(GpTestCase):
 
         gpstop = self.subject.GpStop.createProgram(options, args)
 
-        with self.assertRaisesRegexp(Exception,"Specified host '%s' has the master or standby master on it. This node can only be stopped as part of a full-cluster gpstop, without '--host'." %
+        with self.assertRaisesRegexp(Exception,"Specified host '%s' has the master or standby master on it. This node can only be stopped as part of a full-cluster hdbstop, without '--host'." %
                                      self.standby.getSegmentHostName()):
             gpstop.run()
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_if_no_mirrors_fails(self):
-        sys.argv = ["gpstop", "-a", "--host", "sdw2"]
+        sys.argv = ["hdbstop", "-a", "--host", "sdw2"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -335,12 +335,12 @@ class GpStop(GpTestCase):
 
         gpstop = self.subject.GpStop.createProgram(options, args)
 
-        with self.assertRaisesRegexp(Exception,"Cannot perform host-specific gpstop on a cluster without segment mirroring."):
+        with self.assertRaisesRegexp(Exception,"Cannot perform host-specific hdbstop on a cluster without segment mirroring."):
             gpstop.run()
         self.assertEquals(0, self.mock_GpSegStopCmdInit.call_count)
 
     def test_host_option_with_master_option_fails(self):
-        sys.argv = ["gpstop", "--host", "sdw1", "-m"]
+        sys.argv = ["hdbstop", "--host", "sdw1", "-m"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -349,7 +349,7 @@ class GpStop(GpTestCase):
             self.subject.GpStop.createProgram(options, args)
 
     def test_host_option_with_restart_option_fails(self):
-        sys.argv = ["gpstop", "--host", "sdw1", "-r"]
+        sys.argv = ["hdbstop", "--host", "sdw1", "-r"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -359,7 +359,7 @@ class GpStop(GpTestCase):
 
     def test_reload_config_use_local_context(self):
         self.mock_socket.return_value = 'mdw'
-        sys.argv = ["gpstop", "-u"]
+        sys.argv = ["hdbstop", "-u"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
         self.mock_gparray.return_value = GpArray([self.master, self.primary0, self.primary1])
@@ -372,7 +372,7 @@ class GpStop(GpTestCase):
         self.assertEquals("sdw1", self.mock_workerpool.addCommand.call_args_list[2][0][0].remoteHost)
 
     def test_host_option_with_request_sighup_option_fails(self):
-        sys.argv = ["gpstop", "--host", "sdw1", "-u"]
+        sys.argv = ["hdbstop", "--host", "sdw1", "-u"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -381,7 +381,7 @@ class GpStop(GpTestCase):
             self.subject.GpStop.createProgram(options, args)
 
     def test_host_option_with_stop_standby_option_fails(self):
-        sys.argv = ["gpstop", "--host", "sdw1", "-y"]
+        sys.argv = ["hdbstop", "--host", "sdw1", "-y"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -396,7 +396,7 @@ class GpStop(GpTestCase):
         self.gparray = GpArray([self.master, self.primary0, self.primary1, self.primary2, self.primary3, self.mirror0, self.mirror1, self.mirror2, self.mirror3, self.standby])
         self.mock_gparray.return_value = self.gparray
 
-        sys.argv = ["gpstop", "-a", "-y"]
+        sys.argv = ["hdbstop", "-a", "-y"]
         parser = self.subject.GpStop.createParser()
         options, args = parser.parse_args()
 
@@ -409,7 +409,7 @@ class GpStop(GpTestCase):
 
 
 # Perform an 'import gpstop', as above.
-_gpstop_file = os.path.abspath(os.path.dirname(__file__) + "/../../../gpstop")
+_gpstop_file = os.path.abspath(os.path.dirname(__file__) + "/../../../hdbstop")
 gpstop = imp.load_source('gpstop', _gpstop_file)
 
 

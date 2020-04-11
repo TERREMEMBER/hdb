@@ -51,67 +51,67 @@ class QueryTestCase(GppkgTestCase):
   
     def test01_query_all(self):
         
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         self.assertTrue(results.split('\n')[self.start_output:self.end_output].sort() == [self.alpha_spec.get_package_name(), self.beta_spec.get_package_name()].sort())
 
-        results = run_command("gppkg --all -q")
+        results = run_command("hdbpkg --all -q")
         self.assertTrue(results.split('\n')[self.start_output:self.end_output].sort() == [self.alpha_spec.get_package_name(), self.beta_spec.get_package_name()].sort())
 
-        self.assertRaises(ExecutionError, run_command, "gppkg -qall")
+        self.assertRaises(ExecutionError, run_command, "hdbpkg -qall")
 
     def test02_query_info(self):
         #Normal order of the options
-        results = run_command("gppkg -q --info %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg -q --info %s" % self.alpha_spec.get_filename())
         self.check_info_results(results, self.alpha_info)
 
         #Reverse order of the options
-        results = run_command("gppkg --info -q %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --info -q %s" % self.alpha_spec.get_filename())
         self.check_info_results(results, self.alpha_info)
 
     def test03_query_list(self):
         expected_list_result = self.get_file_list(self.alpha_spec.get_filename()) 
 
-        results = run_command("gppkg -q --list %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg -q --list %s" % self.alpha_spec.get_filename())
         self.check_list_results(results, expected_list_result)
         
-        results = run_command("gppkg --list -q %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --list -q %s" % self.alpha_spec.get_filename())
         self.check_list_results(results, expected_list_result)
 
     def test04_query_info_expanded(self):
-        results = run_command("gppkg --query --info %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --query --info %s" % self.alpha_spec.get_filename())
         self.check_info_results(results, self.alpha_info)
 
-        results = run_command("gppkg --info --query %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --info --query %s" % self.alpha_spec.get_filename())
         self.check_info_results(results, self.alpha_info)
 
         with self.assertRaises(ExecutionError):
-            results = run_command("gppkg --query --info abcde")
+            results = run_command("hdbpkg --query --info abcde")
 
     def test05_query_list_expanded(self):
         expected_list_result = self.get_file_list(self.alpha_spec.get_filename()) 
     
-        results = run_command("gppkg --query --list %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --query --list %s" % self.alpha_spec.get_filename())
         self.check_list_results(results, expected_list_result)
         
-        results = run_command("gppkg --list --query %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --list --query %s" % self.alpha_spec.get_filename())
         self.check_list_results(results, expected_list_result)
 
         with self.assertRaises(ExecutionError):
-            run_command("gppkg --query --list abcde")
+            run_command("hdbpkg --query --list abcde")
    
     def test06_query_package(self):
-        results = run_command("gppkg -q %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg -q %s" % self.alpha_spec.get_filename())
         self.assertTrue("%s is installed" % self.alpha_spec.get_filename().split('-')[0] in results)
 
-        results = run_command("gppkg --query %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --query %s" % self.alpha_spec.get_filename())
         self.assertTrue("%s is installed" % self.alpha_spec.get_filename().split('-')[0] in results)
 
         self.remove(self.alpha_spec.get_filename())
-        results = run_command("gppkg --query %s" % self.alpha_spec.get_filename())
+        results = run_command("hdbpkg --query %s" % self.alpha_spec.get_filename())
         self.assertTrue("%s is not installed" % self.alpha_spec.get_filename().split('-')[0] in results)
 
         with self.assertRaises(ExecutionError):
-            run_command("gppkg --query abcde")
+            run_command("hdbpkg --query abcde")
             
     def test07_clean_up(self):
         self.cleanup()

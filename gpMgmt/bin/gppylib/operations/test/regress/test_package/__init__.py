@@ -206,7 +206,7 @@ class BuildGppkg(Operation):
             with open(os.path.join(gppkg_dir, "gppkg_spec.yml"), "w") as f:
                 f.write(gppkg_spec_file)
 
-            run_command("gppkg --build " + gppkg_dir)
+            run_command("hdbpkg --build " + gppkg_dir)
         finally:
             shutil.rmtree(gppkg_dir)
             shutil.rmtree(SCRATCH_SPACE)
@@ -334,11 +334,11 @@ class GppkgTestCase(unittest.TestCase):
 
     def cleanup(self):
         """Cleans up gppkgs that are installed"""
-        results = run_command("gppkg -q --all")
+        results = run_command("hdbpkg -q --all")
         gppkgs = results.split('\n')[self.start_output:self.end_output]   #The first line is 'Starting gppkg with args', which we want to ignore.
 
         for gppkg in gppkgs:
-            run_command("gppkg --remove " + gppkg)
+            run_command("hdbpkg --remove " + gppkg)
 
     def build(self, gppkg_spec, rpm_spec, dep_rpm_specs = []):
         """
@@ -377,7 +377,7 @@ class GppkgTestCase(unittest.TestCase):
         @param gppkg_filename: The name of the gppkg file
         @type gppkg_filename: str
         """
-        run_command("gppkg --install %s" % gppkg_filename)
+        run_command("hdbpkg --install %s" % gppkg_filename)
         self.assertTrue(self.check_install(gppkg_filename))
 
     def check_install(self, gppkg_filename):
@@ -390,7 +390,7 @@ class GppkgTestCase(unittest.TestCase):
                  False otherwise
         @rtype: bool
         """
-        cmd = "gppkg -q %s" % gppkg_filename
+        cmd = "hdbpkg -q %s" % gppkg_filename
         results = run_command(cmd)
         test_str = ''.join(gppkg_filename.split('-')[:1]) + " is installed"
         is_installed = test_str in results
@@ -405,7 +405,7 @@ class GppkgTestCase(unittest.TestCase):
         @type gppkg_filename: str
         """
         gppkg_package_name = gppkg_filename.split('-')[0] + '-' + gppkg_filename.split('-')[1]
-        run_command("gppkg --remove %s" % gppkg_package_name)
+        run_command("hdbpkg --remove %s" % gppkg_package_name)
         self.assertFalse(self.check_install(gppkg_filename))
 
     def update(self, gppkg_filename):
@@ -416,7 +416,7 @@ class GppkgTestCase(unittest.TestCase):
         @param gppkg_filename: The name of the gppkg to be updated
         @type gppkg_filename: str
         """
-        run_command("gppkg --update %s" % gppkg_filename)
+        run_command("hdbpkg --update %s" % gppkg_filename)
         self.assertTrue(self.check_install(gppkg_filename))
 
     def remove_timestamp(self, result):

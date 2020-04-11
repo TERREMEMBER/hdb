@@ -70,7 +70,7 @@ RUNNING DEMO 1: GREP
 1. Copy the data files for this demo to the demo data location on your 
    segment hosts. For example:
 
-    $ gpscp -h seghost1 -h seghost2 data/accesslog data/accesslog2 =:/home/gpadmin/gpmrdata
+    $ hdbscp -h seghost1 -h seghost2 data/accesslog data/accesslog2 =:/home/gpadmin/gpmrdata
 
 
 2. Edit the 1_grep.yml file and change the <seghostname1>, <seghostname2>, 

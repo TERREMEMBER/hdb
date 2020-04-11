@@ -73,7 +73,7 @@ def after_feature(context, feature):
         context.conn.close()
     if 'minirepro' in feature.tags:
         context.conn.close()
-    if 'gpconfig' in feature.tags:
+    if 'hdbconfig' in feature.tags:
         context.execute_steps(u'''
             Then the user runs "hdbstop -ar"
             And hdbstop should return a return code of 0
@@ -121,7 +121,7 @@ def after_scenario(context, scenario):
             And hdbstart should return a return code of 0
             ''')
 
-    # NOTE: gpconfig after_scenario cleanup is in the step `the gpconfig context is setup`
+    # NOTE: hdbconfig after_scenario cleanup is in the step `the hdbconfig context is setup`
     tags_to_skip = ['hdbexpand', 'hdbaddmirrors', 'hdbstate','hdbconfig', 'hdbstop', 'cross_subnet',
                     'hdbinitstandby','hdbinitsystem','hdbcheckperf', 'hdbreload']
     if set(context.feature.tags).intersection(tags_to_skip):

@@ -13,7 +13,7 @@ ARCH=$(shell uname -p)
 # Quite a few assumptions about the semantics of the associated RPM spec file:
 #   * Most importantly, from the use of RPM_NAME below, building postgis-*.rpm will require a postgis.spec,
 #     in the current working directory.
-#   * RPMs must disable AutoReq, as gppkg RPM database will lack knowledge of system's libraries
+#   * RPMs must disable AutoReq, as hdbpkg RPM database will lack knowledge of system's libraries
 #   * RPMs with shell commands in hooks must "Provide" /bin/sh, as a hack, for the same reason as the AutoReq issue
 #   * --buildroot must requires an absolute path. I think we cd into %{buildroot} for %install. I think we might also
 #     step into %{buildroot} again for %files. So, relative paths cause "file not found" errors.
@@ -62,7 +62,7 @@ ifdef DEPENDENT_RPMS
 		cp $${dep_rpm} gppkg/deps; \
 	done
 endif
-	source $(INSTLOC)/inhybrid_path.sh && gppkg --build gppkg 
+	source $(INSTLOC)/inhybrid_path.sh && hdbpkg --build gppkg 
 	rm -rf gppkg
 
 clean:
@@ -74,6 +74,6 @@ ifdef EXTRA_CLEAN
 endif
 
 install: $(TARGET_GPPKG)
-	source $(INSTLOC)/inhybrid_path.sh && gppkg -i $(TARGET_GPPKG)
+	source $(INSTLOC)/inhybrid_path.sh && hdbpkg -i $(TARGET_GPPKG)
 
 .PHONY: install clean

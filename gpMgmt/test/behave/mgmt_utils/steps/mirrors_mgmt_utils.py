@@ -361,10 +361,10 @@ def run_gpmovemirrors(context, extra_args=''):
 def impl(context):
     context.execute_steps( u'''
     When an FTS probe is triggered
-    And the user runs "gpstop -a"
-    And wait until the process "gpstop" goes down
-    And the user runs "gpstart -a"
-    And wait until the process "gpstart" goes down
+    And the user runs "hdbstop -a"
+    And wait until the process "hdbstop" goes down
+    And the user runs "hdbstart -a"
+    And wait until the process "hdbstart" goes down
     Then all the segments are running
     And the segments are synchronized''')
 

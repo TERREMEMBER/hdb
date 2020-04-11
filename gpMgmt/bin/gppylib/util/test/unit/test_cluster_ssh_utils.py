@@ -90,7 +90,7 @@ class SshUtilsTestCase(unittest.TestCase):
         with mock.patch.object(pxssh.pxssh, 'login', side_effect=Exception('foo')) as mock_login:
             session2 = Session()
             session2.login(['localhost'], 'gpadmin', 0.05, 1.0)
-            self.assertEqual(mock_stdout.getvalue(), '[ERROR] unable to login to localhost\nhint: use gpssh-exkeys to setup public-key authentication between hosts\n')
+            self.assertEqual(mock_stdout.getvalue(), '[ERROR] unable to login to localhost\nhint: use hdbssh-exkeys to setup public-key authentication between hosts\n')
             mock_stdout.truncate(0)
 
 if __name__ == "__main__":

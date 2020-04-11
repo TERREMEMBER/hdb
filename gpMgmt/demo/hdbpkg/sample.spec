@@ -5,7 +5,7 @@ Summary:    template rpm
 License:    apache 
 Source0:    sample-sources.tar.gz
 BuildArch:  x86_64
-# Prefix must be specified as gppkg runs rpm install with --prefix flag
+# Prefix must be specified as hdbpkg runs rpm install with --prefix flag
 # This means the rpm was built with an overridable prefix
 Prefix:     /
 # We have to claim to provide /bin/sh as the rpm installation will fail

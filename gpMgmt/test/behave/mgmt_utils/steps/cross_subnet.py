@@ -60,8 +60,8 @@ def impl(context, segment):
         context.execute_steps(u"""
         Given user stops all primary processes
           And user can start transactions
-         When the user runs "gprecoverseg -a"
-         Then gprecoverseg should return a return code of 0
+         When the user runs "hdbrecoverseg -a"
+         Then hdbrecoverseg should return a return code of 0
         """)
 
     context.execute_steps(u"""
@@ -78,8 +78,8 @@ def impl(context, segment):
         # the previous master cannot assume the role of standby
         # because it does not have the required recover.conf file.
         context.execute_steps(u"""
-         When the user runs command "gpinitstandby -a -s mdw-1 -S {datadir}" from standby master
-         Then gpinitstandby should return a return code of 0
+         When the user runs command "hdbinitstandby -a -s mdw-1 -S {datadir}" from standby master
+         Then hdbinitstandby should return a return code of 0
          """.format(datadir=context.new_standby_data_dir))
         os.environ['MASTER_DATA_DIRECTORY'] = context.new_standby_data_dir
         # NOTE: this must be set before hdbactivatestandby is called
@@ -95,14 +95,14 @@ def impl(context, segment):
         """)
 
         context.execute_steps(u"""
-         When the user runs "gpinitstandby -a -s mdw-2 -S {datadir}"
-         Then gpinitstandby should return a return code of 0
+         When the user runs "hdbinitstandby -a -s mdw-2 -S {datadir}"
+         Then hdbinitstandby should return a return code of 0
          """.format(datadir=context.new_standby_data_dir))
 
     else: # mirrors
         context.execute_steps(u"""
-         When the user runs "gprecoverseg -ra"
-         Then gprecoverseg should return a return code of 0
+         When the user runs "hdbrecoverseg -ra"
+         Then hdbrecoverseg should return a return code of 0
         """)
 
     context.execute_steps(u"""

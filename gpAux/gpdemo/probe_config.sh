@@ -16,7 +16,7 @@ else
   GPSEARCH=$HDBHOME
 fi
 
-GPPATH=`find $GPSEARCH -name gpstart | tail -1`
+GPPATH=`find $GPSEARCH -name hdbstart | tail -1`
 RETVAL=$?
 
 if [ "$RETVAL" -ne 0 ]; then

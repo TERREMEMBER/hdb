@@ -1,7 +1,7 @@
 @cross_subnet
 Feature: Tests for a cross_subnet cluster
 
-    Scenario: gpinitsystem works across subnets
+    Scenario: hdbinitsystem works across subnets
         Given the database is running
          Then the primaries and mirrors including masterStandby are on different subnets
           And all the segments are running
@@ -9,15 +9,15 @@ Feature: Tests for a cross_subnet cluster
           And the mirrors replicate and fail over and back correctly
           And the standby replicates and fails over and back correctly
 
-    Scenario: gpinitstandby works across subnets
+    Scenario: hdbinitstandby works across subnets
         Given the database is not running
           And a working directory of the test as '/tmp/gpinitstandby'
           And a cross-subnet cluster without a standby is created with mirrors on "mdw-1" and "sdw1-1,sdw1-2"
          Then the primaries and mirrors excluding masterStandby are on different subnets
 
         Given the standby is not initialized
-         When running gpinitstandby on host "mdw-1" to create a standby on host "mdw-2"
-         Then gpinitstandby should return a return code of 0
+         When running hdbinitstandby on host "mdw-1" to create a standby on host "mdw-2"
+         Then hdbinitstandby should return a return code of 0
           And verify the standby master entries in catalog
           And the primaries and mirrors including masterStandby are on different subnets
           And the standby replicates and fails over and back correctly

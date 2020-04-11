@@ -1,9 +1,9 @@
-# gpexpand
+# hdbexpand
 
-gpexpand is Greenplum cluster expansion tool which expands an existing Greenplum
+hdbexpand is Greenplum cluster expansion tool which expands an existing Greenplum
 Database by adding new hosts to the cluster.
 
-gpexpand has two phases:
+hdbexpand has two phases:
 
 * initialization phase: add new nodes to the cluster, initialize new nodes by
 populating catalog to the new nodes, and get visible in cluster.
@@ -11,7 +11,7 @@ populating catalog to the new nodes, and get visible in cluster.
 
 ## 1. Initialization phase
 
-gpexpand initialization phase adds new nodes to the cluster, populate catalog to the new nodes,
+hdbexpand initialization phase adds new nodes to the cluster, populate catalog to the new nodes,
 and get ready for user data redistribution. During this phase, DDL operations
 are disabled to avoid catalog inconsistency between existing segments and new segments.
 
@@ -43,12 +43,12 @@ To avoid catalog inconsistency across existing segments and new segments,
 catalog change is blocked during initialization phase, thus DDL operations (on most
 tables) are disallowed.
 
-Once gpexpand starts to copy base files from master to new segments, gpexpand have to
+Once hdbexpand starts to copy base files from master to new segments, hdbexpand have to
 prevent concurrent catalog changes on master. To do so, a new catalog lock is added.
 On master all changes to catalog tables acquire shared access on
-this lock, while gpexpand acquires access exclusive mode on the same lock. If
-there are existing uncommitted catalog changes, gpexpand must wait for all of
-them to commit or rollback. Once gpexpand has held the lock, all other concurrent
+this lock, while hdbexpand acquires access exclusive mode on the same lock. If
+there are existing uncommitted catalog changes, hdbexpand must wait for all of
+them to commit or rollback. Once hdbexpand has held the lock, all other concurrent
 catalog changes will fail immediately, otherwise, those transactions cannot apply
 catalog changes to new segments, and result in catalog inconsistency.
 
@@ -70,10 +70,10 @@ truncated anyway after copying to new segments. These catalog tables are:
 
 ## 2. Redistribution phase
 
-gpexpand redistribution phase redistributes user's data across the whole cluster
+hdbexpand redistribution phase redistributes user's data across the whole cluster
 one table by one table. User could adjust table redistribution order.
 
-During this phase, table currently under expansion is not accessible. gpexpand
+During this phase, table currently under expansion is not accessible. hdbexpand
 acquires `Access Exclusive Lock` on redistributing table to prevent concurrent.
 
 User data are redistributed in a CTAS-like style, id redistributes all data to
@@ -85,10 +85,10 @@ CTAS has following characteristics:
 
 ## 3. Performance
 
-gpexpand might take days to expand big clusters, so it is important to reduce its
-impact to workload during expansion, and to improve gpexpand's performance.
+hdbexpand might take days to expand big clusters, so it is important to reduce its
+impact to workload during expansion, and to improve hdbexpand's performance.
 
-gpexpand in 5.x firstly changes all hash distributed tables to randomly distributed
+hdbexpand in 5.x firstly changes all hash distributed tables to randomly distributed
 tables, then expands those tables one by one to new nodes. Thus data locality is
 lost during expansion, query performance is bad, and lots of tuples needs to move.
 Greenplum 6 improves both of them.
@@ -150,7 +150,7 @@ To get the benefit of jump consistent hash when expanding, it is recommended to
 transfer database to jump consistent hash after upgrade. Tools will be provided
 to do so.
 
-gpexpand expands cluster and transfer modulo hash distributed data to jump
+hdbexpand expands cluster and transfer modulo hash distributed data to jump
 consistent hash altogether.
 
 #### 6 to 6 upgrade
@@ -188,6 +188,6 @@ During expansion, backup and restore is not supported.
 
 ### 4.3 Utilities
 
-During initialization phase, utilities like gpconfig, gppkg does not work.
+During initialization phase, utilities like hdbconfig, hdbpkg does not work.
 
 hdbstate shows expansion status if there are expanding in progress.

@@ -22,7 +22,7 @@ class GpPkgProgramTestCase(GpTestCase):
         self.mock_listdir = self.get_mock_from_apply_patch('listdir')
 
     def test__remove_raises_when_gppkg_was_not_installed(self):
-        sys.argv = ["gppkg", "--remove", "sample"]
+        sys.argv = ["hdbpkg", "--remove", "sample"]
         get_result_mock = Mock()
         get_result_mock.stdout.strip.return_value = "RPM version 4.8.0"
 
@@ -36,7 +36,7 @@ class GpPkgProgramTestCase(GpTestCase):
             self.subject.run()
 
     def test__remove_succeeds_when_gppkg_had_been_installed(self):
-        sys.argv = ["gppkg", "--remove", "sample"]
+        sys.argv = ["hdbpkg", "--remove", "sample"]
         get_result_mock = Mock()
         get_result_mock.stdout.strip.return_value = "RPM version 4.8.0"
 
@@ -55,7 +55,7 @@ class GpPkgProgramTestCase(GpTestCase):
         self.mock_uninstall_package.run.assert_called_once()
 
     def test__input_matches_multiple_packages(self):
-        sys.argv = ["gppkg", "--remove", "sampl"]
+        sys.argv = ["hdbpkg", "--remove", "sampl"]
         get_result_mock = Mock()
         get_result_mock.stdout.strip.return_value = "RPM version 4.8.0"
 
@@ -75,7 +75,7 @@ class GpPkgProgramTestCase(GpTestCase):
         self.assertFalse(self.mock_uninstall_package.run.called)
 
     def test__input_exact_match_when_wildcard_would_have_more(self):
-        sys.argv = ["gppkg", "--remove", "sample"]
+        sys.argv = ["hdbpkg", "--remove", "sample"]
         get_result_mock = Mock()
         get_result_mock.stdout.strip.return_value = "RPM version 4.8.0"
 

@@ -540,7 +540,7 @@ endif
 PVK_SCRIPTS = \
 	bin/hdbscp			\
 	bin/hdbssh			\
-	bin/gpcheckperf			\
+	bin/hdbcheckperf			\
 	$(NULL)
 
 PVK_FILESET = \
@@ -570,7 +570,7 @@ pvk : gccVersionCheck version GPROOTDEP
 SET_VERSION_SCRIPTS = \
 	bin/hdbactivatestandby \
 	bin/hdbaddmirrors \
-	bin/gpcheckperf \
+	bin/hdbcheckperf \
 	bin/hdbdeletesystem \
 	bin/hdbexpand \
 	bin/gpfilespace \
@@ -579,7 +579,7 @@ SET_VERSION_SCRIPTS = \
 	bin/gpload.py \
 	bin/hdblogfilter \
 	bin/gpmovemirrors \
-	bin/gprecoverseg \
+	bin/hdbrecoverseg \
 	bin/hdbreload \
 	bin/hdbscp \
 	bin/hdbssh \

@@ -236,7 +236,7 @@ clean distclean:
 	rm -rf *.pyc
 	rm -f analyzedbc hdbactivatestandbyc hdbaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
-		  hdbdeletesystemc gpexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
+		  hdbdeletesystemc hdbexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
 		  hdbpkgc hdbrecoversegc hdbreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
 		  hdbstartc hdbstatec hdbstopc hdbsys1c minireproc
 	rm -f gpconfig_modules/gucs_disallowed_in_file.txt

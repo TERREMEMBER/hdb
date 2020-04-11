@@ -8,7 +8,7 @@ from gppylib.operations.unix import RemoveRemoteFile, CheckRemoteFile
 class CleanGppkgTestCase(GppkgTestCase):
     def setUp(self):
         super(CleanGppkgTestCase, self).setUp()
-        self.clean_command = "gppkg --clean"
+        self.clean_command = "hdbpkg --clean"
 
         standby, segment_host_list = get_host_list()
         cluster_host_list = [standby] + [host for host in segment_host_list]        

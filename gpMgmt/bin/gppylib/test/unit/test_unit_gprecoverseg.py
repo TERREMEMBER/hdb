@@ -99,7 +99,7 @@ class GpRecoversegTestCase(GpTestCase):
         self.mock_check_segment_consistency = self.get_mock_from_apply_patch('check_segment_consistency')
         self.mock_get_segments_checksum_settings = self.get_mock_from_apply_patch('get_segments_checksum_settings')
 
-        sys.argv = ["gprecoverseg"]  # reset to relatively empty args list
+        sys.argv = ["hdbrecoverseg"]  # reset to relatively empty args list
 
         options = Options()
         options.masterDataDirectory = self.temp_dir
@@ -211,7 +211,7 @@ class GpRecoversegTestCase(GpTestCase):
 
         self.assertEqual(cm.exception.code, 0)
         self.subject.logger.info.assert_any_call('The rebalance operation has completed with WARNINGS. '
-                                                 'Please review the output in the gprecoverseg log.')
+                                                 'Please review the output in the hdbrecoverseg log.')
 
     @patch.object(TableLogger, "info")
     def test_failed_recover(self, _):

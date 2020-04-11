@@ -67,9 +67,9 @@ class GpSegmentRebalanceOperation:
             if not allSegmentsStopped:
                 self.logger.warn("%d segments failed to stop.  A full rebalance of the")
                 self.logger.warn("system is not possible at this time.  Please check the")
-                self.logger.warn("log files, correct the problem, and run gprecoverseg -r")
+                self.logger.warn("log files, correct the problem, and run hdbrecoverseg -r")
                 self.logger.warn("again.")
-                self.logger.info("gprecoverseg will continue with a partial rebalance.")
+                self.logger.info("hdbrecoverseg will continue with a partial rebalance.")
 
             pool.empty_completed_items()
             segment_reconfigurer = SegmentReconfigurer(logger=self.logger,
@@ -83,7 +83,7 @@ class GpSegmentRebalanceOperation:
                 self.logger.info("=============================START ANOTHER RECOVER=========================================")
                 # import here because GpRecoverSegmentProgram and GpSegmentRebalanceOperation have a circular dependency
                 from gppylib.programs.clsRecoverSegment import GpRecoverSegmentProgram
-                sys.argv = ['gprecoverseg', '-a']
+                sys.argv = ['hdbrecoverseg', '-a']
                 local_parser = GpRecoverSegmentProgram.createParser()
                 local_options, args = local_parser.parse_args()
                 cmd = GpRecoverSegmentProgram.createProgram(local_options, args)
@@ -92,8 +92,8 @@ class GpSegmentRebalanceOperation:
             except SystemExit as e:
                 if e.code != 0:
                     self.logger.error("Failed to start the synchronization step of the segment rebalance.")
-                    self.logger.error("Check the gprecoverseg log file, correct any problems, and re-run")
-                    self.logger.error("'gprecoverseg -a'.")
+                    self.logger.error("Check the hdbrecoverseg log file, correct any problems, and re-run")
+                    self.logger.error("'hdbrecoverseg -a'.")
                     raise Exception("Error synchronizing.\nError: %s" % str(e))
             finally:
                 if cmd:
