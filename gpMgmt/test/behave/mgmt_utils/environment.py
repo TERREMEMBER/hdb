@@ -62,6 +62,17 @@ def before_feature(context, feature):
         dbconn.execSQL(context.conn, 'insert into t2 values(1, 3)')
         dbconn.execSQL(context.conn, 'insert into t3 values(1, 4)')
         context.conn.commit()
+   
+    if 'hdbsd' in feature.tags:
+        start_database_if_not_started(context)
+        hdbsd_db = 'hdbsd_db'
+        drop_database_if_exists(context, hdbsd_db)
+        create_database(context, hdbsd_db)
+        context.conn = dbconn.connect(dbconn.DbURL(dbname=hdbsd_db), unsetSearchPath=False)
+        context.dbname = hdbsd_db
+        dbconn.execSQL(context.conn, 'create table t1(a integer, b integer)')
+        dbconn.execSQL(context.conn, 'insert into t1 values(1, 2)')
+        context.conn.commit()
 
     if 'hdbpkg' in feature.tags:
         run_command(context, 'bash demo/hdbpkg/generate_sample_hdbpkg.sh buildHdbpkg')
@@ -72,6 +83,8 @@ def after_feature(context, feature):
     if 'analyzedb' in feature.tags:
         context.conn.close()
     if 'minirepro' in feature.tags:
+        context.conn.close()
+    if 'hdbsd' in feature.tags:
         context.conn.close()
     if 'hdbconfig' in feature.tags:
         context.execute_steps(u'''
