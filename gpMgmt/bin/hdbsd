@@ -13,7 +13,7 @@ from distutils.version import LooseVersion
 from optparse import OptionParser
 from pygresql import pgdb
 
-gpsd_version = '%prog 1.0'
+hdbsd_version = '%prog 1.0'
 
 sysnslist = "('pg_toast', 'pg_bitmapindex', 'pg_temp_1', 'pg_catalog', 'information_schema')"
 orca = False
@@ -33,7 +33,7 @@ def ResultIter(cursor, arraysize=1000):
 def getVersion(envOpts):
     cmd = subprocess.Popen('psql --pset footer -Atqc "select version()" template1', shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=envOpts)
     if cmd.wait() is not 0:
-        sys.stderr.write('\nError while trying to find HAWQ/GPDB version.\n\n' + cmd.communicate()[1] + '\n\n')
+        sys.stderr.write('\nError while trying to find HDB version.\n\n' + cmd.communicate()[1] + '\n\n')
         sys.exit(1)
     return cmd.communicate()[0]
 
@@ -146,7 +146,7 @@ def dumpStats(cur, inclHLL):
 
 
 def parseCmdLine():
-    p = OptionParser(usage='Usage: %prog [options] <database>', version=gpsd_version, conflict_handler="resolve", epilog="WARNING: This tool collects statistics about your data, including most common values, which requires some data elements to be included in the output file. Please review output file to ensure it is within corporate policy to transport the output file.")
+    p = OptionParser(usage='Usage: %prog [options] <database>', version=hdbsd_version, conflict_handler="resolve", epilog="WARNING: This tool collects statistics about your data, including most common values, which requires some data elements to be included in the output file. Please review output file to ensure it is within corporate policy to transport the output file.")
     p.add_option('-?', '--help', action='help', help='Show this help message and exit')
     p.add_option('-h', '--host', action='store',
                  dest='host', help='Specify a remote host')
@@ -205,7 +205,7 @@ def main():
     connectionInfo = (host, port, user, db)
     connectionString = ':'.join([host, port, db, user, '', pgoptions, ''])
 
-    sys.stdout.writelines(['\n-- Greenplum database Statistics Dump',
+    sys.stdout.writelines(['\n-- inHybrid database Statistics Dump',
                            '\n-- Copyright (C) 2007 - 2014 Pivotal'
                            '\n-- Database: ' + db,
                            '\n-- Date:     ' + timestamp.date().isoformat(),

@@ -16,7 +16,7 @@ PROGRAMS= analyzedb hdbaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
 	gpload gpload.py hdbmovemirrors \
 	hdbpkg hdbreload \
-	hdbstate hdbsys1 minirepro hdbstart hdbstop \
+	hdbstate hdbsys1 minirepro hdbsd hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
 	hdbrecoverseg hdbconfig hdblogfilter hdbactivatestandby
 installdirs:
@@ -237,6 +237,6 @@ clean distclean:
 	rm -f analyzedbc hdbactivatestandbyc hdbaddmirrorsc hdbcheckcatc \
 		  hdbcheckperfc gpcheckresgroupimplc gpchecksubnetcfgc hdbconfigc \
 		  hdbdeletesystemc hdbexpandc hdbinitstandbyc hdblogfilterc gpmovemirrorsc \
-		  hdbpkgc hdbrecoversegc hdbreloadc hdbscpc gpsdc hdbssh-exkeysc hdbsshc \
+		  hdbpkgc hdbrecoversegc hdbreloadc hdbscpc hdbsdc hdbssh-exkeysc hdbsshc \
 		  hdbstartc hdbstatec hdbstopc hdbsys1c minireproc
 	rm -f gpconfig_modules/gucs_disallowed_in_file.txt
