@@ -1,5 +1,6 @@
 import os, mmap
-from test.behave_utils.utils import drop_database_if_exists, drop_table_if_exists
+import re
+from test.behave_utils.utils import drop_database_if_exists, drop_table_if_exists, create_database_if_not_exists, run_gpcommand
 
 @given('database "{dbname}" does not exist')
 def impl(context, dbname):

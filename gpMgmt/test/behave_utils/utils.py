@@ -262,7 +262,8 @@ def create_database_if_not_exists(context, dbname, host=None, port=0, user=None)
     if not check_db_exists(dbname, host, port, user):
         create_database(context, dbname, host, port, user)
     context.dbname = dbname
-    context.conn = dbconn.connect(dbconn.DbURL(dbname=context.dbname), unsetSearchPath=False)
+    ### this will cause error "database "<dbname>" is being accessed by other users". this function may should not hold connection to database <dbname>.
+    #context.conn = dbconn.connect(dbconn.DbURL(dbname=context.dbname), unsetSearchPath=False)
 
 def create_database(context, dbname=None, host=None, port=0, user=None):
     LOOPS = 10
