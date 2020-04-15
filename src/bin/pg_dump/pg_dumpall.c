@@ -145,8 +145,8 @@ main(int argc, char *argv[])
 		{"no-unlogged-table-data", no_argument, &no_unlogged_table_data, 1},
 
 		/* START MPP ADDITION */
-		{"gp-syntax", no_argument, NULL, 1000},
-		{"no-gp-syntax", no_argument, NULL, 1001},
+		{"hdb-syntax", no_argument, NULL, 1000},
+		{"no-hdb-syntax", no_argument, NULL, 1001},
 		/* END MPP ADDITION */
 
 		{NULL, 0, NULL, 0}
@@ -335,14 +335,14 @@ main(int argc, char *argv[])
 				/* START MPP ADDITION */
 			case 1000:
 				/* gp-format */
-				appendPQExpBuffer(pgdumpopts, " --gp-syntax");
+				appendPQExpBuffer(pgdumpopts, " --hdb-syntax");
 				gp_syntax = true;
-				resource_queues = 1; /* --resource-queues is implied by --gp-syntax */
-				resource_groups = 1; /* --resource-groups is implied by --gp-syntax */
+				resource_queues = 1; /* --resource-queues is implied by --hdb-syntax */
+				resource_groups = 1; /* --resource-groups is implied by --hdb-syntax */
 				break;
 			case 1001:
 				/* no-gp-format */
-				appendPQExpBuffer(pgdumpopts, " --no-gp-syntax");
+				appendPQExpBuffer(pgdumpopts, " --no-hdb-syntax");
 				no_gp_syntax = true;
 				break;
 
@@ -401,7 +401,7 @@ main(int argc, char *argv[])
 
 	if (gp_syntax && no_gp_syntax)
 	{
-		fprintf(stderr, _("%s: options \"--gp-syntax\" and \"--no-gp-syntax\" cannot be used together\n"),
+		fprintf(stderr, _("%s: options \"--hdb-syntax\" and \"--no-hdb-syntax\" cannot be used together\n"),
 				progname);
 		exit(1);
 	}
@@ -506,7 +506,7 @@ main(int argc, char *argv[])
 	if (quote_all_identifiers && server_version >= 90100)
 		executeCommand(conn, "SET quote_all_identifiers = true");
 
-	fprintf(OPF,"--\n-- Greenplum Database cluster dump\n--\n\n");
+	fprintf(OPF,"--\n-- inHybrid Database cluster dump\n--\n\n");
 	if (verbose)
 		dumpTimestamp("Started on");
 
@@ -658,8 +658,8 @@ help(void)
 	printf(_("  --use-set-session-authorization\n"
 			 "                               use SET SESSION AUTHORIZATION commands instead of\n"
 			 "                               ALTER OWNER commands to set ownership\n"));
-	printf(_("  --gp-syntax                  dump with Greenplum Database syntax (default if gpdb)\n"));
-	printf(_("  --no-gp-syntax               dump without Greenplum Database syntax (default if postgresql)\n"));
+	printf(_("  --hdb-syntax                 dump with inHybrid Database syntax (default if hdb)\n"));
+	printf(_("  --no-hdb-syntax              dump without inHybrid Database syntax (default if postgresql)\n"));
 
 	printf(_("\nConnection options:\n"));
 	printf(_("  -d, --dbname=CONNSTR     connect using connection string\n"));
@@ -673,7 +673,7 @@ help(void)
 
 	printf(_("\nIf -f/--file is not used, then the SQL script will be written to the standard\n"
 			 "output.\n\n"));
-	printf(_("Report bugs to <bugs@greenplum.org>.\n"));
+	printf(_("Report bugs to <bugs@inspur.com>.\n"));
 }
 
 
@@ -1478,7 +1478,7 @@ dumpTablespaces(PGconn *conn)
 	 *
 	 * [FIXME] the queries need to be slightly different if the backend isn't
 	 * Greenplum, and the dump format should vary depending on if the dump is
-	 * --gp-syntax or --no-gp-syntax.
+	 * --hdb-syntax or --no-hdb-syntax.
 	 */
 	if (server_version <= 80323)
 	{							

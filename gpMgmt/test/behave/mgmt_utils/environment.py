@@ -62,7 +62,18 @@ def before_feature(context, feature):
         dbconn.execSQL(context.conn, 'insert into t2 values(1, 3)')
         dbconn.execSQL(context.conn, 'insert into t3 values(1, 4)')
         context.conn.commit()
-   
+  
+    if 'pg_restore' in feature.tags:
+        start_database_if_not_started(context)
+        create_database(context, 'restoredbtest')
+        restoredb = 'restoredb'
+        drop_database_if_exists(context, restoredb)
+        create_database(context, restoredb)
+        context.conn = dbconn.connect(dbconn.DbURL(dbname=restoredb), unsetSearchPath=False)
+        context.dbname = restoredb
+        dbconn.execSQL(context.conn, 'create table t1(a integer, b integer)')
+        context.conn.commit()
+
     if 'hdbsd' in feature.tags:
         start_database_if_not_started(context)
         hdbsd_db = 'hdbsd_db'
@@ -84,6 +95,10 @@ def after_feature(context, feature):
         context.conn.close()
     if 'minirepro' in feature.tags:
         context.conn.close()
+    if 'pg_restore' in feature.tags:
+        context.conn.close()
+        drop_database_if_exists(context, 'restoredb')
+        drop_database_if_exists(context, 'restoredbtest')
     if 'hdbsd' in feature.tags:
         context.conn.close()
     if 'hdbconfig' in feature.tags:
