@@ -6,4 +6,4 @@ if not defined FOUND (
     exit /B 1
 )
 
-python "%~dp0\gpload.py" %*
+python "%~dp0\hdbload.py" %*

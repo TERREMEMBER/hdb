@@ -1130,8 +1130,8 @@ If you want to review or change any of your installation settings, click Back. C
                 <File Id="ssleay32.dll" Name="ssleay32.dll" Source="$(var.SRCDIR)\bin\ssleay32.dll" />
                 <File Id="libeay32.dll" Name="libeay32.dll" Source="$(var.SRCDIR)\bin\libeay32.dll" />
                 <File Id="zlib.dll" Name="zlib.dll" Source="$(var.SRCDIR)\bin\zlib.dll" />
-                <File Id="gpload.py" Name="gpload.py" Source="$(var.SRCDIR)\bin\gpload.py" />
-                <File Id="gpload.bat" Name="gpload.bat" Source="$(var.SRCDIR)\bin\gpload.bat" />
+                <File Id="hdbload.py" Name="hdbload.py" Source="$(var.SRCDIR)\bin\hdbload.py" />
+                <File Id="hdbload.bat" Name="hdbload.bat" Source="$(var.SRCDIR)\bin\hdbload.bat" />
               </Component>
               <Directory Id="GPPYlib" Name="gppylib">
                 <Component Id="GPPYlib" DiskId="1" Guid="C246C9E7-7251-44CE-A638-7F5C984F158D">

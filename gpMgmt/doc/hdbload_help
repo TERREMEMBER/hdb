@@ -1,4 +1,4 @@
-COMMAND NAME: gpload
+COMMAND NAME: hdbload
 
 Runs a load job as defined in a YAML formatted control file.
 
@@ -7,35 +7,35 @@ Runs a load job as defined in a YAML formatted control file.
 SYNOPSIS
 *****************************************************
 
-gpload -f <control_file> [-l <log_file>] [-h <hostname>] [-p <port>]
+hdbload -f <control_file> [-l <log_file>] [-h <hostname>] [-p <port>]
 [-U <username>] [-d <database>] [-W] [--gpfdist_timeout <seconds>] 
 [--no_auto_trans] [[-v | -V] [-q]] [-D]
 
-gpload -? 
+hdbload -? 
 
-gpload --version
+hdbload --version
 
 
 *****************************************************
 PREREQUISITES
 *****************************************************
 
-The client machine where gpload is executed must have the following: 
+The client machine where hdbload is executed must have the following: 
 
 * Python 2.6.2 or later, pygresql (the Python interface to PostgreSQL), 
   and pyyaml. Note that Python and the required Python libraries are 
-  included with the Greenplum Database server installation, so if you have 
-  Greenplum Database installed on the machine where gpload is running, you 
+  included with the inHybrid Database server installation, so if you have 
+  inHybrid Database installed on the machine where hdbload is running, you 
   do not need a separate Python installation. 
 
-  Note: Greenplum Loaders for Windows supports only Python 2.5 
+  Note: inHybrid Loaders for Windows supports only Python 2.5 
   (available from www.python.org). 
 
 * The gpfdist parallel file distribution program installed and in your 
-  $PATH. This program is located in $GPHOME/bin of your Greenplum Database 
+  $PATH. This program is located in $HDBHOME/bin of your inHybrid Database 
   server installation. 
 
-* Network access to and from all hosts in your Greenplum Database array 
+* Network access to and from all hosts in your inHybrid Database array 
  (master and segments). 
 
 * Network access to and from the hosts where the data to be loaded 
@@ -46,10 +46,10 @@ The client machine where gpload is executed must have the following:
 DESCRIPTION
 *****************************************************
 
-gpload is a data loading utility that acts as an interface to Greenplum 
+hdbload is a data loading utility that acts as an interface to inHybrid 
 Databases external table parallel loading feature. Using a load 
-specification defined in a YAML formatted control file, gpload executes 
-a load by invoking the Greenplum parallel file server (gpfdist), 
+specification defined in a YAML formatted control file, hdbload executes 
+a load by invoking the inHybrid parallel file server (gpfdist), 
 creating an external table definition based on the source data defined, 
 and executing an INSERT, UPDATE or MERGE operation to load the source 
 data into the target table in the database. 
@@ -80,7 +80,7 @@ OPTIONS
 -l <log_file>
 
  Specifies where to write the log file. Defaults to 
- ~/gpAdminLogs/gpload_YYYYMMDD. See Also: LOG FILE FORMAT section. 
+ ~/gpAdminLogs/hdbload_YYYYMMDD. See Also: LOG FILE FORMAT section. 
 
 
 --no_auto_trans 
@@ -89,7 +89,7 @@ OPTIONS
  single transaction if you are performing a single load operation on the 
  target table. 
 
- By default, gpload processes each load operation as a single transaction 
+ By default, hdbload processes each load operation as a single transaction 
  to prevent inconsistent data when performing multiple, simultaneous 
  operations on a target table. 
 
@@ -137,14 +137,14 @@ CONNECTION OPTIONS
 
 -h <hostname>
 
- Specifies the host name of the machine on which the Greenplum master 
+ Specifies the host name of the machine on which the inHybrid master 
  database server is running. If not specified, reads from the load 
  control file, the environment variable $PGHOST or defaults to localhost. 
 
 
 -p <port> 
 
- Specifies the TCP port on which the Greenplum master database server is 
+ Specifies the TCP port on which the inHybrid master database server is 
  listening for connections. If not specified, reads from the load control 
  file, the environment variable $PGPORT or defaults to 5432. 
 
@@ -160,7 +160,7 @@ CONNECTION OPTIONS
 
  Force a password prompt. If not specified, reads the password from the 
  environment variable $PGPASSWORD or from a password file specified by 
- $PGPASSFILE or in ~/.pgpass. If these are not set, then gpload will 
+ $PGPASSFILE or in ~/.pgpass. If these are not set, then hdbload will 
  prompt for a password even if -W is not supplied. 
 
 
@@ -168,11 +168,11 @@ CONNECTION OPTIONS
 CONTROL FILE FORMAT
 *****************************************************
 
-The gpload control file uses the YAML 1.1 document format and then 
-implements its own schema for defining the various steps of a Greenplum 
+The hdbload control file uses the YAML 1.1 document format and then 
+implements its own schema for defining the various steps of a inHybrid 
 Database load operation. The control file must be a valid YAML document. 
 
-The gpload program processes the control file document in order and uses 
+The hdbload program processes the control file document in order and uses 
 indentation (spaces) to determine the document hierarchy and the 
 relationships of the sections to one another. The use of white space is 
 significant. White space should not be used simply for formatting 
@@ -238,10 +238,10 @@ CONTROL FILE SCHEMA ELEMENT DESCRIPTIONS
 *****************************************************
 
 
-VERSION - Optional. The version of the gpload control file 
+VERSION - Optional. The version of the hdbload control file 
           schema. The current version is 1.0.0.1. 
 
-DATABASE - Optional. Specifies which database in Greenplum to 
+DATABASE - Optional. Specifies which database in inHybrid to 
            connect to. If not specified, defaults to $PGDATABASE 
            if set or the current system user name. You can also 
            specify the database on the command line using the -d option. 
@@ -251,11 +251,11 @@ USER - Optional. Specifies which database role to use to connect.
        You can also specify the database role on the command line using 
        the -U option. 
 
-HOST - Optional. Specifies Greenplum master host name. If not specified, 
+HOST - Optional. Specifies inHybrid master host name. If not specified, 
        defaults to localhost or $PGHOST if set. You can also specify the 
        master host name on the command line using the -h option.
 
-PORT - Optional. Specifies Greenplum master port. If not specified, defaults
+PORT - Optional. Specifies inHybrid master port. If not specified, defaults
        to 5432 or $PGPORT if set. You can also specify the master port on 
        the command line using the -p option.
 
@@ -263,11 +263,11 @@ GPLOAD - Required. Begins the load specification section. A GPLOAD specification
          must have an INPUT and an OUTPUT section defined.
 
 INPUT - Required. Defines the location and the format of the input data to 
-        be loaded. gpload will start one or more instances of the gpfdist file
+        be loaded. hdbload will start one or more instances of the gpfdist file
         distribution program on the current host and create the required external
-        table definition(s) in Greenplum Database that point to the source data. 
-        Note that the host from which you run gpload must be accessible over the 
-        network by all Greenplum hosts (master and segments).
+        table definition(s) in inHybrid Database that point to the source data. 
+        Note that the host from which you run hdbload must be accessible over the 
+        network by all inHybrid hosts (master and segments).
 
 SOURCE - Required. The SOURCE block of an INPUT specification defines the 
          location of a source file. An INPUT section can have more than one 
@@ -277,11 +277,11 @@ SOURCE - Required. The SOURCE block of an INPUT specification defines the
          specification.
          
          For more information about using the gpfdist parallel file server 
-         and single and multiple gpfdist instances, see the "Greenplum Database 
+         and single and multiple gpfdist instances, see the "inHybrid Database 
          Database Administrator Guide."
 
 LOCAL_HOSTNAME - Optional. Specifies the host name or IP address of the local 
-                 machine on which gpload is running. If this machine is configured
+                 machine on which hdbload is running. If this machine is configured
                  with multiple network interface cards (NICs), you can specify the 
                  host name or IP of each individual NIC to allow network traffic 
                  to use all NICs simultaneously. The default is to use the local 
@@ -299,7 +299,7 @@ PORT - Optional. Specifies the specific port number that the gpfdist file
        all NICs to load the same file or set of files in a given directory location.
 
 PORT_RANGE - Optional. Can be used instead of PORT to supply a range of port 
-             numbers from which gpload can choose an available port for this 
+             numbers from which hdbload can choose an available port for this 
              instance of the gpfdist file distribution program.
 
 FILE - Required. Specifies the location of a file, named pipe, or directory location 
@@ -314,9 +314,9 @@ FILE - Required. Specifies the location of a file, named pipe, or directory loca
        When specifying which source files to load, you can use the wildcard 
        character (*) or other C-style pattern matching to denote multiple files. The 
        files specified are assumed to be relative to the current directory from which 
-       gpload is executed (or you can declare an absolute path).
+       hdbload is executed (or you can declare an absolute path).
 
-SSL - Optional. Specifies usage of SSL encryption. If SSL is set to true, gpload 
+SSL - Optional. Specifies usage of SSL encryption. If SSL is set to true, hdbload 
       starts the gpfdist server with the --ssl option and uses the gpfdists 
       protocol.
 
@@ -344,20 +344,20 @@ COLUMNS - Optional. Specifies the schema of the source data file(s) in the
           This default mapping can be overridden using the MAPPING section.
 
 TRANSFORM - Optional. Specifies the name of the input XML transformation passed to 
-            gpload. For more information about XML transformations, see the 
-            "Greenplum Database Database Administrator Guide."
+            hdbload. For more information about XML transformations, see the 
+            "inHybrid Database Database Administrator Guide."
 
 TRANSFORM_CONFIG - Optional. Specifies the location of the XML transformation 
                    configuration file that is specified in the TRANSFORM 
                    parameter, above.
 
 MAX_LINE_LENGTH - Optional. An integer that specifies the maximum length of 
-                  a line in the XML transformation data passed to gpload.
+                  a line in the XML transformation data passed to hdbload.
 
 FORMAT - Optional. Specifies the format of the source data file(s) - either plain
          text (TEXT) or comma separated values (CSV) format. Defaults to TEXT 
          if not specified. For more information about the format of the source
-         data, see the "Greenplum Database Database Administrator Guide."
+         data, see the "inHybrid Database Database Administrator Guide."
 
 DELIMITER - Optional. Specifies a single ASCII character that separates columns
             within each row (line) of data. The default is a tab character in TEXT
@@ -406,12 +406,12 @@ ENCODING - Optional. Character set encoding of the source data. Specify
            number, or 'DEFAULT' to use the default client encoding. If 
            not specified, the default client encoding is used. For 
            information about supported character sets, see the 
-           "Greenplum Database Reference Guide."
+           "inHybrid Database Reference Guide."
 
 ERROR_LIMIT - Optional. Enables single row error isolation mode for this
               load operation. When enabled, input rows that have format errors
               will be discarded provided that the error limit count is not 
-              reached on any Greenplum segment instance during input processing. 
+              reached on any inHybrid segment instance during input processing. 
               If the error limit is not reached, all good rows will be loaded 
               and any error rows will either be discarded or logged to the table 
               specified in ERROR_TABLE. The default is to abort the load operation
@@ -421,7 +421,7 @@ ERROR_LIMIT - Optional. Enables single row error isolation mode for this
               client encoding sequences. Constraint errors, such as primary key 
               violations, will still cause the load operation to abort if 
               encountered. For information about handling load errors, see 
-              the "Greenplum Database Database Administrator Guide." 
+              the "inHybrid Database Database Administrator Guide." 
 
 ERROR_TABLE - Deprecated, LOG_ERRORS is encouraged instead.
               Optional when ERROR_LIMIT is declared. Specifies an error
@@ -431,19 +431,19 @@ ERROR_TABLE - Deprecated, LOG_ERRORS is encouraged instead.
               If the error_table specified already exists, it will be used. 
               If it does not exist, it will be automatically generated.
               For more information about handling load errors, see the
-              "Greenplum Database Database Administrator Guide."
+              "inHybrid Database Database Administrator Guide."
 
 LOG_ERRORS  - Optional when ERROR_LIMIT is declared. If true(default false),
-              gpload would create an internal error table where rows with
+              hdbload would create an internal error table where rows with
               formatting errors will be logged when running in single row error
               isolation mode. You can then examine this error table by using
-              GPDB built-in function gp_read_error_log() to see error rows that
+              HDB built-in function gp_read_error_log() to see error rows that
               were not loaded (if any). For more information about handling load
-              errors, see the "Greenplum Database Database Administrator Guide."
+              errors, see the "inHybrid Database Database Administrator Guide."
               NOTE: LOG_ERRORS is not allowed to use together with ERROR_TABLE.
 
 EXTERNAL - Optional. Defines the schema of the external table database 
-           objects created by gpload. The default is to use the Greenplum 
+           objects created by hdbload. The default is to use the inHybrid 
            Database search_path. 
 
 SCHEMA - Required when EXTERNAL is declared. The name of the schema of 
@@ -510,10 +510,10 @@ MAPPING - Optional. If a mapping is specified, it overrides the default
 PRELOAD - Optional. Specifies operations to run prior to the load operation. 
           Right now the only preload operation is TRUNCATE.
 
-TRUNCATE - Optional. If set to true, gpload will remove all rows in 
+TRUNCATE - Optional. If set to true, hdbload will remove all rows in 
            the target table prior to loading it.
 
-REUSE_TABLES - Optional. If set to true, gpload will not drop the external table 
+REUSE_TABLES - Optional. If set to true, hdbload will not drop the external table 
                objects and staging table objects it creates. These objects will 
                be reused for future load operations that use the same load 
                specifications. This improves performance of trickle loads 
@@ -535,12 +535,12 @@ NOTES
 *****************************************************
 If your database object names were created using a double-quoted 
 identifier (delimited identifier), you must specify the delimited name 
-within single quotes in the gpload control file. For example, if you 
+within single quotes in the hdbload control file. For example, if you 
 create a table as follows: 
 
      CREATE TABLE "MyTable" ("MyColumn" text);
 
-Your YAML-formatted gpload control file would refer to the above 
+Your YAML-formatted hdbload control file would refer to the above 
 table and column names as follows:
 
         - COLUMNS:
@@ -555,7 +555,7 @@ table and column names as follows:
 LOG FILE FORMAT
 *****************************************************
 
-Log files output by gpload have the following format:
+Log files output by hdbload have the following format:
 
 <timestamp>|<level>|<message>
 
@@ -570,9 +570,9 @@ or failed rows):
 
 INFO|running time: #.## seconds
 INFO|transferred #.# kB of #.# kB.
-INFO|gpload succeeded
-INFO|gpload succeeded with warnings
-INFO|gpload failed
+INFO|hdbload succeeded
+INFO|hdbload succeeded with warnings
+INFO|hdbload failed
 INFO|1 bad row
 INFO|# bad rows
 
@@ -583,14 +583,14 @@ EXAMPLES
 
 Run a load job as defined in my_load.yml:
 
-  gpload -f my_load.yml
+  hdbload -f my_load.yml
 
 Example load control file:
 
 ---
 VERSION: 1.0.0.1
 DATABASE: ops
-USER: gpadmin
+USER: hdbadmin
 HOST: mdw-1
 PORT: 5432
 GPLOAD:
@@ -628,5 +628,5 @@ SEE ALSO
 
 gpfdist, CREATE EXTERNAL TABLE 
 
-See the "Greenplum Database Reference Guide" for information 
+See the "inHybrid Database Reference Guide" for information 
 about CREATE EXTERNAL TABLE.

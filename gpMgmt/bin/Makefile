@@ -14,7 +14,7 @@ $(recurse)
 
 PROGRAMS= analyzedb hdbaddmirrors hdbcheckcat hdbcheckperf \
 	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
-	gpload gpload.py hdbmovemirrors \
+	hdbload hdbload.py hdbmovemirrors \
 	hdbpkg hdbreload \
 	hdbstate hdbsys1 minirepro hdbsd hdbstart hdbstop \
 	hdbinitsystem hdbinitstandby hdbscp hdbssh hdbssh-exkeys \
@@ -31,13 +31,13 @@ installprograms: installdirs
 	if [ ! -L $(DESTDIR)$(bindir)/lib/hdbcheckcat  ]; then \
 		$(LN_S) ../hdbcheckcat $(DESTDIR)$(bindir)/lib/hdbcheckcat; \
 	fi
-	$(INSTALL_DATA) gpload.bat '$(DESTDIR)$(bindir)/gpload.bat'
+	$(INSTALL_DATA) hdbload.bat '$(DESTDIR)$(bindir)/hdbload.bat'
 
 uninstall:
 	for file in $(PROGRAMS); do \
 		rm -f '$(DESTDIR)$(bindir)/'$$file ; \
 	done
-	rm -f '$(DESTDIR)$(bindir)/gpload.bat'
+	rm -f '$(DESTDIR)$(bindir)/hdbload.bat'
 
 #
 # SOURCE DIRECTORIES

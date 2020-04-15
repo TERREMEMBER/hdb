@@ -30,12 +30,12 @@ Where Things Go
 List of Management Scripts Written in Bash
 ------------------------------------------
 bin/hdbinitsystem        -  Creates a new inHybrid Database
-bin/gpload              -  Sets env variables and calls gpload.py
+bin/hdbload              -  Sets env variables and calls hdbload.py
 
 
 List of Management Scripts Written in Python (no libraries)
 -----------------------------------------------------------
-bin/gpload.py           -  Loads data into a inHybrid Database
+bin/hdbload.py           -  Loads data into a inHybrid Database
 bin/hdbsys1              -  Print system information on a host  (???)
 
 

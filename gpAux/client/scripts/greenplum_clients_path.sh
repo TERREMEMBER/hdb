@@ -27,6 +27,6 @@ fi
 if [ "$1" != "-q" ]; then
   type python >/dev/null 2>&1
   if [ $? -ne 0 ]; then
-    echo "Warning: Python not found.  Python-2.5.1 or better is required to run gpload."
+    echo "Warning: Python not found.  Python-2.5.1 or better is required to run hdbload."
   fi
 fi
