@@ -77,9 +77,9 @@ Feature: hdbactivatestandby
           And clean up and revert back to original master
 #---------------
     Scenario: test version
-	When the user runs command "hdbactivatestandby -?"
-	Then hdbactivatestandby should print "activatestandby" to stdout
-	And hdbactivatestandby should print "inHybrid" to stdout
+	When the user runs command "hdbactivatestandby --version"
+	Then hdbactivatestandby should print "hdbactivatestandby version 1.0.0" escaped to stdout
+	#	And hdbactivatestandby should print "inHybrid" to stdout
 
 ########################### @concourse_cluster tests ###########################
 # The @concourse_cluster tag denotes the scenario that requires a remote cluster

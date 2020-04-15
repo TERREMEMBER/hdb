@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# gpload - load file(s) into Greenplum Database
-# Copyright Greenplum 2008
+# gpload - load file(s) into inHybrid Database
+# Copyright inHybrid 2008
 
-'''gpload [options] -f configuration file
+'''hdbload [options] -f configuration file
 
 Options:
     -h hostname: host to connect to
@@ -16,7 +16,7 @@ Options:
     -v: verbose
     -V: very verbose
     -l logfile: log output to logfile
-    --no_auto_trans: do not wrap gpload in transaction
+    --no_auto_trans: do not wrap hdbload in transaction
     --gpfdist_timeout timeout: gpfdist timeout value
     --version: print version number and exit
     -?: help
@@ -24,13 +24,13 @@ Options:
 
 import sys
 if sys.hexversion<0x2040400:
-    sys.stderr.write("gpload needs python 2.4.4 or higher\n")
+    sys.stderr.write("hdbload needs python 2.4.4 or higher\n")
     sys.exit(2)
 
 try:
     import yaml
 except ImportError:
-    sys.stderr.write("gpload needs pyyaml.  You can get it from http://pyyaml.org.\n")
+    sys.stderr.write("hdbload needs pyyaml.  You can get it from http://pyyaml.org.\n")
     sys.exit(2)
 
 import platform
@@ -40,11 +40,11 @@ except Exception, e:
     from struct import calcsize
     sysWordSize = calcsize("P") * 8
     if (platform.system()) in ['Windows', 'Microsoft'] and (sysWordSize == 64):
-        errorMsg = "gpload appears to be running in 64-bit Python under Windows.\n"
+        errorMsg = "hdbload appears to be running in 64-bit Python under Windows.\n"
         errorMsg = errorMsg + "Currently only 32-bit Python is supported. Please \n"
         errorMsg = errorMsg + "reinstall a 32-bit Python interpreter.\n"
     else:
-        errorMsg = "gpload was unable to import The PyGreSQL Python module (pg.py) - %s\n" % str(e)
+        errorMsg = "hdbload was unable to import The PyGreSQL Python module (pg.py) - %s\n" % str(e)
     sys.stderr.write(str(errorMsg))
     sys.exit(2)
 
@@ -59,7 +59,7 @@ import uuid
 try:
     from gppylib.gpversion import GpVersion
 except ImportError:
-    sys.stderr.write("gpload can't import gpversion, will run in GPDB6 compatibility mode.\n")
+    sys.stderr.write("hdbload can't import gpversion, will run in HDB6 compatibility mode.\n")
     withGpVersion = False
 else:
     withGpVersion = True
@@ -74,7 +74,7 @@ if windowsPlatform == False:
    import select
 
 
-EXECNAME = 'gpload'
+EXECNAME = 'hdbload'
 
 NUM_WARN_ROWS = 0
 
@@ -1192,7 +1192,7 @@ class gpload:
                         argv = argv[1:]
                         seenq = True
                     elif argv[0]=='--version':
-                        sys.stderr.write("gpload version $Revision$\n")
+                        sys.stderr.write("hdbload version $Revision$\n")
                         sys.exit(0)
                     elif argv[0]=='-v':
                         self.options.qv = self.LOG
@@ -1258,7 +1258,7 @@ class gpload:
             self.log(self.ERROR, "-q conflicts with -v and -V")
 
         if self.options.D:
-            self.log(self.INFO, 'gpload has the -D option, so it does not actually load any data')
+            self.log(self.INFO, 'hdbload has the -D option, so it does not actually load any data')
 
         try:
             f = open(configFilename,'r')
@@ -1275,7 +1275,7 @@ class gpload:
             self.config = dictKeyToLower(self.config)
             ver = self.getconfig('version', unicode, extraStuff = ' tag')
             if ver != '1.0.0.1':
-                self.control_file_error("gpload configuration schema version must be 1.0.0.1")
+                self.control_file_error("hdbload configuration schema version must be 1.0.0.1")
             # second parse, to check that the keywords are sensible
             y = yaml.compose(doc)
             # first should be MappingNode
@@ -1302,14 +1302,14 @@ class gpload:
 
         f.close()
         self.subprocesses = []
-        self.log(self.INFO,'gpload session started ' + \
+        self.log(self.INFO,'hdbload session started ' + \
                  datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
     def control_file_warning(self, msg):
-        self.log(self.WARN, "A gpload control file processing warning occurred. %s" % msg)
+        self.log(self.WARN, "A hdbload control file processing warning occurred. %s" % msg)
 
     def control_file_error(self, msg):
-        self.log(self.ERROR, "A gpload control file processing error occurred. %s" % msg)
+        self.log(self.ERROR, "A hdbload control file processing error occurred. %s" % msg)
 
     def elevel2str(self, level):
         if level == self.DEBUG:
@@ -1421,12 +1421,12 @@ class gpload:
         """
 
         # ensure output is of type list
-        self.getconfig('gpload:output', list)
+        self.getconfig('hdbload:output', list)
 
         # The user supplied table name can be completely or partially delimited,
         # and it can be a one or two part name. Get the originally supplied name
         # and parse it into its delimited one or two part name.
-        self.schemaTable = self.getconfig('gpload:output:table', unicode, returnOriginal=True)
+        self.schemaTable = self.getconfig('hdbload:output:table', unicode, returnOriginal=True)
         schemaTableList  = splitUpMultipartIdentifier(self.schemaTable)
         schemaTableList  = convertListToDelimited(schemaTableList)
         if len(schemaTableList) == 2:
@@ -1486,7 +1486,7 @@ class gpload:
             # like libpq, just inherit USER
             self.options.d = self.options.U
 
-        if self.getconfig('gpload:input:error_table', unicode, None):
+        if self.getconfig('hdbload:input:error_table', unicode, None):
             self.error_table = True
             self.log(self.WARN,
                         "ERROR_TABLE is not supported. " +
@@ -1580,7 +1580,7 @@ class gpload:
 
         @param popenList: gpfdist options (updated)
         """
-        max_line_length = self.getconfig('gpload:input:max_line_length',int,None)
+        max_line_length = self.getconfig('hdbload:input:max_line_length',int,None)
         if max_line_length is not None:
             popenList.append('-m')
             popenList.append(str(max_line_length))
@@ -1596,8 +1596,8 @@ class gpload:
         @param popenList: gpfdist options (updated)
         @returns: uri fragment for transform or "" if not appropriate.
         """
-        transform = self.getconfig('gpload:input:transform', unicode, None)
-        transform_config = self.getconfig('gpload:input:transform_config', unicode, None)
+        transform = self.getconfig('hdbload:input:transform', unicode, None)
+        transform_config = self.getconfig('hdbload:input:transform_config', unicode, None)
         if transform_config:
             try:
                 f = open(transform_config,'r')
@@ -1622,8 +1622,8 @@ class gpload:
 
         @param popenList: gpfdist options (updated)
         """
-        ssl = self.getconfig('gpload:input:source:ssl',bool, False)
-        certificates_path = self.getconfig('gpload:input:source:certificates_path', unicode, None)
+        ssl = self.getconfig('hdbload:input:source:ssl',bool, False)
+        certificates_path = self.getconfig('hdbload:input:source:certificates_path', unicode, None)
 
         if ssl and certificates_path:
             dir_exists = os.path.isdir(certificates_path)
@@ -1650,11 +1650,11 @@ class gpload:
         availablePorts = set(xrange(1,65535))
         found_source = False
 
-        self.getconfig('gpload:input', list)
+        self.getconfig('hdbload:input', list)
 
         while 1:
             sourceIndex += 1
-            name = 'gpload:input:source(%d)'%sourceIndex
+            name = 'hdbload:input:source(%d)'%sourceIndex
             a = self.getconfig(name,None,None)
             if not a:
                 break
@@ -1665,7 +1665,7 @@ class gpload:
             if not local_hostname:
                 # if fully_qualified_domain_name is defined and set to true we want to
                 # resolve the fqdn rather than just grabbing the hostname.
-                fqdn = self.getconfig('gpload:input:fully_qualified_domain_name', bool, False)
+                fqdn = self.getconfig('hdbload:input:fully_qualified_domain_name', bool, False)
                 if fqdn:
                     local_hostname = [socket.getfqdn()]
                 else:
@@ -1693,12 +1693,12 @@ class gpload:
                     if os.environ.get('GPHOME_LOADERS'):
                         srcfile = os.path.join(os.environ.get('GPHOME_LOADERS'),
                                            'greenplum_loaders_path.sh')
-                    elif os.environ.get('GPHOME'):
-                        srcfile = os.path.join(os.environ.get('GPHOME'),
-                                           'greenplum_path.sh')
+                    elif os.environ.get('HDBHOME'):
+                        srcfile = os.path.join(os.environ.get('HDBHOME'),
+                                           'inhybrid_path.sh')
 
                     if (not (srcfile and os.path.exists(srcfile))):
-                        self.log(self.ERROR, 'cannot find greenplum environment ' +
+                        self.log(self.ERROR, 'cannot find inHybrid environment ' +
                                     'file: environment misconfigured')
 
                     cmd = 'source %s ; exec ' % srcfile
@@ -1747,7 +1747,7 @@ class gpload:
             t.start()
             self.threads.append(t)
 
-            ssl = self.getconfig('gpload:input:source:ssl', bool, False)
+            ssl = self.getconfig('hdbload:input:source:ssl', bool, False)
             if ssl:
                 protocol = 'gpfdists'
             else:
@@ -1828,10 +1828,10 @@ class gpload:
             self.log(self.DEBUG, "Successfully connected to database")
 
             if withGpVersion == True:
-                # Get GPDB version
+                # Get HDB version
                 curs = self.db.query("SELECT version()")
                 self.gpdb_version = GpVersion(curs.getresult()[0][0])
-                self.log(self.DEBUG, "GPDB version is: %s" % self.gpdb_version)
+                self.log(self.DEBUG, "HDB version is: %s" % self.gpdb_version)
 
         except Exception, e:
             errorMessage = str(e)
@@ -1843,17 +1843,17 @@ class gpload:
                 self.setup_connection(recurse)
             else:
                 self.log(self.ERROR, "could not connect to database: %s. Is " \
-                    "the Greenplum Database running on port %i?" % (errorMessage,
+                    "the inHybrid Database running on port %i?" % (errorMessage,
                     self.options.p))
 
     def read_columns(self):
-        columns = self.getconfig('gpload:input:columns',list,None, returnOriginal=True)
+        columns = self.getconfig('hdbload:input:columns',list,None, returnOriginal=True)
         if columns != None:
             self.from_cols_from_user = True # user specified from columns
             self.from_columns = []
             for d in columns:
                 if type(d)!=dict:
-                    self.control_file_error("gpload:input:columns must be a sequence of YAML mappings")
+                    self.control_file_error("hdbload:input:columns must be a sequence of YAML mappings")
                 tempkey = d.keys()[0]
                 value = d[tempkey]
                 """ remove leading or trailing spaces """
@@ -1970,12 +1970,12 @@ class gpload:
                self.log(self.ERROR, 'table %s.%s does not exist in database %s'% (tableSchema, tableName, self.options.d))
 
     def read_mapping(self):
-        mapping = self.getconfig('gpload:output:mapping',dict,None, returnOriginal=True)
+        mapping = self.getconfig('hdbload:output:mapping',dict,None, returnOriginal=True)
 
         if mapping:
             for key,value in mapping.iteritems():
                 if type(key) != unicode or type(value) != unicode:
-                    self.control_file_error("gpload:output:mapping must be a YAML type mapping from strings to strings")
+                    self.control_file_error("hdbload:output:mapping must be a YAML type mapping from strings to strings")
                 found = False
                 for a in self.into_columns:
                     if sqlIdentifierCompare(a[0], key) == True:
@@ -2223,7 +2223,7 @@ class gpload:
 
     def get_external_table_formatOpts(self, option, specify=''):
 
-        formatType = self.getconfig('gpload:input:format', unicode, 'text').lower()
+        formatType = self.getconfig('hdbload:input:format', unicode, 'text').lower()
         if formatType == 'text':
             valid_token = ['delimiter','escape']
         elif formatType == 'csv':
@@ -2237,12 +2237,12 @@ class gpload:
 
         if option == 'delimiter':
             defval = ',' if formatType == 'csv' else '\t'
-            val = self.getconfig('gpload:input:delimiter', unicode, defval)
+            val = self.getconfig('hdbload:input:delimiter', unicode, defval)
         elif option == 'escape':
-            defval = self.getconfig('gpload:input:quote', unicode, '"')
-            val = self.getconfig('gpload:input:escape', unicode, defval)
+            defval = self.getconfig('hdbload:input:quote', unicode, '"')
+            val = self.getconfig('hdbload:input:escape', unicode, defval)
         elif option == 'quote':
-            val = self.getconfig('gpload:input:quote', unicode, '"')
+            val = self.getconfig('hdbload:input:quote', unicode, '"')
         else:
             self.control_file_error("unexpected error -- backtrace " +
                              "written to log file")
@@ -2264,7 +2264,7 @@ class gpload:
 
             else:
                 self.control_file_warning(option +''' must be single ASCII character, you can also use unprintable characters(for example: '\\x1c' / E'\\x1c' or '\\u001c' / E'\\u001c' ''')
-                self.control_file_error("Invalid option, gpload quit immediately")
+                self.control_file_error("Invalid option, hdbload quit immediately")
                 sys.exit(2);
         else:
             self.formatOpts += "%s '%s' " % (specify_str, val)
@@ -2279,12 +2279,12 @@ class gpload:
         # in order to construct a CREATE EXTERNAL TABLE statement if will be
         # needed later on
 
-        formatType = self.getconfig('gpload:input:format', unicode, 'text').lower()
+        formatType = self.getconfig('hdbload:input:format', unicode, 'text').lower()
         locationStr = ','.join(map(quote,self.locations))
 
         self.get_external_table_formatOpts('delimiter')
 
-        nullas = self.getconfig('gpload:input:null_as', unicode, False)
+        nullas = self.getconfig('hdbload:input:null_as', unicode, False)
         self.log(self.DEBUG, "null " + unicode(nullas))
         if nullas != False: # could be empty string
             self.formatOpts += "null %s " % quote_no_slash(nullas)
@@ -2294,10 +2294,10 @@ class gpload:
             self.formatOpts += "null %s " % quote_no_slash("\N")
 
 
-        esc = self.getconfig('gpload:input:escape', None, None)
+        esc = self.getconfig('hdbload:input:escape', None, None)
         if esc:
             if type(esc) != unicode and type(esc) != str:
-                self.control_file_error("gpload:input:escape must be a string")
+                self.control_file_error("hdbload:input:escape must be a string")
             if esc.lower() == 'off':
                 if formatType == 'csv':
                     self.control_file_error("ESCAPE cannot be set to OFF in CSV mode")
@@ -2313,18 +2313,18 @@ class gpload:
         if formatType=='csv':
             self.get_external_table_formatOpts('quote')
 
-        if self.getconfig('gpload:input:header',bool,False):
+        if self.getconfig('hdbload:input:header',bool,False):
             self.formatOpts += "header "
 
-        force_not_null_columns = self.getconfig('gpload:input:force_not_null',list,[])
+        force_not_null_columns = self.getconfig('hdbload:input:force_not_null',list,[])
         if force_not_null_columns:
             for i in force_not_null_columns:
                 if type(i) != unicode and type(i) != str:
-                    self.control_file_error("gpload:input:force_not_null must be a YAML sequence of strings")
+                    self.control_file_error("hdbload:input:force_not_null must be a YAML sequence of strings")
             self.formatOpts += "force not null %s " % ','.join(force_not_null_columns)
 
         encodingCode = None
-        encodingStr = self.getconfig('gpload:input:encoding', unicode, None)
+        encodingStr = self.getconfig('hdbload:input:encoding', unicode, None)
         if encodingStr is None:
             result = self.db.query("SHOW SERVER_ENCODING".encode('utf-8')).getresult()
             if len(result) > 0:
@@ -2336,12 +2336,12 @@ class gpload:
             if len(result) > 0:
                 encodingCode = result[0][0]
 
-        limitStr = self.getconfig('gpload:input:error_limit',int, None)
+        limitStr = self.getconfig('hdbload:input:error_limit',int, None)
         if self.log_errors and not limitStr:
-            self.control_file_error("gpload:input:log_errors requires " +
-                    "gpload:input:error_limit to be specified")
+            self.control_file_error("hdbload:input:log_errors requires " +
+                    "hdbload:input:error_limit to be specified")
 
-        self.extSchemaName = self.getconfig('gpload:external:schema', unicode, None)
+        self.extSchemaName = self.getconfig('hdbload:external:schema', unicode, None)
         if self.extSchemaName == '%':
             self.extSchemaName = self.schema
 
@@ -2451,13 +2451,13 @@ class gpload:
     def create_staging_table(self):
 
         # make sure we set the correct distribution policy
-        distcols = self.getconfig('gpload:output:match_columns', list)
+        distcols = self.getconfig('hdbload:output:match_columns', list)
 
         sql = "SELECT * FROM pg_class WHERE relname LIKE 'temp_gpload_reusable_%%';"
         resultList = self.db.query(sql.encode('utf-8')).getresult()
         if len(resultList) > 0:
             self.log(self.WARN, """Old style, reusable tables named "temp_gpload_reusable_*" from a previous versions were found.
-                         Greenplum recommends running "DROP TABLE temp_gpload_reusable_..." on each table. This only needs to be done once.""")
+                         inHybrid recommends running "DROP TABLE temp_gpload_reusable_..." on each table. This only needs to be done once.""")
 		
         # If the 'reuse tables' option was specified we now try to find an
         # already existing staging table in the catalog which will match
@@ -2608,14 +2608,14 @@ class gpload:
         UPDATE case
         """
         sql = 'update %s into_table ' % self.get_qualified_tablename()
-        sql += 'set %s '%','.join(self.map_stuff('gpload:output:update_columns',(lambda x,y:'%s=from_table.%s' % (x, y)),index))
+        sql += 'set %s '%','.join(self.map_stuff('hdbload:output:update_columns',(lambda x,y:'%s=from_table.%s' % (x, y)),index))
         sql += 'from %s from_table' % fromname
 
-        match = self.map_stuff('gpload:output:match_columns'
+        match = self.map_stuff('hdbload:output:match_columns'
                               , lambda x,y:'into_table.%s=from_table.%s' % (x, y)
                               , index)
 
-        update_condition = self.getconfig('gpload:output:update_condition',
+        update_condition = self.getconfig('hdbload:output:update_condition',
                             unicode, None)
         if update_condition:
             #
@@ -2704,7 +2704,7 @@ class gpload:
         self.distkey = distkey
         if len(distkey) != 0:
             # not randomly distributed - check that UPDATE_COLUMNS isn't part of the distribution key
-            updateColumnList = self.getconfig('gpload:output:update_columns',
+            updateColumnList = self.getconfig('hdbload:output:update_columns',
                                               list,
                                               returnOriginal=True)
             update_columns = convertListToDelimited(updateColumnList)
@@ -2736,8 +2736,8 @@ class gpload:
         self.do_update(self.staging_table_name, 0)
 		
         # insert new rows to the target table
-        match = self.map_stuff('gpload:output:match_columns',lambda x,y:'into_table.%s=from_table.%s'%(x,y),0)
-        matchColumns = self.getconfig('gpload:output:match_columns',list)
+        match = self.map_stuff('hdbload:output:match_columns',lambda x,y:'into_table.%s=from_table.%s'%(x,y),0)
+        matchColumns = self.getconfig('hdbload:output:match_columns',list)
 		
         cols = filter(lambda a:a[2] != None, self.into_columns)				
         sql = 'INSERT INTO %s ' % self.get_qualified_tablename()
@@ -2747,7 +2747,7 @@ class gpload:
         sql += 'FROM %s) AS from_table ' % self.staging_table_name
         sql += 'LEFT OUTER JOIN %s into_table ' % self.get_qualified_tablename()
         sql += 'ON %s '%' AND '.join(match)
-        where = self.map_stuff('gpload:output:match_columns',lambda x,y:'into_table.%s IS NULL'%x,0)
+        where = self.map_stuff('hdbload:output:match_columns',lambda x,y:'into_table.%s IS NULL'%x,0)
         sql += 'WHERE %s ' % ' AND '.join(where)
         sql += 'AND gpload_row_number=1)'
 
@@ -2773,9 +2773,9 @@ class gpload:
 
     def do_method(self):
         # Is the table to be truncated before the load?
-        preload = self.getconfig('gpload:preload', list, default=None)
-        method = self.getconfig('gpload:output:mode', unicode, 'insert').lower()
-        self.log_errors = self.getconfig('gpload:input:log_errors', bool, False)
+        preload = self.getconfig('hdbload:preload', list, default=None)
+        method = self.getconfig('hdbload:output:mode', unicode, 'insert').lower()
+        self.log_errors = self.getconfig('hdbload:input:log_errors', bool, False)
         truncate = False
         self.reuse_tables = False
 
@@ -2783,12 +2783,12 @@ class gpload:
             self.db.query("BEGIN")
 
         if preload:
-            truncate = self.getconfig('gpload:preload:truncate',bool,False)
-            self.reuse_tables = self.getconfig('gpload:preload:reuse_tables',bool,False)
-            self.fast_match = self.getconfig('gpload:preload:fast_match',bool,False)
+            truncate = self.getconfig('hdbload:preload:truncate',bool,False)
+            self.reuse_tables = self.getconfig('hdbload:preload:reuse_tables',bool,False)
+            self.fast_match = self.getconfig('hdbload:preload:fast_match',bool,False)
             if self.reuse_tables == False and self.fast_match == True:
                 self.log(self.WARN, 'fast_match is ignored when reuse_tables is false!')
-            self.staging_table = self.getconfig('gpload:preload:staging_table', unicode, default=None)
+            self.staging_table = self.getconfig('hdbload:preload:staging_table', unicode, default=None)
         if self.error_table:
             self.log_errors = True
             self.reuse_tables = True
@@ -2800,12 +2800,12 @@ class gpload:
                                      'operation only. used with %s' % method)
 
         # sql pre or post processing?
-        sql = self.getconfig('gpload:sql', list, default=None)
+        sql = self.getconfig('hdbload:sql', list, default=None)
         before   = None
         after    = None
         if sql:
-            before   = self.getconfig('gpload:sql:before', unicode, default=None)
-            after    = self.getconfig('gpload:sql:after', unicode, default=None)
+            before   = self.getconfig('hdbload:sql:before', unicode, default=None)
+            after    = self.getconfig('hdbload:sql:after', unicode, default=None)
         if before:
             self.log(self.LOG, "Pre-SQL from user: %s" % before)
             if not self.options.D:
@@ -2921,11 +2921,11 @@ class gpload:
             self.log(self.INFO, 'rows Updated           = ' + str(self.rowsUpdated))
             self.log(self.INFO, 'data formatting errors = ' + str(NUM_WARN_ROWS))
             if self.exitValue==0:
-                self.log(self.INFO, 'gpload succeeded')
+                self.log(self.INFO, 'hdbload succeeded')
             elif self.exitValue==1:
-                self.log(self.INFO, 'gpload succeeded with warnings')
+                self.log(self.INFO, 'hdbload succeeded with warnings')
             else:
-                self.log(self.INFO, 'gpload failed')
+                self.log(self.INFO, 'hdbload failed')
 
 
 if __name__ == '__main__':

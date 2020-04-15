@@ -1,0 +1,23 @@
+VERSION: 1.0.0.1
+DATABASE: testdb
+USER: hdbadmin
+HOST: mdw
+PORT: 6000
+HDBLOAD:
+   INPUT:
+    - SOURCE:
+         LOCAL_HOSTNAME:
+           - mdw
+         PORT: 8181
+         FILE:
+           - /tmp/test.csv
+    - COLUMNS:                  
+        - id:                     INT
+        - name:                   TEXT
+    - FORMAT: csv
+    - DELIMITER: ','
+    - QUOTE: '"'
+    - HEADER: true
+   OUTPUT:
+    - TABLE: test
+    - MODE: INSERT

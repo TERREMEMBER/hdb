@@ -306,8 +306,8 @@ define BUILD_STEPS
 	cd $(BUILDDIR)/src/include/ && $(MAKE) install
 	cd $(BUILDDIR)/src/interfaces/libpq/ && $(MAKE) install
 	cd $(BUILDDIR)/src/bin/gpfdist && $(MAKE) install
-	cp -p $(GPMGMT)/bin/gpload $(INSTLOC)/bin/gpload
-	cp -p $(GPMGMT)/bin/gpload.py $(INSTLOC)/bin/gpload.py
+	cp -p $(GPMGMT)/bin/hdbload $(INSTLOC)/bin/hdbload
+	cp -p $(GPMGMT)/bin/hdbload.py $(INSTLOC)/bin/hdbload.py
 	$(MAKE) copylibs INSTLOC=$(INSTLOC)
 	cd $(GPMGMT)/bin && $(MAKE) pygresql INSTLOC=$(INSTLOC)
 	$(MAKE) clients INSTLOC=$(INSTLOC) CLIENTSINSTLOC=$(CLIENTSINSTLOC)
@@ -416,8 +416,8 @@ SCRIPT=.sh
 
 define tmpCLIENTS_FILESET_BIN
 	gpfdist
-	gpload
-	gpload.py
+	hdbload
+	hdbload.py
 	pg_dump
 	pg_dumpall
 	psql
@@ -576,7 +576,7 @@ SET_VERSION_SCRIPTS = \
 	bin/gpfilespace \
 	bin/hdbinitstandby \
 	bin/hdbinitsystem \
-	bin/gpload.py \
+	bin/hdbload.py \
 	bin/hdblogfilter \
 	bin/gpmovemirrors \
 	bin/hdbrecoverseg \

@@ -22,7 +22,7 @@ Global Values
 DBNAME = "postgres"
 USER = os.environ.get( "LOGNAME" )
 HOST = socket.gethostname()
-GPHOME = os.getenv("GPHOME")
+HDBHOME = os.getenv("HDBHOME")
 PGUSER = os.environ.get("PGUSER")
 if PGUSER is None:
     PGUSER = USER
@@ -43,12 +43,12 @@ if platform.system() in ['Windows', 'Microsoft']:
     remove_command = "del"
     copy_command = 'copy'
     rename_command = 'rename'
-    gpload_command = 'gpload.py'
+    gpload_command = 'hdbload.py'
 else:
     remove_command = "rm -f"
     copy_command = 'cp'
     rename_command = 'mv'
-    gpload_command = 'gpload'
+    gpload_command = 'hdbload'
 
 def initialize_env_vars(name):
     if(name == 'username'):
@@ -276,8 +276,8 @@ def initialize():
     if platform.system() not in ['Windows', 'Microsoft']:
         os.system(remove_command+" /tmp/log.log")
         os.system(remove_command+" "+os.environ.get('HOME')+"/gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log")
-        if os.path.isfile(os.environ['GPHOME']+"/docs/cli_help/gpload_help.bak"):
-            os.system(rename_command+" "+os.environ['GPHOME']+"/docs/cli_help/gpload_help.bak "+os.environ['GPHOME']+"/docs/cli_help/gpload_help")
+        if os.path.isfile(os.environ['HDBHOME']+"/docs/cli_help/hdbload_help.bak"):
+            os.system(rename_command+" "+os.environ['HDBHOME']+"/docs/cli_help/hdbload_help.bak "+os.environ['HDBHOME']+"/docs/cli_help/hdbload_help")
     if platform.system() in ['Windows', 'Microsoft']:
         if os.path.isfile("gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"):
             os.system(windows_path(remove_command+" gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"))
@@ -321,10 +321,10 @@ def modify_sql_file(num):
     if os.path.isfile(file):
         for line in fileinput.FileInput(file,inplace=1):
             if platform.system() in ['Windows', 'Microsoft']:
-                line = line.replace("\!gpload ","\!gpload.py")
-                line = line.replace("gpload ","gpload.py ")
+                line = line.replace("\!hdbload ","\!hdbload.py")
+                line = line.replace("gpload ","hdbload.py ")
             else:
-                line = line.replace("gpload.py ","gpload ")
+                line = line.replace("hdbload.py ","hdbload ")
             # using absolute path
             line = re.sub('-h WinnBook.local', '-h '+get_hostname(), line)
             line = line.replace("-h localhost",'-h '+get_hostname())
@@ -409,7 +409,7 @@ class GPLoad_Env_TestCase(unittest.TestCase):
         "0  gpload setup"
         for num in range(1,6):
            f = open(mkpath('query%d.sql' % num),'w')
-           f.write("\! gpload -f "+mkpath('config/config_file')+ " -d gptest")
+           f.write("\! hdbload -f "+mkpath('config/config_file')+ " -d gptest")
            f.close()
 
     def testQuery01(self):

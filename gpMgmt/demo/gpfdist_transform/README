@@ -43,7 +43,7 @@ BEFORE YOU BEGIN
 
 
 **************************************************************************
-RUNNING DEMO 1: input transformation via gpload
+RUNNING DEMO 1: input transformation via hdbload
 **************************************************************************
 
 DBLP example
@@ -51,7 +51,7 @@ DBLP example
 
 1. Edit the 1_dblp.yaml file and change the LOCAL_HOSTNAME setting
    reflect the name of the host (e.g. myhostname) you where you will 
-   run gpload.
+   run hdbload.
 
       LOCAL_HOSTNAME: [ myhostname ]
 
@@ -65,7 +65,7 @@ DBLP example
 
 3. load the data
 
-    $ gpload -f 1_dblp.yaml
+    $ hdbload -f 1_dblp.yaml
 
 
 4. review some of the data
@@ -78,7 +78,7 @@ MeF example
 
 5. Edit the 2_mef.yaml file and change the LOCAL_HOSTNAME setting
    reflect the name of the host (e.g. myhostname) you where you will 
-   run gpload.
+   run hdbload.
 
       LOCAL_HOSTNAME: [ myhostname ]
 
@@ -92,7 +92,7 @@ MeF example
 
 7. load the data
 
-    $ gpload -f 2_mef.yaml
+    $ hdbload -f 2_mef.yaml
 
 
 8. review the data
@@ -105,7 +105,7 @@ WITSML example
 
 9. Edit the 3_rig.yaml file and change the LOCAL_HOSTNAME setting
    reflect the name of the host (e.g. myhostname) you where you will 
-   run gpload.
+   run hdbload.
 
       LOCAL_HOSTNAME: [ myhostname ]
 
@@ -119,7 +119,7 @@ WITSML example
 
 11. load the data
 
-    $ gpload -f 3_rig.yaml
+    $ hdbload -f 3_rig.yaml
 
 12. review some data
 
