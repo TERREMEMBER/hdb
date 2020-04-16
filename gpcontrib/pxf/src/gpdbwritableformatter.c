@@ -408,7 +408,7 @@ gpdbwritableformatter_export(PG_FUNCTION_ARGS)
 	/* Must be called via the external table format manager */
 	if (!CALLED_AS_FORMATTER(fcinfo))
 		ereport(ERROR, (errcode(ERRCODE_EXTERNAL_ROUTINE_EXCEPTION),
-						errmsg("cannot execute gpdbwritableformatter_export outside format manager")));
+						errmsg("cannot execute hdbdbwritableformatter_export outside format manager")));
 
 	tupdesc = FORMATTER_GET_TUPDESC(fcinfo);
 
@@ -423,7 +423,7 @@ gpdbwritableformatter_export(PG_FUNCTION_ARGS)
 	{
 		if (FORMATTER_GET_EXTENCODING(fcinfo) != PG_UTF8)
 			ereport(ERROR, (errcode(ERRCODE_EXTERNAL_ROUTINE_EXCEPTION),
-							errmsg("gpdbwritable formatter can only export UTF8 formatted data. Define the external table with ENCODING UTF8")));
+							errmsg("hdbdbwritable formatter can only export UTF8 formatted data. Define the external table with ENCODING UTF8")));
 
 		myData = palloc(sizeof(format_t));
 		myData->values = palloc(sizeof(Datum) * ncolumns);
@@ -629,7 +629,7 @@ gpdbwritableformatter_import(PG_FUNCTION_ARGS)
 	/* Must be called via the external table format manager */
 	if (!CALLED_AS_FORMATTER(fcinfo))
 		ereport(ERROR, (errcode(ERRCODE_EXTERNAL_ROUTINE_EXCEPTION),
-						errmsg("cannot execute gpdbwritableformatter_import outside format manager")));
+						errmsg("cannot execute hdbdbwritableformatter_import outside format manager")));
 
 	tupdesc = FORMATTER_GET_TUPDESC(fcinfo);
 
@@ -644,7 +644,7 @@ gpdbwritableformatter_import(PG_FUNCTION_ARGS)
 	{
 		if (FORMATTER_GET_EXTENCODING(fcinfo) != PG_UTF8)
 			ereport(ERROR, (errcode(ERRCODE_EXTERNAL_ROUTINE_EXCEPTION),
-							errmsg("gpdbwritable formatter can only import UTF8 formatted data. Define the external table with ENCODING UTF8")));
+							errmsg("hdbdbwritable formatter can only import UTF8 formatted data. Define the external table with ENCODING UTF8")));
 
 		myData = palloc(sizeof(format_t));
 		myData->values = palloc(sizeof(Datum) * ncolumns);

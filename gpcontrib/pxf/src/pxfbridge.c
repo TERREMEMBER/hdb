@@ -138,7 +138,7 @@ gpbridge_write(gphadoop_context *context, char *databuf, int datalen)
 	if (datalen > 0)
 	{
 		n = churl_write(context->churl_handle, databuf, datalen);
-		elog(DEBUG5, "pxf gpbridge_write: segment %d wrote %zu bytes to %s",
+		elog(DEBUG5, "pxf hdbbridge_write: segment %d wrote %zu bytes to %s",
 			GpIdentity.segindex, n, context->gphd_uri->data);
 	}
 
