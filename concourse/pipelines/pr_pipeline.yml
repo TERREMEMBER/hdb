@@ -20,7 +20,7 @@ resources:
   source:
 #    uri: "http://git.inspur.com/fanwenchang/hdb.git"
     uri: "http://10.110.27.118/fanwenchang/hdb.git"
-    private_token: GotJADg5KkyfSzNesG35
+    private_token: FWZasNgPVNMzDZhVFB-w
     username: "majingwei"
     password: "321edc--"
     no_ssl: true
@@ -91,7 +91,7 @@ jobs:
             git clone gpdb_pr gpdb_src &&
             cd gpdb_src &&
             #git fetch http://10.110.27.118/fanwenchang/hdb.git --tags &&
-            git fetch http://oauth2:GotJADg5KkyfSzNesG35@git.inspur.com/fanwenchang/hdb.git --tags &&
+            git fetch http://oauth2:FWZasNgPVNMzDZhVFB-w@git.inspur.com/fanwenchang/hdb.git --tags &&
             git submodule update --init --recursive
         inputs: [{ name: gpdb_pr }]
         outputs: [{ name: gpdb_src }]
