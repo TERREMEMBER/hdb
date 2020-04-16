@@ -110,7 +110,7 @@ function git_info() {
 
 function unittest_check_gpdb() {
   pushd ${GPDB_SRC_PATH}
-    source ${GREENPLUM_INSTALL_DIR}/greenplum_path.sh
+    source ${GREENPLUM_INSTALL_DIR}/inhybrid_path.sh
     make GPROOT=/usr/local -s unittest-check
   popd
 }
@@ -167,7 +167,7 @@ function export_gpdb() {
   server_build="${GPDB_ARTIFACTS_DIR}/server-build-${server_version}-${BLD_ARCH}${RC_BUILD_TYPE_GCS}.tar.gz"
 
   pushd ${GREENPLUM_INSTALL_DIR}
-    source greenplum_path.sh
+    source inhybrid_path.sh
     python -m compileall -q -x test .
     chmod -R 755 .
     tar -czf "${TARBALL}" ./*
