@@ -82,4 +82,5 @@ def impl(context, query_file, db_name):
     run_gpcommand(context, 'psql -d %s -f %s' % (db_name, query_file))
     if 'ERROR:' in context.error_message:
         raise Exception('Database %s failed to run %s, error message: %s' % (db_name, query_file, context.error_message))
+    context.conn.close()
     drop_database_if_exists(context, db_name)
