@@ -1806,7 +1806,8 @@ def impl(context, table_name, db_name):
 @when("the user installs gpperfmon")
 def impl(context):
     master_port = os.getenv('PGPORT', 15432)
-    cmd = "gpperfmon_install --port {master_port} --enable --password foo".format(master_port=master_port)
+    # change by yuwei
+    cmd = "hdbperfmon_install --port {master_port} --enable --password foo".format(master_port=master_port)
     run_command(context, cmd)
 
 @given('gpperfmon is configured and running in qamode')
@@ -1816,9 +1817,10 @@ def impl(context):
     target_line = 'qamode = 1'
     gpperfmon_config_file = "%s/gpperfmon/conf/gpperfmon.conf" % os.getenv("MASTER_DATA_DIRECTORY")
     if not check_db_exists("gpperfmon", "localhost"):
+        #change by yuwei
         context.execute_steps(u'''
-                              When the user runs "gpperfmon_install --port {master_port} --enable --password foo"
-                              Then gpperfmon_install should return a return code of 0
+                              When the user runs "hdbperfmon_install --port {master_port} --enable --password foo"
+                              Then hdbperfmon_install should return a return code of 0
                               '''.format(master_port=master_port))
 
     if not file_contains_line(gpperfmon_config_file, target_line):
@@ -1835,7 +1837,7 @@ def impl(context):
                               Then echo should return a return code of 0
                               ''')
 
-    if not is_process_running("gpsmon"):
+    if not is_process_running("hdbsmon"):
         context.execute_steps(u'''
                               When the database is not running
                               Then wait until the process "postgres" goes down
@@ -1844,8 +1846,8 @@ def impl(context):
                               And verify that a role "gpmon" exists in database "gpperfmon"
                               And verify that the last line of the file "postgresql.conf" in the master data directory contains the string "gpperfmon_log_alert_level=warning"
                               And verify that there is a "heap" table "database_history" in "gpperfmon"
-                              Then wait until the process "gpmmon" is up
-                              And wait until the process "gpsmon" is up
+                              Then wait until the process "hdbmmon" is up
+                              And wait until the process "hdbsmon" is up
                               ''')
 
 

@@ -7,15 +7,16 @@ all:
 	@echo "Configuration not enabled for gpperfmon."
 
 else
-.PHONY: gpsmon gpmmon
+#change by yuwei (change target name)
+.PHONY: hdbsmon hdbmmon
 
-all: gpsmon gpmmon
+all: hdbsmon hdbmmon
 
-gpsmon:
-	$(MAKE) -C src/gpmon gpsmon BUILDDIR=$(BUILDDIR)
+hdbsmon:
+	$(MAKE) -C src/gpmon hdbsmon BUILDDIR=$(BUILDDIR)
 
-gpmmon:
-	$(MAKE) -C src/gpmon gpmmon BUILDDIR=$(BUILDDIR)
+hdbmmon:
+	$(MAKE) -C src/gpmon hdbmmon BUILDDIR=$(BUILDDIR)
 
 clean distclean:
 	$(MAKE) -C src/gpmon clean

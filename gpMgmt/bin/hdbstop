@@ -243,10 +243,11 @@ class GpStop:
         return 0
 
     ######
+    # change by yuwei
     def _stop_gpmmon(self):
         logger.info('Cleaning up leftover hdbmmon process')
         gpmmon_running = False
-        cmd = Command('check if gpmmon process is running', cmdStr="ps -ef | grep '[g]pmmon -D' | awk '{print $2}'")
+        cmd = Command('check if hdbmmon process is running', cmdStr="ps -ef | grep '[hdb]mmon -D' | awk '{print $2}'")
         try:
             cmd.run(validateAfter=True)
         except Exception as e:
@@ -258,8 +259,8 @@ class GpStop:
             gpmmon_running = True
 
         if gpmmon_running:
-            cmd = Command('stop the gpmmon process',
-                          cmdStr="ps -ef | grep '[g]pmmon -D' | awk '{print $2}' | xargs kill -9")
+            cmd = Command('stop the hdbmmon process',
+                          cmdStr="ps -ef | grep '[hdb]mmon -D' | awk '{print $2}' | xargs kill -9")
             try:
                 cmd.run(validateAfter=True)
             except Exception as e:
@@ -268,6 +269,7 @@ class GpStop:
             logger.info('No leftover hdbmmon process found')
 
     ######
+    # change by yuwei
     def _stop_gpsmon(self):
         logger.info('Cleaning up leftover hdbsmon processes')
         cluster_hosts = set([gphost.hostname for gphost in self.hostcache.get_hosts()])
@@ -276,7 +278,7 @@ class GpStop:
             cluster_hosts.add(self.gparray.standbyMaster.getSegmentHostName())
 
         for host in cluster_hosts:
-            cmd = Command('Check if gpsmon is running', cmdStr="ps -ef | grep '[g]psmon -m' | awk '{print \$2}'",
+            cmd = Command('Check if hdbsmon is running', cmdStr="ps -ef | grep '[hdb]smon -m' | awk '{print \$2}'",
                           ctxt=REMOTE, remoteHost=host)
             self.pool.addCommand(cmd)
         self.pool.join()
@@ -295,8 +297,8 @@ class GpStop:
                 'No leftover hdbsmon processes on some hosts. not attempting forceful termination on these hosts')
 
         for host in valid_hosts:
-            cmd = Command('kill all the gpsmon processes',
-                          cmdStr="ps -ef | grep '[g]psmon -m' | awk '{print \$2}' | xargs kill -9",
+            cmd = Command('kill all the hdbsmon processes',
+                          cmdStr="ps -ef | grep '[hdb]smon -m' | awk '{print \$2}' | xargs kill -9",
                           ctxt=REMOTE, remoteHost=host)
             self.pool.addCommand(cmd)
         self.pool.join()

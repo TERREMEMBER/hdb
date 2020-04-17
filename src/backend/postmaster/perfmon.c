@@ -44,7 +44,8 @@ PerfmonMain(Datum main_arg)
 	int			ret = 0;
 
 	/* Find gpmmon executable */
-	if ((ret = find_other_exec(my_exec_path, "gpmmon",
+	// change by yuwei (change executable program name)
+	if ((ret = find_other_exec(my_exec_path, "hdbmmon",
 			GPMMON_PACKET_VERSION_STRING, gpmmon_bin)) < 0)
 	{
 		elog(FATAL,"Failed to find gpmmon executable: %s (%s)", gpmmon_bin,

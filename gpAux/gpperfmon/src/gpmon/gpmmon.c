@@ -606,18 +606,19 @@ static void* conm_main(apr_thread_t* thread_, void* arg_)
 						h->connect_timeout = GPSMON_TIMEOUT_NONE; /* try reconnect immediately */
 						apr_thread_mutex_unlock(h->mutex);
 					}
-
+                    // change by yuwei h->smon_bin_location获取不到，所以if内没有修改
 					if (h->smon_bin_location) { //if this if filled, then use it as the directory for smon istead of the default
 						snprintf(line, line_size, "ssh -v -o 'BatchMode yes' -o 'StrictHostKeyChecking no'"
 								" %s '%s echo -e \"%" APR_INT64_T_FMT "\\n\\n\" | %s -m %" FMT64 " -t %" FMT64 " -l %s%s -v %d %d' 2>&1",
 								active_hostname, kill_gpsmon, ax.signature, h->smon_bin_location, opt.max_log_size, smon_terminate_timeout, ptr_smon_log_location, ptr_smon_log_location_suffix, opt.v, ax.port);
 					} else {
+						//(change executable programe name)
 						snprintf(line, line_size, "ssh -v -o 'BatchMode yes' -o 'StrictHostKeyChecking no'"
-								" %s '%s echo -e \"%" APR_INT64_T_FMT "\\n\\n\" | %s/bin/gpsmon -m %" FMT64 " -t %" FMT64 " -l %s%s -v %d %d' 2>&1",
+								" %s '%s echo -e \"%" APR_INT64_T_FMT "\\n\\n\" | %s/bin/hdbsmon -m %" FMT64 " -t %" FMT64 " -l %s%s -v %d %d' 2>&1",
 								active_hostname, kill_gpsmon, ax.signature, ax.gphome, opt.max_log_size, smon_terminate_timeout, ptr_smon_log_location, ptr_smon_log_location_suffix, opt.v, ax.port);
 
 					}
-
+                    gpmon_warningx(FLINE, 0, line);
 					if (h->ever_connected)
 					{
 						TR0(("Connection to %s lost.  Restarting gpsmon.\n", active_hostname));
