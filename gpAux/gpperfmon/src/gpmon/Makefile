@@ -28,13 +28,14 @@ endif
 GPSMON_LIBS+= -lm -lsigar
 SIGTEST_LIBS+= -lsigar
 
-all: gpsmon gpmmon
+#change by yuwei (change target name)
+all: hdbsmon hdbmmon
 
-gpsmon: $(GPSMON_OBJS)
-	$(CC) -o gpsmon $(CFLAGS) $(GPSMON_OBJS) $(LDLIBS) $(GPSMON_LIBS)
+hdbsmon: $(GPSMON_OBJS)
+	$(CC) -o hdbsmon $(CFLAGS) $(GPSMON_OBJS) $(LDLIBS) $(GPSMON_LIBS)
 
-gpmmon: $(GPMMON_OBJS)
-	$(CC) -o gpmmon $(CFLAGS) $(GPMMON_OBJS) $(LDLIBS) $(GPMMON_LIBS)
+hdbmmon: $(GPMMON_OBJS)
+	$(CC) -o hdbmmon $(CFLAGS) $(GPMMON_OBJS) $(LDLIBS) $(GPMMON_LIBS)
 
 sigartest: $(SIGTEST_OBJS)
 	$(CC) -o sigartest $(CFLAGS) $(SIGTEST_OBJS) $(LDLIBS) $(GPSMON_LIBS)
@@ -47,13 +48,13 @@ endif
 
 install: all
 	mkdir -p $(prefix)/bin
-	cp -p gpmmon $(prefix)/bin
-	cp -p gpsmon $(prefix)/bin
-	cp -p gpperfmoncat.sh $(prefix)/bin
+	cp -p hdbmmon $(prefix)/bin
+	cp -p hdbsmon $(prefix)/bin
+	cp -p hdbperfmoncat.sh $(prefix)/bin
 	cp -p gpmon_catqrynow.py $(prefix)/sbin
-	cp -p gpperfmon_install $(prefix)/bin
+	cp -p hdbperfmon_install $(prefix)/bin
 	mkdir -p $(prefix)/lib/gpperfmon
 	cp -p gpperfmon.sql $(prefix)/lib/gpperfmon
 
 clean:
-	rm -rf *.o gpmmon gpsmon sigartest
+	rm -rf *.o hdbmmon hdbsmon sigartest

@@ -126,7 +126,8 @@ static bool should_recreate_from_result(PGresult	*result,
 		const int MAX_ICONV_CMD_LEN = 50;
 		char iconv[MAX_ICONV_CMD_LEN];
 		snprintf(iconv, sizeof(iconv), "iconv -f %s -t %s -c", encoding, encoding);
-		const char gpperfmoncat[] = "gpperfmoncat.sh";
+		// change by yuwei
+		const char gpperfmoncat[] = "hdbperfmoncat.sh";
 		if (strncmp(cmd, iconv, sizeof(iconv)) != 0)
 		{
 			if (!script_exist && encoding_num == expected_encoding_num)
@@ -1515,14 +1516,14 @@ static bool create_alert_table_with_script(PGconn *conn, const char *encoding)
 	const char query_pattern[] = "BEGIN;"
 		"DROP EXTERNAL TABLE IF EXISTS public.log_alert_tail;"
 		"CREATE EXTERNAL WEB TABLE public.log_alert_tail (LIKE "
-		"public.log_alert_history) EXECUTE 'gpperfmoncat.sh "
+		"public.log_alert_history) EXECUTE 'hdbperfmoncat.sh "
 		"gpperfmon/logs/alert_log_stage 2> /dev/null || true' "
 		"ON MASTER FORMAT 'csv' (DELIMITER e',' NULL e'' "
 		"ESCAPE e'\"' QUOTE e'\"') ENCODING '%s';"
 		"DROP EXTERNAL TABLE IF EXISTS public.log_alert_now;"
 		"CREATE EXTERNAL WEB TABLE public.log_alert_now "
 		"(LIKE public.log_alert_history) "
-		"EXECUTE 'gpperfmoncat.sh gpperfmon/logs/*.csv 2> /dev/null "
+		"EXECUTE 'hdbperfmoncat.sh gpperfmon/logs/*.csv 2> /dev/null "
 		"|| true' ON MASTER FORMAT 'csv' (DELIMITER e',' NULL "
 		"e'' ESCAPE e'\"' QUOTE e'\"') ENCODING '%s'; COMMIT;";
 
@@ -1571,7 +1572,7 @@ static bool recreate_alert_tables_if_needed(PGconn *conn, const char *owner)
 		return false;
 	}
 
-	bool script_exist = (system("which gpperfmoncat.sh > /dev/null 2>&1") == 0);
+	bool script_exist = (system("which hdbperfmoncat.sh > /dev/null 2>&1") == 0);
 	bool should_recreate = gpdb_should_recreate_log_alert(
 														conn,
 														"log_alert_tail",
@@ -1738,7 +1739,7 @@ void create_log_alert_table()
 		upgrade_log_alert_table_distributed_key(conn);
 	}
 
-	// log_alert_now/log_alert_tail: change to use 'gpperfmoncat.sh' from 'iconv/cat' to handle
+	// log_alert_now/log_alert_tail: change to use 'hdbperfmoncat.sh' from 'iconv/cat' to handle
 	// encoding issue.
 	if (recreate_alert_tables_if_needed(conn, owner))
 	{

@@ -234,7 +234,7 @@ struct gpmon_hello_t {
  *  This version must match the most significant digit of the greenplum system version.
  */
 #define GPMON_PACKET_VERSION   5
-#define GPMMON_PACKET_VERSION_STRING "gpmmon packet version 5\n"
+#define GPMMON_PACKET_VERSION_STRING "hdbmmon packet version 5\n"
 
 enum gpmon_pkttype_t {
     GPMON_PKTTYPE_NONE = 0,
