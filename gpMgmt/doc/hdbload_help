@@ -8,7 +8,7 @@ SYNOPSIS
 *****************************************************
 
 hdbload -f <control_file> [-l <log_file>] [-h <hostname>] [-p <port>]
-[-U <username>] [-d <database>] [-W] [--gpfdist_timeout <seconds>] 
+[-U <username>] [-d <database>] [-W] [--hdbfdist_timeout <seconds>] 
 [--no_auto_trans] [[-v | -V] [-q]] [-D]
 
 hdbload -? 
@@ -31,7 +31,7 @@ The client machine where hdbload is executed must have the following:
   Note: inHybrid Loaders for Windows supports only Python 2.5 
   (available from www.python.org). 
 
-* The gpfdist parallel file distribution program installed and in your 
+* The hdbfdist parallel file distribution program installed and in your 
   $PATH. This program is located in $HDBHOME/bin of your inHybrid Database 
   server installation. 
 
@@ -49,7 +49,7 @@ DESCRIPTION
 hdbload is a data loading utility that acts as an interface to inHybrid 
 Databases external table parallel loading feature. Using a load 
 specification defined in a YAML formatted control file, hdbload executes 
-a load by invoking the inHybrid parallel file server (gpfdist), 
+a load by invoking the inHybrid parallel file server (hdbfdist), 
 creating an external table definition based on the source data defined, 
 and executing an INSERT, UPDATE or MERGE operation to load the source 
 data into the target table in the database. 
@@ -70,9 +70,9 @@ OPTIONS
  following section "Control File Format". 
 
  
---gpfdist_timeout <seconds> 
+--hdbfdist_timeout <seconds> 
 
- Sets the timeout for the gpfdist parallel file distribution program to 
+ Sets the timeout for the hdbfdist parallel file distribution program to 
  send a response. Enter a value from 0 to 30 seconds (entering "0" to 
  disables timeouts). Note that you might need to increase this value when 
  operating on high-traffic networks. 
@@ -186,7 +186,7 @@ DATABASE: <db_name>
 USER: <db_username>
 HOST: <master_hostname>
 PORT: <master_port>
-GPLOAD:
+HDBLOAD:
    INPUT:
     - SOURCE:
          LOCAL_HOSTNAME:
@@ -259,11 +259,11 @@ PORT - Optional. Specifies inHybrid master port. If not specified, defaults
        to 5432 or $PGPORT if set. You can also specify the master port on 
        the command line using the -p option.
 
-GPLOAD - Required. Begins the load specification section. A GPLOAD specification
+HDBLOAD - Required. Begins the load specification section. A HDBLOAD specification
          must have an INPUT and an OUTPUT section defined.
 
 INPUT - Required. Defines the location and the format of the input data to 
-        be loaded. hdbload will start one or more instances of the gpfdist file
+        be loaded. hdbload will start one or more instances of the hdbfdist file
         distribution program on the current host and create the required external
         table definition(s) in inHybrid Database that point to the source data. 
         Note that the host from which you run hdbload must be accessible over the 
@@ -272,12 +272,12 @@ INPUT - Required. Defines the location and the format of the input data to
 SOURCE - Required. The SOURCE block of an INPUT specification defines the 
          location of a source file. An INPUT section can have more than one 
          SOURCE block defined. Each SOURCE block defined corresponds to one 
-         instance of the gpfdist file distribution program that will be started 
+         instance of the hdbfdist file distribution program that will be started 
          on the local machine. Each SOURCE block defined must have a FILE 
          specification.
          
-         For more information about using the gpfdist parallel file server 
-         and single and multiple gpfdist instances, see the "inHybrid Database 
+         For more information about using the hdbfdist parallel file server 
+         and single and multiple hdbfdist instances, see the "inHybrid Database 
          Database Administrator Guide."
 
 LOCAL_HOSTNAME - Optional. Specifies the host name or IP address of the local 
@@ -287,7 +287,7 @@ LOCAL_HOSTNAME - Optional. Specifies the host name or IP address of the local
                  to use all NICs simultaneously. The default is to use the local 
                  machines primary host name or IP only. 
 
-PORT - Optional. Specifies the specific port number that the gpfdist file 
+PORT - Optional. Specifies the specific port number that the hdbfdist file 
        distribution program should use. You can also supply a PORT_RANGE to 
        select an available port from the specified range. If both PORT and 
        PORT_RANGE are defined, then PORT takes precedence. If neither PORT or 
@@ -300,7 +300,7 @@ PORT - Optional. Specifies the specific port number that the gpfdist file
 
 PORT_RANGE - Optional. Can be used instead of PORT to supply a range of port 
              numbers from which hdbload can choose an available port for this 
-             instance of the gpfdist file distribution program.
+             instance of the hdbfdist file distribution program.
 
 FILE - Required. Specifies the location of a file, named pipe, or directory location 
        on the local file system that contains data to be loaded. You can declare 
@@ -317,7 +317,7 @@ FILE - Required. Specifies the location of a file, named pipe, or directory loca
        hdbload is executed (or you can declare an absolute path).
 
 SSL - Optional. Specifies usage of SSL encryption. If SSL is set to true, hdbload 
-      starts the gpfdist server with the --ssl option and uses the gpfdists 
+      starts the hdbfdist server with the --ssl option and uses the hdbfdists 
       protocol.
 
 CERTIFICATES_PATH - Required when SSL is true; cannot be specified when SSL is 
@@ -593,7 +593,7 @@ DATABASE: ops
 USER: hdbadmin
 HOST: mdw-1
 PORT: 5432
-GPLOAD:
+HDBLOAD:
    INPUT:
     - SOURCE:
          LOCAL_HOSTNAME:
@@ -626,7 +626,7 @@ GPLOAD:
 SEE ALSO
 *****************************************************
 
-gpfdist, CREATE EXTERNAL TABLE 
+hdbfdist, CREATE EXTERNAL TABLE 
 
 See the "inHybrid Database Reference Guide" for information 
 about CREATE EXTERNAL TABLE.

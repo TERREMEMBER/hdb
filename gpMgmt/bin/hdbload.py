@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-# gpload - load file(s) into inHybrid Database
+# hdbload - load file(s) into inHybrid Database
 # Copyright inHybrid 2008
 
 '''hdbload [options] -f configuration file
@@ -97,8 +97,8 @@ valid_tokens = {
     "host": {'parse_children': True, 'parent': None},
     "port": {'parse_children': True, 'parent': [None, "source"]},
     "password": {'parse_children': True, 'parent': None},
-    "gpload": {'parse_children': True, 'parent': None},
-    "input": {'parse_children': True, 'parent': "gpload"},
+    "hdbload": {'parse_children': True, 'parent': None},
+    "input": {'parse_children': True, 'parent': "hdbload"},
     "source": {'parse_children': True, 'parent': "input"},
     "local_hostname": {'parse_children': False, 'parent': "source"},
     "port_range": {'parse_children': False, 'parent': "source"},
@@ -122,22 +122,22 @@ valid_tokens = {
     "log_errors": {'parse_children': False, 'parent': "input"},
     "header": {'parse_children': True, 'parent': "input"},
     "fully_qualified_domain_name": {'parse_children': False, 'parent': 'input'},
-    "output": {'parse_children': True, 'parent': "gpload"},
+    "output": {'parse_children': True, 'parent': "hdbload"},
     "table": {'parse_children': True, 'parent': "output"},
     "mode": {'parse_children': True, 'parent': "output"},
     "match_columns": {'parse_children': False, 'parent': "output"},
     "update_columns": {'parse_children': False, 'parent': "output"},
     "update_condition": {'parse_children': True, 'parent': "output"},
     "mapping": {'parse_children': False, 'parent': "output"},
-    "preload": {'parse_children': True, 'parent': 'gpload'},
+    "preload": {'parse_children': True, 'parent': 'hdbload'},
     "truncate": {'parse_children': False, 'parent': 'preload'},
     "reuse_tables": {'parse_children': False, 'parent': 'preload'},
     "fast_match": {'parse_children': False, 'parent': 'preload'},
     "staging_table": {'parse_children': False, 'parent': 'preload'},
-    "sql": {'parse_children': True, 'parent': 'gpload'},
+    "sql": {'parse_children': True, 'parent': 'hdbload'},
     "before": {'parse_children': False, 'parent': 'sql'},
     "after": {'parse_children': False, 'parent': 'sql'},
-    "external": {'parse_children': True, 'parent': 'gpload'},
+    "external": {'parse_children': True, 'parent': 'hdbload'},
     "schema": {'parse_children': False, 'parent': 'external'}}
 
 _abbrevs = [
@@ -1672,7 +1672,7 @@ class gpload:
                     local_hostname = [socket.gethostname()]
 
             # build gpfdist parameters
-            popenList = ['gpfdist']
+            popenList = ['hdbfdist']
             self.gpfdist_ssl(popenList)
             self.gpfdist_port_options(name, availablePorts, popenList)
             file = self.gpfdist_filenames(name, popenList)

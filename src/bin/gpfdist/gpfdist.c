@@ -478,12 +478,12 @@ static void usage_error(const char* msg, int print_usage)
 		char* GPHOME = 0;
 		FILE* fp = 0;
 
-		if (gcb.pool && apr_env_get(&GPHOME, "GPHOME", gcb.pool))
+		if (gcb.pool && apr_env_get(&GPHOME, "HDBHOME", gcb.pool))
 			GPHOME = 0;
 
 		if (GPHOME)
 		{
-			char* path = apr_psprintf(gcb.pool, "%s/docs/cli_help/gpfdist_help",
+			char* path = apr_psprintf(gcb.pool, "%s/docs/cli_help/hdbfdist_help",
 					GPHOME);
 			if (path)
 				fp = fopen(path, "r");
@@ -499,13 +499,13 @@ static void usage_error(const char* msg, int print_usage)
 		else
 		{
 			fprintf(stderr,
-					"gpfdist -- file distribution web server\n\n"
-						"usage: gpfdist [--ssl <certificates_directory>] [-d <directory>] [-p <http(s)_port>] [-l <log_file>] [-t <timeout>] [-v | -V | -s] [-m <maxlen>] [-w <timeout>]"
+					"hdbfdist -- file distribution web server\n\n"
+						"usage: hdbfdist [--ssl <certificates_directory>] [-d <directory>] [-p <http(s)_port>] [-l <log_file>] [-t <timeout>] [-v | -V | -s] [-m <maxlen>] [-w <timeout>]"
 #ifdef GPFXDIST
 					    "[-c file]"
 #endif
 					    "\n\n"
-						"       gpfdist [-? | --help] | --version\n\n"
+						"       hdbfdist [-? | --help] | --version\n\n"
 						"        -?, --help : print this screen\n"
 						"        -v         : verbose mode\n"
 						"        -V         : more verbose\n"
@@ -538,7 +538,7 @@ static void usage_error(const char* msg, int print_usage)
 
 static void print_version(void)
 {
-	printf("gpfdist version \"%s\"\n", GP_VERSION);
+	printf("hdbfdist version \"%s\"\n", GP_VERSION);
 	exit(0);
 }
 
@@ -704,7 +704,7 @@ static void parse_command_line(int argc, const char* const argv[],
     /* get current directory, for ssl directory validation */
     if (0 != apr_filepath_get(&current_directory, APR_FILEPATH_NATIVE, pool))
 		usage_error(apr_psprintf(pool, "Error: cannot access directory '.'\n"
-									   "Please run gpfdist from a different location"), 0);
+									   "Please run hdbfdist from a different location"), 0);
 
 	/* validate opt.d */
 	{
@@ -797,7 +797,7 @@ static void parse_command_line(int argc, const char* const argv[],
 		/* change current directory to original one (after -d changed it) */
 		if (0 != apr_filepath_set(current_directory, pool))
 				usage_error(apr_psprintf(pool, "Error: cannot access directory '%s'\n"
-											   "Please run gpfdist from a different location", current_directory), 0);
+											   "Please run hdbfdist from a different location", current_directory), 0);
 		/* check that the dir exists */
 		if ( (0 != apr_filepath_set(opt.ssl, pool)) || (0 != apr_filepath_get(&p, APR_FILEPATH_NATIVE, pool)) )
 			usage_error(apr_psprintf(pool, "Error: cannot access directory '%s'\n"
@@ -1659,7 +1659,7 @@ static int session_attach(request_t* r)
 	if (r->is_get != session->is_get)
 	{
 		http_error(r, FDIST_BAD_REQUEST, "can\'t write to and read from the same "
-										 "gpfdist server simultaneously");
+										 "hdbfdist server simultaneously");
 		request_end(r, 1, 0);
 		return -1;
 	}
@@ -1774,7 +1774,7 @@ static void do_write(int fd, short event, void* arg)
 				{
 					if (errno == EPIPE || errno == ECONNRESET)
 						r->outblock.bot = r->outblock.top;
-					request_end(r, 1, "gpfdist send block header failure");
+					request_end(r, 1, "hdbfdist send block header failure");
 					return;
 				}
 
@@ -1806,7 +1806,7 @@ static void do_write(int fd, short event, void* arg)
 			 */
 			if (errno == EPIPE || errno == ECONNRESET)
 				r->outblock.bot = r->outblock.top;
-			request_end(r, 1, "gpfdist send data failure");
+			request_end(r, 1, "hdbfdist send data failure");
 			return;
 		}
 
@@ -2561,7 +2561,7 @@ http_setup(void)
 void
 process_term_signal(int sig,short event,void* arg)
 {
-		gwarning(NULL, "signal %d received. gpfdist exits", sig);
+		gwarning(NULL, "signal %d received. hdbfdist exits", sig);
 		log_gpfdist_status();
 		fflush(stdout);
 
@@ -4236,13 +4236,13 @@ static void do_close(int fd, short event, void *arg)
 
 	if (event & EV_TIMEOUT)
 	{
-		gwarning(r, "gpfdist shutdown the connection, while have not received response from segment");
+		gwarning(r, "hdbfdist shutdown the connection, while have not received response from segment");
 	}
 
 	int ret = recv(r->sock, buffer, sizeof(buffer) - 1, 0);
 	if (ret < 0)
 	{
-		gwarning(r, "gpfdist read error after shutdown. errno: %d, msg: %s", errno, strerror(errno));
+		gwarning(r, "hdbfdist read error after shutdown. errno: %d, msg: %s", errno, strerror(errno));
 
 #ifdef WIN32
 		int e = WSAGetLastError();
@@ -4259,11 +4259,11 @@ static void do_close(int fd, short event, void *arg)
 	}
 	else if (ret == 0)
 	{
-		gprintlnif(r, "peer closed after gpfdist shutdown");
+		gprintlnif(r, "peer closed after hdbfdist shutdown");
 	}
 	else
 	{
-		gwarning(r, "gpfdist read unexpected data after shutdown %s", buffer);
+		gwarning(r, "hdbfdist read unexpected data after shutdown %s", buffer);
 	}
 
 	log_unsent_bytes(r);
@@ -4391,7 +4391,7 @@ static void* watchdog_thread(void* p)
 		if (duration > 0)
 			(void)sleep(duration);
 	} while(apr_time_now() < shutdown_time);
-	gprintln(NULL, "Watchdog timer expired, abort gpfdist");
+	gprintln(NULL, "Watchdog timer expired, abort hdbfdist");
 	abort();
 }
 

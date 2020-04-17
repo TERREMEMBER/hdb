@@ -506,7 +506,7 @@ Feature: hdbcheckcat tests
     Scenario Outline: hdbcheckcat should discover missing attributes for external tables
         Given database "miss_attr_db3" is dropped and recreated
         And the user runs "echo > /tmp/backup_gpfdist_dummy"
-        And the user runs "gpfdist -p 8098 -d /tmp &"
+        And the user runs "hdbfdist -p 8098 -d /tmp &"
         And there is a partition table "part_external" has external partitions of gpfdist with file "backup_gpfdist_dummy" on port "8098" in "miss_attr_db3" with data
         Then data for partition table "part_external" with partition level "0" is distributed across all segments on "miss_attr_db3"
         When the user runs "hdbcheckcat miss_attr_db3"
@@ -525,7 +525,7 @@ Feature: hdbcheckcat tests
     Scenario Outline: hdbcheckcat should discover missing attributes for external tables
         Given database "miss_attr_db3" is dropped and recreated
         And the user runs "echo > /tmp/backup_gpfdist_dummy"
-        And the user runs "gpfdist -p 8098 -d /tmp &"
+        And the user runs "hdbfdist -p 8098 -d /tmp &"
         And there is a partition table "part_external" has external partitions of gpfdist with file "backup_gpfdist_dummy" on port "8098" in "miss_attr_db3" with data
         Then data for partition table "part_external" with partition level "0" is distributed across all segments on "miss_attr_db3"
         When the user runs "hdbcheckcat miss_attr_db3"
