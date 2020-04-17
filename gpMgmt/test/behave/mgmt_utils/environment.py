@@ -18,7 +18,8 @@ def before_all(context):
 def before_feature(context, feature):
     # we should be able to run gpexpand without having a cluster initialized
     tags_to_skip = ['hdbexpand', 'hdbaddmirrors', 'hdbstate', 'hdbmovemirrors', 'hdbinitsystem',
-                    'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload', 'hdbload','hdbperfmon']
+                    'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload', 'hdbload', 
+                    'hdbfdist','hdbperfmon']
 
     if set(context.feature.tags).intersection(tags_to_skip):
         return
@@ -122,7 +123,8 @@ def before_scenario(context, scenario):
         context.gpssh_exkeys_context = GpsshExkeysMgmtContext(context)
 
     tags_to_skip = ['hdbexpand', 'hdbaddmirrors', 'hdbstate', 'hdbmovemirrors', 'hdbinitsystem',
-                    'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload', 'hdbload', 'hdbperfmon']
+                    'hdbconfig', 'hdbssh-exkeys', 'hdbstop', 'cross_subnet', 'hdbcheckperf', 'hdbreload', 'hdbload', 
+                    'hdbfdist', 'hdbperfmon']
 
     if set(context.feature.tags).intersection(tags_to_skip):
         return
@@ -151,7 +153,9 @@ def after_scenario(context, scenario):
 
     # NOTE: hdbconfig after_scenario cleanup is in the step `the hdbconfig context is setup`
     tags_to_skip = ['hdbexpand', 'hdbaddmirrors', 'hdbstate','hdbconfig', 'hdbstop', 'cross_subnet',
-                    'hdbinitstandby','hdbinitsystem','hdbcheckperf', 'hdbreload', 'hdbload', 'hdbperfmon']
+                    'hdbinitstandby','hdbinitsystem','hdbcheckperf', 'hdbreload', 'hdbload', 
+                    'hdbfdist', 'hdbperfmon']
+
     if set(context.feature.tags).intersection(tags_to_skip):
         return
 
