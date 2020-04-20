@@ -314,6 +314,26 @@ With no arguments, all known items are shown.\
 \
 Report bugs to <bugs\@inspur.com>.\n";
 our $pg_config_version = "PostgreSQL 9.4.24\n";
+#############################pg_rewind############################################
+our $pg_rewind_help = "pg_rewind resynchronizes a PostgreSQL cluster with another copy of the cluster.\
+\
+Usage:\
+  pg_rewind [OPTION]...\
+\
+Options:\
+  -D, --target-pgdata=DIRECTORY  existing data directory to modify\
+      --source-pgdata=DIRECTORY  source data directory to synchronize with\
+      --source-server=CONNSTR    source server to synchronize with\
+  -R, --write-recovery-conf      write recovery.conf after backup\
+  -S, --slot=SLOTNAME            replication slot to use\
+  -n, --dry-run                  stop before modifying anything\
+  -P, --progress                 write progress messages\
+      --debug                    write a lot of debug messages\
+  -V, --version                  output version information, then exit\
+  -?, --help                     show this help, then exit\
+\
+Report bugs to <pgsql-bugs\@postgresql.org>.\n";
+our $pg_rewind_version = "pg_rewind (inHybrid Database) 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
@@ -326,7 +346,8 @@ our @help_info=(
 ["pg_isready", $pg_isready_help],
 ["reindexdb", $reindexdb_help],
 ["vacuumdb", $vacuumdb_help],
-["pg_config",$pg_config_help]
+["pg_config", $pg_config_help],
+["pg_rewind", $pg_rewind_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
@@ -340,5 +361,6 @@ our @version_info=(
 ["pg_isready", $pg_isready_version],
 ["reindexdb", $reindexdb_version],
 ["vacuumdb", $vacuumdb_version],
-["pg_config",$pg_config_version]
+["pg_config", $pg_config_version],
+["pg_rewind", $pg_rewind_version]
 );
