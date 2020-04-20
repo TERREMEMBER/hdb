@@ -275,6 +275,45 @@ Read the description of the SQL command VACUUM for details.\
 \
 Report bugs to <bugs\@inspur.com>.\n";
 our $vacuumdb_version = "vacuumdb (inHybrid Database) 9.4.24\n";
+#############################pg_config############################################
+our $pg_config_help = "\
+pg_config provides information about the installed version of PostgreSQL.\
+\
+Usage:\
+  pg_config [OPTION]...\
+\
+Options:\
+  --bindir              show location of user executables\
+  --docdir              show location of documentation files\
+  --htmldir             show location of HTML documentation files\
+  --includedir          show location of C header files of the client\
+                        interfaces\
+  --pkgincludedir       show location of other C header files\
+  --includedir-server   show location of C header files for the server\
+  --libdir              show location of object code libraries\
+  --pkglibdir           show location of dynamically loadable modules\
+  --localedir           show location of locale support files\
+  --mandir              show location of manual pages\
+  --sharedir            show location of architecture-independent support files\
+  --sysconfdir          show location of system-wide configuration files\
+  --pgxs                show location of extension makefile\
+  --configure           show options given to \"configure\" script when\
+                        PostgreSQL was built\
+  --cc                  show CC value used when PostgreSQL was built\
+  --cppflags            show CPPFLAGS value used when PostgreSQL was built\
+  --cflags              show CFLAGS value used when PostgreSQL was built\
+  --cflags_sl           show CFLAGS_SL value used when PostgreSQL was built\
+  --ldflags             show LDFLAGS value used when PostgreSQL was built\
+  --ldflags_ex          show LDFLAGS_EX value used when PostgreSQL was built\
+  --ldflags_sl          show LDFLAGS_SL value used when PostgreSQL was built\
+  --libs                show LIBS value used when PostgreSQL was built\
+  --version             show the PostgreSQL version\
+  -?, --help            show this help, then exit\
+\
+With no arguments, all known items are shown.\
+\
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_config_version = "PostgreSQL 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
@@ -286,7 +325,8 @@ our @help_info=(
 ["droplang", $droplang_help],
 ["pg_isready", $pg_isready_help],
 ["reindexdb", $reindexdb_help],
-["vacuumdb", $vacuumdb_help]
+["vacuumdb", $vacuumdb_help],
+["pg_config",$pg_config_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
@@ -299,5 +339,6 @@ our @version_info=(
 ["droplang", $droplang_version],
 ["pg_isready", $pg_isready_version],
 ["reindexdb", $reindexdb_version],
-["vacuumdb", $vacuumdb_version]
+["vacuumdb", $vacuumdb_version],
+["pg_config",$pg_config_version]
 );
