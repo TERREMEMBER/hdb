@@ -334,6 +334,280 @@ Options:\
 \
 Report bugs to <pgsql-bugs\@postgresql.org>.\n";
 our $pg_rewind_version = "pg_rewind (inHybrid Database) 9.4.24\n";
+#############################initdb############################################
+our $initdb_help = "initdb initializes a PostgreSQL database cluster.
+
+Usage:
+  initdb [OPTION]... [DATADIR]
+
+Options:
+  -A, --auth=METHOD         default authentication method for local connections
+      --auth-host=METHOD    default authentication method for local TCP/IP connections
+      --auth-local=METHOD   default authentication method for local-socket connections
+ [-D, --pgdata=]DATADIR     location for this database cluster
+  -E, --encoding=ENCODING   set default encoding for new databases
+      --locale=LOCALE       set default locale for new databases
+      --lc-collate=, --lc-ctype=, --lc-messages=LOCALE
+      --lc-monetary=, --lc-numeric=, --lc-time=LOCALE
+                            set default locale in the respective category for
+                            new databases (default taken from environment)
+      --no-locale           equivalent to --locale=C
+      --pwfile=FILE         read password for the new superuser from file
+  -T, --text-search-config=CFG
+                            default text search configuration
+  -U, --username=NAME       database superuser name
+  -W, --pwprompt            prompt for a password for the new superuser
+  -X, --xlogdir=XLOGDIR     location for the transaction log directory
+
+Shared memory allocation:
+  --max_connections=MAX-CONNECT  maximum number of allowed connections
+  --shared_buffers=NBUFFERS number of shared buffers; or, amount of memory for
+                            shared buffers if kB/MB/GB suffix is appended
+
+Less commonly used options:
+  -d, --debug               generate lots of debugging output
+  -k, --data-checksums      use data page checksums
+  -L DIRECTORY              where to find the input files
+  -n, --noclean             do not clean up after errors
+  -N, --nosync              do not wait for changes to be written safely to disk
+  -s, --show                show internal settings
+  -S, --sync-only           only sync data directory
+  -m, --formirror           only create data needed to start the backend in mirror mode
+
+Other options:
+  -V, --version             output version information, then exit
+      --gp-version          output inHybrid version information, then exit
+  -?, --help                show this help, then exit
+
+If the data directory is not specified, the environment variable PGDATA
+is used.
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $initdb_version = "initdb (inHybrid Database) 9.4.24\n";
+#############################pg_basebackup############################################
+our $pg_basebackup_help = "pg_basebackup takes a base backup of a running PostgreSQL server.
+
+Usage:
+  pg_basebackup [OPTION]...
+
+Options controlling the output:
+  -D, --pgdata=DIRECTORY receive base backup into directory
+  -F, --format=p|t       output format (plain (default), tar (Unsupported in GPDB))
+  -r, --max-rate=RATE    maximum transfer rate to transfer data directory
+                         (in kB/s, or use suffix \"k\" or \"M\")
+  -R, --write-recovery-conf
+                         write recovery.conf after backup
+  -S, --slot=SLOTNAME    replication slot to use
+  -T, --tablespace-mapping=OLDDIR=NEWDIR
+                         relocate tablespace in OLDDIR to NEWDIR
+  -x, --xlog             include required WAL files in backup (fetch mode)
+  -X, --xlog-method=fetch|stream
+                         include required WAL files with specified method
+      --xlogdir=XLOGDIR  location for the transaction log directory
+  -z, --gzip             compress tar output
+  -Z, --compress=0-9     compress tar output with given compression level
+  --target-gp-dbid       create tablespace subdirectories with given dbid
+
+General options:
+  -c, --checkpoint=fast|spread
+                         set fast or spread checkpointing
+  -l, --label=LABEL      set backup label
+  -P, --progress         show progress information
+  -v, --verbose          output verbose messages
+  -V, --version          output version information, then exit
+  -?, --help             show this help, then exit
+
+Connection options:
+  -d, --dbname=CONNSTR   connection string
+  -h, --host=HOSTNAME    database server host or socket directory
+  -p, --port=PORT        database server port number
+  -s, --status-interval=INTERVAL
+                         time between status packets sent to server (in seconds)
+  -U, --username=NAME    connect as specified database user
+  -w, --no-password      never prompt for password
+  -W, --password         force password prompt (should happen automatically)
+  -E, --exclude          exclude path names
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_basebackup_version = "pg_basebackup (PostgreSQL) 9.4.24\n";
+#############################pg_receivexlog############################################
+our $pg_receivexlog_help = "pg_receivexlog receives PostgreSQL streaming transaction logs.
+
+Usage:
+  pg_receivexlog [OPTION]...
+
+Options:
+  -D, --directory=DIR    receive transaction log files into this directory
+  -n, --no-loop          do not loop on connection lost
+  -s, --status-interval=SECS
+                         time between status packets sent to server (default: 10)
+  -S, --slot=SLOTNAME    replication slot to use
+  -v, --verbose          output verbose messages
+  -V, --version          output version information, then exit
+  -?, --help             show this help, then exit
+
+Connection options:
+  -d, --dbname=CONNSTR   connection string
+  -h, --host=HOSTNAME    database server host or socket directory
+  -p, --port=PORT        database server port number
+  -U, --username=NAME    connect as specified database user
+  -w, --no-password      never prompt for password
+  -W, --password         force password prompt (should happen automatically)
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_receivexlog_version = "pg_receivexlog (PostgreSQL) 9.4.24\n";
+#############################pg_ctl############################################
+our $pg_ctl_help = "pg_ctl is a utility to initialize, start, stop, or control a PostgreSQL server.
+
+Usage:
+  pg_ctl init[db]               [-D DATADIR] [-s] [-o \"OPTIONS\"]
+  pg_ctl start   [-w] [-t SECS] [-D DATADIR] [-s] [-l FILENAME] [-o \"OPTIONS\"]
+  pg_ctl stop    [-W] [-t SECS] [-D DATADIR] [-s] [-m SHUTDOWN-MODE]
+  pg_ctl restart [-w] [-t SECS] [-D DATADIR] [-s] [-m SHUTDOWN-MODE]
+                 [-o \"OPTIONS\"]
+  pg_ctl reload  [-D DATADIR] [-s]
+  pg_ctl status  [-D DATADIR]
+  pg_ctl promote [-D DATADIR] [-s]
+  pg_ctl kill    SIGNALNAME PID
+
+Common options:
+  -D, --pgdata=DATADIR   location of the database storage area
+  -s, --silent           only print errors, no informational messages
+  -t, --timeout=SECS     seconds to wait when using -w option
+  -V, --version          output version information, then exit
+  -w                     wait until operation completes
+  -W                     do not wait until operation completes
+  -?, --help             show this help, then exit
+  --gp-version           output inHybrid version information, then exit
+(The default is to wait for shutdown, but not for start or restart.)
+
+If the -D option is omitted, the environment variable PGDATA is used.
+
+Options for start or restart:
+  -c, --core-files       allow postgres to produce core files
+  -l, --log=FILENAME     write (or append) server log to FILENAME
+  -o OPTIONS             command line options to pass to postgres
+                         (PostgreSQL server executable) or initdb
+  -p PATH-TO-POSTGRES    normally not necessary
+
+Options for stop or restart:
+  -m, --mode=MODE        MODE can be \"smart\", \"fast\", or \"immediate\"
+
+Shutdown modes are:
+  smart       quit after all clients have disconnected
+  fast        quit directly, with proper shutdown
+  immediate   quit without complete shutdown; will lead to recovery on restart
+
+Allowed signal names for kill:
+  ABRT HUP INT QUIT TERM USR1 USR2
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_ctl_version = "pg_ctl (inHybrid Database) 9.4.24\n";
+#############################pg_controldata############################################
+our $pg_controldata_help = "pg_controldata displays control information of a PostgreSQL database cluster.
+
+Usage:
+  pg_controldata [OPTION] [DATADIR]
+
+Options:
+  -V, --version  output version information, then exit
+  -?, --help     show this help, then exit
+  --gp-version   output inHybrid version information, then exit
+
+If no data directory (DATADIR) is specified, the environment variable PGDATA
+is used.
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_controldata_version = "pg_controldata (inHybrid Database) 9.4.24\n";
+#############################pg_resetxlog############################################
+our $pg_resetxlog_help = "pg_resetxlog resets the PostgreSQL transaction log.
+
+Usage:
+  pg_resetxlog [OPTION]... DATADIR
+
+Options:
+  -e XIDEPOCH      set next transaction ID epoch
+  -f               force update to be done
+  -k data_checksum_version     set data_checksum_version
+  -l XLOGFILE      force minimum WAL starting location for new transaction log
+  -m MXID,MXID     set next and oldest multitransaction ID
+  -n               no update, just show what would be done (for testing)
+  -o OID           set next OID
+  -r RELFILENODE  set next RELFILENODE
+  -O OFFSET        set next multitransaction offset
+  -V, --version    output version information, then exit
+  -x XID           set next transaction ID
+  --system-identifier=ID
+                   set database system identifier
+  -?, --help       show this help, then exit
+  --gp-version    output inHybrid version information, then exit
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_resetxlog_version = "pg_resetxlog (inHybrid Database) 9.4.24\n";
+#############################postgres############################################
+our $postgres_help = "postgres is the PostgreSQL server.
+
+Usage:
+  postgres [OPTION]...
+
+Options:
+  -B NBUFFERS        number of shared buffers
+  -c NAME=VALUE      set run-time parameter
+  -C NAME            print value of run-time parameter, then exit
+  -d 1-5             debugging level
+  -D DATADIR         database directory
+  -e                 use European date input format (DMY)
+  -F                 turn fsync off
+  -h HOSTNAME        host name or IP address to listen on
+  -i                 enable TCP/IP connections
+  -k DIRECTORY       Unix-domain socket location
+  -N MAX-CONNECT     maximum number of allowed connections
+  -o OPTIONS         pass \"OPTIONS\" to each server process (obsolete)
+  -p PORT            port number to listen on
+  -s                 show statistics after each query
+  -S WORK-MEM        set amount of memory for sorts (in kB)
+  -V, --version      output version information, then exit
+  --NAME=VALUE       set run-time parameter
+  --describe-config  describe configuration parameters, then exit
+  -?, --help         show this help, then exit
+  --gp-version       output inHybrid version information, then exit
+  --catalog-version  output the catalog version, then exit
+
+Developer options:
+  -f s|i|n|m|h       forbid use of some plan types
+  -n                 do not reinitialize shared memory after abnormal exit
+  -O                 allow system table structure changes
+  -P                 disable system indexes
+  -t pa|pl|ex        show timings after each query
+  -T                 send SIGSTOP to all backend processes if one dies
+  -W NUM             wait NUM seconds to allow attach from a debugger
+
+Options for maintenance mode:
+  -m              start the system in maintenance mode
+
+Options for upgrade mode:
+  -U              start the system in upgrade mode
+
+Options for single-user mode:
+  --single           selects single-user mode (must be first argument)
+  DBNAME             database name (defaults to user name)
+  -d 0-5             override debugging level
+  -E                 echo statement before execution
+  -j                 do not use newline as interactive query delimiter
+  -r FILENAME        send stdout and stderr to given file
+
+Options for bootstrapping mode:
+  --boot             selects bootstrapping mode (must be first argument)
+  DBNAME             database name (mandatory argument in bootstrapping mode)
+  -r FILENAME        send stdout and stderr to given file
+  -x NUM             internal use
+
+Please read the documentation for the complete list of run-time
+configuration settings and how to set them on the command line or in
+the configuration file.
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $postgres_version = "postgres (inHybrid Database) 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
@@ -347,7 +621,14 @@ our @help_info=(
 ["reindexdb", $reindexdb_help],
 ["vacuumdb", $vacuumdb_help],
 ["pg_config", $pg_config_help],
-["pg_rewind", $pg_rewind_help]
+["pg_rewind", $pg_rewind_help],
+["initdb", $initdb_help],
+["pg_basebackup", $pg_basebackup_help],
+["pg_receivexlog", $pg_receivexlog_help],
+["pg_ctl", $pg_ctl_help],
+["pg_controldata", $pg_controldata_help],
+["pg_resetxlog", $pg_resetxlog_help],
+["postgres", $postgres_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
@@ -362,5 +643,12 @@ our @version_info=(
 ["reindexdb", $reindexdb_version],
 ["vacuumdb", $vacuumdb_version],
 ["pg_config", $pg_config_version],
-["pg_rewind", $pg_rewind_version]
+["pg_rewind", $pg_rewind_version],
+["initdb", $initdb_version],
+["pg_basebackup", $pg_basebackup_version],
+["pg_receivexlog", $pg_receivexlog_version],
+["pg_ctl", $pg_ctl_version],
+["pg_controldata", $pg_controldata_version],
+["pg_resetxlog", $pg_resetxlog_version],
+["postgres", $postgres_version]
 );
