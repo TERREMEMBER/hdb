@@ -2,18 +2,18 @@
 <!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
 <topic id="Untitled1">
   <title>Example Ansible Playbook</title>
-  <shortdesc>A sample Ansible playbook to install a Greenplum Database software release onto the
-    hosts that will comprise a Greenplum Database system.</shortdesc>
+  <shortdesc>A sample Ansible playbook to install a inHybrid Database software release onto the
+    hosts that will comprise a inHybrid Database system.</shortdesc>
   <body>
     <p>This Ansible playbook shows how tasks described in <xref href="install_gpdb.xml#topic1"/>
       might be automated using <xref href="https://docs.ansible.com" format="html" scope="external"
         >Ansible</xref>.</p>
     <note type="important">This playbook is provided as an <i>example only</i> to illustrate how
-      Greenplum Database cluster configuration and software installation tasks can be automated
+      inHybrid Database cluster configuration and software installation tasks can be automated
       using provisioning tools such as Ansible, Chef, or Puppet. Pivotal does not provide support
       for Ansible or for the playbook presented in this example.</note>
     <p>The example playbook is designed for use with CentOS 7. It creates the
-        <codeph>gpadmin</codeph> user, installs the Greenplum Database software release, sets the
+        <codeph>gpadmin</codeph> user, installs the inHybrid Database software release, sets the
       owner and group of the installed software to <codeph>gpadmin</codeph>, and sets the Pam
       security limits for the <codeph>gpadmin</codeph> user. </p>
     <p>You can revise the script to work with your operating system platform and to perform
@@ -24,27 +24,27 @@
           href="https://docs.ansible.com" format="html" scope="external">Ansible documention</xref>
         for help with installation.</li>
       <li>Set up passwordless SSH from the control node to all hosts that will be a part of the
-        Greenplum Database cluster. You can use the <codeph>ssh-copy-id</codeph> command to install
+        inHybrid Database cluster. You can use the <codeph>ssh-copy-id</codeph> command to install
         your public SSH key on each host in the cluster. Alternatively, your provisioning software
         may provide more convenient ways to securely install public keys on multiple hosts.</li>
       <li>Create an Ansible inventory by creating a file called <codeph>hosts</codeph> with a list
-        of the hosts that will comprise your Greenplum Database cluster. For
+        of the hosts that will comprise your inHybrid Database cluster. For
         example:<codeblock>mdw
 sdw1
 sdw2
 ...</codeblock>This file can be edited and used with the
-        Greenplum Database <codeph>gpssh-exkeys</codeph> and <codeph>gpinitsystem</codeph> utilities
+        inHybrid Database <codeph>gpssh-exkeys</codeph> and <codeph>gpinitsystem</codeph> utilities
         later on.</li>
       <li>Copy the playbook code below to a file <codeph>ansible-playbook.yml</codeph> on your
         Ansible control node.</li>
       <li>Edit the playbook variables at the top of the playbook, such as the
           <codeph>gpadmin</codeph> administrative user and password to create, and the version of
-        Greenplum Database you are installing. </li>
+        inHybrid Database you are installing. </li>
       <li>Run the playbook, passing the package to be installed to the <codeph>package_path</codeph>
         parameter.<codeblock>ansible-playbook ansible-playbook.yml -i hosts -e package_path=./greenplum-db-6.0.0-rhel7-x86_64.rpm</codeblock></li>
     </ol>
     <section>
-      <title>Ansible Playbook - Greenplum Database Installation for CentOS 7</title>
+      <title>Ansible Playbook - inHybrid Database Installation for CentOS 7</title>
       <codeblock>
 ---
 
@@ -99,9 +99,9 @@ sdw2
         nofile: 524288
         nproc: 131072
     - name: find installed greenplum version
-      shell: . /usr/local/greenplum-db/greenplum_path.sh &amp;&amp; /usr/local/greenplum-db/bin/postgres --gp-version
+      shell: . /usr/local/inhybrid-db/inhybrid_path.sh &amp;&amp; /usr/local/inhybrid-db/bin/postgres --gp-version
       register: postgres_gp_version
-    - name: fail if the correct greenplum version is not installed
+    - name: fail if the correct inHybrid version is not installed
       fail:
         msg: "Expected greenplum version {{ version }}, but found '{{ postgres_gp_version.stdout }}'"
       when: "version is not defined or version not in postgres_gp_version.stdout"

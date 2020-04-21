@@ -28,8 +28,8 @@
 #include "pgtime.h"				/* for pg_time_t */
 
 
-#define PG_VERSIONSTR "postgres (Greenplum Database) " PG_VERSION "\n"
-#define PG_BACKEND_VERSIONSTR "postgres (Greenplum Database) " PG_VERSION "\n"
+#define PG_VERSIONSTR "postgres (inHybrid Database) " PG_VERSION "\n"
+#define PG_BACKEND_VERSIONSTR "postgres (inHybrid Database) " PG_VERSION "\n"
 
 #define InvalidPid				(-1)
 
