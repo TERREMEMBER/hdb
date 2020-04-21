@@ -271,7 +271,7 @@ usage(void)
 	printf(_("  -w, --no-password      never prompt for password\n"));
 	printf(_("  -W, --password         force password prompt (should happen automatically)\n"));
 	printf(_("  -E, --exclude          exclude path names\n"));
-	printf(_("\nReport bugs to <bugs@greenplum.org>.\n"));
+	printf(_("\nReport bugs to <bugs@inspur.com>.\n"));
 }
 
 
@@ -1782,7 +1782,7 @@ BaseBackup(void)
 		disconnect_and_exit(1);
 
 	/*
-	 * Greenplum only: create replication slot.  This replication slot is used
+	 * inHybrid only: create replication slot.  This replication slot is used
 	 * for primary/mirror and master/standby WAL replication.
 	 */
 	if (replication_slot)

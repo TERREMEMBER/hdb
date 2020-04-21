@@ -483,7 +483,7 @@ SocketBackend(StringInfo inBuf)
 			}
 			break;
 
-		case 'M':				/* Greenplum Database dispatched statement from QD */
+		case 'M':				/* inHybrid Database dispatched statement from QD */
 
 			doing_extended_query_message = false;
 
@@ -496,7 +496,7 @@ SocketBackend(StringInfo inBuf)
 
 			break;
 
-		case 'T':				/* Greenplum Database dispatched transaction protocol from QD */
+		case 'T':				/* inHybrid Database dispatched transaction protocol from QD */
 
 			doing_extended_query_message = false;
 

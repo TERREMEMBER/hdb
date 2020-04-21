@@ -2216,7 +2216,7 @@ do_help(void)
 	printf(_("  demand     start service on demand\n"));
 #endif
 
-	printf(_("\nReport bugs to <bugs@greenplum.org>.\n"));
+	printf(_("\nReport bugs to <bugs@inspur.com>.\n"));
 }
 
 
