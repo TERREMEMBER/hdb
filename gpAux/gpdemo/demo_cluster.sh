@@ -175,7 +175,7 @@ if [ -z "${HDBHOME}" ]; then
     echo "FATAL: The HDBHOME environment variable is not set."
     echo ""
     echo "  You can set it by sourcing the inhybrid_path.sh"
-    echo "  file in your Greenplum installation directory."
+    echo "  file in your inHybrid installation directory."
     echo ""
     exit 1
 else
@@ -190,7 +190,7 @@ cat <<-EOF
 
 	----------------------------------------------------------------------
 
-	  This is a demo of the Greenplum Database system.  We will create
+	  This is a demo of the inHybrid Database system.  We will create
 	  a cluster installation with master and `expr 2 \* ${NUM_PRIMARY_MIRROR_PAIRS}` segment instances
 	  (${NUM_PRIMARY_MIRROR_PAIRS} primary & ${NUM_PRIMARY_MIRROR_PAIRS} mirror).
 
@@ -213,17 +213,17 @@ GPPATH=`find $GPSEARCH -name hdbstart| tail -1`
 RETVAL=$?
 
 if [ "$RETVAL" -ne 0 ]; then
-    echo "Error attempting to find Greenplum executables in $GPSEARCH"
+    echo "Error attempting to find inHybrid executables in $GPSEARCH"
     exit 1
 fi
 
 if [ ! -x "$GPPATH" ]; then
-    echo "No executables found for Greenplum installation in $GPSEARCH"
+    echo "No executables found for inHybrid installation in $GPSEARCH"
     exit 1
 fi
 GPPATH=`dirname $GPPATH`
 if [ ! -x $GPPATH/hdbinitsystem ]; then
-    echo "No mgmt executables found for Greenplum installation in $GPPATH"
+    echo "No mgmt executables found for inHybrid installation in $GPPATH"
     exit 1
 fi
 
@@ -278,7 +278,7 @@ cat >> $CLUSTER_CONFIG <<-EOF
 	# This names the data directories for the Segment Instances and the Entry Postmaster
 	SEG_PREFIX=$SEG_PREFIX
 	
-	# This is the port at which to contact the resulting Greenplum database, e.g.
+	# This is the port at which to contact the resulting inHybrid database, e.g.
 	#   psql -p \$PORT_BASE -d template1
 	PORT_BASE=${DEMO_PORT_BASE}
 	
