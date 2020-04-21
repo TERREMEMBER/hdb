@@ -48,7 +48,7 @@ def dereference_symlink(path):
 
 
 GPHOME = dereference_symlink(gp.get_gphome())
-
+print(GPHOME)
 GPPKG_EXTENSION = '.hdbpkg'
 SPECFILE_NAME = 'hdbpkg_spec.yml'
 SPECFILE_REQUIRED_TAGS = ['pkgname', 'version', 'architecture', 'os', 'description', 'gpdbversion']
@@ -281,9 +281,9 @@ class Gppkg:
                 if cur_file.find('deps/') == -1 and cur_file.endswith('.rpm'):
                     pkg['main_rpm'] = cur_file
 
-        gppkg = Gppkg(**pkg)
+        hdbpkg = Gppkg(**pkg)
 
-        return gppkg
+        return hdbpkg
 
 
 class LocalCommand(Operation):
@@ -364,7 +364,7 @@ class ListPackages(Operation):
                 try:
                     package_name_list.append(pkg_name[:pkg_name.index('.')])
                 except ValueError:
-                    raise Exception('unable to parse %s as a gppkg' % pkg_name)
+                    raise Exception('unable to parse %s as a hdbpkg' % pkg_name)
 
         return package_name_list
 
@@ -405,15 +405,15 @@ class IsVersionCompatible(Operation):
         with the gpdb version that has been installed
     """
 
-    def __init__(self, gppkg):
+    def __init__(self, hdbpkg):
         super(IsVersionCompatible, self).__init__()
-        self.gppkg = gppkg
+        self.hdbpkg = hdbpkg
 
     def execute(self):
-        gppkg = self.gppkg
+        hdbpkg = self.hdbpkg
 
         gpdb_version = self._get_gpdb_version()
-        required_gpdb_version = gppkg.gpdbversion
+        required_gpdb_version = hdbpkg.gpdbversion
 
         logger.debug('inHybrid Database Version = %s' % gpdb_version)
         logger.debug('Required inHybrid Database version = %s' % required_gpdb_version)
@@ -423,7 +423,7 @@ class IsVersionCompatible(Operation):
             return False
 
         if not required_gpdb_version.isVersionRelease(gpdb_version):
-            logger.error('%s requires inHybrid Database version %s' % (gppkg.pkgname, required_gpdb_version))
+            logger.error('%s requires inHybrid Database version %s' % (hdbpkg.pkgname, required_gpdb_version))
             return False
 
         return True
@@ -466,19 +466,19 @@ class ValidateInstallDebPackage(Operation):
 
     """
 
-    def __init__(self, gppkg, is_update=False):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg, is_update=False):
+        self.hdbpkg = hdbpkg
         self.is_update = is_update
 
     def execute(self):
         # Check the GPDB requirements
-        if not IsVersionCompatible(self.gppkg).run():
+        if not IsVersionCompatible(self.hdbpkg).run():
             raise GpdbVersionError
 
         self.prepare_deb_env()
 
         # No need to check the architecture here as there is no i386 arch in GPDB 5 or newer version
-        deb_set = set([self.gppkg.main_rpm] + self.gppkg.dependencies)
+        deb_set = set([self.hdbpkg.main_rpm] + self.hdbpkg.dependencies)
         deb_packages_path = ' '.join([os.path.join(TEMP_EXTRACTION_PATH, deb_path) for deb_path in deb_set])
 
         if self.is_update:
@@ -501,23 +501,23 @@ class ValidateInstallDebPackage(Operation):
 
             # TODO: Add dependency and already installed check
 
-        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.gppkg.pkg)).run()
+        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.hdbpkg.pkg)).run()
         package_already_installed = (not deb_set) and archive_package_exists
         if package_already_installed:
-            raise AlreadyInstalledError(self.gppkg.pkg)
+            raise AlreadyInstalledError(self.hdbpkg.pkg)
 
         already_installed = self.check_existence()
         if self.is_update:
             if not already_installed:
-                raise NotInstalledError(self.gppkg.pkg)
+                raise NotInstalledError(self.hdbpkg.pkg)
         else:
             if already_installed:
-                raise AlreadyInstalledError(self.gppkg.pkg)
+                raise AlreadyInstalledError(self.hdbpkg.pkg)
 
         return deb_set
 
     def check_existence(self):
-        command = 'dpkg --force-not-root --log=/dev/null --admindir=%s --instdir=%s -l %s' % (DEB_DATABASE, GPHOME, self.gppkg.pkgname)
+        command = 'dpkg --force-not-root --log=/dev/null --admindir=%s --instdir=%s -l %s' % (DEB_DATABASE, GPHOME, self.hdbpkg.pkgname)
         cmd = Command('Check installation of package', command)
         logger.info(cmd)
 
@@ -560,13 +560,13 @@ class ValidateInstallPackage(Operation):
     TODO: Use regexes for more reliable string matching. CR-2865#c20112
     """
 
-    def __init__(self, gppkg, is_update=False):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg, is_update=False):
+        self.hdbpkg = hdbpkg
         self.is_update = is_update
 
     def execute(self):
         # Check the GPDB requirements
-        if not IsVersionCompatible(self.gppkg).run():
+        if not IsVersionCompatible(self.hdbpkg).run():
             raise GpdbVersionError
 
         # TODO: AK: I've changed our use of the OS tag from 'Linux' to 'rhel5' or 'suse10'.
@@ -575,10 +575,10 @@ class ValidateInstallPackage(Operation):
         #    raise OSCompatibilityError(self.gppkg.os, platform.system().lower())
 
         # architecture compatibility
-        if self.gppkg.architecture.lower() != platform.machine().lower():
-            raise ArchCompatibilityError(self.gppkg.architecture, platform.machine().lower())
+        if self.hdbpkg.architecture.lower() != platform.machine().lower():
+            raise ArchCompatibilityError(self.hdbpkg.architecture, platform.machine().lower())
 
-        rpm_set = set([self.gppkg.main_rpm] + self.gppkg.dependencies)
+        rpm_set = set([self.hdbpkg.main_rpm] + self.hdbpkg.dependencies)
         rpm_install_string = ' '.join([os.path.join(TEMP_EXTRACTION_PATH, rpm) for rpm in rpm_set])
         if self.is_update:
             rpm_install_command = 'rpm --test -U --force %s --dbpath %s --prefix %s' % (
@@ -629,10 +629,10 @@ class ValidateInstallPackage(Operation):
         # the archive. That is, if a partial installation had added all rpms
         # but failed to add the archive package, then for our purposes, we consider
         # the package not yet installed and still in need of InstallPackageLocally.
-        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.gppkg.pkg)).run()
+        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.hdbpkg.pkg)).run()
         package_already_installed = (not rpm_set) and archive_package_exists
         if package_already_installed:
-            raise AlreadyInstalledError(self.gppkg.pkg)
+            raise AlreadyInstalledError(self.hdbpkg.pkg)
 
         # Code path 1 (See docstring)
         return rpm_set
@@ -645,11 +645,11 @@ class ValidateUninstallDebPackage(Operation):
 
     """
 
-    def __init__(self, gppkg):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg):
+        self.hdbpkg = hdbpkg
 
     def execute(self):
-        deb_list = [self.gppkg.main_rpm] + self.gppkg.dependencies
+        deb_list = [self.hdbpkg.main_rpm] + self.hdbpkg.dependencies
 
         def strip_extension_and_arch(filename):
             # expecting filename of form %{name}-%{version}-%{release}.%{arch}.rpm
@@ -658,10 +658,10 @@ class ValidateUninstallDebPackage(Operation):
 
         # We check the installed list only
         deb_set = set([strip_extension_and_arch(deb_package) for deb_package in deb_list])
-        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.gppkg.pkg)).run()
+        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.hdbpkg.pkg)).run()
         package_not_installed = (not deb_set) and (not archive_package_exists)
         if package_not_installed:
-            raise NotInstalledError(self.gppkg.pkg)
+            raise NotInstalledError(self.hdbpkg.pkg)
 
         return deb_set
 
@@ -682,11 +682,11 @@ class ValidateUninstallPackage(Operation):
     TODO: Use regexes for more reliable string matching.
     """
 
-    def __init__(self, gppkg):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg):
+        self.hdbpkg = hdbpkg
 
     def execute(self):
-        rpm_list = [self.gppkg.main_rpm] + self.gppkg.dependencies
+        rpm_list = [self.hdbpkg.main_rpm] + self.hdbpkg.dependencies
 
         def strip_extension_and_arch(filename):
             # expecting filename of form %{name}-%{version}-%{release}.%{arch}.rpm
@@ -734,10 +734,10 @@ class ValidateUninstallPackage(Operation):
         # the archive. That is, if a partial uninstallation had removed all rpms
         # but failed to remove the archive package, then for our purposes, we consider
         # the package installed and still in need of UninstallPackageLocally.
-        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.gppkg.pkg)).run()
+        archive_package_exists = CheckFile(os.path.join(GPPKG_ARCHIVE_PATH, self.hdbpkg.pkg)).run()
         package_not_installed = (not rpm_set) and (not archive_package_exists)
         if package_not_installed:
-            raise NotInstalledError(self.gppkg.pkg)
+            raise NotInstalledError(self.hdbpkg.pkg)
 
         # Code path 1 (See docstring)
         return rpm_set
@@ -790,8 +790,8 @@ class ExtractPackage(Operation):
     TODO: AK: Extraction should be implemented as a context manager.
     """
 
-    def __init__(self, gppkg):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg):
+        self.hdbpkg = hdbpkg
 
     def execute(self):
         # clean up tmp extraction folder
@@ -800,7 +800,7 @@ class ExtractPackage(Operation):
             raise IOError
 
         # untar the package into tmp folder
-        with closing(tarfile.open(self.gppkg.abspath)) as tarinfo:
+        with closing(tarfile.open(self.hdbpkg.abspath)) as tarinfo:
             tarinfo.extractall(TEMP_EXTRACTION_PATH)
 
         # move all the deps into same folder as the main rpm
@@ -824,13 +824,13 @@ class InstallDebPackageLocally(Operation):
         logger.info('Installing %s locally' % package_name)
         final_package_location = os.path.join(GPPKG_ARCHIVE_PATH, package_name)
 
-        gppkg = Gppkg.from_package_path(current_package_location)
-        ExtractPackage(gppkg).run()
+        hdbpkg = Gppkg.from_package_path(current_package_location)
+        ExtractPackage(hdbpkg).run()
 
         # squash AlreadyInstalledError here: the caller doesn't ever need to
         # know that we didn't have to do anything here
         try:
-            deb_set = ValidateInstallDebPackage(gppkg, is_update=self.is_update).run()
+            deb_set = ValidateInstallDebPackage(hdbpkg, is_update=self.is_update).run()
         except AlreadyInstalledError, e:
             logger.info(e)
             return
@@ -882,13 +882,13 @@ class InstallPackageLocally(Operation):
         logger.info('Installing %s locally' % package_name)
         final_package_location = os.path.join(GPPKG_ARCHIVE_PATH, package_name)
 
-        gppkg = Gppkg.from_package_path(current_package_location)
-        ExtractPackage(gppkg).run()
+        hdbpkg = Gppkg.from_package_path(current_package_location)
+        ExtractPackage(hdbpkg).run()
 
         # squash AlreadyInstalledError here: the caller doesn't ever need to
         # know that we didn't have to do anything here
         try:
-            rpm_set = ValidateInstallPackage(gppkg, is_update=self.is_update).run()
+            rpm_set = ValidateInstallPackage(hdbpkg, is_update=self.is_update).run()
         except AlreadyInstalledError, e:
             logger.info(e)
             return
@@ -925,12 +925,12 @@ class UninstallDebPackageLocally(Operation):
 
     def execute(self):
         current_package_location = os.path.join(GPPKG_ARCHIVE_PATH, self.package_name)
-        gppkg = Gppkg.from_package_path(current_package_location)
+        hdbpkg = Gppkg.from_package_path(current_package_location)
 
         # squash NotInstalledError here: the caller doesn't ever need to
         # know that we didn't have to do anything here
         try:
-            deb_set = ValidateUninstallDebPackage(gppkg).run()
+            deb_set = ValidateUninstallDebPackage(hdbpkg).run()
         except NotInstalledError, e:
             logger.info(e)
             return
@@ -969,12 +969,12 @@ class UninstallPackageLocally(Operation):
     def execute(self):
         # TODO: AK: MPP-15737 - we're entirely dependent on the package residing in the archive
         current_package_location = os.path.join(GPPKG_ARCHIVE_PATH, self.package_name)
-        gppkg = Gppkg.from_package_path(current_package_location)
+        hdbpkg = Gppkg.from_package_path(current_package_location)
 
         # squash NotInstalledError here: the caller doesn't ever need to
         # know that we didn't have to do anything here
         try:
-            rpm_set = ValidateUninstallPackage(gppkg).run()
+            rpm_set = ValidateUninstallPackage(hdbpkg).run()
         except NotInstalledError, e:
             logger.info(e)
             return
@@ -1047,8 +1047,8 @@ class SyncPackages(Operation):
 
 
 class InstallPackage(Operation):
-    def __init__(self, gppkg, master_host, standby_host, segment_host_list):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg, master_host, standby_host, segment_host_list):
+        self.hdbpkg = hdbpkg
         self.master_host = master_host
         if master_host != standby_host:
             self.standby_host = standby_host
@@ -1057,24 +1057,24 @@ class InstallPackage(Operation):
         self.segment_host_list = segment_host_list
 
     def execute(self):
-        logger.info('Installing package %s' % self.gppkg.pkg)
+        logger.info('Installing package %s' % self.hdbpkg.pkg)
 
         # TODO: AK: MPP-15736 - precheck package state on master
-        ExtractPackage(self.gppkg).run()
+        ExtractPackage(self.hdbpkg).run()
         if platform.linux_distribution()[0] == 'Ubuntu':
-            ValidateInstallDebPackage(self.gppkg).run()
+            ValidateInstallDebPackage(self.hdbpkg).run()
         else:
-            ValidateInstallPackage(self.gppkg).run()
+            ValidateInstallPackage(self.hdbpkg).run()
 
         # perform any pre-installation steps
-        PerformHooks(hooks=self.gppkg.preinstall,
+        PerformHooks(hooks=self.hdbpkg.preinstall,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()
 
         # distribute package to segments
-        srcFile = self.gppkg.abspath
-        dstFile = os.path.join(GPHOME, self.gppkg.pkg)
+        srcFile = self.hdbpkg.abspath
+        dstFile = os.path.join(GPHOME, self.hdbpkg.pkg)
 
         if platform.linux_distribution()[0] == 'Ubuntu':
             # install package on segments
@@ -1110,12 +1110,12 @@ class InstallPackage(Operation):
             InstallPackageLocally(srcFile).run()
 
         # perform any post-installation steps
-        PerformHooks(hooks=self.gppkg.postinstall,
+        PerformHooks(hooks=self.hdbpkg.postinstall,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()
 
-        logger.info('%s successfully installed.' % (self.gppkg.pkg))
+        logger.info('%s successfully installed.' % (self.hdbpkg.pkg))
 
 
 class PerformHooks(Operation):
@@ -1165,8 +1165,8 @@ class PerformHooks(Operation):
 
 
 class UninstallPackage(Operation):
-    def __init__(self, gppkg, master_host, standby_host, segment_host_list):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg, master_host, standby_host, segment_host_list):
+        self.hdbpkg = hdbpkg
         self.master_host = master_host
         if master_host != standby_host:
             self.standby_host = standby_host
@@ -1175,46 +1175,46 @@ class UninstallPackage(Operation):
         self.segment_host_list = segment_host_list
 
     def execute(self):
-        logger.info('Uninstalling package %s' % self.gppkg.pkg)
+        logger.info('Uninstalling package %s' % self.hdbpkg.pkg)
 
         # TODO: AK: MPP-15736 - precheck package state on master
-        ExtractPackage(self.gppkg).run()
+        ExtractPackage(self.hdbpkg).run()
 
         if platform.linux_distribution()[0] == 'Ubuntu':
-            ValidateUninstallDebPackage(self.gppkg).run()
+            ValidateUninstallDebPackage(self.hdbpkg).run()
         else:
-            ValidateUninstallPackage(self.gppkg).run()
+            ValidateUninstallPackage(self.hdbpkg).run()
 
         # perform any pre-uninstallation steps
-        PerformHooks(hooks=self.gppkg.preuninstall,
+        PerformHooks(hooks=self.hdbpkg.preuninstall,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()
 
         # uninstall on segments
         if platform.linux_distribution()[0] == 'Ubuntu':
-            HostOperation(UninstallDebPackageLocally(self.gppkg.pkg), self.segment_host_list).run()
+            HostOperation(UninstallDebPackageLocally(self.hdbpkg.pkg), self.segment_host_list).run()
 
             if self.standby_host:
-                RemoteOperation(UninstallDebPackageLocally(self.gppkg.pkg), self.standby_host).run()
+                RemoteOperation(UninstallDebPackageLocally(self.hdbpkg.pkg), self.standby_host).run()
 
-            UninstallDebPackageLocally(self.gppkg.pkg).run()
+            UninstallDebPackageLocally(self.hdbpkg.pkg).run()
 
         else:
-            HostOperation(UninstallPackageLocally(self.gppkg.pkg), self.segment_host_list).run()
+            HostOperation(UninstallPackageLocally(self.hdbpkg.pkg), self.segment_host_list).run()
 
             if self.standby_host:
-                RemoteOperation(UninstallPackageLocally(self.gppkg.pkg), self.standby_host).run()
+                RemoteOperation(UninstallPackageLocally(self.hdbpkg.pkg), self.standby_host).run()
 
-            UninstallPackageLocally(self.gppkg.pkg).run()
+            UninstallPackageLocally(self.hdbpkg.pkg).run()
 
         # perform any post-installation steps
-        PerformHooks(hooks=self.gppkg.postuninstall,
+        PerformHooks(hooks=self.hbdpkg.postuninstall,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()
 
-        logger.info('%s successfully uninstalled.' % self.gppkg.pkg)
+        logger.info('%s successfully uninstalled.' % self.hdbpkg.pkg)
 
 
 class QueryPackage(Operation):
@@ -1276,7 +1276,7 @@ class BuildGppkg(Operation):
 
         directory = self.directory
 
-        logger.info('Building gppkg')
+        logger.info('Building hdbpkg')
 
         # Check if the directory is valid
         if not os.path.exists(directory) or not os.path.isdir(directory):
@@ -1319,7 +1319,7 @@ class BuildGppkg(Operation):
                 tarinfo.add(name=os.path.join(directory, cur_file),
                             arcname=cur_file)
 
-        logger.info('Completed building gppkg')
+        logger.info('Completed building hdbpkg')
 
     def _get_package_name_details(self, specfile):
         """
@@ -1394,8 +1394,8 @@ class BuildGppkg(Operation):
 class UpdatePackage(Operation):
     """ TODO: AK: Enforce gppkg version is higher than currently installed version """
 
-    def __init__(self, gppkg, master_host, standby_host, segment_host_list):
-        self.gppkg = gppkg
+    def __init__(self, hdbpkg, master_host, standby_host, segment_host_list):
+        self.hdbpkg = hdbpkg
         self.master_host = master_host
         if master_host != standby_host:
             self.standby_host = standby_host
@@ -1404,17 +1404,17 @@ class UpdatePackage(Operation):
         self.segment_host_list = segment_host_list
 
     def execute(self):
-        logger.info('Updating package %s' % self.gppkg.pkg)
+        logger.info('Updating package %s' % self.hdbpkg.pkg)
 
-        ExtractPackage(self.gppkg).run()
+        ExtractPackage(self.hdbpkg).run()
         if platform.linux_distribution()[0] == 'Ubuntu':
-            ValidateInstallDebPackage(self.gppkg, is_update=True).run()
+            ValidateInstallDebPackage(self.hdbpkg, is_update=True).run()
         else:
-            ValidateInstallPackage(self.gppkg, is_update=True).run()
+            ValidateInstallPackage(self.hdbpkg, is_update=True).run()
 
         # distribute package to segments
-        srcFile = self.gppkg.abspath
-        dstFile = os.path.join(GPHOME, self.gppkg.pkg)
+        srcFile = self.hdbpkg.abspath
+        dstFile = os.path.join(GPHOME, self.hdbpkg.pkg)
         GpScp(srcFile, dstFile, self.segment_host_list).run()
 
         # update package on segments
@@ -1432,12 +1432,12 @@ class UpdatePackage(Operation):
         UpdatePackageLocally(srcFile).run()
 
         # perform any post-update steps
-        PerformHooks(hooks=self.gppkg.postupdate,
+        PerformHooks(hooks=self.hdbpkg.postupdate,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()
 
-        logger.info('%s successfully updated.' % (self.gppkg.pkg))
+        logger.info('%s successfully updated.' % (self.hdbpkg.pkg))
 
 
 class UpdatePackageLocally(Operation):

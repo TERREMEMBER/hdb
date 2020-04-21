@@ -578,7 +578,7 @@ SET_VERSION_SCRIPTS = \
 	bin/hdbinitsystem \
 	bin/hdbload.py \
 	bin/hdblogfilter \
-	bin/gpmovemirrors \
+	bin/hdbmovemirrors \
 	bin/hdbrecoverseg \
 	bin/hdbreload \
 	bin/hdbscp \
@@ -592,8 +592,8 @@ SET_VERSION_SCRIPTS = \
 	sbin/gpconfig_helper.py \
 	sbin/gpcleansegmentdir.py \
 	sbin/gpgetstatususingtransition.py \
-	sbin/gpsegstart.py \
-	sbin/gpsegstop.py \
+	sbin/hdbsegstart.py \
+	sbin/hdbsegstop.py \
 	sbin/gpupgrademirror.py \
 	lib/python/gppylib/programs/clsAddMirrors.py \
 	lib/python/gppylib/programs/clsHostCacheLookup.py \
