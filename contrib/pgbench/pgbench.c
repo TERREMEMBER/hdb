@@ -400,7 +400,7 @@ usage(void)
 		 "  -V, --version            output version information, then exit\n"
 		   "  -?, --help               show this help, then exit\n"
 		   "\n"
-		   "Report bugs to <bugs@greenplum.org>.\n",
+		   "Report bugs to <bugs@inspur.org>.\n",
 		   progname, progname);
 }
 
