@@ -342,7 +342,7 @@ class GpSegStart:
         parser.add_option("-D", "--dblist", dest="dblist", action="append", type="string")
         parser.add_option("-M", "--mirroringmode", dest="mirroringMode", type="string")
         parser.add_option("-p", "--pickledTransitionData", dest="pickledTransitionData", type="string")
-        parser.add_option("-V", "--gp-version", dest="gpversion", metavar="GP_VERSION", help="expected software version")
+        parser.add_option("-V", "--hdb-version", dest="gpversion", metavar="GP_VERSION", help="expected software version")
         parser.add_option("-n", "--numsegments", dest="num_cids", help="number of distinct content ids in cluster")
         parser.add_option("", "--era", dest="era", help="master era")
         parser.add_option("-t", "--timeout", dest="timeout", type="int", default=gp.SEGMENT_TIMEOUT_DEFAULT,

@@ -2179,7 +2179,7 @@ do_help(void)
 	printf(_("  -w                     wait until operation completes\n"));
 	printf(_("  -W                     do not wait until operation completes\n"));
 	printf(_("  -?, --help             show this help, then exit\n"));
-	printf(_("  --gp-version           output inHybrid version information, then exit\n"));
+	printf(_("  --hdb-version           output inHybrid version information, then exit\n"));
 	printf(_("(The default is to wait for shutdown, but not for start or restart.)\n\n"));
 	printf(_("If the -D option is omitted, the environment variable PGDATA is used.\n"));
 
@@ -2412,7 +2412,7 @@ main(int argc, char **argv)
 			printf("%s (inHybrid Database) %s\n", progname, PG_VERSION);
 			exit(0);
 		}
-		else if (strcmp(argv[1], "--gp-version") == 0)
+		else if (strcmp(argv[1], "--hdb-version") == 0)
 		{
 			printf("%s (inHybrid Database) %s\n", progname, GP_VERSION);
 			exit(0);

@@ -564,7 +564,7 @@ class GpSegStartArgs(CmdArgs):
     def __init__(self, mirrormode, gpversion, num_cids, era, master_checksum_value, timeout):
         """
         @param mirrormode - mirror start mode (START_AS_PRIMARY_OR_MIRROR or START_AS_MIRRORLESS)
-        @param gpversion - version (from postgres --gp-version)
+        @param gpversion - version (from postgres --hdb-version)
         @param num_cids - number content ids
         @param era - master era
         @param timeout - seconds to wait before giving up
@@ -979,8 +979,8 @@ class GpVersion(Command):
         # requires further investigation.
 
         self.gphome=gphome
-        #self.cmdStr="%s/bin/postgres --gp-version" % gphome
-        self.cmdStr="$HDBHOME/bin/postgres --gp-version"
+        #self.cmdStr="%s/bin/postgres --hdb-version" % gphome
+        self.cmdStr="$HDBHOME/bin/postgres --hdb-version"
         Command.__init__(self,name,self.cmdStr,ctxt,remoteHost)
 
     def get_version(self):
