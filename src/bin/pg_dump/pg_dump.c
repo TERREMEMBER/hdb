@@ -425,7 +425,7 @@ isGPDB(Archive *fout)
 		res = ExecuteSqlQuery(fout, query, PGRES_TUPLES_OK);
 
 		ver = (PQgetvalue(res, 0, 0));
-		if (strstr(ver, "Greenplum") != NULL)
+		if (strstr(ver, "inHybrid") != NULL)
 			value = 1;
 		else
 			value = 0;
