@@ -608,6 +608,60 @@ the configuration file.
 
 Report bugs to <bugs\@inspur.com>.\n";
 our $postgres_version = "postgres (inHybrid Database) 9.4.24\n";
+#############################pg_upgrade############################################
+our $pg_upgrade_help = "pg_upgrade upgrades a inHybrid cluster to a different major version.
+
+Usage:
+  pg_upgrade [OPTION]...
+
+Options:
+  -b, --old-bindir=BINDIR       old cluster executable directory
+  -B, --new-bindir=BINDIR       new cluster executable directory
+  -c, --check                   check clusters only, don't change any data
+  -d, --old-datadir=DATADIR     old cluster data directory
+  -D, --new-datadir=DATADIR     new cluster data directory
+  -j, --jobs                    number of simultaneous processes or threads to use
+  -k, --link                    link instead of copying files to new cluster
+  -o, --old-options=OPTIONS     old cluster options to pass to the server
+  -O, --new-options=OPTIONS     new cluster options to pass to the server
+  -p, --old-port=PORT           old cluster port number (default 50432)
+  -P, --new-port=PORT           new cluster port number (default 50432)
+  -r, --retain                  retain SQL and log files after success
+  -s, --socketdir=DIR           socket directory to use (default CWD)
+  -U, --username=NAME           cluster superuser (default \"hdbadmin\")
+  -v, --verbose                 enable verbose internal logging
+  -V, --version                 display version information, then exit
+      --mode=TYPE               designate node type to upgrade, \"segment\" or \"dispatcher\" (default \"segment\")
+      --progress                enable progress reporting
+      --remove-checksum         remove data checksums when creating new cluster
+      --add-checksum            add data checksumming to the new cluster
+      --old-gp-dbid             inHybrid database id of the old segment
+      --new-gp-dbid             inHybrid database id of the new segment
+      --old-tablespaces-file    file containing the tablespaces from an old gpdb five cluster
+  -?, --help                    show this help, then exit
+
+Before running pg_upgrade you must:
+  create a new database cluster (using the new version of initdb)
+  shutdown the postmaster servicing the old cluster
+  shutdown the postmaster servicing the new cluster
+
+When you run pg_upgrade, you must provide the following information:
+  the data directory for the old cluster  (-d DATADIR)
+  the data directory for the new cluster  (-D DATADIR)
+  the \"bin\" directory for the old version (-b BINDIR)
+  the \"bin\" directory for the new version (-B BINDIR)
+
+For example:
+  pg_upgrade -d oldCluster/data -D newCluster/data -b oldCluster/bin -B newCluster/bin
+or
+  \$ export PGDATAOLD=oldCluster/data
+  \$ export PGDATANEW=newCluster/data
+  \$ export PGBINOLD=oldCluster/bin
+  \$ export PGBINNEW=newCluster/bin
+  \$ pg_upgrade
+
+Report bugs to <bugs\@inspur.com>.\n";
+our $pg_upgrade_version = "pg_upgrade (PostgreSQL) 9.4.24\n";
 #############################help_info:two-dimensional array#######################
 our @help_info=(
 ["clusterdb", $clusterdb_help],
@@ -628,7 +682,8 @@ our @help_info=(
 ["pg_ctl", $pg_ctl_help],
 ["pg_controldata", $pg_controldata_help],
 ["pg_resetxlog", $pg_resetxlog_help],
-["postgres", $postgres_help]
+["postgres", $postgres_help],
+["pg_upgrade", $pg_upgrade_help]
 );
 #############################version_info:two-dimensional array####################
 our @version_info=(
@@ -650,5 +705,6 @@ our @version_info=(
 ["pg_ctl", $pg_ctl_version],
 ["pg_controldata", $pg_controldata_version],
 ["pg_resetxlog", $pg_resetxlog_version],
-["postgres", $postgres_version]
+["postgres", $postgres_version],
+["pg_upgrade", $pg_upgrade_version]
 );
