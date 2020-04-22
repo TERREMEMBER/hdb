@@ -90,6 +90,21 @@ def before_feature(context, feature):
         run_command(context, 'bash demo/hdbpkg/generate_sample_hdbpkg.sh buildHdbpkg')
         run_command(context, 'cp -f /tmp/sample-hdbpkg/sample.hdbpkg test/behave/mgmt_utils/steps/data/')
 
+    if 'hdbbackup' in feature.tags:
+        start_database_if_not_started(context)
+        hdbbackupdb = 'hdbbackupdb'
+        drop_database_if_exists(context, hdbbackupdb)
+        create_database(context, hdbbackupdb)
+        context.conn = dbconn.connect(dbconn.DbURL(dbname=hdbbackupdb), unsetSearchPath=False)
+        context.dbname = hdbbackupdb
+        dbconn.execSQL(context.conn, 'create table t1(a integer, b integer)')
+        dbconn.execSQL(context.conn, 'insert into t1 values(1, 2)')
+        context.conn.commit()
+    if 'hdbrestore' in feature.tags:
+        drop_database_if_exists(context, 'hdbrestoredb')
+#        run_command(context, 'mkdir -p /tmp/hdbrestore/data/ ')
+#        run_command(context, 'cp -rf demo/hdbrestore/* /tmp/hdbrestore/data/ ')
+
 
 def after_feature(context, feature):
     if 'analyzedb' in feature.tags:
@@ -107,6 +122,12 @@ def after_feature(context, feature):
             Then the user runs "hdbstop -ar"
             And hdbstop should return a return code of 0
             ''')
+    if 'hdbbackup' in feature.tags:
+        context.conn.close()
+        drop_database_if_exists(context, 'hdbbackupdb')
+    if 'hdbrestore' in feature.tags:
+        drop_database_if_exists(context, 'hdbrestoredb')
+
 
 def before_scenario(context, scenario):
     if "skip" in scenario.effective_tags:
