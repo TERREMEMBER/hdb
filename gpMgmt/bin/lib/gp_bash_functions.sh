@@ -243,10 +243,10 @@ POSTGRES_VERSION_CHK() {
     LOG_MSG "[INFO]:-Start Function $FUNCNAME"
     HOST=$1;shift
 
-    CURRENT_VERSION=`$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --gp-version`
+    CURRENT_VERSION=`$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --hdb-version`
     VERSION_MATCH=0
 
-    VER=`$TRUSTED_SHELL $HOST "$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --gp-version"`
+    VER=`$TRUSTED_SHELL $HOST "$EXPORT_GPHOME; $EXPORT_LIB_PATH; $HDBHOME/bin/postgres --hdb-version"`
     if [ $? -ne 0 ] ; then
 	LOG_MSG "[WARN]:- Failed to obtain postgres version on $HOST" 1
 	EXIT_STATUS=1

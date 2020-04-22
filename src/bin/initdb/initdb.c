@@ -3059,7 +3059,7 @@ usage(const char *progname)
 	printf(_("  -m, --formirror           only create data needed to start the backend in mirror mode\n"));
 	printf(_("\nOther options:\n"));
 	printf(_("  -V, --version             output version information, then exit\n"));
-	printf(_("      --gp-version          output inHybrid version information, then exit\n"));
+	printf(_("      --hdb-version          output inHybrid version information, then exit\n"));
 	printf(_("  -?, --help                show this help, then exit\n"));
 	printf(_("\nIf the data directory is not specified, the environment variable PGDATA\n"
 			 "is used.\n"));
@@ -3818,7 +3818,7 @@ main(int argc, char *argv[])
 			puts("initdb (inHybrid Database) " PG_VERSION);
 			exit(0);
 		}
-		if (strcmp(argv[1], "--gp-version") == 0)
+		if (strcmp(argv[1], "--hdb-version") == 0)
 		{
 			puts("initdb (inHybrid Database) " GP_VERSION);
 			exit(0);

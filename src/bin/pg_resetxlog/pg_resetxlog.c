@@ -135,7 +135,7 @@ main(int argc, char *argv[])
 			puts("pg_resetxlog (inHybrid Database) " PG_VERSION);
 			exit(0);
 		}
-		if (strcmp(argv[1], "--gp-version") == 0)
+		if (strcmp(argv[1], "--hdb-version") == 0)
 		{
 			puts("pg_resetxlog (inHybrid Database) " GP_VERSION);
 			exit(0);
@@ -1494,6 +1494,6 @@ usage(void)
 	printf(_("  --system-identifier=ID\n"
 			 "                   set database system identifier\n"));
 	printf(_("  -?, --help       show this help, then exit\n"));
-	printf(_("  --gp-version    output inHybrid version information, then exit\n"));
+	printf(_("  --hdb-version    output inHybrid version information, then exit\n"));
 	printf(_("\nReport bugs to <bugs@inspur.com>.\n"));
 }

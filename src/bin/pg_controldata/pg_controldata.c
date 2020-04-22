@@ -37,7 +37,7 @@ usage(const char *progname)
 	printf(_("\nOptions:\n"));
 	printf(_("  -V, --version  output version information, then exit\n"));
 	printf(_("  -?, --help     show this help, then exit\n"));
-	printf(_("  --gp-version   output inHybrid version information, then exit\n"));
+	printf(_("  --hdb-version   output inHybrid version information, then exit\n"));
 	printf(_("\nIf no data directory (DATADIR) is specified, "
 			 "the environment variable PGDATA\nis used.\n\n"));
 	printf(_("Report bugs to <bugs@inspur.com>.\n"));
@@ -118,7 +118,7 @@ main(int argc, char *argv[])
 			puts("pg_controldata (inHybrid Database) " PG_VERSION);
 			exit(0);
 		}
-		if (strcmp(argv[1], "--gp-version") == 0)
+		if (strcmp(argv[1], "--hdb-version") == 0)
 		{
 			puts("pg_controldata (inHybrid Database) " GP_VERSION);
 			exit(0);

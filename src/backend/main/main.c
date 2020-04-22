@@ -178,7 +178,7 @@ main(int argc, char *argv[])
 			puts("postgres (inHybrid Database) " PG_VERSION);
 			exit(0);
 		}
-		if (strcmp(argv[1], "--gp-version") == 0)
+		if (strcmp(argv[1], "--hdb-version") == 0)
 		{
 			puts("postgres (inHybrid Database) " GP_VERSION);
 			exit(0);
@@ -390,7 +390,7 @@ help(const char *progname)
 	printf(_("  --NAME=VALUE       set run-time parameter\n"));
 	printf(_("  --describe-config  describe configuration parameters, then exit\n"));
 	printf(_("  -?, --help         show this help, then exit\n"));
-	printf(_("  --gp-version       output inHybrid version information, then exit\n"));
+	printf(_("  --hdb-version       output inHybrid version information, then exit\n"));
 	printf(_("  --catalog-version  output the catalog version, then exit\n"));
 
 	printf(_("\nDeveloper options:\n"));

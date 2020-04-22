@@ -99,7 +99,7 @@ sdw2
         nofile: 524288
         nproc: 131072
     - name: find installed greenplum version
-      shell: . /usr/local/inhybrid-db/inhybrid_path.sh &amp;&amp; /usr/local/inhybrid-db/bin/postgres --gp-version
+      shell: . /usr/local/inhybrid-db/inhybrid_path.sh &amp;&amp; /usr/local/inhybrid-db/bin/postgres --hdb-version
       register: postgres_gp_version
     - name: fail if the correct inHybrid version is not installed
       fail:

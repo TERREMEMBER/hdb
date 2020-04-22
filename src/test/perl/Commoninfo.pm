@@ -376,7 +376,7 @@ Less commonly used options:
 
 Other options:
   -V, --version             output version information, then exit
-      --gp-version          output inHybrid version information, then exit
+      --hdb-version          output inHybrid version information, then exit
   -?, --help                show this help, then exit
 
 If the data directory is not specified, the environment variable PGDATA
@@ -478,7 +478,7 @@ Common options:
   -w                     wait until operation completes
   -W                     do not wait until operation completes
   -?, --help             show this help, then exit
-  --gp-version           output inHybrid version information, then exit
+  --hdb-version           output inHybrid version information, then exit
 (The default is to wait for shutdown, but not for start or restart.)
 
 If the -D option is omitted, the environment variable PGDATA is used.
@@ -512,7 +512,7 @@ Usage:
 Options:
   -V, --version  output version information, then exit
   -?, --help     show this help, then exit
-  --gp-version   output inHybrid version information, then exit
+  --hdb-version   output inHybrid version information, then exit
 
 If no data directory (DATADIR) is specified, the environment variable PGDATA
 is used.
@@ -540,7 +540,7 @@ Options:
   --system-identifier=ID
                    set database system identifier
   -?, --help       show this help, then exit
-  --gp-version    output inHybrid version information, then exit
+  --hdb-version    output inHybrid version information, then exit
 
 Report bugs to <bugs\@inspur.com>.\n";
 our $pg_resetxlog_version = "pg_resetxlog (inHybrid Database) 9.4.24\n";
@@ -570,7 +570,7 @@ Options:
   --NAME=VALUE       set run-time parameter
   --describe-config  describe configuration parameters, then exit
   -?, --help         show this help, then exit
-  --gp-version       output inHybrid version information, then exit
+  --hdb-version       output inHybrid version information, then exit
   --catalog-version  output the catalog version, then exit
 
 Developer options:

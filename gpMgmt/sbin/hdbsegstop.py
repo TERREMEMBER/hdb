@@ -196,7 +196,7 @@ class GpSegStop:
         addStandardLoggingAndHelpOptions(parser, includeNonInteractiveOption=False)
 
         parser.add_option("-D", "--db", dest="dblist", action="append", type="string")
-        parser.add_option("-V", "--gp-version", dest="gpversion", metavar="GP_VERSION",
+        parser.add_option("-V", "--hdb-version", dest="gpversion", metavar="GP_VERSION",
                           help="expected software version")
         parser.add_option("-m", "--mode", dest="mode", metavar="<MODE>",
                           help="how to shutdown. modes are smart,fast, or immediate")
