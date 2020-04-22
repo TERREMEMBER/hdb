@@ -61,8 +61,8 @@ typedef enum {
       --progress                enable progress reporting\n\
       --remove-checksum         remove data checksums when creating new cluster\n\
       --add-checksum            add data checksumming to the new cluster\n\
-      --old-gp-dbid             greenplum database id of the old segment\n\
-      --new-gp-dbid             greenplum database id of the new segment\n\
+      --old-gp-dbid             inHybrid database id of the old segment\n\
+      --new-gp-dbid             inHybrid database id of the new segment\n\
       --old-tablespaces-file    file containing the tablespaces from an old gpdb five cluster\n\
 "
 

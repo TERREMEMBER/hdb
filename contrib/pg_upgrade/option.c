@@ -255,7 +255,7 @@ parseCommandLine(int argc, char *argv[])
 static void
 usage(void)
 {
-	printf(_("pg_upgrade upgrades a Greenplum cluster to a different major version.\n\
+	printf(_("pg_upgrade upgrades a inHybrid cluster to a different major version.\n\
 \nUsage:\n\
   pg_upgrade [OPTION]...\n\
 \n\
@@ -308,7 +308,7 @@ or\n"), old_cluster.port, new_cluster.port, os_info.user, GREENPLUM_USAGE);
   C:\\> set PGBINNEW=newCluster/bin\n\
   C:\\> pg_upgrade\n"));
 #endif
-	printf(_("\nReport bugs to <bugs@greenplum.org>.\n"));
+	printf(_("\nReport bugs to <bugs@inspur.com>.\n"));
 }
 
 
