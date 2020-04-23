@@ -26,6 +26,9 @@ all:
 	$(MAKE) -C contrib/pg_xlogdump all
 	$(MAKE) -C contrib/hstore all
 	$(MAKE) -C contrib/pgcrypto all
+	$(MAKE) -C contrib/pg_test_timing all
+	$(MAKE) -C contrib/pg_test_fsync all
+	$(MAKE) -C contrib/pg_archivecleanup all
 ifeq ($(with_openssl), yes)
 	$(MAKE) -C contrib/sslinfo all
 endif
@@ -65,6 +68,9 @@ install:
 	$(MAKE) -C contrib/pg_xlogdump $@
 	$(MAKE) -C contrib/hstore $@
 	$(MAKE) -C contrib/pgcrypto $@
+	$(MAKE) -C contrib/pg_test_timing $@
+	$(MAKE) -C contrib/pg_test_fsync $@
+	$(MAKE) -C contrib/pg_archivecleanup $@
 ifeq ($(with_openssl), yes)
 	$(MAKE) -C contrib/sslinfo $@
 endif
