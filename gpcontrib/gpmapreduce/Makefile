@@ -38,10 +38,10 @@ GENOBJS   = $(addprefix $(SRCDIR)/, $(GENFILES))
 FLEXFLAGS = -i
 
 $(MAPREDOBJS): override CPPFLAGS += -DFRONTEND
+#change by yuwei
+all: submake-libpq hdbmapreduce all-lib
 
-all: submake-libpq gpmapreduce all-lib
-
-gpmapreduce: $(MAPREDOBJS) $(libpq_builddir)/libpq.a
+hdbmapreduce: $(MAPREDOBJS) $(libpq_builddir)/libpq.a
 	$(CC) $(CFLAGS) $(MAPREDOBJS) $(libpq_pgport) $(LDFLAGS) $(LIBS) -o $@$(X)
 
 $(SRCDIR)/yaml_scan.c: $(SRCDIR)/yaml_parse.h $(SRCDIR)/yaml_scan.l
@@ -67,16 +67,16 @@ installcheck: all
 	$(top_builddir)/src/test/regress/pg_regress --init-file=init_file --dbname=mapred_regression --inputdir=$(srcdir) --top-builddir=$(top_builddir) mapred
 
 install: all installdirs
-	$(INSTALL_PROGRAM) gpmapreduce$(X) '$(DESTDIR)$(bindir)/gpmapreduce$(X)'
+	$(INSTALL_PROGRAM) hdbmapreduce$(X) '$(DESTDIR)$(bindir)/hdbmapreduce$(X)'
 
 installdirs:
 	$(MKDIR_P) '$(DESTDIR)$(bindir)'
 
 uninstall:
-	rm -f '$(DESTDIR)$(bindir)/gpmapreduce$(X)'
+	rm -f '$(DESTDIR)$(bindir)/hdbmapreduce$(X)'
 
 clean distclean maintainer-clean: clean-lib
-	rm -f gpmapreduce$(X) $(MAPREDOBJS) $(GENOBJS) $(OBJS)
+	rm -f hdbmapreduce$(X) $(MAPREDOBJS) $(GENOBJS) $(OBJS)
 
 # Other dependencies
 $(SRCDIR)/yaml_parse.c  : $(INCDIR)/parser.h $(INCDIR)/mapred.h

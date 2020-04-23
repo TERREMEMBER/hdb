@@ -13,8 +13,9 @@
 
 ALLOW_EXCEPTIONS;
 
+// change by yuwei 
 static char  VERSION[] =
-	"Greenplum Map/Reduce Driver 1.00b2";
+	"inHybrid Map/Reduce Driver 1.00b2";
 
 static char *wordchars =
 	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
@@ -498,7 +499,7 @@ void check_version(PGconn *conn)
 	PGresult *result;
 
 	result = PQexec(conn, "select (regexp_matches(version(), "
-					"E'\\\\(Greenplum Database ([^)]+)\\\\)'))[1]");
+					"E'\\\\(inHybrid Database ([^)]+)\\\\)'))[1]");
 
 	if (PQresultStatus(result) == PGRES_TUPLES_OK && PQntuples(result) == 1)
 	{
@@ -514,7 +515,11 @@ void check_version(PGconn *conn)
 			char *dot   = NULL;
 			int   major = strtol(version, &dot, 10);
 			int   minor = strtol(dot+1, NULL, 10);
-			if (major < 3 || (major == 3 && minor < 2))
+			//change by yuwei
+			//fprintf(stderr, "major: %d\n", major); major=1  
+			//fprintf(stderr, "minor: %d\n", minor); minor=0
+			//if (major < 3 || (major == 3 && minor < 2))
+			if (major < 1 || (major == 1 && minor < 0))
 			{
 				char buf[100];
 				snprintf(buf, sizeof(buf),
@@ -526,7 +531,7 @@ void check_version(PGconn *conn)
 	else
 	{
 		fprintf(stderr, "%s", PQerrorMessage(conn));
-		XRAISE(MAPRED_SQL_ERROR, "Unable to determine Greenplum version\n");
+		XRAISE(MAPRED_SQL_ERROR, "Unable to determine inHybrid version\n");
 	}
 
 	PQclear(result);

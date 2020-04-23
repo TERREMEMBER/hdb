@@ -8,7 +8,10 @@ DEFINE:
       FILE:
         # change seghostname and file_path to reflect your 
         # runtime file location
-        - seghostname:/file_path/whitepaper.txt
+        - 33bfb0cadad1:/home/hdbadmin/gpmrdata/whitepaper1.txt
+      #EXEC:    cat /home/hdbadmin/gpmrdata/whitepaper1.txt
+      #QUERY: SELECT * FROM t;
+      #ESCAPE:  |
 
   - MAP:
       NAME:      wordsplit_python
