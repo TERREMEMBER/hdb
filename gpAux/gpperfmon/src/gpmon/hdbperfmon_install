@@ -118,11 +118,11 @@ if __name__ == '__main__':
         sys.exit(1)
 
     if options.enable and (not options.password):
-        logger.error("when enabling gpperfmon --password must be specified")
+        logger.error("when enabling hdbperfmon --password must be specified")
         sys.exit(1)
 
     if not options.enable and options.password:
-        logger.error ("--password is only used when enabling gpperfmon")
+        logger.error ("--password is only used when enabling hdbperfmon")
         sys.exit(1)
 
     commands = list()
@@ -213,14 +213,13 @@ if __name__ == '__main__':
             run_command(command)
     except:
         logger.error("error on command: %s" % command.cmd)
-        logger.error("gpperfmon not successfully installed")
+        logger.error("hdbperfmon not successfully installed")
         sys.exit(1)
 
     if options.enable:
         # change by yuwei
         logger.info("hdbperfmon will be enabled after a full restart of HDB")
     else:
-        logger.info("gpperfmon schema successfully installed")
-
+        logger.info("hdbperfmon schema successfully installed")
 
 
