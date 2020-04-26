@@ -13,7 +13,7 @@ SUBDIRS += ifaddrs
 $(recurse)
 
 PROGRAMS= analyzedb hdbaddmirrors hdbcheckcat hdbcheckperf \
-	gpcheckresgroupimpl hdbdeletesystem hdbexpand \
+	hdbcheckresgroupimpl hdbdeletesystem hdbexpand \
 	hdbload hdbload.py hdbmovemirrors \
 	hdbpkg hdbreload \
 	hdbstate hdbsys1 minirepro hdbsd hdbstart hdbstop \
