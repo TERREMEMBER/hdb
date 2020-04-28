@@ -276,7 +276,7 @@ define BUILD_STEPS
 	cd $(BUILDDIR)/src/bin/pg_config/ && $(MAKE) install
 	cd $(BUILDDIR)/src/bin/psql/ && $(MAKE) install
 	cd $(BUILDDIR)/src/bin/pg_dump/ && $(MAKE) install
-	cd $(BUILDDIR)/src/bin/gpfdist && $(MAKE) install
+	cd $(BUILDDIR)/src/bin/hdbfdist && $(MAKE) install
 	@$(MAKE) mgmtcopy INSTLOC=$(INSTLOC)
 	@$(MAKE) copylibs INSTLOC=$(INSTLOC)
 	@$(MAKE) copydocs INSTLOC=$(INSTLOC)
@@ -305,7 +305,7 @@ define BUILD_STEPS
 	cd $(BUILDDIR)/src/interfaces/ecpg/ && $(MAKE) install
 	cd $(BUILDDIR)/src/include/ && $(MAKE) install
 	cd $(BUILDDIR)/src/interfaces/libpq/ && $(MAKE) install
-	cd $(BUILDDIR)/src/bin/gpfdist && $(MAKE) install
+	cd $(BUILDDIR)/src/bin/hdbfdist && $(MAKE) install
 	cp -p $(GPMGMT)/bin/hdbload $(INSTLOC)/bin/hdbload
 	cp -p $(GPMGMT)/bin/hdbload.py $(INSTLOC)/bin/hdbload.py
 	$(MAKE) copylibs INSTLOC=$(INSTLOC)
@@ -415,7 +415,7 @@ DOC_TYPE=Unix
 SCRIPT=.sh
 
 define tmpCLIENTS_FILESET_BIN
-	gpfdist
+	hdbfdist
 	hdbload
 	hdbload.py
 	pg_dump
