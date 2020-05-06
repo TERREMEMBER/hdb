@@ -1,0 +1,96 @@
+# FILE NAME: hdbinitsystem_config
+
+# Configuration file needed by the hdbinitsystem
+
+################################################
+#### REQUIRED PARAMETERS
+################################################
+
+#### Name of this Greenplum system enclosed in quotes.
+ARRAY_NAME="{{ ARRAY_NAME }}"
+
+#### Naming convention for utility-generated data directories.
+SEG_PREFIX={{ SEG_PREFIX }}
+
+#### Base number by which primary segment port numbers 
+#### are calculated.
+PORT_BASE={{ PORT_BASE }}
+
+#### File system location(s) where primary segment data directories 
+#### will be created. The number of locations in the list dictate
+#### the number of primary segments that will get created per
+#### physical host (if multiple addresses for a host are listed in 
+#### the hostfile, the number of segments will be spread evenly across
+#### the specified interface addresses).
+declare -a DATA_DIRECTORY=({{ declare_DATA_DIRECTORY }})
+
+#### OS-configured hostname or IP address of the master host.
+MASTER_HOSTNAME={{ MASTER_HOSTNAME }}
+
+#### File system location where the master data directory 
+#### will be created.
+MASTER_DIRECTORY={{ MASTER_DIRECTORY }}
+
+#### Port number for the master instance. 
+MASTER_PORT={{ MASTER_PORT}}
+
+#### Shell utility used to connect to remote hosts.
+TRUSTED_SHELL={{ TRUSTED_SHELL }}
+
+#### Maximum log file segments between automatic WAL checkpoints.
+CHECK_POINT_SEGMENTS={{ CHECK_POINT_SEGMENTS }}
+
+#### Default server-side character set encoding.
+ENCODING={{ ENCODING }}
+
+################################################
+#### OPTIONAL MIRROR PARAMETERS
+################################################
+
+#### Base number by which mirror segment port numbers 
+#### are calculated.
+{%if MIRROR_PORT_BASE is defined %}
+MIRROR_PORT_BASE={{ MIRROR_PORT_BASE }}
+{%endif%}
+#### File system location(s) where mirror segment data directories 
+#### will be created. The number of mirror locations must equal the
+#### number of primary locations as specified in the 
+#### DATA_DIRECTORY parameter.
+{%if declare_MIRROR_DATA_DIRECTORY is defined %}
+declare -a MIRROR_DATA_DIRECTORY=({{ declare_MIRROR_DATA_DIRECTORY }})
+{%endif%}
+
+
+################################################
+#### OTHER OPTIONAL PARAMETERS
+################################################
+
+#### Create a database of this name after initialization.
+{%if DATABASE_NAME is defined %}
+DATABASE_NAME={{ DATABASE_NAME }}
+{%endif%}
+
+#### Specify the location of the host address file here instead of
+#### with the the -h option of hdbinitsystem.
+MACHINE_LIST_FILE={{ MACHINE_LIST_FILE }}
+
+#### This parameter specifies whether checksum is enabled for the data
+#### in the heap table. When enabled, the heap storage on all databases
+#### is checked, and the INHYBRID database can prevent data damage caused
+#### by I / O system damage. This option is set only when the system is
+#### initialized and cannot be changed later.
+#### The heap check option is enabled by default, and it is strongly not
+#### recommended to set it to disabled. If this option is disabled,
+#### stored data corruption will not be detected and data recovery will be very difficult.
+{%if HEAP_CHECKSUM is defined %}
+HEAP_CHECKSUM={{ HEAP_CHECKSUM }}
+{%endif%}
+
+#### This parameter controls the information that the hdbinitsystem tool opens
+#### to access IP address or host name in pg_hba.conf. The default value is 0,
+#### and the tool will update the hba file with the IP address. 
+#### When initializing the inHybrid database system, specify HBA_HOSTNAMES = 1
+#### to have the tool update the pg_hba.conf file with the hostname.
+{%if HBA_HOSTNAMES is defined %}
+#HBA_HOSTNAMES={{ HBA_HOSTNAMES }}
+{%endif%}
