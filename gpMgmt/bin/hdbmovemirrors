@@ -325,7 +325,7 @@ try:
         gpArrayInstance = GpArray.initFromCatalog(dburl, utility=True)
     except DatabaseError, ex:
         logger.error('Failed to connect to database.  Make sure the')
-        logger.error('Greenplum instance is running, and that')
+        logger.error('inHybrid instance is running, and that')
         logger.error('your environment is correct, then rerun')
         logger.error('hdbmovemirrors ' + ' '.join(sys.argv[1:]))
         sys.exit(1)

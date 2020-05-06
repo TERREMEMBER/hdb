@@ -83,4 +83,3 @@ RUN locale-gen en_US.UTF-8 && \
     chown -R gpadmin:gpadmin /home/gpadmin && \
     mkdir /usr/local/greenplum-db-devel && \
     chown gpadmin:gpadmin /usr/local/greenplum-db-devel
-
