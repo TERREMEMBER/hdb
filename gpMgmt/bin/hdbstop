@@ -408,7 +408,7 @@ class GpStop:
             pass
         else:
             raise ExceptionNoStackTraceNeeded(
-                'postmaster.pid file does not exist.  is Greenplum instance already stopped?')
+                'postmaster.pid file does not exist.  is inHybrid instance already stopped?')
 
     ######
     def _build_gparray(self):
