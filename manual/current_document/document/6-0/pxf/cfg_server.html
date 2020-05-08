@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       配置PXF服务器 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -200,17 +200,17 @@
 
 <p>PXF为每个连接器提供一个服务器模板文件。此模板标识必须配置才能使用连接器的典型属性集。</p>
 
-<p>您将为Greenplum数据库用户需要访问的每个外部数据存储配置服务器定义。例如，如果您需要访问两个Hadoop集群，则将为每个集群创建PXF Hadoop服务器配置。如果需要访问Oracle和MySQL数据库，则将为每个数据库创建一个或多个PXF JDBC服务器配置。</p>
+<p>您将为inHybrid数据库用户需要访问的每个外部数据存储配置服务器定义。例如，如果您需要访问两个Hadoop集群，则将为每个集群创建PXF Hadoop服务器配置。如果需要访问Oracle和MySQL数据库，则将为每个数据库创建一个或多个PXF JDBC服务器配置。</p>
 
-<p>服务器配置可以包括用户访问凭据的默认设置以及外部数据存储的其他属性。您可以允许Greenplum数据库用户使用默认设置访问外部数据存储，也可以基于每个用户配置访问权限和其他属性。这使您可以在单个PXF服务器定义中使用不同的外部数据存储访问凭据来配置不同的Greenplum数据库用户。
-您可以允许Greenplum数据库用户使用默认设置访问外部数据存储，也可以基于每个用户配置访问权限和其他属性。这使您可以在单个PXF服务器定义中使用不同的外部数据存储访问凭据来配置不同的Greenplum数据库用户。</p>
+<p>服务器配置可以包括用户访问凭据的默认设置以及外部数据存储的其他属性。您可以允许inHybrid数据库用户使用默认设置访问外部数据存储，也可以基于每个用户配置访问权限和其他属性。这使您可以在单个PXF服务器定义中使用不同的外部数据存储访问凭据来配置不同的inHybrid数据库用户。
+您可以允许inHybrid数据库用户使用默认设置访问外部数据存储，也可以基于每个用户配置访问权限和其他属性。这使您可以在单个PXF服务器定义中使用不同的外部数据存储访问凭据来配置不同的inHybrid数据库用户。</p>
 
 <h2 id="关于服务器模板文件"><a id="templates"></a>关于服务器模板文件</h2>
 
 <p>PXF服务器的配置信息位于<code>$PXF_CONF/servers/&lt;server_name&gt;/</code>中的一个或多个<code>&lt;connector&gt; -site.xml</code>文件中。</p>
 
 <p>PXF为每个连接器提供一个模板配置文件。初始化PXF后，这些服务器模板配置文件位于<code>$PXF_CONF/templates/</code>目录中：</p>
-<pre class="highlight plaintext"><code>gpadmin@gpmaster$ ls $PXF_CONF/templates
+<pre class="highlight plaintext"><code>hdbadmin@gpmaster$ ls $PXF_CONF/templates
 adl-site.xml   hbase-site.xml  jdbc-site.xml    s3-site.xml
 core-site.xml  hdfs-site.xml   mapred-site.xml  wasbs-site.xml
 gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
@@ -257,12 +257,12 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 <li>为模板文件中的属性填写适当的默认值。</li>
 <li>添加环境所需的所有其他配置属性和值。</li>
 <li>如<a href="cfg_server.html#usercfg">关于配置PXF用户</a>中所述为服务器配置配置一个或多个用户。</li>
-<li>将服务器和用户配置同步到Greenplum数据库集群。</li>
+<li>将服务器和用户配置同步到inHybrid数据库集群。</li>
 </ol>
 
-<p><strong>Note</strong>: 添加或更新PXF服务器配置后，必须将PXF配置重新同步到Greenplum数据库集群。</p>
+<p><strong>Note</strong>: 添加或更新PXF服务器配置后，必须将PXF配置重新同步到inHybrid数据库集群。</p>
 
-<p>配置PXF服务器后，将服务器名称发布给需要访问数据存储的Greenplum数据库用户。用户只需要在创建访问外部数据存储的外部表时提供服务器名称即可。PXF从驻留在由服务器名称标识的服务器配置目录中的服务器和用户配置文件中获取外部数据源位置和访问凭据。</p>
+<p>配置PXF服务器后，将服务器名称发布给需要访问数据存储的inHybrid数据库用户。用户只需要在创建访问外部数据存储的外部表时提供服务器名称即可。PXF从驻留在由服务器名称标识的服务器配置目录中的服务器和用户配置文件中获取外部数据源位置和访问凭据。</p>
 
 <p>要配置PXF服务器，请参考连接器配置主题：</p>
 
@@ -274,13 +274,13 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 
 <h2 id="配置pxf用户"><a id="usercfg"></a>配置PXF用户</h2>
 
-<p>您可以基于每个服务器，每个Greenplum用户配置对外部数据存储的访问。</p>
+<p>您可以基于每个服务器，每个inHybrid用户配置对外部数据存储的访问。</p>
 
-<p>您可以通过在PXF服务器配置目录<code>$PXF_CONF/servers/&lt;server_name&gt;/</code>中提供<code>&lt;greenplum_user_name&gt;-user.xml</code>用户配置文件来为特定的Greenplum数据库用户配置外部数据存储用户访问凭据和属性。例如，您在<code>$PXF_CONF/servers/&lt;server_name&gt;/bill-user.xml</code>文件中为名为<code>bill</code>的Greenplum数据库用户指定属性。您可以在PXF服务器配置中配置零个，一个或多个用户。</p>
+<p>您可以通过在PXF服务器配置目录<code>$PXF_CONF/servers/&lt;server_name&gt;/</code>中提供<code>&lt;greenplum_user_name&gt;-user.xml</code>用户配置文件来为特定的inHybrid数据库用户配置外部数据存储用户访问凭据和属性。例如，您在<code>$PXF_CONF/servers/&lt;server_name&gt;/bill-user.xml</code>文件中为名为<code>bill</code>的inHybrid数据库用户指定属性。您可以在PXF服务器配置中配置零个，一个或多个用户。</p>
 
 <p>您在用户配置文件中指定的属性是特定于连接器的。您可以在<code>&lt;greenplum_user_name&gt;-user.xml</code>配置文件中指定PXF连接器服务器支持的任何配置属性。</p>
 
-<p>例如，假设您已经在名为<code>pgsrv1</code>的PXF JDBC服务器配置中配置了对PostgreSQL数据库的访问。要允许名为<code>bill</code>的Greenplum数据库用户以名为<code>pguser1</code>的PostgreSQL用户(密码为<code>changeme</code>)访问该数据库，请使用以下命令创建用户包含如下属性的配置文件<code>$PXF_CONF/servers/pgsrv1/bill-user.xml</code>：</p>
+<p>例如，假设您已经在名为<code>pgsrv1</code>的PXF JDBC服务器配置中配置了对PostgreSQL数据库的访问。要允许名为<code>bill</code>的inHybrid数据库用户以名为<code>pguser1</code>的PostgreSQL用户(密码为<code>changeme</code>)访问该数据库，请使用以下命令创建用户包含如下属性的配置文件<code>$PXF_CONF/servers/pgsrv1/bill-user.xml</code>：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;configuration&gt;</span>
     <span class="nt">&lt;property&gt;</span>
         <span class="nt">&lt;name&gt;</span>jdbc.user<span class="nt">&lt;/name&gt;</span>
@@ -309,7 +309,7 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 <p>对于要配置的每个PXF用户，您将：</p>
 
 <ol>
-<li>标识Greenplum数据库用户的名称。</li>
+<li>标识inHybrid数据库用户的名称。</li>
 <li>标识要为其配置用户访问权限的PXF服务器定义。</li>
 <li>标识要为用户配置的每个属性的名称和值。</li>
 <li><p>创建/编辑文件<code>$PXF_CONF/servers/&lt;server_name&gt;/&lt;greenplum_user_name&gt;-user.xml</code>，并添加外部配置块：</p>
@@ -317,14 +317,14 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></li>
 <li><p>将在步骤3中标识的每个属性/值对添加到<code>&lt;greenplum_user_name&gt;-user.xml</code>文件中的配置块中。</p></li>
-<li><p>如果要将PXF用户配置添加到以前配置的PXF服务器定义中，请将该用户配置同步到Greenplum数据库集群。</p></li>
+<li><p>如果要将PXF用户配置添加到以前配置的PXF服务器定义中，请将该用户配置同步到inHybrid数据库集群。</p></li>
 </ol>
 
 <h2 id="关于配置属性优先级"><a id="override"></a>关于配置属性优先级</h2>
 
-<p>PXF服务器配置可能包括用于用户访问凭据的默认设置以及用于访问外部数据存储的其他属性。一些PXF连接器(例如S3和JDBC连接器)允许您通过<code>CREATE EXTERNAL TABLE</code>命令<code>LOCATION</code>子句中的自定义选项直接指定某些服务器属性。<code>&lt;greenplum_user_name&gt;-user.xml</code>文件为Greenplum数据库用户指定了外部数据存储的属性设置。</p>
+<p>PXF服务器配置可能包括用于用户访问凭据的默认设置以及用于访问外部数据存储的其他属性。一些PXF连接器(例如S3和JDBC连接器)允许您通过<code>CREATE EXTERNAL TABLE</code>命令<code>LOCATION</code>子句中的自定义选项直接指定某些服务器属性。<code>&lt;greenplum_user_name&gt;-user.xml</code>文件为inHybrid数据库用户指定了外部数据存储的属性设置。</p>
 
-<p>对于给定的Greenplum数据库用户，PXF使用以下优先级规则(从高到低)获取该用户的配置属性设置：</p>
+<p>对于给定的inHybrid数据库用户，PXF使用以下优先级规则(从高到低)获取该用户的配置属性设置：</p>
 
 <ol>
 <li>您在<code>&lt;server_name&gt;/&lt;greenplum_user_name&gt;-user.xml</code>中配置的属性将覆盖其他位置的属性设置。</li>
@@ -332,11 +332,11 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 <li>您在PXF服务器定义<code>&lt;server_name&gt;</code>中配置的属性标识默认属性值。</li>
 </ol>
 
-<p>这些优先级规则使您可以创建一个可由多个Greenplum数据库用户访问的外部表，每个用户都有各自独特的外部数据存储用户凭据。</p>
+<p>这些优先级规则使您可以创建一个可由多个inHybrid数据库用户访问的外部表，每个用户都有各自独特的外部数据存储用户凭据。</p>
 
 <h2 id="使用服务器配置"><a id="using"></a>使用服务器配置</h2>
 
-<p>为了访问外部数据存储，Greenplum数据库用户在<code>CREATE EXTERNAL TABLE</code>命令中的<code>LOCATION</code>子句<code>SERVER=&lt;server_name&gt;</code>选项中指定服务器名称。用户提供的<code>&lt;server_name&gt;</code>标识服务器配置目录，PXF从该目录获取配置和凭据以访问外部数据存储。</p>
+<p>为了访问外部数据存储，inHybrid数据库用户在<code>CREATE EXTERNAL TABLE</code>命令中的<code>LOCATION</code>子句<code>SERVER=&lt;server_name&gt;</code>选项中指定服务器名称。用户提供的<code>&lt;server_name&gt;</code>标识服务器配置目录，PXF从该目录获取配置和凭据以访问外部数据存储。</p>
 
 <p>例如，以下命令使用<code>$PXF_CONF/servers/s3srvcfg/s3-site.xml</code>文件中定义的服务器配置访问S3对象存储：</p>
 
@@ -356,7 +356,7 @@ CREATE EXTERNAL TABLE pxf_ext_hdfs(location text, miles int)
 FORMAT 'TEXT' (delimiter=E',');
 </pre>
 
-<div class="note info">查询或写入外部表的Greenplum数据库用户使用为<code>&lt;server_name></code>用户配置的凭据访问外部数据存储。如果没有为<code>&lt;server_name></code>配置任何用户专用的凭据，则Greenplum用户将使用为<code>&lt;server_name></code>配置的默认凭据访问外部数据存储。</div>
+<div class="note info">查询或写入外部表的inHybrid数据库用户使用为<code>&lt;server_name></code>用户配置的凭据访问外部数据存储。如果没有为<code>&lt;server_name></code>配置任何用户专用的凭据，则inHybrid用户将使用为<code>&lt;server_name></code>配置的默认凭据访问外部数据存储。</div>
 
         
 

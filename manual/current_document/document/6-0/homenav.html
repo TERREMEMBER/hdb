@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       关于此文档 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,7 +54,7 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="common/gpdb-features.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="common/gpdb-features.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
       <li>
          <a href="admin_guide/admin_guide.html">管理员指南</a>
@@ -72,7 +72,7 @@
          <a href="ref_guide/ref_guide.html">参考指南</a>
       </li>
       <li>
-         <a href="pxf/overview_pxf.html">Greenplum平台扩展框架(PXF)</a>
+         <a href="pxf/overview_pxf.html">inHybrid平台扩展框架(PXF)</a>
       </li>
     </ul>
   </div>
@@ -113,27 +113,27 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<p>Greenplum数据库文档的源代码在Greenplum数据库和Pivotal Greenplum数据库。
-Pivotal Greenplum数据库的某些特性未在开源Greenplum数据库代码，但在Greenplum数据库文档中进行了描述。</p>
+<p>inHybrid数据库文档的源代码在inHybrid数据库和Pivotal inHybrid数据库。
+Pivotal inHybrid数据库的某些特性未在开源inHybrid数据库代码，但在inHybrid数据库文档中进行了描述。</p>
 
-<p>通常，术语“Pivotal Greenplum数据库”是指Pivotal的商业支持版本的Greenplum数据库，在描述仅商业Greenplum数据库软件支持的特性时在本文档中使用。
-术语“ Greenplum数据库”是指开源Greenplum数据库和Pivotal Greenplum数据库中都可用的特性。</p>
+<p>通常，术语“Pivotal inHybrid数据库”是指Pivotal的商业支持版本的inHybrid数据库，在描述仅商业inHybrid数据库软件支持的特性时在本文档中使用。
+术语“ inHybrid数据库”是指开源inHybrid数据库和Pivotal inHybrid数据库中都可用的特性。</p>
 
-<p>在包含主要特性文档的部分中提到了仅Pivotal Greenplum数据库支持的特性。</p>
+<p>在包含主要特性文档的部分中提到了仅Pivotal inHybrid数据库支持的特性。</p>
 
-<p>以下是Pivotal Greenplum数据库特性，这些特性在开源Greenplum数据库中不受支持，但在本文档中可能会记录或引用。</p>
+<p>以下是Pivotal inHybrid数据库特性，这些特性在开源inHybrid数据库中不受支持，但在本文档中可能会记录或引用。</p>
 
 <ul>
-<li><p>开源Greenplum数据库存储库中不包含用于生成Pivotal Greenplum数据库二进制安装程序包的代码。</p></li>
-<li><p>Greenplum数据库不包括EMC DD Boost集成。
-仅当在Greenplum主机上将Data Domain系统作为NFS共享挂载时，才支持备份到EMC Data Domain设备。</p></li>
-<li><p>Greenplum数据库不包括Symantec NetBackup集成。</p></li>
-<li><p>QuickpZ压缩方法在Greenplum数据库中不可用。
+<li><p>开源inHybrid数据库存储库中不包含用于生成Pivotal inHybrid数据库二进制安装程序包的代码。</p></li>
+<li><p>inHybrid数据库不包括EMC DD Boost集成。
+仅当在inHybrid主机上将Data Domain系统作为NFS共享挂载时，才支持备份到EMC Data Domain设备。</p></li>
+<li><p>inHybrid数据库不包括Symantec NetBackup集成。</p></li>
+<li><p>QuickpZ压缩方法在inHybrid数据库中不可用。
 在<codeph>CREATE TABLE [AS]</codeph>操作中指定QuickLZ <codeph>compresstype</codeph>值时将被忽略，但它将在随后的对该表的<codeph>INSERT</codeph>或<codeph>SELECT</codeph>操作中引起错误。</p></li>
-<li><p>仅Pivotal Greenplum数据库支持不推荐使用的<codeph>gpcheck</codeph>管理工具及其替代<codeph>gpsupport</codeph>。</p></li>
-<li><p>要将Greenplum平台扩展框架（PXF）与开源Greenplum数据库一起使用，必须分别构建和安装PXF服务器软件。
-请参阅Greenplum数据库和PXF存储库中的PXF README文件中的构建说明。</p></li>
-<li><p>本文档中有关联系Pivotal技术支持的建议仅适用于Pivotal Greenplum数据库客户。</p></li>
+<li><p>仅Pivotal inHybrid数据库支持不推荐使用的<codeph>gpcheck</codeph>管理工具及其替代<codeph>gpsupport</codeph>。</p></li>
+<li><p>要将inHybrid平台扩展框架（PXF）与开源inHybrid数据库一起使用，必须分别构建和安装PXF服务器软件。
+请参阅inHybrid数据库和PXF存储库中的PXF README文件中的构建说明。</p></li>
+<li><p>本文档中有关联系Pivotal技术支持的建议仅适用于Pivotal inHybrid数据库客户。</p></li>
 </ul>
 
         

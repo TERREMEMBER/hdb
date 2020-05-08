@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF谓词下推 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -184,14 +184,14 @@
 除非适用法律要求或书面同意，否则根据“许可”分发的软件将按“原样”分发，没有任何明示或暗示的保证或条件。请参阅许可证，以了解许可证下管理权限和限制的特定语言。
 -->
 
-<p>PXF支持谓词下推。启用谓词下推时,可以提取SELECT查询中WHERE子句的约束并将其传递到外部数据源进行过滤。此过程可以提高查询性能，还可以减少传输到Greenplum数据库的数据量。</p>
+<p>PXF支持谓词下推。启用谓词下推时,可以提取SELECT查询中WHERE子句的约束并将其传递到外部数据源进行过滤。此过程可以提高查询性能，还可以减少传输到inHybrid数据库的数据量。</p>
 
 <p>通过设置<code>gp_external_enable_filter_pushdown</code>服务器配置参数，可以为所有外部表协议(包括pxf)启用或禁用谓词下推。此配置参数的默认值为on;将其设置为关闭以禁用谓词下推。例如：</p>
 <pre class="highlight sql"><code><span class="k">SHOW</span> <span class="n">gp_external_enable_filter_pushdown</span><span class="p">;</span>
 <span class="k">SET</span> <span class="n">gp_external_enable_filter_pushdown</span> <span class="k">TO</span> <span class="s1">'on'</span><span class="p">;</span>
 </code></pre>
 
-<p><strong>Note:</strong> 某些外部数据源不支持谓词下推。此外，某些数据类型或运算符可能不支持谓词下推。如果查询访问不支持谓词下推的数据源，则执行查询时不进行谓词下推(数据传输到Greenplum数据库后进行过滤)</p>
+<p><strong>Note:</strong> 某些外部数据源不支持谓词下推。此外，某些数据类型或运算符可能不支持谓词下推。如果查询访问不支持谓词下推的数据源，则执行查询时不进行谓词下推(数据传输到inHybrid数据库后进行过滤)</p>
 
 <p>PXF使用不同的连接器访问数据源，谓词下推支持由特定的连接器实现方式决定。以下PXF连接器支持谓词下推：</p>
 
@@ -227,7 +227,7 @@
 
 <ul>
 <li>将<code>gp_external_enable_filter_pushdown</code>服务配置参数设置为<code>&#39;on&#39;</code>来启用外部表谓词下推</li>
-<li>访问外部数据源的Greenplum数据库协议必须支持谓词下推.PXF外部表协议支持下推</li>
+<li>访问外部数据源的inHybrid数据库协议必须支持谓词下推.PXF外部表协议支持下推</li>
 <li>访问的外部数据源必须支持下推。 例如，HBase和Hive支持下推</li>
 <li><p>使用pxf协议创建的外部表查询，基础PXF连接器还必须支持谓词下推。例如，PXF Hive，HBase和JDBC连接器支持下推。</p>
 

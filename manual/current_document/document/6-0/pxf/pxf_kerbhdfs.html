@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       为安全HDFS配置PXF |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -192,13 +192,13 @@
 <li><p>按照<a href="instcfg_pxf.html">Configuring PXF</a>章节秒速初始化、配置和启动PXF，包括PXF功能和Hadoop用户模拟功能启用</p></li>
 <li><p>根据特定分发的说明为Hadoop集群启用Kerberos，并验证配置。</p></li>
 <li><p>确保HDFS的配置参数<code>dfs.block.access.token.enable</code>已经被设置成了<code>true</code>。你可以在你hadoop集群的<code>hdfs-site.xml</code>配置文件中找到该配置。</p></li>
-<li><p>注意每个Greenplum数据库segment主机(&lt;seghost&gt;)和Kerberos密钥分发中心(KDC) &lt;kdc-server&gt;主机的主机名或IP地址</p></li>
+<li><p>注意每个inHybrid数据库segment主机(&lt;seghost&gt;)和Kerberos密钥分发中心(KDC) &lt;kdc-server&gt;主机的主机名或IP地址</p></li>
 <li><p>注意群集所在的Kerberos &lt;realm&gt; 的名称。</p></li>
 </ul>
 
 <h2 id="过程"><a id="procedure"></a>过程</h2>
 
-<p>按照如下流程为有安全的HDFS配置PXF。您将在Kerberos KDC服务器和Greenplum数据库segment主机上执行操作。</p>
+<p>按照如下流程为有安全的HDFS配置PXF。您将在Kerberos KDC服务器和inHybrid数据库segment主机上执行操作。</p>
 
 <p><strong>登录到Kerberos KDC服务主机执行如下操作</strong>:</p>
 
@@ -210,15 +210,15 @@ root@kdc-server<span class="err">$</span>
 <li><p>如果你的集群主机不存在配置文件的话，需要在KDC服务主机上分发<code>/etc/krb5.conf</code>配置文件到GPDB的<strong>每一个</strong>的segment节点，例如:</p>
 <pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>scp /etc/krb5.conf seghost:/etc/krb5.conf
 </code></pre></li>
-<li><p>使用<code>kadmin.local</code>命令为GPDB的每个segment节点主机创建一个Kerberos PXF服务主体。服务主体的格式应为<code>gpadmin/&lt;seghost&gt;@&lt;realm&gt;</code>，其中&lt;seghost&gt;是segment主机系统的DNS可解析的全限定主机名(<code>hostname -f</code>命令的输出)。例如，以下命令在名为EXAMPLE.COM的Kerberos领域中为名为<code>host1.example.com，host2.example.com</code>和<code>host3.example.com</code>的主机创建PXF服务主体:</p>
-<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme gpadmin/host1.example.com@EXAMPLE.COM"</span>
-<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme gpadmin/host2.example.com@EXAMPLE.COM"</span>
-<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme gpadmin/host3.example.com@EXAMPLE.COM"</span>
+<li><p>使用<code>kadmin.local</code>命令为GPDB的每个segment节点主机创建一个Kerberos PXF服务主体。服务主体的格式应为<code>hdbadmin/&lt;seghost&gt;@&lt;realm&gt;</code>，其中&lt;seghost&gt;是segment主机系统的DNS可解析的全限定主机名(<code>hostname -f</code>命令的输出)。例如，以下命令在名为EXAMPLE.COM的Kerberos领域中为名为<code>host1.example.com，host2.example.com</code>和<code>host3.example.com</code>的主机创建PXF服务主体:</p>
+<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host1.example.com@EXAMPLE.COM"</span>
+<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host2.example.com@EXAMPLE.COM"</span>
+<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host3.example.com@EXAMPLE.COM"</span>
 </code></pre></li>
-<li><p>为每个Kerberos PXF服务主体生成一个密钥表文件。 将密钥表文件保存在任何方便的位置(本示例使用目录<code>/etc/security/keytabs</code>)。 您将在以后的步骤中将keytab文件部署到它们各自的Greenplum数据库segment主机。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host1.service.keytab gpadmin/host1.example.com@EXAMPLE.COM"</span>
-<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host2.service.keytab gpadmin/host2.example.com@EXAMPLE.COM"</span>
-<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host3.service.keytab gpadmin/host3.example.com@EXAMPLE.COM"</span>
+<li><p>为每个Kerberos PXF服务主体生成一个密钥表文件。 将密钥表文件保存在任何方便的位置(本示例使用目录<code>/etc/security/keytabs</code>)。 您将在以后的步骤中将keytab文件部署到它们各自的inHybrid数据库segment主机。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host1.service.keytab hdbadmin/host1.example.com@EXAMPLE.COM"</span>
+<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host2.service.keytab hdbadmin/host2.example.com@EXAMPLE.COM"</span>
+<span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"xst -norandkey -k /etc/security/keytabs/pxf-host3.service.keytab hdbadmin/host3.example.com@EXAMPLE.COM"</span>
 </code></pre>
 
 <p>根据需要重复<code>xst</code>命令用以在每个PXF服务主体上生成一个秘钥表。</p></li>
@@ -232,12 +232,12 @@ root@kdc-server<span class="err">$</span>
 </code></pre>
 
 <p>Note the file system location of the keytab file on each PXF host; you will need this information for a later configuration step.</p></li>
-<li><p>更改<code>pxf.service.keytab</code>文件的属主和权限。 这些文件必须仅由<code>gpadmin</code>用户拥有并可读。 例如:</p>
-<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>ssh host1.example.com chown gpadmin:gpadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
+<li><p>更改<code>pxf.service.keytab</code>文件的属主和权限。 这些文件必须仅由<code>hdbadmin</code>用户拥有并可读。 例如:</p>
+<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>ssh host1.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
 <span class="gp">root@kdc-server$ </span>ssh host1.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host2.example.com chown gpadmin:gpadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host2.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
 <span class="gp">root@kdc-server$ </span>ssh host2.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host3.example.com chown gpadmin:gpadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host3.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
 <span class="gp">root@kdc-server$ </span>ssh host3.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
 </code></pre></li>
 </ol>
@@ -246,23 +246,23 @@ root@kdc-server<span class="err">$</span>
 
 <ol>
 <li><p>登录segment节点，例如:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;seghost&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;seghost&gt;
 </code></pre></li>
-<li><p>如果在Greenplum的各个segment节点上Kerberos客户端包还没有被安装，那么首先安装他们。您必须具有超级用户权限才能安装操作系统软件包。 例如:</p>
+<li><p>如果在inHybrid的各个segment节点上Kerberos客户端包还没有被安装，那么首先安装他们。您必须具有超级用户权限才能安装操作系统软件包。 例如:</p>
 <pre class="highlight shell"><code><span class="gp">root@seghost$ </span>rpm -qa | grep krb
 <span class="gp">root@seghost$ </span>yum install krb5-libs krb5-workstation
 </code></pre></li>
 <li><p>打开 <code>pxf-env.sh</code>用户配置文件。例如使用vi命令打开<code>PXF_CONF=/usr/local/greenplum-pxf</code>:</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@seghost$ </span>vi /usr/local/greenplum-pxf/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@seghost$ </span>vi /usr/local/greenplum-pxf/conf/pxf-env.sh
 </code></pre></li>
 <li><p>更新<code>PXF_KEYTAB</code> 和 <code>PXF_PRINCIPAL</code> 配置. 指定keytab 文件 和 Kerberos principal的位置。这些设置的默认值如下所示:</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_KEYTAB</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PXF_CONF</span><span class="k">}</span><span class="s2">/keytabs/pxf.service.keytab"</span>
-<span class="nb">export </span><span class="nv">PXF_PRINCIPAL</span><span class="o">=</span><span class="s2">"gpadmin/_HOST@EXAMPLE.COM"</span>
+<span class="nb">export </span><span class="nv">PXF_PRINCIPAL</span><span class="o">=</span><span class="s2">"hdbadmin/_HOST@EXAMPLE.COM"</span>
 </code></pre>
 
 <p>PXF automatically replaces <code>_HOST</code> with the FQDN of the segment host.</p></li>
 <li><p>在segment上重启PXF服务:</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@seghost$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf restart
+<pre class="highlight shell"><code><span class="gp">hdbadmin@seghost$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf restart
 </code></pre></li>
 </ol>
 

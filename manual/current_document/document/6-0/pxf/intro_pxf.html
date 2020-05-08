@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF介绍 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -183,9 +183,9 @@
         <div class="to-top" id="js-to-top">
           <a href="intro_pxf.html#top" title="back to top"></a>
         </div>
-        <p>Greenplum Platform Extension Framework(PXF)提供的连接器(connectors)可以用于访问存储在Greenplum数据库外部源中的数据。这些连接器将外部数据源映射到Greenplum数据库的外部表(external table)中。创建Greenplum数据库外部表时，你可以通过在命令中提供服务器名称和配置文件名称来标识外部数据存储和数据格式。</p>
+        <p>inHybrid Platform Extension Framework(PXF)提供的连接器(connectors)可以用于访问存储在inHybrid数据库外部源中的数据。这些连接器将外部数据源映射到inHybrid数据库的外部表(external table)中。创建inHybrid数据库外部表时，你可以通过在命令中提供服务器名称和配置文件名称来标识外部数据存储和数据格式。</p>
 
-<p>您可以通过Greenplum数据库查询外部表引用的数据,您也可以使用外部表将数据加载到Greenplum数据库中以获得更高的性能。</p>
+<p>您可以通过inHybrid数据库查询外部表引用的数据,您也可以使用外部表将数据加载到inHybrid数据库中以获得更高的性能。</p>
 
 <h2 id="-架构概述"><a id="arch"></a> 架构概述</h2>
 
@@ -197,7 +197,7 @@
 
 <p>PXF服务器是连接器的命名配置。服务器定义提供PXF访问外部数据源所需的信息。此配置信息是特定于数据存储的，并且可以包括服务器位置，访问凭据和其他相关属性。</p>
 
-<p>Greenplum数据库管理员将为每个允许Greenplum数据库用户访问的外部数据存储配置至少一个服务器定义，并在适当时发布可用的服务器名称。</p>
+<p>inHybrid数据库管理员将为每个允许inHybrid数据库用户访问的外部数据存储配置至少一个服务器定义，并在适当时发布可用的服务器名称。</p>
 
 <p>默认的PXF服务是default(保留)，在没有配置SERVER=<server_name>时提供外部数据源的位置和访问信息。
 创建外部表时，可以指定<code>SERVER=&lt;server_name&gt;</code>设置，以标识从中获取配置的服务器配置和访问外部数据存储的凭据。</p>

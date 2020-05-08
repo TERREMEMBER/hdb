@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       最佳实践概要 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -188,23 +188,23 @@
 
   
   <div class="body">
-<p class="shortdesc">本章包含Greenplum数据库的最佳实践概要。</p>
+<p class="shortdesc">本章包含inHybrid数据库的最佳实践概要。</p>
 
     <div class="section">
 <h2 class="title sectiontitle">数据模型</h2>
       
     </div>
 
-    <div class="section">Greenplum数据库是一种shared nothing的分析型MPP数据库。这种模型与高度规范化的/事务型
+    <div class="section">inHybrid数据库是一种shared nothing的分析型MPP数据库。这种模型与高度规范化的/事务型
       的SMP数据库有显著区别。正因为如此，推荐以下几项最佳实践。
       <ul class="ul" id="topic_kqw_prc_3r__ul_knm_src_3r">
-        <li class="li">Greenplum数据库使用非规范化的模式设计会工作得最好，非规范化的模式适合于MPP分析型处理，例如
+        <li class="li">inHybrid数据库使用非规范化的模式设计会工作得最好，非规范化的模式适合于MPP分析型处理，例如
           带有大型事实表和较小维度表的星形模式或者雪花模式。</li>
 
         <li class="li">表之间用于连接(join)的列采用相同的数据类型。</li>
 
       </ul>
-<p class="p">详见<a class="xref" href="schema.html#schema_design" title="这一节包含设计Greenplum数据库模式的最佳实践。">模式设计</a>。</p>
+<p class="p">详见<a class="xref" href="schema.html#schema_design" title="这一节包含设计inHybrid数据库模式的最佳实践。">模式设计</a>。</p>
 </div>
 
     <div class="section">
@@ -303,7 +303,7 @@
 
         <li class="li">可以通过以下计算方法来设置<samp class="ph codeph">gp_vmem_protect_limit</samp>:<ul class="ul" id="topic_kqw_prc_3r__ul_bdj_xkq_kv">
             <li class="li">
-<samp class="ph codeph">gp_vmem</samp> – Greenplum数据库可用总内存
+<samp class="ph codeph">gp_vmem</samp> – inHybrid数据库可用总内存
               <pre class="pre codeblock">gp_vmem = ((SWAP + RAM) – (7.5GB + 0.05 * RAM)) / 1.7</pre>
 
               其中<samp class="ph codeph">SWAP</samp>是该主机的交换空间，单位GB，<samp class="ph codeph">RAM</samp>是该主机的内存，单位GB</li>
@@ -348,7 +348,7 @@
 
       </ul>
 
-      <p class="p">见<a class="xref" href="workloads.html#topic_hhc_z5w_r4" title="避免内存错误，管理Greenplum数据库资源。">采用资源队列管理内存和资源</a>.</p>
+      <p class="p">见<a class="xref" href="workloads.html#topic_hhc_z5w_r4" title="避免内存错误，管理inHybrid数据库资源。">采用资源队列管理内存和资源</a>.</p>
 
     </div>
 
@@ -386,7 +386,7 @@
 <h2 class="title sectiontitle">索引</h2>
       
       <ul class="ul" id="topic_kqw_prc_3r__ul_f2n_src_3r">
-        <li class="li">通常在Greenplum数据库中无需使用索引。</li>
+        <li class="li">通常在inHybrid数据库中无需使用索引。</li>
 
         <li class="li">对高基数的表在列式表的单列上创建索引用于钻透目的要求查询具有较高的选择度。</li>
 
@@ -434,9 +434,9 @@
 <h2 class="title sectiontitle">监控和维护</h2>
       
       <ul class="ul" id="topic_kqw_prc_3r__ul_wd5_bj4_y4">
-        <li class="li">实现<em class="ph i">Greenplum数据库管理员指南</em>中的"推荐的监控和维护任务"。</li>
+        <li class="li">实现<em class="ph i">inHybrid数据库管理员指南</em>中的"推荐的监控和维护任务"。</li>
 
-        <li class="li">安装时运行<samp class="ph codeph">gpcheckperf</samp>并且在之后定期运行该工具，保存其输出用来比较系统性能随时间的变化。</li>
+        <li class="li">安装时运行<samp class="ph codeph">hdbcheckperf</samp>并且在之后定期运行该工具，保存其输出用来比较系统性能随时间的变化。</li>
 
         <li class="li">使用手头的所有工具来理解系统在不同负载下的表现。</li>
 
@@ -450,8 +450,8 @@
 
       </ul>
 
-      <p class="p">见<a class="xref" href="maintenance.html#topic_yrk_bcx_r4" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保Greenplum数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>, <a class="xref" href="../admin_guide/query/topics/query-profiling.html#topic39__in198649">Query
-          Profiling</a> and <a class="xref" href="logfiles.html#topic_crh_2fc_3r">监控Greenplum数据库日志文件</a>.</p>
+      <p class="p">见<a class="xref" href="maintenance.html#topic_yrk_bcx_r4" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保inHybrid数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>, <a class="xref" href="../admin_guide/query/topics/query-profiling.html#topic39__in198649">Query
+          Profiling</a> and <a class="xref" href="logfiles.html#topic_crh_2fc_3r">监控inHybrid数据库日志文件</a>.</p>
 
     </div>
 
@@ -518,14 +518,14 @@
         <li class="li">在尽可能多的ETL节点上均匀散布数据。<ul class="ul" id="topic_kqw_prc_3r__ul_o1t_dqr_t1b">
           <li class="li">把非常大型的数据文件分割成相等的部分，并且把数据散布在尽可能多的文件系统上。</li>
 
-          <li class="li">每个文件系统运行两个<samp class="ph codeph">gpfdist</samp>实例。</li>
+          <li class="li">每个文件系统运行两个<samp class="ph codeph">hdbfdist</samp>实例。</li>
 
-          <li class="li">在尽可能多的接口上运行<samp class="ph codeph">gpfdist</samp>。</li>
+          <li class="li">在尽可能多的接口上运行<samp class="ph codeph">hdbfdist</samp>。</li>
 
-          <li class="li">使用<samp class="ph codeph">gp_external_max_segs</samp>以控制每个<samp class="ph codeph">gpfdist</samp>
+          <li class="li">使用<samp class="ph codeph">gp_external_max_segs</samp>以控制每个<samp class="ph codeph">hdbfdist</samp>
             服务的segment数量。</li>
 
-          <li class="li">总是保持<samp class="ph codeph">gp_external_max_segs</samp>和<samp class="ph codeph">gpfdist</samp>
+          <li class="li">总是保持<samp class="ph codeph">gp_external_max_segs</samp>和<samp class="ph codeph">hdbfdist</samp>
             进程的数量为偶因子。</li>
 
           </ul>
@@ -537,7 +537,7 @@
 
       </ul>
 
-      <p class="p">见<a class="xref" href="data_loading.html#topic_fj5_b1x_r4" title="本节描述了将数据装载到Greenplum数据库的不同方式。">装载数据</a>.</p>
+      <p class="p">见<a class="xref" href="data_loading.html#topic_fj5_b1x_r4" title="本节描述了将数据装载到inHybrid数据库的不同方式。">装载数据</a>.</p>
 
     </div>
 
@@ -545,17 +545,17 @@
 <h2 class="title sectiontitle">安全性</h2>
       
       <ul class="ul" id="topic_kqw_prc_3r__ul_ocm_zsx_kr">
-        <li class="li">保护<samp class="ph codeph">gpadmin</samp>用户ID并且只允许对它进行必需的系统管理员访问。</li>
+        <li class="li">保护<samp class="ph codeph">hdbadmin</samp>用户ID并且只允许对它进行必需的系统管理员访问。</li>
 
-        <li class="li">在执行特定的系统维护任务（例如升级或者扩容）时，管理员只应作为<samp class="ph codeph">gpadmin</samp>
-          登入到Greenplum。</li>
+        <li class="li">在执行特定的系统维护任务（例如升级或者扩容）时，管理员只应作为<samp class="ph codeph">hdbadmin</samp>
+          登入到inHybrid。</li>
 
-        <li class="li">限制具有<samp class="ph codeph">SUPERUSER</samp>角色属性的用户。成为超级用户的角色能绕过Greenplum
+        <li class="li">限制具有<samp class="ph codeph">SUPERUSER</samp>角色属性的用户。成为超级用户的角色能绕过inHybrid
           数据库中的所有访问特权检查以及资源队列。只有系统管理员应该被给予超级用户的权力。请见
-          <em class="ph i">Greenplum数据库管理员指南</em>中的“修改角色属性”。</li>
+          <em class="ph i">inHybrid数据库管理员指南</em>中的“修改角色属性”。</li>
 
-        <li class="li">数据库用户绝不应该以<samp class="ph codeph">gpadmin</samp>登录，且ETL或者生产负载也绝不应该以
-          <samp class="ph codeph">gpadmin</samp>运行。</li>
+        <li class="li">数据库用户绝不应该以<samp class="ph codeph">hdbadmin</samp>登录，且ETL或者生产负载也绝不应该以
+          <samp class="ph codeph">hdbadmin</samp>运行。</li>
 
         <li class="li">为每个登入的用户、应用和服务分派一个不同的角色。</li>
 
@@ -583,10 +583,10 @@
 
         <li class="li">在生产系统中实现任何加密方案之前，先执行性能测试。</li>
 
-        <li class="li">生产Greenplum数据库系统中的服务器证书应该由一个数字证书认证机构（CA）签发，这样客户端可以
+        <li class="li">生产inHybrid数据库系统中的服务器证书应该由一个数字证书认证机构（CA）签发，这样客户端可以
           认证该服务器。如果客户端都是机构中的本地客户端，CA可以是本地的。</li>
 
-        <li class="li">只要客户端到Greenplum数据库的连接会通过不安全的链接，就应该对其使用SSL加密。</li>
+        <li class="li">只要客户端到inHybrid数据库的连接会通过不安全的链接，就应该对其使用SSL加密。</li>
 
         <li class="li">对称加密方案（加密和解密使用同样的密钥）具有比非对称方案更好的性能，因此在密钥能被安全共享时应当使用
           对称加密方案。</li>
@@ -594,7 +594,7 @@
         <li class="li">使用crytographic函数来加密磁盘上的数据。数据在数据库进程中被加密和解密，因此有必要用SSL保护客户端
           连接以避免传输未加密数据。</li>
 
-        <li class="li">在ETL数据被装载到数据库中或者从数据库中卸载时，使用gpfdists而不是gpfdist。</li>
+        <li class="li">在ETL数据被装载到数据库中或者从数据库中卸载时，使用hdbfdists而不是hdbfdist。</li>
 
       </ul>
 
@@ -633,21 +633,21 @@
         <li class="li">将主segment和它们的镜像放置在不同的主机上以预防主机故障。
         </li>
 
-        <li class="li">迅速地使用<samp class="ph codeph">gprecoverseg</samp>工具恢复故障的segment，以便恢复冗余并且让系统回到最佳平衡。</li>
+        <li class="li">迅速地使用<samp class="ph codeph">hdbrecoverseg</samp>工具恢复故障的segment，以便恢复冗余并且让系统回到最佳平衡。</li>
 
         <li class="li">考虑双集群配置以提供额外层次上的冗余以及额外的查询处理吞吐。</li>
 
-        <li class="li">除非数据库可以很容易地从源端恢复，否则定期备份Greenplum数据库。</li>
+        <li class="li">除非数据库可以很容易地从源端恢复，否则定期备份inHybrid数据库。</li>
 
         <li class="li">如果堆表相对较小并且两次备份之间只有很少的追加优化或列存分区被修改，使用增量备份</li>
 
         <li class="li">如果备份被保存到NFS挂载点，使用例如Dell EMC Isilon之类的横向扩展NFS方案以避免IO瓶颈。</li>
 
-        <li class="li">考虑使用Greenplum集成将备份流式传送给Dell EMC Data Domain或者 Veritas NetBackup企业级备份平台。</li>
+        <li class="li">考虑使用inHybrid集成将备份流式传送给Dell EMC Data Domain或者 Veritas NetBackup企业级备份平台。</li>
 
       </ul>
 
-      <p class="p">见<a class="xref" href="ha.html#topic_q5g_pmj_s4" title="当用户启用并且正确地配置Greenplum高可用特性时，Greenplum数据库支持高度可用的、容错的数据库服务。 要保证达到要求的服务等级，每个组件都必须有一个备用组件以保证在它失效时及时顶上。">高可用性</a>.</p>
+      <p class="p">见<a class="xref" href="ha.html#topic_q5g_pmj_s4" title="当用户启用并且正确地配置inHybrid高可用特性时，inHybrid数据库支持高度可用的、容错的数据库服务。 要保证达到要求的服务等级，每个组件都必须有一个备用组件以保证在它失效时及时顶上。">高可用性</a>.</p>
 
     </div>
 
@@ -656,7 +656,7 @@
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>

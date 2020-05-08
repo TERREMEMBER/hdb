@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF故障排查 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -250,7 +250,7 @@ under the License.
 </tr>
 <tr>
 <td>org.apache.hadoop.security.AccessControlException: Permission denied: user=<user>, access=READ, inode=&ldquo;<filepath>&rdquo;:<user>:<group>:-rw&mdash;&mdash;-</td>
-<td><strong>Cause</strong>: 执行PXF操作的Greenplum数据库用户无权访问基础Hadoop服务(HDFS或Hive)。参阅<a href="pxfuserimpers.html">Configuring User Impersonation and Proxying</a>.</td>
+<td><strong>Cause</strong>: 执行PXF操作的inHybrid数据库用户无权访问基础Hadoop服务(HDFS或Hive)。参阅<a href="pxfuserimpers.html">Configuring User Impersonation and Proxying</a>.</td>
 </tr>
 </tbody></table>
 
@@ -266,13 +266,13 @@ under the License.
 
 <ol>
 <li><p>登录gpdb集群的master主机</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>使用编辑器打开 <code>$PXF_CONF/conf/pxf-log4j.properties</code>，取消以下行的注释，保存文件，然后退出编辑器：</p>
 <pre class="highlight shell"><code><span class="c">#log4j.logger.org.greenplum.pxf=DEBUG</span>
 </code></pre></li>
-<li><p>使用 <code>pxf cluster sync</code> 命令拷贝更新的文件 <code>pxf-log4j.properties</code> 到Greenplum数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用 <code>pxf cluster sync</code> 命令拷贝更新的文件 <code>pxf-log4j.properties</code> 到inHybrid数据库集群。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>章节描述，重启gpdb集群的每个segment节点的pxf</p></li>
 <li><p>现在启用了<code>DEBUG</code>级别的日志记录，您可以执行PXF操作。 确保记下时间； 这会将信息定向输出到 <code>$PXF_CONF/logs/pxf-service.log</code>中的相关日志。</p>
@@ -296,7 +296,7 @@ dbname=&gt; SELECT * FROM hdfstest;
 
 <p>数据库级客户端日志记录可以提供对内部PXF服务操作的了解。</p>
 
-<p>在psql会话中将<code>client_min_messages</code>服务器配置参数设置为<code>DEBUG2</code>，可以在对PXF外部表进行操作期间启用Greenplum数据库及PXF调试消息日志记录。</p>
+<p>在psql会话中将<code>client_min_messages</code>服务器配置参数设置为<code>DEBUG2</code>，可以在对PXF外部表进行操作期间启用inHybrid数据库及PXF调试消息日志记录。</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>psql -d &lt;dbname&gt;
 </code></pre>
 <pre class="highlight sql"><code><span class="n">dbname</span><span class="o">=#</span> <span class="k">SET</span> <span class="n">client_min_messages</span><span class="o">=</span><span class="n">DEBUG2</span><span class="p">;</span>
@@ -323,7 +323,7 @@ dbname=&gt; SELECT * FROM hdfstest;
 
 <p>因为单个PXF客户端服务(JVM)为segment主机上的多个segment实例提供服务，所以PXF堆大小可能是限制运行的瓶颈。在并发工作负载时针对大文件的查询，影响更加明显。您可能会遇到由于内存不足或Java垃圾收集器影响响应时间而导致查询挂起或失败的情况。要避免或纠正这些情况，请首先尝试增加Java最大堆大小或减少Tomcat最大线程数，这取决于最适合您系统配置的方式。您还可以选择将PXF配置为在检测到内存不足情况时执行特定的操作。</p>
 
-<p><strong>Note</strong>: 本主题中描述的配置更改需要在Greenplum数据库集群的<em>每个</em>节点上修改配置文件。 在主服务器上执行更新后，请确保将PXF配置同步到Greenplum数据库集群。</p>
+<p><strong>Note</strong>: 本主题中描述的配置更改需要在inHybrid数据库集群的<em>每个</em>节点上修改配置文件。 在主服务器上执行更新后，请确保将PXF配置同步到inHybrid数据库集群。</p>
 
 <h3 id="配置内存不足条件操作"><a id="pxf-cfgoom"></a>配置内存不足条件操作</h3>
 
@@ -369,7 +369,7 @@ dbname=&gt; SELECT * FROM hdfstest;
 <li>如果指定文件，但该文件不存在，则PXF JVM在检测到OOM时会将堆转储写入文件。 如果文件已经存在，则JVM将不会转储堆。</li>
 </ul>
 
-<p>确保<code>gpadmin</code>用户对转储文件或目录具有写权限。</p>
+<p>确保<code>hdbadmin</code>用户对转储文件或目录具有写权限。</p>
 
 <p><strong>Note</strong>: 堆转储文件通常很大。 如果在OOM上为PXF启用堆转储，并为<code>PXF_OOM_DUMP_PATH</code>指定一个目录，则多个OOM将在该目录中生成多个文件，并可能消耗大量磁盘空间。 如果为<code>PXF_OOM_DUMP_PATH</code>指定文件，则在文件名不变的情况下磁盘使用率是恒定的。 您必须重命名转储文件或配置其他<code>PXF_OOM_DUMP_PATH</code>才能生成后续的堆转储。</p>
 
@@ -380,11 +380,11 @@ dbname=&gt; SELECT * FROM hdfstest;
 <p>默认情况下，将启用OOM上PXF服务器的自动终止功能。 默认情况下，在OOM上禁用堆转储生成。 要配置这些属性之一或全部，请执行以下步骤：</p>
 
 <ol>
-<li><p>登录到您的Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>如果您想在OOM上配置（即关闭或重新打开）PXF服务器自动关闭功能，请在<code>pxf-env.sh</code>文件中找到<code>PXF_OOM_KILL</code>属性。 如果该设置已被注释掉，请取消注释它，然后更新该值。 例如，要关闭此行为，请将值设置为<code>false</code>：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_OOM_KILL</span><span class="o">=</span><span class="nb">false</span>
@@ -392,7 +392,7 @@ dbname=&gt; SELECT * FROM hdfstest;
 <li><p>如果您要在PXF服务器达到OOM条件时配置（即打开或关闭）自动堆转储，请在<code>pxf-env.sh</code>文件中找到<code>PXF_OOM_DUMP_PATH</code>设置。</p>
 
 <ol>
-<li><p>要打开此行为，请将<code>PXF_OOM_DUMP_PATH</code>属性值设置为您希望PXF JVM将Java堆转储到的文件系统位置。 例如，要转储到名为<code>/home/gpadmin/pxfoom_segh1</code>的文件：</p>
+<li><p>要打开此行为，请将<code>PXF_OOM_DUMP_PATH</code>属性值设置为您希望PXF JVM将Java堆转储到的文件系统位置。 例如，要转储到名为<code>/home/hdbadmin/pxfoom_segh1</code>的文件：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_OOM_DUMP_PATH</span><span class="o">=</span>/home/pxfoom_segh1
 </code></pre></li>
 <li><p>要在打开堆转储后将其关闭，请注释掉<code>PXF_OOM_DUMP_PATH</code>属性设置：</p>
@@ -400,38 +400,38 @@ dbname=&gt; SELECT * FROM hdfstest;
 </code></pre></li>
 </ol></li>
 <li><p>保存<code>pxf-enf.sh</code>文件并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
-<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个Greenplum数据库segment主机上重新启动PXF。</p></li>
+<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个inHybrid数据库segment主机上重新启动PXF。</p></li>
 </ol>
 
 <h3 id="为pxf增加jvm内存"><a id="pxf-heapcfg"></a>为PXF增加JVM内存</h3>
 
-<p>在segment主机上运行的每个PXF代理都配置有默认的最大Java堆大小2GB和初始堆大小1GB。 如果Greenplum数据库群集中的segment主机具有足够的内存，请尝试将最大堆大小增加到3-4GB之间的值。 如果可以，将初始堆大小和最大堆大小设置为相同的值最佳。</p>
+<p>在segment主机上运行的每个PXF代理都配置有默认的最大Java堆大小2GB和初始堆大小1GB。 如果inHybrid数据库群集中的segment主机具有足够的内存，请尝试将最大堆大小增加到3-4GB之间的值。 如果可以，将初始堆大小和最大堆大小设置为相同的值最佳。</p>
 
-<p>执行以下过程来增加在Greenplum数据库集群中每个segment主机上运行的PXF代理服务的堆大小。</p>
+<p>执行以下过程来增加在inHybrid数据库集群中每个segment主机上运行的PXF代理服务的堆大小。</p>
 
 <ol>
 <li><p>登录gpdb集群的master主机</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_JVM_OPTS</code>设置，然后将 <code>-Xmx</code> 和/或 <code>-Xms</code> 选项更新为所需的值。 例如：</p>
 <pre class="highlight shell"><code><span class="nv">PXF_JVM_OPTS</span><span class="o">=</span><span class="s2">"-Xmx3g -Xms3g"</span>
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code> 命令将更新的<code>pxf-env.sh</code>文件复制到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code> 命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>描述，重启每个segment主机上的pxf服务。</p></li>
 </ol>
 
 <h3 id="资源受限的pxf-segment主机的另一种选择"><a id="pxf-threadcfg"></a>资源受限的PXF segment主机的另一种选择</h3>
 
-<p>如果增加最大堆大小不适合您的Greenplum数据库部署，请尝试减少PXF的的并发工作线程数。正在运行的线程数量的减少将防止任何PXF节点耗尽其内存，同时确保当前查询运行完毕(尽管速度稍慢)。 Tomcat的默认行为是将请求排队，直到线程空闲或队列耗尽为止。</p>
+<p>如果增加最大堆大小不适合您的inHybrid数据库部署，请尝试减少PXF的的并发工作线程数。正在运行的线程数量的减少将防止任何PXF节点耗尽其内存，同时确保当前查询运行完毕(尽管速度稍慢)。 Tomcat的默认行为是将请求排队，直到线程空闲或队列耗尽为止。</p>
 
 <p>PXF的Tomcat线程的默认最大数量为200。<code>PXF_MAX_THREADS</code>配置属性控制此设置。</p>
 
@@ -439,21 +439,21 @@ dbname=&gt; SELECT * FROM hdfstest;
 
 <p><strong>Note</strong>: 请记住，线程数用完后，线程数的增加与内存消耗的增加相关。</p>
 
-<p>执行以下过程，以设置在Greenplum数据库部署中每个segment主机上运行的PXF代理的Tomcat线程的最大数量。</p>
+<p>执行以下过程，以设置在inHybrid数据库部署中每个segment主机上运行的PXF代理的Tomcat线程的最大数量。</p>
 
 <ol>
 <li><p>登录到gpdb集群的master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>。例如:</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_MAX_THREADS</code>设置。 取消注释设置，并将其更新为所需的值。 例如，要将Tomcat线程的最大数量设置为100：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_MAX_THREADS</span><span class="o">=</span>100
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>描述重启PXF服务</p></li>
 </ol>
@@ -474,7 +474,7 @@ ORA-01882: timezone region not found
 
 <p>您也可以使用<code>PXF_JVM_OPTS</code>属性来设置其他Java选项。</p>
 
-<p>如前几节所述，您必须将更新的PXF配置同步到Greenplum数据库集群，然后在每个segment主机上重新启动PXF服务器。</p>
+<p>如前几节所述，您必须将更新的PXF配置同步到inHybrid数据库集群，然后在每个segment主机上重新启动PXF服务器。</p>
 
 <h2 id="pxf片段元数据缓存"><a id="pxf-fragcache"></a>PXF片段元数据缓存</h2>
 
@@ -483,20 +483,20 @@ ORA-01882: timezone region not found
 <p>默认情况下，PXF片段元数据缓存处于启用状态。 要关闭片段元数据缓存，或在关闭后重新启用片段元数据缓存，请执行以下过程：</p>
 
 <ol>
-<li><p>登录到您的Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_FRAGMENTER_CACHE</code>设置。 如果该设置已被注释掉，请取消注释它，然后更新该值。 例如，要关闭片段元数据缓存，请将值设置为<code>false</code>：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_FRAGMENTER_CACHE</span><span class="o">=</span><span class="nb">false</span>
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
-<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个Greenplum数据库segment主机上重新启动PXF。</p></li>
+<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个inHybrid数据库segment主机上重新启动PXF。</p></li>
 </ol>
 
         

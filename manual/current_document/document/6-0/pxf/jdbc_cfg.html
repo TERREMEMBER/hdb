@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       配置JDBC连接器（可选） |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -218,7 +218,7 @@
 <li>指定JDBC驱动程序类名称，数据库URL和客户端凭据</li>
 </ul>
 
-<p>在以前的Greenplum数据库版本中，您可能已通过<code>CREATE EXTERNAL TABLE</code>命令中的选项指定了JDBC驱动程序类名称，数据库URL和客户端凭据。PXF现在支持JDBC连接器的基于文件的服务器配置。如下所述，此配置使您可以在文件中指定这些选项和凭据。</p>
+<p>在以前的inHybrid数据库版本中，您可能已通过<code>CREATE EXTERNAL TABLE</code>命令中的选项指定了JDBC驱动程序类名称，数据库URL和客户端凭据。PXF现在支持JDBC连接器的基于文件的服务器配置。如下所述，此配置使您可以在文件中指定这些选项和凭据。</p>
 
 <p><strong>注意</strong>: 您先前创建的直接指定JDBC连接选项的PXF外部表将继续起作用。如果要移动这些表以使用基于JDBC文件的服务器配置，则必须创建服务器配置，删除外部表，然后重新创建表，并指定适当的<code>SERVER=&lt;server_name&gt;</code>子句。</p>
 
@@ -411,7 +411,7 @@
 
 <p>PXF JDBC连接器使用<code>jdbc.user</code>设置或<code>jdbc.url</code>中的信息来确定连接到外部数据存储的用户身份。禁用PXF JDBC用户模拟时（默认设置），JDBC连接器的行为进一步取决于外部数据存储。例如，如果您使用JDBC连接器访问Hive，则连接器将使用某些Hive身份验证和模拟属性的设置来确定用户。您可能需要提供<code>jdbc.user</code>设置，或在服务器<code>jdbc-site.xml</code>文件中的<code>jdbc.url</code>设置中添加属性。</p>
 
-<p>启用PXF JDBC用户模拟时，PXF JDBC连接器代表Greenplum数据库最终用户访问外部数据存储。连接器使用访问PXF外部表的Greenplum数据库用户的名称来尝试连接到外部数据存储。</p>
+<p>启用PXF JDBC用户模拟时，PXF JDBC连接器代表inHybrid数据库最终用户访问外部数据存储。连接器使用访问PXF外部表的inHybrid数据库用户的名称来尝试连接到外部数据存储。</p>
 
 <p><code>pxf.impersonation.jdbc</code>属性控制JDBC用户模拟。默认情况下，禁用JDBC用户模拟。要为服务器配置启用JDBC用户模拟，请将属性设置为true：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
@@ -420,7 +420,7 @@
 <span class="nt">&lt;/property&gt;</span>
 </code></pre>
 
-<p>为PXF服务器启用JDBC用户模拟时，PXF会覆盖在<code>jdbc-site.xml</code>或<code>&lt;greenplum_user_name&gt;-user.xml</code>中定义或在外部表DDL中指定的<code>jdbc.user</code>属性设置的值，以及Greenplum数据库用户名。为了在外部数据存储区需要密码来验证连接用户的身份时有效地模拟用户，必须为可以模拟在该用户的<code>&lt;greenplum_user_name&gt;-user.xml</code>属性覆盖文件中的每个用户指定<code>jdbc.password</code>设置。有关每个服务器，每个Greenplum用户配置的更多信息，请参考<a href="cfg_server.html#usercfg">配置PXF用户</a>。</p>
+<p>为PXF服务器启用JDBC用户模拟时，PXF会覆盖在<code>jdbc-site.xml</code>或<code>&lt;greenplum_user_name&gt;-user.xml</code>中定义或在外部表DDL中指定的<code>jdbc.user</code>属性设置的值，以及inHybrid数据库用户名。为了在外部数据存储区需要密码来验证连接用户的身份时有效地模拟用户，必须为可以模拟在该用户的<code>&lt;greenplum_user_name&gt;-user.xml</code>属性覆盖文件中的每个用户指定<code>jdbc.password</code>设置。有关每个服务器，每个inHybrid用户配置的更多信息，请参考<a href="cfg_server.html#usercfg">配置PXF用户</a>。</p>
 
 <h3 id="关于jdbc连接池"><a id="jdbcconpool"></a>关于JDBC连接池</h3>
 
@@ -428,7 +428,7 @@
 
 <p>对于给定的服务器配置，可能存在一个或多个连接池，并且用户访问指定同一服务器的不同外部表可能会共享一个连接池。</p>
 
-<p><strong>注意</strong>: 如果在服务器配置中启用了JDBC用户模拟，则JDBC连接器将为每个Greenplum数据库用户创建一个单独的连接池，该用户访问指定该服务器配置的任何外部表。</p>
+<p><strong>注意</strong>: 如果在服务器配置中启用了JDBC用户模拟，则JDBC连接器将为每个inHybrid数据库用户创建一个单独的连接池，该用户访问指定该服务器配置的任何外部表。</p>
 
 <p><code>jdbc.pool.enabled</code>属性控制着服务器配置的JDBC连接池。默认情况下启用连接池。要为服务器配置禁用JDBC连接池，请将属性设置为false：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
@@ -474,11 +474,11 @@
 
 <h4 id="调整最大连接池大小"><a id="jdbcconpool_tune"></a>调整最大连接池大小</h4>
 
-<p>为了不超过目标数据库所允许的最大连接数，并同时确保每个PXF JVM服务公平共享的JDBC连接，请根据Greenplum数据库集群的大小确定<code>maxPoolSize</code>的最大值。如下：</p>
+<p>为了不超过目标数据库所允许的最大连接数，并同时确保每个PXF JVM服务公平共享的JDBC连接，请根据inHybrid数据库集群的大小确定<code>maxPoolSize</code>的最大值。如下：</p>
 <pre class="highlight plaintext"><code>max_conns_allowed_by_remote_db / #_greenplum_segment_hosts
 </code></pre>
 
-<p>例如，如果您的Greenplum数据库集群具有16个segment主机，并且目标数据库允许160个并发连接，则按以下方式计算<code>maxPoolSize</code>：</p>
+<p>例如，如果您的inHybrid数据库集群具有16个segment主机，并且目标数据库允许160个并发连接，则按以下方式计算<code>maxPoolSize</code>：</p>
 <pre class="highlight plaintext"><code>160 / 16 = 10
 </code></pre>
 
@@ -492,11 +492,11 @@
 
 <ol>
 <li>您<a href="jdbc_cfg.html#namedquery_define">定义查询</a>在文本文件中。</li>
-<li>您向Greenplum数据库用户提供<a href="jdbc_cfg.html#namedquery_pub">查询名称</a>。</li>
-<li>Greenplum数据库用户在Greenplum数据库外部表定义中<a href="jdbc_cfg.html#namedquery_ref">引用查询</a>。</li>
+<li>您向inHybrid数据库用户提供<a href="jdbc_cfg.html#namedquery_pub">查询名称</a>。</li>
+<li>inHybrid数据库用户在inHybrid数据库外部表定义中<a href="jdbc_cfg.html#namedquery_ref">引用查询</a>。</li>
 </ol>
 
-<p>每当用户在Greenplum数据库外部表上调用<code>SELECT</code>命令时，PXF都会运行查询。</p>
+<p>每当用户在inHybrid数据库外部表上调用<code>SELECT</code>命令时，PXF都会运行查询。</p>
 
 <h3 id="定义命名查询"><a id="namedquery_define"></a>定义命名查询</h3>
 
@@ -517,13 +517,13 @@
 
 <h3 id="查询命名"><a id="namedquery_pub"></a>查询命名</h3>
 
-<p>Greenplum数据库用户通过指定不带扩展名的查询文件名来引用命名查询。例如，如果您在名为<code>report.sql</code>的文件中定义查询，则该查询的名称为<code>report</code>。</p>
+<p>inHybrid数据库用户通过指定不带扩展名的查询文件名来引用命名查询。例如，如果您在名为<code>report.sql</code>的文件中定义查询，则该查询的名称为<code>report</code>。</p>
 
-<p>命名查询与特定的JDBC服务器配置相关联。您将向Greenplum数据库用户提供可用的查询名称，允许您使用服务器配置创建外部表。</p>
+<p>命名查询与特定的JDBC服务器配置相关联。您将向inHybrid数据库用户提供可用的查询名称，允许您使用服务器配置创建外部表。</p>
 
 <h4 id="引用命名查询"><a id="namedquery_ref"></a>引用命名查询</h4>
 
-<p>当创建外部表时，Greenplum数据库用户指定<code>query:&lt;query_name&gt;</code>而不是远程SQL数据库表的名称。例如，如果查询在文件<code>$PXF_CONF/servers/mydb/report.sql</code>中定义，则<code>CREATE EXTERNAL TABLE</code> <code>LOCATION</code>子句将包含以下组件：</p>
+<p>当创建外部表时，inHybrid数据库用户指定<code>query:&lt;query_name&gt;</code>而不是远程SQL数据库表的名称。例如，如果查询在文件<code>$PXF_CONF/servers/mydb/report.sql</code>中定义，则<code>CREATE EXTERNAL TABLE</code> <code>LOCATION</code>子句将包含以下组件：</p>
 <pre class="highlight sql"><code><span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://query:report?PROFILE=JDBC&amp;SERVER=mydb ...'</span><span class="p">)</span>
 </code></pre>
 
@@ -537,20 +537,20 @@
 
 <p>在配置JDBC连接器服务器之前，请确保已初始化PXF。</p>
 
-<p>在此过程中，您将命名并添加PostgreSQL数据库的PXF JDBC服务器配置，并将服务器配置同步到Greenplum数据库集群。</p>
+<p>在此过程中，您将命名并添加PostgreSQL数据库的PXF JDBC服务器配置，并将服务器配置同步到inHybrid数据库集群。</p>
 
 <ol>
-<li><p>登录到您的Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
-<li><p>选择JDBC服务器的名称。您将名称提供给Greenplum用户，您可以选择这些用户允许其以配置用户身份引用外部SQL数据库中的表。</p>
+<li><p>选择JDBC服务器的名称。您将名称提供给inHybrid用户，您可以选择这些用户允许其以配置用户身份引用外部SQL数据库中的表。</p>
 
 <p><strong>注意</strong>: 服务器名称<code>default</code>已保留。</p></li>
 <li><p>创建<code>$PXF_HOME/servers/&lt;server_name&gt;</code>目录。例如，使用以下命令来创建名为<code>pg_user1_testdb</code>的JDBC服务器配置：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb
 </code></pre></li>
 <li><p>将PXF JDBC服务器模板文件复制到服务器配置目录。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb/
 </code></pre></li>
 <li><p>在您选择的编辑器中打开模板服务器配置文件，并为您的环境提供适当的属性值。例如，如果要在名为<code>pgserverhost</code>的主机上运行的PostgreSQL实例上为名为<code>user1</code>的用户配置对名为<code>testdb</code>的PostgreSQL数据库的访问：</p>
 <pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -574,8 +574,8 @@
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></li>
 <li><p>保存更改并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到Greenplum数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到inHybrid数据库集群。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 
@@ -645,7 +645,7 @@
 <tr>
 <td><code>NONE</code>, 或未指定</td>
 <td><code>TRUE</code></td>
-<td>Greenplum用户名</td>
+<td>inHybrid用户名</td>
 <td>设置 <code>pxf.impersonation.jdbc</code> = <code>true</code></td>
 </tr>
 <tr>
@@ -657,7 +657,7 @@
 <tr>
 <td><code>KERBEROS</code></td>
 <td><code>TRUE</code></td>
-<td>PXF Kerberos主体中提供的身份，通常是<code>gpadmin</code></td>
+<td>PXF Kerberos主体中提供的身份，通常是<code>hdbadmin</code></td>
 <td>None</td>
 </tr>
 <tr>
@@ -669,13 +669,13 @@
 <tr>
 <td><code>KERBEROS</code></td>
 <td><code>TRUE</code></td>
-<td>Greenplum用户名</td>
+<td>inHybrid用户名</td>
 <td>设置 <code>pxf.impersonation.jdbc</code> = <code>true</code></td>
 </tr>
 <tr>
 <td><code>KERBEROS</code></td>
 <td><code>FALSE</code></td>
-<td>PXF Kerberos主体中提供的身份，通常是<code>gpadmin</code></td>
+<td>PXF Kerberos主体中提供的身份，通常是<code>hdbadmin</code></td>
 <td>None</td>
 </tr>
 </tbody></table>
@@ -687,15 +687,15 @@
 <p>执行以下过程为Hive配置PXF JDBC服务器：</p>
 
 <ol>
-<li><p>登录到您的Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>选择JDBC服务器的名称。</p></li>
 <li><p>创建<code>$PXF_HOME/servers/&lt;server_name&gt;</code>目录。例如，使用以下命令创建名为<code>hivejdbc1</code>的JDBC服务器配置：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/hivejdbc1
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/hivejdbc1
 </code></pre></li>
 <li><p>将PXF JDBC服务器模板文件复制到服务器配置目录。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/hivejdbc1/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/hivejdbc1/
 </code></pre></li>
 <li><p>在您选择的编辑器中打开<code>jdbc-site.xml</code>文件，并设置<code>jdbc.driver</code>和<code>jdbc.url</code>属性。确保指定您的Hive主机，端口和数据库名称：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
@@ -721,14 +721,14 @@
 <ol>
 <li><p>如果将<code>hive.server2.enable.doAs</code>设置为<code>TRUE</code>（默认值），则Hive代表连接到Hive的用户运行Hadoop操作。<em>选择/执行以下选项之一</em>：</p>
 
-<p><strong>设置</strong><code>jdbc.user</code>以指定对Greenplum数据库访问的所有Hive数据具有读取权限的用户。例如，要连接到Hive并以<code>gpadmin</code>用户身份运行所有请求：</p>
+<p><strong>设置</strong><code>jdbc.user</code>以指定对inHybrid数据库访问的所有Hive数据具有读取权限的用户。例如，要连接到Hive并以<code>hdbadmin</code>用户身份运行所有请求：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
     <span class="nt">&lt;name&gt;</span>jdbc.user<span class="nt">&lt;/name&gt;</span>
-    <span class="nt">&lt;value&gt;</span>gpadmin<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;value&gt;</span>hdbadmin<span class="nt">&lt;/value&gt;</span>
 <span class="nt">&lt;/property&gt;</span>
 </code></pre>
 
-<p><strong>或</strong>，打开JDBC级用户模拟，以便PXF自动使用Greenplum数据库用户名连接到Hive：</p>
+<p><strong>或</strong>，打开JDBC级用户模拟，以便PXF自动使用inHybrid数据库用户名连接到Hive：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
     <span class="nt">&lt;name&gt;</span>pxf.impersonation.jdbc<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
@@ -765,7 +765,7 @@ jdbc:hive2://hs2server:10000/default;<b>principal=hive/hs2server@REALM</b>;saslQ
 </pre></li>
 <li><p>如果将<code>hive.server2.enable.doAs</code>设置为<code>TRUE</code>（默认值），则Hive代表连接到Hive的用户运行Hadoop操作。<em>选择/执行以下选项之一</em>：</p>
 
-<p><strong>不要</strong>指定任何其他属性。在这种情况下，PXF使用PXF Kerberos主体（通常是<code>gpadmin</code>）中提供的身份来启动所有Hadoop访问。</p>
+<p><strong>不要</strong>指定任何其他属性。在这种情况下，PXF使用PXF Kerberos主体（通常是<code>hdbadmin</code>）中提供的身份来启动所有Hadoop访问。</p>
 
 <p><strong>或</strong>，在<code>jdbc.url</code>中设置<code>hive.server2.proxy.user</code>属性，以指定对所有Hive数据具有读取权限的用户。例如，要连接到Hive并以名为<code>integration</code>的用户身份运行所有请求，请使用以下<code>jdbc.url</code>：</p>
 
@@ -773,7 +773,7 @@ jdbc:hive2://hs2server:10000/default;<b>principal=hive/hs2server@REALM</b>;saslQ
 jdbc:hive2://hs2server:10000/default;principal=hive/hs2server@REALM;saslQop=auth-conf;<b>hive.server2.proxy.user=integration</b>
 </pre>
 
-<p><strong>或</strong>，在<code>jdbc-site.xml</code>文件中启用PXF JDBC模拟，以便PXF自动使用Greenplum数据库用户名连接到Hive。例如：</p>
+<p><strong>或</strong>，在<code>jdbc-site.xml</code>文件中启用PXF JDBC模拟，以便PXF自动使用inHybrid数据库用户名连接到Hive。例如：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
     <span class="nt">&lt;name&gt;</span>pxf.impersonation.jdbc<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
@@ -782,11 +782,11 @@ jdbc:hive2://hs2server:10000/default;principal=hive/hs2server@REALM;saslQop=auth
 
 <p>如果启用JDBC模拟，则不得在<code>jdbc.url</code>中显式指定<code>hive.server2.proxy.user</code>。</p></li>
 <li><p>如果需要，创建一个PXF用户配置文件来管理密码设置。</p></li>
-<li><p>如果将<code>hive.server2.enable.doAs</code>设置为<code>FALSE</code>，则Hive将使用PXF Kerberos主体提供的身份（通常为<code>gpadmin</code>）运行Hadoop操作。</p></li>
+<li><p>如果将<code>hive.server2.enable.doAs</code>设置为<code>FALSE</code>，则Hive将使用PXF Kerberos主体提供的身份（通常为<code>hdbadmin</code>）运行Hadoop操作。</p></li>
 </ol></li>
 <li><p>保存更改并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到Greenplum数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到inHybrid数据库集群。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       读取HBase表数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -197,7 +197,7 @@
 <p>使用HBase表数据前，请确保您已满足：</p>
 
 <ul>
-<li>将 <code>$GPHOME/pxf/lib/pxf-hbase-*.jar</code> 复制到HBase集群中的每个节点，并且该PXF JAR文件位于 <code>$HBASE_CLASSPATH</code> 中。 PXF HBase 连接器需要此配置才能支持过滤器下推。</li>
+<li>将 <code>$HDBHOME/pxf/lib/pxf-hbase-*.jar</code> 复制到HBase集群中的每个节点，并且该PXF JAR文件位于 <code>$HBASE_CLASSPATH</code> 中。 PXF HBase 连接器需要此配置才能支持过滤器下推。</li>
 <li>满足PXF Hadoop <a href="access_hdfs.html#hadoop_prereq">先决条件</a>.</li>
 </ul>
 
@@ -265,7 +265,7 @@ ROW     COLUMN+CELL
 
 <p>PXF HBase 连接器支持一个名为的 <code>HBase</code> 的配置文件。</p>
 
-<p>使用以下语法创建引用HBase表的Greenplum数据库外部表：</p>
+<p>使用以下语法创建引用HBase表的inHybrid数据库外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;hbase-table-name&gt;?PROFILE=HBase'</span><span class="p">)</span>
@@ -300,19 +300,19 @@ ROW     COLUMN+CELL
 
 <h2 id="数据类型映射"><a id="datatypemapping"></a>数据类型映射</h2>
 
-<p>HBase是基于字节的; 它将所有数据类型存储为字节数组。 要在Greenplum数据库中表示HBase数据，请为Greenplum数据库列选择与HBase列标识符值的底层内容匹配的数据类型。</p>
+<p>HBase是基于字节的; 它将所有数据类型存储为字节数组。 要在inHybrid数据库中表示HBase数据，请为inHybrid数据库列选择与HBase列标识符值的底层内容匹配的数据类型。</p>
 
 <p><strong>注意</strong>: PXF不支持复杂HBase对象</p>
 
 <h2 id="列映射"><a id="columnmapping"></a>列映射</h2>
 
-<p>您可以创建一个引用HBase表定义中全部或部分列标识符的Greenplum数据库外部表。PXF支持Greenplum数据库表列和HBase表列标识符之间的直接或间接映射。</p>
+<p>您可以创建一个引用HBase表定义中全部或部分列标识符的inHybrid数据库外部表。PXF支持inHybrid数据库表列和HBase表列标识符之间的直接或间接映射。</p>
 
 <h3 id="直接映射"><a id="directmapping" class="no-quick-link"></a>直接映射</h3>
 
-<p>当您使用直接映射将Greenplum数据库外部表的列名映射到HBase标识符时，您可以将列簇限定的HBase标识符名称指定为带引号的值。 PXF HBase连接器在读取表数据时将这些列名按原样传递给HBase。</p>
+<p>当您使用直接映射将inHybrid数据库外部表的列名映射到HBase标识符时，您可以将列簇限定的HBase标识符名称指定为带引号的值。 PXF HBase连接器在读取表数据时将这些列名按原样传递给HBase。</p>
 
-<p>例如, 创建一个访问以下数据的Greenplum数据库外部表：</p>
+<p>例如, 创建一个访问以下数据的inHybrid数据库外部表：</p>
 
 <ul>
 <li>  列簇 <code>product</code> 中的 <code>name</code> 标识符</li>
@@ -327,24 +327,24 @@ ROW     COLUMN+CELL
 
 <h3 id="通过查找表间接映射"><a id="indirectmappingvialookuptable" class="no-quick-link"></a>通过查找表间接映射</h3>
 
-<p>当您使用间接映射将Greenplum数据库外部表列名映射到HBase标识符时，您可以在HBase中创建的查找表中指定映射。 查找表将 &lt;column-family&gt;:&lt;column-qualifier&gt; 映射到在创建Greenplum数据库外部表时指定的列名别名。</p>
+<p>当您使用间接映射将inHybrid数据库外部表列名映射到HBase标识符时，您可以在HBase中创建的查找表中指定映射。 查找表将 &lt;column-family&gt;:&lt;column-qualifier&gt; 映射到在创建inHybrid数据库外部表时指定的列名别名。</p>
 
 <p>您必须将HBase PXF查找表命名为<code>pxflookup</code> 。 并且您必须使用一个名为 <code>mapping</code> 的单列簇定义此表。例如:</p>
 <pre class="highlight plaintext"><code>hbase(main):&gt; create 'pxflookup', 'mapping'
 </code></pre>
 
-<p>尽管直接映射既快速又直观， 使用间接映射可以让您为HBase &lt;column-family&gt;:&lt;column-qualifier&gt; 名称创建一个较短的，基于字符的别名。由于以下原因，这可以更好的使HBase标识符与Greenplum数据库保持一致:</p>
+<p>尽管直接映射既快速又直观， 使用间接映射可以让您为HBase &lt;column-family&gt;:&lt;column-qualifier&gt; 名称创建一个较短的，基于字符的别名。由于以下原因，这可以更好的使HBase标识符与inHybrid数据库保持一致:</p>
 
 <ul>
-<li>  HBase 标识符可能非常长。 Greenplum数据库列名大小限制为63各字符。</li>
-<li>  HBase 标识符名称可以包含二进制或不可打印的字符。 Greenplum数据库列名称是基于字符的。</li>
+<li>  HBase 标识符可能非常长。 inHybrid数据库列名大小限制为63各字符。</li>
+<li>  HBase 标识符名称可以包含二进制或不可打印的字符。 inHybrid数据库列名称是基于字符的。</li>
 </ul>
 
 <p>填充 <code>pxflookup</code> HBase表时, 向表中添加行, 以便:</p>
 
 <ul>
 <li>行键指定为HBase表名</li>
-<li><code>mapping</code> 列簇标识符定义为Greenplum数据库列名, 值标识为需要创建别名的HBase <code>&lt;column-family&gt;:&lt;column-qualifier&gt;</code></li>
+<li><code>mapping</code> 列簇标识符定义为inHybrid数据库列名, 值标识为需要创建别名的HBase <code>&lt;column-family&gt;:&lt;column-qualifier&gt;</code></li>
 </ul>
 
 <p>例如，要在 <code>order_info</code> 表上使用间接映射，将以下条目添加到 <code>pxflookup</code> 表：</p>
@@ -352,7 +352,7 @@ ROW     COLUMN+CELL
 hbase(main):&gt; put 'pxflookup', 'order_info', 'mapping:zip', 'shipping_info:zipcode'
 </code></pre>
 
-<p>使用以下 <code>CREATE EXTERNAL TABLE</code> 语法创建Greenplum数据库外部表</p>
+<p>使用以下 <code>CREATE EXTERNAL TABLE</code> 语法创建inHybrid数据库外部表</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">orderinfo_map</span> <span class="p">(</span><span class="n">pname</span> <span class="n">varchar</span><span class="p">,</span> <span class="n">zip</span> <span class="n">int</span><span class="p">)</span>
     <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://order_info?PROFILE=HBase'</span><span class="p">)</span>
     <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -362,9 +362,9 @@ hbase(main):&gt; put 'pxflookup', 'order_info', 'mapping:zip', 'shipping_info:zi
 
 <p>HBase 表行键是表行的唯一标识符。 PXF 以特殊方式处理行键。</p>
 
-<p>要在Greenplum数据库外部表查询中使用行键，请使用名为 <code>recordkey</code> 的PXF保留列定义外部表。 <code>recordkey</code> 列名指示PXF返回每一行的HBase表记录键。</p>
+<p>要在inHybrid数据库外部表查询中使用行键，请使用名为 <code>recordkey</code> 的PXF保留列定义外部表。 <code>recordkey</code> 列名指示PXF返回每一行的HBase表记录键。</p>
 
-<p>使用Greenplum数据库数据类型<code>bytea</code> 定义 <code>recordkey</code></p>
+<p>使用inHybrid数据库数据类型<code>bytea</code> 定义 <code>recordkey</code></p>
 
 <p>例如:</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> <span class="p">(</span><span class="n">recordkey</span> <span class="n">bytea</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span> 

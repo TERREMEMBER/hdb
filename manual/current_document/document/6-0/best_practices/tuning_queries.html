@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       SQL查询调优 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -188,9 +188,9 @@
 
   
   <div class="body">
-<p class="shortdesc">Greenplum数据库基于代价的优化器会权衡所有执行查询的策略并选择代价最小的策略去执行。</p>
+<p class="shortdesc">inHybrid数据库基于代价的优化器会权衡所有执行查询的策略并选择代价最小的策略去执行。</p>
 
-    <p class="p">和其他RDBMS的优化器类似，在计算可选执行计划的代价时，Greenplum的优化器会考虑诸如要连接的表中的行数、索引
+    <p class="p">和其他RDBMS的优化器类似，在计算可选执行计划的代价时，inHybrid的优化器会考虑诸如要连接的表中的行数、索引
       的可用性以及列数据的基数等因素。优化器还会考虑数据的位置、倾向于在segment上做尽可能多的工作以及最小化完成
       查询必须在segment之间传输的数据量。</p>
 
@@ -208,7 +208,7 @@
   <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>
@@ -249,7 +249,7 @@
     <h2 class="title topictitle2">如何阅读执行计划</h2>
 
     <div class="body">
-      <p class="p">执行计划是一份报告，它详细描述了Greenplum数据库优化器确定的执行查询要遵循的步骤。查询计划是一棵
+      <p class="p">执行计划是一份报告，它详细描述了inHybrid数据库优化器确定的执行查询要遵循的步骤。查询计划是一棵
         由节点构成的树，应该从下向上阅读，每一个节点都会将其结果传递给其上一级节点。每个节点表示执行计划中
         的一个步骤，每个节点对应的那一行标识了在该步骤中执行的操作—例如一个扫描、一个连接、一个聚集
         或者排序操作。节点还标识了用于执行该操作的方法。例如，扫描操作的方法可能是顺序扫描或者索引扫描。
@@ -257,7 +257,7 @@
 
       <p class="p">下面是一个简单查询的执行计划。该查询在存储于每一segment中的分布表中查找行数。</p>
 
-      <pre class="pre codeblock language-sql">gpadmin=# EXPLAIN SELECT gp_segment_id, count(*)
+      <pre class="pre codeblock language-sql">hdbadmin=# EXPLAIN SELECT gp_segment_id, count(*)
                   FROM contributions 
                   GROUP BY gp_segment_id;
                                  QUERY PLAN                        
@@ -314,7 +314,7 @@
 
       <ul class="ul">
         <li class="li">Hash Join – 从较小的表构建一个哈希表，用连接列作为哈希键。然后扫描较大的表，为连接列计算哈希键
-          并且探索哈希表寻找具有相同哈希键的行。哈希连接通常是Greenplum数据库中最快的连接方式。执行计划中的Hash Cond
+          并且探索哈希表寻找具有相同哈希键的行。哈希连接通常是inHybrid数据库中最快的连接方式。执行计划中的Hash Cond
           显示列出要被连接的列。</li>
 
         <li class="li">Nested Loop – 在较大数据集的行上迭代，在每次迭代时从较小的数据集中扫描行。嵌套循环连接要求广播
@@ -379,10 +379,10 @@
   </div>
 
   <div class="topic nested1" id="optimization_hints">
-    <h2 class="title topictitle2">优化Greenplum查询</h2>
+    <h2 class="title topictitle2">优化inHybrid查询</h2>
 
     <div class="body">
-      <p class="p">这个主题描述可以用来在某些情况下提高系统性能的Greenplum数据库特性和编程实践。</p>
+      <p class="p">这个主题描述可以用来在某些情况下提高系统性能的inHybrid数据库特性和编程实践。</p>
 
       <p class="p">为了分析执行计划，首先找出评估代价非常高的计划节点。判断估计的行数和代价是不是和该操作执行的行数相关。</p>
 
@@ -414,9 +414,9 @@
         设置为一个较低的值，例如2。</p>
 
       <div class="section">
-<h3 class="title sectiontitle">Greenplum分组扩展</h3>
+<h3 class="title sectiontitle">inHybrid分组扩展</h3>
         
-        <div class="p">Greenplum数据库对<samp class="ph codeph">GROUP BY</samp>子句的聚集扩展可以让一些常见计算在数据库中执行得比在应用
+        <div class="p">inHybrid数据库对<samp class="ph codeph">GROUP BY</samp>子句的聚集扩展可以让一些常见计算在数据库中执行得比在应用
           或者存储过程代码中更加高效：
           <ul class="ul" id="optimization_hints__ul_ppq_3fc_s4">
             <li class="li"><samp class="ph codeph">GROUP BY ROLLUP(<em class="ph i">col1</em>, <em class="ph i">col2</em>, <em class="ph i">col3</em>)</samp></li>
@@ -439,7 +439,7 @@
         <p class="p">用户可以用<samp class="ph codeph">GROUPING SETS</samp>表达式选择性地指定想要创建的分组集。这允许在多个维度间
           进行精确的说明而无需计算整个<samp class="ph codeph">ROLLUP</samp>或者<samp class="ph codeph">CUBE</samp>。</p>
 
-        <p class="p">这些子句的细节请参考<em class="ph i">Greenplum数据库参考指南</em>。</p>
+        <p class="p">这些子句的细节请参考<em class="ph i">inHybrid数据库参考指南</em>。</p>
 
       </div>
 

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       模式设计 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -189,10 +189,10 @@
   
 
   <div class="body">
-<p class="shortdesc">这一节包含设计Greenplum数据库模式的最佳实践。</p>
+<p class="shortdesc">这一节包含设计inHybrid数据库模式的最佳实践。</p>
 
-    <p class="p">Greenplum数据库是一种分析型的shared-nothing数据库，它和高度规范化的事务型SMP数据库有很大不同。
-      Greenplum数据库使用非规范化的模式设计会工作得最好，例如带有大型事实表和多个较小维度表的星形模式或者雪花
+    <p class="p">inHybrid数据库是一种分析型的shared-nothing数据库，它和高度规范化的事务型SMP数据库有很大不同。
+      inHybrid数据库使用非规范化的模式设计会工作得最好，例如带有大型事实表和多个较小维度表的星形模式或者雪花
       模式。</p>
 
   </div>
@@ -200,7 +200,7 @@
   <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>
@@ -211,7 +211,7 @@
       <div class="section">
 <h3 class="title sectiontitle">使用一致的数据类型</h3>
         
-        <p class="p">为表之间的连接列使用相同的数据类型。如果数据类型不同，Greenplum数据库必须动态地转换其中一列的数据类型，
+        <p class="p">为表之间的连接列使用相同的数据类型。如果数据类型不同，inHybrid数据库必须动态地转换其中一列的数据类型，
           这样数据值才能被正确地比较。出于这种考虑，用户可能需要增加数据类型尺寸以便与其他常用对象进行连接操作。</p>
 
       </div>
@@ -238,7 +238,7 @@
     <h2 class="title topictitle2">存储模型</h2>
 
     <div class="body">
-      <p class="p">在创建表时，Greenplum数据库提供了一些存储选项。非常有必要了解何时使用堆存储或追加优化（AO）存储，
+      <p class="p">在创建表时，inHybrid数据库提供了一些存储选项。非常有必要了解何时使用堆存储或追加优化（AO）存储，
         还有何时使用行存储或列存储。在堆和AO以及行和列之间做出正确的选择对于大型的事实表来说极其重要，但是
         对于小的维度表就不那么重要。</p>
 
@@ -248,7 +248,7 @@
         <li class="li">对于大型的分区事实表，为不同的分区评估并且使用最优的存储选项。一种存储选项对于整个分区表并不总是
           正确的。例如，有些分区可以是行存的而其他分区是列存的。</li>
 
-        <li class="li">在使用面向列的存储时，每一列在<em class="ph i">每个</em>Greenplum数据库Segment上都是一个单独的文件。对于具有
+        <li class="li">在使用面向列的存储时，每一列在<em class="ph i">每个</em>inHybrid数据库Segment上都是一个单独的文件。对于具有
           大量列的表，对经常访问的数据（热数据）考虑列存，对不经常访问的数据（冷数据）考虑面向行的存储。</li>
 
         <li class="li">存储选项应该在分区级别设置。</li>
@@ -300,7 +300,7 @@
 
         <p class="p">对于数据仓库的分析型负载，其中的选择很窄或者在少量列上计算数据聚集，请使用面向列的存储。对于定期
           更新单个列但不修改行中其他列的表，使用面向列的存储。在一个很宽的列存表中读取一个完整的行比在行存表
-          中读取同样一行需要更多时间。有必要理解每个列都是Greenplum数据库中<em class="ph i">每个</em>segment上一个单独
+          中读取同样一行需要更多时间。有必要理解每个列都是inHybrid数据库中<em class="ph i">每个</em>segment上一个单独
           的物理文件。</p>
 
       </div>
@@ -313,7 +313,7 @@
     <h2 class="title topictitle2">压缩</h2>
 
     <div class="body">
-      <p class="p">Greenplum数据库提供了多种选项以压缩追加优化表和分区。压缩数据允许在每次磁盘读取操作中读取更多的数据，
+      <p class="p">inHybrid数据库提供了多种选项以压缩追加优化表和分区。压缩数据允许在每次磁盘读取操作中读取更多的数据，
         这样就能提高系统的I/O。最佳实践是在数据所在的层次设置列的压缩设置。</p>
 
       <p class="p">注意被增加到分区表的新分区不会自动继承表级定义的压缩，在增加新分区时，用户必须<em class="ph i">明确地</em>定义压缩。</p>
@@ -335,7 +335,7 @@
     <h2 class="title topictitle2">分布</h2>
 
     <div class="body">
-      <p class="p">能让数据被均匀分布的最优分布方式是Greenplum数据库使用过程中的一个重要因素。在一个MPP无共享环境中，
+      <p class="p">能让数据被均匀分布的最优分布方式是inHybrid数据库使用过程中的一个重要因素。在一个MPP无共享环境中，
         一个查询的总体响应时间由所有segment的完成时间度量。整个系统的响应速度和最慢的segment正相关。如果
         数据发生倾斜，拥有更多数据的segment将需要更多时间完成，因此每一个segment必须有大约相同数据量的行
         并且执行大概相同量级的处理。如果一个Segment比其他segment有明显更多的数据要处理，将会导致糟糕的性能
@@ -361,7 +361,7 @@
         </ul>
 </div>
 
-      <p class="p">Greenplum数据库的随机分布不是循环的，因此无法保证每个segment上的记录数相等。随机分布通常会落在变化
+      <p class="p">inHybrid数据库的随机分布不是循环的，因此无法保证每个segment上的记录数相等。随机分布通常会落在变化
         低于10个百分点的目标范围中。</p>
 
       <p class="p">在连接大型表时，最优分布非常关键。为了执行连接，匹配的行必须位于同一个segment上。如果数据没有按照同
@@ -422,14 +422,14 @@ FROM (SELECT count(*) c, gp_segment_id FROM facts GROUP BY 2) AS a;</pre>
       <div class="section">
 <h3 class="title sectiontitle">处理倾斜</h3>
         
-        <p class="p">当不成比例的数据量流入一个或者少数segment并被它们处理时，处理倾斜就会发生。它常常就是Greenplum数据库
+        <p class="p">当不成比例的数据量流入一个或者少数segment并被它们处理时，处理倾斜就会发生。它常常就是inHybrid数据库
           性能和稳定性问题背后的罪人。它可能随着连接、排序、聚集和多种OLAP操作而发生。查询倾斜在查询执行时才会发生，
           因此并不如数据倾斜那么容易检测，数据倾斜由于错误的分布键选择导致的非均匀数据分布而产生。数据倾斜存在于表
           级别，因此它可以被很容易地检测到并且通过选择最优的分布键来避免。</p>
 
         <p class="p">如果单个segment故障（也就是说并非主机上所有segment失效），可能就会是一个处理倾斜问题。当前确定处理倾斜
           还是一种手工处理。首先查看溢出文件。如果有倾斜但还不足以导致溢出，这将不会成为一种性能问题。如果使用者确定
-          倾斜存在，接着查找对该倾斜负责的查询。下面是这个处理过程要使用的步骤和命令（请相应地更改传递给<samp class="ph codeph">gpssh</samp>
+          倾斜存在，接着查找对该倾斜负责的查询。下面是这个处理过程要使用的步骤和命令（请相应地更改传递给<samp class="ph codeph">hdbssh</samp>
           的主机文件名之类的东西）：</p>
 
         <ol class="ol" id="distribution__ol_hqj_2mh_hr">
@@ -438,7 +438,7 @@ FROM (SELECT count(*) c, gp_segment_id FROM facts GROUP BY 2) AS a;</pre>
 <div class="p">其输出的例子：
               <pre class="pre codeblock">  oid  |  datname
 -------+-----------
- 17088 | gpadmin
+ 17088 | hdbadmin
  10899 | postgres
      1 | template1
  10898 | template0
@@ -449,9 +449,9 @@ FROM (SELECT count(*) c, gp_segment_id FROM facts GROUP BY 2) AS a;</pre>
 </div>
 </li>
 
-          <li class="li">运行一个<samp class="ph codeph">gpssh</samp>命令以在系统中所有的Segment节点间检查文件尺寸。把<samp class="ph codeph">&lt;OID&gt;</samp>
+          <li class="li">运行一个<samp class="ph codeph">hdbssh</samp>命令以在系统中所有的Segment节点间检查文件尺寸。把<samp class="ph codeph">&lt;OID&gt;</samp>
             用前一个命令中得到的数据库OID替换：
-            <pre class="pre codeblock">[gpadmin@mdw kend]$ gpssh -f ~/hosts -e \
+            <pre class="pre codeblock">[hdbadmin@mdw kend]$ hdbssh -f ~/hosts -e \
     "du -b /data[1-2]/primary/gpseg*/base/<var class="keyword varname">&lt;OID&gt;</var>/pgsql_tmp/*" | \
     grep -v "du -b" | sort | awk -F" " '{ arr[$1] = arr[$1] + $2 ; tot = tot + $2 }; END \
     { for ( i in arr ) print "Segment node" i, arr[i], "bytes (" arr[i]/(1024**3)" GB)"; \
@@ -479,7 +479,7 @@ Total 14856967207 bytes (13.8366 GB)</pre>
             </p>
 
             <div class="p">这个例子专门地查找排序文件。并非所有的溢出文件或者倾斜情况都由排序文件导致，因此使用者将需要自定义
-              这个命令：<pre class="pre codeblock">$ gpssh -f ~/hosts -e 
+              这个命令：<pre class="pre codeblock">$ hdbssh -f ~/hosts -e 
     "ls -l /data[1-2]/primary/gpseg*/base/19979/pgsql_tmp/*" 
     | grep -i sort | awk '{sub(/base.*tmp\//, ".../", $10); print $1,$6,$10}' | sort -k2 -n</pre>
 </div>
@@ -518,13 +518,13 @@ Total 14856967207 bytes (13.8366 GB)</pre>
             拥有排序文件的进程的PID：
             <pre class="pre codeblock">[root@sdw8 ~]# lsof /data2/primary/gpseg45/base/19979/pgsql_tmp/pgsql_tmp_slice10_sort_15673_0002.1
 COMMAND  PID    USER    FD   TYPE DEVICE  SIZE        NODE        NAME
-postgres 15673  gpadmin 11u  REG  8,48    1073741824  64424546751 /data2/primary/gpseg45/base/19979/pgsql_tmp/pgsql_tmp_slice10_sort_15673_0002.1</pre>
+postgres 15673  hdbadmin 11u  REG  8,48    1073741824  64424546751 /data2/primary/gpseg45/base/19979/pgsql_tmp/pgsql_tmp_slice10_sort_15673_0002.1</pre>
 The
             PID <samp class="ph codeph">15673</samp>也是文件名的一部分，但并不总是这样。</li>
 
           <li class="li">用该PID作为参数运行<samp class="ph codeph">ps</samp>命令以确定数据库和连接信息：
             <pre class="pre codeblock">[root@sdw8 ~]# ps -eaf | grep 15673
-gpadmin  15673 27471 28 12:05 ?        00:12:59 postgres: port 40003, sbaskin bdw
+hdbadmin  15673 27471 28 12:05 ?        00:12:59 postgres: port 40003, sbaskin bdw
         172.28.12.250(21813) con699238 seg45 cmd32 slice10 MPPEXEC SELECT
 root     29622 29566  0 12:50 pts/16   00:00:00 grep 15673</pre>
 
@@ -594,9 +594,9 @@ root     29622 29566  0 12:50 pts/16   00:00:00 grep 15673</pre>
       <div class="section">
 <h3 class="title sectiontitle">分区和列存文件的数量</h3>
         
-        <p class="p">Greenplum数据库支持的文件数的唯一硬限制是操作系统的打开文件限制。但是，有必要考虑集群中文件的总数、
+        <p class="p">inHybrid数据库支持的文件数的唯一硬限制是操作系统的打开文件限制。但是，有必要考虑集群中文件的总数、
           每个segment上的文件数以及一台主机上的文件总数。在一个MPP无共享环境中，每一个节点都独立于其他节点操作。
-          每个节点受到其磁盘、CPU和内存的约束。CPU和I/O约束对Greenplum数据库并不常见，但内存常常是一种限制因素，
+          每个节点受到其磁盘、CPU和内存的约束。CPU和I/O约束对inHybrid数据库并不常见，但内存常常是一种限制因素，
           因为查询执行模型会在内存中优化查询性能。</p>
 
         <p class="p">每个segment上的最优文件数也基于该节点上的segment数量、集群的大小、SQL访问、并发、负载和倾斜等因素
@@ -632,8 +632,8 @@ root     29622 29566  0 12:50 pts/16   00:00:00 grep 15673</pre>
 
 
     <div class="body">
-      <p class="p">在Greenplum数据库中通常不需要索引。大部分分析型查询会在大体量数据上操作，而索引是用于从多行数据中定位
-        某一行或某几行。在Greenplum数据库中，顺序扫描是一种读取数据的有效方法，因为每个segment都含有数据同等
+      <p class="p">在inHybrid数据库中通常不需要索引。大部分分析型查询会在大体量数据上操作，而索引是用于从多行数据中定位
+        某一行或某几行。在inHybrid数据库中，顺序扫描是一种读取数据的有效方法，因为每个segment都含有数据同等
         大小的一部分并且所有的segment都并行工作以读取数据。</p>
 
       <p class="p">如果增加索引不能获得性能提升，马上删掉它。验证您创建的每个索引都被优化器使用到。</p>

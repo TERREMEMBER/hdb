@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       使用PXF(JDBC)访问SQL数据库 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -223,8 +223,8 @@ under the License.
 <ul>
 <li>您已配置并初始化PXF, 并且PXF正在每台segment主机上运行。更多详情，请参阅<a href="instcfg_pxf.html">配置 PXF</a>。</li>
 <li>您可以确定PXF 用户配置目录(<code>$PXF_CONF</code>)。</li>
-<li>所有Greenplum数据库segment主机和外部SQL数据库库之间都可以连接。</li>
-<li>您已经配置了外部SQL数据库，以便从所有Greenplum数据库segment主机进行访问。</li>
+<li>所有inHybrid数据库segment主机和外部SQL数据库库之间都可以连接。</li>
+<li>您已经配置了外部SQL数据库，以便从所有inHybrid数据库segment主机进行访问。</li>
 <li>您已经注册了所有JDBC驱动程序的JAR依赖。</li>
 <li>(推荐)您已经按照 <a href="jdbc_cfg.html">配置PXF JDBC 连接器</a> 中的描述创建了一个或多个命名的PXF JDBC连接服务配置。</li>
 </ul>
@@ -252,10 +252,10 @@ under the License.
 
 <p>PXF JDBC连接器支持一个名为<code>Jdbc</code>的配置文件。您可以使用此概要文件从外部SQL数据库表读取数据或将数据写入外部SQL数据库表。您还可以使用连接器在外部SQL数据库中运行静态的命名查询并读取结果。</p>
 
-<p>使用以下语法创建引用外部SQL数据库表的Greenplum数据库外部表，并使用JDBC连接器读取或写入数据：
-要访问远程SQL数据库中的数据，您可以创建一个引用该远程数据库表的可读或可写的Greenplum数据库外部表。Greenplum数据库外部表和远程数据库表或查询结果元组必须具有相同的定义；列名称和类型必须匹配。</p>
+<p>使用以下语法创建引用外部SQL数据库表的inHybrid数据库外部表，并使用JDBC连接器读取或写入数据：
+要访问远程SQL数据库中的数据，您可以创建一个引用该远程数据库表的可读或可写的inHybrid数据库外部表。inHybrid数据库外部表和远程数据库表或查询结果元组必须具有相同的定义；列名称和类型必须匹配。</p>
 
-<p>使用以下语法创建引用远程SQL数据库表或来自远程数据库的查询结果的Greenplum数据库外部表：</p>
+<p>使用以下语法创建引用远程SQL数据库表或来自远程数据库的查询结果的inHybrid数据库外部表：</p>
 
 <pre>
 CREATE [READABLE | WRITABLE] EXTERNAL TABLE &lt;table_name>
@@ -399,7 +399,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <p>PXF JDBC 连接器支持运行在多个segment主机上的PXF实例同时对外部SQL表的读取访问。 此功能被称为分区。 默认情况下，未启用读取分区。 要启用读取分区，请在创建PXF外部表时设置<code>PARTITION_BY</code>，<code>RANGE</code>和<code>INTERVAL</code>自定义选项。</p>
 
-<p>PXF使用您指定的<code>RANGE</code>和<code>INTERVAL</code>值以及<code>PARTITON_BY</code>列将外部表中的特定数据行分配给在Greenplum数据库segment主机上运行的PXF实例。 此列选择特定于PXF处理，与您可能已为外部SQL数据库中的表指定的分区列没有关系。</p>
+<p>PXF使用您指定的<code>RANGE</code>和<code>INTERVAL</code>值以及<code>PARTITON_BY</code>列将外部表中的特定数据行分配给在inHybrid数据库segment主机上运行的PXF实例。 此列选择特定于PXF处理，与您可能已为外部SQL数据库中的表指定的分区列没有关系。</p>
 
 <p>标识分区参数的示例JDBC &lt;custom-option&gt; 子字符串：</p>
 <pre class="highlight plaintext"><code>&amp;PARTITION_BY=id:int&amp;RANGE=1:100&amp;INTERVAL=5
@@ -420,9 +420,9 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <li>片段 5: WHERE (id IS NULL) - 隐式生成的片段</li>
 </ul>
 
-<p>PXF在Greenplum数据库segment之间分配片段。 在segment主机上运行的PXF实例为服务片段的主机上的每个segment生成一个线程。 如果片段的数量小于或等于在片段主机上配置的Greenplum segment的数量，则单个PXF实例可以为所有片段提供服务。 每个PXF实例将其结果发送回Greenplum数据库，在此收集它们并将其返回给用户。</p>
+<p>PXF在inHybrid数据库segment之间分配片段。 在segment主机上运行的PXF实例为服务片段的主机上的每个segment生成一个线程。 如果片段的数量小于或等于在片段主机上配置的inHybrid segment的数量，则单个PXF实例可以为所有片段提供服务。 每个PXF实例将其结果发送回inHybrid数据库，在此收集它们并将其返回给用户。</p>
 
-<p>当您指定<code>PARTITION_BY</code>选项时，根据与目标数据库的最佳JDBC连接数以及跨Greenplum数据库segment的最佳外部数据分配，调整<code>INTERVAL</code>值和单位。 <code>INTERVAL</code>低边界由Greenplum数据库segment的数量驱动，而高边界由与目标数据库的可接受的JDBC连接数量驱动。 <code>INTERVAL</code>设置会影响片段的数量，理想情况下不应设置得太高或太低。 使用多个值进行测试可以帮助您选择最佳设置。</p>
+<p>当您指定<code>PARTITION_BY</code>选项时，根据与目标数据库的最佳JDBC连接数以及跨inHybrid数据库segment的最佳外部数据分配，调整<code>INTERVAL</code>值和单位。 <code>INTERVAL</code>低边界由inHybrid数据库segment的数量驱动，而高边界由与目标数据库的可接受的JDBC连接数量驱动。 <code>INTERVAL</code>设置会影响片段的数量，理想情况下不应设置得太高或太低。 使用多个值进行测试可以帮助您选择最佳设置。</p>
 
 <h3 id="示例:-读取和写入postgresql表"><a id="jdbc_example_postgresql"></a>示例: 读取和写入PostgreSQL表</h3>
 
@@ -467,18 +467,18 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 </code></pre>
 
 <p>有了这些权限， <code>pxfuser1</code> 可以读取和写入 <code>forpxf_table1</code> 表。</p></li>
-<li><p>更新 PostgreSQL 配置以允许用户 <code>pxfuser1</code> 从每个Greenplum数据库segment主机访问 <code>pgtestdb</code> 。 此配置特定于您的PostgreSQL环境。 您将更新 <code>/var/lib/pgsql/pg_hba.conf</code> 文件，然后重启PostgreSQL服务。</p></li>
+<li><p>更新 PostgreSQL 配置以允许用户 <code>pxfuser1</code> 从每个inHybrid数据库segment主机访问 <code>pgtestdb</code> 。 此配置特定于您的PostgreSQL环境。 您将更新 <code>/var/lib/pgsql/pg_hba.conf</code> 文件，然后重启PostgreSQL服务。</p></li>
 </ol>
 
 <h4 id="配置jdbc连接器"><a id="ex_jdbconfig"></a>配置JDBC连接器</h4>
 
 <p>您必须为PostgreSQL创建JDBC服务配置，将PostgreSQL驱动程序JAR文件下载到您的系统，将该JAR文件复制到PXF用户配置目录，同步PXF配置， 然后重启PXF。</p>
 
-<p>此过程通常由Greenplum数据库管理员执行。</p>
+<p>此过程通常由inHybrid数据库管理员执行。</p>
 
 <ol>
-<li><p>登录到Greenplum数据库master节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到inHybrid数据库master节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>如<a href="jdbc_cfg.html#cfg_proc">示例配置步骤</a>中所述为PostgreSQL创建JDBC服务配置，命名服务目录为 <code>pgsrvcfg</code>。 <code>jdbc-site.xml</code> 文件的内容应类似于以下内容(将PostgreSQL主机系统替换为 <code>pgserverhost</code>)：</p>
 <pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -501,8 +501,8 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="nt">&lt;/property&gt;</span>
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></li>
-<li><p>同步PXF 配置到Greenplum数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>同步PXF 配置到inHybrid数据库集群。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 
@@ -512,12 +512,12 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <ol>
 <li><p>指定 <code>Jdbc</code> 配置文件创建PXF外部表。例如：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_tblfrompg</span><span class="p">(</span><span class="n">id</span> <span class="n">int</span><span class="p">)</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_tblfrompg</span><span class="p">(</span><span class="n">id</span> <span class="n">int</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://public.forpxf_table1?PROFILE=Jdbc&amp;SERVER=pgsrvcfg'</span><span class="p">)</span>
             <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
 </code></pre></li>
 <li><p>显示 <code>pxf_tblfrompg</code> 表的所有行：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_tblfrompg</span><span class="p">;</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_tblfrompg</span><span class="p">;</span>
  <span class="n">id</span>
 <span class="c1">----</span>
   <span class="mi">1</span>
@@ -533,7 +533,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <ol>
 <li><p>指定 <code>Jdbc</code> 配置文件创建一个可写的PXF外部表。 例如：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_writeto_postgres</span><span class="p">(</span><span class="n">id</span> <span class="n">int</span><span class="p">)</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_writeto_postgres</span><span class="p">(</span><span class="n">id</span> <span class="n">int</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://public.forpxf_table1?PROFILE=Jdbc&amp;SERVER=pgsrvcfg'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_export'</span><span class="p">);</span>
 </code></pre></li>
@@ -543,7 +543,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_writeto_postgres</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">333</span><span class="p">);</span>
 </code></pre></li>
 <li><p>使用您在上一节创建的可读外部表 <code>pxf_tblfrompg</code> 来查看PostgreSQL <code>forpxf_table1</code> 表中的数据：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_tblfrompg</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span><span class="p">;</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_tblfrompg</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">id</span> <span class="k">DESC</span><span class="p">;</span>
  <span class="n">id</span>
 <span class="c1">-----</span>
  <span class="mi">333</span>
@@ -564,13 +564,13 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <li>您需要联接所有都驻留在同一外部数据库中的几个表。</li>
 <li>您想在数据源附近执行复杂的聚合。</li>
 <li>您将在外部数据库中使用但不允许创建<code>VIEW</code>。</li>
-<li>您宁愿消耗外部系统中的计算资源，以最大程度地减少Greenplum数据库资源的利用率。</li>
+<li>您宁愿消耗外部系统中的计算资源，以最大程度地减少inHybrid数据库资源的利用率。</li>
 <li>您要运行HIVE查询并通过YARN控制资源利用率。</li>
 </ul>
 
-<p>Greenplum数据库管理员定义了一个查询，并为您提供了创建外部表时要使用的查询名称。 在表<code>CREATE EXTERNAL TABLE</code> <code>LOCATION</code>子句中指定<code>query:&lt;query_name&gt;</code>代替表名，以指示PXF JDBC连接器在远程SQL数据库中运行名为<code>&lt;query_name&gt;</code>的静态查询。</p>
+<p>inHybrid数据库管理员定义了一个查询，并为您提供了创建外部表时要使用的查询名称。 在表<code>CREATE EXTERNAL TABLE</code> <code>LOCATION</code>子句中指定<code>query:&lt;query_name&gt;</code>代替表名，以指示PXF JDBC连接器在远程SQL数据库中运行名为<code>&lt;query_name&gt;</code>的静态查询。</p>
 
-<p>PXF仅支持具有可读外部表的命名查询。 您必须为要运行的每个查询创建一个唯一的Greenplum数据库可读外部表。</p>
+<p>PXF仅支持具有可读外部表的命名查询。 您必须为要运行的每个查询创建一个唯一的inHybrid数据库可读外部表。</p>
 
 <p>外部表列的名称和类型必须与查询结果返回的列的名称，类型和顺序完全匹配。 如果查询返回聚合或其他函数的结果，请确保使用<code>AS</code>限定符指定特定的列名。</p>
 
@@ -586,7 +586,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="k">month</span>
 </code></pre>
 
-<p>该查询返回类型为<code>(name text, total int, month int)</code>的元组。 如果为名为<code>pgserver</code>的PXF JDBC服务器定义了<code>order_rpt</code>查询，则可以创建Greenplum数据库外部表来读取这些查询结果，如下所示：</p>
+<p>该查询返回类型为<code>(name text, total int, month int)</code>的元组。 如果为名为<code>pgserver</code>的PXF JDBC服务器定义了<code>order_rpt</code>查询，则可以创建inHybrid数据库外部表来读取这些查询结果，如下所示：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">orderrpt_frompg</span><span class="p">(</span><span class="n">name</span> <span class="n">text</span><span class="p">,</span> <span class="n">total</span> <span class="n">int</span><span class="p">,</span> <span class="k">month</span> <span class="n">int</span><span class="p">)</span>
   <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://query:order_rpt?PROFILE=Jdbc&amp;SERVER=pgserver&amp;PARTITION_BY=month:int&amp;RANGE=1:13&amp;INTERVAL=3'</span><span class="p">)</span>
 <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -651,16 +651,16 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <h4 id="配置命名查询"><a id="nq_jdbconfig"></a>配置命名查询</h4>
 
-<p>在此过程中，您将创建一个命名查询文本文件，将其添加到<code>pgsrvcfg</code> JDBC服务器配置中，并将PXF配置同步到Greenplum数据库集群。</p>
+<p>在此过程中，您将创建一个命名查询文本文件，将其添加到<code>pgsrvcfg</code> JDBC服务器配置中，并将PXF配置同步到inHybrid数据库集群。</p>
 
-<p>此过程通常由Greenplum数据库管理员执行。</p>
+<p>此过程通常由inHybrid数据库管理员执行。</p>
 
 <ol>
-<li><p>登录到Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>导航到JDBC服务器配置目录<code>pgsrvcfg</code>。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nb">cd</span> <span class="nv">$PXF_CONF</span>/servers/pgsrvcfg
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nb">cd</span> <span class="nv">$PXF_CONF</span>/servers/pgsrvcfg
 </code></pre></li>
 <li><p>在文本编辑器中打开名为<code>pg_order_report.sql</code>的查询文本文件，然后将以下查询复制/粘贴到该文件中：</p>
 <pre class="highlight sql"><code><span class="k">SELECT</span> <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">amount</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="k">month</span>
@@ -669,14 +669,14 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="k">month</span>
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
-<li><p>将对PXF配置的这些更改同步到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>将对PXF配置的这些更改同步到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 
 <h4 id="阅读查询结果"><a id="nq_readjdbc"></a>阅读查询结果</h4>
 
-<p>在Greenplum数据库群集上执行以下过程，以创建一个PXF外部表，该表引用您在上一节中创建的查询文件，然后读取查询结果数据：</p>
+<p>在inHybrid数据库群集上执行以下过程，以创建一个PXF外部表，该表引用您在上一节中创建的查询文件，然后读取查询结果数据：</p>
 
 <ol>
 <li><p>创建指定<code>Jdbc</code>配置文件的PXF外部表。 例如：</p>
@@ -685,7 +685,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
 </code></pre>
 
-<p>通过这种分区方案，PXF将向远程SQL数据库发出4个查询，每季度一个查询。 每个查询将返回目标季度每个月的客户名称以及给定月份中每个客户每月的总订单总额。 然后，当您查询外部表时，Greenplum数据库将为您将数据合并到单个结果集中。</p></li>
+<p>通过这种分区方案，PXF将向远程SQL数据库发出4个查询，每季度一个查询。 每个查询将返回目标季度每个月的客户名称以及给定月份中每个客户每月的总订单总额。 然后，当您查询外部表时，inHybrid数据库将为您将数据合并到单个结果集中。</p></li>
 <li><p>显示查询结果的所有行：</p>
 <pre class="highlight sql"><code><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_queryres_frompg</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">city</span><span class="p">,</span> <span class="n">total</span><span class="p">;</span>
 
@@ -706,7 +706,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="p">(</span><span class="mi">2</span> <span class="k">rows</span><span class="p">)</span>
 </code></pre>
 
-<p>当您执行此查询时，PXF仅请求和检索<code>city</code>和<code>total</code>列的查询结果，从而减少了发送回Greenplum数据库的数据量。</p></li>
+<p>当您执行此查询时，PXF仅请求和检索<code>city</code>和<code>total</code>列的查询结果，从而减少了发送回inHybrid数据库的数据量。</p></li>
 <li><p>提供其他过滤器和聚合以过滤PostgreSQL中的<code>total</code>：</p>
 <pre class="highlight sql"><code><span class="k">SELECT</span> <span class="n">city</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">total</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pxf_queryres_frompg</span>
             <span class="k">WHERE</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="mi">100</span>
@@ -719,7 +719,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="p">(</span><span class="mi">2</span> <span class="k">rows</span><span class="p">)</span>
 </code></pre>
 
-<p>在此示例中，PXF将向子查询添加<code>WHERE</code>过滤器。 该过滤器被推送到远程数据库系统并在其上执行，从而减少了PXF发送回Greenplum数据库的数据量。 但是，<code>GROUP BY</code>聚合不会推送到远程，而是由Greenplum执行。</p></li>
+<p>在此示例中，PXF将向子查询添加<code>WHERE</code>过滤器。 该过滤器被推送到远程数据库系统并在其上执行，从而减少了PXF发送回inHybrid数据库的数据量。 但是，<code>GROUP BY</code>聚合不会推送到远程，而是由inHybrid执行。</p></li>
 </ol>
 
 <h2 id="用ddl覆盖jdbc服务器配置"><a id="jdbc_override"></a>用DDL覆盖JDBC服务器配置</h2>
@@ -774,7 +774,7 @@ FORMAT &#39;CUSTOM&#39; (FORMATTER=&#39;pxfwritable_export&#39;);</pre></p>
 
 <div class="note warning">您以这种方式提供的凭据在外部表定义中可见。 不要在生产环境中使用这种传递凭据的方法。</div>
 
-<p>有关PXF用于获取Greenplum数据库用户的配置属性设置的优先级规则的详细信息，请参考<a href="cfg_server.html#override">配置属性优先级</a>。</p>
+<p>有关PXF用于获取inHybrid数据库用户的配置属性设置的优先级规则的详细信息，请参考<a href="cfg_server.html#override">配置属性优先级</a>。</p>
 
         
 

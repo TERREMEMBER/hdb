@@ -3,16 +3,42 @@
 import sys
 import os
 
-replace_list = [['gpstart', 'hdbstart'],
-                ['gpstop', 'hdbstop'],
-                ['gpinitsystem', 'hdbinitsystem'],
-                ['Greenplum', 'inHybrid'],
-                ['GPHOME', 'HDBHOME'],
-                ['gpadmin', 'hdbadmin'],
-                ['gpactivatestandby', 'hdbactivatestandby'],
-                ['gpconfig', 'hdbconfig'],
-                ]
-
+replace_list = [('gpactivestandby', 'hdbactivestandby'),
+                ('gpaddmirrors', 'hdbaddmirrors'),
+                ('gpbackup', 'hdbbackup'),
+                ('gpcheckcat', 'hdbcheckcat'),
+                ('gpcheckperf', 'hdbcheckperf'),
+                ('gpconfig', 'hdbconfig'),
+                ('gpdeletesystem', 'hdbdeletesystem'),
+                ('gpexpand', 'hdbexpand'),
+                ('gpfdist', 'hdbfdist'),
+                ('gpinitstandby', 'hdbinitstandby'),
+                ('gpinitsystem', 'hdbinitsystem'),
+                ('gpload', 'hdbload'),
+                ('gpload.bat', 'hdbload.bat'),
+                ('gpload.py', 'hdbload.py'),
+                ('gplogfilter', 'hdblogfilter'),
+                ('gpmapredude', 'hdbmapredude'),
+                ('gpperfmon_install', 'hdbperfmon_install'),
+                ('gpperfmoncat.sh', 'hdbperfmoncat.sh'),
+                ('gpmmon', 'hdbmmon'), ('gpsmon', 'hdbsmon'),
+                ('gppkg', 'hdbpkg'),
+                ('gprecoverseg', 'hdbrecoverseg'),
+                ('gpreload', 'hdbreload'),
+                ('gprestore', 'hdbrestore'),
+                ('gpscp', 'hdbscp'),
+                ('gpssh', 'hdbssh'),
+                ('gpssh-exkeys', 'hdbssh-exkeys'),
+                ('gpstart', 'hdbstart'),
+                ('gpstate', 'hdbstate'),
+                ('gpstop', 'hdbstop'),
+                ('gpsys1', 'hdbsys1'),
+                ('gpmovemirrors', 'hdbmovemirrors'),
+                ('gpsd', 'hdbsd'),
+                ('gpcheckresgroupimpl','hdbcheckresgroupimpl'),
+                ('Greenplum','inHybrid'),
+                ('GPHOME','HDBHOME'),
+                ('gpadmin','hdbadmin')]
 
 def find_all_utf8_html_list(path, file_list):
     for root, dirs, files in os.walk(path):

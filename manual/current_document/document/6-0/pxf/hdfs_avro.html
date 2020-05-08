@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       从HDFS中读取Avro数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -227,9 +227,9 @@ under the License.
 
 <p>Avro支持原生数据类型和复杂数据类型。</p>
 
-<p>要在Greenplum数据库中表示Avro原生数据类型，请将数据值映射到相同类型的Greenplum列。</p>
+<p>要在inHybrid数据库中表示Avro原生数据类型，请将数据值映射到相同类型的inHybrid列。</p>
 
-<p>Avro支持复杂数据类型数组(array), 映射(map), 记录(record), 枚举(enumeration)以及固定长度类型(fixed type)。 将这些复杂数据类型的顶层字段映射为Greenplum数据库的 <code>TEXT</code>类型。虽然Greenplum本身并不支持这些类型，您可以创建Greenplum数据库函数或应用程序代码来提取或进一步处理这些复杂数据类型的子部件。</p>
+<p>Avro支持复杂数据类型数组(array), 映射(map), 记录(record), 枚举(enumeration)以及固定长度类型(fixed type)。 将这些复杂数据类型的顶层字段映射为inHybrid数据库的 <code>TEXT</code>类型。虽然inHybrid本身并不支持这些类型，您可以创建inHybrid数据库函数或应用程序代码来提取或进一步处理这些复杂数据类型的子部件。</p>
 
 <p>下表总结了Avro数据的外部映射规则。</p>
 
@@ -238,7 +238,7 @@ under the License.
 <table><thead>
 <tr>
 <th>Avro数据类型</th>
-<th>PXF/Greenplum 数据类型</th>
+<th>PXF/inHybrid 数据类型</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -448,7 +448,7 @@ under the License.
 
 <ul>
 <li> 使用PXF默认服务器。</li>
-<li> 将顶层原生字段<code>id</code> (长整型)和<code>username</code>(字符串类型)映射到其等效的Greenplum的数据库类型(bigint和text)。</li>
+<li> 将顶层原生字段<code>id</code> (长整型)和<code>username</code>(字符串类型)映射到其等效的inHybrid的数据库类型(bigint和text)。</li>
 <li> 将剩下的复杂类型映射为text类型</li>
 <li> 使用<code>hdfs:avro</code>配置文件的自定义选项设置记录(record)、映射(map)和集合(collection)的分隔符</li>
 </ul>
@@ -470,7 +470,7 @@ under the License.
 </code></pre>
 
 <p>外部表的简单查询显示了复杂数据类型的组成部分，这些组成部分由<code>CREATE EXTERNAL TABLE</code>中指定的分隔符分隔。</p></li>
-<li><p>根据您的应用程序处理文本列中被分隔的部分。例如，以下命令使用Greenplum数据库内部的<code>string_to_array</code>函数将<code>followers</code>字段中的条目转换为新视图中的文本数组列。</p>
+<li><p>根据您的应用程序处理文本列中被分隔的部分。例如，以下命令使用inHybrid数据库内部的<code>string_to_array</code>函数将<code>followers</code>字段中的条目转换为新视图中的文本数组列。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">followers_view</span> <span class="k">AS</span> 
 <span class="k">SELECT</span> <span class="n">username</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">string_to_array</span><span class="p">(</span><span class="k">substring</span><span class="p">(</span><span class="n">followers</span> <span class="k">FROM</span> <span class="mi">2</span> <span class="k">FOR</span> <span class="p">(</span><span class="k">char_length</span><span class="p">(</span><span class="n">followers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)),</span> <span class="s1">','</span><span class="p">)::</span><span class="n">text</span><span class="p">[]</span> 
     <span class="k">AS</span> <span class="n">followers</span> 

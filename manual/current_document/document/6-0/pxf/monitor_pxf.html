@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       监控PXF |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -197,19 +197,19 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<p>要显示PXF状态，必须在Greenplum数据库集群中的每个segment主机上显式请求PXF服务实例的状态。
-<code>pxf cluster status</code>命令可显示Greenplum数据库集群中所有segment主机上PXF服务实例的状态。<code>pxf status</code>显示本地(segment)主机上PXF服务实例的状态。</p>
+<p>要显示PXF状态，必须在inHybrid数据库集群中的每个segment主机上显式请求PXF服务实例的状态。
+<code>pxf cluster status</code>命令可显示inHybrid数据库集群中所有segment主机上PXF服务实例的状态。<code>pxf status</code>显示本地(segment)主机上PXF服务实例的状态。</p>
 
-<p>只有<code>gpadmin</code>用户可以请求PXF服务的状态。</p>
+<p>只有<code>hdbadmin</code>用户可以请求PXF服务的状态。</p>
 
-<p>执行以下步骤哦，以请求Greenplum数据库集群的PXF状态。</p>
+<p>执行以下步骤哦，以请求inHybrid数据库集群的PXF状态。</p>
 
 <ol>
 <li><p>登录gpdb集群的master主机</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>运行<code>pxf cluster status</code>命令：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster status
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster status
 </code></pre></li>
 </ol>
 

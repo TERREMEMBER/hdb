@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       初始化PXF |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -219,7 +219,7 @@ under the License.
 
 <p>PXF同时支持内部的和用户自定义的配置属性。初始化PXF会生成PXF内部配置文件，并设置特定于您的配置的默认属性。初始化PXF还会为用户自定义设置生成配置文件模板，例如自定义配置文件和PXF运行时间和日志记录设置。</p>
 
-<p>PXF内部配置文件位于<code>$GPHOME/pxf/conf</code>目录，在初始化PXF时，你可以通过指定环境变量<code>$PXF_CONF</code>来配置用户目录。如果在初始化PXF之前未设置<code>$PXF_CONF</code>，PXF可能会在初始化过程中提示您接受或拒绝默认用户配置目录<code>$HOME/pxf</code>。</p>
+<p>PXF内部配置文件位于<code>$HDBHOME/pxf/conf</code>目录，在初始化PXF时，你可以通过指定环境变量<code>$PXF_CONF</code>来配置用户目录。如果在初始化PXF之前未设置<code>$PXF_CONF</code>，PXF可能会在初始化过程中提示您接受或拒绝默认用户配置目录<code>$HOME/pxf</code>。</p>
 
 <p><strong>Note</strong>: 选择可以备份的<code>$PXF_CONF</code>位置，并确保他在GPDB安装目录之外。</p>
 
@@ -231,7 +231,7 @@ under the License.
 
 <ul>
 <li>GPDB集群是启动并且运行的</li>
-<li>可以通过<code>$PXF_CONF</code>指定PXF用户配置目录的文件位置，并且<code>gpadmin</code>用户也需要对这个目录有写权限</li>
+<li>可以通过<code>$PXF_CONF</code>指定PXF用户配置目录的文件位置，并且<code>hdbadmin</code>用户也需要对这个目录有写权限</li>
 </ul>
 
 <h3 id="过程"><a id="init-pxf-steps"></a>过程</h3>
@@ -240,10 +240,10 @@ under the License.
 
 <ol>
 <li><p>登录GPDB的master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>运行<code>pxf cluster init</code>命令会在master,standby节点和所有的segment节点主机上初始化PXF服务。如下命令指定<code>/usr/local/greenplum-pxf</code>作为pxf初始化的用户配置目录</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">PXF_CONF</span><span class="o">=</span>/usr/local/greenplum-pxf <span class="nv">$GPHOME</span>/pxf/bin/pxf cluster init
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">PXF_CONF</span><span class="o">=</span>/usr/local/greenplum-pxf <span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster init
 </code></pre>
 
 <p><code>init</code>命令创建了pxf网页应用和pxf内部配置。init命令也创建了<code>$PXF_CONF</code>用户配置目录(如果目录不存在)并使用用户可自定义的配置模板填充<code>conf</code>和<code>templates</code>目录。如果<code>$PXF_CONF</code>存在，则PXF仅更新<code>templates</code>目录。</p>
@@ -255,7 +255,7 @@ under the License.
 
 <p>如果需要，可以将PXF重置为其未初始化状态。如果您指定了错误的<code>PXF_CONF</code>目录，或者您想从头开始初始化过程，则可以选择重置PXF。</p>
 
-<p>重置PXF时，PXF会提示您确认操作。如果确认，PXF将删除以下运行时文件和目录（其中<code>PXF_HOME=$GPHOME/pxf</code>）：</p>
+<p>重置PXF时，PXF会提示您确认操作。如果确认，PXF将删除以下运行时文件和目录（其中<code>PXF_HOME=$HDBHOME/pxf</code>）：</p>
 
 <ul>
 <li><code>$PXF_HOME/conf/pxf-private.classpath</code></li>
@@ -269,17 +269,17 @@ under the License.
 
 <h3 id="步骤"><a id="reset-pxf-steps"></a>步骤</h3>
 
-<p>执行以下过程在Greenplum数据库集群中的每个segment主机上重置PXF。</p>
+<p>执行以下过程在inHybrid数据库集群中的每个segment主机上重置PXF。</p>
 
 <ol>
-<li><p>登录到Greenplum数据库master节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到inHybrid数据库master节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>在每个segment主机上停止PXF服务实例。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster stop
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
 </code></pre></li>
-<li><p>在所有Greenplum主机上重置PXF服务实例。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster reset
+<li><p>在所有inHybrid主机上重置PXF服务实例。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster reset
 </code></pre></li>
 </ol>
 

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       配置Minio和S3对象存储的连接器（可选） |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -252,7 +252,7 @@
 
 <h3 id="配置s3服务器端加密"><a id="s3-sse"></a>配置S3服务器端加密</h3>
 
-<p>PXF支持使用可读写的Greenplum数据库外部表（指定<code>pxf</code>协议和<code>s3:*</code>配置文件）访问的S3文件的Amazon Web Service S3服务器端加密（SSE）。 AWS S3服务器端加密可安静地保护您的数据； 它会在将对象数据写入磁盘时对其进行加密，并在您访问数据时为您透明地解密数据。</p>
+<p>PXF支持使用可读写的inHybrid数据库外部表（指定<code>pxf</code>协议和<code>s3:*</code>配置文件）访问的S3文件的Amazon Web Service S3服务器端加密（SSE）。 AWS S3服务器端加密可安静地保护您的数据； 它会在将对象数据写入磁盘时对其进行加密，并在您访问数据时为您透明地解密数据。</p>
 
 <p>PXF支持以下AWS SSE加密密钥管理方案：</p>
 
@@ -350,18 +350,18 @@
 
 <p>在配置对象存储连接器服务器之前，请确保已初始化PXF。</p>
 
-<p>在此过程中，您将在S3云存储连接器的Greenplum数据库master主机上的<code>$PXF_CONF/servers</code>目录中命名并添加PXF服务器配置。 然后，您可以使用<code>pxf cluster sync</code>命令将服务器配置同步到Greenplum数据库集群。</p>
+<p>在此过程中，您将在S3云存储连接器的inHybrid数据库master主机上的<code>$PXF_CONF/servers</code>目录中命名并添加PXF服务器配置。 然后，您可以使用<code>pxf cluster sync</code>命令将服务器配置同步到inHybrid数据库集群。</p>
 
 <ol>
-<li><p>登录到您的Greenplum数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库主节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>选择服务器的名称。 您将为需要引用对象存储中文件的最终用户提供名称。</p></li>
 <li><p>创建<code>$PXF_HOME/servers/&lt;server_name&gt;</code>目录。 例如，使用以下命令为名为<code>s3_user1cfg</code>的S3服务器创建服务器配置：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/s3_user1cfg
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/s3_user1cfg
 </code></pre></li>
 <li><p>将S3的PXF模板文件复制到服务器配置目录。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/s3-site.xml <span class="nv">$PXF_CONF</span>/servers/s3_user1cfg/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/s3-site.xml <span class="nv">$PXF_CONF</span>/servers/s3_user1cfg/
 </code></pre></li>
 <li><p>在您选择的编辑器中打开模板服务器配置文件，并为您的环境提供适当的属性值。 例如：</p>
 <pre class="highlight plaintext"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -381,8 +381,8 @@
 &lt;/configuration&gt;
 </code></pre></li>
 <li><p>保存更改并退出编辑器。</p></li>
-<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 

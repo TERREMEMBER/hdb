@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF的启动、停止和重启 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -204,17 +204,17 @@ under the License.
 <p>PXF提供了两个管理命令:</p>
 
 <ul>
-<li><code>pxf cluster</code> - 管理Greenplum数据库集群中的所有PXF服务实例</li>
-<li><code>pxf</code> - 在特定的Greenplum数据库主机上管理PXF服务实例</li>
+<li><code>pxf cluster</code> - 管理inHybrid数据库集群中的所有PXF服务实例</li>
+<li><code>pxf</code> - 在特定的inHybrid数据库主机上管理PXF服务实例</li>
 </ul>
 
-<p><a href="ref/pxf-cluster.html"><code>pxf cluster</code></a>支持 <code>init</code>, <code>start</code>, <code>status</code>, <code>stop</code>, and <code>sync</code> 子命令。在Greenplum数据库master主机上运行 <code>pxf cluster</code> 子命令时，将在Greenplum数据库集群中的所有segment主机上执行该操作。PXF还在standby主机上运行<code>init</code>和<code>sync</code>命令。</p>
+<p><a href="ref/pxf-cluster.html"><code>pxf cluster</code></a>支持 <code>init</code>, <code>start</code>, <code>status</code>, <code>stop</code>, and <code>sync</code> 子命令。在inHybrid数据库master主机上运行 <code>pxf cluster</code> 子命令时，将在inHybrid数据库集群中的所有segment主机上执行该操作。PXF还在standby主机上运行<code>init</code>和<code>sync</code>命令。</p>
 
-<p><a href="ref/pxf.html"><code>pxf</code></a>支持<code>init</code>, <code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code> 操作。这些操作在本地执行，也就是说，如果要在特定的Greenplum数据库segment主机上启动或停止PXF代理，需要登录到该主机并运行命令。</p>
+<p><a href="ref/pxf.html"><code>pxf</code></a>支持<code>init</code>, <code>start</code>, <code>stop</code>, <code>restart</code>, <code>status</code> 操作。这些操作在本地执行，也就是说，如果要在特定的inHybrid数据库segment主机上启动或停止PXF代理，需要登录到该主机并运行命令。</p>
 
 <h2 id="启动pxf"><a id="start_pxf"></a>启动PXF</h2>
 
-<p>初始化PXF之后，必须在Greenplum数据库集群中的每个segment主机上启动PXF。PXF服务启动后，将以<code>gpadmin</code>用户身份在默认端口5888上运行。只有<code>gpadmin</code>用户可以启动和停止pxf服务。</p>
+<p>初始化PXF之后，必须在inHybrid数据库集群中的每个segment主机上启动PXF。PXF服务启动后，将以<code>hdbadmin</code>用户身份在默认端口5888上运行。只有<code>hdbadmin</code>用户可以启动和停止pxf服务。</p>
 
 <p>如果要更改默认的PXF配置，则必须在启动PXF之前更新配置。</p>
 
@@ -258,76 +258,76 @@ under the License.
 <tr>
 <td>PXF_PRINCIPAL</td>
 <td>PXF服务Kerberos主体</td>
-<td>gpadmin/_<a href="mailto:HOST@EXAMPLE.COM">HOST@EXAMPLE.COM</a></td>
+<td>hdbadmin/_<a href="mailto:HOST@EXAMPLE.COM">HOST@EXAMPLE.COM</a></td>
 </tr>
 </tbody></table>
 
-<p>您必须将对<code>pxf-env.sh</code>，<code>pxf-log4j.properties</code>或<code>pxf-profiles.xml</code>所做的所有变更同步到Greenplum数据库集群，并在每个segment节点上(重新)启动PXF。</p>
+<p>您必须将对<code>pxf-env.sh</code>，<code>pxf-log4j.properties</code>或<code>pxf-profiles.xml</code>所做的所有变更同步到inHybrid数据库集群，并在每个segment节点上(重新)启动PXF。</p>
 
 <h3 id="准备"><a id="start_pxf_prereq" class="no-quick-link"></a>准备</h3>
 
-<p>在Greenplum数据库集群中启动PXF之前，请确保：</p>
+<p>在inHybrid数据库集群中启动PXF之前，请确保：</p>
 
 <ul>
-<li>Greenplum数据库集群已启动并正在运行</li>
+<li>inHybrid数据库集群已启动并正在运行</li>
 <li>PXF已经被初始化</li>
 </ul>
 
 <h3 id="过程"><a id="start_pxf_proc" class="no-quick-link"></a>过程</h3>
 
-<p>执行以下过程以在Greenplum数据库集群中的每个segment主机上启动PXF。</p>
+<p>执行以下过程以在inHybrid数据库集群中的每个segment主机上启动PXF。</p>
 
 <ol>
 <li><p>登录greenplum master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>在每个segment主机上运行<code>pxf cluster start</code>命令启动pxf服务</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster start
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
 </code></pre></li>
 </ol>
 
 <h2 id="停止pxf"><a id="stop_pxf"></a>停止PXF</h2>
 
-<p>如果必须停止PXF,例如如果要升级PXF，则必须在Greenplum数据库集群中的每个segment主机上停止PXF。只有<code>gpadmin</code>用户可以停止PXF服务</p>
+<p>如果必须停止PXF,例如如果要升级PXF，则必须在inHybrid数据库集群中的每个segment主机上停止PXF。只有<code>hdbadmin</code>用户可以停止PXF服务</p>
 
 <h3 id="准备"><a id="stop_pxf_prereq" class="no-quick-link"></a>准备</h3>
 
-<p>在Greenplum数据库集群中停止PXF之前，请确保Greenplum数据库集群已启动并正在运行。</p>
+<p>在inHybrid数据库集群中停止PXF之前，请确保inHybrid数据库集群已启动并正在运行。</p>
 
 <h3 id="过程"><a id="stop_pxf_proc" class="no-quick-link"></a>过程</h3>
 
-<p>执行以下过程在Greenplum数据库集群中的每个segment主机上停止PXF。</p>
+<p>执行以下过程在inHybrid数据库集群中的每个segment主机上停止PXF。</p>
 
 <ol>
 <li><p>登录greenplum master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>在每个segment主机上运行<code>pxf cluster stop</code>命令停止pxf服务。 例如:</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster stop
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
 </code></pre></li>
 </ol>
 
 <h2 id="重启pxf"><a id="restart_pxf"></a>重启PXF</h2>
 
-<p>如果必须重新启动PXF，例如在<code>$PXF_CONF/conf</code>中更新了PXF用户配置文件，则可以在Greenplum数据库集群中先停止服务然后再启动PXF服务。</p>
+<p>如果必须重新启动PXF，例如在<code>$PXF_CONF/conf</code>中更新了PXF用户配置文件，则可以在inHybrid数据库集群中先停止服务然后再启动PXF服务。</p>
 
-<p>只有<code>gpadmin</code>用户可以重启PXF服务。</p>
+<p>只有<code>hdbadmin</code>用户可以重启PXF服务。</p>
 
 <h3 id="准备"><a id="restart_pxf_prereq" class="no-quick-link"></a>准备</h3>
 
-<p>在Greenplum数据库集群中重新启动PXF之前，请确保Greenplum数据库集群已启动并正在运行。</p>
+<p>在inHybrid数据库集群中重新启动PXF之前，请确保inHybrid数据库集群已启动并正在运行。</p>
 
 <h3 id="过程"><a id="restart_pxf_proc" class="no-quick-link"></a>过程</h3>
 
-<p>执行以下过程在Greenplum数据库集群中的每个segment上重启PXF。</p>
+<p>执行以下过程在inHybrid数据库集群中的每个segment上重启PXF。</p>
 
 <ol>
 <li><p>登录greenplum master节点:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>重启PXF:</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster stop
-<span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster start
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
+<span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
 </code></pre></li>
 </ol>
 

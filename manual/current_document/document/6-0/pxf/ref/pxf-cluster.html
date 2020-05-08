@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       pxf cluster |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="../overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="../overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="../intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -184,7 +184,7 @@
         <div class="to-top" id="js-to-top">
           <a href="pxf-cluster.html#top" title="back to top"></a>
         </div>
-        <p>在所有Greenplum数据库主机上管理PXF配置和PXF服务实例。</p>
+        <p>在所有inHybrid数据库主机上管理PXF配置和PXF服务实例。</p>
 
 <h2 id="概要"><a id="topic1__section2"></a>概要</h2>
 <pre class="highlight plaintext"><code>pxf cluster &lt;command&gt;
@@ -202,17 +202,17 @@ sync
 
 <h2 id="描述"><a id="topic1__section3"></a>描述</h2>
 
-<p><code>pxf cluster</code>工具命令在master,standby服务器以及所有Greenplum数据库segment主机上管理PXF。您可以使用该工具执行以下操作：</p>
+<p><code>pxf cluster</code>工具命令在master,standby服务器以及所有inHybrid数据库segment主机上管理PXF。您可以使用该工具执行以下操作：</p>
 
 <ul>
-<li>在Greenplum数据库集群中的所有主机上初始化PXF配置。</li>
+<li>在inHybrid数据库集群中的所有主机上初始化PXF配置。</li>
 <li>将所有主机上的PXF服务实例重置为其未初始化状态。</li>
 <li>在所有segment主机上启动和停止PXF服务实例。</li>
 <li>显示所有segment主机上的PXF服务实例的状态。</li>
-<li>将PXF配置从Greenplum数据库master主机同步到standby和所有segment主机。</li>
+<li>将PXF配置从inHybrid数据库master主机同步到standby和所有segment主机。</li>
 </ul>
 
-<p><code>pxf cluster</code>需要一个正在运行的Greenplum数据库集群。 您必须在Greenplum数据库master主机上运行该程序。</p>
+<p><code>pxf cluster</code>需要一个正在运行的inHybrid数据库集群。 您必须在inHybrid数据库master主机上运行该程序。</p>
 
 <p>（如果要在特定segment主机上管理PXF服务实例，请使用pxf工具。请参见<a href="pxf.html#topic1"><code>pxf</code></a>。）</p>
 
@@ -222,10 +222,10 @@ sync
 <dd> 显示<code>pxf cluster</code>帮助消息，然后退出</dd></p>
 
 <p><dt>init</dt>
-<dd>在master,standby节点和所有segment主机上初始化PXF服务实例。在Greenplum数据库集群中初始化PXF时，必须通过名为<code>$PXF_CONF</code>的环境变量来标识PXF用户配置目录。 如果在初始化PXF之前未设置<code>$PXF_CONF</code>，则PXF返回错误。</dd></p>
+<dd>在master,standby节点和所有segment主机上初始化PXF服务实例。在inHybrid数据库集群中初始化PXF时，必须通过名为<code>$PXF_CONF</code>的环境变量来标识PXF用户配置目录。 如果在初始化PXF之前未设置<code>$PXF_CONF</code>，则PXF返回错误。</dd></p>
 
 <p><dt>reset</dt>
-<dd>在master，standby和所有segment主机上重置PXF服务实例。重置将删除PXF运行时文件和目录，并使PXF返回未初始化状态。在Greenplum数据库集群中重置PXF之前，必须停止在每个segment主机上运行的PXF服务实例。</dd></p>
+<dd>在master，standby和所有segment主机上重置PXF服务实例。重置将删除PXF运行时文件和目录，并使PXF返回未初始化状态。在inHybrid数据库集群中重置PXF之前，必须停止在每个segment主机上运行的PXF服务实例。</dd></p>
 
 <p><dt>start</dt>
 <dd>在所有segment主机上启动PXF服务实例。</dd></p>
@@ -237,12 +237,12 @@ sync
 <dd>在所有段主机上停止PXF服务实例。</dd></p>
 
 <p><dt>sync  </dt>
-<dd>将PXF配置从master主机同步到standby和所有Greenplum数据库segment主机。 如果您更新了PXF用户配置或添加了JAR文件，则在同步PXF配置后还必须重新启动PXF。</dd></p>
+<dd>将PXF配置从master主机同步到standby和所有inHybrid数据库segment主机。 如果您更新了PXF用户配置或添加了JAR文件，则在同步PXF配置后还必须重新启动PXF。</dd></p>
 
 <h2 id="举例"><a id="topic1__section5"></a>举例</h2>
 
 <p>在所有segment主机上停止PXF服务</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster stop
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
 </code></pre>
 
 <h2 id="see-also"><a id="topic1__section6"></a>See Also</h2>

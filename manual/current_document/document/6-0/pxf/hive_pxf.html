@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       读取Hive表数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -272,14 +272,14 @@ under the License.
 
 <h3 id="基础数据类型"><a id="hive_datatypemap_prim" class="no-quick-link"></a>基础数据类型</h3>
 
-<p>要在Greenplum数据库中展示Hive数据，请将使用基础数据类型的数据值映射到相同类型的Greenplum数据列。</p>
+<p>要在inHybrid数据库中展示Hive数据，请将使用基础数据类型的数据值映射到相同类型的inHybrid数据列。</p>
 
 <p>下表总结了Hive基本数据类型的外部映射规则。</p>
 
 <table><thead>
 <tr>
 <th>Hive 数据类型</th>
-<th>Greenplum 数据类型</th>
+<th>inHybrid 数据类型</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -328,7 +328,7 @@ under the License.
 
 <h3 id="复杂数据类型"><a id="hive_datatypemap_complex" class="no-quick-link"></a>复杂数据类型</h3>
 
-<p>Hive支持的数据类型，包括数组(array), 结构(struct), 映射(map), 以及混合类型。 PXF 将以上复杂数据类型映射为 <code>text</code>。您可以创建Greenplum数据库函数或应用程序代码来提取这些复杂数据类型的子部分。</p>
+<p>Hive支持的数据类型，包括数组(array), 结构(struct), 映射(map), 以及混合类型。 PXF 将以上复杂数据类型映射为 <code>text</code>。您可以创建inHybrid数据库函数或应用程序代码来提取这些复杂数据类型的子部分。</p>
 
 <p>本章稍后提供通过 <code>Hive</code> 和 <code>HiveORC</code> 配置文件使用复杂数据类型的示例。</p>
 
@@ -433,11 +433,11 @@ Beijing,Dec,100,4248.41
 
 <h2 id="查询外部hive数据"><a id="hive_queryextdata"></a>查询外部Hive数据</h2>
 
-<p>您可以创建一个Greenplum数据外部表以访问Hive表中的数据。 如前所述，PXF Hive 连接器定义了特定的配置文件以支持不同的文件格式。 这些配置文件分别为 <code>Hive</code>、 <code>HiveText</code>、<code>HiveRC</code>、 <code>HiveORC</code> 和 <code>HiveVectorizedORC</code>。</p>
+<p>您可以创建一个inHybrid数据外部表以访问Hive表中的数据。 如前所述，PXF Hive 连接器定义了特定的配置文件以支持不同的文件格式。 这些配置文件分别为 <code>Hive</code>、 <code>HiveText</code>、<code>HiveRC</code>、 <code>HiveORC</code> 和 <code>HiveVectorizedORC</code>。</p>
 
 <p><code>HiveText</code> 和 <code>HiveRC</code> 配置文件分别针对文本和RCFile格式进行了优化。 <code>HiveORC</code> 和 <code>HiveVectorizedORC</code> 配置文件针对ORC文件格式进行了优化。 <code>Hive</code> 配置文件为所有文件存储类型进行了优化。 当Hive表底层由不同文件格式的多个分区组成时，您可以使用 <code>Hive</code> 配置文件。</p>
 
-<p>使用以下语法创建引用Hive表的Greenplum数据库外部表：</p>
+<p>使用以下语法创建引用Hive表的inHybrid数据库外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;hive-db-name&gt;.&lt;hive-table-name&gt;
@@ -485,7 +485,7 @@ Beijing,Dec,100,4248.41
 
 <h3 id="示例:-使用hive配置文件"><a id="hive_hive_example" class="no-quick-link"></a>示例: 使用Hive配置文件</h3>
 
-<p>使用 <code>Hive</code> 配置文件创建一个可读的Greenplum数据库外部表，该表引用此前您创建的Hive文本格式表 <code>sales_info</code>。</p>
+<p>使用 <code>Hive</code> 配置文件创建一个可读的inHybrid数据库外部表，该表引用此前您创建的Hive文本格式表 <code>sales_info</code>。</p>
 
 <ol>
 <li><p>创建外部表:</p>
@@ -507,7 +507,7 @@ Beijing,Dec,100,4248.41
 
 <h3 id="示例:-使用hivetext配置文件"><a id="hive_hivetext_example" class="no-quick-link"></a>示例: 使用HiveText配置文件</h3>
 
-<p>使用 <code>HiveText</code> 配置文件创建一个可读的Greenplum数据库外部表，该表引用此前您创建的Hive文本格式表 <code>sales_info</code>。</p>
+<p>使用 <code>HiveText</code> 配置文件创建一个可读的inHybrid数据库外部表，该表引用此前您创建的Hive文本格式表 <code>sales_info</code>。</p>
 
 <ol>
 <li><p>创建外部表:</p>
@@ -553,7 +553,7 @@ Beijing,Dec,100,4248.41
 <li><p>查询 <code>sales_info_rcfile</code> Hive 表以验证数据是否正确加载:</p>
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">sales_info_rcfile</span><span class="p">;</span>
 </code></pre></li>
-<li><p>使用 PXF <code>HiveRC</code> 配置文件创建Greenplum数据库可读外部表，该表引用此前步骤您创建的Hive <code>sales_info_rcfile</code> 表。例如:</p>
+<li><p>使用 PXF <code>HiveRC</code> 配置文件创建inHybrid数据库可读外部表，该表引用此前步骤您创建的Hive <code>sales_info_rcfile</code> 表。例如:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">salesinfo_hivercprofile</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
              <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.sales_info_rcfile?PROFILE=HiveRC'</span><span class="p">)</span>
            <span class="n">FORMAT</span> <span class="s1">'TEXT'</span> <span class="p">(</span><span class="k">delimiter</span><span class="o">=</span><span class="n">E</span><span class="s1">','</span><span class="p">);</span>
@@ -628,7 +628,7 @@ Beijing,Dec,100,4248.41
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=&gt;</span> <span class="err">\</span><span class="n">timing</span>
 <span class="n">Timing</span> <span class="k">is</span> <span class="k">on</span><span class="p">.</span>
 </code></pre></li>
-<li><p>使用PXF <code>HiveORC</code> 配置文件创建Greenplum数据库外部表，该表引用此前您在步骤 1 创建的名为 <code>sales_info_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
+<li><p>使用PXF <code>HiveORC</code> 配置文件创建inHybrid数据库外部表，该表引用此前您在步骤 1 创建的名为 <code>sales_info_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=&gt;</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">salesinfo_hiveORCprofile</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
              <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.sales_info_ORC?PROFILE=HiveORC'</span><span class="p">)</span>
              <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -655,7 +655,7 @@ Time: 425.416 ms
 <li><p>启动 <code>psql</code> 子系统:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>psql -d postgres
 </code></pre></li>
-<li><p>使用PXF <code>HiveVectorizedORC</code> 配置文件创建Greenplum数据库外部表， 该表引用您在此前示例步骤 1 中创建的名为 <code>sales_info_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveVectorizedORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
+<li><p>使用PXF <code>HiveVectorizedORC</code> 配置文件创建inHybrid数据库外部表， 该表引用您在此前示例步骤 1 中创建的名为 <code>sales_info_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveVectorizedORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=&gt;</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">salesinfo_hiveVectORC</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
              <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.sales_info_ORC?PROFILE=HiveVectorizedORC'</span><span class="p">)</span>
              <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -676,13 +676,13 @@ Time: 425.416 ms
 
 <h2 id="访问parquet格式的hive表"><a id="hive_parquet"></a>访问Parquet格式的Hive表</h2>
 
-<p>PXF <code>Hive</code> 配置文件支持使用Parquet存储格式的非分区和分区Hive表。 使用等效的Greenplum数据库数据类型映射Hive表列。 例如, 如果在 <code>default</code> 模式中使用以下命令创建一个Hive表:</p>
+<p>PXF <code>Hive</code> 配置文件支持使用Parquet存储格式的非分区和分区Hive表。 使用等效的inHybrid数据库数据类型映射Hive表列。 例如, 如果在 <code>default</code> 模式中使用以下命令创建一个Hive表:</p>
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">hive_parquet_table</span> <span class="p">(</span><span class="k">location</span> <span class="n">string</span><span class="p">,</span> <span class="k">month</span> <span class="n">string</span><span class="p">,</span>
             <span class="n">number_of_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">double</span><span class="p">)</span>
         <span class="n">STORED</span> <span class="k">AS</span> <span class="n">parquet</span><span class="p">;</span>
 </code></pre>
 
-<p>定义Greenplum数据库外部表:</p>
+<p>定义inHybrid数据库外部表:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_parquet_table</span> <span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">number_of_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">double</span> <span class="k">precision</span><span class="p">)</span>
     <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.hive_parquet_table?profile=Hive'</span><span class="p">)</span>
     <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -770,13 +770,13 @@ Time: 425.416 ms
 400 Bangalore   <span class="o">[</span>7,8,9] <span class="o">{</span><span class="s2">"zone"</span>:<span class="s2">"apac"</span>,<span class="s2">"status"</span>:<span class="s2">"pending"</span><span class="o">}</span>
 ...
 </code></pre></li>
-<li><p>使用 <code>Hive</code> 配置文件创建可读Greenplum数据库外部表，该表引用名为 <code>table_complextypes</code> 的Hive表:</p>
+<li><p>使用 <code>Hive</code> 配置文件创建可读inHybrid数据库外部表，该表引用名为 <code>table_complextypes</code> 的Hive表:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">complextypes_hiveprofile</span><span class="p">(</span><span class="k">index</span> <span class="n">int</span><span class="p">,</span> <span class="n">name</span> <span class="n">text</span><span class="p">,</span> <span class="n">intarray</span> <span class="n">text</span><span class="p">,</span> <span class="n">propmap</span> <span class="n">text</span><span class="p">)</span>
              <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://table_complextypes?PROFILE=Hive'</span><span class="p">)</span>
            <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
 </code></pre>
 
-<p>注意整数数组和映射复杂类型已映射为Greenplum数据库文本数据类型</p></li>
+<p>注意整数数组和映射复杂类型已映射为inHybrid数据库文本数据类型</p></li>
 <li><p>查询外部表:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">complextypes_hiveprofile</span><span class="p">;</span>
 </code></pre>
@@ -829,13 +829,13 @@ Time: 425.416 ms
 <li><p>启动 <code>psql</code> 子系统:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>psql -d postgres
 </code></pre></li>
-<li><p>使用 PXF <code>HiveORC</code> 配置文件创建可读Greenplum数据库外部表，该表引用您在步骤 1 中创建的名为 <code>table_complextypes_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
+<li><p>使用 PXF <code>HiveORC</code> 配置文件创建可读inHybrid数据库外部表，该表引用您在步骤 1 中创建的名为 <code>table_complextypes_ORC</code> 的Hive表。 <code>FORMAT</code> 子句必须指定为 <code>&#39;CUSTOM&#39;</code>。 <code>HiveORC</code> <code>CUSTOM</code> 格式仅支持内置的 <code>&#39;pxfwritable_import&#39;</code> <code>formatter</code>。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=&gt;</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">complextypes_hiveorc</span><span class="p">(</span><span class="k">index</span> <span class="n">int</span><span class="p">,</span> <span class="n">name</span> <span class="n">text</span><span class="p">,</span> <span class="n">intarray</span> <span class="n">text</span><span class="p">,</span> <span class="n">propmap</span> <span class="n">text</span><span class="p">)</span>
            <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.table_complextypes_ORC?PROFILE=HiveORC'</span><span class="p">)</span>
              <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
 </code></pre>
 
-<p>注意整数数组和映射复杂类型已映射为Greenplum数据库文本数据类型</p></li>
+<p>注意整数数组和映射复杂类型已映射为inHybrid数据库文本数据类型</p></li>
 <li><p>查询外部表:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">complextypes_hiveorc</span><span class="p">;</span>
 </code></pre>
@@ -864,7 +864,7 @@ Time: 425.416 ms
 <li>不支持<code>LIKE</code>字符串运算符。</li>
 </ul>
 
-<p>要利用PXF分区过滤下推功能，Hive和PXF分区字段名称必须相同。否则，PXF将忽略分区过滤，并且过滤将在Greenplum数据库端执行，从而影响性能。</p>
+<p>要利用PXF分区过滤下推功能，Hive和PXF分区字段名称必须相同。否则，PXF将忽略分区过滤，并且过滤将在inHybrid数据库端执行，从而影响性能。</p>
 
 <div class="note">PXF Hive连接器仅在分区列上过滤，而不在其他表属性上过滤。此外，仅以上确定的那些数据类型和运算符支持过滤器下推。</div>
 
@@ -872,7 +872,7 @@ Time: 425.416 ms
 
 <h3 id="示例:-使用hive配置文件访问同构分区的数据"><a id="hive_homog_part"></a>示例: 使用Hive配置文件访问同构分区的数据</h3>
 
-<p>在此示例中，您将使用 <code>Hive</code> 配置文件来查询名为 <code>sales_part</code> 的Hive表，该表使用 <code>delivery_state</code> 和 <code>delivery_city</code> 字段分区。 然后，您创建一个Greenplum数据库外部表以查询 <code>sales_part</code>。 该过程包括一些演示过滤器下推的特定示例。</p>
+<p>在此示例中，您将使用 <code>Hive</code> 配置文件来查询名为 <code>sales_part</code> 的Hive表，该表使用 <code>delivery_state</code> 和 <code>delivery_city</code> 字段分区。 然后，您创建一个inHybrid数据库外部表以查询 <code>sales_part</code>。 该过程包括一些演示过滤器下推的特定示例。</p>
 
 <ol>
 <li><p>创建一个名为 <code>sales_part</code> 的Hive表，包含两个分区字段， <code>delivery_state</code> 和 <code>delivery_city</code> ：</p>
@@ -923,7 +923,7 @@ Time: 425.416 ms
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_sales_part</span> <span class="k">WHERE</span> <span class="n">delivery_city</span> <span class="o">=</span> <span class="s1">'Sacramento'</span> <span class="k">AND</span> <span class="n">item_name</span> <span class="o">=</span> <span class="s1">'cube'</span><span class="p">;</span>
 </code></pre>
 
-<p>这个查询过滤了 <code>delivery_city</code> 分区 <code>Sacramento</code>。 由于 <code>item_name</code> 字段不是分区列， 因此该列上的过滤不会被下推。 在 <code>Sacramento</code> 分区传输完成后， 在Greenplum数据库端执行此过滤操作。</p></li>
+<p>这个查询过滤了 <code>delivery_city</code> 分区 <code>Sacramento</code>。 由于 <code>item_name</code> 字段不是分区列， 因此该列上的过滤不会被下推。 在 <code>Sacramento</code> 分区传输完成后， 在inHybrid数据库端执行此过滤操作。</p></li>
 <li><p>查询(使用过滤下推)所有 <code>delivery_state</code> 等于 <code>CALIFORNIA</code> 的记录:</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">SET</span> <span class="n">gp_external_enable_filter_pushdown</span><span class="o">=</span><span class="k">on</span><span class="p">;</span>
 <span class="n">postgres</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_sales_part</span> <span class="k">WHERE</span> <span class="n">delivery_state</span> <span class="o">=</span> <span class="s1">'CALIFORNIA'</span><span class="p">;</span>
@@ -979,7 +979,7 @@ Time: 425.416 ms
 <li><p>启动 <code>psql</code> 子系统:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>psql -d postgres
 </code></pre></li>
-<li><p>使用PXF <code>Hive</code> 配置文件创建一个可读的Greenplum数据库外部表，该表引用此前步骤您在Hive中创建的 <code>hive_multiformpart</code> 外部表。</p>
+<li><p>使用PXF <code>Hive</code> 配置文件创建一个可读的inHybrid数据库外部表，该表引用此前步骤您在Hive中创建的 <code>hive_multiformpart</code> 外部表。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_multiformpart</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">,</span> <span class="k">year</span> <span class="n">text</span><span class="p">)</span>
              <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://default.hive_multiformpart?PROFILE=Hive'</span><span class="p">)</span>
            <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -1010,7 +1010,7 @@ Time: 425.416 ms
 
 <p>本主题描述了当Hive使用默认分区时，Hive和PXF在查询结果上的区别。 当Hive启用动态分区后，分区表可能会将数据存储在默认分区中。 当分区列的值与列的定义类型不匹配是时(例如，当任何分区列存在NULL值时)，Hive会创建一个默认分区。 在Hive中，任何在分区列上的过滤查询都会 <em>排除</em> 默认分区中存储的数据。</p>
 
-<p>与Hive类似， PXF将表的分区列表示为附加在表末尾的列。但是，PXF会将默认分区中的任何列值都转换为NULL值。这意味着在同一个Hive查询中，在分区列上包含 <code>IS NULL</code> 过滤器的Greenplum数据库查询可以返回不同结果。</p>
+<p>与Hive类似， PXF将表的分区列表示为附加在表末尾的列。但是，PXF会将默认分区中的任何列值都转换为NULL值。这意味着在同一个Hive查询中，在分区列上包含 <code>IS NULL</code> 过滤器的inHybrid数据库查询可以返回不同结果。</p>
 
 <p>考虑使用以下语句创建的Hive分区表:</p>
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">sales</span> <span class="p">(</span><span class="n">order_id</span> <span class="n">bigint</span><span class="p">,</span> <span class="n">order_amount</span> <span class="n">float</span><span class="p">)</span> <span class="n">PARTITIONED</span> <span class="k">BY</span> <span class="p">(</span><span class="n">xdate</span> <span class="n">date</span><span class="p">);</span>
@@ -1030,7 +1030,7 @@ Time: 425.416 ms
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">sales</span> <span class="k">WHERE</span> <span class="n">xdate</span> <span class="k">IS</span> <span class="k">null</span><span class="p">;</span>
 </code></pre>
 
-<p>但是， 如果将此Hive表映射到Greenplum数据库中的PXF外部表，则所有默认分区列的值都将被转换为实际的NULL值。在Greenplum数据库中，对PXF外部表执行相同的查询将返回第4行作为结果，因为过滤器匹配NULL值。</p>
+<p>但是， 如果将此Hive表映射到inHybrid数据库中的PXF外部表，则所有默认分区列的值都将被转换为实际的NULL值。在inHybrid数据库中，对PXF外部表执行相同的查询将返回第4行作为结果，因为过滤器匹配NULL值。</p>
 
 <p>在Hive分区表上执行 <code>IS NULL</code> 查询时，请牢记此行为。</p>
 
