@@ -1,0 +1,24 @@
+---
+- hosts: hdb_all
+  remote_user: root
+  connection: ssh
+  vars_files:
+    - ./variable/deployment_config.yml
+  tasks:
+#---ssh检测
+    - name: ssh ping
+      ping:
+#----操作系统版本验证
+    - name: os check
+      fail:
+        msg: "OS mismatch! Your operating system should be {{ os }} instead of {{ ansible_facts['distribution'] }}."
+      when: ansible_facts['distribution'] != os
+    - name: os version check
+      fail:
+        msg: "OS version mismatch! Your operating system should be {{ os_version }} instead of {{ ansible_facts['distribution_version'] }}"
+      when: ansible_facts['distribution_version'] != os_version
+#----
+
+      
+
+

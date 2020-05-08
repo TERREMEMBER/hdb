@@ -1,6 +1,9 @@
 #template_path
 inHybrid_config_template_path: "./hdbinitsystem_config.j2"
 hostlist_template_path: "./hostlist.j2"
+#os
+os: "Ubuntu"
+os_version: "18.04"
 #inHybrid
 package_path: "./inhybrid-db.tar"
 inhybrid_admin_user: "hdbadmin"

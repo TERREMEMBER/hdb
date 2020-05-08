@@ -1,10 +1,8 @@
 ---
 - hosts: hdb_all
   remote_user: root
-  become: yes
-  become_method: sudo
   connection: ssh
   gather_facts: yes
   tasks:
     - name: reset
-      shell: "rm -rf /tmp/.s.* /tmp/gp* /home/hdbadmin/hdbdata /home/hdbadmin/gpAdminLogs"
+      shell: "rm -rf /tmp/.s.PGSQL* /home/hdbadmin/hdbdata"

@@ -57,6 +57,34 @@
       fail:
         msg: "Expected inHybrid version {{ version }}, but found '{{ postgres_hdb_version.stdout }}'"
       when: "version is not defined or version not in postgres_hdb_version.stdout"
+#----ssh拷贝
+    - name: delete ssh
+      file:
+        path: "/home/{{ inhybrid_admin_user }}/.ssh"
+        state: absent
+    - name: create ssh
+      file:
+        path: "/home/{{ inhybrid_admin_user }}/.ssh"
+        state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "755"
+    - name: cp id_rsa
+      copy: 
+        src:  "/root/.ssh/id_rsa"
+        dest: "/home/{{ inhybrid_admin_user }}/.ssh/id_rsa"
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "600"
+    - name: cp id_rsa.pub 
+      copy: 
+        src:  "/root/.ssh/id_rsa.pub"
+        dest: "/home/{{ inhybrid_admin_user }}/.ssh/id_rsa.pub"
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "644"
+    - name: authorized_keys
+      shell: "cd /home/{{ inhybrid_admin_user }}/.ssh && cat id_rsa.pub > authorized_keys && chown {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} authorized_keys"
 #-----------------初始化数据库
 #segement节点操作
 - hosts: segment
@@ -95,5 +123,7 @@
       template:
         src: "{{ hostlist_template_path }}"
         dest: "{{ MACHINE_LIST_FILE }}"
+    - name: hdbssh-exkeys
+      shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbssh-exkeys -f /home/hdbadmin/hdb_conf/hostlist"
     - name: init inHybridDB
       shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbinitsystem -c /home/hdbadmin/hdb_conf/hdbinitsystem_config -a"
