@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       配置用户模拟和代理 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -183,11 +183,11 @@
         <div class="to-top" id="js-to-top">
           <a href="pxfuserimpers.html#top" title="back to top"></a>
         </div>
-        <p>PXF使用Greenplum数据库最终用户访问Hadoop服务。默认情况下，PXF尝试使用经过GPDB身份验证的用户身份并且通过PXF连接器配置去访问数据源服务(HDFS, Hive, HBase)。注意，PXF在访问Hadoop服务时仅使用用户的登录身份。例如，如果用户以jane身份登录Greenplum数据库，然后执行SET ROLE或SET SESSION AUTHORIZATION来假定其他用户身份，则所有PXF请求仍将使用jane身份来访问Hadoop服务。</p>
+        <p>PXF使用inHybrid数据库最终用户访问Hadoop服务。默认情况下，PXF尝试使用经过GPDB身份验证的用户身份并且通过PXF连接器配置去访问数据源服务(HDFS, Hive, HBase)。注意，PXF在访问Hadoop服务时仅使用用户的登录身份。例如，如果用户以jane身份登录inHybrid数据库，然后执行SET ROLE或SET SESSION AUTHORIZATION来假定其他用户身份，则所有PXF请求仍将使用jane身份来访问Hadoop服务。</p>
 
-<p>使用默认的PXF配置，您必须显式配置每个Hadoop数据源(HDFS，Hive，HBase)来允许PXF进程所有者(通常为<code>gpadmin</code>)充当模拟用户或组的代理。详情参阅<a href="pxfuserimpers.html#hadoop">Configuring Hadoop Proxying</a>, <a href="pxfuserimpers.html#hive">Hive User Impersonation</a>, and <a href="pxfuserimpers.html#hbase">HBase User Impersonation</a>。</p>
+<p>使用默认的PXF配置，您必须显式配置每个Hadoop数据源(HDFS，Hive，HBase)来允许PXF进程所有者(通常为<code>hdbadmin</code>)充当模拟用户或组的代理。详情参阅<a href="pxfuserimpers.html#hadoop">Configuring Hadoop Proxying</a>, <a href="pxfuserimpers.html#hive">Hive User Impersonation</a>, and <a href="pxfuserimpers.html#hbase">HBase User Impersonation</a>。</p>
 
-<p>或者，您可以禁用PXF用户模拟功能。禁用用户模拟后，PXF将使用PXF进程的所有者(通常为<code>gpadmin</code>)来执行所有Hadoop服务请求。此行为与PXF的早期版本相匹配，但是它没有提供任何方法来控制Hadoop中不同于Greenplum数据库用户对Hadoop服务的访问。它要求<code>gpadmin</code>用户有权访问HDFS中的所有文件和目录，以及在PXF外部表定义中引用的Hive和HBase中的所有表的权限。参照<a href="pxfuserimpers.html#pxf_cfg_proc">Configuring PXF User Impersonation</a> for information about disabling user impersonation。</p>
+<p>或者，您可以禁用PXF用户模拟功能。禁用用户模拟后，PXF将使用PXF进程的所有者(通常为<code>hdbadmin</code>)来执行所有Hadoop服务请求。此行为与PXF的早期版本相匹配，但是它没有提供任何方法来控制Hadoop中不同于inHybrid数据库用户对Hadoop服务的访问。它要求<code>hdbadmin</code>用户有权访问HDFS中的所有文件和目录，以及在PXF外部表定义中引用的Hive和HBase中的所有表的权限。参照<a href="pxfuserimpers.html#pxf_cfg_proc">Configuring PXF User Impersonation</a> for information about disabling user impersonation。</p>
 
 <h2 id="配置pxf用户模拟"><a id="pxf_cfg_proc"></a>配置PXF用户模拟</h2>
 
@@ -195,18 +195,18 @@
 
 <ol>
 <li><p>以管理员用户身份登录GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>重新进入PXF用户配置目录<code>$PGF_CONF</code>。用文本编辑器打开配置文件<code>$PXF_CONF/conf/pxf-env.sh</code>。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_USER_IMPERSONATION</code>设置。 将该值设置为true可打开PXF用户模拟，或将其设置为false可将其关闭。 例如：</p>
 <pre class="highlight shell"><code><span class="nv">PXF_USER_IMPERSONATION</span><span class="o">=</span><span class="s2">"true"</span>
 </code></pre></li>
-<li><p>使用<code>pxf cluster sync</code>命令拷贝更新的文件<code>pxf-env.sh</code>文件到Greenplum数据库集群。例如</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>使用<code>pxf cluster sync</code>命令拷贝更新的文件<code>pxf-env.sh</code>文件到inHybrid数据库集群。例如</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
-<li><p>如果先前已启动PXF，请按照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>中的说明在每个Greenplum数据库segment主机上重新启动它来使新设置生效。</p></li>
+<li><p>如果先前已启动PXF，请按照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>中的说明在每个inHybrid数据库segment主机上重新启动它来使新设置生效。</p></li>
 </ol>
 
 <h2 id="配置hadoop代理"><a id="hadoop"></a>配置Hadoop代理</h2>
@@ -215,20 +215,20 @@
 
 <ol>
 <li><p>在你的Hadoop集群中，使用文本编辑器打开<code>core-site.xml</code>配置文件，或者使用Ambari添加或编辑此过程中描述的Hadoop属性值。</p></li>
-<li><p>设置属性值<code>hadoop.proxyuser.&lt;name&gt;.hosts</code>指定允许代理请求的PXF主机名列表。将PXF代理用户(通常为<code>gpadmin</code>)替换为<name>，并在用逗号分隔的列表中提供多个PXF主机名。 例如：</p>
+<li><p>设置属性值<code>hadoop.proxyuser.&lt;name&gt;.hosts</code>指定允许代理请求的PXF主机名列表。将PXF代理用户(通常为<code>hdbadmin</code>)替换为<name>，并在用逗号分隔的列表中提供多个PXF主机名。 例如：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
-    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.gpadmin.hosts<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.hdbadmin.hosts<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;value&gt;</span>pxfhost1,pxfhost2,pxfhost3<span class="nt">&lt;/value&gt;</span>
 <span class="nt">&lt;/property&gt;</span>
 </code></pre></li>
 <li><p>设置属性值<code>hadoop.proxyuser.&lt;name&gt;.groups</code>指定能被PXF模拟的HDFS组列表。您应该将此列表限制为仅需要从PXF访问HDFS数据的那些组。 例如：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
-    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.gpadmin.groups<span class="nt">&lt;/name&gt;</span>
+    <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.hdbadmin.groups<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;value&gt;</span>group1,group2<span class="nt">&lt;/value&gt;</span>
 <span class="nt">&lt;/property&gt;</span>
 </code></pre></li>
 <li><p>在修改过<code>core-site.xml</code>配置文件之后，你必须重启Hadoop使你的配置生效。</p></li>
-<li><p>将更新后的<code>core-site.xml</code>文件复制到master服务器上的PXF Hadoop服务器配置目录<code>$PXF_CONF/servers/default</code>中，并将配置同步到standby服务器和每个Greenplum数据库segment主机。</p></li>
+<li><p>将更新后的<code>core-site.xml</code>文件复制到master服务器上的PXF Hadoop服务器配置目录<code>$PXF_CONF/servers/default</code>中，并将配置同步到standby服务器和每个inHybrid数据库segment主机。</p></li>
 </ol>
 
 <h2 id="hive用户模拟"><a id="hive"></a>Hive用户模拟</h2>

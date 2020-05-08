@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       管理数据库膨胀 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -187,7 +187,7 @@
   <h1 class="title topictitle1">管理数据库膨胀</h1>
 
   <div class="body">
-    <p class="p">Greenplum数据库的堆表使用PostgreSQL的多版本并发控制（MVCC）存储实现。被删除或更新的行被从数据库逻辑
+    <p class="p">inHybrid数据库的堆表使用PostgreSQL的多版本并发控制（MVCC）存储实现。被删除或更新的行被从数据库逻辑
       删除，但是该行的一个不可见映像保留在表中。这些被删除的行（也被称为过期行）被存储在一个空闲空间映射文件中。
       运行<samp class="ph codeph">VACUUM</samp>会把过期行标记为可以被后续插入重用的空闲空间。</p>
 
@@ -219,7 +219,7 @@
 
     <div class="cautiontitle">CAUTION:</div>
 <div class="note caution">
-<strong class="ph b">绝不</strong>运行<samp class="ph codeph">VACUUM FULL &lt;database_name&gt;</samp>并且不要在Greenplum
+<strong class="ph b">绝不</strong>运行<samp class="ph codeph">VACUUM FULL &lt;database_name&gt;</samp>并且不要在inHybrid
       数据库中的大型表上运行<samp class="ph codeph">VACUUM FULL</samp>。</div>
 
     <div class="section">
@@ -230,7 +230,7 @@
         预计数量和实际数量之间的差别就是膨胀的度量。<samp class="ph codeph">gp_toolkit</samp>模式提供了一个<samp class="ph codeph">gp_bloat_diag</samp>
         视图，它通过预计页数和实际页数的比率来确定表膨胀。要使用这个视图，确定为数据库中所有的表都收集了最新的统计
         信息。然后运行下面的SQL：
-        <pre class="pre codeblock">gpadmin=# SELECT * FROM gp_toolkit.gp_bloat_diag;
+        <pre class="pre codeblock">hdbadmin=# SELECT * FROM gp_toolkit.gp_bloat_diag;
  bdirelid | bdinspname | bdirelname | bdirelpages | bdiexppages |                bdidiag                
 ----------+------------+------------+-------------+-------------+---------------------------------------
     21488 | public     | t1         |          97 |           1 | significant amount of bloat suspected
@@ -243,7 +243,7 @@
       <div class="p">
 <samp class="ph codeph">gp_toolkit.gp_bloat_expected_pages</samp>视图会为每个数据库对象列出其已用页面的实际数量
         和预期数量。
-        <pre class="pre codeblock">gpadmin=# SELECT * FROM gp_toolkit.gp_bloat_expected_pages LIMIT 5;
+        <pre class="pre codeblock">hdbadmin=# SELECT * FROM gp_toolkit.gp_bloat_expected_pages LIMIT 5;
  btdrelid | btdrelpages | btdexppages 
 ----------+-------------+-------------
     10789 |           1 |           1
@@ -282,9 +282,9 @@
 
       <div class="p">第一种从大型表中移除膨胀的方法是创建一个将过期行排除在外的表拷贝，删掉原始的表并且把这个拷贝重命名为原来
         的表名。这种方法使用<samp class="ph codeph">CREATE TABLE &lt;table_name&gt; AS SELECT</samp>语句创建新表，例如：
-        <pre class="pre codeblock">gpadmin=# CREATE TABLE mytable_tmp AS SELECT * FROM mytable;
-gpadmin=# DROP TABLE mytable;
-gpadmin=# ALTER TABLE mytabe_tmp RENAME TO mytable;</pre>
+        <pre class="pre codeblock">hdbadmin=# CREATE TABLE mytable_tmp AS SELECT * FROM mytable;
+hdbadmin=# DROP TABLE mytable;
+hdbadmin=# ALTER TABLE mytabe_tmp RENAME TO mytable;</pre>
 </div>
 
       <div class="p">第二种从表移除膨胀的方法是重新分布该表，这会把该表重建为不含过期行的表。参考步骤如下：
@@ -328,9 +328,9 @@ DISTRIBUTED BY (<em class="ph i">&lt;original distribution columns&gt;</em>);</p
     <div class="section">
 <h2 class="title sectiontitle">从系统目录移除膨胀</h2>
       
-      <p class="p">Greenplum数据库系统目录也是堆表并且也可能随着时间推移变得膨胀。随着数据库对象被创建、修改或者删除，
-        过期行会留在系统目录中。使用<samp class="ph codeph">gpload</samp>装载数据会加剧膨胀，因为<samp class="ph codeph">gpload</samp>
-        会创建并且删除外部表。（为了避免使用gpload，推荐使用<samp class="ph codeph">gpfdist</samp>装载数据。）</p>
+      <p class="p">inHybrid数据库系统目录也是堆表并且也可能随着时间推移变得膨胀。随着数据库对象被创建、修改或者删除，
+        过期行会留在系统目录中。使用<samp class="ph codeph">hdbload</samp>装载数据会加剧膨胀，因为<samp class="ph codeph">hdbload</samp>
+        会创建并且删除外部表。（为了避免使用hdbload，推荐使用<samp class="ph codeph">hdbfdist</samp>装载数据。）</p>
 
       <p class="p">系统目录中的膨胀会导致扫描表所需的时间增加，例如在创建执行计划时需要扫描系统目录。系统目录会被频繁扫描，
         那么如果它们变得膨胀，整体的系统性能都会退化。</p>
@@ -340,7 +340,7 @@ DISTRIBUTED BY (<em class="ph i">&lt;original distribution columns&gt;</em>);</p
         <samp class="ph codeph">reindexdb</samp>工具对系统目录重建索引。在移除系统目录膨胀后，还有必要运行<samp class="ph codeph">ANALYZE</samp>
         以更新系统目录表的统计信息。</p>
 
-      <div class="p">以下是Greenplum数据库系统目录维护步骤。
+      <div class="p">以下是inHybrid数据库系统目录维护步骤。
         <ol class="ol" id="topic_gft_h11_bp__ol_un5_p1l_f2b">
           <li class="li">在系统目录表上执行<samp class="ph codeph">REINDEX</samp>操作用于重建系统目录索引。该操作可以移除索引膨胀并提高
             <samp class="ph codeph">VACUUM</samp>性能。
@@ -357,7 +357,7 @@ DISTRIBUTED BY (<em class="ph i">&lt;original distribution columns&gt;</em>);</p
         </ol>
 </div>
 
-      <p class="p">如果在维护窗口期内，由于时间限制需要停止目前正在进行的系统目录维护，可以运行Greenplum数据库函数
+      <p class="p">如果在维护窗口期内，由于时间限制需要停止目前正在进行的系统目录维护，可以运行inHybrid数据库函数
             <samp class="ph codeph">pg_cancel_backend(&lt;<var class="keyword varname">PID</var>&gt;)</samp>来安全的停止该任务。</p>
 
       <div class="p">下面的脚本在系统目录上运行<samp class="ph codeph">REINDEX</samp>、<samp class="ph codeph">VACUUM</samp>和
@@ -378,7 +378,7 @@ analyzedb -s pg_catalog -d $DBNAME</pre>
         <samp class="ph codeph">VACUUM</samp>能够预防最终不得不采用上面的高代价方法。</p>
 
       <div class="p">以下是较为彻底解决系统目录膨胀的步骤。<ol class="ol" id="topic_gft_h11_bp__ol_trp_xqs_f2b">
-          <li class="li">停止Greenplum数据库上所有系统目录操作。</li>
+          <li class="li">停止inHybrid数据库上所有系统目录操作。</li>
 
           <li class="li">在系统目录表上执行<samp class="ph codeph">REINDEX</samp>操作来重建系统目录索引。该操作可以移除索引膨胀
             并提高<samp class="ph codeph">VACUUM</samp>性能。</li>
@@ -431,7 +431,7 @@ analyzedb -s pg_catalog -d $DBNAME</pre>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="maintenance.html" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保Greenplum数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>
+<strong>Parent topic:</strong> <a class="link" href="maintenance.html" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保inHybrid数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>
 </div>
 </div>
 </div>

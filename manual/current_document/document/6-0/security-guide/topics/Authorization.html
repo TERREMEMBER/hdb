@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       配置数据库授权 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,7 +58,7 @@
   <ul>
     
       <li class="">
-        <a href="../../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
@@ -75,7 +75,7 @@
       </li>
     
       <li class="">
-        <a href="ports_and_protocols.html">Greenplum数据库端口和协议</a>
+        <a href="ports_and_protocols.html">inHybrid数据库端口和协议</a>
         
 
       </li>
@@ -153,15 +153,15 @@
     <h2 class="title topictitle2">访问权限和角色</h2>
 
     <div class="body">
-        <p class="p">Greenplum数据库使用<em class="ph i">角色</em>管理数据库访问权限。角色的概念包括了用户和组的概念。一个角色可以是一个数据库用户、组或者两者皆有。角色可以拥有数据库对象（例如表）并且可以把那些对象上的特权指派给其他角色以控制对那些对象的访问。角色可以是其他角色的成员，因此成员角色可以继承其父角色的对象特权。</p>
+        <p class="p">inHybrid数据库使用<em class="ph i">角色</em>管理数据库访问权限。角色的概念包括了用户和组的概念。一个角色可以是一个数据库用户、组或者两者皆有。角色可以拥有数据库对象（例如表）并且可以把那些对象上的特权指派给其他角色以控制对那些对象的访问。角色可以是其他角色的成员，因此成员角色可以继承其父角色的对象特权。</p>
 
-      <p class="p">每一个Greenplum数据库系统都包含一组数据库角色（用户和组）。那些角色独立于服务器所运行的操作系统管理的用户和组。不过，为了方便用户可能想要维护操作系统用户名和Greenplum数据库角色名之间的关系，因为很多客户端应用使用当前的操作系统用户名作为默认的数据库用户名。</p>
+      <p class="p">每一个inHybrid数据库系统都包含一组数据库角色（用户和组）。那些角色独立于服务器所运行的操作系统管理的用户和组。不过，为了方便用户可能想要维护操作系统用户名和inHybrid数据库角色名之间的关系，因为很多客户端应用使用当前的操作系统用户名作为默认的数据库用户名。</p>
 
-      <p class="p">在Greenplum数据库中，用户通过Master实例登入和连接，Master实例会验证它们的角色和访问特权。然后Master将在幕后用当前登入的角色向Segment实例发出命令。</p>
+      <p class="p">在inHybrid数据库中，用户通过Master实例登入和连接，Master实例会验证它们的角色和访问特权。然后Master将在幕后用当前登入的角色向Segment实例发出命令。</p>
 
       <p class="p">角色被定义在系统层面上，因此它们对系统中的所有数据库都有效。</p>
 
-      <p class="p">要让Greenplum数据库系统自举，刚刚初始化好的系统总是包含一个预定义的超级用户角色（也被称作系统该用户）。这个角色将和初始化Greenplum数据库系统的操作系统用户具有相同的名称。习惯上，这个角色被命名为<samp class="ph codeph">gpadmin</samp>。要创建更多角色，用户首先必须作为这个初始角色连接。</p>
+      <p class="p">要让inHybrid数据库系统自举，刚刚初始化好的系统总是包含一个预定义的超级用户角色（也被称作系统该用户）。这个角色将和初始化inHybrid数据库系统的操作系统用户具有相同的名称。习惯上，这个角色被命名为<samp class="ph codeph">hdbadmin</samp>。要创建更多角色，用户首先必须作为这个初始角色连接。</p>
 
     </div>
 
@@ -171,7 +171,7 @@
     <h2 class="title topictitle2">管理对象特权</h2>
 
     <div class="body">
-      <p class="p">当一个对象（表、视图、序列、数据库、函数、语言、方案或表空间）被创建时，它会被指派一个拥有者。拥有者通常就是执行创建语句的角色。对于大部分种类的对象，初始状态只有拥有者（或者超级用户）可以对该对象做任何事情。要允许其他角色使用对象，必须授予特权。对每一类对象，Greenplum数据库支持下面的特权：</p>
+      <p class="p">当一个对象（表、视图、序列、数据库、函数、语言、方案或表空间）被创建时，它会被指派一个拥有者。拥有者通常就是执行创建语句的角色。对于大部分种类的对象，初始状态只有拥有者（或者超级用户）可以对该对象做任何事情。要允许其他角色使用对象，必须授予特权。对每一类对象，inHybrid数据库支持下面的特权：</p>
 
       
 <div class="tablenoborder">
@@ -343,7 +343,7 @@
     <h2 class="title topictitle2">使用SHA-256加密</h2>
 
     <div class="body">
-      <p class="p">Greenplum数据库的访问控制大概能对应桔皮书的“C2”级安全性，而不是“B1”级。Greenplum数据库当前支持对象级别的访问特权。行级或者列级访问不被支持，标记安全性也不被支持。</p>
+      <p class="p">inHybrid数据库的访问控制大概能对应桔皮书的“C2”级安全性，而不是“B1”级。inHybrid数据库当前支持对象级别的访问特权。行级或者列级访问不被支持，标记安全性也不被支持。</p>
 
       <p class="p">行级和列级访问可以使用限制被选择的行列的视图来模拟。行级标签可以通过为表增加存储敏感度信息的额外列模拟，然后使用视图来控制基于该列的行级访问。然后可以为角色授予对视图的访问而不是对基表的访问。虽然这些变通方案不能提供和“B1”级安全性相同的安全性，但对于很多组织来说它们仍然是一种可行的替代方案。</p>
 
@@ -357,15 +357,15 @@
       <h3 class="title topictitle3">在系统范围设置加密方法</h3>
 
       <div class="body">
-        <div class="p">要在整个Greenplum系统（Master及其Segment）上设置<samp class="ph codeph">password_hash_algorithm</samp>服务器参数：
+        <div class="p">要在整个inHybrid系统（Master及其Segment）上设置<samp class="ph codeph">password_hash_algorithm</samp>服务器参数：
             <ol class="ol" id="system-wide__ol_hcg_hw2_jr">
-            <li class="li"> 作为超级用户登入Greenplum数据库实例。 </li>
+            <li class="li"> 作为超级用户登入inHybrid数据库实例。 </li>
 
-            <li class="li"> 执行<samp class="ph codeph">gpconfig</samp>把<samp class="ph codeph">password_hash_algorithm</samp>设置为SHA-256：
-                <pre class="pre codeblock">$ gpconfig -c password_hash_algorithm -v 'SHA-256' </pre>
+            <li class="li"> 执行<samp class="ph codeph">hdbconfig</samp>把<samp class="ph codeph">password_hash_algorithm</samp>设置为SHA-256：
+                <pre class="pre codeblock">$ hdbconfig -c password_hash_algorithm -v 'SHA-256' </pre>
 </li>
 
-            <li class="li"> 验证设置： <pre class="pre codeblock">$ gpconfig -s</pre>
+            <li class="li"> 验证设置： <pre class="pre codeblock">$ hdbconfig -s</pre>
 <div class="p"> 将看到：
                 <pre class="pre codeblock">Master value: SHA-256
 Segment value: SHA-256 </pre>
@@ -386,7 +386,7 @@ Segment value: SHA-256 </pre>
         <p class="p"> 要为单个会话设置<samp class="ph codeph">password_hash_algorithm</samp>服务器参数： </p>
 
         <ol class="ol" id="individual_session__ol_iv1_cvx_kr">
-          <li class="li"> 作为超级用户登入Greenplum数据库实例。 </li>
+          <li class="li"> 作为超级用户登入inHybrid数据库实例。 </li>
 
           <li class="li"> 设置<samp class="ph codeph">password_hash_algorithm</samp>为SHA-256：
               <pre class="pre codeblock"># set password_hash_algorithm = 'SHA-256'
@@ -458,7 +458,7 @@ Segment value: SHA-256 </pre>
     <h2 class="title topictitle2">用时间限制访问</h2>
 
     <div class="body">
-      <p class="p"> Greenplum数据库让管理员能够限制角色在特定时间的访问。可使用<samp class="ph codeph">CREATE ROLE</samp>或者<samp class="ph codeph">ALTER ROLE</samp>命令指定基于时间的约束。</p>
+      <p class="p"> inHybrid数据库让管理员能够限制角色在特定时间的访问。可使用<samp class="ph codeph">CREATE ROLE</samp>或者<samp class="ph codeph">ALTER ROLE</samp>命令指定基于时间的约束。</p>
 
       <p class="p"> 可以用日期或者日期和时间限制访问。无需删除和重建角色就可以移除这些约束。 </p>
 
@@ -589,7 +589,7 @@ BETWEEN DAY 'Monday' TIME '00:00' AND
       <pre class="pre codeblock">DENY DAY 'Saturday'
 DENY DAY 'Sunday'</pre>
 
-        <p class="p"> 下面的例子展示了创建带有基于时间约束的角色并且修改角色以增加基于时间的约束。只有基于时间约束所需的语句被显示。更多有关创建和修改角色的细节请见 <em class="ph i">Greenplum数据库参考指南</em>中<samp class="ph codeph">CREATE ROLE</samp> 和 <samp class="ph codeph">ALTER ROLE</samp>的描述。</p>
+        <p class="p"> 下面的例子展示了创建带有基于时间约束的角色并且修改角色以增加基于时间的约束。只有基于时间约束所需的语句被显示。更多有关创建和修改角色的细节请见 <em class="ph i">inHybrid数据库参考指南</em>中<samp class="ph codeph">CREATE ROLE</samp> 和 <samp class="ph codeph">ALTER ROLE</samp>的描述。</p>
 
       <div class="section">
 <h3 class="title sectiontitle"> 例 1 – 创建带有基于时间约束的新角色 </h3>

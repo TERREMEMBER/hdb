@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       加密数据和数据库连接 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -191,17 +191,17 @@
 <p class="shortdesc">本节描述了有关实现加密和管理密钥的最佳实践。</p>
 
     <div class="section">
-      <p class="p">在Greenplum数据库系统中可以用下面的方式使用加密来保护数据：</p>
+      <p class="p">在inHybrid数据库系统中可以用下面的方式使用加密来保护数据：</p>
 
       <ul class="ul" id="topic_th5_5bf_jr__ul_wxd_dxc_lr">
         <li class="li">客户端和Master数据库之间的连接可以用SSL加密。这种方式可以通过设置<samp class="ph codeph">ssl</samp>服务器配置
-          参数为<samp class="ph codeph">on</samp>并且配置好<samp class="ph codeph">pg_hba.conf</samp>文件来启用。有关在Greenplum数据库
-          中启用SSL的信息请见<em class="ph i">Greenplum数据库管理员指南</em>中的“加密客户端/服务器连接”部分。</li>
+          参数为<samp class="ph codeph">on</samp>并且配置好<samp class="ph codeph">pg_hba.conf</samp>文件来启用。有关在inHybrid数据库
+          中启用SSL的信息请见<em class="ph i">inHybrid数据库管理员指南</em>中的“加密客户端/服务器连接”部分。</li>
 
-        <li class="li">Greenplum数据库4.2.1及以上的版本允许在Greenplum的并行文件分发服务器、<samp class="ph codeph">gpfdist</samp>
-          和segment主机之间传输SSL加密数据。详见<a class="xref" href="encryption.html#topic_th5_5bf_jr__section_kjt_3kr_bs">加密gpfdist连接</a>。</li>
+        <li class="li">inHybrid数据库4.2.1及以上的版本允许在inHybrid的并行文件分发服务器、<samp class="ph codeph">hdbfdist</samp>
+          和segment主机之间传输SSL加密数据。详见<a class="xref" href="encryption.html#topic_th5_5bf_jr__section_kjt_3kr_bs">加密hdbfdist连接</a>。</li>
 
-        <li class="li">Greenplum数据库集群中主机之间的网络通信可以使用IPsec加密。集群中的每一对主机之间会建立一个认证过的
+        <li class="li">inHybrid数据库集群中主机之间的网络通信可以使用IPsec加密。集群中的每一对主机之间会建立一个认证过的
           加密的VPN。对IPsec的支持请检查操作系统文档，或者考虑
           <a class="xref" href="https://www.zettaset.com" target="_blank">Zettaset</a>等组织
           提供的第三方解决方案。</li>
@@ -224,10 +224,10 @@
 
         <li class="li">在生产系统中实现任何加密解决方案之前先做性能测试。</li>
 
-        <li class="li">用于生产的Greenplum数据库系统中的服务器证书应该由一个数字证书认证机构（CA）签发，这样客户端可以
+        <li class="li">用于生产的inHybrid数据库系统中的服务器证书应该由一个数字证书认证机构（CA）签发，这样客户端可以
           认证服务器。如果所有的客户端都在该组织本地，这个CA可以是本地的。</li>
 
-        <li class="li">只要到Greenplum数据库的客户端连接会通过一个不安全的链路，就应该使用SSL加密。</li>
+        <li class="li">只要到inHybrid数据库的客户端连接会通过一个不安全的链路，就应该使用SSL加密。</li>
 
         <li class="li">对称加密模式（加密和解密使用相同的密钥）比非对称模式具有更好的性能，并且应该在可以安全共享密钥时
           使用对称模式。</li>
@@ -235,8 +235,8 @@
         <li class="li">使用来自pgcrypto包的函数来加密磁盘上的数据。数据在数据库进程中被加密和解密，因此有必要用SSL来
           保护客户端连接以避免传输未加密的数据。</li>
 
-        <li class="li">在ETL数据被载入数据库或者被从数据库中卸载时，使用gpfdists协议来保护ETL数据。详情请见
-          <a class="xref" href="encryption.html#topic_th5_5bf_jr__section_kjt_3kr_bs">加密gpfdist连接</a>。</li>
+        <li class="li">在ETL数据被载入数据库或者被从数据库中卸载时，使用hdbfdists协议来保护ETL数据。详情请见
+          <a class="xref" href="encryption.html#topic_th5_5bf_jr__section_kjt_3kr_bs">加密hdbfdist连接</a>。</li>
 
       </ul>
 
@@ -271,11 +271,11 @@
     <div class="section">
 <h2 class="title sectiontitle">用pgcrypto加密静止数据</h2>
       
-      <p class="p">Greenplum数据库的pgcrypto包提供了加密数据库中静止数据的函数。管理员可以加密具有敏感信息（例如社会
+      <p class="p">inHybrid数据库的pgcrypto包提供了加密数据库中静止数据的函数。管理员可以加密具有敏感信息（例如社会
         保险号码或信用卡号）的列以提供一个额外的保护层。没有加密密钥的用户无法读取以加密形式存储的数据库数据，
         并且这些数据也无法从磁盘直接读取。</p>
 
-      <p class="p">pgcrypto在Greenplum数据库安装时默认已经安装。客户只需要在想要使用的数据库中启用该组件即可。</p>
+      <p class="p">pgcrypto在inHybrid数据库安装时默认已经安装。客户只需要在想要使用的数据库中启用该组件即可。</p>
 
       <p class="p">pgcrypto允许使用对称和非对称加密的PGP加密。对称加密使用同样的密钥加密和解密数据，并且比非对称加密更快。
         在交换密钥不成问题的环境中它是首选方法。在非对称加密中，公钥被用来加密数据而私钥被用来解密数据。这种模式
@@ -295,7 +295,7 @@
         </ul>
 </div>
 
-      <p class="p">Greenplum数据库默认用zlib编译，这允许PGP加密函数在加密数据之前先压缩数据。在编译有OpenSSL时，
+      <p class="p">inHybrid数据库默认用zlib编译，这允许PGP加密函数在加密数据之前先压缩数据。在编译有OpenSSL时，
         将会有更多算法可用。</p>
 
       <p class="p">因为pgcrypto函数运行在数据库服务器内部，数据和口令是以明文形式在pgcrypto和客户端应用之间移动。
@@ -429,10 +429,10 @@
     <div class="section" id="topic_th5_5bf_jr__creating_pgp_keys">
 <h2 class="title sectiontitle">创建PGP密钥</h2>
       
-      <p class="p">要在Greenplum数据库中使用PGP非对称加密，用户必须首先创建公私钥并且安装它们。</p>
+      <p class="p">要在inHybrid数据库中使用PGP非对称加密，用户必须首先创建公私钥并且安装它们。</p>
 
       <p class="p">这一节假定用户正在Linux机器上用Gnu Privacy Guard（<samp class="ph codeph">gpg</samp>）命令行工具
-        安装Greenplum数据库。Pivotal推荐使用最新版本的GPG来创建密钥。可以从
+        安装inHybrid数据库。Pivotal推荐使用最新版本的GPG来创建密钥。可以从
         <a class="xref" href="https://www.gnupg.org/download/" target="_blank">https://www.gnupg.org/download/</a>为用户的操作系统下载并安装Gnu Privacy Guard（GPG）。在GnuPG网站上，
         用户将找到用于常见Linux发行的安装器以及Windows和Mac OS X安装器的链接。</p>
 
@@ -736,13 +736,13 @@ username | decrypted_ssn
     </div>
 
     <div class="section" id="topic_th5_5bf_jr__section_kjt_3kr_bs">
-<h2 class="title sectiontitle">加密gpfdist连接</h2>
+<h2 class="title sectiontitle">加密hdbfdist连接</h2>
       
-      <p class="p"><samp class="ph codeph">gpfdists</samp>协议是<samp class="ph codeph">gpfdist</samp>协议的一个安全版本，它能安全地标识文件
-        服务器和Greenplum数据库并且加密它们之间的通信。使用<samp class="ph codeph">gpfdists</samp>可以防止窃听和中间人攻击。
+      <p class="p"><samp class="ph codeph">hdbfdists</samp>协议是<samp class="ph codeph">hdbfdist</samp>协议的一个安全版本，它能安全地标识文件
+        服务器和inHybrid数据库并且加密它们之间的通信。使用<samp class="ph codeph">hdbfdists</samp>可以防止窃听和中间人攻击。
         </p>
 
-      <p class="p"><samp class="ph codeph">gpfdists</samp>协议利用下列值得关注的特性实现客户端/服务器的SSL安全性：
+      <p class="p"><samp class="ph codeph">hdbfdists</samp>协议利用下列值得关注的特性实现客户端/服务器的SSL安全性：
         </p>
 
       <ul class="ul" id="topic_th5_5bf_jr__ul_yyk_vq4_kr">
@@ -760,7 +760,7 @@ username | decrypted_ssn
         <li class="li">SSL忽略主机失配参数被设置为false。</li>
 
         <li class="li">
-<samp class="ph codeph">gpfdist</samp>文件服务器（server.key）或Greenplum数据库（client.key）不支持含有口令
+<samp class="ph codeph">hdbfdist</samp>文件服务器（server.key）或inHybrid数据库（client.key）不支持含有口令
           的私钥。</li>
 
         <li class="li">为使用的操作系统颁发合适的证书是用户的责任。通常，支持将证书转换成所要求的格式，例如可使用
@@ -768,21 +768,21 @@ username | decrypted_ssn
 
       </ul>
 
-      <p class="p">用<samp class="ph codeph">--ssl</samp>选项启动的<samp class="ph codeph">gpfdist</samp>服务器只能用<samp class="ph codeph">gpfdists</samp>
-        协议通信。没有用 <samp class="ph codeph">--ssl</samp>选项启动的<samp class="ph codeph">gpfdist</samp>服务器只能用<samp class="ph codeph">gpfdist</samp>
-        协议通信。更多有关<samp class="ph codeph">gpfdist</samp>的细节请参考<em class="ph i">Greenplum数据库管理员指南</em>。</p>
+      <p class="p">用<samp class="ph codeph">--ssl</samp>选项启动的<samp class="ph codeph">hdbfdist</samp>服务器只能用<samp class="ph codeph">hdbfdists</samp>
+        协议通信。没有用 <samp class="ph codeph">--ssl</samp>选项启动的<samp class="ph codeph">hdbfdist</samp>服务器只能用<samp class="ph codeph">hdbfdist</samp>
+        协议通信。更多有关<samp class="ph codeph">hdbfdist</samp>的细节请参考<em class="ph i">inHybrid数据库管理员指南</em>。</p>
 
-      <div class="p">有两种方式启用<samp class="ph codeph">gpfdists</samp>协议：<ul class="ul" id="topic_th5_5bf_jr__ul_xdc_ycd_lr">
-        <li class="li">用<samp class="ph codeph">--ssl</samp>选项运行<samp class="ph codeph">gpfdist</samp>，然后在<samp class="ph codeph">CREATE EXTERNAL TABLE</samp>
-          语句的<samp class="ph codeph">LOCATION</samp>子句中使用<samp class="ph codeph">gpfdists</samp>协议。</li>
+      <div class="p">有两种方式启用<samp class="ph codeph">hdbfdists</samp>协议：<ul class="ul" id="topic_th5_5bf_jr__ul_xdc_ycd_lr">
+        <li class="li">用<samp class="ph codeph">--ssl</samp>选项运行<samp class="ph codeph">hdbfdist</samp>，然后在<samp class="ph codeph">CREATE EXTERNAL TABLE</samp>
+          语句的<samp class="ph codeph">LOCATION</samp>子句中使用<samp class="ph codeph">hdbfdists</samp>协议。</li>
 
-        <li class="li">在YAML控制文件中将SSL选项设置为true，然后用它来运行<samp class="ph codeph">gpload</samp>。运行的<samp class="ph codeph">gpload</samp>
-          会用<samp class="ph codeph">--ssl</samp>选项启动<samp class="ph codeph">gpfdist</samp>服务器，然后使用<samp class="ph codeph">gpfdists</samp>协议。</li>
+        <li class="li">在YAML控制文件中将SSL选项设置为true，然后用它来运行<samp class="ph codeph">hdbload</samp>。运行的<samp class="ph codeph">hdbload</samp>
+          会用<samp class="ph codeph">--ssl</samp>选项启动<samp class="ph codeph">hdbfdist</samp>服务器，然后使用<samp class="ph codeph">hdbfdists</samp>协议。</li>
 
         </ul>
 </div>
 
-      <p class="p"> 在使用gpfdists时，下列客户端证书必须位于每个segment的<samp class="ph codeph">$PGDATA/gpfdists</samp>目录中：</p>
+      <p class="p"> 在使用hdbfdists时，下列客户端证书必须位于每个segment的<samp class="ph codeph">$PGDATA/hdbfdists</samp>目录中：</p>
 
       <ul class="ul" id="topic_th5_5bf_jr__ul_afc_bdd_lr">
         <li class="li">客户端证书文件，<samp class="ph codeph">client.crt</samp>
@@ -800,18 +800,18 @@ username | decrypted_ssn
 <span class="importanttitle">Important:</span> 重要：不要用口令保护私钥。服务器不会为私钥提示要求口令，并且数据装载会在要求
         口令时失败报错。</div>
 
-      <p class="p">在使用带SSL的<samp class="ph codeph">gpload</samp>时，用户要在YAML控制文件中指定服务器证书的位置。在使用带SSL
-        的<samp class="ph codeph">gpfdist</samp>时，用户用--ssl选项指定服务器证书的位置。</p>
+      <p class="p">在使用带SSL的<samp class="ph codeph">hdbload</samp>时，用户要在YAML控制文件中指定服务器证书的位置。在使用带SSL
+        的<samp class="ph codeph">hdbfdist</samp>时，用户用--ssl选项指定服务器证书的位置。</p>
 
       <div class="p">下面的例子展示了如何安全地装载数据到外部表中。这个例子从所有带<samp class="ph codeph">txt</samp>扩展名的文件使用
-        <samp class="ph codeph">gpfdists</samp>协议创建一个可读外部表<samp class="ph codeph">ext_expenses</samp>。这些文件被格式化
+        <samp class="ph codeph">hdbfdists</samp>协议创建一个可读外部表<samp class="ph codeph">ext_expenses</samp>。这些文件被格式化
         为用一个竖线（<samp class="ph codeph">|</samp>）作为列定界符，并且用空格表示空。<ol class="ol" id="topic_th5_5bf_jr__ol_wwy_j2d_lr">
-          <li class="li">在segment主机上用<samp class="ph codeph">--ssl</samp>选项运行<samp class="ph codeph">gpfdist</samp>。</li>
+          <li class="li">在segment主机上用<samp class="ph codeph">--ssl</samp>选项运行<samp class="ph codeph">hdbfdist</samp>。</li>
 
           <li class="li">登入数据库并执行下列命令：<pre class="pre codeblock">
 =# CREATE EXTERNAL TABLE ext_expenses 
    ( name text, date date, amount float4, category text, desc1 text )
-LOCATION ('gpfdists://etlhost-1:8081/*.txt', 'gpfdists://etlhost-2:8082/*.txt')
+LOCATION ('hdbfdists://etlhost-1:8081/*.txt', 'hdbfdists://etlhost-2:8082/*.txt')
 FORMAT 'TEXT' ( DELIMITER '|' NULL ' ') ;
 </pre>
 </li>
@@ -827,7 +827,7 @@ FORMAT 'TEXT' ( DELIMITER '|' NULL ' ') ;
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>

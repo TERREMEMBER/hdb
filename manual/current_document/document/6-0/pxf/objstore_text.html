@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       在对象存储中读取和写入文本数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -248,7 +248,7 @@ under the License.
 </tr>
 </tbody></table>
 
-<p>以下语法创建一个引用对象存储中示例文本文件的Greenplum数据库可读外部表：</p>
+<p>以下语法创建一个引用对象存储中示例文本文件的inHybrid数据库可读外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> 
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-file&gt;?PROFILE=&lt;objstore&gt;:text[&amp;SERVER=&lt;server_name&gt;][&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]'</span><span class="p">)</span>
@@ -325,7 +325,7 @@ Beijing,Jul,411,11600.67'</span> &gt; /tmp/pxf_s3_simple.txt
 <li><p>启动 <code>psql</code> 子系统:</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>psql -d postgres
 </code></pre></li>
-<li><p>使用 PXF <code>s3:text</code> 配置文件创建Greenplum数据库外部表，该表引用您刚刚创建并添加到S3中的 <code>pxf_s3_simple.txt</code> 文件。 例如, 假设您的服务名为 <code>s3srvcfg</code>：</p>
+<li><p>使用 PXF <code>s3:text</code> 配置文件创建inHybrid数据库外部表，该表引用您刚刚创建并添加到S3中的 <code>pxf_s3_simple.txt</code> 文件。 例如, 假设您的服务名为 <code>s3srvcfg</code>：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_s3_textsimple</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://BUCKET/pxf_examples/pxf_s3_simple.txt?PROFILE=s3:text&amp;SERVER=s3srvcfg'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'TEXT'</span> <span class="p">(</span><span class="k">delimiter</span><span class="o">=</span><span class="n">E</span><span class="s1">','</span><span class="p">);</span>
@@ -353,7 +353,7 @@ Beijing,Jul,411,11600.67'</span> &gt; /tmp/pxf_s3_simple.txt
 
 <h2 id="读取含有双引号引起来的换行符的文本数据"><a id="profile_textmulti"></a>读取含有双引号引起来的换行符的文本数据</h2>
 
-<p>使用 <code>&lt;objstore&gt;:text:multi</code> 配置文件读取数据中含有引号引起来的换行符，单行或多行的分隔文本数据。 以下语法创建一个引用对象存储中此类文本文件的Greenplum数据库可读外部表：</p>
+<p>使用 <code>&lt;objstore&gt;:text:multi</code> 配置文件读取数据中含有引号引起来的换行符，单行或多行的分隔文本数据。 以下语法创建一个引用对象存储中此类文本文件的inHybrid数据库可读外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-file&gt;?PROFILE=&lt;objstore&gt;:text:multi[&amp;SERVER=&lt;server_name&gt;][&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]'</span><span class="p">)</span>
@@ -394,7 +394,7 @@ Beijing,Jul,411,11600.67'</span> &gt; /tmp/pxf_s3_simple.txt
 
 <h3 id="示例:-从s3中读取多行文本数据"><a id="profile_textmulti_query"></a>示例: 从S3中读取多行文本数据</h3>
 
-<p>执行以下步骤创建一个样例文本文件、 将文件复制到S3，并使用 PXF <code>s3:text:multi</code> 配置文件创建一个Greenplum数据库可读外部表来查询数据。</p>
+<p>执行以下步骤创建一个样例文本文件、 将文件复制到S3，并使用 PXF <code>s3:text:multi</code> 配置文件创建一个inHybrid数据库可读外部表来查询数据。</p>
 
 <p>要运行此示例，您必须：</p>
 
@@ -457,7 +457,7 @@ Columbus, OH  43213":Dec:2018
 
 <p><strong>注意</strong>： 使用可写配置文件创建的外部表仅支持 <code>INSERT</code> 操作。 如果要查询插入的数据，则比如单独创建一个引用该目录的可读外部表。</p>
 
-<p>使用以下语法创建一个引用对象存储目录的Greenplum数据库可写外部表：</p>
+<p>使用以下语法创建一个引用对象存储目录的inHybrid数据库可写外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span> 
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-dir&gt;
@@ -500,7 +500,7 @@ Columbus, OH  43213":Dec:2018
 </tr>
 <tr>
 <td>DISTRIBUTED BY</td>
-<td>如果您计划将现有Greenplum数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与Greenplum表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。.</td>
+<td>如果您计划将现有inHybrid数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与inHybrid表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。.</td>
 </tr>
 </tbody></table>
 
@@ -522,7 +522,7 @@ Columbus, OH  43213":Dec:2018
 </thead><tbody>
 <tr>
 <td>COMPRESSION_CODEC</td>
-<td>压缩编解码器Java类名。 如果未提供此选项，Greenplum数据库不会执行压缩编码。支持的压缩编解码器包括：<br><code>org.apache.hadoop.io.compress.DefaultCodec</code><br><code>org.apache.hadoop.io.compress.BZip2Codec</code><br><code>org.apache.hadoop.io.compress.GzipCodec</code></td>
+<td>压缩编解码器Java类名。 如果未提供此选项，inHybrid数据库不会执行压缩编码。支持的压缩编解码器包括：<br><code>org.apache.hadoop.io.compress.DefaultCodec</code><br><code>org.apache.hadoop.io.compress.BZip2Codec</code><br><code>org.apache.hadoop.io.compress.GzipCodec</code></td>
 </tr>
 <tr>
 <td>COMPRESSION_TYPE</td>
@@ -564,14 +564,14 @@ Columbus, OH  43213":Dec:2018
 </tr>
 </tbody></table>
 
-<p>此示例还可以选择使用您在该练习中创建的名为 <code>pxf_s3_textsimple</code> 的Greenplum数据库外部表。</p>
+<p>此示例还可以选择使用您在该练习中创建的名为 <code>pxf_s3_textsimple</code> 的inHybrid数据库外部表。</p>
 
 <h4 id="步骤"><a id="write_s3textsimple_proc" class="no-quick-link"></a>步骤</h4>
 
-<p>执行以下步骤，使用与上述相同的数据模式创建Greenplum数据库可写外部表， 其中之一将使用压缩。你将使用 PXF <code>s3:text</code> 配置文件将数据写入S3。 您还将创建一个单独的可读外部表，以读取您写入S3的数据。</p>
+<p>执行以下步骤，使用与上述相同的数据模式创建inHybrid数据库可写外部表， 其中之一将使用压缩。你将使用 PXF <code>s3:text</code> 配置文件将数据写入S3。 您还将创建一个单独的可读外部表，以读取您写入S3的数据。</p>
 
 <ol>
-<li><p>使用上述的数据模式创建Greenplum数据库可写外部表。写入S3 目录 <code>BUCKET/pxf_examples/pxfwrite_s3_textsimple1</code>。 创建表是指定逗号 <code>,</code> 作为分隔符。例如，假设您的服务名称为 <code>s3srvcfg</code>：</p>
+<li><p>使用上述的数据模式创建inHybrid数据库可写外部表。写入S3 目录 <code>BUCKET/pxf_examples/pxfwrite_s3_textsimple1</code>。 创建表是指定逗号 <code>,</code> 作为分隔符。例如，假设您的服务名称为 <code>s3srvcfg</code>：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_s3_writetbl_1</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://BUCKET/pxf_examples/pxfwrite_s3_textsimple1?PROFILE=s3:text&amp;SERVER=s3srvcfg'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'TEXT'</span> <span class="p">(</span><span class="k">delimiter</span><span class="o">=</span><span class="s1">','</span><span class="p">);</span>
@@ -585,7 +585,7 @@ Columbus, OH  43213":Dec:2018
 <li><p>(可选) 将您在 <a href="objstore_text.html#profile_text_query">示例: 从S3读取文本数据</a> 创建的 <code>pxf_s3_textsimple</code>  表中的数据插入到 <code>pxf_s3_writetbl_1</code> ：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_s3_writetbl_1</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">pxf_s3_textsimple</span><span class="p">;</span>
 </code></pre></li>
-<li><p>Greenplum数据库不支持直接查询可写外部表。要查询刚刚添加到S3的数据，必须创建一个引用该S3目录的Greenplum数据库可读外部表：</p>
+<li><p>inHybrid数据库不支持直接查询可写外部表。要查询刚刚添加到S3的数据，必须创建一个引用该S3目录的inHybrid数据库可读外部表：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_s3_textsimple_r1</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://BUCKET/pxf_examples/pxfwrite_s3_textsimple1?PROFILE=s3:text&amp;SERVER=s3srvcfg'</span><span class="p">)</span>
             <span class="n">FORMAT</span> <span class="s1">'CSV'</span><span class="p">;</span>
@@ -607,16 +607,16 @@ Columbus, OH  43213":Dec:2018
 </code></pre>
 
 <p><code>pxf_s3_textsimple_r1</code> 表包含了您单独插入的记录以及 <code>pxf_s3_textsimple</code> 表的完整内容(如果执行了可选步骤)</p></li>
-<li><p>创建第二个Greenplum数据库可写外部表，这次使用Gzip 压缩并使用冒号 <code>:</code> 作为分隔符：</p>
+<li><p>创建第二个inHybrid数据库可写外部表，这次使用Gzip 压缩并使用冒号 <code>:</code> 作为分隔符：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_s3_writetbl_2</span> <span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">num_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">float8</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://BUCKET/pxf_examples/pxfwrite_s3_textsimple2?PROFILE=s3:text&amp;SERVER=s3srvcfg&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.GzipCodec'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'TEXT'</span> <span class="p">(</span><span class="k">delimiter</span><span class="o">=</span><span class="s1">':'</span><span class="p">);</span>
 </code></pre></li>
 <li><p>通过直接写入 <code>pxf_s3_writetbl_2</code> 表将一些记录写入到 <code>pxfwrite_s3_textsimple2</code> S3目录：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_s3_writetbl_2</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Frankfurt'</span><span class="p">,</span> <span class="s1">'Mar'</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mi">3956</span><span class="p">.</span><span class="mi">98</span> <span class="p">);</span>
-<span class="n">gpadmin</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_s3_writetbl_2</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Cleveland'</span><span class="p">,</span> <span class="s1">'Oct'</span><span class="p">,</span> <span class="mi">3812</span><span class="p">,</span> <span class="mi">96645</span><span class="p">.</span><span class="mi">37</span> <span class="p">);</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_s3_writetbl_2</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Frankfurt'</span><span class="p">,</span> <span class="s1">'Mar'</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mi">3956</span><span class="p">.</span><span class="mi">98</span> <span class="p">);</span>
+<span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_s3_writetbl_2</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Cleveland'</span><span class="p">,</span> <span class="s1">'Oct'</span><span class="p">,</span> <span class="mi">3812</span><span class="p">,</span> <span class="mi">96645</span><span class="p">.</span><span class="mi">37</span> <span class="p">);</span>
 </code></pre></li>
-<li><p>要从新创建的名为 <code>pxfwrite_s3_textsimple2</code> 的S3目录查询数据，您可以如上所述创建一个Greenplum数据库可读外部表，该表引用此S3目录并指定 <code>FORMAT &#39;CSV&#39; (delimiter=&#39;:&#39;)</code> 。</p></li>
+<li><p>要从新创建的名为 <code>pxfwrite_s3_textsimple2</code> 的S3目录查询数据，您可以如上所述创建一个inHybrid数据库可读外部表，该表引用此S3目录并指定 <code>FORMAT &#39;CSV&#39; (delimiter=&#39;:&#39;)</code> 。</p></li>
 </ol>
 
         

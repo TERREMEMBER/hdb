@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       使用S3 Select从S3读取CSV和Parquet数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -195,7 +195,7 @@
         </div>
         <p>PXF S3连接器支持使用Amazon S3 Select服务从S3读取某些CSV和Parquet格式的数据。 S3 Select提供了对Amazon S3中存储的数据的直接就地查询功能。</p>
 
-<p>启用它后，PXF使用S3 Select过滤S3对象的内容以检索您请求的数据子集。 这样通常可以减少传输到Greenplum数据库的数据量和查询时间。</p>
+<p>启用它后，PXF使用S3 Select过滤S3对象的内容以检索您请求的数据子集。 这样通常可以减少传输到inHybrid数据库的数据量和查询时间。</p>
 
 <p>可以将PXF S3连接器与S3选择一起使用以读取：</p>
 
@@ -252,7 +252,7 @@
 
 <h3 id="创建外部表"><a id="parquet_cet"></a>创建外部表</h3>
 
-<p>使用以下语法在您希望PXF使用S3 Select服务访问的S3上引用一个Parquet文件的情况下，创建Greenplum数据库外部表：</p>
+<p>使用以下语法在您希望PXF使用S3 Select服务访问的S3上引用一个Parquet文件的情况下，创建inHybrid数据库外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
   <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-file&gt;?PROFILE=s3:parquet[&amp;SERVER=&lt;server_name&gt;]&amp;S3_SELECT=ON|AUTO[&amp;&lt;other-custom-option&gt;=&lt;value&gt;[...]]'</span><span class="p">)</span>
@@ -313,7 +313,7 @@
 
 <h3 id="创建外部表"><a id="csv_cet"></a>创建外部表</h3>
 
-<p>使用以下语法创建Greenplum数据库外部表，该表引用您希望PXF使用S3 Select服务访问的S3上的CSV文件：</p>
+<p>使用以下语法创建inHybrid数据库外部表，该表引用您希望PXF使用S3 Select服务访问的S3上的CSV文件：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-file&gt;

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       授权用户访问PXF |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -201,21 +201,21 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<p>Greenplum平台扩展框架(PXF)实现了一个名为<code>pxf</code>的协议，您可以使用该协议创建引用外部数据存储中数据的外部表。PXF协议和Java服务打包作为Greenplum数据库扩展。</p>
+<p>inHybrid平台扩展框架(PXF)实现了一个名为<code>pxf</code>的协议，您可以使用该协议创建引用外部数据存储中数据的外部表。PXF协议和Java服务打包作为inHybrid数据库扩展。</p>
 
 <p>您必须在将要使用框架访问外部数据的每个数据库实例中启用PXF扩展。您还必须向需要访问权限的用户/角色明确授予<code>pxf</code>协议的<code>GRANT</code>权限。</p>
 
 <h2 id="在数据库中启用pxf"><a id="enable-pxf-ext"></a>在数据库中启用PXF</h2>
 
-<p>您必须在计划使用该扩展的每个Greenplum数据库中显式注册PXF扩展。您必须具有Greenplum数据库管理员权限才能注册扩展。</p>
+<p>您必须在计划使用该扩展的每个inHybrid数据库中显式注册PXF扩展。您必须具有inHybrid数据库管理员权限才能注册扩展。</p>
 
 <p>对要在其中使用PXF的<strong>每个</strong>数据库执行以下过程：</p>
 
 <ol>
-<li><p>使用<code>gpadmin</code>用户连接数据库</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U gpadmin
+<li><p>使用<code>hdbadmin</code>用户连接数据库</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
 </code></pre></li>
-<li><p>创建PXF扩展名。您必须具有Greenplum数据库管理员权限才能创建扩展。 例如：</p>
+<li><p>创建PXF扩展名。您必须具有inHybrid数据库管理员权限才能创建扩展。 例如：</p>
 <pre class="highlight sql"><code><span class="k">database</span><span class="o">-</span><span class="n">name</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">EXTENSION</span> <span class="n">pxf</span><span class="p">;</span>
 </code></pre>
 
@@ -224,11 +224,11 @@ under the License.
 
 <h2 id="在数据库中禁用pxf"><a id="disable-pxf-ext"></a>在数据库中禁用PXF</h2>
 
-<p>当您不再希望在特定数据库上使用PXF时，必须显式删除该数据库的PXF扩展名。您必须具有Greenplum数据库管理员权限才能删除扩展。</p>
+<p>当您不再希望在特定数据库上使用PXF时，必须显式删除该数据库的PXF扩展名。您必须具有inHybrid数据库管理员权限才能删除扩展。</p>
 
 <ol>
-<li><p>使用<code>gpadmin</code>用户连接数据库</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U gpadmin
+<li><p>使用<code>hdbadmin</code>用户连接数据库</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
 </code></pre></li>
 <li><p>删除pxf扩展</p>
 <pre class="highlight sql"><code><span class="k">database</span><span class="o">-</span><span class="n">name</span><span class="o">=#</span> <span class="k">DROP</span> <span class="n">EXTENSION</span> <span class="n">pxf</span><span class="p">;</span>
@@ -239,13 +239,13 @@ under the License.
 
 <h2 id="授权一个用户访问pxf"><a id="access_pxf"></a>授权一个用户访问PXF</h2>
 
-<p>要使用PXF读取外部数据，请使用<code>CREATE EXTERNAL TABLE</code>命令创建一个外部表，该命令指定<code>pxf</code>协议。您必须向所有需要此类访问权限的非<code>SUPERUSER</code>的Greenplum数据库角色明确授予对pxf协议的<code>SELECT</code>权限。</p>
+<p>要使用PXF读取外部数据，请使用<code>CREATE EXTERNAL TABLE</code>命令创建一个外部表，该命令指定<code>pxf</code>协议。您必须向所有需要此类访问权限的非<code>SUPERUSER</code>的inHybrid数据库角色明确授予对pxf协议的<code>SELECT</code>权限。</p>
 
 <p>要授予特定角色对<code>pxf</code>协议的访问权限，请使用<code>GRANT</code>命令。例如，要授予名为<code>bill</code>的角色对使用<code>pxf</code>协议创建的外部表引用的数据的读取访问权限，请执行以下操作：</p>
 <pre class="highlight sql"><code><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">PROTOCOL</span> <span class="n">pxf</span> <span class="k">TO</span> <span class="n">bill</span><span class="p">;</span>
 </code></pre>
 
-<p>要使用PXF将数据写入外部数据存储，请使用<code>CREATE WRITABLE EXTERNAL TABLE</code>命令创建一个外部表，该命令指定<code>pxf</code>协议。您必须向需要此类访问的所有非<code>SUPERUSER</code>的Greenplum数据库角色明确授予对<code>pxf</code>协议的<code>INSERT</code>权限。 例如：</p>
+<p>要使用PXF将数据写入外部数据存储，请使用<code>CREATE WRITABLE EXTERNAL TABLE</code>命令创建一个外部表，该命令指定<code>pxf</code>协议。您必须向需要此类访问的所有非<code>SUPERUSER</code>的inHybrid数据库角色明确授予对<code>pxf</code>协议的<code>INSERT</code>权限。 例如：</p>
 <pre class="highlight sql"><code><span class="k">GRANT</span> <span class="k">INSERT</span> <span class="k">ON</span> <span class="n">PROTOCOL</span> <span class="n">pxf</span> <span class="k">TO</span> <span class="n">bill</span><span class="p">;</span>
 </code></pre>
 

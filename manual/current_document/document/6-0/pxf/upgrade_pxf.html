@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       升级PXF |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -181,15 +181,15 @@
         <div class="to-top" id="js-to-top">
           <a href="upgrade_pxf.html#top" title="back to top"></a>
         </div>
-        <p>如果在当前的Greenplum数据库中安装使用PXF，则必须在升级到新版本Greenplum数据库时升级PXF服务。</p>
+        <p>如果在当前的inHybrid数据库中安装使用PXF，则必须在升级到新版本inHybrid数据库时升级PXF服务。</p>
 
-<p>PXF升级过程描述了如何在Greenplum数据库安装中升级PXF。 此过程使用<em>PXF.from</em>来表示当前安装的PXF版本, <em>PXF.to</em>表示升级新版本的Greenplum数据库时安装的PXF版本。</p>
+<p>PXF升级过程描述了如何在inHybrid数据库安装中升级PXF。 此过程使用<em>PXF.from</em>来表示当前安装的PXF版本, <em>PXF.to</em>表示升级新版本的inHybrid数据库时安装的PXF版本。</p>
 
 <p>大多数PXF安装不需要修改PXF配置文件，并且可以进行无缝升级</p>
 
-<p><strong>Note</strong>: 从Greenplum Database版本5.12开始，PXF不再需要安装Hadoop客户端。PXF现在捆绑了它所依赖的所有JAR文件，并在运行时加载这些JAR。</p>
+<p><strong>Note</strong>: 从inHybrid Database版本5.12开始，PXF不再需要安装Hadoop客户端。PXF现在捆绑了它所依赖的所有JAR文件，并在运行时加载这些JAR。</p>
 
-<p>PXF升级过程分为两部分。您在升级到Greenplum数据库的新版本之前执行一个过程，之后执行一个过程：</p>
+<p>PXF升级过程分为两部分。您在升级到inHybrid数据库的新版本之前执行一个过程，之后执行一个过程：</p>
 
 <ul>
 <li>  <a href="upgrade_pxf.html#pxfpre">Step 1: PXF Pre-Upgrade Actions</a></li>
@@ -199,52 +199,52 @@
 
 <h2 id="step-1:-pxf-pre-upgrade-actions"><a id="pxfpre"></a>Step 1: PXF Pre-Upgrade Actions</h2>
 
-<p>在升级到Greenplum数据库的新版本之前执行此过程：</p>
+<p>在升级到inHybrid数据库的新版本之前执行此过程：</p>
 
 <ol>
 <li><p>登录到GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>安装<a href="cfginitstart_pxf.html#stop_pxf">Stopping PXF</a> 章节描述停止每个segment节点上的PXF</p></li>
 <li><p><strong>如果你想从GPDB版本5.14或更早的版本开始升级</strong>:</p>
 
 <ol>
-<li><p>备份 <em>PXF.from</em> 在<code>$GPHOME/pxf/conf/</code>目录的配置文件。所有segment主机上的这些文件应该相同，因此您只需要从其中一个主机进行复制。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>mkdir -p /save/pxf-from-conf
-<span class="gp">gpadmin@gpmaster$ </span>scp gpadmin@seghost1:/usr/local/greenplum-db/pxf/conf/<span class="k">*</span> /save/pxf-from-conf/
+<li><p>备份 <em>PXF.from</em> 在<code>$HDBHOME/pxf/conf/</code>目录的配置文件。所有segment主机上的这些文件应该相同，因此您只需要从其中一个主机进行复制。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir -p /save/pxf-from-conf
+<span class="gp">hdbadmin@gpmaster$ </span>scp hdbadmin@seghost1:/usr/local/greenplum-db/pxf/conf/<span class="k">*</span> /save/pxf-from-conf/
 </code></pre></li>
 <li><p>请注意您可能已添加到<em>PXF.from</em>安装的任何自定义JAR文件的位置。 保存这些JAR文件的副本</p></li>
 </ol></li>
-<li><p>升级到新版本的Greenplum数据库，然后参照<a href="upgrade_pxf.html#pxfup">Step 2: Upgrading PXF</a>.</p></li>
+<li><p>升级到新版本的inHybrid数据库，然后参照<a href="upgrade_pxf.html#pxfup">Step 2: Upgrading PXF</a>.</p></li>
 </ol>
 
 <h2 id="step-2:-upgrading-pxf"><a id="pxfup"></a>Step 2: Upgrading PXF</h2>
 
-<p>升级到新版本的Greenplum数据库后，请执行以下步骤以升级和配置<em>PXF.to</em>软件：</p>
+<p>升级到新版本的inHybrid数据库后，请执行以下步骤以升级和配置<em>PXF.to</em>软件：</p>
 
 <ol>
 <li><p>登录到GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>按照<a href="init_pxf.html">Initializing PXF</a>的描述在每个segment主机上初始化PXF。</p></li>
-<li><p>默认情况下，在Greenplum数据库版本5.5.0及更高版本中启用PXF用户模拟。如果要从较旧的<em>PXF.from</em>版本升级，则必须为基础Hadoop服务配置用户模拟。有关说明，请参阅<a href="pxfuserimpers.html">Configuring User Impersonation and Proxying</a>，包括关闭PXF用户模拟的配置过程。</p></li>
+<li><p>默认情况下，在inHybrid数据库版本5.5.0及更高版本中启用PXF用户模拟。如果要从较旧的<em>PXF.from</em>版本升级，则必须为基础Hadoop服务配置用户模拟。有关说明，请参阅<a href="pxfuserimpers.html">Configuring User Impersonation and Proxying</a>，包括关闭PXF用户模拟的配置过程。</p></li>
 <li><p><strong>如果你想从GPDB版本5.14或更早的版本开始升级</strong>:</p>
 
 <ol>
 <li><p>如果更新了<em>PXF.from</em>安装中的<code>pxf-env.sh</code>配置文件，请将这些更改重新应用于<code>$PXF_CONF/conf/pxf-env.sh</code>。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
    &lt;update the file&gt;
 </code></pre></li>
 <li><p>同样，如果您在PXF.from安装中更新了<code>pxf-profiles.xml</code>配置文件，请将这些更改重新应用到主机上的<code>$PXF_CONF/conf/pxf-profiles.xml</code>。</p>
 
-<p><strong>Note:</strong> 从Greenplum Database版本5.12开始，PXF类的包名称已更改为使用前缀<code>org.greenplum.*</code> 。如果要从较旧的<em>PXF.from</em>版本升级并自定义<code>pxf-profiles.xml</code>文件，则必须在重新应用时更改对<code>org.greenplum.pxf.*</code>的任何<code>org.apache.hawq.pxf.*</code>的引用。</p></li>
+<p><strong>Note:</strong> 从inHybrid Database版本5.12开始，PXF类的包名称已更改为使用前缀<code>org.greenplum.*</code> 。如果要从较旧的<em>PXF.from</em>版本升级并自定义<code>pxf-profiles.xml</code>文件，则必须在重新应用时更改对<code>org.greenplum.pxf.*</code>的任何<code>org.apache.hawq.pxf.*</code>的引用。</p></li>
 <li><p>如果更新了<em>PXF.from</em>安装中的<code>pxf-log4j.properties</code>配置文件，请将这些更改重新应用到主机上的 <code>$PXF_CONF/conf/pxf-log4j.properties</code></p></li>
 <li><p>如果在<em>PXF.from</em>安装中更新了<code>pxf-public.classpath</code>配置文件，请将文件中引用的每个JAR复制到naster主机的<code>$PXF_CONF/lib</code></p></li>
 <li><p>如果你将其他JAR文件添加到<em>PXF.from</em>中，请将它们复制到master主机上的<code>$PXF_CONF/lib</code></p></li>
-<li><p>从Greenplum Database版本 5.15 开始，PXF需要Hadoop配置文件放置在<code>$PXF_CONF/servers/default</code>目录中。如果在<em>PXF.from</em>安装中配置了PXF Hadoop连接器，请将<code>/etc/&lt;hadoop_service&gt;/conf</code>中的Hadoop配置文件复制到Greenplum Database主机上的<code>$PXF_CONF/servers/default</code></p></li>
-<li><p>从Greenplum Database版本 5.15 开始，PXF的默认Kerberos keytab文件位置是<code>$PXF_CONF/keytabs</code>。如果先前已将PXF配置为安全HDFS 且PXF密钥表文件位于<em>PXF.from</em>安装目录中(例如，<code>$GPHOME/pxf/conf</code>)，请考虑将keytab文件重定位到<code>$PXF_CONF/keytabs</code>,或者，更新<code>$PXF_CONF/conf/pxf-env.sh</code>文件中的<code>PXF_KEYTAB</code>属性设置以引用您的keytab文件。</p></li>
+<li><p>从inHybrid Database版本 5.15 开始，PXF需要Hadoop配置文件放置在<code>$PXF_CONF/servers/default</code>目录中。如果在<em>PXF.from</em>安装中配置了PXF Hadoop连接器，请将<code>/etc/&lt;hadoop_service&gt;/conf</code>中的Hadoop配置文件复制到inHybrid Database主机上的<code>$PXF_CONF/servers/default</code></p></li>
+<li><p>从inHybrid Database版本 5.15 开始，PXF的默认Kerberos keytab文件位置是<code>$PXF_CONF/keytabs</code>。如果先前已将PXF配置为安全HDFS 且PXF密钥表文件位于<em>PXF.from</em>安装目录中(例如，<code>$HDBHOME/pxf/conf</code>)，请考虑将keytab文件重定位到<code>$PXF_CONF/keytabs</code>,或者，更新<code>$PXF_CONF/conf/pxf-env.sh</code>文件中的<code>PXF_KEYTAB</code>属性设置以引用您的keytab文件。</p></li>
 </ol></li>
-<li><p><strong>如果要从Greenplum数据库5.18或更早版本升级</strong>：</p>
+<li><p><strong>如果要从inHybrid数据库5.18或更早版本升级</strong>：</p>
 
 <ol>
 <li>现在，PXF捆绑了Hadoop 2.9.2版相关的JAR文件。 如果您在<code>$PXF_CONF/lib</code>中注册了其他与Hadoop相关的JAR文件，请确保这些库与Hadoop 2.9.2版兼容。</li>
@@ -252,9 +252,9 @@
 <li>现在，PXF JDBC连接器支持语句查询超时。此特性需要JDBC驱动程序的显式支持。默认查询超时为<code>0</code>，请耐心等待。一些JDBC驱动程序在不完全支持语句查询超时功能的情况下支持<code>0</code>超时值。确保已注册的所有JDBC驱动程序都支持默认超时，或者更好的是，它完全支持此特性。 您可能需要更新JDBC驱动程序版本以获得此支持。有关使用PXF注册JAR文件的信息，请参考<a href="jdbc_cfg.html#cfg_jar">JDBC驱动程序JAR注册</a>中的配置说明。</li>
 <li>如果您打算对整数类型使用Hive分区过滤，则必须在Hadoop群集的<code>hive-site.xml</code>和PXF用户配置<code>$PXF_CONF/servers/default/hive-site.xml</code>中设置<code>hive.metastore.integral.jdo.pushdown</code> Hive属性。请参阅<a href="client_instcfg.html#client-cfg-update">更新Hadoop配置</a>。</li>
 </ol></li>
-<li><p><strong>如果您要从Greenplum数据库5.21.1或更早版本升级</strong>：当您创建指定<code>HiveText</code>或<code>HiveRC</code>配置文件的外部表时，PXF Hive连接器不再支持在<code>LOCATION</code> URI中提供<code>DELIMITER=&lt;delim&gt;</code>选项。如果您以前创建了一个在<code>LOCATION</code> URI中指定<code>DELIMITER</code>的外部表，则必须删除该表，然后从<code>LOCATION</code>省略<code>DELIMITER</code>来重新创建它。您仍然需要在外部表格式设置选项中提供非默认定界符。</p></li>
-<li><p>将PXF配置从master主机同步到standby和每个Greenplum数据库segment主机。例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p><strong>如果您要从inHybrid数据库5.21.1或更早版本升级</strong>：当您创建指定<code>HiveText</code>或<code>HiveRC</code>配置文件的外部表时，PXF Hive连接器不再支持在<code>LOCATION</code> URI中提供<code>DELIMITER=&lt;delim&gt;</code>选项。如果您以前创建了一个在<code>LOCATION</code> URI中指定<code>DELIMITER</code>的外部表，则必须删除该表，然后从<code>LOCATION</code>省略<code>DELIMITER</code>来重新创建它。您仍然需要在外部表格式设置选项中提供非默认定界符。</p></li>
+<li><p>将PXF配置从master主机同步到standby和每个inHybrid数据库segment主机。例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>按照<a href="cfginitstart_pxf.html#start_pxf">Starting PXF</a>章节描述在每个segment主机上启动PXF。</p></li>
 </ol>

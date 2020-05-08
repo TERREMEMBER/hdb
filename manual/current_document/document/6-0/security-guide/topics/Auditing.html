@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       审计 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,7 +58,7 @@
   <ul>
     
       <li class="">
-        <a href="../../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
@@ -75,7 +75,7 @@
       </li>
     
       <li class="">
-        <a href="ports_and_protocols.html">Greenplum数据库端口和协议</a>
+        <a href="ports_and_protocols.html">inHybrid数据库端口和协议</a>
         
 
       </li>
@@ -142,18 +142,18 @@
 
   
   <div class="body">
-<p class="shortdesc">描述被记录并且应该被监控以检测安全性威胁的Greenplum数据库事件。</p>
+<p class="shortdesc">描述被记录并且应该被监控以检测安全性威胁的inHybrid数据库事件。</p>
 
-    <p class="p">Greenplum数据库有能力审计很多事件，包括系统的启动和关闭、Segment数据库失效、导致错误的SQL语句以及所有的连接尝试和断开连接。Greenplum数据库还记录SQL语句和关于SQL语句的信息，并且可以以多种方式配置来记录不同细节的审计信息。<samp class="ph codeph">log_error_verbosity</samp>配置参数控制写入到服务器日志中的每一条消息的细节多少。类似地，<samp class="ph codeph">log_min_error_statement</samp>参数允许管理员配置为SQL语句记录的细节层次，而<samp class="ph codeph">log_statement</samp>参数确定要被审计的SQL语句的种类。当可审计事件由Greenplum数据库外部的主体发起时，Greenplum数据库会为所有可审计事件记录用户名。</p>
+    <p class="p">inHybrid数据库有能力审计很多事件，包括系统的启动和关闭、Segment数据库失效、导致错误的SQL语句以及所有的连接尝试和断开连接。inHybrid数据库还记录SQL语句和关于SQL语句的信息，并且可以以多种方式配置来记录不同细节的审计信息。<samp class="ph codeph">log_error_verbosity</samp>配置参数控制写入到服务器日志中的每一条消息的细节多少。类似地，<samp class="ph codeph">log_min_error_statement</samp>参数允许管理员配置为SQL语句记录的细节层次，而<samp class="ph codeph">log_statement</samp>参数确定要被审计的SQL语句的种类。当可审计事件由inHybrid数据库外部的主体发起时，inHybrid数据库会为所有可审计事件记录用户名。</p>
 
-    <p class="p">Greenplum数据库通过只允许具有适当角色的管理员在日志文件上执行操作来防止对审计记录的未授权修改和删除。日志以一种使用逗号分隔值（CSV）的专有格式存储。每个Segment和Master都存储有自己的日志文件，不过这些都可以由管理员从远程访问。Greenplum数据库还通过<samp class="ph codeph">log_truncate_on_rotation</samp>参数授权对旧日志文件的覆盖。这是一个本地参数并且必须在每个Segment和Master的配置文件中设置。</p>
+    <p class="p">inHybrid数据库通过只允许具有适当角色的管理员在日志文件上执行操作来防止对审计记录的未授权修改和删除。日志以一种使用逗号分隔值（CSV）的专有格式存储。每个Segment和Master都存储有自己的日志文件，不过这些都可以由管理员从远程访问。inHybrid数据库还通过<samp class="ph codeph">log_truncate_on_rotation</samp>参数授权对旧日志文件的覆盖。这是一个本地参数并且必须在每个Segment和Master的配置文件中设置。</p>
 
-      <p class="p">Greenplum提供了一个名为<samp class="ph codeph">gp_toolkit</samp>的管理方案，用户可以用它来查询日志文件、系统目录和操作环境得到系统状态信息。包括用法在内的更多信息，请参考<em class="ph i">Greenplum数据库参考指南</em>中的<em class="ph i">gp_tookit管理方案</em>附录。</p>
+      <p class="p">inHybrid提供了一个名为<samp class="ph codeph">gp_toolkit</samp>的管理方案，用户可以用它来查询日志文件、系统目录和操作环境得到系统状态信息。包括用法在内的更多信息，请参考<em class="ph i">inHybrid数据库参考指南</em>中的<em class="ph i">gp_tookit管理方案</em>附录。</p>
 
     <div class="section">
 <h2 class="title sectiontitle">查看数据库服务器的日志文件</h2>
       
-      <p class="p">Greenplum数据库中的每一个数据库实例（Master和Segment）都是一个运行着的PostgreSQL数据库服务器，它们都有自己的服务器日志文件。每天的日志文件被创建在Master和每个Segment的数据目录下的<samp class="ph codeph">pg_log</samp>目录中。</p>
+      <p class="p">inHybrid数据库中的每一个数据库实例（Master和Segment）都是一个运行着的PostgreSQL数据库服务器，它们都有自己的服务器日志文件。每天的日志文件被创建在Master和每个Segment的数据目录下的<samp class="ph codeph">pg_log</samp>目录中。</p>
 
       <p class="p">服务器日志文件被写为逗号分隔值（CSV）格式。不是所有的日志项在所有的日志域中都有值。例如，只有与查询工作者进程相关的日志项才会有<samp class="ph codeph">slice_id</samp>值。一个特定查询的相关日志项可以通过其会话标识符（<samp class="ph codeph">gp_session_id</samp>）和命令标识符（<samp class="ph codeph">gp_command_count</samp>）确定。</p>
 
@@ -886,16 +886,16 @@
         </table>
 </div>
 
-      <div class="p">Greenplum提供一个名为<samp class="ph codeph">gplogfilter</samp>的工具，它能被用来在一个Greenplum数据库日志文件中搜索匹配指定条件的项。这个工具默认会搜索位于默认日志位置的Greenplum的Master日志文件。例如，要显示Master日志文件的最后三行：
-        <pre class="pre codeblock">$ gplogfilter -n 3</pre>
+      <div class="p">inHybrid提供一个名为<samp class="ph codeph">hdblogfilter</samp>的工具，它能被用来在一个inHybrid数据库日志文件中搜索匹配指定条件的项。这个工具默认会搜索位于默认日志位置的inHybrid的Master日志文件。例如，要显示Master日志文件的最后三行：
+        <pre class="pre codeblock">$ hdblogfilter -n 3</pre>
 </div>
 
-      <div class="p"> 用户还可以通过<samp class="ph codeph">gpssh</samp>工具运行<samp class="ph codeph">gplogfilter</samp>来立刻搜索所有的Segment日志文件。例如，要显示每个Segment日志文件的最后三行：<pre class="pre codeblock">$ gpssh -f seg_host_file
+      <div class="p"> 用户还可以通过<samp class="ph codeph">hdbssh</samp>工具运行<samp class="ph codeph">hdblogfilter</samp>来立刻搜索所有的Segment日志文件。例如，要显示每个Segment日志文件的最后三行：<pre class="pre codeblock">$ hdbssh -f seg_host_file
   =&gt; source /usr/local/greenplum-db/greenplum_path.sh
-  =&gt; gplogfilter -n 3 /gpdata/gp*/pg_log/gpdb*.csv</pre>
+  =&gt; hdblogfilter -n 3 /gpdata/gp*/pg_log/gpdb*.csv</pre>
 </div>
 
-      <p class="p"> 下面是Greenplum与安全相关的审计（或者日志）服务器配置参数，它们可以在postgresql.conf配置文件中设置：</p>
+      <p class="p"> 下面是inHybrid与安全相关的审计（或者日志）服务器配置参数，它们可以在postgresql.conf配置文件中设置：</p>
 
       
 <div class="tablenoborder">

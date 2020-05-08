@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       在对象存储中读写Parquet数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -214,7 +214,7 @@ under the License.
 
 <h2 id="数据类型映射"><a id="datatype_map"></a>数据类型映射</h2>
 
-<p>有关Greenplum数据库和Parquet数据类型之间映射的说明，请参阅 <a href="hdfs_parquet.html#datatype_map">数据类型映射</a> 。</p>
+<p>有关inHybrid数据库和Parquet数据类型之间映射的说明，请参阅 <a href="hdfs_parquet.html#datatype_map">数据类型映射</a> 。</p>
 
 <h2 id="创建外部表"><a id="profile_cet"></a>创建外部表</h2>
 
@@ -248,7 +248,7 @@ under the License.
 </tr>
 </tbody></table>
 
-<p>使用以下语法创建引用S3目录的Greenplum数据库外部表。 当您将记录插入可写外部表中时，您插入的数据块将写入指定目录中一个或多个文件。</p>
+<p>使用以下语法创建引用S3目录的inHybrid数据库外部表。 当您将记录插入可写外部表中时，您插入的数据块将写入指定目录中一个或多个文件。</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="p">[</span><span class="n">WRITABLE</span><span class="p">]</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-dir&gt;
@@ -287,7 +287,7 @@ under the License.
 </tr>
 <tr>
 <td>DISTRIBUTED BY</td>
-<td>如果您计划将现有Greenplum数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与Greenplum表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
+<td>如果您计划将现有inHybrid数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与inHybrid表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
 </tr>
 </tbody></table>
 

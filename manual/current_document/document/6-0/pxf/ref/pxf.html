@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       pxf |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="../overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="../overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="../intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -185,7 +185,7 @@
         <div class="to-top" id="js-to-top">
           <a href="pxf.html#top" title="back to top"></a>
         </div>
-        <p>在本地Greenplum数据库主机上管理PXF配置和PXF服务实例。</p>
+        <p>在本地inHybrid数据库主机上管理PXF配置和PXF服务实例。</p>
 
 <h2 id="概要"><a id="topic1__section2"></a>概要</h2>
 <pre class="highlight plaintext"><code>pxf &lt;command&gt; [&lt;option&gt;]
@@ -206,19 +206,19 @@ version
 
 <h2 id="描述"><a id="topic1__section3"></a>描述</h2>
 
-<p><code>pxf</code>工具管理本地Greenplum数据库主机上的PXF配置和PXF服务实例。</p>
+<p><code>pxf</code>工具管理本地inHybrid数据库主机上的PXF配置和PXF服务实例。</p>
 
 <p>您可以在master，standby或特定segment主机上初始化或重置PXF。您还可以将PXF配置从master服务器同步到这些主机。</p>
 
 <p>您可以在特定的segment主机上启动，停止或重新启动PXF服务实例，或者显示在segment主机上运行的PXF服务实例的状态。</p>
 
-<p>(Use the <a href="pxf-cluster.html#topic1"><code>pxf cluster</code></a> command to initialize or reset PXF on all hosts, synchronize the PXF configuration to the Greenplum Database cluster, or to start, stop, or display the status of the PXF service instance on all segment hosts in the cluster.)
-（使用<a href="pxf-cluster.html#topic1"><code>pxf cluster</code></a>命令在所有主机上初始化或重置PXF，将PXF配置同步到Greenplum数据库集群，或者启动，停止或显示集群中所有segment主机上的PXF服务实例的状态。）</p>
+<p>(Use the <a href="pxf-cluster.html#topic1"><code>pxf cluster</code></a> command to initialize or reset PXF on all hosts, synchronize the PXF configuration to the inHybrid Database cluster, or to start, stop, or display the status of the PXF service instance on all segment hosts in the cluster.)
+（使用<a href="pxf-cluster.html#topic1"><code>pxf cluster</code></a>命令在所有主机上初始化或重置PXF，将PXF配置同步到inHybrid数据库集群，或者启动，停止或显示集群中所有segment主机上的PXF服务实例的状态。）</p>
 
 <h2 id="命令"><a id="commands"></a>命令</h2>
 
 <p><dt>cluster</dt>
-<dd>在所有Greenplum数据库主机上管理PXF配置和PXF服务实例。请参阅<a href="pxf-cluster.html#topic1"><code>pxf群集</code></a>。</dd></p>
+<dd>在所有inHybrid数据库主机上管理PXF配置和PXF服务实例。请参阅<a href="pxf-cluster.html#topic1"><code>pxf群集</code></a>。</dd></p>
 
 <p><dt>help</dt>
 <dd>显示pxf帮助消息，然后退出</dd></p>
@@ -242,7 +242,7 @@ version
 <dd>停止在segment主机上运行的PXF服务实例</dd></p>
 
 <p><dt>sync</dt>
-<dd>将PXF配置从master服务器同步到特定的Greenplum数据库standby服务器或segment主机。您必须在master主机上运行<code>pxf sync</code>。请参阅<a href="pxf.html#options">选项</a>。</dd></p>
+<dd>将PXF配置从master服务器同步到特定的inHybrid数据库standby服务器或segment主机。您必须在master主机上运行<code>pxf sync</code>。请参阅<a href="pxf.html#options">选项</a>。</dd></p>
 
 <p><dt>version  </dt>
 <dd>显示PXF的版本信息并退出</dd></p>
@@ -259,15 +259,15 @@ version
 <p><dt>-f | &ndash;force </dt>
 <dd>重置PXF服务实例之前不要提示；无需用户干预即可重置。</dd></p>
 
-<p>在Greenplum数据库master主机上运行的<code>pxf sync</code>命令具有以下选项：</p>
+<p>在inHybrid数据库master主机上运行的<code>pxf sync</code>命令具有以下选项：</p>
 
 <p><dt>&lt;gphost&gt;</dt>
-<dd>将PXF配置同步到的Greenplum数据库主机。<code>&lt;gphost&gt;</code>必须标识standby主机或segment主机。</dd></p>
+<dd>将PXF配置同步到的inHybrid数据库主机。<code>&lt;gphost&gt;</code>必须标识standby主机或segment主机。</dd></p>
 
 <h2 id="示例"><a id="topic1__section5"></a>示例</h2>
 
 <p>在segment主机本地启动PXF实例：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf start
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf start
 </code></pre>
 
 <h2 id="see-also"><a id="topic1__section6"></a>See Also</h2>

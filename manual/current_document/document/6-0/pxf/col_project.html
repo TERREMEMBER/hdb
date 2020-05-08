@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF列投影 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -178,9 +178,9 @@
         <div class="to-top" id="js-to-top">
           <a href="col_project.html#top" title="back to top"></a>
         </div>
-        <p>PXF支持列投影，始终是启用状态。使用列投影时，只从外部数据源返回外部表上的<code>SELECT</code>查询所需的列。此过程可以提高查询性能，还可以减少传输到Greenplum数据库的数据量。</p>
+        <p>PXF支持列投影，始终是启用状态。使用列投影时，只从外部数据源返回外部表上的<code>SELECT</code>查询所需的列。此过程可以提高查询性能，还可以减少传输到inHybrid数据库的数据量。</p>
 
-<p><strong>Note:</strong> 某些外部数据源不支持列投影。 如果查询访问不支持列投影的数据源，则在没有列投影的情况下执行查询，并且在将数据传输到Greenplum数据库之后对数据进行过滤。</p>
+<p><strong>Note:</strong> 某些外部数据源不支持列投影。 如果查询访问不支持列投影的数据源，则在没有列投影的情况下执行查询，并且在将数据传输到inHybrid数据库之后对数据进行过滤。</p>
 
 <p><code>pxf</code>外部表协议自动启用列投影。PXF使用不同的连接器访问外部数据源，列投影支持也由特定的连接器实现决定。 以下PXF连接器和配置文件组合支持读取操作的列投影:
 - PXF Hive Connector, <code>HiveORC</code> profile

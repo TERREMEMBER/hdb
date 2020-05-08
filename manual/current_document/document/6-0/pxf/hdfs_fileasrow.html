@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       将多行文本文件读入单个表行 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -183,7 +183,7 @@
         <div class="to-top" id="js-to-top">
           <a href="hdfs_fileasrow.html#top" title="back to top"></a>
         </div>
-        <p>您可以使用PXF HDFS连接器以单个表行的形式读取HDFS中的一个或多个多行文本文件。当您想将多个文件读入同一Greenplum数据库外部表时，例如当每个JSON文件各自包含单独的记录时，这可能很有用。</p>
+        <p>您可以使用PXF HDFS连接器以单个表行的形式读取HDFS中的一个或多个多行文本文件。当您想将多个文件读入同一inHybrid数据库外部表时，例如当每个JSON文件各自包含单独的记录时，这可能很有用。</p>
 
 <p>PXF支持以这种方式仅读取文本和JSON文件。</p>
 
@@ -199,7 +199,7 @@
 
 <p>PXF将完整的文件数据读取到单个行和列中。创建外部表以读取多个文件时，必须确保要读取的所有文件都具有相同的类型（文本或JSON）。您还必须指定一个<code>text</code>或<code>json</code>列，具体取决于文件类型。</p>
 
-<p>以下语法创建了Greenplum数据库可读的外部表，该表引用HDFS上的一个或多个文本或JSON文件：</p>
+<p>以下语法创建了inHybrid数据库可读的外部表，该表引用HDFS上的一个或多个文本或JSON文件：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="n">text</span><span class="o">|</span><span class="n">json</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
   <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-files&gt;?PROFILE=hdfs:text:multi[&amp;SERVER=&lt;server_name&gt;]&amp;FILE_AS_ROW=true'</span><span class="p">)</span>
@@ -238,7 +238,7 @@
 
 <p><strong>Note</strong>: 当您指定<code>FILE_AS_ROW=true</code>选项时，<code>hdfs:text:multi</code>配置文件不支持其他格式选项。</p>
 
-<p>例如，如果<code>/data/pxf_examples/jdir</code>标识了包含多个JSON文件的HDFS目录，则以下语句将创建一个Greenplum数据库外部表，该表引用该目录中的所有文件：</p>
+<p>例如，如果<code>/data/pxf_examples/jdir</code>标识了包含多个JSON文件的HDFS目录，则以下语句将创建一个inHybrid数据库外部表，该表引用该目录中的所有文件：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_readjfiles</span><span class="p">(</span><span class="n">j1</span> <span class="n">json</span><span class="p">)</span>
   <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/jdir?PROFILE=hdfs:text:multi&amp;FILE_AS_ROW=true'</span><span class="p">)</span>
 <span class="n">FORMAT</span> <span class="s1">'CSV'</span><span class="p">;</span>
@@ -246,7 +246,7 @@
 
 <p>当您使用<code>SELECT</code>语句查询<code>pxf_readjfiles</code>表时，PXF将<code>jdir/</code>中的每个JSON文件的内容作为外部表中的单独行返回。</p>
 
-<p>读取JSON文件时，可以使用Greenplum数据库中提供的JSON函数来访问JSON记录中的各个数据字段。例如，如果上面的<code>pxf_readjfiles</code>外部表读取包含此JSON记录的JSON文件：</p>
+<p>读取JSON文件时，可以使用inHybrid数据库中提供的JSON函数来访问JSON记录中的各个数据字段。例如，如果上面的<code>pxf_readjfiles</code>外部表读取包含此JSON记录的JSON文件：</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"root"</span><span class="p">:[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -274,7 +274,7 @@
 <span class="p">(</span><span class="mi">1</span> <span class="k">rows</span><span class="p">)</span>
 </code></pre>
 
-<p>有关使用Greenplum数据库操作JSON数据的特定信息，请参考<a href="../admin_guide/query/topics/json-data.html">使用JSON数据</a>。</p>
+<p>有关使用inHybrid数据库操作JSON数据的特定信息，请参考<a href="../admin_guide/query/topics/json-data.html">使用JSON数据</a>。</p>
 
 <h3 id="示例：将hdfs文本文件读入单个表行"><a id="example_fileasrow"></a>示例：将HDFS文本文件读入单个表行</h3>
 
@@ -315,7 +315,7 @@ Columbus, OH  43213":Dec:2018'</span> &gt; /tmp/file3.txt
 <span class="gp">$ </span>hdfs dfs -put /tmp/file2.txt /data/pxf_examples/tdir
 <span class="gp">$ </span>hdfs dfs -put /tmp/file3.txt /data/pxf_examples/tdir
 </code></pre></li>
-<li><p>登录到Greenplum数据库系统并启动<code>psql</code>子系统。</p></li>
+<li><p>登录到inHybrid数据库系统并启动<code>psql</code>子系统。</p></li>
 <li><p>使用<code>hdfs:text:multi</code>配置文件来创建引用<code>tdir</code> HDFS目录的外部表。例如：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_readfileasrow</span><span class="p">(</span><span class="n">c1</span> <span class="n">text</span><span class="p">)</span>
   <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/tdir?PROFILE=hdfs:text:multi&amp;FILE_AS_ROW=true'</span><span class="p">)</span>

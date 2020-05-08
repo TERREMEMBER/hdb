@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       采用资源队列管理内存和资源 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -188,16 +188,16 @@
 
   
   <div class="body">
-<p class="shortdesc">避免内存错误，管理Greenplum数据库资源。</p>
+<p class="shortdesc">避免内存错误，管理inHybrid数据库资源。</p>
 
     <div class="note note">
-<span class="notetitle">Note:</span> 资源组是Greenplum数据库提供的用来强制限制内存、CPU和并发事务的全新资源管理模式。
+<span class="notetitle">Note:</span> 资源组是inHybrid数据库提供的用来强制限制内存、CPU和并发事务的全新资源管理模式。
      <a class="xref" href="../admin_guide/wlmgmt.html">
         管理资源组</a>这个话题提供了对资源队列和资源组管理模式的比较。有关资源管理模式的配置和使用方法请见 
       <a class="xref" href="../admin_guide/workload_mgmt_resgroups.html">
         使用资源组</a>。</div>
 
-    <p class="p">Greenplum数据库集群中，内存管理对性能有显著的影响。默认设置适合于大部分环境。不要更改默认设置，除非
+    <p class="p">inHybrid数据库集群中，内存管理对性能有显著的影响。默认设置适合于大部分环境。不要更改默认设置，除非
       理解系统上的内存特点和使用方法。</p>
 
     <ul class="ul" id="topic_hhc_z5w_r4__ul_agm_sbl_zt">
@@ -210,7 +210,7 @@
       </li>
 
       <li class="li">
-        <a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为Greenplum数据库配置内存</a>
+        <a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为inHybrid数据库配置内存</a>
       </li>
 
       <li class="li">
@@ -222,12 +222,12 @@
     <div class="section" id="topic_hhc_z5w_r4__section_jqw_qbl_zt">
 <h2 class="title sectiontitle">解决内存不足错误</h2>
       
-      <div class="p">内存不足错误消息表明Greenplum的segment、主机和进程遇到了内存不足错误。例如：
+      <div class="p">内存不足错误消息表明inHybrid的segment、主机和进程遇到了内存不足错误。例如：
         <pre class="pre codeblock">Out of memory (seg27 host.example.com pid=47093)
 VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
 </div>
 
-      <div class="p">Greenplum数据库中一些常见的导致内存不足的情况有：<ul class="ul" id="topic_hhc_z5w_r4__ul_p2w_xhb_3r">
+      <div class="p">inHybrid数据库中一些常见的导致内存不足的情况有：<ul class="ul" id="topic_hhc_z5w_r4__ul_p2w_xhb_3r">
         <li class="li">集群上可用的系统内存（RAM）不足</li>
 
         <li class="li">内存参数配置不当</li>
@@ -247,7 +247,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
         <li class="li">使用资源队列降低查询并发</li>
 
         <li class="li">在数据库级别上验证<samp class="ph codeph">gp_vmem_protect_limit</samp>配置参数。最大安全设置的计算请见
-          <a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为Greenplum数据库配置内存</a>。</li>
+          <a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为inHybrid数据库配置内存</a>。</li>
 
         <li class="li">在资源队列上设置内存限额以限制资源队列中执行的查询所使用的内存</li>
 
@@ -257,7 +257,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
         <li class="li">在数据库级别降低<samp class="ph codeph">statement_mem</samp>
 </li>
 
-        <li class="li">降低Greenplum集群中每台主机上的Segment数量。该操作要求重新出实话集群并重新加载数据。</li>
+        <li class="li">降低inHybrid集群中每台主机上的Segment数量。该操作要求重新出实话集群并重新加载数据。</li>
 
         <li class="li">如果可能，增加主机上的内存。（要求增加额外的硬件。）</li>
 
@@ -280,7 +280,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
     </div>
 
     <div class="section" id="topic_hhc_z5w_r4__section_r52_rbl_zt">
-<h2 class="title sectiontitle">为Greenplum数据库配置内存</h2>
+<h2 class="title sectiontitle">为inHybrid数据库配置内存</h2>
       
       <p class="p">如果合理地管理内存，大部分内存不足的情况是可以避免的。</p>
 
@@ -290,7 +290,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
       <p class="p">当您配置资源组内存时，提前考虑出现segment实例或segment主机宕机时，镜像segment变成
         主segment对系统内存的占用。</p>
 
-      <p class="p">下面是推荐的操作系统以及Greenplum数据库内存设置：</p>
+      <p class="p">下面是推荐的操作系统以及inHybrid数据库内存设置：</p>
 
       <ul class="ul" id="topic_hhc_z5w_r4__ul_xv2_phn_1s">
         <li class="li">不要启用操作系统大页配置</li>
@@ -299,7 +299,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
           <strong class="ph b">vm.overcommit_memory</strong>
           <p class="p">该Linux内核参数在<samp class="ph codeph">/etc/sysctl.conf</samp>文件中设置，用来指定操作系统
             分配给系统进程使用多少内存的方法。<samp class="ph codeph">vm.overcommit_memory</samp>在
-            Greenplum数据库所在的机器上必须设置为2。
+            inHybrid数据库所在的机器上必须设置为2。
           </p>
 
         </li>
@@ -310,7 +310,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
             可以使用的内存百分比；剩余的内存留给操作系统。操作系统默认值（Red Hat上默认是50）。</p>
 
           <p class="p">把<samp class="ph codeph">vm.overcommit_ratio</samp>设置得太高可能会导致没有为操作系统保留足够的内存，
-            进而导致segment主机故障或者数据库故障。将这个值设置得太低会降低并发量和通过降低Greenplum
+            进而导致segment主机故障或者数据库故障。将这个值设置得太低会降低并发量和通过降低inHybrid
             数据库可用内存量能运行的查询复杂度。当增加这一设置时，有必要记住总是为操作系统活动保留一些内存。
           </p>
 <p class="p">有关计算<samp class="ph codeph">vm.overcommit_ratio</samp>值的步骤，请见<a class="xref" href="sysconfig.html#topic_dt3_fkv_r4__segment_mem_config">资源队列的segment内存配置</a>。</p>
@@ -331,10 +331,10 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
 
         <li class="li">
           <strong class="ph b">runaway_detector_activation_percent</strong>
-          <p class="p">失控查询终止在Greenplum数据库4.3.4中被引入，它能防止内存不足的问题。
+          <p class="p">失控查询终止在inHybrid数据库4.3.4中被引入，它能防止内存不足的问题。
             <samp class="ph codeph">runaway_detector_activation_percent</samp>系统参数控制触发查询终止的
             <samp class="ph codeph">gp_vmem_protect_limit</samp>内存利用率。默认它被设置为90%。如果一个segment
-            利用的<samp class="ph codeph">gp_vmem_protect_limit memory</samp>内存的百分比超过指定的值，Greenplum
+            利用的<samp class="ph codeph">gp_vmem_protect_limit memory</samp>内存的百分比超过指定的值，inHybrid
             数据库会基于内存使用终止查询，从消耗内存量最大的查询开始。查询会被挨个终止直至
             <samp class="ph codeph"> gp_vmem_protect_limit</samp>的利用率重新低于指定的百分比。</p>
 
@@ -379,8 +379,8 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
     <div class="section" id="topic_hhc_z5w_r4__configuring_rq">
 <h2 class="title sectiontitle">配置资源队列</h2>
       
-      <p class="p">Greenplum数据库的资源队列为管理集群负载提供了一种强有力的机制。队列可以被用来限制活动查询的数量以及
-        队列中查询可使用的内存量。当查询被提交给Greenplum数据库时，它会被加入一个资源队列，资源队列会决定该查询
+      <p class="p">inHybrid数据库的资源队列为管理集群负载提供了一种强有力的机制。队列可以被用来限制活动查询的数量以及
+        队列中查询可使用的内存量。当查询被提交给inHybrid数据库时，它会被加入一个资源队列，资源队列会决定该查询
         是否应该被接受并且何时有资源可用来执行它。</p>
 
       <ul class="ul" id="topic_hhc_z5w_r4__ul_svy_b3n_1s">
@@ -393,7 +393,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
         </li>
 
         <li class="li">
-          <p class="p">不要用gpadmin角色或者其他超级用户角色运行查询。</p>
+          <p class="p">不要用hdbadmin角色或者其他超级用户角色运行查询。</p>
 
           <p class="p">超级用户会被从资源队列限制中排除，因此超级用户的查询运行不会考虑在其所属队列上设置的限制。</p>
 
@@ -446,7 +446,7 @@ VM Protect failed to allocate 4096 bytes, 0 MB available</pre>
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       安全性最佳实践 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,7 +58,7 @@
   <ul>
     
       <li class="">
-        <a href="../../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
@@ -75,7 +75,7 @@
       </li>
     
       <li class="">
-        <a href="ports_and_protocols.html">Greenplum数据库端口和协议</a>
+        <a href="ports_and_protocols.html">inHybrid数据库端口和协议</a>
         
 
       </li>
@@ -144,10 +144,10 @@
   <div class="body">
 <p class="shortdesc">这一章描述用户应该遵循的基本安全性最佳实践，它可以确保最高级别的系统安全性。</p>
 
-    <div class="p">Greenplum数据库的默认安全性配置：<ul class="ul" id="topic_nyc_mdf_jr__ul_mhk_rrg_4r">
+    <div class="p">inHybrid数据库的默认安全性配置：<ul class="ul" id="topic_nyc_mdf_jr__ul_mhk_rrg_4r">
         <li class="li">仅允许本地连接。 </li>
 
-        <li class="li">为超级用户（<samp class="ph codeph">gpadmin</samp>）配置的基本认证。</li>
+        <li class="li">为超级用户（<samp class="ph codeph">hdbadmin</samp>）配置的基本认证。</li>
 
         <li class="li">超级用户被授权做任何事情。</li>
 
@@ -157,17 +157,17 @@
 </div>
 
     <div class="section">
-<h2 class="title sectiontitle">系统用户（gpadmin）</h2>
+<h2 class="title sectiontitle">系统用户（hdbadmin）</h2>
       
-      <p class="p">保护和限制对<samp class="ph codeph">gpadmin</samp>系统用户的访问。</p>
+      <p class="p">保护和限制对<samp class="ph codeph">hdbadmin</samp>系统用户的访问。</p>
 
-      <p class="p">Greenplum要求一个UNIX用户ID来安装和初始化Greenplum数据库系统。这个系统用户在Greenplum文档中被称作<samp class="ph codeph">gpadmin</samp>。<samp class="ph codeph">gpadmin</samp>用户是Greenplum数据库中的默认数据库超级用户，也是Greenplum安装及其底层数据文件的文件系统拥有者。默认的管理员账户是Greenplum数据库设计的根本。没有它系统无法运行，并且也没有办法限制<samp class="ph codeph">gpadmin</samp>用户ID的访问。</p>
+      <p class="p">inHybrid要求一个UNIX用户ID来安装和初始化inHybrid数据库系统。这个系统用户在inHybrid文档中被称作<samp class="ph codeph">hdbadmin</samp>。<samp class="ph codeph">hdbadmin</samp>用户是inHybrid数据库中的默认数据库超级用户，也是inHybrid安装及其底层数据文件的文件系统拥有者。默认的管理员账户是inHybrid数据库设计的根本。没有它系统无法运行，并且也没有办法限制<samp class="ph codeph">hdbadmin</samp>用户ID的访问。</p>
 
-      <p class="p">这个<samp class="ph codeph">gpadmin</samp>用户可以绕过Greenplum数据库的所有安全性特性。任何人通过这一用户ID登入到Greenplum主机，就可以读取、修改或者删除任何数据，包括系统目录数据和数据库访问权限。因此，非常有必要保护好<samp class="ph codeph">gpadmin</samp>用户ID并且只允许必要的系统管理员可以接触到它。</p>
+      <p class="p">这个<samp class="ph codeph">hdbadmin</samp>用户可以绕过inHybrid数据库的所有安全性特性。任何人通过这一用户ID登入到inHybrid主机，就可以读取、修改或者删除任何数据，包括系统目录数据和数据库访问权限。因此，非常有必要保护好<samp class="ph codeph">hdbadmin</samp>用户ID并且只允许必要的系统管理员可以接触到它。</p>
 
-      <p class="p">只有在执行特定系统维护任务（例如升级或扩展）时，管理员才应该作为<samp class="ph codeph">gpadmin</samp>登入到Greenplum。 </p>
+      <p class="p">只有在执行特定系统维护任务（例如升级或扩展）时，管理员才应该作为<samp class="ph codeph">hdbadmin</samp>登入到inHybrid。 </p>
 
-      <p class="p">数据库用户绝不应作为<samp class="ph codeph">gpadmin</samp>登录，并且也绝不应以<samp class="ph codeph">gpadmin</samp>运行ETL或者生产负载。</p>
+      <p class="p">数据库用户绝不应作为<samp class="ph codeph">hdbadmin</samp>登录，并且也绝不应以<samp class="ph codeph">hdbadmin</samp>运行ETL或者生产负载。</p>
 
     </div>
 
@@ -176,7 +176,7 @@
       
       <p class="p">被授予<samp class="ph codeph">SUPERUSER</samp>属性的角色是超级用户。超级用户会绕过所有访问特权检查和资源队列。只有系统管理员应该被给予超级用户权利。</p>
 
-        <p class="p">请见<em class="ph i">Greenplum数据库管理员指南</em>中的“修改角色属性”。</p>
+        <p class="p">请见<em class="ph i">inHybrid数据库管理员指南</em>中的“修改角色属性”。</p>
 
     </div>
 
@@ -185,7 +185,7 @@
       
       <p class="p">为每个登入系统的用户指派一个不同的角色并且设置<samp class="ph codeph">LOGIN</samp>属性。</p>
 
-        <p class="p">为了登录和审计的目的，每个被允许登入Greenplum数据库的用户应该被给予他们自己的数据库角色。对于应用或者Web服务，考虑为每一种应用或服务创建一个不同的角色。请见<em class="ph i">Greenplum数据库管理员指南</em>中的“创建新角色（用户）”。</p>
+        <p class="p">为了登录和审计的目的，每个被允许登入inHybrid数据库的用户应该被给予他们自己的数据库角色。对于应用或者Web服务，考虑为每一种应用或服务创建一个不同的角色。请见<em class="ph i">inHybrid数据库管理员指南</em>中的“创建新角色（用户）”。</p>
 
       <p class="p">每一个登录角色应该被指派给一个单一的、非默认的资源队列。</p>
 
@@ -202,7 +202,7 @@
 
       <p class="p">不应该为组角色设置<samp class="ph codeph">LOGIN</samp>属性。</p>
 
-        <p class="p">见<em class="ph i">Greenplum数据库管理员指南</em>中的“创建组（角色成员关系）”。</p>
+        <p class="p">见<em class="ph i">inHybrid数据库管理员指南</em>中的“创建组（角色成员关系）”。</p>
 
     </div>
 

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       高可用性 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -186,13 +186,13 @@
 
   <h1 class="title topictitle1">高可用性</h1>
 
-  <p class="shortdesc">当用户启用并且正确地配置Greenplum高可用特性时，Greenplum数据库支持高度可用的、容错的数据库服务。
+  <p class="shortdesc">当用户启用并且正确地配置inHybrid高可用特性时，inHybrid数据库支持高度可用的、容错的数据库服务。
     要保证达到要求的服务等级，每个组件都必须有一个备用组件以保证在它失效时及时顶上。</p>
 
   <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="intro.html">Greenplum数据库最佳实践</a>
+<strong>Parent topic:</strong> <a class="link" href="intro.html">inHybrid数据库最佳实践</a>
 </div>
 </div>
 </div>
@@ -200,7 +200,7 @@
     <h2 class="title topictitle2">磁盘存储</h2>
 
     <div class="body">
-      <p class="p">源于Greenplum数据库的非共享MPP架构，每台master和segment主机都有它们自己独立的内存和磁盘存储空间，
+      <p class="p">源于inHybrid数据库的非共享MPP架构，每台master和segment主机都有它们自己独立的内存和磁盘存储空间，
         每个master和segment实例都有它们自己独立的数据目录。为了兼顾可靠性和高性能，Pivotal推荐采用8到24块
         磁盘的硬件RAID存储解决方案。当采用RAID5或RAID6时，大量的磁盘会提升I/O吞吐量，因为条带会增加并行的
         磁盘I/O。有一个失效磁盘时，RAID控制器能够继续工作，因为它在每个磁盘上都保存了校验数据，这样它能够重构
@@ -209,8 +209,8 @@
 
       <p class="p">在RAID1模式下，实际上就是镜像一组磁盘，因此如果出现某块磁盘故障，替代磁盘立即可用，并且性能与出现磁盘
         故障之前无二。在RAID5模式下，故障磁盘上的每一个数据I/O都必须从剩余活动磁盘上重建出来，直到故障磁盘重建
-        完成，因此会出现一段时间的性能下降。如果磁盘数据重建期间，Greenplum数据库master和segment配置了镜像
-        实例，您可以将任何受到影响的Greenplum数据库实例切换为它们的镜像以保证性能最优。</p>
+        完成，因此会出现一段时间的性能下降。如果磁盘数据重建期间，inHybrid数据库master和segment配置了镜像
+        实例，您可以将任何受到影响的inHybrid数据库实例切换为它们的镜像以保证性能最优。</p>
 
       <p class="p">RAID磁盘阵列仍然可能会出现单点故障，例如整个RAID卷故障。在硬件级别上，可以通过RAID控制器提供的镜像功
         能或操作系统提供的镜像功能来防范磁盘阵列故障。</p>
@@ -219,7 +219,7 @@
         <samp class="ph codeph">gp_disk_free</samp>来查看segment节点的磁盘可用空间。该视图会运行Linux命令<samp class="ph codeph">df</samp>。
         在执行占用大量磁盘空间的操作（例如copy大表）前要确保检查可用磁盘空间。</p>
 
-      <p class="p">详见<em class="ph i">Greenplum数据库参考指南</em>中的<samp class="ph codeph">gp_toolkit.gp_disk_free</samp>部分。</p>
+      <p class="p">详见<em class="ph i">inHybrid数据库参考指南</em>中的<samp class="ph codeph">gp_toolkit.gp_disk_free</samp>部分。</p>
 
       <div class="section">
 <h3 class="title sectiontitle">最佳实践</h3>
@@ -249,9 +249,9 @@
     <h2 class="title topictitle2">Master镜像</h2>
 
     <div class="body">
-      <p class="p">Greenplum数据库的master实例是客户端访问系统的唯一入口。master实例存储全局系统目录，也就是存储有关
+      <p class="p">inHybrid数据库的master实例是客户端访问系统的唯一入口。master实例存储全局系统目录，也就是存储有关
         数据库实例的元数据的一系列系统表，但是它不存储用户数据。如果未配置镜像的master实例故障或不可访问，会
-        直接导致Greenplum数据库离线，不能正常提供服务。因此，必须配置备用master实例以防止主master故障。</p>
+        直接导致inHybrid数据库离线，不能正常提供服务。因此，必须配置备用master实例以防止主master故障。</p>
 
       <p class="p">Master镜像使用两个进程使镜像实例与master同步，一个sender位于活动master主机上，一个receiver位于
         镜像主机上。随着客户端操作的变化数据被应用到master系统目录上，活动master会将预写日志（WAL）以流复制
@@ -261,7 +261,7 @@
         <samp class="ph codeph">gpactivatestandby</samp>工具，这样它才会开始接受客户端连接。客户端此时必须重新连接到新
         master，该客户端在主master故障时未提交的事务都会丢失。</p>
 
-      <p class="p">更多信息请见<em class="ph i">Greenplum数据库管理员指南</em>中的“启用高可用特性”。</p>
+      <p class="p">更多信息请见<em class="ph i">inHybrid数据库管理员指南</em>中的“启用高可用特性”。</p>
 
       <div class="section">
 <h3 class="title sectiontitle">最佳实践</h3>
@@ -288,11 +288,11 @@
     <h2 class="title topictitle2">Segment镜像</h2>
 
     <div class="body">
-      <p class="p">Greenplum数据库的每一个segment实例都在master实例的协调下存储和管理数据库数据的一部分。如果任何未配置
+      <p class="p">inHybrid数据库的每一个segment实例都在master实例的协调下存储和管理数据库数据的一部分。如果任何未配置
         镜像的segment故障，数据库可能不得不被关闭然后恢复，并且在最近备份之后发生的事务可能会丢失。因此，镜像
         segment是高可用方案的一个不可或缺的元素</p>
 
-      <div class="p">Segment镜像是主segment的热备。Greenplum数据库会检测到segment何时不可用并且自动激活其镜像。在正常操作
+      <div class="p">Segment镜像是主segment的热备。inHybrid数据库会检测到segment何时不可用并且自动激活其镜像。在正常操作
         期间，当主segment实例活动时，数据以两种方式从主segment复制到镜像segment：<ul class="ul" id="topic_cnm_vxc_54__ul_aqq_fhv_t4">
           <li class="li">
             <p class="p">在事务被提交之前，事务提交日志被从主segment复制到镜像segment。这会确保当镜像被激活时，主segment
@@ -302,7 +302,7 @@
           </li>
 
           <li class="li">
-            <p class="p">第二种，segment镜像使用物理文件复制来更新堆表。Greenplum服务器在磁盘上以打包了元组的固定尺寸块
+            <p class="p">第二种，segment镜像使用物理文件复制来更新堆表。inHybrid服务器在磁盘上以打包了元组的固定尺寸块
               的形式存储表数据。为了优化磁盘I/O，块被缓冲在内存中，直到缓存被填满并且一些块必须被挤出去为新更新
               的块腾出空间。当块被从缓存中挤出时，它会被写入到磁盘并且通过网络复制到镜像。因为缓冲机制，镜像上的
               表更新可能落后于主segment。不过，由于事务日志也被复制，镜像会与主segment保持一致。如果镜像被激活，
@@ -321,13 +321,13 @@
         segment和四个镜像segment，并且在一台主机上有一个镜像segment被激活，那台主机将有五个活动的主segment。
         查询直到最后一个Segment完成其工作才算结束，因此性能可能会退化直至原始的主segment被恢复使得系统恢复平衡。</p>
 
-      <p class="p">当Greenplum数据库运行时，管理员通过运行<samp class="ph codeph">gprecoverseg</samp>工具执行恢复。这个工具会定位
+      <p class="p">当inHybrid数据库运行时，管理员通过运行<samp class="ph codeph">hdbrecoverseg</samp>工具执行恢复。这个工具会定位
         故障的segment、验证它们是否有效并且与当前活动的segment对比事务状态以确定segment离线期间发生的更改。
-        <samp class="ph codeph">gprecoverseg</samp>会与活动segment同步更改过的数据库文件并且将该segment重新拉回到在线
+        <samp class="ph codeph">hdbrecoverseg</samp>会与活动segment同步更改过的数据库文件并且将该segment重新拉回到在线
         状态。</p>
 
       <p class="p">在故障期间，有必要在segment主机上保留足够的内存和CPU资源，以允许承担了主segment觉得的镜像实例能提供
-        对应的活动负载。<a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为Greenplum数据库配置内存</a>中提供的配置
+        对应的活动负载。<a class="xref" href="workloads.html#topic_hhc_z5w_r4__section_r52_rbl_zt">为inHybrid数据库配置内存</a>中提供的配置
         segment主机内存的公式包括一个因子，它代表故障期间任一主机上的最大主segment数量。segment主机上的镜像
         布置会影响这一因子以及系统在故障时将如何应对。Segment镜像选项的讨论请见<a class="xref" href="ha.html#topic_ngz_qf4_tt">Segment镜像配置</a>。</p>
 
@@ -343,7 +343,7 @@
 
           <li class="li">设置监控，当主segment故障时在系统监控应用中发送通知或者通过邮件通知。</li>
 
-          <li class="li">即使恢复失效的segment，使用<samp class="ph codeph">gprecoverseg</samp>工具来恢复冗余并且让系统回到最佳的
+          <li class="li">即使恢复失效的segment，使用<samp class="ph codeph">hdbrecoverseg</samp>工具来恢复冗余并且让系统回到最佳的
             平衡状态。</li>
 
         </ul>
@@ -358,7 +358,7 @@
     <h2 class="title topictitle2">双集群</h2>
 
     <div class="body">
-      <p class="p">对于一些用例，可以通过维护两个存储同样数据的Greenplum数据库集群提供额外层次的冗余。实现双集群的决定
+      <p class="p">对于一些用例，可以通过维护两个存储同样数据的inHybrid数据库集群提供额外层次的冗余。实现双集群的决定
         应该考虑到业务需求。</p>
 
       <p class="p">在双集群配置中为了保持数据同步，有两种推荐方法。第一种方法被称作双ETL。ETL（抽取、转换和装载）是常见
@@ -388,10 +388,10 @@
     <h2 class="title topictitle2">备份和恢复</h2>
 
     <div class="body">
-      <p class="p">推荐为Greenplum数据库进行备份，除非数据库中的数据可以很容易并且很干净地从源数据再生。备份可以防止操作
+      <p class="p">推荐为inHybrid数据库进行备份，除非数据库中的数据可以很容易并且很干净地从源数据再生。备份可以防止操作
         错误、软件错误或者硬件错误。</p>
 
-      <p class="p"><samp class="ph codeph">gpbackup</samp>工具在segment之间并行地做备份，因此随着集群的硬件尺寸增长备份的尺度也会放大。
+      <p class="p"><samp class="ph codeph">hdbbackup</samp>工具在segment之间并行地做备份，因此随着集群的硬件尺寸增长备份的尺度也会放大。
         </p>
 
       <p class="p">备份策略必须考虑备份将被写到什么地方以及它们将被存放在哪里。备份可以放置在本地集群的磁盘上，但是它们不应该
@@ -400,9 +400,9 @@
 
       <p class="p">另一种策略是直接备份到一个NFS挂载存储上。如果集群中的每台主机都有一个NFS挂载，备份可以被直接写到NFS存储上。
         推荐使用一种可扩展的NFS方案以确保备份不会受到NFS设备的IO吞吐瓶颈限制。Dell EMC Isilon是这类方案的一个例子，
-        并且可以与Greenplum集群一同扩展。</p>
+        并且可以与inHybrid集群一同扩展。</p>
 
-      <p class="p">最后，通过本地API集成，Greenplum数据库可以把备份直接流式传送到Dell EMC Data Domain或者Veritas NetBackup
+      <p class="p">最后，通过本地API集成，inHybrid数据库可以把备份直接流式传送到Dell EMC Data Domain或者Veritas NetBackup
         企业级备份平台。</p>
 
       <div class="section">
@@ -411,19 +411,19 @@
         <div class="p">
           <ul class="ul" id="topic_mc5_k1p_1s__ul_nry_scl_b1b">
             <li dir="ltr" class="li">
-              <p dir="ltr" class="p">定期备份Greenplum数据库，除非能很容易地从源数据恢复数据。</p>
+              <p dir="ltr" class="p">定期备份inHybrid数据库，除非能很容易地从源数据恢复数据。</p>
 
             </li>
 
             <li dir="ltr" class="li">
-              <p dir="ltr" class="p">使用<samp class="ph codeph">gpbackup</samp>备份您想要备份的模式和表。更多信息请见<a class="xref" href="https://gpdb.docs.pivotal.io/latest/utility_guide/admin_utilities/gpbackup.html" target="_blank">gpbackup</a><cite class="cite">Greenplum数据库工具参考指南</cite>中
+              <p dir="ltr" class="p">使用<samp class="ph codeph">hdbbackup</samp>备份您想要备份的模式和表。更多信息请见<a class="xref" href="https://gpdb.docs.pivotal.io/latest/utility_guide/admin_utilities/hdbbackup.html" target="_blank">hdbbackup</a><cite class="cite">inHybrid数据库工具参考指南</cite>中
                 的对应部分。</p>
 
             </li>
 
             <li dir="ltr" class="li">
-              <p dir="ltr" class="p"><samp class="ph codeph">gpbackup</samp>在要备份的表上放置SHARED ACCESS锁。拥有很少表的备份在选择恢复
-                模式和表时更有效，因为<samp class="ph codeph">gprestore</samp>可以搜索整个数据库。</p>
+              <p dir="ltr" class="p"><samp class="ph codeph">hdbbackup</samp>在要备份的表上放置SHARED ACCESS锁。拥有很少表的备份在选择恢复
+                模式和表时更有效，因为<samp class="ph codeph">hdbrestore</samp>可以搜索整个数据库。</p>
 
             </li>
 
@@ -455,17 +455,17 @@
         组件会处于缺少备份状态，并且系统也并没有在最优的状态下运行。由于这些原因，及时执行恢复操作是必要的。
         持续的系统监控和自动故障告警会通过SNMP和email确保管理员注意到系统故障并且采取行动。</p>
 
-      <p class="p">Greenplum数据库服务器的<samp class="ph codeph">ftsprobe</samp>子进程负责故障检测。每隔一段时间，<samp class="ph codeph">ftsprobe</samp>
+      <p class="p">inHybrid数据库服务器的<samp class="ph codeph">ftsprobe</samp>子进程负责故障检测。每隔一段时间，<samp class="ph codeph">ftsprobe</samp>
         会连接到所有的segment并且扫描所有segment和数据库进程，这个时间间隔可以用<samp class="ph codeph">gp_fts_probe_interval</samp>
-        配置参数设置。如果<samp class="ph codeph">ftsprobe</samp>无法连接到一个segment，它会在Greenplum数据库系统目录中
-        把该segment标记为“down”。在管理员运行<samp class="ph codeph">gprecoverseg</samp>恢复工具之前，该segment都会保持
+        配置参数设置。如果<samp class="ph codeph">ftsprobe</samp>无法连接到一个segment，它会在inHybrid数据库系统目录中
+        把该segment标记为“down”。在管理员运行<samp class="ph codeph">hdbrecoverseg</samp>恢复工具之前，该segment都会保持
         down的状态。</p>
 
       <div class="section">
 <h3 class="title sectiontitle">最佳实践</h3>
         
         <ul class="ul" id="topic_wlw_wxc_54__ul_b4h_rxl_v4">
-          <li class="li">运行<samp class="ph codeph">gpstate</samp>工具查看Greenplum系统的总体状态。</li>
+          <li class="li">运行<samp class="ph codeph">hdbstate</samp>工具查看inHybrid系统的总体状态。</li>
 
         </ul>
 
@@ -473,20 +473,20 @@
 
       <div class="section">
 <h3 class="title sectiontitle">附加信息</h3>
-<em class="ph i">Greenplum数据库管理员指南</em>:
+<em class="ph i">inHybrid数据库管理员指南</em>:
           <ul class="ul" id="topic_wlw_wxc_54__ul_wff_k1m_v4">
-            <li class="li">监控Greenplum系统</li>
+            <li class="li">监控inHybrid系统</li>
 
             <li class="li">恢复故障的Segment</li>
 
           </ul>
 <div class="p">
-<em class="ph i">Greenplum数据库工具指南</em>:<ul class="ul" id="topic_wlw_wxc_54__ul_fk2_hyl_v4">
+<em class="ph i">inHybrid数据库工具指南</em>:<ul class="ul" id="topic_wlw_wxc_54__ul_fk2_hyl_v4">
             <li class="li">
-<samp class="ph codeph">gpstate</samp>—查看Greenplum系统的状态</li>
+<samp class="ph codeph">hdbstate</samp>—查看inHybrid系统的状态</li>
 
             <li class="li">
-<samp class="ph codeph">gprecoverseg</samp>—恢复故障的Segment</li>
+<samp class="ph codeph">hdbrecoverseg</samp>—恢复故障的Segment</li>
 
             <li class="li">
 <samp class="ph codeph">gpactivatestandby</samp>—让备用master变成当前活动master
@@ -506,9 +506,9 @@
 
     <div class="body">
       <p class="p">Segment镜像允许数据库查询在主Segment故障或者不可用时转移到备份segment上。Pivotal要求在其支持的
-        Greenplum数据库生产环境中必须配置镜像。</p>
+        inHybrid数据库生产环境中必须配置镜像。</p>
 
-      <p class="p">为了确保高可用，主segment及其镜像必须位于不同主机上。Greenplum数据库系统中的每一台主机都有相同数量
+      <p class="p">为了确保高可用，主segment及其镜像必须位于不同主机上。inHybrid数据库系统中的每一台主机都有相同数量
         的主segment和镜像segment。多宿主主机应该在每个接口上有相同数量的主segment和镜像segment。这能确保
         所有主segment运行时，segment主机和网络资源的负载均衡，并且提供最多的资源承担查询处理。</p>
 
@@ -530,7 +530,7 @@
         <ul class="ul" id="topic_ngz_qf4_tt__ul_uwr_gkv_tt">
           <li class="li">
 <strong class="ph b">Group mirroring</strong> — 每台主机镜像另外机器的主segment。这是
-            <samp class="ph codeph"><a class="xref" href="../utility_guide/admin_utilities/gpinitsystem.html">gpinitsystem</a></samp>和<samp class="ph codeph">gpaddmirrors</samp>的默认选项。</li>
+            <samp class="ph codeph"><a class="xref" href="../utility_guide/admin_utilities/hdbinitsystem.html">hdbinitsystem</a></samp>和<samp class="ph codeph">hdbaddmirrors</samp>的默认选项。</li>
 
           <li class="li">
 <strong class="ph b">Spread mirroring</strong> — 镜像分散分布在另外的机器上。这要求集群中的主机数量多于每台主机上的
@@ -539,8 +539,8 @@
         </ul>
 </div>
 
-      <p class="p">您可以设计一个客户镜像配置文件然后使用Greenplum工具<samp class="ph codeph"><a class="xref" href="../utility_guide/admin_utilities/gpaddmirrors.html">gpaddmirrors</a></samp>或
-          <a class="xref" href="../utility_guide/admin_utilities/gpmovemirrors.html">gpmovemirrors</a>进行
+      <p class="p">您可以设计一个客户镜像配置文件然后使用inHybrid工具<samp class="ph codeph"><a class="xref" href="../utility_guide/admin_utilities/hdbaddmirrors.html">hdbaddmirrors</a></samp>或
+          <a class="xref" href="../utility_guide/admin_utilities/hdbmovemirrors.html">hdbmovemirrors</a>进行
         配置。</p>
 
       <p class="p"><em class="ph i">Block mirroring</em>一种自定义镜像配置，它把集群中的主机划分成相等尺寸的块并且在块内的主机上均匀
@@ -552,7 +552,7 @@
       <div class="section">
 <h3 class="title sectiontitle">Group Mirroring</h3>
         
-        <p class="p">Group mirroring是最容易设置的镜像配置，并且是Greenplum的默认镜像配置。组镜像的扩展代价最低，因为
+        <p class="p">Group mirroring是最容易设置的镜像配置，并且是inHybrid的默认镜像配置。组镜像的扩展代价最低，因为
           可以通过增加仅仅两台主机来完成扩展。在扩展之后无需移动镜像来维持镜像配置的一致性。
           </p>
 
@@ -630,16 +630,16 @@
       <div class="section">
 <h3 class="title sectiontitle">实现Block Mirroring</h3>
         
-        <p class="p">在用户设置或者扩展集群时，block mirroring并非Greenplum数据库提供的一种自动选项。要使用block mirroring，
+        <p class="p">在用户设置或者扩展集群时，block mirroring并非inHybrid数据库提供的一种自动选项。要使用block mirroring，
           用户必须创建自己的配置。</p>
 
-        <p class="p">对于一个新的Greenplum系统，用户可以把集群初始化为没有镜像，然后用一个自定义镜像配置文件运行
-          <samp class="ph codeph">gpaddmirrors -i <var class="keyword varname">mirror_config_file</var></samp>来为每一个块创建镜像。
-          在用户运行<samp class="ph codeph">gpaddmirrors</samp>之前，用户必须为镜像segment创建文件系统位置。详见<cite class="cite">Greenplum
-            数据库管理工具指南</cite>中的<samp class="ph codeph">gpaddmirrors</samp>参考页。</p>
+        <p class="p">对于一个新的inHybrid系统，用户可以把集群初始化为没有镜像，然后用一个自定义镜像配置文件运行
+          <samp class="ph codeph">hdbaddmirrors -i <var class="keyword varname">mirror_config_file</var></samp>来为每一个块创建镜像。
+          在用户运行<samp class="ph codeph">hdbaddmirrors</samp>之前，用户必须为镜像segment创建文件系统位置。详见<cite class="cite">inHybrid
+            数据库管理工具指南</cite>中的<samp class="ph codeph">hdbaddmirrors</samp>参考页。</p>
 
         <p class="p">如果用户扩展一个有block mirroring的系统或者用户想要在扩展集群时实现block mirroring，推荐用户先用默认的
-          grouping mirror配置完成扩展，然后使用<samp class="ph codeph">gpmovemirrors</samp>工具把镜像移到块配置中。</p>
+          grouping mirror配置完成扩展，然后使用<samp class="ph codeph">hdbmovemirrors</samp>工具把镜像移到块配置中。</p>
 
         <p class="p">要在使用不同镜像方案的现有系统中实现block mirroring，用户必须首先根据其块配置确定每个镜像的位置，然后确定
           哪些现有的镜像必须被重定位。按照下列步骤：
@@ -656,16 +656,16 @@
           <li class="li">用当前镜像位置和想要的block mirroring位置创建一个列表，然后从中移除已经在正确主机上的镜像。
             </li>
 
-          <li class="li">用列表中必须要移动的每一个项（镜像）为<samp class="ph codeph">gpmovemirrors</samp>工具创建一个输入文件。
+          <li class="li">用列表中必须要移动的每一个项（镜像）为<samp class="ph codeph">hdbmovemirrors</samp>工具创建一个输入文件。
             <div class="p">
-<samp class="ph codeph">gpmovemirrors</samp>输入文件的格式如下： 
+<samp class="ph codeph">hdbmovemirrors</samp>输入文件的格式如下： 
               <pre class="pre codeblock"><var class="keyword varname">contentID</var>:<var class="keyword varname">address</var>:<var class="keyword varname">port</var>:<var class="keyword varname">data_dir</var> <var class="keyword varname">new_address</var>:<var class="keyword varname">port</var>:<var class="keyword varname">data_dir</var></pre>
 </div>
 Where
               <var class="keyword varname">contentID</var> 是segment实例的contentID，
               <var class="keyword varname">address</var>是对应主机的主机名或IP地址，
               <var class="keyword varname">port</var>是通信端口，<samp class="ph codeph">data_dir</samp>是segment实例的数据目录<div class="p">
-                下面的<samp class="ph codeph">gpmovemirrors</samp>输入文件定义了三个需要移动的镜像segment。
+                下面的<samp class="ph codeph">hdbmovemirrors</samp>输入文件定义了三个需要移动的镜像segment。
               <pre class="pre codeblock">1:sdw2:50001:/data2/mirror/gpseg1 sdw3:50001:/data/mirror/gpseg1
 2:sdw2:50001:/data2/mirror/gpseg2 sdw4:50001:/data/mirror/gpseg2
 3:sdw3:50001:/data2/mirror/gpseg3 sdw1:50001:/data/mirror/gpseg3
@@ -673,19 +673,19 @@ Where
 </div>
 </li>
 
-          <li class="li">用以下命令运行<samp class="ph codeph">gpmovemirrors</samp>：
-            <pre class="pre codeblock">gpmovemirrors -i <var class="keyword varname">mirror_config_file</var></pre>
+          <li class="li">用以下命令运行<samp class="ph codeph">hdbmovemirrors</samp>：
+            <pre class="pre codeblock">hdbmovemirrors -i <var class="keyword varname">mirror_config_file</var></pre>
 </li>
 
         </ol>
 
-        <p class="p"><samp class="ph codeph">gpmovemirrors</samp>工具会验证该输入文件、调用<samp class="ph codeph">gp_recoverseg</samp>
+        <p class="p"><samp class="ph codeph">hdbmovemirrors</samp>工具会验证该输入文件、调用<samp class="ph codeph">gp_recoverseg</samp>
           来重定位每一个指定的镜像，并且移除原始的镜像。它会创建一个撤销配置文件，该文件可以被用作
-          <samp class="ph codeph">gpmovemirrors</samp>的输入来撤销所作的更改。撤销文件和输入文件同名，但会增加后缀
+          <samp class="ph codeph">hdbmovemirrors</samp>的输入来撤销所作的更改。撤销文件和输入文件同名，但会增加后缀
           <samp class="ph codeph">_backout_<var class="keyword varname">timestamp</var></samp>。
          </p>
 
-        <p class="p">关于<samp class="ph codeph">gpmovemirrors</samp>工具的完整信息请见<cite class="cite">Greenplum数据库管理工具参考</cite>。</p>
+        <p class="p">关于<samp class="ph codeph">hdbmovemirrors</samp>工具的完整信息请见<cite class="cite">inHybrid数据库管理工具参考</cite>。</p>
 
       </div>
 

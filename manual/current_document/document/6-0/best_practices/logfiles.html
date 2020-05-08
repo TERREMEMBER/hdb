@@ -9,8 +9,8 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-      监控Greenplum数据库日志文件 |
-    Greenplum Database Docs
+      监控inHybrid数据库日志文件 |
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,13 +58,13 @@
   <ul>
     
       <li class="">
-        <a href="../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
     
       <li class="has_submenu">
-        <a href="intro.html">Greenplum数据库最佳实践</a>
+        <a href="intro.html">inHybrid数据库最佳实践</a>
         
   <ul>
     
@@ -116,7 +116,7 @@
       </li>
     
       <li class="">
-        <a href="logfiles.html">监控Greenplum数据库日志文件</a>
+        <a href="logfiles.html">监控inHybrid数据库日志文件</a>
         
 
       </li>
@@ -173,7 +173,7 @@
         <a id="top"></a>
         
           <h1 class="title-container" style="display: none;">
-    监控Greenplum数据库日志文件
+    监控inHybrid数据库日志文件
   </h1>
 
           <div id="js-quick-links" >
@@ -184,22 +184,22 @@
         </div>
         
 
-  <h1 class="title topictitle1">监控Greenplum数据库日志文件</h1>
+  <h1 class="title topictitle1">监控inHybrid数据库日志文件</h1>
 
   <div class="body">
     <p class="p">了解系统日志文件的位置和内容并且定期监控它们而不是在问题发生时才监控。</p>
 
-    <p class="p">下面的表格展示了各种Greenplum数据库日志文件的位置。在文件路径中：</p>
+    <p class="p">下面的表格展示了各种inHybrid数据库日志文件的位置。在文件路径中：</p>
 <ul class="ul">
       <li class="li">
-<samp class="ph codeph">$GPADMIN_HOME</samp> 是操作系统用户<samp class="ph codeph">gpadmin</samp>的家目录
+<samp class="ph codeph">$GPADMIN_HOME</samp> 是操作系统用户<samp class="ph codeph">hdbadmin</samp>的家目录
         路径。</li>
 
         <li class="li">
-<samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp>是Greenplum数据库master主机的数据目录。</li>
+<samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp>是inHybrid数据库master主机的数据目录。</li>
 
       <li class="li">
-<samp class="ph codeph">$GPDATA_DIR</samp>是Greenplum数据库segment主机的数据目录。</li>
+<samp class="ph codeph">$GPDATA_DIR</samp>是inHybrid数据库segment主机的数据目录。</li>
 
         <li class="li">
 <samp class="ph codeph"><var class="keyword varname">host</var></samp>表示segment主机的主机名。</li>
@@ -245,7 +245,7 @@
 
           <tr class="row">
             <td class="entry" valign="top" headers="d4576e80 ">
-              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpinitsystem_<var class="keyword varname">date</var>.log</samp>
+              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/hdbinitsystem_<var class="keyword varname">date</var>.log</samp>
             </td>
 
             <td class="entry" valign="top" headers="d4576e83 ">系统初始化日志</td>
@@ -254,7 +254,7 @@
 
           <tr class="row">
             <td class="entry" valign="top" headers="d4576e80 ">
-              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpstart_<var class="keyword varname">date</var>.log</samp>
+              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/hdbstart_<var class="keyword varname">date</var>.log</samp>
             </td>
 
             <td class="entry" valign="top" headers="d4576e83 ">启动日志</td>
@@ -263,7 +263,7 @@
 
           <tr class="row">
             <td class="entry" valign="top" headers="d4576e80 ">
-              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpstop_<var class="keyword varname">date</var>.log</samp>
+              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/hdbstop_<var class="keyword varname">date</var>.log</samp>
             </td>
 
             <td class="entry" valign="top" headers="d4576e83 ">停止日志</td>
@@ -272,7 +272,7 @@
 
           <tr class="row">
             <td class="entry" valign="top" headers="d4576e80 ">
-              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpsegstart.py_<var class="keyword varname">host</var>:gpadmin_<var class="keyword varname">date</var>.log</samp>
+              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpsegstart.py_<var class="keyword varname">host</var>:hdbadmin_<var class="keyword varname">date</var>.log</samp>
             </td>
 
             <td class="entry" valign="top" headers="d4576e83 ">segment主机启动日志</td>
@@ -281,7 +281,7 @@
 
           <tr class="row">
             <td class="entry" valign="top" headers="d4576e80 ">
-              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpsegstop.py_<var class="keyword varname">host</var>:gpadmin_<var class="keyword varname">date</var>.log</samp>
+              <samp class="ph codeph">$GPADMIN_HOME/gpAdminLogs/gpsegstop.py_<var class="keyword varname">host</var>:hdbadmin_<var class="keyword varname">date</var>.log</samp>
             </td>
 
             <td class="entry" valign="top" headers="d4576e83 ">segment主机停止日志</td>
@@ -349,15 +349,15 @@
       </table>
 </div>
 
-    <p class="p">首先使用<samp class="ph codeph">gplogfilter -t</samp>（<samp class="ph codeph">--trouble</samp>）在master日志中搜索以
+    <p class="p">首先使用<samp class="ph codeph">hdblogfilter -t</samp>（<samp class="ph codeph">--trouble</samp>）在master日志中搜索以
       <samp class="ph codeph">ERROR:</samp>、<samp class="ph codeph">FATAL:</samp>或者<samp class="ph codeph">PANIC:</samp>开始的消息。
       以<samp class="ph codeph">WARNING</samp>开始的消息也可能提供有用的信息。</p>
 
-    <p class="p">要在segment主机上搜索日志文件，可以用<samp class="ph codeph">gpssh</samp>从master主机连接到segment主机使用
-      Greenplum的<samp class="ph codeph">gplogfilter</samp>工具。用户可以通过<samp class="ph codeph">statement_id</samp>在
+    <p class="p">要在segment主机上搜索日志文件，可以用<samp class="ph codeph">hdbssh</samp>从master主机连接到segment主机使用
+      inHybrid的<samp class="ph codeph">hdblogfilter</samp>工具。用户可以通过<samp class="ph codeph">statement_id</samp>在
       segment日志中定位对应的日志项。</p>
 
-    <p class="p">Greenplum数据库可以基于文件大小或当前日志文件年龄配置数据库日志的循环复写周期。<samp class="ph codeph">log_rotation_size</samp>
+    <p class="p">inHybrid数据库可以基于文件大小或当前日志文件年龄配置数据库日志的循环复写周期。<samp class="ph codeph">log_rotation_size</samp>
       配置参数设置单独一个日志文件的循环触发大小。当前日志文件大小大于等于该值时，该文件被关闭并新建另一个
       日志文件。<samp class="ph codeph">log_rotation_age</samp>配置参数指定当前日志文件的循环触发年龄。当从该文件
       创建到目前的时间达到该设置时，创建一个新的日志文件。默认的<samp class="ph codeph">log_rotation_age</samp>为1d（1天），
@@ -369,7 +369,7 @@
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="maintenance.html" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保Greenplum数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>
+<strong>Parent topic:</strong> <a class="link" href="maintenance.html" title="本节介绍日常运维相关的最佳实践，关注这些内容可以确保inHybrid数据库日常高可用性和性能保持 最佳状态。">系统监控和维护</a>
 </div>
 </div>
 </div>

@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       PXF安装和配置目录 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -182,11 +182,11 @@
         <div class="to-top" id="js-to-top">
           <a href="about_pxf_dir.html#top" title="back to top"></a>
         </div>
-        <p>在你安装Greenplum数据库时，PXF被安装在master和segment节点上。</p>
+        <p>在你安装inHybrid数据库时，PXF被安装在master和segment节点上。</p>
 
 <h2 id="pxf安装目录"><a id="installed"></a>PXF安装目录</h2>
 
-<p>在安装Greenplum时，以下配置文件和目录将被安装在你的GPDB实例中。这些文件/目录在PXF的安装目录$GPHOME/pxf:</p>
+<p>在安装inHybrid时，以下配置文件和目录将被安装在你的GPDB实例中。这些文件/目录在PXF的安装目录$HDBHOME/pxf:</p>
 
 <table><thead>
 <tr>
@@ -218,7 +218,7 @@
 
 <h2 id="pxf运行目录"><a id="runtime"></a>PXF运行目录</h2>
 
-<p>在初始化和启动过程中，PXF在$GPHOME/pxf创建了如下内部目录:</p>
+<p>在初始化和启动过程中，PXF在$HDBHOME/pxf创建了如下内部目录:</p>
 
 <table><thead>
 <tr>
@@ -260,7 +260,7 @@
 </tr>
 <tr>
 <td>logs/</td>
-<td>PXF运行时间日志文件目录，包括<code>pxf-service.log</code>和<code>Tomcat</code>相关日志<code>catalina.out</code>. logs目录和日志文件都是<code>gpadmin</code>用户创建的只读文件</td>
+<td>PXF运行时间日志文件目录，包括<code>pxf-service.log</code>和<code>Tomcat</code>相关日志<code>catalina.out</code>. logs目录和日志文件都是<code>hdbadmin</code>用户创建的只读文件</td>
 </tr>
 <tr>
 <td>servers/</td>

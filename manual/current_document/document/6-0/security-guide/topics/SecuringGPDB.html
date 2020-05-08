@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       保护数据库 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -58,7 +58,7 @@
   <ul>
     
       <li class="">
-        <a href="../../homenav.html">Greenplum数据库 6.0文档</a>
+        <a href="../../homenav.html">inHybrid数据库 6.0文档</a>
         
 
       </li>
@@ -75,7 +75,7 @@
       </li>
     
       <li class="">
-        <a href="ports_and_protocols.html">Greenplum数据库端口和协议</a>
+        <a href="ports_and_protocols.html">inHybrid数据库端口和协议</a>
         
 
       </li>
@@ -142,24 +142,24 @@
 
   
   <div class="body">
-<p class="shortdesc">介绍Greenplum数据库的安全性主题。</p>
+<p class="shortdesc">介绍inHybrid数据库的安全性主题。</p>
 
-    <p class="p">安全性配置的目的是配置Greenplum数据库服务器以消除尽可能多的安全性缺陷。
+    <p class="p">安全性配置的目的是配置inHybrid数据库服务器以消除尽可能多的安全性缺陷。
     这份指南为最小安全性需求提供了底线，并且有额外的安全性文档对其进行补充。</p>
 
     <div class="p">根本的安全性需求有下面几类： <ul class="ul" id="topic_iqr_ym2_jr__ul_fwy_bn2_jr">
         <li class="li">
-<a class="xref" href="Authenticate.html#topic_n5w_gtd_jr" title="描述认证Greenplum数据库客户端的可用方法。">认证</a> 覆盖Greenplum数据库服务器支持并且用来建立客户端应用标识的机制。</li>
+<a class="xref" href="Authenticate.html#topic_n5w_gtd_jr" title="描述认证inHybrid数据库客户端的可用方法。">认证</a> 覆盖inHybrid数据库服务器支持并且用来建立客户端应用标识的机制。</li>
 
         <li class="li">
 <a class="xref" href="Authorization.html#topic_ivr_cs2_jr" title="描述如何通过使用角色和权限在用户级别限制对数据库数据的授权访问。">授权</a>与数据库用来授权客户端访问使用的特权和权限模型相关。 </li>
 
         <li class="li">
-<a class="xref" href="Auditing.html#topic_ufw_zn2_jr" title="描述被记录并且应该被监控以检测安全性威胁的Greenplum数据库事件。">审计</a>, 或者日志设置覆盖Greenplum数据库中跟踪成功或者失败的用户动作的可用日志选项。</li>
+<a class="xref" href="Auditing.html#topic_ufw_zn2_jr" title="描述被记录并且应该被监控以检测安全性威胁的inHybrid数据库事件。">审计</a>, 或者日志设置覆盖inHybrid数据库中跟踪成功或者失败的用户动作的可用日志选项。</li>
 
         <li class="li">
 <a class="xref" href="Encryption.html#topic_th5_5bf_jr" title="描述如何在数据库中或者在网络上传输时加密数据以防止窃听攻击或者中间人攻击。">数据加密</a> 阐述可用来保护静态数据以及传输中数据的加密功能。
-            这包括与Greenplum数据库相关的安全性证书。 </li>
+            这包括与inHybrid数据库相关的安全性证书。 </li>
 
       </ul>
 </div>
@@ -167,7 +167,7 @@
     <div class="section">
 <h2 class="title sectiontitle">访问Kerberos化的Hadoop集群</h2>
       
-      <p class="p">用户可以使用Greenplum平台扩展框架（PXF）进行读写Hadoop文件系统中的外部表。如果Hadoop集群受到Kerberos的保护（Kerberos化），Greenplum数据库必须被配置为允许外部表拥有者用Kerberos认证。执行这种设置的步骤请见<a class="xref" href="../../pxf/pxf_kerbhdfs.html">为保护HDFS配置PXF</a>。</p>
+      <p class="p">用户可以使用inHybrid平台扩展框架（PXF）进行读写Hadoop文件系统中的外部表。如果Hadoop集群受到Kerberos的保护（Kerberos化），inHybrid数据库必须被配置为允许外部表拥有者用Kerberos认证。执行这种设置的步骤请见<a class="xref" href="../../pxf/pxf_kerbhdfs.html">为保护HDFS配置PXF</a>。</p>
 
     </div>
 

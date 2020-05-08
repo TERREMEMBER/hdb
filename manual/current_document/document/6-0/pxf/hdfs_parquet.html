@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       读写HDFS Parquet数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -214,14 +214,14 @@ under the License.
 
 <h2 id="数据类型映射"><a id="datatype_map"></a>数据类型映射</h2>
 
-<p>要在Greenplum数据库中读写Parquet基本数据类型，请将Parquet数据值映射到相同类型的Greenplum数据库列。下表总结了外部映射规则：</p>
+<p>要在inHybrid数据库中读写Parquet基本数据类型，请将Parquet数据值映射到相同类型的inHybrid数据库列。下表总结了外部映射规则：</p>
 
 <p><a id="p2g_type_mapping_table"></a></p>
 
 <table><thead>
 <tr>
 <th>Parquet数据类型</th>
-<th>PXF/Greenplum数据类型</th>
+<th>PXF/inHybrid数据类型</th>
 </tr>
 </thead><tbody>
 <tr>
@@ -268,7 +268,7 @@ under the License.
 
 <p>PXF HDFS连接器<code>hdfs:parquet</code>配置文件支持读写Parquet格式的HDFS数据。当您将记录插入可写外部表中时，您插入的数据块将写入指定目录中一个或多个文件。</p>
 
-<p>使用以下语法创建引用HDFS目录的Greenplum数据库外部表：</p>
+<p>使用以下语法创建引用HDFS目录的inHybrid数据库外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="p">[</span><span class="n">WRITABLE</span><span class="p">]</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-hdfs-dir&gt;
@@ -307,7 +307,7 @@ under the License.
 </tr>
 <tr>
 <td>DISTRIBUTED BY</td>
-<td>如果您计划将现有Greenplum数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与Greenplum表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
+<td>如果您计划将现有inHybrid数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与inHybrid表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
 </tr>
 </tbody></table>
 
@@ -386,7 +386,7 @@ PXF <code>hdfs:parquet</code> 配置文件支持与编码和压缩有关的写入选项。您可以在<c
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_tbl_parquet</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Frankfurt'</span><span class="p">,</span> <span class="s1">'Mar'</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mi">3956</span><span class="p">.</span><span class="mi">98</span> <span class="p">);</span>
 <span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_tbl_parquet</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Cleveland'</span><span class="p">,</span> <span class="s1">'Oct'</span><span class="p">,</span> <span class="mi">3812</span><span class="p">,</span> <span class="mi">96645</span><span class="p">.</span><span class="mi">37</span> <span class="p">);</span>
 </code></pre></li>
-<li><p>回想一下，Greenplum 数据库不支持直接查询一个可写外部表。要读取<code>pxf_parquet</code>中的数据，请创建一个引用此HDFS目录的可读外部表：</p>
+<li><p>回想一下，inHybrid 数据库不支持直接查询一个可写外部表。要读取<code>pxf_parquet</code>中的数据，请创建一个引用此HDFS目录的可读外部表：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">read_pxf_parquet</span><span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">number_of_orders</span> <span class="n">int</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">double</span> <span class="k">precision</span><span class="p">)</span>
     <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/pxf_parquet?PROFILE=hdfs:parquet'</span><span class="p">)</span>
     <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>

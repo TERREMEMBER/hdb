@@ -10,7 +10,7 @@
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
       读写HDFS SequenceFile数据 |
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -32,12 +32,12 @@
      
   <header class="header header-layout">
     <h1 class="logo">
-      <a href="http://47.92.231.67:8080/">Greenplum Database Documentation</a>
+      <a href="http://47.92.231.67:8080/">inHybrid Database Documentation</a>
     </h1>
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to Greenplum Database</a></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
@@ -54,9 +54,9 @@
   <div class="nav-content">
     <ul>
       <li>
-        <a href="../homenav.html">Greenplum数据库&reg; 6.0文档</a>
+        <a href="../homenav.html">inHybrid数据库&reg; 6.0文档</a>
       </li>
-      <li><a href="overview_pxf.html" format="markdown">Greenplum平台扩展框架(PXF)</a></li>
+      <li><a href="overview_pxf.html" format="markdown">inHybrid平台扩展框架(PXF)</a></li>
       <li class="has_submenu">
         <a href="intro_pxf.html" format="markdown">PXF介绍</a>
         <ul>
@@ -216,7 +216,7 @@ under the License.
 
 <p><strong>注意</strong>: 使用可写配置创建的外部表仅INSERT操作。 如果要查询插入的数据，则必须单独创建一个引用相关HDFS目录的可读外部表。</p>
 
-<p>使用以下语法创建一个引用HDFS目录的Greenplum数据库外部表：</p>
+<p>使用以下语法创建一个引用HDFS目录的inHybrid数据库外部表：</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="p">[</span><span class="n">WRITABLE</span><span class="p">]</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
     <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://&lt;path-to-hdfs-dir&gt;
@@ -255,7 +255,7 @@ under the License.
 </tr>
 <tr>
 <td>DISTRIBUTED BY</td>
-<td>如果您计划将现有Greenplum数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与Greenplum表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
+<td>如果您计划将现有inHybrid数据库表中的数据加载到可写外部表，考虑在可写外部表上使用与inHybrid表相同的分布策略或&lt;字段名&gt;。 这样做可以避免数据加载操作中segment节点间额外的数据移动。</td>
 </tr>
 </tbody></table>
 
@@ -279,7 +279,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 </thead><tbody>
 <tr>
 <td>COMPRESSION_CODEC</td>
-<td>压缩编码器类名称。 如果此选项未提供，Greenplum 数据库不执行数据压缩。 支持的压缩编解码器包括：<br><code>org.apache.hadoop.io.compress.DefaultCodec</code><br><code>org.apache.hadoop.io.compress.BZip2Codec</code><br><code>org.apache.hadoop.io.compress.GzipCodec</code></td>
+<td>压缩编码器类名称。 如果此选项未提供，inHybrid 数据库不执行数据压缩。 支持的压缩编解码器包括：<br><code>org.apache.hadoop.io.compress.DefaultCodec</code><br><code>org.apache.hadoop.io.compress.BZip2Codec</code><br><code>org.apache.hadoop.io.compress.GzipCodec</code></td>
 </tr>
 <tr>
 <td>COMPRESSION_TYPE</td>
@@ -416,20 +416,20 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 </code></pre>
 
 <p>(您的Hadoop库类路径可能不同)</p></li>
-<li><p>将 <code>pxfex-customwritable.jar</code> 文件复制到Greenplum 数据库master节点。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>scp pxfex-customwritable.jar gpadmin@gpmaster:/home/gpadmin
+<li><p>将 <code>pxfex-customwritable.jar</code> 文件复制到inHybrid 数据库master节点。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>scp pxfex-customwritable.jar hdbadmin@gpmaster:/home/hdbadmin
 </code></pre></li>
-<li><p>登录到您的Greenplum数据库master节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh gpadmin@&lt;gpmaster&gt;
+<li><p>登录到您的inHybrid数据库master节点：</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
 </code></pre></li>
 <li><p>将 <code>pxfex-customwritable.jar</code> JAR文件复制到用户运行时类库目录中，并记下位置。 例如， 如果 <code>PXF_CONF=/usr/local/greenplum-pxf</code>：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span>cp /home/gpadmin/pxfex-customwritable.jar /usr/local/greenplum-pxf/lib/pxfex-customwritable.jar
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp /home/hdbadmin/pxfex-customwritable.jar /usr/local/greenplum-pxf/lib/pxfex-customwritable.jar
 </code></pre></li>
-<li><p>将PXF配置同步到Greenplum数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">gpadmin@gpmaster$ </span><span class="nv">$GPHOME</span>/pxf/bin/pxf cluster sync
+<li><p>将PXF配置同步到inHybrid数据库集群。 例如：</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
-<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重启PXF</a>中所述，在每个Greenplum数据库segment主机上重启PXF。</p></li>
-<li><p>使用PXF <code>hdfs:SequenceFile</code> 配置文件创建Greenplum数据库可写外部表。 在 <code>DATA-SCHEMA</code> 自定义选项 &lt;custom-option&gt; 中标识您在上面创建的序列化/反序列化Java类。 创建可写外部表时，使用 <code>BZip2</code> 压缩并指定 <code>BLOCK</code> 压缩模式。</p>
+<li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重启PXF</a>中所述，在每个inHybrid数据库segment主机上重启PXF。</p></li>
+<li><p>使用PXF <code>hdfs:SequenceFile</code> 配置文件创建inHybrid数据库可写外部表。 在 <code>DATA-SCHEMA</code> 自定义选项 &lt;custom-option&gt; 中标识您在上面创建的序列化/反序列化Java类。 创建可写外部表时，使用 <code>BZip2</code> 压缩并指定 <code>BLOCK</code> 压缩模式。</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">WRITABLE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">pxf_tbl_seqfile</span> <span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">number_of_orders</span> <span class="n">integer</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">real</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/pxf_seqfile?PROFILE=hdfs:SequenceFile&amp;DATA-SCHEMA=com.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable&amp;COMPRESSION_TYPE=BLOCK&amp;COMPRESSION_CODEC=org.apache.hadoop.io.compress.BZip2Codec'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_export'</span><span class="p">);</span>
@@ -440,7 +440,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_tbl_seqfile</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Frankfurt'</span><span class="p">,</span> <span class="s1">'Mar'</span><span class="p">,</span> <span class="mi">777</span><span class="p">,</span> <span class="mi">3956</span><span class="p">.</span><span class="mi">98</span> <span class="p">);</span>
 <span class="n">postgres</span><span class="o">=#</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">pxf_tbl_seqfile</span> <span class="k">VALUES</span> <span class="p">(</span> <span class="s1">'Cleveland'</span><span class="p">,</span> <span class="s1">'Oct'</span><span class="p">,</span> <span class="mi">3812</span><span class="p">,</span> <span class="mi">96645</span><span class="p">.</span><span class="mi">37</span> <span class="p">);</span>
 </code></pre></li>
-<li><p>回想一下，Greenplum 数据库不支持直接查询一个可写外部表。要读取<code>pxf_seqfile</code>中的数据，请创建一个引用此HDFS目录的可读外部表：</p>
+<li><p>回想一下，inHybrid 数据库不支持直接查询一个可写外部表。要读取<code>pxf_seqfile</code>中的数据，请创建一个引用此HDFS目录的可读外部表：</p>
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">read_pxf_tbl_seqfile</span> <span class="p">(</span><span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">number_of_orders</span> <span class="n">integer</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">real</span><span class="p">)</span>
             <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/pxf_seqfile?PROFILE=hdfs:SequenceFile&amp;DATA-SCHEMA=com.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
@@ -448,7 +448,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 
 <p>当您通过 <code>hdfs:SequenceFile</code> 配置文件读取HDFS数据是必须指定 <code>DATA-SCHEMA</code> 自定义选项 &lt;custom-option&gt;。 您无需提供压缩相关的选项。</p></li>
 <li><p>查询可读外部表 <code>read_pxf_tbl_seqfile</code>：</p>
-<pre class="highlight sql"><code><span class="n">gpadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">read_pxf_tbl_seqfile</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">total_sales</span><span class="p">;</span>
+<pre class="highlight sql"><code><span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">read_pxf_tbl_seqfile</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">total_sales</span><span class="p">;</span>
 </code></pre>
 <pre class="highlight plaintext"><code> location  | month | number_of_orders | total_sales 
 -----------+-------+------------------+-------------
@@ -460,7 +460,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 
 <h2 id="读取记录键"><a id="read_recordkey"></a>读取记录键</h2>
 
-<p>当Greenplum数据库外部表引用SequenceFile或其他以键-值对存储行的数据格式时， 您可以通过使用 <code>recordkey</code> 关键字作为字段名称，在Greenplum查询中访问记录键的值。</p>
+<p>当inHybrid数据库外部表引用SequenceFile或其他以键-值对存储行的数据格式时， 您可以通过使用 <code>recordkey</code> 关键字作为字段名称，在inHybrid查询中访问记录键的值。</p>
 
 <p><code>recordkey</code> 字段类型必须与记录键类型相对应，就像其他字段必须与HDFS数据匹配一样。.</p>
 
@@ -476,7 +476,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 <li>  Text</li>
 </ul>
 
-<p>如果没有为行定义记录键， Greenplum数据库将返回处理该行的segment的id。</p>
+<p>如果没有为行定义记录键， inHybrid数据库将返回处理该行的segment的id。</p>
 
 <h3 id="示例：-使用记录键"><a id="read_recordkey_example"></a>示例： 使用记录键</h3>
 
@@ -484,7 +484,7 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 <pre class="highlight sql"><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="n">read_pxf_tbl_seqfile_recordkey</span><span class="p">(</span><span class="n">recordkey</span> <span class="n">int8</span><span class="p">,</span> <span class="k">location</span> <span class="n">text</span><span class="p">,</span> <span class="k">month</span> <span class="n">text</span><span class="p">,</span> <span class="n">number_of_orders</span> <span class="n">integer</span><span class="p">,</span> <span class="n">total_sales</span> <span class="n">real</span><span class="p">)</span>
                 <span class="k">LOCATION</span> <span class="p">(</span><span class="s1">'pxf://data/pxf_examples/pxf_seqfile?PROFILE=hdfs:SequenceFile&amp;DATA-SCHEMA=com.example.pxf.hdfs.writable.dataschema.PxfExample_CustomWritable'</span><span class="p">)</span>
           <span class="n">FORMAT</span> <span class="s1">'CUSTOM'</span> <span class="p">(</span><span class="n">FORMATTER</span><span class="o">=</span><span class="s1">'pxfwritable_import'</span><span class="p">);</span>
-<span class="n">gpadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">read_pxf_tbl_seqfile_recordkey</span><span class="p">;</span>
+<span class="n">hdbadmin</span><span class="o">=#</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">read_pxf_tbl_seqfile_recordkey</span><span class="p">;</span>
 </code></pre>
 <pre class="highlight plaintext"><code> recordkey |  location   | month | number_of_orders | total_sales 
 -----------+-------------+-------+------------------+-------------
