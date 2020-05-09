@@ -18,4 +18,6 @@
         172.12.0.11
         172.12.0.12
         172.12.0.13
-3.运行 ansible-playbook playbook.yml
+3.创建数据库集群 ansible-playbook playbook.yml
+4.删除数据库集群 ansible-playbook reset_playbook.yml
+5.运行检查 ansible-playbook setup_check.yml
