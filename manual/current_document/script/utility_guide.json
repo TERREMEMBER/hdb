@@ -1,0 +1,341 @@
+{
+  "dirname": "工具指南",
+  "subdir": [
+    {
+      "dirname": "管理工具参考",
+      "subdir": [
+        {
+          "dirname": "analyzedb",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/analyzedb.html",
+          "level": 2
+        },
+        {
+          "dirname": "gpactivatestandby",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/gpactivatestandby.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbaddmirrors",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbaddmirrors.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbbackup",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbbackup.html",
+          "level": 2
+        },
+        {
+          "dirname": "gpcheck",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/gpcheck.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbcheckcat",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbcheckcat.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbcheckperf",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbcheckperf.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbconfig",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbconfig.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbdeletesystem",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbdeletesystem.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbexpand",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbexpand.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbfdist",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbfdist.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbinitstandby",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbinitstandby.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbinitsystem",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbinitsystem.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbload",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbload.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdblogfilter",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdblogfilter.html",
+          "level": 2
+        },
+        {
+          "dirname": "gpmapreduce",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/gpmapreduce.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbmovemirrors",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbmovemirrors.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbperfmon_install",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbperfmon_install.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbpkg",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbpkg.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbrecoverseg",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbrecoverseg.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbreload",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbreload.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbrestore",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbrestore.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbscp",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbscp.html",
+          "level": 2
+        },
+        {
+          "dirname": "gpseginstall",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/gpseginstall.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbssh",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbssh.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbssh-exkeys",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbssh-exkeys.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbstart",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbstart.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbstate",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbstate.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbstop",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/hdbstop.html",
+          "level": 2
+        },
+        {
+          "dirname": "hdbsys1",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/gpsys.html",
+          "level": 2
+        },
+        {
+          "dirname": "pgbouncer",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/pgbouncer.html",
+          "level": 2
+        },
+        {
+          "dirname": "pgbouncer.ini",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/pgbouncer-ini.html",
+          "level": 2
+        },
+        {
+          "dirname": "pgbouncer-admin",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/pgbouncer-admin.html",
+          "level": 2
+        },
+        {
+          "dirname": "pxf",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/ref/pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "pxf cluster",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/ref/pxf-cluster.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/admin_utilities/util_ref.html",
+      "level": 1
+    },
+    {
+      "dirname": "客户端工具参考",
+      "subdir": [
+        {
+          "dirname": "客户端工具摘要",
+          "subdir": [
+            {
+              "dirname": "clusterdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/clusterdb.html",
+              "level": 3
+            },
+            {
+              "dirname": "createdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/createdb.html",
+              "level": 3
+            },
+            {
+              "dirname": "createlang",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/createlang.html",
+              "level": 3
+            },
+            {
+              "dirname": "createuser",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/createuser.html",
+              "level": 3
+            },
+            {
+              "dirname": "dropdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/dropdb.html",
+              "level": 3
+            },
+            {
+              "dirname": "droplang",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/droplang.html",
+              "level": 3
+            },
+            {
+              "dirname": "dropuser",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/dropuser.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_config",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/pg_config.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_dump",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/pg_dump.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_dumpall",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/pg_dumpall.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_restore",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/pg_restore.html",
+              "level": 3
+            },
+            {
+              "dirname": "psql",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/psql.html",
+              "level": 3
+            },
+            {
+              "dirname": "reindexdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/reindexdb.html",
+              "level": 3
+            },
+            {
+              "dirname": "vacuumdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/vacuumdb.html",
+              "level": 3
+            }
+          ],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/client_utilities/ClientUtilitySummary.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/cli_ref.html",
+      "level": 1
+    },
+    {
+      "dirname": "附加程序",
+      "subdir": [
+        {
+          "dirname": "pg_upgrade",
+          "subdir": [],
+          "link_href": "https://www.postgresql.org/docs/9.4/pgupgrade.html",
+          "level": 2
+        },
+        {
+          "dirname": "pg_xlogdump",
+          "subdir": [],
+          "link_href": "https://www.postgresql.org/docs/9.4/pgxlogdump.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/contrib-programs.html",
+      "level": 1
+    }
+  ],
+  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/utility_guide/utility_guide.html",
+  "level": 0
+}

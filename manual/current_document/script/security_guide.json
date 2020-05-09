@@ -1,0 +1,49 @@
+{
+  "dirname": "安全性配置指南",
+  "subdir": [
+    {
+      "dirname": "保护数据库",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/SecuringGPDB.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid数据库端口和协议",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/ports_and_protocols.html",
+      "level": 1
+    },
+    {
+      "dirname": "配置客户端认证",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/Authenticate.html",
+      "level": 1
+    },
+    {
+      "dirname": "配置数据库授权",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/Authorization.html",
+      "level": 1
+    },
+    {
+      "dirname": "审计",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/Auditing.html",
+      "level": 1
+    },
+    {
+      "dirname": "加密数据和数据库连接",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/Encryption.html",
+      "level": 1
+    },
+    {
+      "dirname": "安全性最佳实践",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/BestPractices.html",
+      "level": 1
+    }
+  ],
+  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/security-guide/topics/preface.html",
+  "level": 0
+}
