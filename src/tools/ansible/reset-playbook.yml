@@ -1,8 +1,0 @@
----
-- hosts: hdb_all
-  remote_user: root
-  connection: ssh
-  gather_facts: yes
-  tasks:
-    - name: reset
-      shell: "rm -rf /tmp/.s.PGSQL* /home/hdbadmin/hdbdata"
