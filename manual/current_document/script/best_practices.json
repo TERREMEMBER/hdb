@@ -1,0 +1,92 @@
+{
+  "dirname": "inHybrid数据库最佳实践",
+  "subdir": [
+    {
+      "dirname": "最佳实践概要",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/summary.html",
+      "level": 1
+    },
+    {
+      "dirname": "系统配置",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/sysconfig.html",
+      "level": 1
+    },
+    {
+      "dirname": "模式设计",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/schema.html",
+      "level": 1
+    },
+    {
+      "dirname": "采用资源组管理内存和资源",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/resgroups.html",
+      "level": 1
+    },
+    {
+      "dirname": "采用资源队列管理内存和资源",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/workloads.html",
+      "level": 1
+    },
+    {
+      "dirname": "系统监控和维护",
+      "subdir": [
+        {
+          "dirname": "用ANALYZE更新统计信息",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/analyze.html",
+          "level": 2
+        },
+        {
+          "dirname": "管理数据库膨胀",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/bloat.html",
+          "level": 2
+        },
+        {
+          "dirname": "监控inHybrid数据库日志文件",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/logfiles.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/maintenance.html",
+      "level": 1
+    },
+    {
+      "dirname": "装载数据",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/data_loading.html",
+      "level": 1
+    },
+    {
+      "dirname": "安全性",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/security.html",
+      "level": 1
+    },
+    {
+      "dirname": "加密数据和数据库连接",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/encryption.html",
+      "level": 1
+    },
+    {
+      "dirname": "SQL查询调优",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/tuning_queries.html",
+      "level": 1
+    },
+    {
+      "dirname": "高可用性",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/ha.html",
+      "level": 1
+    }
+  ],
+  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/best_practices/intro.html",
+  "level": 0
+}

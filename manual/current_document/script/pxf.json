@@ -1,0 +1,278 @@
+{
+  "dirname": "inHybrid平台扩展框架(PXF)",
+  "subdir": [
+    {
+      "dirname": "PXF介绍",
+      "subdir": [
+        {
+          "dirname": "PXF谓词下推",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/filter_push.html",
+          "level": 2
+        },
+        {
+          "dirname": "PXF列投影",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/col_project.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/intro_pxf.html",
+      "level": 1
+    },
+    {
+      "dirname": "PXF管理手册",
+      "subdir": [
+        {
+          "dirname": "配置PXF",
+          "subdir": [
+            {
+              "dirname": "PXF安装和配置目录",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/about_pxf_dir.html",
+              "level": 3
+            },
+            {
+              "dirname": "为PXF安装JAVA环境",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/install_java.html",
+              "level": 3
+            },
+            {
+              "dirname": "初始化PXF",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/init_pxf.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置PXF服务器",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/cfg_server.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置PXF HADOOP连接器（可选）",
+              "subdir": [
+                {
+                  "dirname": "配置用户模拟和代理",
+                  "subdir": [],
+                  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/pxfuserimpers.html",
+                  "level": 4
+                },
+                {
+                  "dirname": "为安全HDFS配置PXF",
+                  "subdir": [],
+                  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/pxf_kerbhdfs.html",
+                  "level": 4
+                }
+              ],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/client_instcfg.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置Minio和S3对象存储的连接器（可选）",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/s3_objstore_cfg.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置Azure和Google云端存储的连接器（可选）",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_cfg.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置JDBC连接器（可选）",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/jdbc_cfg.html",
+              "level": 3
+            },
+            {
+              "dirname": "配置PXF客户端主机和端口(可选)",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/cfghostport.html",
+              "level": 3
+            }
+          ],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/instcfg_pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "升级PXF",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/upgrade_pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "PXF的启动、停止和重启",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/cfginitstart_pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "授权用户访问PXF",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/using_pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "注册PXF的jar依赖",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/reg_jar_depend.html",
+          "level": 2
+        },
+        {
+          "dirname": "监控PXF",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/monitor_pxf.html",
+          "level": 2
+        }
+      ],
+      "level": 1,
+      "link_href":""
+    },
+    {
+      "dirname": "使用PXF访问hadoop",
+      "subdir": [
+        {
+          "dirname": "读写文本数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_text.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取Avro数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_avro.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取JSON数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_json.html",
+          "level": 2
+        },
+        {
+          "dirname": "读写Parquet数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_parquet.html",
+          "level": 2
+        },
+        {
+          "dirname": "读写SequenceFile数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_seqfile.html",
+          "level": 2
+        },
+        {
+          "dirname": "将多行文本文件读入单个表行",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hdfs_fileasrow.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取Hive表数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hive_pxf.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取HBase表数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/hbase_pxf.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/access_hdfs.html",
+      "level": 1
+    },
+    {
+      "dirname": "使用PXF访问Azure，Google云端存储，Minio和S3对象存储",
+      "subdir": [
+        {
+          "dirname": "About Accessing the S3 Object Store",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/access_s3.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取和写入文本数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_text.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取Avro数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_avro.html",
+          "level": 2
+        },
+        {
+          "dirname": "读取JSON数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_json.html",
+          "level": 2
+        },
+        {
+          "dirname": "读写Parquet数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_parquet.html",
+          "level": 2
+        },
+        {
+          "dirname": "读写SequenceFile数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_seqfile.html",
+          "level": 2
+        },
+        {
+          "dirname": "将多行文本文件读入单个表行",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/objstore_fileasrow.html",
+          "level": 2
+        },
+        {
+          "dirname": "使用S3 Select从S3读取CSV和Parquet数据",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/read_s3_s3select.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/access_objstore.html",
+      "level": 1
+    },
+    {
+      "dirname": "使用PXF访问SQL数据库（JDBC）",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/jdbc_pxf.html",
+      "level": 1
+    },
+    {
+      "dirname": "PXF故障排除",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/troubleshooting_pxf.html",
+      "level": 1
+    },
+    {
+      "dirname": "PXF实用程序手册",
+      "subdir": [
+        {
+          "dirname": "pxf cluster",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/ref/pxf-cluster.html",
+          "level": 2
+        },
+        {
+          "dirname": "pxf",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/ref/pxf.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/ref/pxf-ref.html",
+      "level": 1
+    }
+  ],
+  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/pxf/overview_pxf.html",
+  "level": 0
+}

@@ -1,0 +1,3611 @@
+{
+  "dirname": "参考指南",
+  "subdir": [
+    {
+      "dirname": "SQL Command Reference",
+      "subdir": [
+        {
+          "dirname": "SQL Syntax Summary",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/GPReferenceSQLSummaryLOP.html",
+          "level": 2
+        },
+        {
+          "dirname": "ABORT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ABORT.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER AGGREGATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_AGGREGATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER COLLATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_COLLATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER CONVERSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_CONVERSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER DATABASE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_DATABASE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER DEFAULT PRIVILEGES",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_DEFAULT_PRIVILEGES.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER DOMAIN",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_DOMAIN.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER EXTENSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_EXTENSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER EXTERNAL TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_EXTERNAL_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER FOREIGN DATA WRAPPER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_FOREIGN_DATA_WRAPPER.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER FOREIGN TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_FOREIGN_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER FUNCTION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_FUNCTION.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER INDEX",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_INDEX.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER LANGUAGE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_LANGUAGE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER OPERATOR",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_OPERATOR.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER OPERATOR CLASS",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_OPERATOR_CLASS.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER OPERATOR FAMILY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_OPERATOR_FAMILY.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER PROTOCOL",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_PROTOCOL.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER RESOURCE GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_RESOURCE_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER RESOURCE QUEUE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_RESOURCE_QUEUE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER ROLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_ROLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER SCHEMA",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_SCHEMA.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER SEQUENCE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_SEQUENCE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER SERVER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_SERVER.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TABLESPACE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TABLESPACE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TEXT SEARCH CONFIGURATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TEXT_SEARCH_CONFIGURATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TEXT SEARCH DICTIONARY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TEXT_SEARCH_DICTIONARY.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TEXT SEARCH PARSER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TEXT_SEARCH_PARSER.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TEXT SEARCH TEMPLATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TEXT_SEARCH_TEMPLATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER TYPE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_TYPE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER USER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_USER.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER USER MAPPING",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_USER_MAPPING.html",
+          "level": 2
+        },
+        {
+          "dirname": "ALTER VIEW",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ALTER_VIEW.html",
+          "level": 2
+        },
+        {
+          "dirname": "ANALYZE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ANALYZE.html",
+          "level": 2
+        },
+        {
+          "dirname": "BEGIN",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/BEGIN.html",
+          "level": 2
+        },
+        {
+          "dirname": "CHECKPOINT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CHECKPOINT.html",
+          "level": 2
+        },
+        {
+          "dirname": "CLOSE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CLOSE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CLUSTER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CLUSTER.html",
+          "level": 2
+        },
+        {
+          "dirname": "COMMENT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/COMMENT.html",
+          "level": 2
+        },
+        {
+          "dirname": "COMMIT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/COMMIT.html",
+          "level": 2
+        },
+        {
+          "dirname": "COPY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/COPY.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE AGGREGATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_AGGREGATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE CAST",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_CAST.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE COLLATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_COLLATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE CONVERSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_CONVERSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE DATABASE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_DATABASE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE DOMAIN",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_DOMAIN.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE EXTENSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_EXTENSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE EXTERNAL TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_EXTERNAL_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE FOREIGN DATA WRAPPER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_FOREIGN_DATA_WRAPPER.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE FOREIGN TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_FOREIGN_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE FUNCTION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_FUNCTION.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE INDEX",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_INDEX.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE LANGUAGE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_LANGUAGE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE OPERATOR",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_OPERATOR.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE OPERATOR CLASS",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_OPERATOR_CLASS.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE OPERATOR FAMILY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_OPERATOR_FAMILY.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE PROTOCOL",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_PROTOCOL.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE RESOURCE GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_RESOURCE_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE RESOURCE QUEUE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_RESOURCE_QUEUE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE ROLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_ROLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE RULE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_RULE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE SCHEMA",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_SCHEMA.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE SEQUENCE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_SEQUENCE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE SERVER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_SERVER.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TABLE AS",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TABLE_AS.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TABLESPACE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TABLESPACE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TEXT SEARCH CONFIGURATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TEXT_SEARCH_CONFIGURATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TEXT SEARCH DICTIONARY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TEXT_SEARCH_DICTIONARY.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TEXT SEARCH PARSER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TEXT_SEARCH_PARSER.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TEXT SEARCH TEMPLATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TEXT_SEARCH_TEMPLATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE TYPE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_TYPE.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE USER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_USER.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE USER MAPPING",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_USER_MAPPING.html",
+          "level": 2
+        },
+        {
+          "dirname": "CREATE VIEW",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/CREATE_VIEW.html",
+          "level": 2
+        },
+        {
+          "dirname": "DEALLOCATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DEALLOCATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DECLARE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DECLARE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DELETE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DELETE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DISCARD",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DISCARD.html",
+          "level": 2
+        },
+        {
+          "dirname": "DO",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DO.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP AGGREGATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_AGGREGATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP CAST",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_CAST.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP COLLATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_COLLATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP CONVERSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_CONVERSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP DATABASE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_DATABASE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP DOMAIN",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_DOMAIN.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP EXTENSION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_EXTENSION.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP EXTERNAL TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_EXTERNAL_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP FOREIGN DATA WRAPPER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_FOREIGN_DATA_WRAPPER.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP FOREIGN TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_FOREIGN_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP FUNCTION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_FUNCTION.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP INDEX",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_INDEX.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP LANGUAGE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_LANGUAGE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP OPERATOR",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_OPERATOR.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP OPERATOR CLASS",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_OPERATOR_CLASS.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP OPERATOR FAMILY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_OPERATOR_FAMILY.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP OWNED",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_OWNED.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP PROTOCOL",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_PROTOCOL.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP RESOURCE GROUP",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_RESOURCE_GROUP.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP RESOURCE QUEUE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_RESOURCE_QUEUE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP ROLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_ROLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP RULE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_RULE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP SCHEMA",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_SCHEMA.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP SEQUENCE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_SEQUENCE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP SERVER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_SERVER.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TABLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TABLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TABLESPACE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TABLESPACE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TEXT SEARCH CONFIGURATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TEXT_SEARCH_CONFIGURATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TEXT SEARCH DICTIONARY",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TEXT_SEARCH_DICTIONARY.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TEXT SEARCH PARSER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TEXT_SEARCH_PARSER.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TEXT SEARCH TEMPLATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TEXT_SEARCH_TEMPLATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP TYPE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_TYPE.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP USER",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_USER.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP USER MAPPING",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_USER_MAPPING.html",
+          "level": 2
+        },
+        {
+          "dirname": "DROP VIEW",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/DROP_VIEW.html",
+          "level": 2
+        },
+        {
+          "dirname": "END",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/END.html",
+          "level": 2
+        },
+        {
+          "dirname": "EXECUTE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/EXECUTE.html",
+          "level": 2
+        },
+        {
+          "dirname": "EXPLAIN",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/EXPLAIN.html",
+          "level": 2
+        },
+        {
+          "dirname": "FETCH",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/FETCH.html",
+          "level": 2
+        },
+        {
+          "dirname": "GRANT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/GRANT.html",
+          "level": 2
+        },
+        {
+          "dirname": "INSERT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/INSERT.html",
+          "level": 2
+        },
+        {
+          "dirname": "LOAD",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/LOAD.html",
+          "level": 2
+        },
+        {
+          "dirname": "LOCK",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/LOCK.html",
+          "level": 2
+        },
+        {
+          "dirname": "MOVE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/MOVE.html",
+          "level": 2
+        },
+        {
+          "dirname": "PREPARE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/PREPARE.html",
+          "level": 2
+        },
+        {
+          "dirname": "REASSIGN OWNED",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/REASSIGN_OWNED.html",
+          "level": 2
+        },
+        {
+          "dirname": "REINDEX",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/REINDEX.html",
+          "level": 2
+        },
+        {
+          "dirname": "RELEASE SAVEPOINT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/RELEASE_SAVEPOINT.html",
+          "level": 2
+        },
+        {
+          "dirname": "RESET",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/RESET.html",
+          "level": 2
+        },
+        {
+          "dirname": "REVOKE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/REVOKE.html",
+          "level": 2
+        },
+        {
+          "dirname": "ROLLBACK",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ROLLBACK.html",
+          "level": 2
+        },
+        {
+          "dirname": "ROLLBACK TO SAVEPOINT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/ROLLBACK_TO_SAVEPOINT.html",
+          "level": 2
+        },
+        {
+          "dirname": "SAVEPOINT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SAVEPOINT.html",
+          "level": 2
+        },
+        {
+          "dirname": "SELECT",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SELECT.html",
+          "level": 2
+        },
+        {
+          "dirname": "SELECT INTO",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SELECT_INTO.html",
+          "level": 2
+        },
+        {
+          "dirname": "SET",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SET.html",
+          "level": 2
+        },
+        {
+          "dirname": "SET CONSTRAINTS",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SET_CONSTRAINTS.html",
+          "level": 2
+        },
+        {
+          "dirname": "SET ROLE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SET_ROLE.html",
+          "level": 2
+        },
+        {
+          "dirname": "SET SESSION AUTHORIZATION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SET_SESSION_AUTHORIZATION.html",
+          "level": 2
+        },
+        {
+          "dirname": "SET TRANSACTION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SET_TRANSACTION.html",
+          "level": 2
+        },
+        {
+          "dirname": "SHOW",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/SHOW.html",
+          "level": 2
+        },
+        {
+          "dirname": "START TRANSACTION",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/START_TRANSACTION.html",
+          "level": 2
+        },
+        {
+          "dirname": "TRUNCATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/TRUNCATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "UPDATE",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/UPDATE.html",
+          "level": 2
+        },
+        {
+          "dirname": "VACUUM",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/VACUUM.html",
+          "level": 2
+        },
+        {
+          "dirname": "VALUES",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/VALUES.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql_commands/sql_ref.html",
+      "level": 1
+    },
+    {
+      "dirname": "SQL 2008可选特性兼容性",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/SQL2008_support.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid环境变量",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/env_var_ref.html",
+      "level": 1
+    },
+    {
+      "dirname": "保留标识符和SQL关键字",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/sql-keywords.html",
+      "level": 1
+    },
+    {
+      "dirname": "系统目录参考",
+      "subdir": [
+        {
+          "dirname": "系统表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/catalog_ref-tables.html#topic1",
+          "level": 2
+        },
+        {
+          "dirname": "系统视图",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/catalog_ref-views.html#topic1",
+          "level": 2
+        },
+        {
+          "dirname": "系统目录定义",
+          "subdir": [
+            {
+              "dirname": "foreign_data_wrapper_options",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_data_wrapper_options.html",
+              "level": 3
+            },
+            {
+              "dirname": "foreign_data_wrappers",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_data_wrappers.html",
+              "level": 3
+            },
+            {
+              "dirname": "foreign_server_options",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_server_options.html",
+              "level": 3
+            },
+            {
+              "dirname": "foreign_servers",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_servers.html",
+              "level": 3
+            },
+            {
+              "dirname": "foreign_table_options",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_table_options.html",
+              "level": 3
+            },
+            {
+              "dirname": "foreign_tables",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/foreign_tables.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_configuration_history",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_configuration_history.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_distributed_log",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_distributed_log.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_distributed_xacts",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_distributed_xacts.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_distribution_policy",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_distribution_policy.html",
+              "level": 3
+            },
+            {
+              "dirname": "hdbexpand.expansion_progress",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/hdbexpand_expansion_progress.html",
+              "level": 3
+            },
+            {
+              "dirname": "hdbexpand.status",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_expansion_status.html",
+              "level": 3
+            },
+            {
+              "dirname": "hdbexpand.status_detail",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_expansion_tables.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_fastsequence",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_fastsequence.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_id",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_id.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_pgdatabase",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_pgdatabase.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resgroup_config",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_resgroup_config.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resgroup_status",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_resgroup_status.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resgroup_status_per_host",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_resgroup_status_per_host.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resgroup_status_per_segment",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_resgroup_status_per_segment.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resqueue_status",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_resqueue_status.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_stat_replication",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_stat_replication.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_segment_configuration",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_segment_configuration.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_transaction_log",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_transaction_log.html",
+              "level": 3
+            },
+            {
+              "dirname": "gp_version_at_initdb",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/gp_version_at_initdb.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_aggregate",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_aggregate.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_am",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_am.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_amop",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_amop.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_amproc",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_amproc.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_appendonly",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_appendonly.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_attrdef",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_attrdef.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_attribute",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_attribute.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_attribute_encoding",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_attribute_encoding.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_auth_members",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_auth_members.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_authid",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_authid.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_available_extension_versions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_available_extension_versions.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_available_extensions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_available_extensions.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_cast",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_cast.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_class",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_class.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_compression",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_compression.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_constraint",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_constraint.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_conversion",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_conversion.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_database",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_database.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_db_role_setting",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_db_role_setting.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_depend",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_depend.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_description",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_description.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_enum",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_enum.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_extension",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_extension.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_exttable",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_exttable.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_foreign_data_wrapper",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_foreign_data_wrapper.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_foreign_server",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_foreign_server.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_foreign_table",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_foreign_table.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_index",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_index.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_inherits",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_inherits.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_language",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_language.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_largeobject",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_largeobject.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_listener",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_listener.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_locks",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_locks.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_max_external_files",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_max_external_files.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_namespace",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_namespace.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_opclass",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_opclass.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_operator",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_operator.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_opfamily",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_opfamily.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partition",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partition.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partition_columns",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partition_columns.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partition_encoding",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partition_encoding.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partition_rule",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partition_rule.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partition_templates",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partition_templates.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_partitions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_partitions.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_pltemplate",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_pltemplate.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_proc",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_proc.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resgroup",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resgroup.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resgroupcapability",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resgroupcapability.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resourcetype",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resourcetype.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resqueue",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resqueue.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resqueue_attributes",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resqueue_attributes.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_resqueuecapability",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_resqueuecapability.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_rewrite",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_rewrite.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_roles",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_roles.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_shdepend",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_shdepend.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_shdescription",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_shdescription.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_activity",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_activity.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_last_operation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_last_operation.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_last_shoperation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_last_shoperation.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_operations",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_operations.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_partition_operations",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_partition_operations.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_replication",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stat_replication.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_statistic",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_statistic.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_stat_resqueues",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_stats_resqueue.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_tablespace",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_tablespace.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_trigger",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_trigger.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_type",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_type.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_type_encoding",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_type_encoding.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_user_mapping",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_user_mapping.html",
+              "level": 3
+            },
+            {
+              "dirname": "pg_user_mappings",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/pg_user_mappings.html",
+              "level": 3
+            },
+            {
+              "dirname": "user_mapping_options",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/user_mapping_options.html",
+              "level": 3
+            },
+            {
+              "dirname": "user_mappings",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/user_mappings.html",
+              "level": 3
+            }
+          ],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/catalog_ref-html.html#topic1",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/system_catalogs/catalog_ref.html#topic1",
+      "level": 1
+    },
+    {
+      "dirname": "gp_toolkit管理模式",
+      "subdir": [
+        {
+          "dirname": "检查需要例行维护的表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic2",
+          "level": 2
+        },
+        {
+          "dirname": "检查锁",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic5",
+          "level": 2
+        },
+        {
+          "dirname": "检查追加优化表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic8",
+          "level": 2
+        },
+        {
+          "dirname": "查看inHybrid数据库服务器日志文件",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic16",
+          "level": 2
+        },
+        {
+          "dirname": "检查服务器配置文件",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic21",
+          "level": 2
+        },
+        {
+          "dirname": "检查失败的segments",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic24",
+          "level": 2
+        },
+        {
+          "dirname": "检查资源组活动和状态",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic26x",
+          "level": 2
+        },
+        {
+          "dirname": "检查资源队列活动和状态",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic26",
+          "level": 2
+        },
+        {
+          "dirname": "检查查询磁盘溢出空间使用情况",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic32",
+          "level": 2
+        },
+        {
+          "dirname": "查看用户和组（角色）",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic36",
+          "level": 2
+        },
+        {
+          "dirname": "检查数据库对象大小和磁盘空间",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic38",
+          "level": 2
+        },
+        {
+          "dirname": "检查数据分布不均",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html#topic49",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gp_toolkit.html",
+      "level": 1
+    },
+    {
+      "dirname": "gpperfmon 数据库",
+      "subdir": [
+        {
+          "dirname": " database_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-database.html",
+          "level": 2
+        },
+        {
+          "dirname": " diskspace_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-diskspace.html",
+          "level": 2
+        },
+        {
+          "dirname": " interface_stats_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-interface-stats.html",
+          "level": 2
+        },
+        {
+          "dirname": " log_alert_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-log-alert.html",
+          "level": 2
+        },
+        {
+          "dirname": "queries_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-queries.html",
+          "level": 2
+        },
+        {
+          "dirname": " segment_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-segment.html",
+          "level": 2
+        },
+        {
+          "dirname": "socket_stats_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-socket-stats.html",
+          "level": 2
+        },
+        {
+          "dirname": "system_* 表",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-system.html",
+          "level": 2
+        },
+        {
+          "dirname": "dynamic_memory_info 视图",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-dynamic-memory-info.html",
+          "level": 2
+        },
+        {
+          "dirname": " memory_info 视图",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/db-memory-info.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/gpperfmon/dbref.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid 数据库数据类型",
+      "subdir": [
+        {
+          "dirname": "日期/时间类型",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/datatype-datetime.html",
+          "level": 2
+        },
+        {
+          "dirname": "伪类型",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/datatype-pseudo.html",
+          "level": 2
+        },
+        {
+          "dirname": "全文搜索类型",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/datatype-textsearch.html",
+          "level": 2
+        },
+        {
+          "dirname": "范围类型",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/datatype-range.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/data_types.html",
+      "level": 1
+    },
+    {
+      "dirname": "字符集支持",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/character_sets.html",
+      "level": 1
+    },
+    {
+      "dirname": "服务器配置参数",
+      "subdir": [
+        {
+          "dirname": "参数类型和值",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_config.html#topic_vsn_22l_z4",
+          "level": 2
+        },
+        {
+          "dirname": "设置参数",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_config.html#topic_cyz_p2l_z4",
+          "level": 2
+        },
+        {
+          "dirname": "参数类别",
+          "subdir": [
+            {
+              "dirname": "连接和验证参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic12",
+              "level": 3
+            },
+            {
+              "dirname": "系统资源消耗参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic15",
+              "level": 3
+            },
+            {
+              "dirname": "GPORCA参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic57",
+              "level": 3
+            },
+            {
+              "dirname": "查询调优参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic21",
+              "level": 3
+            },
+            {
+              "dirname": "错误报告和日志参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic29",
+              "level": 3
+            },
+            {
+              "dirname": "系统监控参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic33",
+              "level": 3
+            },
+            {
+              "dirname": "运行时统计信息收集参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic37",
+              "level": 3
+            },
+            {
+              "dirname": "自动统计收集参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic38",
+              "level": 3
+            },
+            {
+              "dirname": "客户端连接默认参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic39",
+              "level": 3
+            },
+            {
+              "dirname": "锁管理参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic43",
+              "level": 3
+            },
+            {
+              "dirname": "资源管理参数（资源队列）",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic44",
+              "level": 3
+            },
+            {
+              "dirname": "资源管理参数（资源组）",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic444",
+              "level": 3
+            },
+            {
+              "dirname": "外部表参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic45",
+              "level": 3
+            },
+            {
+              "dirname": "数据库表参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic46",
+              "level": 3
+            },
+            {
+              "dirname": "历史版本兼容性参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic48",
+              "level": 3
+            },
+            {
+              "dirname": "inHybrid数据库阵列配置参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic49",
+              "level": 3
+            },
+            {
+              "dirname": "master和segment的inHybrid镜像参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic55",
+              "level": 3
+            },
+            {
+              "dirname": "inHybrid数据库扩展参数",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html#topic56",
+              "level": 3
+            }
+          ],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_category-list.html",
+          "level": 2
+        },
+        {
+          "dirname": "配置参数",
+          "subdir": [
+            {
+              "dirname": "application_name",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#application_name",
+              "level": 3
+            },
+            {
+              "dirname": "array_nulls",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#array_nulls",
+              "level": 3
+            },
+            {
+              "dirname": "authentication_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#authentication_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "backslash_quote",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#backslash_quote",
+              "level": 3
+            },
+            {
+              "dirname": "block_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#block_size",
+              "level": 3
+            },
+            {
+              "dirname": "bonjour_name",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#bonjour_name",
+              "level": 3
+            },
+            {
+              "dirname": "check_function_bodies",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#check_function_bodies",
+              "level": 3
+            },
+            {
+              "dirname": "client_encoding",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#client_encoding",
+              "level": 3
+            },
+            {
+              "dirname": "client_min_messages",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#client_min_messages",
+              "level": 3
+            },
+            {
+              "dirname": "cpu_index_tuple_cost",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#cpu_index_tuple_cost",
+              "level": 3
+            },
+            {
+              "dirname": "cpu_operator_cost",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#cpu_operator_cost",
+              "level": 3
+            },
+            {
+              "dirname": "cpu_tuple_cost",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#cpu_tuple_cost",
+              "level": 3
+            },
+            {
+              "dirname": "cursor_tuple_fraction",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#cursor_tuple_fraction",
+              "level": 3
+            },
+            {
+              "dirname": "data_checksums",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#data_checksums",
+              "level": 3
+            },
+            {
+              "dirname": "DateStyle",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#DateStyle",
+              "level": 3
+            },
+            {
+              "dirname": "db_user_namespace",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#db_user_namespace",
+              "level": 3
+            },
+            {
+              "dirname": "deadlock_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#deadlock_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "debug_assertions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_assertions",
+              "level": 3
+            },
+            {
+              "dirname": "debug_pretty_print",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_pretty_print",
+              "level": 3
+            },
+            {
+              "dirname": "debug_print_parse",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_print_parse",
+              "level": 3
+            },
+            {
+              "dirname": "debug_print_plan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_print_plan",
+              "level": 3
+            },
+            {
+              "dirname": "debug_print_prelim_plan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_print_prelim_plan",
+              "level": 3
+            },
+            {
+              "dirname": "debug_print_rewritten",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_print_rewritten",
+              "level": 3
+            },
+            {
+              "dirname": "debug_print_slice_table",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#debug_print_slice_table",
+              "level": 3
+            },
+            {
+              "dirname": "default_statistics_target",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_statistics_target",
+              "level": 3
+            },
+            {
+              "dirname": "default_tablespace",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_tablespace",
+              "level": 3
+            },
+            {
+              "dirname": "default_text_search_config",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_text_search_config",
+              "level": 3
+            },
+            {
+              "dirname": "default_transaction_deferrable",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_transaction_deferrable",
+              "level": 3
+            },
+            {
+              "dirname": "default_transaction_isolation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_transaction_isolation",
+              "level": 3
+            },
+            {
+              "dirname": "default_transaction_read_only",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#default_transaction_read_only",
+              "level": 3
+            },
+            {
+              "dirname": "dynamic_library_path",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#dynamic_library_path",
+              "level": 3
+            },
+            {
+              "dirname": "effective_cache_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#effective_cache_size",
+              "level": 3
+            },
+            {
+              "dirname": "enable_bitmapscan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_bitmapscan",
+              "level": 3
+            },
+            {
+              "dirname": "enable_groupagg",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_groupagg",
+              "level": 3
+            },
+            {
+              "dirname": "enable_hashagg",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_hashagg",
+              "level": 3
+            },
+            {
+              "dirname": "enable_hashjoin",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_hashjoin",
+              "level": 3
+            },
+            {
+              "dirname": "enable_indexscan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_indexscan",
+              "level": 3
+            },
+            {
+              "dirname": "enable_mergejoin",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_mergejoin",
+              "level": 3
+            },
+            {
+              "dirname": "enable_nestloop",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_nestloop",
+              "level": 3
+            },
+            {
+              "dirname": "enable_seqscan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_seqscan",
+              "level": 3
+            },
+            {
+              "dirname": "enable_sort",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_sort",
+              "level": 3
+            },
+            {
+              "dirname": "enable_tidscan",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#enable_tidscan",
+              "level": 3
+            },
+            {
+              "dirname": "escape_string_warning",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#escape_string_warning",
+              "level": 3
+            },
+            {
+              "dirname": "explain_pretty_print",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#explain_pretty_print",
+              "level": 3
+            },
+            {
+              "dirname": "extra_float_digits",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#extra_float_digits",
+              "level": 3
+            },
+            {
+              "dirname": "from_collapse_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#from_collapse_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_adjust_selectivity_for_outerjoins",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_adjust_selectivity_for_outerjoins",
+              "level": 3
+            },
+            {
+              "dirname": "gp_appendonly_compaction",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_appendonly_compaction",
+              "level": 3
+            },
+            {
+              "dirname": "gp_appendonly_compaction_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_appendonly_compaction_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "gp_autostats_mode",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_autostats_mode",
+              "level": 3
+            },
+            {
+              "dirname": "gp_autostats_mode_in_functions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_autostats_mode_in_functions",
+              "level": 3
+            },
+            {
+              "dirname": "gp_autostats_on_change_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_autostats_on_change_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "gp_cached_segworkers_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_cached_segworkers_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "gp_command_count",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_command_count",
+              "level": 3
+            },
+            {
+              "dirname": "gp_connection_send_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_connection_send_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "gp_content",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_content",
+              "level": 3
+            },
+            {
+              "dirname": "gp_create_table_random_default_distribution",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_create_table_random_default_distribution",
+              "level": 3
+            },
+            {
+              "dirname": "gp_dbid",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_dbid",
+              "level": 3
+            },
+            {
+              "dirname": "gp_debug_linger",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_debug_linger",
+              "level": 3
+            },
+            {
+              "dirname": "gp_default_storage_options",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_default_storage_options",
+              "level": 3
+            },
+            {
+              "dirname": "gp_dynamic_partition_pruning",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_dynamic_partition_pruning",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_adaptive_nestloop",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_adaptive_nestloop",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_agg_distinct",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_agg_distinct",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_agg_distinct_pruning",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_agg_distinct_pruning",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_direct_dispatch",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_direct_dispatch",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_exchange_default_partition",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_exchange_default_partition",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_fast_sri",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_fast_sri",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_gpperfmon",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_gpperfmon",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_groupext_distinct_gather",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_groupext_distinct_gather",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_groupext_distinct_pruning",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_groupext_distinct_pruning",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_multiphase_agg",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_multiphase_agg",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_predicate_propagation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_predicate_propagation",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_preunique",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_preunique",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_query_metrics",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_query_metrics",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_relsize_collection",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_relsize_collection",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_segment_copy_checking",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_segment_copy_checking",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_sort_distinct",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_sort_distinct",
+              "level": 3
+            },
+            {
+              "dirname": "gp_enable_sort_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_enable_sort_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_external_enable_exec",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_external_enable_exec",
+              "level": 3
+            },
+            {
+              "dirname": "gp_external_max_segs",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_external_max_segs",
+              "level": 3
+            },
+            {
+              "dirname": "gp_external_enable_filter_pushdown",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_external_enable_filter_pushdown",
+              "level": 3
+            },
+            {
+              "dirname": "gp_fts_probe_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_fts_probe_interval",
+              "level": 3
+            },
+            {
+              "dirname": "gp_fts_probe_retries",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_fts_probe_retries",
+              "level": 3
+            },
+            {
+              "dirname": "gp_fts_probe_threadcount",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_fts_probe_threadcount",
+              "level": 3
+            },
+            {
+              "dirname": "gp_fts_probe_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_fts_probe_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "gp_global_deadlock_detector_period",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_global_deadlock_detector_period",
+              "level": 3
+            },
+            {
+              "dirname": "gp_gpperfmon_send_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_gpperfmon_send_interval",
+              "level": 3
+            },
+            {
+              "dirname": "gpperfmon_log_alert_level",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gpperfmon_log_alert_level",
+              "level": 3
+            },
+            {
+              "dirname": "gp_hashjoin_tuples_per_bucket",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_hashjoin_tuples_per_bucket",
+              "level": 3
+            },
+            {
+              "dirname": "gp_ignore_error_table (不推荐使用)",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_ignore_error_table",
+              "level": 3
+            },
+            {
+              "dirname": "gp_initial_bad_row_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#topic_lvm_ttc_3p",
+              "level": 3
+            },
+            {
+              "dirname": "gp_instrument_shmem_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_instrument_shmem_size",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_debug_retry_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_debug_retry_interval",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_fc_method",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_fc_method",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_hash_multiplier",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_hash_multiplier",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_queue_depth",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_queue_depth",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_setup_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_setup_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_snd_queue_depth",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_snd_queue_depth",
+              "level": 3
+            },
+            {
+              "dirname": "gp_interconnect_type",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_interconnect_type",
+              "level": 3
+            },
+            {
+              "dirname": "gp_log_format",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_log_format",
+              "level": 3
+            },
+            {
+              "dirname": "gp_log_fts",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_log_fts",
+              "level": 3
+            },
+            {
+              "dirname": "gp_log_gang",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_log_gang",
+              "level": 3
+            },
+            {
+              "dirname": "gp_log_interconnect",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_log_interconnect",
+              "level": 3
+            },
+            {
+              "dirname": "gp_max_local_distributed_cache",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_max_local_distributed_cache",
+              "level": 3
+            },
+            {
+              "dirname": "gp_max_packet_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_max_packet_size",
+              "level": 3
+            },
+            {
+              "dirname": "gp_max_plan_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_max_plan_size",
+              "level": 3
+            },
+            {
+              "dirname": "gp_max_slices",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_max_slices",
+              "level": 3
+            },
+            {
+              "dirname": "memory_spill_ratio",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#memory_spill_ratio",
+              "level": 3
+            },
+            {
+              "dirname": "gp_motion_cost_per_row",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_motion_cost_per_row",
+              "level": 3
+            },
+            {
+              "dirname": "gp_recursive_cte",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_recursive_cte",
+              "level": 3
+            },
+            {
+              "dirname": "gp_reject_percent_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_reject_percent_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "gp_reraise_signal",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_reraise_signal",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resqueue_memory_policy",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resqueue_memory_policy",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resqueue_priority",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resqueue_priority",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resqueue_priority_cpucores_per_segment",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resqueue_priority_cpucores_per_segment",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resqueue_priority_sweeper_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resqueue_priority_sweeper_interval",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resgroup_memory_policy",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resgroup_memory_policy",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resource_group_bypass",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resource_group_bypass",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resource_group_cpu_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resource_group_cpu_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resource_group_memory_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resource_group_memory_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_resource_manager",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_resource_manager",
+              "level": 3
+            },
+            {
+              "dirname": "gp_role",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_role",
+              "level": 3
+            },
+            {
+              "dirname": "gp_safefswritesize",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_safefswritesize",
+              "level": 3
+            },
+            {
+              "dirname": "gp_segment_connect_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_segment_connect_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "gp_segments_for_planner",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_segments_for_planner",
+              "level": 3
+            },
+            {
+              "dirname": "gp_server_version",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_server_version",
+              "level": 3
+            },
+            {
+              "dirname": "gp_server_version_num",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_server_version_num",
+              "level": 3
+            },
+            {
+              "dirname": "gp_session_id",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_session_id",
+              "level": 3
+            },
+            {
+              "dirname": "gp_set_proc_affinity",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_set_proc_affinity",
+              "level": 3
+            },
+            {
+              "dirname": "gp_set_read_only",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_set_read_only",
+              "level": 3
+            },
+            {
+              "dirname": "gp_statistics_pullup_from_child_partition",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_statistics_pullup_from_child_partition",
+              "level": 3
+            },
+            {
+              "dirname": "gp_statistics_use_fkeys",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_statistics_use_fkeys",
+              "level": 3
+            },
+            {
+              "dirname": "gp_use_legacy_hashops",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_use_legacy_hashops",
+              "level": 3
+            },
+            {
+              "dirname": "gp_vmem_idle_resource_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_vmem_idle_resource_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "gp_vmem_protect_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_vmem_protect_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_vmem_protect_segworker_cache_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_vmem_protect_segworker_cache_limit",
+              "level": 3
+            },
+            {
+              "dirname": "gp_workfile_compression",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_workfile_compression",
+              "level": 3
+            },
+            {
+              "dirname": "gp_workfile_limit_files_per_query",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_workfile_limit_files_per_query",
+              "level": 3
+            },
+            {
+              "dirname": "gp_workfile_limit_per_query",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_workfile_limit_per_query",
+              "level": 3
+            },
+            {
+              "dirname": "gp_workfile_limit_per_segment",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gp_workfile_limit_per_segment",
+              "level": 3
+            },
+            {
+              "dirname": "gpperfmon_port",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#gpperfmon_port",
+              "level": 3
+            },
+            {
+              "dirname": "ignore_checksum_failure",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#ignore_checksum_failure",
+              "level": 3
+            },
+            {
+              "dirname": "integer_datetimes",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#integer_datetimes",
+              "level": 3
+            },
+            {
+              "dirname": "IntervalStyle",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#IntervalStyle",
+              "level": 3
+            },
+            {
+              "dirname": "join_collapse_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#join_collapse_limit",
+              "level": 3
+            },
+            {
+              "dirname": "keep_wal_segments",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#keep_wal_segments",
+              "level": 3
+            },
+            {
+              "dirname": "krb_caseins_users",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#krb_caseins_users",
+              "level": 3
+            },
+            {
+              "dirname": "krb_server_keyfile",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#krb_server_keyfile",
+              "level": 3
+            },
+            {
+              "dirname": "lc_collate",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_collate",
+              "level": 3
+            },
+            {
+              "dirname": "lc_ctype",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_ctype",
+              "level": 3
+            },
+            {
+              "dirname": "lc_messages",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_messages",
+              "level": 3
+            },
+            {
+              "dirname": "lc_monetary",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_monetary",
+              "level": 3
+            },
+            {
+              "dirname": "lc_numeric",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_numeric",
+              "level": 3
+            },
+            {
+              "dirname": "lc_time",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lc_time",
+              "level": 3
+            },
+            {
+              "dirname": "listen_addresses",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#listen_addresses",
+              "level": 3
+            },
+            {
+              "dirname": "local_preload_libraries",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#local_preload_libraries",
+              "level": 3
+            },
+            {
+              "dirname": "lock_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#lock_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "log_autostats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_autostats",
+              "level": 3
+            },
+            {
+              "dirname": "log_connections",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_connections",
+              "level": 3
+            },
+            {
+              "dirname": "log_disconnections",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_disconnections",
+              "level": 3
+            },
+            {
+              "dirname": "log_dispatch_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_dispatch_stats",
+              "level": 3
+            },
+            {
+              "dirname": "log_duration",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_duration",
+              "level": 3
+            },
+            {
+              "dirname": "log_error_verbosity",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_error_verbosity",
+              "level": 3
+            },
+            {
+              "dirname": "log_executor_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_executor_stats",
+              "level": 3
+            },
+            {
+              "dirname": "log_hostname",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_hostname",
+              "level": 3
+            },
+            {
+              "dirname": "log_min_duration_statement",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_min_duration_statement",
+              "level": 3
+            },
+            {
+              "dirname": "log_min_error_statement",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_min_error_statement",
+              "level": 3
+            },
+            {
+              "dirname": "log_min_messages",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_min_messages",
+              "level": 3
+            },
+            {
+              "dirname": "log_parser_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_parser_stats",
+              "level": 3
+            },
+            {
+              "dirname": "log_planner_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_planner_stats",
+              "level": 3
+            },
+            {
+              "dirname": "log_rotation_age",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_rotation_age",
+              "level": 3
+            },
+            {
+              "dirname": "log_rotation_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_rotation_size",
+              "level": 3
+            },
+            {
+              "dirname": "log_statement",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_statement",
+              "level": 3
+            },
+            {
+              "dirname": "log_statement_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_statement_stats",
+              "level": 3
+            },
+            {
+              "dirname": "log_temp_files",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_temp_files",
+              "level": 3
+            },
+            {
+              "dirname": "log_timezone",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_timezone",
+              "level": 3
+            },
+            {
+              "dirname": "log_truncate_on_rotation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#log_truncate_on_rotation",
+              "level": 3
+            },
+            {
+              "dirname": "maintenance_work_mem",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#maintenance_work_mem",
+              "level": 3
+            },
+            {
+              "dirname": "max_appendonly_tables",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_appendonly_tables",
+              "level": 3
+            },
+            {
+              "dirname": "max_connections",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_connections",
+              "level": 3
+            },
+            {
+              "dirname": "max_files_per_process",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_files_per_process",
+              "level": 3
+            },
+            {
+              "dirname": "max_function_args",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_function_args",
+              "level": 3
+            },
+            {
+              "dirname": "max_identifier_length",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_identifier_length",
+              "level": 3
+            },
+            {
+              "dirname": "max_index_keys",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_index_keys",
+              "level": 3
+            },
+            {
+              "dirname": "max_locks_per_transaction",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_locks_per_transaction",
+              "level": 3
+            },
+            {
+              "dirname": "max_prepared_transactions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_prepared_transactions",
+              "level": 3
+            },
+            {
+              "dirname": "max_resource_portals_per_transaction",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_resource_portals_per_transaction",
+              "level": 3
+            },
+            {
+              "dirname": "max_resource_queues",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_resource_queues",
+              "level": 3
+            },
+            {
+              "dirname": "max_stack_depth",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_stack_depth",
+              "level": 3
+            },
+            {
+              "dirname": "max_statement_mem",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#max_statement_mem",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_array_expansion_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_array_expansion_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_analyze_root_partition",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_analyze_root_partition",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_control",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_control",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_cte_inlining_bound",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_cte_inlining_bound",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_enable_associativity",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_enable_associativity",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_enable_master_only_queries",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_enable_master_only_queries",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_force_agg_skew_avoidance",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_force_agg_skew_avoidance",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_force_multistage_agg",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_force_multistage_agg",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_force_three_stage_scalar_dqa",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_force_three_stage_scalar_dqa",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_join_arity_for_associativity_commutativity",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_join_arity_for_associativity_commutativity",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_join_order",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_join_order",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_join_order_threshold",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_join_order_threshold",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_mdcache_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_mdcache_size",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_metadata_caching",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_metadata_caching",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_minidump",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_minidump",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_nestloop_factor",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_nestloop_factor",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_parallel_union",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_parallel_union",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_print_missing_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_print_missing_stats",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_print_optimization_stats",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_print_optimization_stats",
+              "level": 3
+            },
+            {
+              "dirname": "optimizer_sort_factor",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#optimizer_sort_factor",
+              "level": 3
+            },
+            {
+              "dirname": "password_encryption",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#password_encryption",
+              "level": 3
+            },
+            {
+              "dirname": "password_hash_algorithm",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#password_hash_algorithm",
+              "level": 3
+            },
+            {
+              "dirname": "pljava_classpath",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#pljava_classpath",
+              "level": 3
+            },
+            {
+              "dirname": "pljava_classpath_insecure",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#pljava_classpath_insecure",
+              "level": 3
+            },
+            {
+              "dirname": "pljava_statement_cache_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#pljava_statement_cache_size",
+              "level": 3
+            },
+            {
+              "dirname": "pljava_release_lingering_savepoints",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#pljava_release_lingering_savepoints",
+              "level": 3
+            },
+            {
+              "dirname": "pljava_vmoptions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#pljava_vmoptions",
+              "level": 3
+            },
+            {
+              "dirname": "port",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#port",
+              "level": 3
+            },
+            {
+              "dirname": "random_page_cost",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#random_page_cost",
+              "level": 3
+            },
+            {
+              "dirname": "readable_external_table_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#readable_external_table_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "repl_catchup_within_range",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#repl_catchup_within_range",
+              "level": 3
+            },
+            {
+              "dirname": "replication_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#replication_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "regex_flavor",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#regex_flavor",
+              "level": 3
+            },
+            {
+              "dirname": "resource_cleanup_gangs_on_wait",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#resource_cleanup_gangs_on_wait",
+              "level": 3
+            },
+            {
+              "dirname": "resource_select_only",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#resource_select_only",
+              "level": 3
+            },
+            {
+              "dirname": "runaway_detector_activation_percent",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#runaway_detector_activation_percent",
+              "level": 3
+            },
+            {
+              "dirname": "search_path",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#search_path",
+              "level": 3
+            },
+            {
+              "dirname": "seq_page_cost",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#seq_page_cost",
+              "level": 3
+            },
+            {
+              "dirname": "server_encoding",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#server_encoding",
+              "level": 3
+            },
+            {
+              "dirname": "server_version",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#server_version",
+              "level": 3
+            },
+            {
+              "dirname": "server_version_num",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#server_version_num",
+              "level": 3
+            },
+            {
+              "dirname": "shared_buffers",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#shared_buffers",
+              "level": 3
+            },
+            {
+              "dirname": "shared_preload_libraries",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#shared_preload_libraries",
+              "level": 3
+            },
+            {
+              "dirname": "ssl",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#ssl",
+              "level": 3
+            },
+            {
+              "dirname": "ssl_ciphers",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#ssl_ciphers",
+              "level": 3
+            },
+            {
+              "dirname": "standard_conforming_strings",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#standard_conforming_strings",
+              "level": 3
+            },
+            {
+              "dirname": "statement_mem",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#statement_mem",
+              "level": 3
+            },
+            {
+              "dirname": "statement_timeout",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#statement_timeout",
+              "level": 3
+            },
+            {
+              "dirname": "stats_queue_level",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#stats_queue_level",
+              "level": 3
+            },
+            {
+              "dirname": "superuser_reserved_connections",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#superuser_reserved_connections",
+              "level": 3
+            },
+            {
+              "dirname": "tcp_keepalives_count",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#tcp_keepalives_count",
+              "level": 3
+            },
+            {
+              "dirname": "tcp_keepalives_idle",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#tcp_keepalives_idle",
+              "level": 3
+            },
+            {
+              "dirname": "tcp_keepalives_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#tcp_keepalives_interval",
+              "level": 3
+            },
+            {
+              "dirname": "temp_buffers",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#temp_buffers",
+              "level": 3
+            },
+            {
+              "dirname": "TimeZone",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#TimeZone",
+              "level": 3
+            },
+            {
+              "dirname": "timezone_abbreviations",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#timezone_abbreviations",
+              "level": 3
+            },
+            {
+              "dirname": "track_activity_query_size",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#track_activity_query_size",
+              "level": 3
+            },
+            {
+              "dirname": "transaction_isolation",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#transaction_isolation",
+              "level": 3
+            },
+            {
+              "dirname": "transaction_read_only",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#transaction_read_only",
+              "level": 3
+            },
+            {
+              "dirname": "transform_null_equals",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#transform_null_equals",
+              "level": 3
+            },
+            {
+              "dirname": "unix_socket_directory",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#unix_socket_directory",
+              "level": 3
+            },
+            {
+              "dirname": "unix_socket_group",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#unix_socket_group",
+              "level": 3
+            },
+            {
+              "dirname": "unix_socket_permissions",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#unix_socket_permissions",
+              "level": 3
+            },
+            {
+              "dirname": "update_process_title",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#update_process_title",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_cost_delay",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_cost_delay",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_cost_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_cost_limit",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_cost_page_dirty",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_cost_page_dirty",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_cost_page_hit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_cost_page_hit",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_cost_page_miss",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_cost_page_miss",
+              "level": 3
+            },
+            {
+              "dirname": "vacuum_freeze_min_age",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vacuum_freeze_min_age",
+              "level": 3
+            },
+            {
+              "dirname": "validate_previous_free_tid",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#validate_previous_free_tid",
+              "level": 3
+            },
+            {
+              "dirname": "verify_hdbfdists_cert",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#verify_hdbfdists_cert",
+              "level": 3
+            },
+            {
+              "dirname": "vmem_process_interrupt",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#vmem_process_interrupt",
+              "level": 3
+            },
+            {
+              "dirname": "wal_receiver_status_interval",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#wal_receiver_status_interval",
+              "level": 3
+            },
+            {
+              "dirname": "writable_external_table_bufsize",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#writable_external_table_bufsize",
+              "level": 3
+            },
+            {
+              "dirname": "xid_stop_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#xid_stop_limit",
+              "level": 3
+            },
+            {
+              "dirname": "xid_warn_limit",
+              "subdir": [],
+              "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html#xid_warn_limit",
+              "level": 3
+            }
+          ],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc-list.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/config_params/guc_config.html",
+      "level": 1
+    },
+    {
+      "dirname": "内置函数摘要",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/function-summary.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid MapReduce规范",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/yaml_spec.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid PL/pgSQL过程语言",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_sql.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid PL/R 语言扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_r.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid PL/Python语言扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_python.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid PL/Container语言扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_container.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid的PL/Java语言扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_java.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid的PL/Perl语言扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/pl_perl.html",
+      "level": 1
+    },
+    {
+      "dirname": "用于分析的inHybrid MADlib扩展",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/madlib.html",
+      "level": 1
+    },
+    {
+      "dirname": "附加提供的模块",
+      "subdir": [
+        {
+          "dirname": "citext",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/citext.html",
+          "level": 2
+        },
+        {
+          "dirname": "dblink",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/dblink.html",
+          "level": 2
+        },
+        {
+          "dirname": "fuzzystrmatch",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/fuzzystrmatch.html",
+          "level": 2
+        },
+        {
+          "dirname": "gp_sparse_vector",
+          "subdir": [],
+          "link_href": "https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README",
+          "level": 2
+        },
+        {
+          "dirname": "hstore",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/hstore.html",
+          "level": 2
+        },
+        {
+          "dirname": "orafce",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/orafce_ref.html",
+          "level": 2
+        },
+        {
+          "dirname": "pageinspect",
+          "subdir": [],
+          "link_href": "https://www.postgresql.org/docs/9.4/pageinspect.html",
+          "level": 2
+        },
+        {
+          "dirname": "pgcrypto",
+          "subdir": [],
+          "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/pgcrypto.html",
+          "level": 2
+        }
+      ],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/modules/intro.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid Partner Connector API",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/gppc.html",
+      "level": 1
+    },
+    {
+      "dirname": "后台工作进程",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/extensions/bgworker.html",
+      "level": 1
+    },
+    {
+      "dirname": "inHybrid 特点概要",
+      "subdir": [],
+      "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/feature_summary.html",
+      "level": 1
+    }
+  ],
+  "link_href": "file:///D:/hdb_dev_git/hdb/manual/current_document/document/6-0/ref_guide/ref_guide.html",
+  "level": 0
+}

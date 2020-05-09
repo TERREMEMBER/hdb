@@ -43,8 +43,9 @@ def deal_catalog_json(jsonobj):
         hassub = True;
     title = jsonobj['dirname']
     url = jsonobj['link_href']
-    url = url[url.index('6-0'):len(url)]
-    url = url.replace('/','\\')
+    if (url.find('6-0') != -1):
+        url = url[url.index('6-0'):len(url)]
+        url = url.replace('/','\\')
     level = jsonobj['level']
     result = make_one_catalog_info(catalog_id, title, url, hassub, level)
     print result
@@ -62,6 +63,6 @@ def deal_catalog_json(jsonobj):
 
 if __name__ == '__main__':
 
-    catalog_file_path = "a.json"
+    catalog_file_path = "pxf.json"
     dest_file_path = "aaaa"
     make_catalog_info(catalog_file_path, dest_file_path)
