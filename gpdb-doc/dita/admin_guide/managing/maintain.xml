@@ -305,7 +305,7 @@ VACUUM cust_info;</codeblock></p>
       <title id="np158979">Management Utility Log Files</title>
       <body>
         <p>Log files for the Greenplum Database management utilities are written to
-            <codeph>~/gpAdminLogs</codeph> by default. The naming convention for management log
+            <codeph>~/hdbAdminLogs</codeph> by default. The naming convention for management log
           files is: </p>
         <codeblock><varname>script_name</varname>_<varname>date</varname>.log
 </codeblock>

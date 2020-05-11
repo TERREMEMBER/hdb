@@ -8,7 +8,7 @@
 #	Release date:-		Dec 2006
 #	Release stat:-		Released
 #                               Copyright (c) Metapa 2005. All Rights Reserved.
-#                               Copyright (c) 2007 Greenplum Inc
+#                               Copyright (c) 2007 inHybrid Inc
 #******************************************************************************
 # Update History
 #******************************************************************************
@@ -290,7 +290,7 @@ done
 # Below is an example for invocation to create a primary
 # MASTER_HOSTNAME=bhuvi.local HBA_HOSTNAMES=0 /usr/local/gpdb/bin/lib/gpcreateseg.sh -p clusterConfigPostgresAddonsFile 65324 1
 # IS_PRIMARY host1.local~45432~/tmp/demoDataDir0~2~0 host2.local~45433~/tmp/demoDataDir0~3~0 0
-# /tmp/gpAdminLogs/gpinitsystem_20190903.log on  10.64.249.254~192.168.1.72~::1~fe80::1%lo0 10.64.249.252~192.168.1.73~::1~fe81::1%lo1 &
+# /tmp/hdbAdminLogs/gpinitsystem_20190903.log on  10.64.249.254~192.168.1.72~::1~fe80::1%lo0 10.64.249.252~192.168.1.73~::1~fe81::1%lo1 &
 # PARALLEL_COUNT 1 4
 # Now process supplied call parameters
 PARENT_PID=$1;shift		# PID of calling gpinitsystem program ex: 31578

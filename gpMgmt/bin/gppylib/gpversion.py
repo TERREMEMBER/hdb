@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved. 
 #
 """
   gpversion.py:
 
-  Contains GpVersion class for handling version comparisons.
+  Contains hdbVersion class for handling version comparisons.
 """
 
 # ===========================================================
@@ -24,20 +24,20 @@ MAIN_VERSION = [1,99,99]    # version number for main
 #============================================================
 class GpVersion:
     '''
-    The gpversion class is an abstraction of a given Greenplum release 
+    The gpversion class is an abstraction of a given inHybrid release 
     version.  It exists in order to facilitate version comparisons,
     formating, printing, etc.
     
-      x = GpVersion([3,2,0,4]) => Greenplum 3.2.0.4
-      x = GpVersion('3.2')     => Greenplum 3.2 dev
-      x = GpVersion('3.2 build dev') => Greenplum 3.2 dev
-      x = GpVersion('main')    => Greenplum main 
+      x = hdbVersion([3,2,0,4]) => inHybrid 3.2.0.4
+      x = hdbVersion('3.2')     => inHybrid 3.2 dev
+      x = hdbVersion('3.2 build dev') => inHybrid 3.2 dev
+      x = hdbVersion('main')    => inHybrid main 
       x.major()                => Major release, eg "3.2"
       x.isrelease('3.2')       => Major version comparison
     '''
 
     """
-    Past major versions of GPDB. Used for shift arithmetic
+    Past major versions of HDB. Used for shift arithmetic
     and reasoning about separation between versions.
     """
     history = [
@@ -54,11 +54,11 @@ class GpVersion:
     #------------------------------------------------------------
     def __init__(self, version):
         '''
-        The initializer for GpVersion is complicated so that it can handle
+        The initializer for hdbVersion is complicated so that it can handle
         creation via several methods:
-           x = GpVersion('3.2 dev')  => via string
-           x = GpVersion([3,2])  => via tuple
-           y = GpVersion(x)      => copy constructor
+           x = hdbVersion('3.2 dev')  => via string
+           x = hdbVersion([3,2])  => via tuple
+           y = hdbVersion(x)      => copy constructor
 
         If the input datatype is not recognised then it is first cast to
         a string and then converted.
@@ -87,11 +87,11 @@ class GpVersion:
             # 
             # There are several version formats that we anticipate receiving:
             #
-            # Versions from "postgres --gp-version":
-            #    ".* (Greenplum Database) <VERSION> build <BUILD>"
+            # Versions from "postgres --hdb-version":
+            #    ".* (inHybrid Database) <VERSION> build <BUILD>"
             #
             # Version from sql "select version()"
-            #    ".* (Greenplum Database <VERSION> build <BUILD>) .*"
+            #    ".* (inHybrid Database <VERSION> build <BUILD>) .*"
             #
             # Versions from python code:
             #    "<VERSION>"
@@ -158,7 +158,7 @@ class GpVersion:
             if not isinstance(v, list):
                 raise StandardError("Internal coding error")
 
-            # As of GPDB 5, version strings moved from four digits (4.3.X.X) to three (5.X.X)
+            # As of HDB 5, version strings moved from four digits (4.3.X.X) to three (5.X.X)
             minlen = 1
             maxlen = 3
 ### TODO. tmp remove code to ignore version problem ###            

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Line too long - pylint: disable=C0301
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved. 
 #
 
 """ Unittesting for gplog module
@@ -250,10 +250,10 @@ class GpArrayTestCase(GpTestCase):
         for i in range(len(expected)):
             self.assertEquals(expected[i], actual[i])
 
-    @patch('gppylib.db.dbconn.execSQL', return_value=[['PostgreSQL 8.3.23 (Greenplum Database 5.0.0 build dev) on x86_64-pc-linux-gnu, compiled by GCC gcc (GCC) 4.4.7 20120313 (Red Hat 4.4.7-17) compiled on Feb  9 2017 23:06:31']])
+    @patch('gppylib.db.dbconn.execSQL', return_value=[['PostgreSQL 8.3.23 (inHybrid Database 5.0.0 build dev) on x86_64-pc-linux-gnu, compiled by GCC gcc (GCC) 4.4.7 20120313 (Red Hat 4.4.7-17) compiled on Feb  9 2017 23:06:31']])
     @patch('gppylib.db.dbconn.connect', autospec=True)
     def test_initFromCatalog_mismatched_versions(self, mock_connect, mock_execSQL):
-        with self.assertRaisesRegexp(Exception, 'Cannot connect to GPDB version 5 from installed version 6'):
+        with self.assertRaisesRegexp(Exception, 'Cannot connect to HDB version 5 from installed version 6'):
             GpArray.initFromCatalog(None)
 
 def convert_bool(val):

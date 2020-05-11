@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 """
-hdbcheckperf -- Check the hardware for Greenplum Database
+hdbcheckperf -- Check the hardware for inHybrid Database
 
 Usage: hdbcheckperf <options>
 
     --version  : print version information
     -d segdir  : where segdir is a directory on which to test I/O performance.
                  Multiple -d flags may be specified for multiple directories
-                 on each host. These will typically be your Greenplum primary
+                 on each host. These will typically be your inHybrid primary
                  (and/or mirror) data directories.
                  e.g. -d /dbfast1 -d /dbfast2
     -?         : print this help text

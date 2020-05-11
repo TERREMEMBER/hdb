@@ -1,9 +1,9 @@
 @hdbcheckcat
 Feature: hdbcheckcat tests
 
-    Scenario: hdbcheckcat should log into gpAdminLogs
+    Scenario: hdbcheckcat should log into hdbAdminLogs
         When the user runs "hdbcheckcat -l"
-        Then verify that the utility hdbcheckcat ever does logging into the user's "gpAdminLogs" directory
+        Then verify that the utility hdbcheckcat ever does logging into the user's "hdbAdminLogs" directory
 
     Scenario: run all the checks in hdbcheckcat
         Given database "all_good" is dropped and recreated

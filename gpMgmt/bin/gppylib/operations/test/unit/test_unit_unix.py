@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2014. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2014. All Rights Reserved. 
 #
 
 from gppylib.commands.base import CommandResult

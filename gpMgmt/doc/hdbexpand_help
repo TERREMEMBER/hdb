@@ -1,6 +1,6 @@
 COMMAND NAME:  hdbexpand
 
-Expands an existing Greenplum Database across new hosts in the array.
+Expands an existing inHybrid Database across new hosts in the array.
 
 ******************************************************
 SYNOPSIS

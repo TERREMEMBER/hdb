@@ -61,7 +61,7 @@ TROUBLE_VALUES = [
 ]
 
 description = ("""
-Reads GPDB log file(s), extracts log entries which meet
+Reads HDB log file(s), extracts log entries which meet
 all the criteria you specify, and writes them to output
 file(s) or standard output.
 """)

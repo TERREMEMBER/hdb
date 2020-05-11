@@ -1,5 +1,5 @@
 #
-# Copyright (c) Greenplum Inc 2010. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2010. All Rights Reserved.
 #
 
 """

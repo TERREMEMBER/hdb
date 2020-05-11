@@ -13,7 +13,7 @@ for the files you are modifying.
 2.  Set up `coverage` for [multi-process runs](https://coverage.readthedocs.io/en/latest/subprocess.html).
     There are many possible installation-dependent ways to do this, detailed in
     the link. I chose one of the hacky solutions and added a `sitecustomize.py`
-    to my GPDB installation, because it was simple and it worked:
+    to my HDB installation, because it was simple and it worked:
 
         $ cat > /usr/local/gpdb/lib/python/sitecustomize.py <<EOF
         import coverage

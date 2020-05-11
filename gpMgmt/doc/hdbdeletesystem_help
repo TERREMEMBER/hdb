@@ -60,7 +60,7 @@ files (created by gp_dump) are present.
 
 -l <logfile_directory>
 
-The directory to write the log file. Defaults to ~/gpAdminLogs.
+The directory to write the log file. Defaults to ~/hdbAdminLogs.
 
 
 -D (debug)

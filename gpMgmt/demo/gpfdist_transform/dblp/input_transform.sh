@@ -2,7 +2,7 @@
 #
 # input_transform.sh 
 # sample input transformation, demonstrating use of Java and Joost STX
-# to convert XML into escaped text suitable for loading into GPDB.
+# to convert XML into escaped text suitable for loading into HDB.
 #
 # java arguments:
 #   -jar data/joost.jar       joost STX engine

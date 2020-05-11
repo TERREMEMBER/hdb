@@ -80,7 +80,7 @@ OPTIONS
 -l <log_file>
 
  Specifies where to write the log file. Defaults to 
- ~/gpAdminLogs/hdbload_YYYYMMDD. See Also: LOG FILE FORMAT section. 
+ ~/hdbAdminLogs/hdbload_YYYYMMDD. See Also: LOG FILE FORMAT section. 
 
 
 --no_auto_trans 

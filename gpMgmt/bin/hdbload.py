@@ -1239,9 +1239,9 @@ class gpload:
                 a = "s"
             usage('unrecognized argument%s: %s' % (a, ' '.join(argv)))
 
-        # default to gpAdminLogs for a log file, may be overwritten
+        # default to hdbAdminLogs for a log file, may be overwritten
         if self.options.l is None:
-            self.options.l = os.path.join(os.environ.get('HOME', '.'),'gpAdminLogs')
+            self.options.l = os.path.join(os.environ.get('HOME', '.'),'hdbAdminLogs')
             if not os.path.isdir(self.options.l):
                 os.mkdir(self.options.l)
 

@@ -123,14 +123,14 @@ def parseargs():
     optgrp.add_option('-r', '--remove', action='store_true',
                       help='remove current warm master standby.  Use this option '
                       'if the warm master standby host has failed.  This option will '
-                      'need to shutdown the GPDB array to be able to complete the request')
+                      'need to shutdown the HDB array to be able to complete the request')
     optgrp.add_option('', '--hba-hostnames', action='store_true', dest='hba_hostnames',
                       help='use hostnames instead of CIDR in pg_hba.conf')
 
     # XXX - This option is added to keep backward compatibility with DCA tools.
     # But this option plays no role in the whole process, its a No-Op
     optgrp.add_option('-M', '--mode', type='string', default='smart',
-                      help='use specified mode when stopping the GPDB array.  Default: smart')
+                      help='use specified mode when stopping the HDB array.  Default: smart')
 
     parser.add_option_group(optgrp)
 

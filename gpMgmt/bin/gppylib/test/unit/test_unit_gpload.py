@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2013. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2013. All Rights Reserved. 
 #
 """ 
 Unit testing for gpload module

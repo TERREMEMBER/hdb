@@ -275,12 +275,12 @@ def initialize():
         os.system(windows_path(remove_command+" " + MYD + "/*.diff"))
     if platform.system() not in ['Windows', 'Microsoft']:
         os.system(remove_command+" /tmp/log.log")
-        os.system(remove_command+" "+os.environ.get('HOME')+"/gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log")
+        os.system(remove_command+" "+os.environ.get('HOME')+"/hdbAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log")
         if os.path.isfile(os.environ['HDBHOME']+"/docs/cli_help/hdbload_help.bak"):
             os.system(rename_command+" "+os.environ['HDBHOME']+"/docs/cli_help/hdbload_help.bak "+os.environ['HDBHOME']+"/docs/cli_help/hdbload_help")
     if platform.system() in ['Windows', 'Microsoft']:
-        if os.path.isfile("gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"):
-            os.system(windows_path(remove_command+" gpAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"))
+        if os.path.isfile("hdbAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"):
+            os.system(windows_path(remove_command+" hdbAdminLogs/gpload_"+datetime.date.today().strftime('%Y%m%d') + ".log"))
 
 
 def get_hostname(local = ''):

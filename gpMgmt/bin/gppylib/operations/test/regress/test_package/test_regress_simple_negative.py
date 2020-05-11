@@ -4,14 +4,14 @@ import os
 import tarfile
 
 from gppylib.commands.base import ExecutionError
-from gppylib.operations.test.regress.test_package import GppkgTestCase, unittest, GppkgSpec, RPMSpec, ARCH, OS, GPDB_VERSION
+from gppylib.operations.test.regress.test_package import GppkgTestCase, unittest, GppkgSpec, RPMSpec, ARCH, OS, HDB_VERSION
 
 class SimpleNegativeTestCase(GppkgTestCase):
 #    @unittest.expectedFailure
     def test00_wrong_os(self):
         os = "abcde"
         A_spec = self.A_spec 
-        alpha_spec = GppkgSpec("alpha", "1.0", GPDB_VERSION, os)
+        alpha_spec = GppkgSpec("alpha", "1.0", HDB_VERSION, os)
         gppkg_file = self.build(alpha_spec, A_spec) 
 
         with self.assertRaisesRegexp(ExecutionError , "%s OS required. %s OS found" % (os, OS)):
@@ -20,7 +20,7 @@ class SimpleNegativeTestCase(GppkgTestCase):
     def test01_wrong_arch(self):
         arch = "abcde"
         A_spec = self.A_spec 
-        alpha_spec = GppkgSpec("alpha", "1.0", GPDB_VERSION, OS, arch)
+        alpha_spec = GppkgSpec("alpha", "1.0", HDB_VERSION, OS, arch)
         gppkg_file = self.build(alpha_spec, A_spec) 
 
         with self.assertRaisesRegexp(ExecutionError, "%s Arch required. %s Arch found" % (arch, ARCH)):
@@ -32,7 +32,7 @@ class SimpleNegativeTestCase(GppkgTestCase):
         alpha_spec = GppkgSpec("alpha", "1.0", gpdb_version)
         gppkg_file = self.build(alpha_spec, A_spec)
 
-        with self.assertRaisesRegexp(ExecutionError, "requires Greenplum Database version %s" % gpdb_version):
+        with self.assertRaisesRegexp(ExecutionError, "requires inHybrid Database version %s" % gpdb_version):
             self.install(gppkg_file)
 
     def test03_install_twice(self):
@@ -102,7 +102,7 @@ class SimpleNegativeTestCase(GppkgTestCase):
         os = "windows"
         self.install(self.alpha_spec.get_filename())
         
-        invalid_os_gppkg = GppkgSpec("alpha", "1.1", GPDB_VERSION, os)
+        invalid_os_gppkg = GppkgSpec("alpha", "1.1", HDB_VERSION, os)
         gppkg_file = self.build(invalid_os_gppkg, self.A_spec)
         
         with self.assertRaisesRegexp(ExecutionError, "%s os required. %s os found" % (os, OS)):
@@ -112,7 +112,7 @@ class SimpleNegativeTestCase(GppkgTestCase):
         arch = "abcde"
         self.install(self.alpha_spec.get_filename())
 
-        invalid_os_gppkg = GppkgSpec("alpha", "1.1", GPDB_VERSION, OS, arch)
+        invalid_os_gppkg = GppkgSpec("alpha", "1.1", HDB_VERSION, OS, arch)
         gppkg_file = self.build(invalid_os_gppkg, self.A_spec)
 
         with self.assertRaisesRegexp(ExecutionError, "%s Arch required. %s Arch found" % (arch, ARCH)):

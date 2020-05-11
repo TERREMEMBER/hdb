@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved. 
 #
 """
 Standard set of helper functions for gp utilities for parsing command line options.

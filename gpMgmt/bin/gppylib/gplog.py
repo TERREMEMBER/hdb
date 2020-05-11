@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved. 
 #
 """
-Greenplum logging facilities.
+inHybrid logging facilities.
 
 This Module contains some helper functions for setting up the
 python builtin logging module.  Tools and libraries are expected
@@ -94,9 +94,9 @@ def setup_helper_tool_logging(appName, hostname, userName):
 
 def setup_tool_logging(appName, hostname, userName, logdir=None, nonuser=False):
     """
-    Returns a singleton logger for standard Greenplum tools:
+    Returns a singleton logger for standard inHybrid tools:
       - Logs output to stdout
-      - Logs output to a file, typically in ~/gpAdminLogs
+      - Logs output to a file, typically in ~/hdbAdminLogs
     """
     global _DEFAULT_FORMATTER
     global _APP_NAME_FOR_DEFAULT_FORMAT
@@ -247,7 +247,7 @@ def _set_file_logging(filename):
 def _get_default_formatter():
     """
     Returns the default formatter, constructing it if needed.
-    The default formatter formats things using Greenplum standard logging:
+    The default formatter formats things using inHybrid standard logging:
       <date>:<pid> <programname>:<hostname>:<username>:[LEVEL]:-message
     NOTE: internal use only
     """
@@ -280,7 +280,7 @@ def _get_literal_formatter():
 def _enable_gpadmin_logging(name, logdir=None):
     """
     Sets up the file output handler for the default logger.
-      - if logdir is not specified it uses ~/gpAdminLogs
+      - if logdir is not specified it uses ~/hdbAdminLogs
       - the file is constructed as appended with "<logdir>/<name>_<date>.log"
 
     NOTE: internal use only
@@ -292,7 +292,7 @@ def _enable_gpadmin_logging(name, logdir=None):
 
     if logdir is None:
         home_dir = os.path.expanduser("~")
-        gpadmin_logs_dir = home_dir + "/gpAdminLogs"
+        gpadmin_logs_dir = home_dir + "/hdbAdminLogs"
     else:
         gpadmin_logs_dir = logdir
 

@@ -5,7 +5,7 @@ import tarfile
 
 from contextlib import closing
 from gppylib.commands.base import ExecutionError
-from gppylib.operations.test.regress.test_package import GppkgTestCase, unittest, RPMSpec, GppkgSpec, run_command, OS, GPDB_VERSION
+from gppylib.operations.test.regress.test_package import GppkgTestCase, unittest, RPMSpec, GppkgSpec, run_command, OS, HDB_VERSION
 
 class QueryTestCase(GppkgTestCase):
     """Test the query option of gppkg"""
@@ -16,7 +16,7 @@ class QueryTestCase(GppkgTestCase):
         self.B_spec = RPMSpec("B", "1", "1")
         self.beta_spec = GppkgSpec("beta", "1.0")
 
-        self.alpha_info = ['Name alpha', 'Version 1.0', 'Architecture x86_64', 'OS %s' % OS, 'GPDBVersion %s' % GPDB_VERSION, 'Description Temporary Test Package']
+        self.alpha_info = ['Name alpha', 'Version 1.0', 'Architecture x86_64', 'OS %s' % OS, 'HDBVersion %s' % HDB_VERSION, 'Description Temporary Test Package']
 
     def tearDown(self):
         """

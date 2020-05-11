@@ -36,37 +36,37 @@
         <tbody>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/*</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/*</codeph>
             </entry>
-            <entry>Many different types of log files, directory on each server. <codeph>$GPADMIN_HOME</codeph> is the default location for the <codeph>gpAdminLogs/</codeph> directory. You can specify a different location when you run an administrative utility command.</entry>
+            <entry>Many different types of log files, directory on each server. <codeph>$GPADMIN_HOME</codeph> is the default location for the <codeph>hdbAdminLogs/</codeph> directory. You can specify a different location when you run an administrative utility command.</entry>
           </row>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/gpinitsystem_<varname>date</varname>.log</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/gpinitsystem_<varname>date</varname>.log</codeph>
             </entry>
             <entry>system initialization log</entry>
           </row>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/gpstart_<varname>date</varname>.log</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/gpstart_<varname>date</varname>.log</codeph>
             </entry>
             <entry>start log</entry>
           </row>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/gpstop_<varname>date</varname>.log</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/gpstop_<varname>date</varname>.log</codeph>
             </entry>
             <entry>stop log</entry>
           </row>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/gpsegstart.py_<varname>host</varname>:gpadmin_<varname>date</varname>.log</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/gpsegstart.py_<varname>host</varname>:gpadmin_<varname>date</varname>.log</codeph>
             </entry>
             <entry>segment host start log</entry>
           </row>
           <row>
             <entry>
-              <codeph>$GPADMIN_HOME/gpAdminLogs/gpsegstop.py_<varname>host</varname>:gpadmin_<varname>date</varname>.log</codeph>
+              <codeph>$GPADMIN_HOME/hdbAdminLogs/gpsegstop.py_<varname>host</varname>:gpadmin_<varname>date</varname>.log</codeph>
             </entry>
             <entry>segment host stop log</entry>
           </row>

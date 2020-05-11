@@ -43,7 +43,7 @@ ARCHIVE_PATH = os.path.join(GPHOME, 'share/packages/archive')
 RPM_DATABASE = os.path.join(GPHOME, 'share/packages/database')
 GPPKG_EXTENSION = ".gppkg"
 SCRATCH_SPACE = os.path.join(tempfile.gettempdir(), getpass.getuser())
-GPDB_VERSION = '.'.join([str(n) for n in MAIN_VERSION[:2]])
+HDB_VERSION = '.'.join([str(n) for n in MAIN_VERSION[:2]])
 MASTER_PORT = os.getenv("PGPORT")
 
 def skipIfNoStandby():
@@ -134,7 +134,7 @@ def run_remote_command(cmd_str, host):
 
 class GppkgSpec:
     """Represents the gppkg spec file"""
-    def __init__(self, name, version, gpdbversion = GPDB_VERSION, os = OS, arch = ARCH):
+    def __init__(self, name, version, gpdbversion = HDB_VERSION, os = OS, arch = ARCH):
         """
         All the parameters require arguments of type string.
         """
@@ -157,7 +157,7 @@ class GppkgSpec:
         gppkg_spec_file = '''
 PkgName: ''' + self.name + '''
 Version: ''' + self.version + '''
-GPDBVersion: ''' + self.gpdbversion + '''
+HDBVersion: ''' + self.gpdbversion + '''
 Description: Temporary Test Package
 OS: ''' + self.os + '''
 Architecture: ''' + self.arch

@@ -167,8 +167,8 @@ def isOrcaPresent(versionString):
     match = re.search('(?<=Greenplum Database )[0-9.]+', versionString)
     if match and len(match.group()):
         return LooseVersion(match.group()) >= LooseVersion('4.3')
-    # No HAWQ and we can't find the GPDB Version
-    sys.stderr.write('Cannot determine HAWQ/GPDB version.  Exiting.\n')
+    # No HAWQ and we can't find the HDB Version
+    sys.stderr.write('Cannot determine HAWQ/HDB version.  Exiting.\n')
     sys.exit(1)
 
 

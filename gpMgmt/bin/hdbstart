@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved.
+# Copyright (c) inHybird Inc 2008. All Rights Reserved.
 #
 #
 # THIS IMPORT MUST COME FIRST
@@ -95,7 +95,7 @@ class GpStart:
             else:
                 logger.warning("****************************************************************************")
                 logger.warning("Master-only start requested. Disruptive action if standby master configured.")
-                logger.warning("This is advisable only under the direct supervision of Greenplum support. ")
+                logger.warning("This is advisable only under the direct supervision of inHybrid support. ")
                 logger.warning("This mode of operation is not supported in a production environment and ")
                 logger.warning("may lead to a split-brain condition and possible unrecoverable data loss.")
                 logger.warning("****************************************************************************")

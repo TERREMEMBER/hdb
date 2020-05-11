@@ -29,7 +29,7 @@ ARCHIVE_PATH = os.path.join(GPHOME, 'share/packages/archive')
 RPM_DATABASE = os.path.join(GPHOME, 'share/packages/database')
 GPPKG_EXTENSION = ".gppkg"
 SCRATCH_SPACE = os.path.join(tempfile.gettempdir(), getpass.getuser())
-GPDB_VERSION = "4.2"
+HDB_VERSION = "4.2"
 MASTER_PORT = os.getenv("PGPORT", 15432)
 
 
@@ -167,7 +167,7 @@ class BuildRPM(Operation):
 
 
 class GppkgSpec:
-    def __init__(self, name, version, gpdbversion=GPDB_VERSION, os=OS, arch=ARCH):
+    def __init__(self, name, version, gpdbversion=HDB_VERSION, os=OS, arch=ARCH):
         self.name = name
         self.version = version
         self.gpdbversion = gpdbversion
@@ -184,7 +184,7 @@ class GppkgSpec:
         gppkg_spec_file = '''
 PkgName: ''' + self.name + '''
 Version: ''' + self.version + '''
-GPDBVersion: ''' + self.gpdbversion + '''
+HDBVersion: ''' + self.gpdbversion + '''
 Description: Temporary Test Package
 OS: ''' + self.os + '''
 Architecture: ''' + self.arch
@@ -373,7 +373,7 @@ class QueryTestCases(GppkgTestCase):
         self.assertRaises(ExecutionError, run_command, "hdbpkg -qall")
 
     def test02_query_info(self):
-        expected_info_result = ['Nametest', 'Version1.0', 'Architecturex86_64', 'OSLinux', 'GPDBVersionmainbuilddev',
+        expected_info_result = ['Nametest', 'Version1.0', 'Architecturex86_64', 'OSLinux', 'HDBVersionmainbuilddev',
                                 'DescriptionTemporaryTestPackage']
         # Normal order of the options
         results = run_command("hdbpkg -q --info %s" % self.gppkg_spec1.get_filename())
@@ -431,7 +431,7 @@ class SimpleNegativeTestCases(GppkgTestCase):
     def test00_wrong_os(self):
         os = "abcde"
         rpm_spec = self.rpm_spec
-        gppkg_spec = GppkgSpec("test", "1.0", GPDB_VERSION, os)
+        gppkg_spec = GppkgSpec("test", "1.0", HDB_VERSION, os)
         gppkg_file = self.build(gppkg_spec, rpm_spec)
 
         with self.assertRaisesRegexp(ExecutionError, "%s os required. %s os found" % (os, OS)):
@@ -440,7 +440,7 @@ class SimpleNegativeTestCases(GppkgTestCase):
     def test01_wrong_arch(self):
         arch = "abcde"
         rpm_spec = self.rpm_spec
-        gppkg_spec = GppkgSpec("test", "1.0", GPDB_VERSION, OS, arch)
+        gppkg_spec = GppkgSpec("test", "1.0", HDB_VERSION, OS, arch)
         gppkg_file = self.build(gppkg_spec, rpm_spec)
 
         with self.assertRaisesRegexp(ExecutionError, "%s Arch required. %s Arch found" % (arch, ARCH)):
@@ -452,7 +452,7 @@ class SimpleNegativeTestCases(GppkgTestCase):
         gppkg_spec = GppkgSpec("test", "1.0", gpdb_version)
         gppkg_file = self.build(gppkg_spec, rpm_spec)
 
-        with self.assertRaisesRegexp(ExecutionError, "requires Greenplum Database version %s" % gpdb_version):
+        with self.assertRaisesRegexp(ExecutionError, "requires inHybrid Database version %s" % gpdb_version):
             self.install(gppkg_file)
 
     def test03_install_twice(self):

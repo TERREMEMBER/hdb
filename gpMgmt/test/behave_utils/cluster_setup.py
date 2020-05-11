@@ -111,7 +111,7 @@ class TestCluster:
         gpinitsystem_cmd = clean_env + 'hdbinitsystem -a -c  %s %s' % (self.init_file, segment_mirroring_option)
         res = run_shell_command(gpinitsystem_cmd, 'run hdbinitsystem', verbose=True)
         if res['rc'] != 0:
-            raise Exception("Failed initializing the cluster. Look into gpAdminLogs for more information")
+            raise Exception("Failed initializing the cluster. Look into hdbAdminLogs for more information")
         self._generate_env_file()
 
 

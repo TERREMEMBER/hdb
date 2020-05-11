@@ -143,7 +143,7 @@ class Host:
                'chmod 0644 .ssh/id*.pub .ssh/config')
         if GV.opt['-v']: print '[INFO %s]: %s' % (self.m_host, cmd)
 
-        args = ['ssh', self.m_host, '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes', '-n',
+        args = ['ssh', self.m_host, '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no', '-n',
                 cmd]
         p = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = p.communicate()
@@ -166,7 +166,7 @@ class Host:
             cmd = 'cd .ssh && tar cf - authorized_keys known_hosts id_rsa.pub'
             if GV.opt['-v']: print '[INFO %s]: %s' % (self.m_host, cmd)
 
-            args = ['ssh', self.m_host, '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',
+            args = ['ssh', self.m_host, '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no',
                     '-n', cmd]
 
             # Grab the tar stream from stdout
@@ -530,7 +530,7 @@ try:
     #
     #    Ensure the local host can password-less ssh into each remote host
     for remoteHost in GV.allHosts:
-        cmd = ['ssh', remoteHost.host(), '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=yes',  'true']
+        cmd = ['ssh', remoteHost.host(), '-o', 'BatchMode=yes', '-o', 'StrictHostKeyChecking=no',  'true']
         p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = p.communicate()
         if p.returncode:
