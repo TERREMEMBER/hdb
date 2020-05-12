@@ -41,13 +41,13 @@ s/\(*[\d+\.\d+\.\d+\.\d+\.\/\d+]*\)//g
 -- s/could not connect to database.+/COULDNT_CONNECT/
 -- m/could not translate host name \"blah\" to address/
 -- s/to address.+/ERROR_MESSAGE/
--- m/gpload version/
--- s/gpload version.+/gpload version VERSION_NUMBER/
+-- m/hdbload version/
+-- s/hdbload version.+/hdbload version VERSION_NUMBER/
 -- s/ (\d+)\.?(\d+)?/ TOTAL_SIZE/
 -- m/Is the server running on host/
 -- s/\".+\"/HOST/
--- m/could not run gpfdist.+:/
--- s/could not run gpfdist.+:.+/could not run gpfdist: ERROR/
+-- m/could not run hdbfdist.+:/
+-- s/could not run hdbfdist.+:.+/could not run hdbfdist: ERROR/
 -- m/ /
 -- s/\s+\(.*\.[ch]:\d+\)/ (SOMEFILE:SOMEFUNC)/
 -- m/ /
@@ -62,12 +62,12 @@ s/\(*[\d+\.\d+\.\d+\.\d+\.\/\d+]*\)//g
 -- s/update/UPDATE/
 -- m/ /
 -- s/error code = \d+/ERROR_CODE/
--- m/started gpfdist/
--- s/(started gpfdist.*)/GP_IGNORE: $1/
--- m/trying to run gpfdist/
--- s/(trying to run gpfdist.*)/GP_IGNORE: $1/
+-- m/started hdbfdist/
+-- s/(started hdbfdist.*)/GP_IGNORE: $1/
+-- m/trying to run hdbfdist/
+-- s/(trying to run hdbfdist.*)/GP_IGNORE: $1/
 -- m/ /
--- s/failed to start gpfdist.*/FAILED_GPFDIST/
+-- s/failed to start hdbfdist.*/FAILED_GPFDIST/
 -- m/Is the inHybrid Database running on port /
 -- s/Is the inHybrid Database running on port.+/Is the inHybrid Database running on port PORT_NUMBER?/
 -- m/ /
@@ -84,8 +84,8 @@ m/Serving HTTP on port \d+/
 s/Serving HTTP on port \d+/Serving HTTP on port PORT/
 
 # Ngoc: change "gpfdist is running on port 8000" into "gpfdist is running on port PORT"
-m/gpfdist is running on port \d+/
-s/gpfdist is running on port \d+/gpfdist is running on port PORT/
+m/hdbfdist is running on port \d+/
+s/hdbfdist is running on port \d+/hdbfdist is running on port PORT/
 
 # Ngoc: change "gpfdist://HOST:8000" into "gpfdist://HOST:PORT"
 m/gpfdist:\/\/HOST:\d+/
@@ -95,7 +95,7 @@ s/gpfdist:\/\/HOST:\d+/gpfdist:\/\/HOST:PORT/
 m/gpfdist:\/\/HOST:PORT\//
 s/gpfdist:\/\/HOST:PORT\/.+/gpfdist:\/\/HOST:PORT\/PATH_TO_FILE/
 
-# Hai: change "started gpfdist -p 8000 -P 9000 -f "/data/home/gpadmin/pulse2-agent/agents/agent1/work/GPDB-main-opt-4xrhel57/rhel57_x86_64-1/cdbunit/cdbfast/gpload2/data/lineitem.tbl.small" -t 30" to "started gpfdist -p 8000 -P 9000 -f CONFIG_FILE"
+# Hai: change "started gpfdist -p 8000 -P 9000 -f "/data/home/gpadmin/pulse2-agent/agents/agent1/work/GPDB-main-opt-4xrhel57/rhel57_x86_64-1/cdbunit/cdbfast/gpload2/data/lineitem.tbl.small" -t 30" to "started hdbfdist -p 8000 -P 9000 -f CONFIG_FILE"
 m/\-f /
 s/\-f .+/-f CONFIG_FILE/
 

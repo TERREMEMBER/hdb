@@ -231,7 +231,7 @@ def write_config_file(database='gptest',user='',host='localhost',port='',table='
     if port:
         f.write("\nport:      "+port)
 
-    f.write("\n\ngpload:")
+    f.write("\n\nhdbload:")
 
     f.write("\n\n    input:")
     f.write("\n          - source:")
@@ -322,7 +322,7 @@ def modify_sql_file(num):
         for line in fileinput.FileInput(file,inplace=1):
             if platform.system() in ['Windows', 'Microsoft']:
                 line = line.replace("\!hdbload ","\!hdbload.py")
-                line = line.replace("gpload ","hdbload.py ")
+                line = line.replace("hdbload ","hdbload.py ")
             else:
                 line = line.replace("hdbload.py ","hdbload ")
             # using absolute path
@@ -406,7 +406,7 @@ class GPLoad_Env_TestCase(unittest.TestCase):
         return True
 
     def testQuery00(self):
-        "0  gpload setup"
+        "0  hdbload setup"
         for num in range(1,6):
            f = open(mkpath('query%d.sql' % num),'w')
            f.write("\! hdbload -f "+mkpath('config/config_file')+ " -d gptest")

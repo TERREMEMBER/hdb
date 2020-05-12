@@ -48,7 +48,7 @@ def get_ip(hostname=None):
             return ipv4
 
 def getPortMasterOnly(host = 'localhost',master_value = None,
-                      user = os.environ.get('USER'),gphome = os.environ['GPHOME'],
+                      user = os.environ.get('USER'),gphome = os.environ['HDBHOME'],
                       mdd=os.environ['MASTER_DATA_DIRECTORY'],port = os.environ['PGPORT']):
 
     master_pattern = "Context:\s*-1\s*Value:\s*\d+"
@@ -85,7 +85,7 @@ if UPD not in sys.path:
 DBNAME = "postgres"
 USER = os.environ.get( "LOGNAME" )
 HOST = socket.gethostname()
-GPHOME = os.getenv("GPHOME")
+GPHOME = os.getenv("HDBHOME")
 PGPORT = get_port()
 PGUSER = os.environ.get("PGUSER")
 if PGUSER is None:
@@ -107,7 +107,7 @@ def write_config_file(mode='insert', reuse_flag='',columns_flag='0',mapping='0',
     f.write("\nUSER: "+os.environ.get('USER'))
     f.write("\nHOST: "+hostNameAddrs)
     f.write("\nPORT: "+masterPort)
-    f.write("\nGPLOAD:")
+    f.write("\nHDBLOAD:")
     f.write("\n   INPUT:")
     f.write("\n    - SOURCE:")
     f.write("\n         LOCAL_HOSTNAME:")
@@ -344,7 +344,7 @@ def modify_sql_file(num):
         user = os.environ.get('USER')
     if os.path.isfile(file):
         for line in fileinput.FileInput(file,inplace=1):
-            line = line.replace("gpload.py ","gpload ")
+            line = line.replace("hdbload.py ","hdbload ")
             print str(re.sub('\n','',line))
 
 def copy_data(source='',target=''):
@@ -441,53 +441,53 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.check_result(file)
 
     def test_00_gpload_formatOpts_setup(self):
-        "0  gpload setup"
+        "0  hdbload setup"
         for num in range(1,38):
            f = open(mkpath('query%d.sql' % num),'w')
-           f.write("\! gpload -f "+mkpath('config/config_file')+ " -d reuse_gptest\n"+"\! gpload -f "+mkpath('config/config_file')+ " -d reuse_gptest\n")
+           f.write("\! hdbload -f "+mkpath('config/config_file')+ " -d reuse_gptest\n"+"\! hdbload -f "+mkpath('config/config_file')+ " -d reuse_gptest\n")
            f.close()
         file = mkpath('setup.sql')
         runfile(file)
         self.check_result(file)
 
     def test_01_gpload_formatOpts_delimiter(self):
-        "1  gpload formatOpts delimiter '|' with reuse "
+        "1  hdbload formatOpts delimiter '|' with reuse "
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="'|'")
         self.doTest(1)
 
     def test_02_gpload_formatOpts_delimiter(self):
-        "2  gpload formatOpts delimiter '\t' with reuse"
+        "2  hdbload formatOpts delimiter '\t' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="'\t'")
         self.doTest(2)
 
     def test_03_gpload_formatOpts_delimiter(self):
-        "3  gpload formatOpts delimiter E'\t' with reuse"
+        "3  hdbload formatOpts delimiter E'\t' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\\t'")
         self.doTest(3)
 
     def test_04_gpload_formatOpts_delimiter(self):
-        "4  gpload formatOpts delimiter E'\u0009' with reuse"
+        "4  hdbload formatOpts delimiter E'\u0009' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\u0009'")
         self.doTest(4)
 
     def test_05_gpload_formatOpts_delimiter(self):
-        "5  gpload formatOpts delimiter E'\\'' with reuse"
+        "5  hdbload formatOpts delimiter E'\\'' with reuse"
         copy_data('external_file_03.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\''")
         self.doTest(5)
 
     def test_06_gpload_formatOpts_delimiter(self):
-        "6  gpload formatOpts delimiter \"'\" with reuse"
+        "6  hdbload formatOpts delimiter \"'\" with reuse"
         copy_data('external_file_03.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="\"'\"")
         self.doTest(6)
 
     def test_07_gpload_reuse_table_insert_mode_without_reuse(self):
-        "7  gpload insert mode without reuse"
+        "7  hdbload insert mode without reuse"
         runfile(mkpath('setup.sql'))
         f = open(mkpath('query7.sql'),'a')
         f.write("\! psql -d reuse_gptest -c 'select count(*) from texttable;'")
@@ -496,14 +496,14 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(7)
 
     def test_08_gpload_reuse_table_update_mode_with_reuse(self):
-        "8  gpload update mode with reuse"
+        "8  hdbload update mode with reuse"
         drop_tables()
         copy_data('external_file_04.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='true',file='data_file.txt')
         self.doTest(8)
 
     def test_09_gpload_reuse_table_update_mode_without_reuse(self):
-        "9  gpload update mode without reuse"
+        "9  hdbload update mode without reuse"
         f = open(mkpath('query9.sql'),'a')
         f.write("\! psql -d reuse_gptest -c 'select count(*) from texttable;'\n"+"\! psql -d reuse_gptest -c 'select * from texttable where n2=222;'")
         f.close()
@@ -512,27 +512,27 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(9)
 
     def test_10_gpload_reuse_table_merge_mode_with_reuse(self):
-        "10  gpload merge mode with reuse "
+        "10  hdbload merge mode with reuse "
         drop_tables()
         copy_data('external_file_06.txt','data_file.txt')
         write_config_file('merge','true',file='data_file.txt')
         self.doTest(10)
 
     def test_11_gpload_reuse_table_merge_mode_without_reuse(self):
-        "11  gpload merge mode without reuse "
+        "11  hdbload merge mode without reuse "
         copy_data('external_file_07.txt','data_file.txt')
         write_config_file('merge','false',file='data_file.txt')
         self.doTest(11)
 
     def test_12_gpload_reuse_table_merge_mode_with_different_columns_number_in_file(self):
-        "12 gpload merge mode with reuse (RERUN with different columns number in file) "
+        "12 hdbload merge mode with reuse (RERUN with different columns number in file) "
         psql_run(cmd="ALTER TABLE texttable ADD column n8 text",dbname='reuse_gptest')
         copy_data('external_file_08.txt','data_file.txt')
         write_config_file('merge','true',file='data_file.txt')
         self.doTest(12)
 
     def test_13_gpload_reuse_table_merge_mode_with_different_columns_number_in_DB(self):
-        "13  gpload merge mode with reuse (RERUN with different columns number in DB table) "
+        "13  hdbload merge mode with reuse (RERUN with different columns number in DB table) "
         preTest = mkpath('pre_test_13.sql')
         psql_run(preTest, dbname='reuse_gptest')
         copy_data('external_file_09.txt','data_file.txt')
@@ -540,36 +540,36 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(13)
 
     def test_14_gpload_reuse_table_update_mode_with_reuse_RERUN(self):
-        "14 gpload update mode with reuse (RERUN) "
+        "14 hdbload update mode with reuse (RERUN) "
         write_config_file('update','true',file='data_file.txt')
         self.doTest(14)
 
     def test_15_gpload_reuse_table_merge_mode_with_different_columns_order(self):
-        "15 gpload merge mode with different columns' order "
+        "15 hdbload merge mode with different columns' order "
         copy_data('external_file_10.txt','data/data_file.tbl')
         write_config_file('merge','true',file='data/data_file.tbl',columns_flag='1',mapping='1')
         self.doTest(15)
 
     def test_16_gpload_formatOpts_quote(self):
-        "16  gpload formatOpts quote unspecified in CSV with reuse "
+        "16  hdbload formatOpts quote unspecified in CSV with reuse "
         copy_data('external_file_11.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','")
         self.doTest(16)
 
     def test_17_gpload_formatOpts_quote(self):
-        "17  gpload formatOpts quote '\\x26'(&) with reuse"
+        "17  hdbload formatOpts quote '\\x26'(&) with reuse"
         copy_data('external_file_12.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",quote="'\x26'")
         self.doTest(17)
 
     def test_18_gpload_formatOpts_quote(self):
-        "18  gpload formatOpts quote E'\\x26'(&) with reuse"
+        "18  hdbload formatOpts quote E'\\x26'(&) with reuse"
         copy_data('external_file_12.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",quote="E'\x26'")
         self.doTest(18)
 
     def test_19_gpload_formatOpts_escape(self):
-        "19  gpload formatOpts escape '\\' with reuse"
+        "19  hdbload formatOpts escape '\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         file = mkpath('setup.sql')
         runfile(file)
@@ -577,20 +577,20 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(19)
 
     def test_20_gpload_formatOpts_escape(self):
-        "20  gpload formatOpts escape '\\' with reuse"
+        "20  hdbload formatOpts escape '\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',escape= '\x5C')
         self.doTest(20)
 
     def test_21_gpload_formatOpts_escape(self):
-        "21  gpload formatOpts escape E'\\\\' with reuse"
+        "21  hdbload formatOpts escape E'\\\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',escape="E'\\\\'")
         self.doTest(21)
     # case 22 is flaky on concourse. It may report: Fatal Python error: GC object already tracked during testing.
     # This is seldom issue. we can't reproduce it locally, so we disable it, in order to not blocking others
     #def test_22_gpload_error_count(self):
-    #    "22  gpload error count"
+    #    "22  hdbload error count"
     #    f = open(mkpath('query22.sql'),'a')
     #    f.write("\! psql -d reuse_gptest -c 'select count(*) from csvtable;'")
     #    f.close()
@@ -605,7 +605,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
     #    write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",log_errors=True,error_limit='90000000')
     #   self.doTest(22)
     def test_23_gpload_error_count(self):
-        "23  gpload error_table"
+        "23  hdbload error_table"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query23.sql'),'a')
@@ -622,7 +622,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",error_table="err_table",error_limit='90000000')
         self.doTest(23)
     def test_24_gpload_error_count(self):
-        "24  gpload error count with ext schema"
+        "24  hdbload error count with ext schema"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query24.sql'),'a')
@@ -639,7 +639,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",log_errors=True,error_limit='90000000',externalSchema='test')
         self.doTest(24)
     def test_25_gpload_ext_staging_table(self):
-        "25  gpload reuse ext_staging_table if it is configured"
+        "25  hdbload reuse ext_staging_table if it is configured"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query25.sql'),'a')
@@ -649,7 +649,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",log_errors=True,error_limit='10',staging_table='staging_table')
         self.doTest(25)
     def test_26_gpload_ext_staging_table_with_externalschema(self):
-        "26  gpload reuse ext_staging_table if it is configured with externalschema"
+        "26  hdbload reuse ext_staging_table if it is configured with externalschema"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query26.sql'),'a')
@@ -659,7 +659,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",log_errors=True,error_limit='10',staging_table='staging_table',externalSchema='test')
         self.doTest(26)
     def test_27_gpload_ext_staging_table_with_externalschema(self):
-        "27  gpload reuse ext_staging_table if it is configured with externalschema"
+        "27  hdbload reuse ext_staging_table if it is configured with externalschema"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query27.sql'),'a')
@@ -669,7 +669,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='test.csvtable',format='csv',delimiter="','",log_errors=True,error_limit='10',staging_table='staging_table',externalSchema="'%'")
         self.doTest(27)
     def test_28_gpload_ext_staging_table_with_dot(self):
-        "28  gpload reuse ext_staging_table if it is configured with dot"
+        "28  hdbload reuse ext_staging_table if it is configured with dot"
         file = mkpath('setup.sql')
         runfile(file)
         f = open(mkpath('query28.sql'),'a')
@@ -679,7 +679,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='test.csvtable',format='csv',delimiter="','",log_errors=True,error_limit='10',staging_table='t.staging_table')
         self.doTest(28)
     def test_29_gpload_reuse_table_insert_mode_with_reuse_and_null(self):
-        "29  gpload insert mode with reuse and null"
+        "29  hdbload insert mode with reuse and null"
         runfile(mkpath('setup.sql'))
         f = open(mkpath('query29.sql'),'a')
         f.write("\! psql -d reuse_gptest -c 'select count(*) from texttable where n2 is null;'")
@@ -689,34 +689,34 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(29)
 
     def test_30_gpload_reuse_table_update_mode_with_fast_match(self):
-        "30  gpload update mode with fast match"
+        "30  hdbload update mode with fast match"
         drop_tables()
         copy_data('external_file_04.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='true',fast_match='true',file='data_file.txt')
         self.doTest(30)
 
     def test_31_gpload_reuse_table_update_mode_with_fast_match_and_different_columns_number(self):
-        "31 gpload update mode with fast match and differenct columns number) "
+        "31 hdbload update mode with fast match and differenct columns number) "
         psql_run(cmd="ALTER TABLE texttable ADD column n8 text",dbname='reuse_gptest')
         copy_data('external_file_08.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='true',fast_match='true',file='data_file.txt')
         self.doTest(31)
 
     def test_32_gpload_update_mode_without_reuse_table_with_fast_match(self):
-        "32  gpload update mode when reuse table is false and fast match is true"
+        "32  hdbload update mode when reuse table is false and fast match is true"
         drop_tables()
         copy_data('external_file_08.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='false',fast_match='true',file='data_file.txt')
         self.doTest(32)
     def test_33_gpload_reuse_table_merge_mode_with_fast_match_and_external_schema(self):
-        "33  gpload update mode with fast match and external schema"
+        "33  hdbload update mode with fast match and external schema"
         file = mkpath('setup.sql')
         runfile(file)
         copy_data('external_file_04.txt','data_file.txt')
         write_config_file(mode='merge',reuse_flag='true',fast_match='true',file='data_file.txt',externalSchema='test')
         self.doTest(33)
     def test_34_gpload_reuse_table_merge_mode_with_fast_match_and_encoding(self):
-        "34  gpload merge mode with fast match and encoding GBK"
+        "34  hdbload merge mode with fast match and encoding GBK"
         file = mkpath('setup.sql')
         runfile(file)
         copy_data('external_file_04.txt','data_file.txt')
@@ -724,12 +724,12 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(34)
 
     def test_35_gpload_reuse_table_merge_mode_with_fast_match_default_encoding(self):
-        "35  gpload does not reuse table when encoding is setted from GBK to empty"
+        "35  hdbload does not reuse table when encoding is setted from GBK to empty"
         write_config_file(mode='merge',reuse_flag='true',fast_match='true',file='data_file.txt')
         self.doTest(35)
 
     def test_36_gpload_reuse_table_merge_mode_default_encoding(self):
-        "36  gpload merge mode with encoding GBK"
+        "36  hdbload merge mode with encoding GBK"
         file = mkpath('setup.sql')
         runfile(file)
         copy_data('external_file_04.txt','data_file.txt')
@@ -737,7 +737,7 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(36)
 
     def test_37_gpload_reuse_table_merge_mode_invalid_encoding(self):
-        "37  gpload merge mode with invalid encoding"
+        "37  hdbload merge mode with invalid encoding"
         file = mkpath('setup.sql')
         runfile(file)
         copy_data('external_file_04.txt','data_file.txt')
