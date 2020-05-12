@@ -6,11 +6,11 @@
 #### REQUIRED PARAMETERS
 ################################################
 
-#### Name of this Greenplum system enclosed in quotes.
-ARRAY_NAME="Greenplum Data Platform"
+#### Name of this inHybrid system enclosed in quotes.
+ARRAY_NAME="inHybrid Data Platform"
 
 #### Naming convention for utility-generated data directories.
-SEG_PREFIX=gpseg
+SEG_PREFIX=hdbseg
 
 #### Base number by which primary segment port numbers 
 #### are calculated.
@@ -67,4 +67,4 @@ ENCODING=UNICODE
 
 #### Specify the location of the host address file here instead of
 #### with the the -h option of hdbinitsystem.
-#MACHINE_LIST_FILE=/home/gpadmin/gpconfigs/hostfile_hdbinitsystem
+#MACHINE_LIST_FILE=/home/hdbadmin/hdbconfigs/hostfile_hdbinitsystem

@@ -39,7 +39,7 @@ GPDB_UTILITY = 3
 GP_MOVEMIRROS_PID_FILE = "gpmovemirrors.pid"
 
 description = ("""
-Moves mirror segments in a pre-existing GPDB Array.
+Moves mirror segments in a pre-existing HDB Array.
 """)
 
 EXECNAME = os.path.split(__file__)[-1]

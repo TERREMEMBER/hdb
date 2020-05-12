@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved.
 #
-# Greenplum DB related utility functions
+# inHybrid DB related utility functions
 
 import os
 

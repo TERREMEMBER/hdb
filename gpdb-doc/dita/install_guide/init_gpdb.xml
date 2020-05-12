@@ -209,7 +209,7 @@ $ gpinitsystem -c gpconfigs/gpinitsystem_config -h gpconfigs/hostfile_gpinitsyst
           <p>If the utility encounters any errors while setting up an instance, the entire process
             will fail, and could possibly leave you with a partially created system. Refer to the
             error messages and logs to determine the cause of the failure and where in the process
-            the failure occurred. Log files are created in <codeph>~/gpAdminLogs</codeph>.</p>
+            the failure occurred. Log files are created in <codeph>~/hdbAdminLogs</codeph>.</p>
           <p>Depending on when the error occurred in the process, you may need to clean up and then
             try the <codeph>gpinitsystem</codeph> utility again. For example, if some segment
             instances were created and some failed, you may need to stop <codeph>postgres</codeph>
@@ -220,7 +220,7 @@ $ gpinitsystem -c gpconfigs/gpinitsystem_config -h gpconfigs/hostfile_gpinitsyst
             <p>If the gpinitsystem utility fails, it will create the following backout script if it
               has left your system in a partially installed state:</p>
             <p>
-              <codeph>~/gpAdminLogs/backout_gpinitsystem_<varname>&lt;user></varname>_<varname>&lt;timestamp></varname></codeph>
+              <codeph>~/hdbAdminLogs/backout_gpinitsystem_<varname>&lt;user></varname>_<varname>&lt;timestamp></varname></codeph>
             </p>
             <p>You can use this script to clean up a partially created Greenplum Database system.
               This backout script will remove any utility-created data directories,

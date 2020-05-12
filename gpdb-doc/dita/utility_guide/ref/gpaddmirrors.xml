@@ -124,7 +124,7 @@ Enter mirror segment data directory location 2 of 2 &gt; /gpdb/m2</codeblock>
                 <plentry>
                     <pt>-l <varname>logfile_directory</varname></pt>
                     <pd>The directory to write the log file. Defaults to
-                            <codeph>~/gpAdminLogs</codeph>.</pd>
+                            <codeph>~/hdbAdminLogs</codeph>.</pd>
                 </plentry>
                 <plentry>
                     <pt>-m <varname>datadir_config_file</varname></pt>

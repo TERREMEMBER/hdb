@@ -379,7 +379,7 @@ def impl(context, mirror_config):
     line_template = "%s|%d|%s %s|%d|%s\n"
 
     # The mirrors for contents 0 and 3 are excluded from the two maps below because they are the same in either configuration
-    # NOTE: this configuration of the GPDB cluster assumes that configuration set up in concourse's
+    # NOTE: this configuration of the HDB cluster assumes that configuration set up in concourse's
     #   gpinitsystem task.  The maps below are from {contentID : (port|hostname)}.
 
     # Group mirroring (TestCluster default): sdw1 mirrors to sdw2, sdw2 mirrors to sdw3, sdw3 mirrors to sdw2

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved. 
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved. 
 #
 
 import os
@@ -192,7 +192,7 @@ class PgBaseBackup(Command):
         if recovery_mode:
             cmd_tokens.append('--write-recovery-conf')
 
-        # This is needed to handle Greenplum tablespaces
+        # This is needed to handle inHybrid tablespaces
         cmd_tokens.append('--target-gp-dbid')
         cmd_tokens.append(str(target_gp_dbid))
 

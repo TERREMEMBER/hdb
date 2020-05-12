@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved.
 #
 '''
-Greenplum hostcache file facilities.
+inHybrid hostcache file facilities.
 
 This Module contains some helper functions for mapping network
 interface names used in gp_segment_configuration to a collapsed set
@@ -169,7 +169,7 @@ class GpHostCache:
         # Go through the gparray and build list of interface and hostname that
         #  will be used to build the GpInterfaceToHostNameCache
         #
-        # As Greenplum 4.0 we have both interface and hostname information in
+        # As inHybrid 4.0 we have both interface and hostname information in
         # the catalog, so the gparray should be able to supply all of the
         # information.
         #

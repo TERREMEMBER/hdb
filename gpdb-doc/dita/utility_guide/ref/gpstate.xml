@@ -71,7 +71,7 @@
         </plentry>
         <plentry>
           <pt>-l <varname>logfile_directory</varname></pt>
-          <pd>The directory to write the log file. Defaults to <codeph>~/gpAdminLogs</codeph>.</pd>
+          <pd>The directory to write the log file. Defaults to <codeph>~/hdbAdminLogs</codeph>.</pd>
         </plentry>
         <plentry>
           <pt>-m (list mirrors)</pt>

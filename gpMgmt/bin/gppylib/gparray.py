@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2008. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2008. All Rights Reserved.
 #
 """
   gparray.py:
 
     Contains three classes representing configuration information of a
-    Greenplum array:
+    inHybrid array:
 
       GpArray - The primary interface - collection of all Segment within an array
       Segment    - represents configuration information for a single dbid
@@ -83,7 +83,7 @@ class InvalidSegmentConfiguration(Exception):
 class Segment:
     """
     Segment class representing configuration information for a single dbid
-    within a Greenplum Array.
+    within a inHybrid Array.
     """
 
     # --------------------------------------------------------------------
@@ -535,7 +535,7 @@ def createSegmentRows( hostlist
         return rows
     elif mirror_type.lower().strip() == 'spread':
         #TODO: must be sure to put mirrors on a different subnet than primary.
-        #      this is a general problem for GPDB these days.
+        #      this is a general problem for HDB these days.
         #      best to have the interface mapping stuff 1st.
         content=0
         isprimary='f'
@@ -781,9 +781,9 @@ def get_host_interface(full_hostname):
 # ============================================================================
 class GpArray:
     """
-    GpArray is a python class that describes a Greenplum array.
+    GpArray is a python class that describes a inHybrid array.
 
-    A Greenplum array consists of:
+    A inHybrid array consists of:
       master         - The primary QD for the array
       standby master - The mirror QD for the array [optional]
       segmentPairs array  - an array of segmentPairs within the cluster

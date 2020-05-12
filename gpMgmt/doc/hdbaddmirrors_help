@@ -128,7 +128,7 @@ OPTIONS
 
 -l <logfile_directory>
 
- The directory to write the log file. Defaults to ~/gpAdminLogs.
+ The directory to write the log file. Defaults to ~/hdbAdminLogs.
 
 
 -m <datadir_config_file>

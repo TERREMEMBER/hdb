@@ -23,7 +23,7 @@ from gppylib.operations.buildMirrorSegments import gDatabaseDirectories, gDataba
 
 description = ("""
 
-Configure segment directories for installation into a pre-existing GPDB array.
+Configure segment directories for installation into a pre-existing HDB array.
 
 Used by at least hdbexpand, hdbrecoverseg, and hdbaddmirrors
 

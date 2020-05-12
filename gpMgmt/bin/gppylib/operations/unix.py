@@ -182,7 +182,7 @@ class CleanSharedMem(Operation):
             for item in pool.getCompletedItems():
                 result = item.get_results()
 
-                # This code is usually called after a GPDB segment has
+                # This code is usually called after a HDB segment has
                 # been terminated.  In that case, it is posssible that
                 # the shared memeory has already been freed by the
                 # time we are called to clean up.  Due to this race

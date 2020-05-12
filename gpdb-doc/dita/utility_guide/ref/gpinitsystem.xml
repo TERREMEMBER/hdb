@@ -211,7 +211,7 @@
                 <plentry>
                     <pt>-l <varname>logfile_directory</varname></pt>
                     <pd>The directory to write the log file. Defaults to
-                            <codeph>~/gpAdminLogs</codeph>.</pd>
+                            <codeph>~/hdbAdminLogs</codeph>.</pd>
                 </plentry>
                 <plentry>
                     <pt> -m <varname>number</varname> | --max_connections=number</pt>

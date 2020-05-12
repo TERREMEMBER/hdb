@@ -148,7 +148,7 @@ $ gpstart</codeblock></li>
             Procedure</xref></li>
         <li class="- topic/li ">Log output from <codeph class="+ topic/ph pr-d/codeph "
             >gpcheckcat</codeph> (located in <codeph class="+ topic/ph pr-d/codeph "
-            >~/gpAdminLogs</codeph>)</li>
+            >~/hdbAdminLogs</codeph>)</li>
       </ul>
     </body>
   </topic>

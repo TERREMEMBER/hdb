@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2010. All Rights Reserved.
-# Copyright (c) EMC/Greenplum Inc 2011. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2010. All Rights Reserved.
+# Copyright (c) EMC/inHybrid Inc 2011. All Rights Reserved.
 #
 """
 This file defines the interface that can be used to fetch and update system

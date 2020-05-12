@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Copyright (c) Greenplum Inc 2012. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2012. All Rights Reserved.
 #
 
 import unittest

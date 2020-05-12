@@ -61,7 +61,7 @@ Feature: hdbrecoverseg tests
         And the user runs "hdbrecoverseg -F -a -s"
         Then hdbrecoverseg should return a return code of 0
         #And hdbrecoverseg should print "pg_basebackup: base backup completed" to stdout for each mirror
-        And gpAdminLogs directory has no "pg_basebackup*" files
+        And hdbAdminLogs directory has no "pg_basebackup*" files
         And all the segments are running
         And the segments are synchronized
 
@@ -75,7 +75,7 @@ Feature: hdbrecoverseg tests
         And the user runs "hdbrecoverseg -F -a --no-progress"
         Then hdbrecoverseg should return a return code of 0
         And hdbrecoverseg should not print "pg_basebackup: base backup completed" to stdout
-        And gpAdminLogs directory has no "pg_basebackup*" files
+        And hdbAdminLogs directory has no "pg_basebackup*" files
         And all the segments are running
         And the segments are synchronized
 
@@ -350,12 +350,12 @@ segment.
 	  And hdbrecoverseg should print "master inHybrid Version" to stdout
 
     @recoverseg_l	
-    Scenario: The directory to write the log file. Defaults to ~/gpAdminLogs.
+    Scenario: The directory to write the log file. Defaults to ~/hdbAdminLogs.
         Given the database is running
           And a tablespace is created with data
           And user stops all primary processes
           And user can start transactions
-         When the user runs "hdbrecoverseg -a -l ~/gpAdminLogs"
+         When the user runs "hdbrecoverseg -a -l ~/hdbAdminLogs"
          Then hdbrecoverseg should return a return code of 0
           And the segments are synchronized
           And the tablespace is valid

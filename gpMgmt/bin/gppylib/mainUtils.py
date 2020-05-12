@@ -613,6 +613,6 @@ class Plan:
             msg = self.errmsg(code, prm)
             self.logger.error(msg)
         if call_support:
-            self.logger.error('Please send %s to Greenplum support.' % self.logfilename)
+            self.logger.error('Please send %s to inHybrid support.' % self.logfilename)
         self.logger.debug('exiting with status %(rc)s' % locals())
         sys.exit(rc)

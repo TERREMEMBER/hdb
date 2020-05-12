@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #	Filename:-		gp_bash_functions.sh
 #	Status:-		Released
-#	Author:-		G L Coombe (Greenplum)
-#	Contact:-		gcoombe@greenplum.com
+#	Author:-		Liu (inHybrid)
+#	Contact:-		yfwjt@inspur.com
 #	Release date:-		March 2006
-#	Release stat:-		Greenplum Internal
+#	Release stat:-		inHybrid Internal
 #                               Copyright (c) Metapa 2005. All Rights Reserved.
-#                               Copyright (c) Greenplum 2005. All Rights Reserved
+#                               Copyright (c) inHybrid  2005. All Rights Reserved
 #	Brief descn:-		Common functions used by various scripts
 #***************************************************************
 # Location Functions
@@ -24,8 +24,8 @@ CMDPATH=(/usr/kerberos/bin /usr/sfw/bin /opt/sfw/bin /usr/local/bin /bin /usr/bi
 declare -a GPPATH
 GPPATH=( $HDBHOME $MPPHOME $BIZHOME )
 if [ ${#GPPATH[@]} -eq 0 ];then
-	echo "[FATAL]:-HDBHOME environment variable is required to run GPDB but could not be found."
-	echo "Please set it by sourcing the  inhybrid_path.sh  in your GPDB installation directory."
+	echo "[FATAL]:-HDBHOME environment variable is required to run HDB but could not be found."
+	echo "Please set it by sourcing the  inhybrid_path.sh  in your HDB installation directory."
 	echo "Example: ''. /usr/local/hdb/inhybrid_path.sh''"
 	exit 2
 fi
@@ -471,7 +471,7 @@ CREATE_SPREAD_MIRROR_ARRAY () {
 	# The following is heavily dependent on sort order of primary array.  This sort
 	# order will be affected by hostnames so something non-standard will cause
 	# strange behaviour.  This isn't new (just recording this fact for future generations)
-	# and can be worked around with a mapping file to gpinitsystem (-I option).
+	# and can be worked around with a mapping file to hdbinitsystem (-I option).
 	# The right way to do this would require us to connect to remote hosts, determine
 	# what subnet we are on for that hostname and then build the array that way.  We *will*
 	# do this once this is in python (or anything other than BASH)
@@ -615,7 +615,7 @@ CHK_MULTI_HOME () {
 	J=0
 	if [ x"" == x"$1" ];then
 		#Select two hosts to test as we do not want to do the whole array
-		LOG_MSG "[INFO]:-Obtaining GPDB array type, [Brief], please wait..." 1
+		LOG_MSG "[INFO]:-Obtaining HDB array type, [Brief], please wait..." 1
 		while [ $J -lt 2 ]
 		do
 			QE_HOST=`$ECHO ${QE_ARRAY[$J]}|$AWK -F"|" '{print $1}'`
@@ -624,7 +624,7 @@ CHK_MULTI_HOME () {
 			((J=$J+1))
 		done
 	else
-		LOG_MSG "[INFO]:-Obtaining GPDB array type, [Full], please wait..." 1
+		LOG_MSG "[INFO]:-Obtaining HDB array type, [Full], please wait..." 1
 		for QE_LINE in ${QE_ARRAY[@]}
 		do
 			QE_HOST=`$ECHO $QE_LINE|$AWK -F"|" '{print $1}'`
@@ -1225,7 +1225,7 @@ PARALLEL_SUMMARY_STATUS_REPORT () {
 	LOG_MSG "[INFO]:-End Function $FUNCNAME"
 }
 
-CHK_GPDB_ID () {
+CHK_HDB_ID () {
 	LOG_MSG "[INFO]:-Start Function $FUNCNAME"
 	if [ -f ${INITDB} ];then
 	        PERMISSION=`ls -al ${INITDB}|$AWK '{print $1}'`
@@ -1233,30 +1233,30 @@ CHK_GPDB_ID () {
 		INIT_CHAR=`$ECHO $MASTER_INITDB_ID|$TR -d '\n'|$WC -c|$TR -d ' '`
 		MASTER_INITDB_GROUPID=`ls -al ${INITDB}|$AWK '{print $4}'`
 		GROUP_INIT_CHAR=`$ECHO $MASTER_INITDB_ID|$TR -d '\n'|$WC -c|$TR -d ' '`
-		GPDB_ID=`id|$TR '(' ' '|$TR ')' ' '|$AWK '{print $2}'`
-		GPDB_GROUPID=`id|$TR '(' ' '|$TR ')' ' '|$AWK '{print $4}'`
+		HDB_ID=`id|$TR '(' ' '|$TR ')' ' '|$AWK '{print $2}'`
+		HDB_GROUPID=`id|$TR '(' ' '|$TR ')' ' '|$AWK '{print $4}'`
 
 		USER_EXECUTE=`$ECHO $PERMISSION | $SED -e 's/...\(.\).*/\1/g'`
 		GROUP_EXECUTE=`$ECHO $PERMISSION | $SED -e 's/......\(.\).*/\1/g'`
 
-		if [ `$ECHO $GPDB_ID|$TR -d '\n'|$WC -c` -gt $INIT_CHAR ];then
-			GPDB_ID_CHK=`$ECHO $GPDB_ID|$CUT -c1-$INIT_CHAR`
+		if [ `$ECHO $HDB_ID|$TR -d '\n'|$WC -c` -gt $INIT_CHAR ];then
+			HDB_ID_CHK=`$ECHO $HDB_ID|$CUT -c1-$INIT_CHAR`
 		else
-			GPDB_ID_CHK=$GPDB_ID
+			HDB_ID_CHK=$HDB_ID
 		fi
 
-		if [ `$ECHO $GPDB_GROUPID|$TR -d '\n'|$WC -c` -gt $GROUP_INIT_CHAR ];then
-			GPDB_GROUPID_CHK=`$ECHO $GPDB_GROUPID|$CUT -c1-$GROUP_INIT_CHAR`
+		if [ `$ECHO $HDB_GROUPID|$TR -d '\n'|$WC -c` -gt $GROUP_INIT_CHAR ];then
+			HDB_GROUPID_CHK=`$ECHO $HDB_GROUPID|$CUT -c1-$GROUP_INIT_CHAR`
 		else
-			GPDB_GROUPID_CHK=$GPDB_GROUPID
+			HDB_GROUPID_CHK=$HDB_GROUPID
 		fi
 
-		if [ x$GPDB_ID_CHK == x$MASTER_INITDB_ID ] && [ x"x" == x"$USER_EXECUTE" ];then
-		    LOG_MSG "[INFO]:-Current user id of $GPDB_ID, matches initdb id of $MASTER_INITDB_ID"
-		elif [ x$GPDB_GROUPID_CHK == x$MASTER_INITDB_GROUPID ] && [ x"x" == x"$GROUP_EXECUTE" ] ; then
-		    LOG_MSG "[INFO]:-Current group id of $GPDB_GROUPID, matches initdb group id of $MASTER_INITDB_GROUPID"
+		if [ x$HDB_ID_CHK == x$MASTER_INITDB_ID ] && [ x"x" == x"$USER_EXECUTE" ];then
+		    LOG_MSG "[INFO]:-Current user id of $HDB_ID, matches initdb id of $MASTER_INITDB_ID"
+		elif [ x$HDB_GROUPID_CHK == x$MASTER_INITDB_GROUPID ] && [ x"x" == x"$GROUP_EXECUTE" ] ; then
+		    LOG_MSG "[INFO]:-Current group id of $HDB_GROUPID, matches initdb group id of $MASTER_INITDB_GROUPID"
 		else
-			LOG_MSG "[WARN]:-File permission mismatch.  The $GPDB_ID_CHK owns the inHybrid Database installation directory."
+			LOG_MSG "[WARN]:-File permission mismatch.  The $HDB_ID_CHK owns the inHybrid Database installation directory."
 			LOG_MSG "[WARN]:-You are currently logged in as $MASTER_INITDB_ID and may not have sufficient"
 			LOG_MSG "[WARN]:-permissions to run the inHybrid binaries and management utilities."
 		fi
@@ -1267,14 +1267,14 @@ CHK_GPDB_ID () {
 			else
 				USER_CHK=$USER
 			fi
-			if [ x$GPDB_ID_CHK != x$USER_CHK ];then
-				LOG_MSG "[WARN]:-\$USER mismatch, id returns $GPDB_ID, \$USER returns $USER" 1
-				LOG_MSG "[WARN]:-The GPDB superuser account that owns the initdb binary should run these utilities" 1
+			if [ x$HDB_ID_CHK != x$USER_CHK ];then
+				LOG_MSG "[WARN]:-\$USER mismatch, id returns $HDB_ID, \$USER returns $USER" 1
+				LOG_MSG "[WARN]:-The HDB superuser account that owns the initdb binary should run these utilities" 1
 				LOG_MSG "[WARN]:-This may cause problems when these utilities are run as $USER" 1
 			fi
 		else
-			LOG_MSG "[INFO]:-Environment variable \$USER unset, will set to $GPDB_ID" 1
-			export USER=$GPDB_ID
+			LOG_MSG "[INFO]:-Environment variable \$USER unset, will set to $HDB_ID" 1
+			export USER=$HDB_ID
 		fi
 		if [ x"" != x"$LOGNAME" ];then
 			if [ `$ECHO $LOGNAME|$TR -d '\n'|$WC -c` -gt $INIT_CHAR ];then
@@ -1282,14 +1282,14 @@ CHK_GPDB_ID () {
 			else
 				LOGNAME_CHK=$LOGNAME
 			fi
-			if [ x$GPDB_ID_CHK != x$LOGNAME_CHK ];then
-				LOG_MSG "[WARN]:-\$LOGNAME mismatch, id returns $GPDB_ID_CHK, \$LOGNAME returns $LOGNAME_CHK" 1
-				LOG_MSG "[WARN]:-The GPDB superuser account that owns the initdb binary should run these utilities" 1
+			if [ x$HDB_ID_CHK != x$LOGNAME_CHK ];then
+				LOG_MSG "[WARN]:-\$LOGNAME mismatch, id returns $HDB_ID_CHK, \$LOGNAME returns $LOGNAME_CHK" 1
+				LOG_MSG "[WARN]:-The HDB superuser account that owns the initdb binary should run these utilities" 1
 				LOG_MSG "[WARN]:-This may cause problems when these utilities are run as $LOGNAME" 1
 			fi
 		else
-			LOG_MSG "[INFO]:-Environment variable \$LOGNAME unset, will set to $GPDB_ID" 1
-			export LOGNAME=$GPDB_ID
+			LOG_MSG "[INFO]:-Environment variable \$LOGNAME unset, will set to $HDB_ID" 1
+			export LOGNAME=$HDB_ID
 		fi
 	else
 		LOG_MSG "[WARN]:-No initdb file, unable to verify id" 1
@@ -1304,7 +1304,7 @@ CHK_GPDB_ID () {
 # Setup logging directory
 #******************************************************************************
 CUR_DATE=`$DATE +%Y%m%d`
-DEFLOGDIR=$HOME/gpAdminLogs
+DEFLOGDIR=$HOME/hdbAdminLogs
 if [ ! -d $DEFLOGDIR ]; then
 		mkdir $DEFLOGDIR
 fi

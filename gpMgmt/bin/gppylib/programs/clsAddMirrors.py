@@ -2,7 +2,7 @@
 # Line too long            - pylint: disable=C0301
 # Invalid name             - pylint: disable=C0103
 #
-# Copyright (c) Greenplum Inc 2010. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2010. All Rights Reserved.
 #
 # import mainUtils FIRST to get python version check
 # THIS IMPORT SHOULD COME FIRST
@@ -424,10 +424,10 @@ class GpAddMirrorsProgram:
             return self.__generateMirrorsToBuild(gpEnv, gpArray)
 
     def __displayAddMirrors(self, gpEnv, mirrorBuilder, gpArray):
-        logger.info('Greenplum Add Mirrors Parameters')
+        logger.info('inHybrid Add Mirrors Parameters')
         logger.info('---------------------------------------------------------')
-        logger.info('Greenplum master data directory          = %s' % gpEnv.getMasterDataDir())
-        logger.info('Greenplum master port                    = %d' % gpEnv.getMasterPort())
+        logger.info('inHybrid master data directory          = %s' % gpEnv.getMasterDataDir())
+        logger.info('inHybrid master port                    = %d' % gpEnv.getMasterPort())
         logger.info('Parallel batch limit                     = %d' % self.__options.parallelDegree)
 
         total = len(mirrorBuilder.getMirrorsToBuild())

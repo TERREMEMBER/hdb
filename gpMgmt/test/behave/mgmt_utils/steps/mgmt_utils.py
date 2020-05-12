@@ -1270,8 +1270,8 @@ def impl(context, tablename, dbconn):
     run_gpcommand(context, command)
 
 
-def _get_gpAdminLogs_directory():
-    return "%s/gpAdminLogs" % os.path.expanduser("~")
+def _get_hdbAdminLogs_directory():
+    return "%s/hdbAdminLogs" % os.path.expanduser("~")
 
 
 @given('an incomplete map file is created')
@@ -1931,7 +1931,7 @@ def impl(context, hdbpkg_name):
     remote_gphome = os.environ.get('HDBHOME')
     hostlist = get_all_hostnames_as_list(context, 'template1')
 
-    # We can assume the GPDB is installed at the same location for all hosts
+    # We can assume the HDB is installed at the same location for all hosts
     command_list_all = show_all_installed(remote_gphome)
 
     for hostname in set(hostlist):
@@ -2039,9 +2039,9 @@ def impl(context, location):
         ])
 
 
-@then('gpAdminLogs directory has no "{expected_file}" files')
+@then('hdbAdminLogs directory has no "{expected_file}" files')
 def impl(context, expected_file):
-    log_dir = _get_gpAdminLogs_directory()
+    log_dir = _get_hdbAdminLogs_directory()
     files_found = glob.glob('%s/%s' % (log_dir, expected_file))
     if files_found:
         raise Exception("expected no %s files in %s, but found %s" % (expected_file, log_dir, files_found))
@@ -2056,7 +2056,7 @@ def impl(context, filepath):
 
 @then('{command} should print "{target}" to logfile')
 def impl(context, command, target):
-    log_dir = _get_gpAdminLogs_directory()
+    log_dir = _get_hdbAdminLogs_directory()
     filename = glob.glob('%s/%s_*.log' % (log_dir, command))[0]
     contents = ''
     with open(filename) as fr:

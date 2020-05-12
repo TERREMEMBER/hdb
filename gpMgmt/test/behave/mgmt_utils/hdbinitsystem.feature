@@ -41,7 +41,7 @@ Feature: hdbinitsystem tests
     Scenario: hdbinitsystem creates a cluster when the user confirms the dialog
         Given create demo cluster config
         # need to remove this log because otherwise SCAN_LOG may pick up a previous error/warning in the log
-        And the user runs command "rm -r ~/gpAdminLogs/hdbinitsystem*"
+        And the user runs command "rm -r ~/hdbAdminLogs/hdbinitsystem*"
         When the user runs command "echo y | hdbinitsystem -c ../gpAux/gpdemo/clusterConfigFile"
         Then hdbinitsystem should return a return code of 0
         Given the user runs "hdbstate"

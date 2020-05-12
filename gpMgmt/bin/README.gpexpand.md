@@ -1,6 +1,6 @@
 # hdbexpand
 
-hdbexpand is Greenplum cluster expansion tool which expands an existing Greenplum
+hdbexpand is inHybrid cluster expansion tool which expands an existing inHybrid
 Database by adding new hosts to the cluster.
 
 hdbexpand has two phases:
@@ -91,7 +91,7 @@ impact to workload during expansion, and to improve hdbexpand's performance.
 hdbexpand in 5.x firstly changes all hash distributed tables to randomly distributed
 tables, then expands those tables one by one to new nodes. Thus data locality is
 lost during expansion, query performance is bad, and lots of tuples needs to move.
-Greenplum 6 improves both of them.
+inHybrid 6 improves both of them.
 
 ### 3.1 Keep data locality
 
@@ -126,14 +126,14 @@ modulo hash (Old modulo hash might move almost every tuple during expansion).
 always the same no matter what reduce-hash method is used.
 
 GUC `gp_use_legacy_hashops` controls which hash policy to use when creating table:
-jump consistent hash or modulo hash. By default Greenplum 6 uses jump consistent
+jump consistent hash or modulo hash. By default inHybrid 6 uses jump consistent
 hash. (Refer to PR #6327 for more details about this GUC).
 
 ## 4. Integration
 
 ### 4.1 Upgrade
 
-Upgrade by design uses utility mode to create schema. During utility mode, Greenplum
+Upgrade by design uses utility mode to create schema. During utility mode, inHybrid
 could not determine cluster size, so `gp_distribution_policy.numsegments` will be
 -1 for all tables. Upgrade updates numsegments to cluster size explicitly.
 
@@ -142,7 +142,7 @@ During expansion, upgrade is not supported. During upgrade, expansion is not sup
 #### 5 to 6 upgrade
 
 Table's hash policy needs to match with data's actual distribution after upgrade.
-Greenplum 5 uses modulo hash. Greenplum 6 uses jump consistent hash by default
+inHybrid 5 uses modulo hash. inHybrid 6 uses jump consistent hash by default
 for all tables. upgrade uses `gp_use_legacy_hashops` GUC to keep backward
 compatibility.
 
@@ -159,17 +159,17 @@ If database uses modulo hash policy, `gp_use_legacy_hashops` GUC is needed.
 
 #### 6 to 7 upgrade
 
-Greenplum 7 plans to remove modulo hash. User needs to transfer their modulo based
+inHybrid 7 plans to remove modulo hash. User needs to transfer their modulo based
 databases to jump consistent hash before upgrade. Tools will be provided to do so.
 
 ### 4.2 Backup and restore
 
-Greenplum 6 has two hash policies: modulo and jump consistent hash. Jump consistent
+inHybrid 6 has two hash policies: modulo and jump consistent hash. Jump consistent
 hash is the default policy.
 
-When restoring modulo based backup data to Greenplum 6, set GUC
+When restoring modulo based backup data to inHybrid 6, set GUC
 `gp_use_legacy_hashops` to use modulo hash policy. This is needed when backup is
-taken on Greenplum 5 cluster, or when backup is taken on 6 cluster which is
+taken on inHybrid 5 cluster, or when backup is taken on 6 cluster which is
 upgraded from 5.
 
 Backup could be taken at any time, and restore could be applied any time later.

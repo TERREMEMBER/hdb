@@ -51,7 +51,7 @@ Feature: hdbstart behave tests
 
      @concourse_cluster
      @demo_cluster
-     Scenario: The directory to write the log file. Defaults to ~/gpAdminLogs
+     Scenario: The directory to write the log file. Defaults to ~/hdbAdminLogs
          Given the database is running
            And a mirror has crashed
            And the database is not running

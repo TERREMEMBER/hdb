@@ -1,5 +1,5 @@
 # Line too long - pylint: disable=C0301
-# Copyright (c) Greenplum Inc 2011. All Rights Reserved.
+# Copyright (c) inHybrid Inc 2011. All Rights Reserved.
 
 from contextlib import closing
 import os
@@ -157,7 +157,7 @@ class Gppkg:
             version         The version of the gppkg
             architecture    The architecture for which the package is built
             os              The operating system for which the package is built
-            gpdbversion     The Greenplum Database version for which package is built
+            gpdbversion     The inHybrid Database version for which package is built
             description     A short description for the package
             abspath         This is the absolute path where the package sits on the host
             preinstall      The cluster level preinstallation hooks
@@ -430,7 +430,7 @@ class IsVersionCompatible(Operation):
 
     def _get_gpdb_version(self):
         """
-            Get the version of the current GPDB
+            Get the version of the current HDB
             Returns a string consisting of the major
             release version
         """
@@ -442,7 +442,7 @@ class IsVersionCompatible(Operation):
 
     def _convert_to_magic_number_version(self, gpversion_obj):
         """
-            Converts GPDB version to the GPDB magic number
+            Converts HDB version to the HDB magic number
             Returns an int consisting of the major and minor release version
         """
         logger.debug('_convert_to_magic_number_version')
@@ -461,7 +461,7 @@ class ValidateInstallDebPackage(Operation):
     A replicate class of ValidateInstallPackage that used for test deb package for Ubuntu,
     it will use dpkg --verify that is instead of rpm --test
 
-    NOTE: In newest GPDB, the dependencies will use system's dependencies, we still leave the gppkg
+    NOTE: In newest HDB, the dependencies will use system's dependencies, we still leave the gppkg
     to install dependencies, but did not check it anymore.
 
     """
@@ -471,13 +471,13 @@ class ValidateInstallDebPackage(Operation):
         self.is_update = is_update
 
     def execute(self):
-        # Check the GPDB requirements
+        # Check the HDB requirements
         if not IsVersionCompatible(self.hdbpkg).run():
             raise GpdbVersionError
 
         self.prepare_deb_env()
 
-        # No need to check the architecture here as there is no i386 arch in GPDB 5 or newer version
+        # No need to check the architecture here as there is no i386 arch in HDB 5 or newer version
         deb_set = set([self.hdbpkg.main_rpm] + self.hdbpkg.dependencies)
         deb_packages_path = ' '.join([os.path.join(TEMP_EXTRACTION_PATH, deb_path) for deb_path in deb_set])
 
@@ -565,7 +565,7 @@ class ValidateInstallPackage(Operation):
         self.is_update = is_update
 
     def execute(self):
-        # Check the GPDB requirements
+        # Check the HDB requirements
         if not IsVersionCompatible(self.hdbpkg).run():
             raise GpdbVersionError
 
@@ -641,7 +641,7 @@ class ValidateInstallPackage(Operation):
 class ValidateUninstallDebPackage(Operation):
     """
      A replicate class of ValidateUninstallPackage that used for pre-uninstall deb package for Ubuntu.
-     We do not need to test dependencies in GPDB 6 as there is no GPDB's dependencies anymore.
+     We do not need to test dependencies in HDB 6 as there is no HDB's dependencies anymore.
 
     """
 
@@ -1231,7 +1231,7 @@ class QueryPackage(Operation):
                 yield 'Version', p.version
                 yield 'Architecture', p.architecture
                 yield 'OS', p.os
-                yield 'GPDBVersion', str(p.gpdbversion)
+                yield 'HDBVersion', str(p.gpdbversion)
                 yield 'Description', p.description
 
             def print_package_info(package):
@@ -1515,7 +1515,7 @@ class MigratePackages(Operation):
 
     Presumably, this could also be used to migrate packages across arbitrary choices
     of $GPHOMEs. However, the migration will only succeed if the packages being migrated
-    are actually compatible with the target GPDB.
+    are actually compatible with the target HDB.
     """
 
     def __init__(self, from_gphome, to_gphome, standby_host, segment_host_list):

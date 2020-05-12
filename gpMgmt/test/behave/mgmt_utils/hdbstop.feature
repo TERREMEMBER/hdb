@@ -132,7 +132,7 @@ Feature: hdbstop behave tests
 
     @concourse_cluster
     @demo_cluster
-	Scenario: This option reloads the pg_hba.conf files of the master and segments and the runtime parameters of the postgresql.conf files but does not shutdown the Greenplum Database array.
+	Scenario: This option reloads the pg_hba.conf files of the master and segments and the runtime parameters of the postgresql.conf files but does not shutdown the inHybrid Database array.
 	Given the database is running    
 	#When the user runs "hdbstop -au"                                         
 	When the user runs "hdbstop -a"

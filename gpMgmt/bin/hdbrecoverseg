@@ -2,7 +2,7 @@
 """
 hdbrecoverseg
 
-Recovers Greenplum segment instances that are marked as invalid, 
+Recovers inHybrid segment instances that are marked as invalid, 
 if mirroring is configured and operational.
 """
 

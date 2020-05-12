@@ -2,7 +2,7 @@
 #
 # output_transform.sh 
 # sample output transformation demonstrating use of awk to convert
-# tab separated output from GPDB back into simple xml
+# tab separated output from HDB back into simple xml
 #
 awk '
 BEGIN {

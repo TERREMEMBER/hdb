@@ -78,7 +78,7 @@
                 <plentry>
                     <pt>-l <varname>log_file</varname></pt>
                     <pd>Specifies where to write the log file. Defaults to
-                                <codeph>~/gpAdminLogs/gpload_<varname>YYYYMMDD</varname></codeph>.
+                                <codeph>~/hdbAdminLogs/gpload_<varname>YYYYMMDD</varname></codeph>.
                         For more information about the log file, see <xref href="#topic1/section9"
                             type="section" format="dita"/>.</pd>
                 </plentry>

@@ -4,7 +4,7 @@
 # $DateTime: $
 # $Author: $
 """
-Toolkit for filtering input from GPDB server logs
+Toolkit for filtering input from HDB server logs
 
 Module contents:
 
@@ -49,7 +49,7 @@ import time
 
 timestampPattern = re.compile(r'\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d(\.\d*)?')
 # This pattern matches the date and time stamp at the beginning of a line
-# in a GPDB log file.  The timestamp format is: YYYY-MM-DD HH:MM:SS[.frac]
+# in a HDB log file.  The timestamp format is: YYYY-MM-DD HH:MM:SS[.frac]
 # A timezone specifier may follow the timestamp, but we ignore that.
 
 
@@ -64,7 +64,7 @@ def FilterLogEntries(iterable,
                      ibegin=0,
                      jend=None):
     """
-    Generator to consume the lines of a GPDB log file from iterable,
+    Generator to consume the lines of a HDB log file from iterable,
     yield the lines which satisfy the given criteria, and skip the rest.
 
     iterable should be a sequence of strings, an already-open input file,
@@ -304,13 +304,13 @@ class Count(object):
 
 class TimestampSpy(object):
     """
-    Iterator to pass through a stream of GPDB log entries while noting the
+    Iterator to pass through a stream of HDB log entries while noting the
     lowest and highest timestamps, the number of lines and groups, etc.
 
     TimestampSpy(iterable) -> iterator
         iterable -- a sequence, iterator, file, or other object which
             supports iteration.  Each item returned by its next() method
-            must be either a string (a line of GPDB log data) or a group
+            must be either a string (a line of HDB log data) or a group
             (a sequence of strings where the timestamp, if any, is at the
             beginning of the first string).
     """
@@ -372,7 +372,7 @@ class TimestampSpy(object):
 
 def GroupByTimestamp(iterable, skipnull=True):
     """
-    Generator to consume lines of a GPDB log and group them into lists.
+    Generator to consume lines of a HDB log and group them into lists.
     A new group is started whenever the timestamp changes.
 
     The first call to next() yields a (possibly empty) list of all lines
@@ -487,13 +487,13 @@ def EnumerateUngroup(iterable):
 
 def TimestampInBounds(iterable, begin, end):
     """
-    Generator to extract GPDB log entries in a datetime interval:
+    Generator to extract HDB log entries in a datetime interval:
         begin <= timestamp < end
 
     TimestampInBounds(iterable, begin, end) -> iterator
         iterable -- a sequence, iterator, file, or other object which
             supports iteration.  Each item returned by its next() method
-            must be either a string (a line of GPDB log data) or a group
+            must be either a string (a line of HDB log data) or a group
             (a sequence of strings where the timestamp, if any, is at the
             beginning of the first string).
         begin -- a date or datetime giving the lower bound of the interval;

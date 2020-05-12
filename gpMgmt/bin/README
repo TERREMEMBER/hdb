@@ -169,7 +169,7 @@ if they are not already installed on your machine.
 If you installed the dependencies using the above git command, you can run the tests with
 make, using the following commands in the current directory:
 
-"make check" will run all of the unit tests, some of which require a GPDB cluster to
+"make check" will run all of the unit tests, some of which require a HDB cluster to
 be installed and currently running.
 
 "make unitdevel" will run only the unit tests that do not require a running cluster.

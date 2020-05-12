@@ -190,7 +190,7 @@ Feature: hdbstate tests
     Scenario: hdbstate -m logs mirror details
         Given a standard local demo cluster is running
         When the user runs "hdbstate -m"
-        Then hdbstate should print "Current GPDB mirror list and status" to stdout
+        Then hdbstate should print "Current HDB mirror list and status" to stdout
         And hdbstate output looks like
             | Mirror | Datadir                        | Port   | Status  | Data Status  |
             | \S+    | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | Passive | Synchronized |
@@ -202,7 +202,7 @@ Feature: hdbstate tests
           And user stops all primary processes
           And user can start transactions
         When the user runs "hdbstate -m"
-        Then hdbstate should print "Current GPDB mirror list and status" to stdout
+        Then hdbstate should print "Current HDB mirror list and status" to stdout
         And hdbstate output looks like
             | Mirror | Datadir                        | Port   | Status            | Data Status |
             | \S+    | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | Acting as Primary | Not In Sync |
@@ -235,8 +235,8 @@ Feature: hdbstate tests
             | Master data directory         = .*/demoDataDir-1       |
             | Master port                   = [0-9]+                 |
             | Master current role           = dispatch               |
-            | Greenplum initsystem version  = [0-9]+\.[0-9]+\.[0-9]+ |
-            | Greenplum current version     = PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+            | inHybrid initsystem version  = [0-9]+\.[0-9]+\.[0-9]+ |
+            | inHybrid current version     = PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
             | Postgres version              = [0-9]+\.[0-9]+\.[0-9]+ |
             | Master standby                =                        |
             | Standby master state          = Standby host passive   |
@@ -337,14 +337,14 @@ Feature: hdbstate tests
         When the user runs "hdbstate -i"
         Then hdbstate output looks like
 		  | Host | Datadir                        | Port   | Version                                                                           |
-		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast_mirror2/demoDataDir1 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast_mirror3/demoDataDir2 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast_mirror2/demoDataDir1 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast_mirror3/demoDataDir2 | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		And hdbstate should print "All segments are running the same software version" to stdout
 
     Scenario: hdbstate -i warns if any mirrors are marked down
@@ -354,13 +354,13 @@ Feature: hdbstate tests
         When the user runs "hdbstate -i"
         Then hdbstate output looks like
 		  | Host | Datadir                        | Port   | Version                                                                           |
-		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | unable to retrieve version                                                        |
-		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror2/demoDataDir1 | [0-9]+ | unable to retrieve version                                                        |
-		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror3/demoDataDir2 | [0-9]+ | unable to retrieve version                                                        |
 		And hdbstate should print "Unable to retrieve version data from all segments" to stdout
 
@@ -372,13 +372,13 @@ Feature: hdbstate tests
         When the user runs "hdbstate -i"
         Then hdbstate output looks like
 		  | Host | Datadir                        | Port   | Version                                                                           |
-		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
-		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/qddir/demoDataDir-1         | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/standby                     | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast1/demoDataDir0        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror1/demoDataDir0 | [0-9]+ | unable to retrieve version                                                        |
-		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast2/demoDataDir1        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror2/demoDataDir1 | [0-9]+ | unable to retrieve version                                                        |
-		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(Greenplum Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
+		  | \S+  | .*/dbfast3/demoDataDir2        | [0-9]+ | PostgreSQL [0-9]+\.[0-9]+\.[0-9]+ \(inHybrid Database [0-9]+\.[0-9]+\.[0-9]+.*\) |
 		  | \S+  | .*/dbfast_mirror3/demoDataDir2 | [0-9]+ | unable to retrieve version                                                        |
 		And hdbstate should print "Unable to retrieve version data from all segments" to stdout
 

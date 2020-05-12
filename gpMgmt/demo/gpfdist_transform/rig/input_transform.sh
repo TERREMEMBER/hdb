@@ -2,7 +2,7 @@
 #
 # input_transform.sh 
 # sample input transformation, demonstrating use of Java and Joost STX
-# to convert some WITSML XML into escaped text suitable for loading into GPDB.
+# to convert some WITSML XML into escaped text suitable for loading into HDB.
 #
 # java arguments:
 #   -jar data/joost.jar       joost STX engine
@@ -20,6 +20,6 @@ java \
 awk 'NF>0 {printf "%s|", $0}'
 
 # This second awk command escapes newlines in the input document before
-# sending it to GPDB so that the entire document ends up in our xml 'doc' column.
+# sending it to HDB so that the entire document ends up in our xml 'doc' column.
 #
 awk '{ printf "%s\\n",$0 }' $1
