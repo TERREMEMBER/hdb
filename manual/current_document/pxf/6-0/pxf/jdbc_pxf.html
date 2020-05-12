@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -477,7 +477,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <ol>
 <li><p>登录到inHybrid数据库master节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>如<a href="jdbc_cfg.html#cfg_proc">示例配置步骤</a>中所述为PostgreSQL创建JDBC服务配置，命名服务目录为 <code>pgsrvcfg</code>。 <code>jdbc-site.xml</code> 文件的内容应类似于以下内容(将PostgreSQL主机系统替换为 <code>pgserverhost</code>)：</p>
 <pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -501,7 +501,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></li>
 <li><p>同步PXF 配置到inHybrid数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 
@@ -656,10 +656,10 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 
 <ol>
 <li><p>登录到inHybrid数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>导航到JDBC服务器配置目录<code>pgsrvcfg</code>。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nb">cd</span> <span class="nv">$PXF_CONF</span>/servers/pgsrvcfg
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nb">cd</span> <span class="nv">$PXF_CONF</span>/servers/pgsrvcfg
 </code></pre></li>
 <li><p>在文本编辑器中打开名为<code>pg_order_report.sql</code>的查询文本文件，然后将以下查询复制/粘贴到该文件中：</p>
 <pre class="highlight sql"><code><span class="k">SELECT</span> <span class="k">c</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">amount</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span><span class="p">,</span> <span class="n">o</span><span class="p">.</span><span class="k">month</span>
@@ -669,7 +669,7 @@ FORMAT 'CUSTOM' (FORMATTER='pxfwritable_import'|'pxfwritable_export');
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
 <li><p>将对PXF配置的这些更改同步到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -79,7 +79,7 @@
       </li>
     
       <li class="">
-        <a href="gpactivatestandby.html">gpactivatestandby</a>
+        <a href="hdbactivatestandby.html">hdbactivatestandby</a>
         
 
       </li>
@@ -163,7 +163,7 @@
       </li>
     
       <li class="">
-        <a href="gpmapreduce.html">gpmapreduce</a>
+        <a href="hdbmapreduce.html">hdbmapreduce</a>
         
 
       </li>
@@ -488,13 +488,13 @@
                 指定同样的目录名称，或者可以为每个镜像输入不同的数据位置。对于文件系统位置，请输入绝对路径。例如：
             </p>
 
-            <pre class="pre codeblock">Enter mirror segment data directory location 1 of 2 &gt; /gpdb/mirror
-                Enter mirror segment data directory location 2 of 2 &gt; /gpdb/mirror</pre>
+            <pre class="pre codeblock">Enter mirror segment data directory location 1 of 2 &gt; /hdb/mirror
+                Enter mirror segment data directory location 2 of 2 &gt; /hdb/mirror</pre>
 
             <p class="p">或</p>
 
-            <pre class="pre codeblock">Enter mirror segment data directory location 1 of 2 &gt; /gpdb/m1
-                Enter mirror segment data directory location 2 of 2 &gt; /gpdb/m2</pre>
+            <pre class="pre codeblock">Enter mirror segment data directory location 1 of 2 &gt; /hdb/m1
+                Enter mirror segment data directory location 2 of 2 &gt; /hdb/m2</pre>
 
             <p class="p">还有，用户可以运行<samp class="ph codeph">hdbaddmirrors</samp>工具，并使用<samp class="ph codeph">-i</samp>选项提供详细的
                 配置文件。如果用户希望镜像Segment位于完全不同于主Segment的主机集合上，这非常有用。镜像配置文件的
@@ -696,7 +696,7 @@
 <h2 class="title sectiontitle">另见</h2>
             
             <p class="p"><samp class="ph codeph"><a class="xref" href="hdbinitsystem.html#topic1">hdbinitsystem</a></samp>,
-                <samp class="ph codeph"><a class="xref" href="hdbinitstandby.html#topic1">hdbinitstandby</a></samp>, <samp class="ph codeph"><a class="xref" href="gpactivatestandby.html#topic1">gpactivatestandby</a></samp></p>
+                <samp class="ph codeph"><a class="xref" href="hdbinitstandby.html#topic1">hdbinitstandby</a></samp>, <samp class="ph codeph"><a class="xref" href="hdbactivatestandby.html#topic1">hdbactivatestandby</a></samp></p>
 
         </div>
 

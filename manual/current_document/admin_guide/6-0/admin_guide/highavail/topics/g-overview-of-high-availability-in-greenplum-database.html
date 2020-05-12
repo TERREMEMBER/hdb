@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1604,7 +1604,7 @@
             应该部署在不同的主机上，以保证集群不出现单节点故障问题。客户端只能连接到primary master并在上面执行查询。
             standby master采用基于预写日志（WAL）流复制的方式保持与primary master的数据一致。详情请见<a class="xref" href="g-overview-of-master-mirroring.html#topic4">Master镜像概述</a>.</p>
 
-         <p class="p">如果master故障了，管理员可以通过运行<samp class="ph codeph">gpactivatestandby</samp>工具切换standby master成为
+         <p class="p">如果master故障了，管理员可以通过运行<samp class="ph codeph">hdbactivatestandby</samp>工具切换standby master成为
             新的primary master。可以通过在master和standby上配置一个虚拟IP地址来保证当发生切换后，客户端不需要在
             不同的网址之间切换。如果master主机故障，虚拟IP可以漂移到新的活动master节点上继续提供服务。
          </p>

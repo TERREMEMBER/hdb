@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1520,7 +1520,7 @@
 
         <div class="p">以下是inHybrid数据库如何处理Master故障 <ul class="ul" id="topic4__ul_lf2_br4_3fb">
                 <li class="li">如果主master故障，inHybrid数据库系统关闭，master复制进程停止。管理员运行
-                   <samp class="ph codeph">gpactivatestandby</samp>命令将standby master提升为主master。
+                   <samp class="ph codeph">hdbactivatestandby</samp>命令将standby master提升为主master。
                     随着standby master提升为主，复制日志会重建主master最后成功提交的事务的相关日志。
                     活动standby master接下来会完全成为inHybrid数据库的master，以standby master初始化
                     时定义的端口号接受外部连接。详情请见<a class="xref" href="g-recovering-a-failed-master.html#topic16">恢复故障的Master</a>。</li>

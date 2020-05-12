@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1505,7 +1505,7 @@
         <p class="p">如果<samp class="ph codeph">COPY</samp>操作没有达到操作限制，inHybrid会装载所有正确格式化的行并且丢弃错误行。使用<samp class="ph codeph">LOG ERRORS</samp>子句可以捕获inHybrid数据库内部的数据格式化错误。例如：</p>
 
         <div class="example">
-            <pre class="pre codeblock">=&gt; COPY country FROM '/data/gpdb/country_data' 
+            <pre class="pre codeblock">=&gt; COPY country FROM '/data/hdb/country_data' 
 WITH DELIMITER '|' LOG ERRORS
 SEGMENT REJECT LIMIT 10 ROWS;</pre>
 

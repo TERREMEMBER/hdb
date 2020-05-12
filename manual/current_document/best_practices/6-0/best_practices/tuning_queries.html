@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -274,7 +274,7 @@
                                  -&gt;  Sort  (cost=0.00..431.00 rows=7 width=4)
                                        Sort Key: gp_segment_id
                                        -&gt;  Seq Scan on table1  (cost=0.00..431.00 rows=7 width=4)
- Optimizer status: Pivotal Optimizer (GPORCA) version 2.56.0
+ Optimizer status: inspur Optimizer (GPORCA) version 2.56.0
 (14 rows)</pre>
 
       <p class="p">这个执行计划有八个节点 – Seq Scan、Sort、GroupAggregate、Result、Redistribute Motion、Sort、

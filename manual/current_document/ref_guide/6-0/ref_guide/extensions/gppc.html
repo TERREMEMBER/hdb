@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -4650,7 +4650,7 @@ memcpy(GppcGetTextPointer(retstring) + arg0_len, GppcGetTextPointer(second_texts
 GppcReport(GPPC_ERROR, "Unknown user name: %s", GppcTextGetCString(uname));</pre>
 </div>
 
-        <p class="p">有关示例报告回调处理程序，请参阅<a class="xref" href="https://github.com/greenplum-db/gpdb/tree/master/src/interfaces/gppc/test" target="_blank">GPPC示例代码</a>。
+        <p class="p">有关示例报告回调处理程序，请参阅<a class="xref" href="https://github.com/greenplum-db/hdb/tree/master/src/interfaces/gppc/test" target="_blank">GPPC示例代码</a>。
           </p>
 
       </div>
@@ -5285,7 +5285,7 @@ ntuple = GppcAnyTableGetNextTuple(intbl);</pre>
       <h3 class="title topictitle3">样例代码</h3>
 
       <div class="body">
-        <p class="p">inHybrid数据库github存储库中的<a class="xref" href="https://github.com/greenplum-db/gpdb/tree/master/src/interfaces/gppc/test" target="_blank">gppc test</a>目录包含示例GPPC代码：
+        <p class="p">inHybrid数据库github存储库中的<a class="xref" href="https://github.com/greenplum-db/hdb/tree/master/src/interfaces/gppc/test" target="_blank">gppc test</a>目录包含示例GPPC代码：
           </p>
 <ul class="ul">
           <li class="li">
@@ -5475,17 +5475,17 @@ LANGUAGE C STRICT;</pre>
       <p class="p">执行以下过程以运行该示例：</p>
 <ol class="ol">
         <li class="li">登录inHybrid数据库主控主机并设置您的环境。例如：
-          <pre class="pre codeblock">$ ssh hdbadmin@&lt;gpmaster&gt;
-hdbadmin@gpmaster$ . /usr/local/greenplum-db/greenplum_path.sh</pre>
+          <pre class="pre codeblock">$ ssh hdbadmin@&lt;hdbmaster&gt;
+hdbadmin@hdbmaster$ . /usr/local/greenplum-db/greenplum_path.sh</pre>
 </li>
 
-        <li class="li">创建工作目录并导航到新目录。例如：<pre class="pre codeblock">hdbadmin@gpmaster$ mkdir gppc_work
-hdbadmin@gpmaster$ cd gppc_work</pre>
+        <li class="li">创建工作目录并导航到新目录。例如：<pre class="pre codeblock">hdbadmin@hdbmaster$ mkdir gppc_work
+hdbadmin@hdbmaster$ cd gppc_work</pre>
 </li>
 
         <li class="li">通过在您选择的编辑器中打开文件，为GPPC源代码准备文件。
           例如，要使用<samp class="ph codeph">vi</samp>打开名为<samp class="ph codeph">gppc_concat.c</samp>的文件：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ vi gppc_concat.c</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ vi gppc_concat.c</pre>
 </li>
 
         <li class="li">将以下代码复制/粘贴到文件中：<pre class="pre codeblock">#include &lt;stdio.h&gt;
@@ -5540,7 +5540,7 @@ include $(PGXS)</pre>
 
         <li class="li">保存文件并退出编辑器。</li>
 
-        <li class="li">为<samp class="ph codeph">concat_two_strings()</samp>函数构建GPPC共享库。例如：<pre class="pre codeblock">hdbadmin@gpmaster$ make all</pre>
+        <li class="li">为<samp class="ph codeph">concat_two_strings()</samp>函数构建GPPC共享库。例如：<pre class="pre codeblock">hdbadmin@hdbmaster$ make all</pre>
 
           <p class="p"><samp class="ph codeph">make</samp>命令在当前工作目录中生成名为<samp class="ph codeph">gppc_concat.so</samp>的共享库文件。</p>
 
@@ -5549,16 +5549,16 @@ include $(PGXS)</pre>
         <li class="li">将共享库复制到inHybrid数据库安装。
           您必须具有inHybrid数据库管理权限才能复制该文件。
           例如：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ cp gppc_concat.so /usr/local/greenplum-db/lib/postgresql/</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ cp gppc_concat.so /usr/local/greenplum-db/lib/postgresql/</pre>
 </li>
 
         <li class="li">将共享库复制到inHybrid数据库安装中的每个主机。
           例如，如果<samp class="ph codeph">seghostfile</samp>包含inHybrid数据库集群中segment主机的列表，每个主机行：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ hdbscp -v -f seghostfile /usr/local/greenplum-db/lib/postgresql/gppc_concat.so =:/usr/local/greenplum-db/lib/postgresql/gppc_concat.so</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ hdbscp -v -f seghostfile /usr/local/greenplum-db/lib/postgresql/gppc_concat.so =:/usr/local/greenplum-db/lib/postgresql/gppc_concat.so</pre>
 </li>
 
         <li class="li">打开<samp class="ph codeph">psql</samp>会话。例如：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ psql -d testdb</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ psql -d testdb</pre>
 </li>
 
         <li class="li">使用inHybrid数据库注册名为<samp class="ph codeph">concat_two_strings()</samp>的GPPC函数。
@@ -5599,17 +5599,17 @@ LANGUAGE C STRICT;</pre>
 
       <p class="p">执行以下过程以运行该示例：</p>
 <ol class="ol">
-        <li class="li">登录inHybrid数据库master主机并设置您的环境。例如：<pre class="pre codeblock">$ ssh hdbadmin@&lt;gpmaster&gt;
-hdbadmin@gpmaster$ . /usr/local/greenplum-db/greenplum_path.sh</pre>
+        <li class="li">登录inHybrid数据库master主机并设置您的环境。例如：<pre class="pre codeblock">$ ssh hdbadmin@&lt;hdbmaster&gt;
+hdbadmin@hdbmaster$ . /usr/local/greenplum-db/greenplum_path.sh</pre>
 </li>
 
-        <li class="li">创建工作目录并导航到新目录。例如：<pre class="pre codeblock">hdbadmin@gpmaster$ mkdir gppc_work
-hdbadmin@gpmaster$ cd gppc_work</pre>
+        <li class="li">创建工作目录并导航到新目录。例如：<pre class="pre codeblock">hdbadmin@hdbmaster$ mkdir gppc_work
+hdbadmin@hdbmaster$ cd gppc_work</pre>
 </li>
 
         <li class="li">通过在您选择的编辑器中打开文件，为GPPC代码准备源文件。
           例如，要使用<samp class="ph codeph">vi</samp>打开名为<samp class="ph codeph">gppc_concat.c</samp>的文件：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ vi gppc_rettbl.c</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ vi gppc_rettbl.c</pre>
 </li>
 
         <li class="li">将以下代码复制/粘贴到文件中：<pre class="pre codeblock">#include &lt;stdio.h&gt;
@@ -5717,7 +5717,7 @@ include $(PGXS)</pre>
 
         <li class="li">保存文件并退出编辑器。</li>
 
-        <li class="li">为<samp class="ph codeph">return_tbl()</samp>函数构建GPPC共享库。例如：<pre class="pre codeblock">hdbadmin@gpmaster$ make all</pre>
+        <li class="li">为<samp class="ph codeph">return_tbl()</samp>函数构建GPPC共享库。例如：<pre class="pre codeblock">hdbadmin@hdbmaster$ make all</pre>
 
           <p class="p"><samp class="ph codeph">make</samp>命令在当前工作目录中生成名为<samp class="ph codeph">gppc_rettbl.so</samp>的共享库文件。</p>
 </li>
@@ -5725,14 +5725,14 @@ include $(PGXS)</pre>
         <li class="li">将共享库复制到inHybrid数据库安装。
           您必须具有inHybrid数据库管理权限才能复制该文件。
           例如：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ cp gppc_rettbl.so /usr/local/greenplum-db/lib/postgresql/</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ cp gppc_rettbl.so /usr/local/greenplum-db/lib/postgresql/</pre>
 
           <p class="p">此命令将共享库复制到<samp class="ph codeph">$libdir</samp></p>
 </li>
 
         <li class="li">将共享库复制到inHybrid数据库安装中的每个主机。
           例如，如果<samp class="ph codeph">seghostfile</samp>包含inHybrid数据库集群中segment主机的列表，每个主机一行：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ hdbscp -v -f seghostfile /usr/local/greenplum-db/lib/postgresql/gppc_rettbl.so =:/usr/local/greenplum-db/lib/postgresql/gppc_rettbl.so</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ hdbscp -v -f seghostfile /usr/local/greenplum-db/lib/postgresql/gppc_rettbl.so =:/usr/local/greenplum-db/lib/postgresql/gppc_rettbl.so</pre>
 </li>
 
         <li class="li">创建<samp class="ph codeph">.sql</samp>文件以注册GPPC <samp class="ph codeph">return_tbl()</samp>函数。
@@ -5746,10 +5746,10 @@ LANGUAGE C STRICT;</pre>
 
         <li class="li">通过运行刚刚创建的脚本来注册GPPC功能。
           例如，要在名为<samp class="ph codeph">testdb</samp>的数据库中注册该函数：
-          <pre class="pre codeblock">hdbadmin@gpmaster$ psql -d testdb -f gppc_rettbl_reg.sql</pre>
+          <pre class="pre codeblock">hdbadmin@hdbmaster$ psql -d testdb -f gppc_rettbl_reg.sql</pre>
 </li>
 
-        <li class="li">打开<samp class="ph codeph">psql</samp>会话。例如：<pre class="pre codeblock">hdbadmin@gpmaster$ psql -d testdb</pre>
+        <li class="li">打开<samp class="ph codeph">psql</samp>会话。例如：<pre class="pre codeblock">hdbadmin@hdbmaster$ psql -d testdb</pre>
 </li>
 
         <li class="li">创建包含一些测试数据的表。例如：<pre class="pre codeblock">CREATE TABLE gppc_testtbl( id int, msg text );

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -3844,14 +3844,14 @@
       
       <p class="p">创建一个新表空间，并为master和所有segment实例指定文件系统位置：</p>
 
-      <pre class="pre codeblock">CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' ;</pre>
+      <pre class="pre codeblock">CREATE TABLESPACE mytblspace LOCATION '/hdbtspc/mytestspace' ;</pre>
 
       <p class="p">创建一个新表空间，并为content ID为0和1的segment实例指定一个位置。
         对于未在<samp class="ph codeph">WITH</samp>子句中列出的master和segment实例，
         在<samp class="ph codeph">LOCATION</samp>子句中指定该表空间的文件系统位置。
         </p>
 
-      <pre class="pre codeblock">CREATE TABLESPACE mytblspace LOCATION '/gpdbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');</pre>
+      <pre class="pre codeblock">CREATE TABLESPACE mytblspace LOCATION '/hdbtspc/mytestspace' WITH (content0='/temp/mytest', content1='/temp/mytest');</pre>
 
       <p class="p">该示例为两个segment实例指定了相同的位置。
         您可以为每个segment指定不同的位置。</p>

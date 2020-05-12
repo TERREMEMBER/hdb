@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1662,7 +1662,7 @@ ORDER BY c.relname;
         <div class="body">
             <p class="p">inHybrid数据库的日志消息被写入到Master或Segment的数据目录中<samp class="ph codeph">pg_log</samp>
                 子目录下的文件中。由于Master的日志文件包含了大部分的信息，用户应该总是先检查它。
-				日志文件会每日滚动并且使用下面的命名习惯：<samp class="ph codeph">gpdb-</samp><em class="ph i"><samp class="ph codeph">YYYY</samp></em><samp class="ph codeph">-</samp><em class="ph i"><samp class="ph codeph">MM</samp></em><samp class="ph codeph">-</samp><em class="ph i"><samp class="ph codeph">DD_hhmmss.csv</samp></em>.
+				日志文件会每日滚动并且使用下面的命名习惯：<samp class="ph codeph">hdb-</samp><em class="ph i"><samp class="ph codeph">YYYY</samp></em><samp class="ph codeph">-</samp><em class="ph i"><samp class="ph codeph">MM</samp></em><samp class="ph codeph">-</samp><em class="ph i"><samp class="ph codeph">DD_hhmmss.csv</samp></em>.
                要在Master主机上定位日志文件：</p>
 
             <div class="p">
@@ -1699,7 +1699,7 @@ ORDER BY c.relname;
             <div class="p">
                 <pre class="pre codeblock">hdbssh -f seg_hosts_file -e 'source 
 /usr/local/greenplum-db/greenplum_path.sh ; hdblogfilter -f 
-con6 /gpdata/*/pg_log/gpdb*.csv' &gt; seglog.out
+con6 /gpdata/*/pg_log/hdb*.csv' &gt; seglog.out
 </pre>
 
             </div>

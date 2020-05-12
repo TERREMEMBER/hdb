@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -182,7 +182,7 @@
         <div class="to-top" id="js-to-top">
           <a href="pxfuserimpers.html#top" title="back to top"></a>
         </div>
-        <p>PXF使用inHybrid数据库最终用户访问Hadoop服务。默认情况下，PXF尝试使用经过GPDB身份验证的用户身份并且通过PXF连接器配置去访问数据源服务(HDFS, Hive, HBase)。注意，PXF在访问Hadoop服务时仅使用用户的登录身份。例如，如果用户以jane身份登录inHybrid数据库，然后执行SET ROLE或SET SESSION AUTHORIZATION来假定其他用户身份，则所有PXF请求仍将使用jane身份来访问Hadoop服务。</p>
+        <p>PXF使用inHybrid数据库最终用户访问Hadoop服务。默认情况下，PXF尝试使用经过HDB身份验证的用户身份并且通过PXF连接器配置去访问数据源服务(HDFS, Hive, HBase)。注意，PXF在访问Hadoop服务时仅使用用户的登录身份。例如，如果用户以jane身份登录inHybrid数据库，然后执行SET ROLE或SET SESSION AUTHORIZATION来假定其他用户身份，则所有PXF请求仍将使用jane身份来访问Hadoop服务。</p>
 
 <p>使用默认的PXF配置，您必须显式配置每个Hadoop数据源(HDFS，Hive，HBase)来允许PXF进程所有者(通常为<code>hdbadmin</code>)充当模拟用户或组的代理。详情参阅<a href="pxfuserimpers.html#hadoop">Configuring Hadoop Proxying</a>, <a href="pxfuserimpers.html#hive">Hive User Impersonation</a>, and <a href="pxfuserimpers.html#hbase">HBase User Impersonation</a>。</p>
 
@@ -190,20 +190,20 @@
 
 <h2 id="配置pxf用户模拟"><a id="pxf_cfg_proc"></a>配置PXF用户模拟</h2>
 
-<p>执行以下流程在你的GPDB集群上打开或者关闭用户模拟功能。如果你第一次配置PXF，默认用户模拟是打开的。你不需要执行这个过程。</p>
+<p>执行以下流程在你的HDB集群上打开或者关闭用户模拟功能。如果你第一次配置PXF，默认用户模拟是打开的。你不需要执行这个过程。</p>
 
 <ol>
-<li><p>以管理员用户身份登录GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>以管理员用户身份登录HDB master节点</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>重新进入PXF用户配置目录<code>$PGF_CONF</code>。用文本编辑器打开配置文件<code>$PXF_CONF/conf/pxf-env.sh</code>。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_USER_IMPERSONATION</code>设置。 将该值设置为true可打开PXF用户模拟，或将其设置为false可将其关闭。 例如：</p>
 <pre class="highlight shell"><code><span class="nv">PXF_USER_IMPERSONATION</span><span class="o">=</span><span class="s2">"true"</span>
 </code></pre></li>
 <li><p>使用<code>pxf cluster sync</code>命令拷贝更新的文件<code>pxf-env.sh</code>文件到inHybrid数据库集群。例如</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>如果先前已启动PXF，请按照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>中的说明在每个inHybrid数据库segment主机上重新启动它来使新设置生效。</p></li>
 </ol>

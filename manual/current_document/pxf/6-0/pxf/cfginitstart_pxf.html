@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -278,10 +278,10 @@ under the License.
 
 <ol>
 <li><p>登录greenplum master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>在每个segment主机上运行<code>pxf cluster start</code>命令启动pxf服务</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
 </code></pre></li>
 </ol>
 
@@ -299,10 +299,10 @@ under the License.
 
 <ol>
 <li><p>登录greenplum master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>在每个segment主机上运行<code>pxf cluster stop</code>命令停止pxf服务。 例如:</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
 </code></pre></li>
 </ol>
 
@@ -322,11 +322,11 @@ under the License.
 
 <ol>
 <li><p>登录greenplum master节点:</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>重启PXF:</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
-<span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster stop
+<span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster start
 </code></pre></li>
 </ol>
 

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -192,8 +192,8 @@
 
 <ul>
 <li>  <a href="upgrade_pxf.html#pxfpre">Step 1: PXF Pre-Upgrade Actions</a></li>
-<li>  GPDB升级到一个新的版本</li>
-<li>  <a href="upgrade_pxf.html#pxfup">Step 2: Upgrading PXF</a> GPDB升级到一个新的版本</li>
+<li>  HDB升级到一个新的版本</li>
+<li>  <a href="upgrade_pxf.html#pxfup">Step 2: Upgrading PXF</a> HDB升级到一个新的版本</li>
 </ul>
 
 <h2 id="step-1:-pxf-pre-upgrade-actions"><a id="pxfpre"></a>Step 1: PXF Pre-Upgrade Actions</h2>
@@ -201,16 +201,16 @@
 <p>在升级到inHybrid数据库的新版本之前执行此过程：</p>
 
 <ol>
-<li><p>登录到GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>登录到HDB master节点</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>安装<a href="cfginitstart_pxf.html#stop_pxf">Stopping PXF</a> 章节描述停止每个segment节点上的PXF</p></li>
-<li><p><strong>如果你想从GPDB版本5.14或更早的版本开始升级</strong>:</p>
+<li><p><strong>如果你想从HDB版本5.14或更早的版本开始升级</strong>:</p>
 
 <ol>
 <li><p>备份 <em>PXF.from</em> 在<code>$HDBHOME/pxf/conf/</code>目录的配置文件。所有segment主机上的这些文件应该相同，因此您只需要从其中一个主机进行复制。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir -p /save/pxf-from-conf
-<span class="gp">hdbadmin@gpmaster$ </span>scp hdbadmin@seghost1:/usr/local/greenplum-db/pxf/conf/<span class="k">*</span> /save/pxf-from-conf/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>mkdir -p /save/pxf-from-conf
+<span class="gp">hdbadmin@hdbmaster$ </span>scp hdbadmin@seghost1:/usr/local/greenplum-db/pxf/conf/<span class="k">*</span> /save/pxf-from-conf/
 </code></pre></li>
 <li><p>请注意您可能已添加到<em>PXF.from</em>安装的任何自定义JAR文件的位置。 保存这些JAR文件的副本</p></li>
 </ol></li>
@@ -222,16 +222,16 @@
 <p>升级到新版本的inHybrid数据库后，请执行以下步骤以升级和配置<em>PXF.to</em>软件：</p>
 
 <ol>
-<li><p>登录到GPDB master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>登录到HDB master节点</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>按照<a href="init_pxf.html">Initializing PXF</a>的描述在每个segment主机上初始化PXF。</p></li>
 <li><p>默认情况下，在inHybrid数据库版本5.5.0及更高版本中启用PXF用户模拟。如果要从较旧的<em>PXF.from</em>版本升级，则必须为基础Hadoop服务配置用户模拟。有关说明，请参阅<a href="pxfuserimpers.html">Configuring User Impersonation and Proxying</a>，包括关闭PXF用户模拟的配置过程。</p></li>
-<li><p><strong>如果你想从GPDB版本5.14或更早的版本开始升级</strong>:</p>
+<li><p><strong>如果你想从HDB版本5.14或更早的版本开始升级</strong>:</p>
 
 <ol>
 <li><p>如果更新了<em>PXF.from</em>安装中的<code>pxf-env.sh</code>配置文件，请将这些更改重新应用于<code>$PXF_CONF/conf/pxf-env.sh</code>。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
    &lt;update the file&gt;
 </code></pre></li>
 <li><p>同样，如果您在PXF.from安装中更新了<code>pxf-profiles.xml</code>配置文件，请将这些更改重新应用到主机上的<code>$PXF_CONF/conf/pxf-profiles.xml</code>。</p>
@@ -253,7 +253,7 @@
 </ol></li>
 <li><p><strong>如果您要从inHybrid数据库5.21.1或更早版本升级</strong>：当您创建指定<code>HiveText</code>或<code>HiveRC</code>配置文件的外部表时，PXF Hive连接器不再支持在<code>LOCATION</code> URI中提供<code>DELIMITER=&lt;delim&gt;</code>选项。如果您以前创建了一个在<code>LOCATION</code> URI中指定<code>DELIMITER</code>的外部表，则必须删除该表，然后从<code>LOCATION</code>省略<code>DELIMITER</code>来重新创建它。您仍然需要在外部表格式设置选项中提供非默认定界符。</p></li>
 <li><p>将PXF配置从master主机同步到standby和每个inHybrid数据库segment主机。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>按照<a href="cfginitstart_pxf.html#start_pxf">Starting PXF</a>章节描述在每个segment主机上启动PXF。</p></li>
 </ol>

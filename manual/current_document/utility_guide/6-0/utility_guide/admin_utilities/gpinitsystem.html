@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -79,7 +79,7 @@
       </li>
     
       <li class="">
-        <a href="gpactivatestandby.html">gpactivatestandby</a>
+        <a href="hdbactivatestandby.html">hdbactivatestandby</a>
         
 
       </li>
@@ -163,7 +163,7 @@
       </li>
     
       <li class="">
-        <a href="gpmapreduce.html">gpmapreduce</a>
+        <a href="hdbmapreduce.html">hdbmapreduce</a>
         
 
       </li>
@@ -966,7 +966,7 @@ MIRROR_PORT_BASE = 7000</pre>
                         <pre class="pre codeblock"><var class="keyword varname">host</var>~<var class="keyword varname">port</var>~<var class="keyword varname">data_directory</var>/<var class="keyword varname">seg_prefix&lt;segment_id&gt;</var>~<var class="keyword varname">dbid</var>~<var class="keyword varname">content_id</var></pre>
 
                         inHybrid数据库Master会一直使用-1作为Segment ID和Content ID。例如：
-                        <pre class="pre codeblock">QD_PRIMARY_ARRAY=127.0.0.1~5432~/gpmaster/gpsne-1~1~-1~0
+                        <pre class="pre codeblock">QD_PRIMARY_ARRAY=127.0.0.1~5432~/hdbmaster/gpsne-1~1~-1~0
 declare -a PRIMARY_ARRAY=(
 127.0.0.1~40000~/gpdata1/gpsne0~2~0
 127.0.0.1~40001~/gpdata2/gpsne1~3~1

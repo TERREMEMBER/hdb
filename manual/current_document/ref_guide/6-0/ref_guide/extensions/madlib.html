@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -3770,8 +3770,8 @@
       <p class="p">MADlib需要<samp class="ph codeph">m4</samp>宏处理器版本1.4.13或更高版本。
         </p>
 
-      <p class="p">MADlib可以与PivotalR一同使用，一个PivotalR包允许用户使用R客户端同inHybrid的数据进行交互。
-          见<a class="xref" href="madlib.html#topic_dxp_vq2_sv">关于MADlib、R、PivotalR</a>。
+      <p class="p">MADlib可以与inspurR一同使用，一个inspurR包允许用户使用R客户端同inHybrid的数据进行交互。
+          见<a class="xref" href="madlib.html#topic_dxp_vq2_sv">关于MADlib、R、inspurR</a>。
         </p>
 
     </div>
@@ -4237,46 +4237,46 @@ insert into t1 values
 
       <p class="p">MADlib文档在<a class="xref" href="http://madlib.apache.org/documentation.html" target="_blank">http://madlib.apache.org/documentation.html</a>。</p>
 
-      <p class="p">PivotalR是第一类能够让用户使用R客户端对inHybrid驻留的数据和MADLib进行交互的R包。
+      <p class="p">inspurR是第一类能够让用户使用R客户端对inHybrid驻留的数据和MADLib进行交互的R包。
         </p>
 
     </div>
 
     <div class="topic nested2" xml:lang="en" lang="en" id="topic_dxp_vq2_sv">
-      <h3 class="title topictitle3">关于MADlib、R、PivotalR</h3>
+      <h3 class="title topictitle3">关于MADlib、R、inspurR</h3>
 
       <div class="body">
         <p class="p">R语言是一门用于统计计算的开源编程语言。
-            PivotalR 是一个能够让用户通过R客户端与常驻inHybrid数据库的数据进行交互的R语言包。
-            使用PivotalR要求MADlib已经安装在了inHybrid数据库中。
+            inspurR 是一个能够让用户通过R客户端与常驻inHybrid数据库的数据进行交互的R语言包。
+            使用inspurR要求MADlib已经安装在了inHybrid数据库中。
             </p>
 
-        <p class="p">PivotalR允许R用户不用离开R命令行就能利用数据库内分析的可扩展性和性能。
+        <p class="p">inspurR允许R用户不用离开R命令行就能利用数据库内分析的可扩展性和性能。
             计算工作在数据库内执行，而终端用户受益于熟悉的R语言接口。
             与相应的原生R函数相比，在可扩展性上得到提升的同时在执行时间上有降低。
-            此外，PivotalR消除了对于非常大的数据集需要花费几个小时完成的数据移动。
+            此外，inspurR消除了对于非常大的数据集需要花费几个小时完成的数据移动。
             </p>
 
-        <div class="p">PivotalR包的关键特征：<ul class="ul" id="topic_dxp_vq2_sv__ul_exp_vq2_sv">
+        <div class="p">inspurR包的关键特征：<ul class="ul" id="topic_dxp_vq2_sv__ul_exp_vq2_sv">
             <li class="li">以R语法的方式探索和操作数据库内的数据。
-                SQL翻译由PivotalR来执行。</li>
+                SQL翻译由inspurR来执行。</li>
 
             <li class="li">使用熟悉的R语法的预测分析算法，例如线性和逻辑回归。
-                PivotalR访问MADlib数据库内分析函数调用。
+                inspurR访问MADlib数据库内分析函数调用。
                 </li>
 
             <li class="li">对于广泛关于以标准R格式的示例文档包能够通过R客户端来访问。
                 </li>
 
-            <li class="li">PivotalR包也支持MADlib函数的访问。</li>
+            <li class="li">inspurR包也支持MADlib函数的访问。</li>
 
           </ul>
 </div>
 
-        <p class="p">更多关于PivotalR的信息包括支持的MADlib功能的信息，见
-            <a class="xref" href="https://cwiki.apache.org/confluence/display/MADLIB/PivotalR" target="_blank">https://cwiki.apache.org/confluence/display/MADLIB/PivotalR</a>。</p>
+        <p class="p">更多关于inspurR的信息包括支持的MADlib功能的信息，见
+            <a class="xref" href="https://cwiki.apache.org/confluence/display/MADLIB/inspurR" target="_blank">https://cwiki.apache.org/confluence/display/MADLIB/inspurR</a>。</p>
 
-        <p class="p">PivotalR的R语言包可以在<a class="xref" href="https://cran.r-project.org/web/packages/PivotalR/index.html" target="_blank">https://cran.r-project.org/web/packages/PivotalR/index.html</a>找到。</p>
+        <p class="p">inspurR的R语言包可以在<a class="xref" href="https://cran.r-project.org/web/packages/inspurR/index.html" target="_blank">https://cran.r-project.org/web/packages/inspurR/index.html</a>找到。</p>
 
       </div>
 

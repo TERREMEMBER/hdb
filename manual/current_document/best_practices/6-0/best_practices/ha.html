@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -200,7 +200,7 @@
 
     <div class="body">
       <p class="p">源于inHybrid数据库的非共享MPP架构，每台master和segment主机都有它们自己独立的内存和磁盘存储空间，
-        每个master和segment实例都有它们自己独立的数据目录。为了兼顾可靠性和高性能，Pivotal推荐采用8到24块
+        每个master和segment实例都有它们自己独立的数据目录。为了兼顾可靠性和高性能，inspur推荐采用8到24块
         磁盘的硬件RAID存储解决方案。当采用RAID5或RAID6时，大量的磁盘会提升I/O吞吐量，因为条带会增加并行的
         磁盘I/O。有一个失效磁盘时，RAID控制器能够继续工作，因为它在每个磁盘上都保存了校验数据，这样它能够重构
         阵列中任何失效磁盘上的数据。如果配置了热备盘（或者配置了能够用新磁盘替代故障磁盘的操作器），控制器能够
@@ -257,7 +257,7 @@
         的方式应用到备用master节点，以保证每一个应用到master实例的事务也同时应用到了备用master上。</p>
 
       <p class="p">镜像是一个<em class="ph i">温备</em>。如果主master失效，要切换到备用master需要管理员用户在备用主机上运行
-        <samp class="ph codeph">gpactivatestandby</samp>工具，这样它才会开始接受客户端连接。客户端此时必须重新连接到新
+        <samp class="ph codeph">hdbactivatestandby</samp>工具，这样它才会开始接受客户端连接。客户端此时必须重新连接到新
         master，该客户端在主master故障时未提交的事务都会丢失。</p>
 
       <p class="p">更多信息请见<em class="ph i">inHybrid数据库管理员指南</em>中的“启用高可用特性”。</p>
@@ -415,7 +415,7 @@
             </li>
 
             <li dir="ltr" class="li">
-              <p dir="ltr" class="p">使用<samp class="ph codeph">hdbbackup</samp>备份您想要备份的模式和表。更多信息请见<a class="xref" href="https://gpdb.docs.pivotal.io/latest/utility_guide/admin_utilities/hdbbackup.html" target="_blank">hdbbackup</a><cite class="cite">inHybrid数据库工具参考指南</cite>中
+              <p dir="ltr" class="p">使用<samp class="ph codeph">hdbbackup</samp>备份您想要备份的模式和表。更多信息请见<a class="xref" href="https://hdb.docs.inspur.io/latest/utility_guide/admin_utilities/hdbbackup.html" target="_blank">hdbbackup</a><cite class="cite">inHybrid数据库工具参考指南</cite>中
                 的对应部分。</p>
 
             </li>
@@ -488,7 +488,7 @@
 <samp class="ph codeph">hdbrecoverseg</samp>—恢复故障的Segment</li>
 
             <li class="li">
-<samp class="ph codeph">gpactivatestandby</samp>—让备用master变成当前活动master
+<samp class="ph codeph">hdbactivatestandby</samp>—让备用master变成当前活动master
               </li>
 
           </ul>
@@ -504,7 +504,7 @@
     <h2 class="title topictitle2">Segment镜像配置</h2>
 
     <div class="body">
-      <p class="p">Segment镜像允许数据库查询在主Segment故障或者不可用时转移到备份segment上。Pivotal要求在其支持的
+      <p class="p">Segment镜像允许数据库查询在主Segment故障或者不可用时转移到备份segment上。inspur要求在其支持的
         inHybrid数据库生产环境中必须配置镜像。</p>
 
       <p class="p">为了确保高可用，主segment及其镜像必须位于不同主机上。inHybrid数据库系统中的每一台主机都有相同数量

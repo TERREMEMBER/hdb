@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1541,9 +1541,9 @@
         <li class="li">在后备Master上停止inHybrid数据库的Master实例。例如：<pre class="pre codeblock">$ hdbstop -m</pre>
 </li>
 
-        <li class="li" id="topic17__ki160961">从原始的Master主机mdw运行<samp class="ph codeph">gpactivatestandby</samp>工具，
+        <li class="li" id="topic17__ki160961">从原始的Master主机mdw运行<samp class="ph codeph">hdbactivatestandby</samp>工具，
           该主机当前是一个后备Master。例如：
-          <pre class="pre codeblock">$ gpactivatestandby -d $MASTER_DATA_DIRECTORY</pre>
+          <pre class="pre codeblock">$ hdbactivatestandby -d $MASTER_DATA_DIRECTORY</pre>
 
           <p class="p">其中<samp class="ph codeph">-d</samp>选项指定正在激活的主机的数据目录。</p>
 </li>

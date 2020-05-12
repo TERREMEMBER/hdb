@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1507,8 +1507,8 @@
         <a class="xref" href="../highavail/topics/g-overview-of-high-availability-in-greenplum-database.html#topic2">inHybrid数据库高可用性概述</a>。</p>
 
     <div class="note important">
-<span class="importanttitle">Important:</span> 当Pivotal inHybrid数据库群集无法接受数据丢失时，必须启用Master节点和Primary节点的Mirro，以便集群可以被Pivotal所支持。
-      如果没有镜像，系统和数据可用性无法保证，在这种情况下，Pivotal将尽最大努力恢复群集。
+<span class="importanttitle">Important:</span> 当inspur inHybrid数据库群集无法接受数据丢失时，必须启用Master节点和Primary节点的Mirro，以便集群可以被inspur所支持。
+      如果没有镜像，系统和数据可用性无法保证，在这种情况下，inspur将尽最大努力恢复群集。
       </div>
 
     <div class="section" xml:lang="en" lang="en" id="about_ha__segment_mirroring">
@@ -1517,7 +1517,7 @@
       <p class="p">部署inHybrid数据库系统时，可以配置<em class="ph i">Mirror</em>实例。
         Mirror节点可以使当Primary节点宕机的时候，将数据库查询转移到备份节点上。
         Mirror节点通过将数据从主节点同步到从节点的事务日志复制进程保持同步。
-        Mirror机制在生产环境中强烈建议开启，并且是Pivotal支持所必须的。
+        Mirror机制在生产环境中强烈建议开启，并且是inspur支持所必须的。
         </p>
 
       <p class="p">作为最佳实践，从节点实例必须和主节点部署到不同的机器以防止单机故障带来的影响。
