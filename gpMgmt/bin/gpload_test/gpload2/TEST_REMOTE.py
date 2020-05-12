@@ -35,7 +35,7 @@ def ensure_env(name):
 DBNAME = "postgres"
 USER = os.environ.get( "LOGNAME" )
 HOST = "127.0.0.1"
-GPHOME = os.getenv("GPHOME")
+GPHOME = os.getenv("HDBHOME")
 PGPORT = ensure_env("PGPORT")
 PGUSER = ensure_env("PGUSER")
 PGHOST = ensure_env("PGHOST")
@@ -53,7 +53,7 @@ def write_config_file(mode='insert', reuse_flag='',columns_flag='0',mapping='0',
     f.write("\nUSER: "+PGUSER)
     f.write("\nHOST: "+PGHOST)
     f.write("\nPORT: "+PGPORT)
-    f.write("\nGPLOAD:")
+    f.write("\nHDBLOAD:")
     f.write("\n   INPUT:")
     f.write("\n    - SOURCE:")
     f.write("\n         LOCAL_HOSTNAME:")
@@ -359,10 +359,10 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
            os.remove(file)
         ext = '.sh'
 
-        commands = "gpload -f "+mkpath(os.path.join('config','config_file'))+" -d reuse_gptest"+os.linesep+"gpload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest\n"
+        commands = "hdbload -f "+mkpath(os.path.join('config','config_file'))+" -d reuse_gptest"+os.linesep+"hdbload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest\n"
         if (platform.system()) in ['Windows', 'Microsoft']:
             ext = '.bat'
-            commands = "@ECHO OFF" + os.linesep+ " call gpload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest"+os.linesep+"call gpload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest" + os.linesep
+            commands = "@ECHO OFF" + os.linesep+ " call hdbload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest"+os.linesep+"call hdbload -f "+mkpath(os.path.join('config','config_file'))+ " -d reuse_gptest" + os.linesep
         f = open(mkpath('run_gpload' + ext), 'w')
         f.write(commands)
         f.write(query)
@@ -377,89 +377,89 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.check_result(file)
 
     def test_00_gpload_formatOpts_setup(self):
-        "0  gpload setup"
+        "0  hdbload setup"
 
         file = mkpath('setup.sql')
         runfile(file)
         self.check_result(file)
 
     def test_01_gpload_formatOpts_delimiter(self):
-        "1  gpload formatOpts delimiter '|' with reuse "
+        "1  hdbload formatOpts delimiter '|' with reuse "
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="'|'")
         self.doTest(1)
 
     def test_02_gpload_formatOpts_delimiter(self):
-        "2  gpload formatOpts delimiter '\t' with reuse"
+        "2  hdbload formatOpts delimiter '\t' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="'\t'")
         self.doTest(2)
 
     def test_03_gpload_formatOpts_delimiter(self):
-        "3  gpload formatOpts delimiter E'\t' with reuse"
+        "3  hdbload formatOpts delimiter E'\t' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\\t'")
         self.doTest(3)
 
     def test_04_gpload_formatOpts_delimiter(self):
-        "4  gpload formatOpts delimiter E'\u0009' with reuse"
+        "4  hdbload formatOpts delimiter E'\u0009' with reuse"
         copy_data('external_file_02.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\u0009'")
         self.doTest(4)
 
     def test_05_gpload_formatOpts_delimiter(self):
-        "5  gpload formatOpts delimiter E'\\'' with reuse"
+        "5  hdbload formatOpts delimiter E'\\'' with reuse"
         copy_data('external_file_03.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="E'\''")
         self.doTest(5)
 
     def test_06_gpload_formatOpts_delimiter(self):
-        "6  gpload formatOpts delimiter \"'\" with reuse"
+        "6  hdbload formatOpts delimiter \"'\" with reuse"
         copy_data('external_file_03.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',delimiter="\"'\"")
         self.doTest(6)
 
     def test_07_gpload_reuse_table_insert_mode_without_reuse(self):
-        "7  gpload insert mode without reuse"
+        "7  hdbload insert mode without reuse"
         runfile(mkpath('setup.sql'))
         write_config_file(mode='insert',reuse_flag='false')
         self.doTest(7, 'psql -d reuse_gptest -c "select count(*) from texttable;"')
 
     def test_08_gpload_reuse_table_update_mode_with_reuse(self):
-        "8  gpload update mode with reuse"
+        "8  hdbload update mode with reuse"
         drop_tables()
         copy_data('external_file_04.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='true',file='data_file.txt')
         self.doTest(8)
 
     def test_09_gpload_reuse_table_update_mode_without_reuse(self):
-        "9  gpload update mode without reuse"
+        "9  hdbload update mode without reuse"
         copy_data('external_file_05.txt','data_file.txt')
         write_config_file(mode='update',reuse_flag='false',file='data_file.txt')
         self.doTest(9, 'psql -d reuse_gptest -c "select count(*) from texttable;"\n'+'psql -d reuse_gptest -c "select * from texttable where n2=222;"')
 
     def test_10_gpload_reuse_table_merge_mode_with_reuse(self):
-        "10  gpload merge mode with reuse "
+        "10  hdbload merge mode with reuse "
         drop_tables()
         copy_data('external_file_06.txt','data_file.txt')
         write_config_file('merge','true',file='data_file.txt')
         self.doTest(10)
 
     def test_11_gpload_reuse_table_merge_mode_without_reuse(self):
-        "11  gpload merge mode without reuse "
+        "11  hdbload merge mode without reuse "
         copy_data('external_file_07.txt','data_file.txt')
         write_config_file('merge','false',file='data_file.txt')
         self.doTest(11)
 
     def test_12_gpload_reuse_table_merge_mode_with_different_columns_number_in_file(self):
-        "12 gpload merge mode with reuse (RERUN with different columns number in file) "
+        "12 hdbload merge mode with reuse (RERUN with different columns number in file) "
         psql_run(cmd="ALTER TABLE texttable ADD column n8 text",dbname='reuse_gptest')
         copy_data('external_file_08.txt','data_file.txt')
         write_config_file('merge','true',file='data_file.txt')
         self.doTest(12)
 
     def test_13_gpload_reuse_table_merge_mode_with_different_columns_number_in_DB(self):
-        "13  gpload merge mode with reuse (RERUN with different columns number in DB table) "
+        "13  hdbload merge mode with reuse (RERUN with different columns number in DB table) "
         preTest = mkpath('pre_test_13.sql')
         psql_run(preTest, dbname='reuse_gptest')
         copy_data('external_file_09.txt','data_file.txt')
@@ -467,36 +467,36 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(13)
 
     def test_14_gpload_reuse_table_update_mode_with_reuse_RERUN(self):
-        "14 gpload update mode with reuse (RERUN) "
+        "14 hdbload update mode with reuse (RERUN) "
         write_config_file('update','true',file='data_file.txt')
         self.doTest(14)
 
     def test_15_gpload_reuse_table_merge_mode_with_different_columns_order(self):
-        "15 gpload merge mode with different columns' order "
+        "15 hdbload merge mode with different columns' order "
         copy_data('external_file_10.txt',os.path.join('data','data_file.tbl'))
         write_config_file('merge','true',file=os.path.join('data','data_file.tbl'),columns_flag='1',mapping='1')
         self.doTest(15)
 
     def test_16_gpload_formatOpts_quote(self):
-        "16  gpload formatOpts quote unspecified in CSV with reuse "
+        "16  hdbload formatOpts quote unspecified in CSV with reuse "
         copy_data('external_file_11.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','")
         self.doTest(16)
 
     def test_17_gpload_formatOpts_quote(self):
-        "17  gpload formatOpts quote '\\x26'(&) with reuse"
+        "17  hdbload formatOpts quote '\\x26'(&) with reuse"
         copy_data('external_file_12.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",quote="'\x26'")
         self.doTest(17)
 
     def test_18_gpload_formatOpts_quote(self):
-        "18  gpload formatOpts quote E'\\x26'(&) with reuse"
+        "18  hdbload formatOpts quote E'\\x26'(&) with reuse"
         copy_data('external_file_12.csv','data_file.csv')
         write_config_file(reuse_flag='true',formatOpts='csv',file='data_file.csv',table='csvtable',format='csv',delimiter="','",quote="E'\x26'")
         self.doTest(18)
 
     def test_19_gpload_formatOpts_escape(self):
-        "19  gpload formatOpts escape '\\' with reuse"
+        "19  hdbload formatOpts escape '\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         file = mkpath('setup.sql')
         runfile(file)
@@ -504,13 +504,13 @@ class GPLoad_FormatOpts_TestCase(unittest.TestCase):
         self.doTest(19)
 
     def test_20_gpload_formatOpts_escape(self):
-        "20  gpload formatOpts escape '\\' with reuse"
+        "20  hdbload formatOpts escape '\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',escape= '\x5C')
         self.doTest(20)
 
     def test_21_gpload_formatOpts_escape(self):
-        "21  gpload formatOpts escape E'\\\\' with reuse"
+        "21  hdbload formatOpts escape E'\\\\' with reuse"
         copy_data('external_file_01.txt','data_file.txt')
         write_config_file(reuse_flag='true',formatOpts='text',file='data_file.txt',table='texttable',escape="E'\\\\'")
         self.doTest(21)

@@ -1832,6 +1832,8 @@ class gpload:
                 curs = self.db.query("SELECT version()")
                 self.gpdb_version = GpVersion(curs.getresult()[0][0])
                 self.log(self.DEBUG, "HDB version is: %s" % self.gpdb_version)
+                if self.gpdb_version == "1.0.0":
+                    self.gpdb_version = "6.4.0"
 
         except Exception, e:
             errorMessage = str(e)
