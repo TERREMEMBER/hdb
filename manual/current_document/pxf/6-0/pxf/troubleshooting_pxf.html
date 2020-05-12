@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -245,7 +245,7 @@ under the License.
 </tr>
 <tr>
 <td><em>ERROR</em>: failed to acquire resources on one or more segments<br><em>DETAIL</em>:  could not connect to server: Connection refused<br>&nbsp;&nbsp;&nbsp;&nbsp;Is the server running on host &ldquo;&lt;segment-host&gt;&rdquo; and accepting<br>&nbsp;&nbsp;&nbsp;&nbsp;TCP/IP connections on port 40000?(seg&lt;N&gt; &lt;segment-host&gt;:40000)</td>
-<td><strong>Cause</strong>: GPDB集群 &lt;segment-host&gt; 节点down</td>
+<td><strong>Cause</strong>: HDB集群 &lt;segment-host&gt; 节点down</td>
 </tr>
 <tr>
 <td>org.apache.hadoop.security.AccessControlException: Permission denied: user=<user>, access=READ, inode=&ldquo;<filepath>&rdquo;:<user>:<group>:-rw&mdash;&mdash;-</td>
@@ -264,16 +264,16 @@ under the License.
 <p>启用<code>DEBUG</code>级别时，PXF提供更详细的日志记录。要配置PXF<code>DEBUG</code>日志记录并检查输出，请执行以下操作：</p>
 
 <ol>
-<li><p>登录gpdb集群的master主机</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>登录hdb集群的master主机</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>使用编辑器打开 <code>$PXF_CONF/conf/pxf-log4j.properties</code>，取消以下行的注释，保存文件，然后退出编辑器：</p>
 <pre class="highlight shell"><code><span class="c">#log4j.logger.org.greenplum.pxf=DEBUG</span>
 </code></pre></li>
 <li><p>使用 <code>pxf cluster sync</code> 命令拷贝更新的文件 <code>pxf-log4j.properties</code> 到inHybrid数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
-<li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>章节描述，重启gpdb集群的每个segment节点的pxf</p></li>
+<li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>章节描述，重启hdb集群的每个segment节点的pxf</p></li>
 <li><p>现在启用了<code>DEBUG</code>级别的日志记录，您可以执行PXF操作。 确保记下时间； 这会将信息定向输出到 <code>$PXF_CONF/logs/pxf-service.log</code>中的相关日志。</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>date
 Wed Oct  4 09:30:06 MDT 2017
@@ -380,10 +380,10 @@ dbname=&gt; SELECT * FROM hdfstest;
 
 <ol>
 <li><p>登录到您的inHybrid数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>如果您想在OOM上配置（即关闭或重新打开）PXF服务器自动关闭功能，请在<code>pxf-env.sh</code>文件中找到<code>PXF_OOM_KILL</code>属性。 如果该设置已被注释掉，请取消注释它，然后更新该值。 例如，要关闭此行为，请将值设置为<code>false</code>：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_OOM_KILL</span><span class="o">=</span><span class="nb">false</span>
@@ -400,7 +400,7 @@ dbname=&gt; SELECT * FROM hdfstest;
 </ol></li>
 <li><p>保存<code>pxf-enf.sh</code>文件并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个inHybrid数据库segment主机上重新启动PXF。</p></li>
 </ol>
@@ -412,18 +412,18 @@ dbname=&gt; SELECT * FROM hdfstest;
 <p>执行以下过程来增加在inHybrid数据库集群中每个segment主机上运行的PXF代理服务的堆大小。</p>
 
 <ol>
-<li><p>登录gpdb集群的master主机</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>登录hdb集群的master主机</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_JVM_OPTS</code>设置，然后将 <code>-Xmx</code> 和/或 <code>-Xms</code> 选项更新为所需的值。 例如：</p>
 <pre class="highlight shell"><code><span class="nv">PXF_JVM_OPTS</span><span class="o">=</span><span class="s2">"-Xmx3g -Xms3g"</span>
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code> 命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>描述，重启每个segment主机上的pxf服务。</p></li>
 </ol>
@@ -441,18 +441,18 @@ dbname=&gt; SELECT * FROM hdfstest;
 <p>执行以下过程，以设置在inHybrid数据库部署中每个segment主机上运行的PXF代理的Tomcat线程的最大数量。</p>
 
 <ol>
-<li><p>登录到gpdb集群的master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<li><p>登录到hdb集群的master节点</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>。例如:</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_MAX_THREADS</code>设置。 取消注释设置，并将其更新为所需的值。 例如，要将Tomcat线程的最大数量设置为100：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_MAX_THREADS</span><span class="o">=</span>100
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>依照<a href="cfginitstart_pxf.html#restart_pxf">Restarting PXF</a>描述重启PXF服务</p></li>
 </ol>
@@ -483,17 +483,17 @@ ORA-01882: timezone region not found
 
 <ol>
 <li><p>登录到您的inHybrid数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>编辑<code>$PXF_CONF/conf/pxf-env.sh</code>文件。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_FRAGMENTER_CACHE</code>设置。 如果该设置已被注释掉，请取消注释它，然后更新该值。 例如，要关闭片段元数据缓存，请将值设置为<code>false</code>：</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_FRAGMENTER_CACHE</span><span class="o">=</span><span class="nb">false</span>
 </code></pre></li>
 <li><p>保存文件并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code>命令将更新的<code>pxf-env.sh</code>文件复制到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重新启动PXF</a>中所述，在每个inHybrid数据库segment主机上重新启动PXF。</p></li>
 </ol>

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1546,7 +1546,7 @@
           <dt class="dt pt dlterm">executablepath</dt>
 
           <dd class="dd pd">需要。 插件可执行文件的绝对路径。
-              例如，Pivotal inHybrid数据库安装位置是<samp class="ph codeph">$HDBHOME/bin/hdbbackup_s3_plugin</samp>。
+              例如，inspur inHybrid数据库安装位置是<samp class="ph codeph">$HDBHOME/bin/hdbbackup_s3_plugin</samp>。
               该插件必须位于每个inHybrid数据库主机上的相同位置。
               </dd>
 
@@ -1642,7 +1642,7 @@ options:
   region: us-west-2
   aws_access_key_id: test-s3-user
   aws_secret_access_key: asdf1234asdf
-  bucket: gpdb-backup
+  bucket: hdb-backup
   folder: test/backup3</pre>
 
       <div class="p">这个<samp class="ph codeph">hdbbackup</samp>示例使用S3存储插件备份数据库演示。
@@ -1654,7 +1654,7 @@ options:
           </p>
 
       <div class="p">
-        <pre class="pre codeblock">gpdb-backup/test/backup3/backups/<var class="keyword varname">YYYYMMDD</var>/<var class="keyword varname">YYYYMMDDHHMMSS</var>/</pre>
+        <pre class="pre codeblock">hdb-backup/test/backup3/backups/<var class="keyword varname">YYYYMMDD</var>/<var class="keyword varname">YYYYMMDDHHMMSS</var>/</pre>
 
       </div>
 

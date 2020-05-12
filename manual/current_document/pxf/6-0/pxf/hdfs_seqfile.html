@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -416,16 +416,16 @@ SequenceFile 格式数据可以选择采用record或block压缩。 PXF <code>hdfs:SequenceFile
 
 <p>(您的Hadoop库类路径可能不同)</p></li>
 <li><p>将 <code>pxfex-customwritable.jar</code> 文件复制到inHybrid 数据库master节点。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>scp pxfex-customwritable.jar hdbadmin@gpmaster:/home/hdbadmin
+<pre class="highlight shell"><code><span class="gp">$ </span>scp pxfex-customwritable.jar hdbadmin@hdbmaster:/home/hdbadmin
 </code></pre></li>
 <li><p>登录到您的inHybrid数据库master节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>将 <code>pxfex-customwritable.jar</code> JAR文件复制到用户运行时类库目录中，并记下位置。 例如， 如果 <code>PXF_CONF=/usr/local/greenplum-pxf</code>：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp /home/hdbadmin/pxfex-customwritable.jar /usr/local/greenplum-pxf/lib/pxfex-customwritable.jar
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>cp /home/hdbadmin/pxfex-customwritable.jar /usr/local/greenplum-pxf/lib/pxfex-customwritable.jar
 </code></pre></li>
 <li><p>将PXF配置同步到inHybrid数据库集群。 例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 <li><p>如<a href="cfginitstart_pxf.html#restart_pxf">重启PXF</a>中所述，在每个inHybrid数据库segment主机上重启PXF。</p></li>
 <li><p>使用PXF <code>hdfs:SequenceFile</code> 配置文件创建inHybrid数据库可写外部表。 在 <code>DATA-SCHEMA</code> 自定义选项 &lt;custom-option&gt; 中标识您在上面创建的序列化/反序列化Java类。 创建可写外部表时，使用 <code>BZip2</code> 压缩并指定 <code>BLOCK</code> 压缩模式。</p>

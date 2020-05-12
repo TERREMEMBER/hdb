@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1506,7 +1506,7 @@
 
 	  <div class="p">可以检查查询的<samp class="ph codeph">EXPLAIN</samp>查询计划来判断inHybrid数据库使用哪一种查询优化器来执行该查询：<ul class="ul" id="topic1__ul_vc2_xbh_1t">
 		<li class="li">当GPORCA生成该查询计划时，配置<samp class="ph codeph">optimizer=on</samp>和GPORCA的版本会被显示在查询计划的末尾。例如：<pre class="pre codeblock"> Settings:  <strong class="ph b">optimizer=on</strong>
-				Optimizer status: <strong class="ph b">Pivotal Optimizer (GPORCA) version 1.584</strong></pre>
+				Optimizer status: <strong class="ph b">inspur Optimizer (GPORCA) version 1.584</strong></pre>
 
 			<div class="p">当inHybrid数据库退回到使用传统优化器生成该计划时，设置<samp class="ph codeph">optimizer=on</samp>和Postgres query optimizer会被显示在查询计划的末尾。例如：
 			<pre class="pre codeblock"> Settings:  <strong class="ph b">optimizer=on</strong>

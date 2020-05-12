@@ -9,7 +9,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-      gpmapreduce |
+      hdbmapreduce |
     inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
   
 </head>
 
-<body class="x6-0 x6-0_utility_guide x6-0_utility_guide_admin_utilities x6-0_utility_guide_admin_utilities_gpmapreduce has-subnav">
+<body class="x6-0 x6-0_utility_guide x6-0_utility_guide_admin_utilities x6-0_utility_guide_admin_utilities_hdbmapreduce has-subnav">
 
 <div class="viewport">
   <div class='wrap'>
@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -79,7 +79,7 @@
       </li>
     
       <li class="">
-        <a href="gpactivatestandby.html">gpactivatestandby</a>
+        <a href="hdbactivatestandby.html">hdbactivatestandby</a>
         
 
       </li>
@@ -163,7 +163,7 @@
       </li>
     
       <li class="">
-        <a href="gpmapreduce.html">gpmapreduce</a>
+        <a href="hdbmapreduce.html">hdbmapreduce</a>
         
 
       </li>
@@ -430,18 +430,18 @@
         <a id="top"></a>
         
           <h1 class="title-container" style="display: none;">
-    gpmapreduce
+    hdbmapreduce
   </h1>
 
           <div id="js-quick-links" >
             
           </div>
         <div class="to-top" id="js-to-top">
-          <a href="gpmapreduce.html#top" title="back to top"></a>
+          <a href="hdbmapreduce.html#top" title="back to top"></a>
         </div>
         
 
-  <h1 class="title topictitle1">gpmapreduce</h1>
+  <h1 class="title topictitle1">hdbmapreduce</h1>
 
   
   <div class="body">
@@ -450,18 +450,18 @@
     <div class="section" id="topic1__section2">
 <h2 class="title sectiontitle">概要</h2>
       
-      <pre class="pre codeblock"><strong class="ph b">gpmapreduce</strong> <strong class="ph b">-f</strong> <var class="keyword varname">yaml_file</var> [<var class="keyword varname">dbname</var> [<var class="keyword varname">username</var>]] 
+      <pre class="pre codeblock"><strong class="ph b">hdbmapreduce</strong> <strong class="ph b">-f</strong> <var class="keyword varname">yaml_file</var> [<var class="keyword varname">dbname</var> [<var class="keyword varname">username</var>]] 
         [<strong class="ph b">-k</strong> <var class="keyword varname">name=value</var> | <strong class="ph b">--key</strong> <var class="keyword varname">name=value</var>] 
         [<strong class="ph b">-h</strong> <var class="keyword varname">hostname</var> | <strong class="ph b">--host</strong> <var class="keyword varname">hostname</var>] [<strong class="ph b">-p</strong> <var class="keyword varname">port</var>| <strong class="ph b">--port</strong> <var class="keyword varname">port</var>] 
         [<strong class="ph b">-U</strong> <var class="keyword varname">username</var> | <strong class="ph b">--username</strong> <var class="keyword varname">username</var>] [<strong class="ph b">-W</strong>] [<strong class="ph b">-v</strong>]
         
-        <strong class="ph b">gpmapreduce</strong> <strong class="ph b">-x</strong> | <strong class="ph b">--explain</strong> 
+        <strong class="ph b">hdbmapreduce</strong> <strong class="ph b">-x</strong> | <strong class="ph b">--explain</strong> 
         
-        <strong class="ph b">gpmapreduce</strong> <strong class="ph b">-X</strong> | <strong class="ph b">--explain-analyze</strong>
+        <strong class="ph b">hdbmapreduce</strong> <strong class="ph b">-X</strong> | <strong class="ph b">--explain-analyze</strong>
         
-        <strong class="ph b">gpmapreduce</strong> <strong class="ph b">-V</strong> | <strong class="ph b">--version</strong> 
+        <strong class="ph b">hdbmapreduce</strong> <strong class="ph b">-V</strong> | <strong class="ph b">--version</strong> 
         
-        <strong class="ph b">gpmapreduce</strong> <strong class="ph b">-h</strong> | <strong class="ph b">--help</strong> </pre>
+        <strong class="ph b">hdbmapreduce</strong> <strong class="ph b">-h</strong> | <strong class="ph b">--help</strong> </pre>
 
     </div>
 
@@ -498,7 +498,7 @@
       </p>
 
       <p class="p">为了使inHybrid能够处理MapReduce函数，需要在YAML文档中定义函数，然后将其传递到inHybrid 
-        MapReduce程序<samp class="ph codeph">gpmapreduce</samp>，以供inHybrid数据库并行引擎执行。inHybrid
+        MapReduce程序<samp class="ph codeph">hdbmapreduce</samp>，以供inHybrid数据库并行引擎执行。inHybrid
         系统负责分布输入数据、在一组机器上执行程序、处理机器故障以及管理所需的机器间通信。</p>
 
     </div>
@@ -599,7 +599,7 @@
       <p class="p">运行<samp class="ph codeph">my_yaml.txt</samp>中定义的MapReduce作业，并连接到数据库
         <samp class="ph codeph">mydatabase</samp>：</p>
 
-      <pre class="pre codeblock">gpmapreduce -f my_yaml.txt mydatabase</pre>
+      <pre class="pre codeblock">hdbmapreduce -f my_yaml.txt mydatabase</pre>
 
     </div>
 

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -4167,11 +4167,11 @@ $$;</pre>
       <div class="p">使用<samp class="ph codeph">hdbssh</samp>在远程主机上运行shell命令时，可以指定<samp class="ph codeph">-s</samp>选项。
         指定该选项后，<samp class="ph codeph">hdbssh</samp>会在远程主机上运行命令之前加载<samp class="ph codeph">greenplum_path.sh</samp>文件。
         例如，此命令应显示在每台主机上使用inHybrid数据库安装的Python。
-        <pre class="pre codeblock">hdbssh -f gpdb_hosts which python</pre>
+        <pre class="pre codeblock">hdbssh -f hdb_hosts which python</pre>
 </div>
 
       <div class="p">如果没有，则可以在运行命令之前在远程主机上添加<samp class="ph codeph">-s</samp>到源<samp class="ph codeph">greenplum_path.sh</samp>。
-        <pre class="pre codeblock">hdbssh -s -f gpdb_hosts which python</pre>
+        <pre class="pre codeblock">hdbssh -s -f hdb_hosts which python</pre>
 </div>
 
       <p class="p">要显示当前安装的Python模块列表，请运行此命令。</p>
@@ -4224,8 +4224,8 @@ $</pre>
         <pre class="pre codeblock">python -m pip install --upgrade pip setuptools wheel</pre>
 
         <div class="p">您可以使用<samp class="ph codeph">hdbssh</samp>在inHybrid数据库主机上运行命令。
-          此示例以交互模式运行<samp class="ph codeph">hdbssh</samp>，以在文件<samp class="ph codeph">gpdb_hosts</samp>中列出的主机上安装<samp class="ph codeph">pip</samp>。
-          <pre class="pre codeblock">$ hdbssh -s -f gpdb_hosts
+          此示例以交互模式运行<samp class="ph codeph">hdbssh</samp>，以在文件<samp class="ph codeph">hdb_hosts</samp>中列出的主机上安装<samp class="ph codeph">pip</samp>。
+          <pre class="pre codeblock">$ hdbssh -s -f hdb_hosts
 =&gt; python -m ensurepip --default-pip
 [centos6-mdw1] Ignoring indexes: https://pypi.python.org/simple
 [centos6-mdw1] Collecting setuptools
@@ -4246,8 +4246,8 @@ $</pre>
           <samp class="ph codeph">exit</samp>命令退出<samp class="ph codeph">hdbssh</samp>交互模式。
           </p>
 
-        <div class="p">此<samp class="ph codeph">hdbssh</samp>命令在文件<samp class="ph codeph">gpdb_hosts</samp>中列出的所有主机上运行单个命令。
-          <pre class="pre codeblock">hdbssh -s -f gpdb_hosts python -m pip install --upgrade pip setuptools wheel</pre>
+        <div class="p">此<samp class="ph codeph">hdbssh</samp>命令在文件<samp class="ph codeph">hdb_hosts</samp>中列出的所有主机上运行单个命令。
+          <pre class="pre codeblock">hdbssh -s -f hdb_hosts python -m pip install --upgrade pip setuptools wheel</pre>
 </div>
 
         <p class="p">该实用程序显示每个主机的输出。</p>

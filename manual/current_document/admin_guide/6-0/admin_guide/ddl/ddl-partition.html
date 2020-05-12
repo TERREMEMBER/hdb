@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -2547,7 +2547,7 @@ END ('2014-05-01') EXCLUSIVE ;</pre>
             <li class="li">创建一个可写的外部表。<p class="p">这个<samp class="ph codeph">CREATE WRITABLE EXTERNAL
                   TABLE</samp>命令用和分区表相同的列创建一个可写的外部表。</p>
 <pre class="pre codeblock">CREATE WRITABLE EXTERNAL TABLE my_sales_ext ( LIKE sales_1_prt_yr_1 )
-  LOCATION ( 'hdbfdist://gpdb_test/sales_2010' )
+  LOCATION ( 'hdbfdist://hdb_test/sales_2010' )
   FORMAT 'csv' 
   DISTRIBUTED BY (id) ;</pre>
 </li>
@@ -2556,7 +2556,7 @@ END ('2014-05-01') EXCLUSIVE ;</pre>
               <p class="p">这个<samp class="ph codeph">CREATE EXTERNAL
                   TABLE</samp>创建一个可读外部表，它使用和可写外部数据相同的外部数据。</p>
 <pre class="pre codeblock">CREATE EXTERNAL TABLE sales_2010_ext ( LIKE sales_1_prt_yr_1)
-  LOCATION ( 'hdbfdist://gpdb_test/sales_2010' )
+  LOCATION ( 'hdbfdist://hdb_test/sales_2010' )
   FORMAT 'csv' ;</pre>
 </li>
 

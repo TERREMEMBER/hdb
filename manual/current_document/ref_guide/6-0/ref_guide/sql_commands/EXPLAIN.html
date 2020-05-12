@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -3965,7 +3965,7 @@ ROLLBACK;</pre>
  Gather Motion 3:1  (slice1; segments: 3)  (cost=0.00..431.27 rows=1 width=58)
    -&gt;  Seq Scan on names  (cost=0.00..431.27 rows=1 width=58)
          Filter: (name = 'Joelle'::text)
- Optimizer: Pivotal Optimizer (GPORCA) version 3.23.0
+ Optimizer: inspur Optimizer (GPORCA) version 3.23.0
 (4 rows)</pre>
 
 
@@ -3993,7 +3993,7 @@ ROLLBACK;</pre>
  Gather Motion 3:1  (slice1; segments: 3)
    -&gt;  Seq Scan on names
          Filter: (name = 'Joelle'::text)
- Optimizer: Pivotal Optimizer (GPORCA) version 3.23.0
+ Optimizer: inspur Optimizer (GPORCA) version 3.23.0
 (4 rows)</pre>
  
 
@@ -4033,7 +4033,7 @@ ROLLBACK;</pre>
        ]                                      +
      },                                       +
      "Settings": {                            +
-       "Optimizer": "Pivotal Optimizer (GPORCA) version 3.23.0"      +
+       "Optimizer": "inspur Optimizer (GPORCA) version 3.23.0"      +
      }                                        +
    }                                          +
  ]
@@ -4071,7 +4071,7 @@ ROLLBACK;</pre>
          Plan Width: 70                                      +
          Index Cond: "(location = 'Sydney, Australia'::text)"+
    Settings:                                                 +
-     Optimizer: "Pivotal Optimizer (GPORCA) version 3.23.0"
+     Optimizer: "inspur Optimizer (GPORCA) version 3.23.0"
 (1 row)</pre>
 </div>
     </div>

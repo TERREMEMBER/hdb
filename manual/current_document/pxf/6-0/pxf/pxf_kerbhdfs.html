@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -206,10 +206,10 @@
 <pre class="highlight shell"><code><span class="gp">$ </span>ssh root@&lt;kdc-server&gt;
 root@kdc-server<span class="err">$</span>
 </code></pre></li>
-<li><p>如果你的集群主机不存在配置文件的话，需要在KDC服务主机上分发<code>/etc/krb5.conf</code>配置文件到GPDB的<strong>每一个</strong>的segment节点，例如:</p>
+<li><p>如果你的集群主机不存在配置文件的话，需要在KDC服务主机上分发<code>/etc/krb5.conf</code>配置文件到HDB的<strong>每一个</strong>的segment节点，例如:</p>
 <pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>scp /etc/krb5.conf seghost:/etc/krb5.conf
 </code></pre></li>
-<li><p>使用<code>kadmin.local</code>命令为GPDB的每个segment节点主机创建一个Kerberos PXF服务主体。服务主体的格式应为<code>hdbadmin/&lt;seghost&gt;@&lt;realm&gt;</code>，其中&lt;seghost&gt;是segment主机系统的DNS可解析的全限定主机名(<code>hostname -f</code>命令的输出)。例如，以下命令在名为EXAMPLE.COM的Kerberos领域中为名为<code>host1.example.com，host2.example.com</code>和<code>host3.example.com</code>的主机创建PXF服务主体:</p>
+<li><p>使用<code>kadmin.local</code>命令为HDB的每个segment节点主机创建一个Kerberos PXF服务主体。服务主体的格式应为<code>hdbadmin/&lt;seghost&gt;@&lt;realm&gt;</code>，其中&lt;seghost&gt;是segment主机系统的DNS可解析的全限定主机名(<code>hostname -f</code>命令的输出)。例如，以下命令在名为EXAMPLE.COM的Kerberos领域中为名为<code>host1.example.com，host2.example.com</code>和<code>host3.example.com</code>的主机创建PXF服务主体:</p>
 <pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host1.example.com@EXAMPLE.COM"</span>
 <span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host2.example.com@EXAMPLE.COM"</span>
 <span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"addprinc -randkey -pw changeme hdbadmin/host3.example.com@EXAMPLE.COM"</span>
@@ -241,7 +241,7 @@ root@kdc-server<span class="err">$</span>
 </code></pre></li>
 </ol>
 
-<p><strong>在每个GPDB的segment节点执行以下步骤</strong>:</p>
+<p><strong>在每个HDB的segment节点执行以下步骤</strong>:</p>
 
 <ol>
 <li><p>登录segment节点，例如:</p>

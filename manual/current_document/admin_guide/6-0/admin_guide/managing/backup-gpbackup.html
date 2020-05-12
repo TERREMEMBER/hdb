@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1789,13 +1789,13 @@ Locks acquired:  6 / 6 [========================================================
 Tables backed up:  3 / 3 [==============================================================] 100.00% 0s
 20180105:11:27:54 hdbbackup:hdbadmin:centos6.localdomain:002182-[INFO]:-Data backup complete
 20180105:11:27:54 hdbbackup:hdbadmin:centos6.localdomain:002182-[INFO]:-Found neither /usr/local/greenplum-db/./bin/gp_email_contacts.yaml nor /home/hdbadmin/gp_email_contacts.yaml
-20180105:11:27:54 hdbbackup:hdbadmin:centos6.localdomain:002182-[INFO]:-Email containing hdbbackup report /gpmaster/seg-1/backups/20180105/20180105112754/hdbbackup_20180105112754_report will not be sent
+20180105:11:27:54 hdbbackup:hdbadmin:centos6.localdomain:002182-[INFO]:-Email containing hdbbackup report /hdbmaster/seg-1/backups/20180105/20180105112754/hdbbackup_20180105112754_report will not be sent
 20180105:11:27:55 hdbbackup:hdbadmin:centos6.localdomain:002182-[INFO]:-Backup completed successfully</pre>
 </div>
 
       <div class="p">上面的命令在inHybrid数据库master主机的默认目录中创建一个包含全局和数据库特定元数据的文件，
           <samp class="ph codeph">$MASTER_DATA_DIRECTORY/backups/&lt;YYYYMMDD&gt;/&lt;YYYYMMDDHHMMSS&gt;/</samp>。
-          例如：<pre class="pre codeblock">$ <strong class="ph b">ls /gpmaster/gpsne-1/backups/20180105/20180105112754</strong>
+          例如：<pre class="pre codeblock">$ <strong class="ph b">ls /hdbmaster/gpsne-1/backups/20180105/20180105112754</strong>
 hdbbackup_20180105112754_config.yaml   hdbbackup_20180105112754_report
 hdbbackup_20180105112754_metadata.sql  hdbbackup_20180105112754_toc.yaml</pre>
 </div>
@@ -1839,11 +1839,11 @@ $ <strong class="ph b">hdbrestore --timestamp 20171103152558 --create-db</strong
 20171103:15:45:30 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restore Key = 20171103152558
 20171103:15:45:31 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Creating database
 20171103:15:45:44 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Database creation complete
-20171103:15:45:44 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restoring pre-data metadata from /gpmaster/gpsne-1/backups/20171103/20171103152558/hdbbackup_20171103152558_predata.sql
+20171103:15:45:44 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restoring pre-data metadata from /hdbmaster/gpsne-1/backups/20171103/20171103152558/hdbbackup_20171103152558_predata.sql
 20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Pre-data metadata restore complete
 20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restoring data
 20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Data restore complete
-20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restoring post-data metadata from /gpmaster/gpsne-1/backups/20171103/20171103152558/hdbbackup_20171103152558_postdata.sql
+20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Restoring post-data metadata from /hdbmaster/gpsne-1/backups/20171103/20171103152558/hdbbackup_20171103152558_postdata.sql
 20171103:15:45:45 hdbrestore:hdbadmin:0ee2f5fb02c9:017714-[INFO]:-Post-data metadata restore complete</pre>
 </div>
 
@@ -1891,7 +1891,7 @@ hdbrestore_20180213114446_20180213115426_report</pre>
 
           <p class="p">这个在inHybrid数据库master主机上的备份目录包含了<samp class="ph codeph">hdbbackup</samp>和<samp class="ph codeph">hdbrestore</samp>的报告文件。
               </p>
-<pre class="pre codeblock">$ <strong class="ph b">ls -l /gpmaster/seg-1/backups/20180213/20180213114446</strong>
+<pre class="pre codeblock">$ <strong class="ph b">ls -l /hdbmaster/seg-1/backups/20180213/20180213114446</strong>
 total 36
 -r--r--r--. 1 hdbadmin hdbadmin  295 Feb 13 11:44 hdbbackup_20180213114446_config.yaml
 -r--r--r--. 1 hdbadmin hdbadmin 1855 Feb 13 11:44 hdbbackup_20180213114446_metadata.sql
@@ -1905,7 +1905,7 @@ total 36
 <pre class="pre codeblock">inHybrid Database Restore Report
 
 Timestamp Key: 20180213114446
-GPDB Version: 5.4.1+dev.8.g9f83645 build commit:9f836456b00f855959d52749d5790ed1c6efc042
+HDB Version: 5.4.1+dev.8.g9f83645 build commit:9f836456b00f855959d52749d5790ed1c6efc042
 hdbrestore Version: 1.0.0-alpha.3+dev.73.g0406681
 
 Database Name: test

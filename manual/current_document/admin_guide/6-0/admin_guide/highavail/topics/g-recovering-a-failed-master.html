@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1498,7 +1498,7 @@
   <h1 class="title topictitle1">恢复故障的Master</h1>
 
   <div class="body">
-    <p class="p">如果主Master故障，inHybrid数据库不可访问且WAL复制会停止。使用<samp class="ph codeph"><a class="xref" href="../../../utility_guide/admin_utilities/gpactivatestandby.html">gpactivatestandby</a></samp>来激活后备Master。
+    <p class="p">如果主Master故障，inHybrid数据库不可访问且WAL复制会停止。使用<samp class="ph codeph"><a class="xref" href="../../../utility_guide/admin_utilities/hdbactivatestandby.html">hdbactivatestandby</a></samp>来激活后备Master。
       在激活后备Master过程中，inHybrid数据库会重构Master主机为最后一次成功提交事务时的状态。
       </p>
 
@@ -1508,9 +1508,9 @@
 <h2 class="title sectiontitle">激活standby master</h2>
       
       <ol class="ol">
-        <li class="li" id="topic16__ki155791">在standby master主机上运行<samp class="ph codeph">gpactivatestandby</samp>工具
+        <li class="li" id="topic16__ki155791">在standby master主机上运行<samp class="ph codeph">hdbactivatestandby</samp>工具
           来激活它。例如：
-          <pre class="pre codeblock">$ gpactivatestandby -d /data/master/gpseg-1</pre>
+          <pre class="pre codeblock">$ hdbactivatestandby -d /data/master/gpseg-1</pre>
 
           <p class="p">此处<samp class="ph codeph">-d</samp>选项指定正在激活的master主机的数据目录。
             </p>

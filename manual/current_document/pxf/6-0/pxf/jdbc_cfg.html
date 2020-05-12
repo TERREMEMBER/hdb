@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -540,16 +540,16 @@
 
 <ol>
 <li><p>登录到您的inHybrid数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>选择JDBC服务器的名称。您将名称提供给inHybrid用户，您可以选择这些用户允许其以配置用户身份引用外部SQL数据库中的表。</p>
 
 <p><strong>注意</strong>: 服务器名称<code>default</code>已保留。</p></li>
 <li><p>创建<code>$PXF_HOME/servers/&lt;server_name&gt;</code>目录。例如，使用以下命令来创建名为<code>pg_user1_testdb</code>的JDBC服务器配置：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb
 </code></pre></li>
 <li><p>将PXF JDBC服务器模板文件复制到服务器配置目录。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/pg_user1_testdb/
 </code></pre></li>
 <li><p>在您选择的编辑器中打开模板服务器配置文件，并为您的环境提供适当的属性值。例如，如果要在名为<code>pgserverhost</code>的主机上运行的PostgreSQL实例上为名为<code>user1</code>的用户配置对名为<code>testdb</code>的PostgreSQL数据库的访问：</p>
 <pre class="highlight xml"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
@@ -574,7 +574,7 @@
 </code></pre></li>
 <li><p>保存更改并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到inHybrid数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 
@@ -687,14 +687,14 @@
 
 <ol>
 <li><p>登录到您的inHybrid数据库主节点：</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>选择JDBC服务器的名称。</p></li>
 <li><p>创建<code>$PXF_HOME/servers/&lt;server_name&gt;</code>目录。例如，使用以下命令创建名为<code>hivejdbc1</code>的JDBC服务器配置：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/hivejdbc1
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>mkdir <span class="nv">$PXF_CONF</span>/servers/hivejdbc1
 </code></pre></li>
 <li><p>将PXF JDBC服务器模板文件复制到服务器配置目录。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/hivejdbc1/
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>cp <span class="nv">$PXF_CONF</span>/templates/jdbc-site.xml <span class="nv">$PXF_CONF</span>/servers/hivejdbc1/
 </code></pre></li>
 <li><p>在您选择的编辑器中打开<code>jdbc-site.xml</code>文件，并设置<code>jdbc.driver</code>和<code>jdbc.url</code>属性。确保指定您的Hive主机，端口和数据库名称：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
@@ -785,7 +785,7 @@ jdbc:hive2://hs2server:10000/default;principal=hive/hs2server@REALM;saslQop=auth
 </ol></li>
 <li><p>保存更改并退出编辑器。</p></li>
 <li><p>使用<code>pxf cluster sync</code>命令将新的服务器配置复制到inHybrid数据库集群。例如：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster sync
 </code></pre></li>
 </ol>
 

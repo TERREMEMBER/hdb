@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1596,7 +1596,7 @@
 </li>
 
         <li class="li">为inHybrid数据库服务创建一个主体。
-            <pre class="pre codeblock"># kadmin.local -q "addprinc -randkey postgres/mdw@GPDB.KRB"</pre>
+            <pre class="pre codeblock"># kadmin.local -q "addprinc -randkey postgres/mdw@HDB.KRB"</pre>
 
             <p class="p">
               <samp class="ph codeph">-randkey</samp>选项可防止命令提示输入密码。</p>
@@ -1606,30 +1606,30 @@
             </p>
 
             <p class="p">主体名称中主机名部分（译者注，示例中的mdw部分），必须匹配inHybrid数据库master主机上<samp class="ph codeph">hostname</samp>命令的输出结果。
-            如果<samp class="ph codeph">hostname</samp>命令显示的是完全限定域名（FQDN），例如显示mdw.example.com，应用到主体名称则为<samp class="ph codeph">postgres/mdw.example.com@GPDB.KRB</samp>。
+            如果<samp class="ph codeph">hostname</samp>命令显示的是完全限定域名（FQDN），例如显示mdw.example.com，应用到主体名称则为<samp class="ph codeph">postgres/mdw.example.com@HDB.KRB</samp>。
             </p>
 
-            <p class="p">主体名称中<samp class="ph codeph">GPDB.KRB</samp>部分，是Kerberos域（realm）的名称</p>
+            <p class="p">主体名称中<samp class="ph codeph">HDB.KRB</samp>部分，是Kerberos域（realm）的名称</p>
 </li>
 
         <li class="li">为hdbadmin/admin角色创建一个主体。
-            <pre class="pre codeblock"># kadmin.local -q "addprinc hdbadmin/admin@GPDB.KRB"</pre>
+            <pre class="pre codeblock"># kadmin.local -q "addprinc hdbadmin/admin@HDB.KRB"</pre>
 
             <div class="p">
-            此主体允许您以hdbadmin身份登录时，管理KDC数据库。确保Kerberos的<samp class="ph codeph">kadm.acl</samp>配置文件包含用于向此主体授予权限的ACL。例如，此ACL为GPDB.KRB域中所有管理员用户，授予所有权限。
-            <pre class="pre codeblock">*/admin@GPDB.KRB *</pre>
+            此主体允许您以hdbadmin身份登录时，管理KDC数据库。确保Kerberos的<samp class="ph codeph">kadm.acl</samp>配置文件包含用于向此主体授予权限的ACL。例如，此ACL为HDB.KRB域中所有管理员用户，授予所有权限。
+            <pre class="pre codeblock">*/admin@HDB.KRB *</pre>
 </div>
 
         </li>
 
         
         <li class="li">
-          使用<samp class="ph codeph">kadmin.local</samp>创建密钥表（keytab）文件。以下示例在当前目录中创建密钥表文件<samp class="ph codeph">gpdb-kerberos.keytab</samp>，并包含inHybrid数据库服务主体和hdbadmin/dmin主体的身份认证信息。
-          <pre class="pre codeblock"># kadmin.local -q "ktadd -k gpdb-kerberos.keytab postgres/mdw@GPDB.KRB gadmin/admin@GPDB.KRB"</pre>
+          使用<samp class="ph codeph">kadmin.local</samp>创建密钥表（keytab）文件。以下示例在当前目录中创建密钥表文件<samp class="ph codeph">hdb-kerberos.keytab</samp>，并包含inHybrid数据库服务主体和hdbadmin/dmin主体的身份认证信息。
+          <pre class="pre codeblock"># kadmin.local -q "ktadd -k hdb-kerberos.keytab postgres/mdw@HDB.KRB gadmin/admin@HDB.KRB"</pre>
 </li>
 
         <li class="li">将密钥表文件复制到master主机。
-          <pre class="pre codeblock"># scp gpdb-kerberos.keytab hdbadmin@mdw:~</pre>
+          <pre class="pre codeblock"># scp hdb-kerberos.keytab hdbadmin@mdw:~</pre>
 </li>
 
       </ol>
@@ -1673,21 +1673,21 @@ $ source /usr/local/greenplum-db/greenplum_path.sh</pre>
         </li>
 
         <li class="li">设置从KDC服务器复制的密钥表文件的所有者和权限。
-            <pre class="pre codeblock">$ chown hdbadmin:hdbadmin /home/hdbadmin/gpdb-kerberos.keytab
-$ chmod 400 /home/hdbadmin/gpdb-kerberos.keytab</pre>
+            <pre class="pre codeblock">$ chown hdbadmin:hdbadmin /home/hdbadmin/hdb-kerberos.keytab
+$ chmod 400 /home/hdbadmin/hdb-kerberos.keytab</pre>
          
         </li>
 
         <li class="li" id="topic7__nr157586">
           通过设置inHybrid数据库<samp class="ph codeph">krb_server_keyfile</samp>服务器配置参数，配置密钥表文件的位置。
-          该hdbconfig命令指定将<span class="ph filepath">/home/hdbadmin</span>文件夹为为密钥表文件<span class="ph filepath">gpdb-kerberos.keytab</span>的位置。
-            <pre class="pre codeblock">$ hdbconfig -c krb_server_keyfile -v  '/home/hdbadmin/gpdb-kerberos.keytab'</pre>
+          该hdbconfig命令指定将<span class="ph filepath">/home/hdbadmin</span>文件夹为为密钥表文件<span class="ph filepath">hdb-kerberos.keytab</span>的位置。
+            <pre class="pre codeblock">$ hdbconfig -c krb_server_keyfile -v  '/home/hdbadmin/hdb-kerberos.keytab'</pre>
 
         </li>
 
         <li class="li" id="topic7__nr157589">
             修改inHybrid数据库的<samp class="ph codeph">pg_hba.conf</samp>文件，启用Kerberos支持。例如，添加以下行到<samp class="ph codeph">pg_hba.conf</samp>文件，为来自同一网络上的所有用户和主机的连接请求添加GSSAPI和Kerberos身份认证支持。
-            <pre class="pre codeblock">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=GPDB.KRB</pre>
+            <pre class="pre codeblock">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=HDB.KRB</pre>
 
           <p class="p">
               设置<samp class="ph codeph">krb_realm</samp>选项为某个域名称，确保只有该域下的用户才能使用Kerberos成功进行身份认证。
@@ -1709,13 +1709,13 @@ Shall the new role be a superuser? (y/n) y</pre>
         </li>
 
         <li class="li" id="topic7__nr166157">使用<samp class="ph codeph">kinit</samp>创建票据，使用<samp class="ph codeph">klist</samp>显示Kerberos票证缓存中所有票据。
-            <pre class="pre codeblock">$ LD_LIBRARY_PATH= kinit -k -t /home/hdbadmin/gpdb-kerberos.keytab hdbadmin/admin@GPDB.KRB
+            <pre class="pre codeblock">$ LD_LIBRARY_PATH= kinit -k -t /home/hdbadmin/hdb-kerberos.keytab hdbadmin/admin@HDB.KRB
 $ LD_LIBRARY_PATH= klist
 Ticket cache: FILE:/tmp/krb5cc_1000
-Default principal: hdbadmin/admin@GPDB.KRB
+Default principal: hdbadmin/admin@HDB.KRB
 
 Valid starting       Expires              Service principal
-06/13/2018 17:37:35  06/14/2018 17:37:35  krbtgt/GPDB.KRB@GPDB.KRB</pre>
+06/13/2018 17:37:35  06/14/2018 17:37:35  krbtgt/HDB.KRB@HDB.KRB</pre>
 
 ， LD_LIBRARY_PATH 环境变量设置为包含inHybrid数据库 LIB目录，包括Kerberos库。这可能会导致Kerberos实用程序命令，如使用kinit 和 klist的由于版本冲突而失败。解决方案是在您获取Kerberos实用程序之前运行Kerberos实用程序 greenplum-db_path.sh 文件或暂时取消设置 LD_LIBRARY_PATH 执行Kerberos实用程序时的变量，如示例中所示。
             <div class="note note">
@@ -1788,20 +1788,20 @@ postgres=# select current_user;
       <div class="p">
         <pre class="pre codeblock">
 # MAPNAME SYSTEM-USERNAME GP-USERNAME
-mymap       /^admin@GPDB.KRB$      hdbadmin
-mymap /^(.*)_gp)@GPDB.KRB$\1</pre>
+mymap       /^admin@HDB.KRB$      hdbadmin
+mymap /^(.*)_gp)@HDB.KRB$\1</pre>
 
       </div>
 
       <p class="p">名称映射被指定在<samp class="ph codeph">pg_hba.conf</samp>文件的Kerberos记录的可选项中</p>
 
       <div class="p">
-        <pre class="pre codeblock">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=GPDB.KRB map=mymap</pre>
+        <pre class="pre codeblock">host all all 0.0.0.0/0 gss include_realm=0 krb_realm=HDB.KRB map=mymap</pre>
 
       </div>
 
-      <p class="p">第一个映射条目匹配Kerberos主体admin@GPDB.KRB，并替换为inHybrid数据库的hdbadmin角色名。
-        第二个条目使用通配符匹配GPDB.KRB域下名称是<samp class="ph codeph">_gp</samp>结尾的的Kerberos主体，
+      <p class="p">第一个映射条目匹配Kerberos主体admin@HDB.KRB，并替换为inHybrid数据库的hdbadmin角色名。
+        第二个条目使用通配符匹配HDB.KRB域下名称是<samp class="ph codeph">_gp</samp>结尾的的Kerberos主体，
         并替换为Kerberos主体名称的开始部分（译者注：_gp前面的部分）。
         inHybrid数据库使用<samp class="ph codeph">pg_ident.conf</samp>文件中第一个匹配的映射条目，因此条目的顺序很重要。
         </p>
@@ -1849,7 +1849,7 @@ client=true;
           </p>
 
             <pre class="pre codeblock">jdbc:postgresql://mdw:5432/mytest?kerberosServerName=postgres
-&amp;jaasApplicationName=pgjdbc&amp;user=hdbadmin/gpdb-kdc</pre>
+&amp;jaasApplicationName=pgjdbc&amp;user=hdbadmin/hdb-kdc</pre>
         
           <p class="p">指定的参数名和参数值取决于Java应用如何执行Kerberos认证。</p>
 
@@ -1873,22 +1873,22 @@ client=true;
     <div class="body">
 <p class="shortdesc">在Red Hat Enterprise Linux上，为inHybrid设置Kerberos密钥分发中心（KDC）服务器的步骤。</p>
 
-      <p class="p">如果您没有KDC，参考如下步骤，在Red Hat Enterprise Linux主机上安装配置一个KDC服务，其域为<samp class="ph codeph">GPDB.KRB</samp>。
-        本示例中KDC服务器的主机名是gpdb-kdc。</p>
+      <p class="p">如果您没有KDC，参考如下步骤，在Red Hat Enterprise Linux主机上安装配置一个KDC服务，其域为<samp class="ph codeph">HDB.KRB</samp>。
+        本示例中KDC服务器的主机名是hdb-kdc。</p>
 
       <ol class="ol" id="task_setup_kdc__steps_r5w_rtc_2p">
         <li class="li">安装Kerberos服务器客户端软件包：
         <pre class="pre codeblock">$ sudo yum install krb5-libs krb5-server krb5-workstation</pre>
 </li>
 
-        <li class="li">编辑<span class="ph filepath">/etc/krb5.conf</span>配置文件。如下示例展示的包含默认<samp class="ph codeph">GPDB.KRB</samp>域配置的Kerberos服务。
+        <li class="li">编辑<span class="ph filepath">/etc/krb5.conf</span>配置文件。如下示例展示的包含默认<samp class="ph codeph">HDB.KRB</samp>域配置的Kerberos服务。
             <pre class="pre codeblock">[logging]
 default = FILE:/var/log/krb5libs.log
 kdc = FILE:/var/log/krb5kdc.log
 admin_server = FILE:/var/log/kadmind.log
 
 [libdefaults]
-default_realm = GPDB.KRB
+default_realm = HDB.KRB
 dns_lookup_realm = false
 dns_lookup_kdc = false
 ticket_lifetime = 24h
@@ -1899,15 +1899,15 @@ default_tkt_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc des-cbc-md5
 permitted_enctypes = aes128-cts des3-hmac-sha1 des-cbc-crc des-cbc-md5
 
 [realms]
-GPDB.KRB = {
-kdc = gpdb-kdc:88
-admin_server = gpdb-kdc:749
-default_domain = gpdb.krb
+HDB.KRB = {
+kdc = hdb-kdc:88
+admin_server = hdb-kdc:749
+default_domain = hdb.krb
 }
 
 [domain_realm]
-.gpdb.krb = GPDB.KRB
-gpdb.krb = GPDB.KRB
+.hdb.krb = HDB.KRB
+hdb.krb = HDB.KRB
 
 [appdefaults]
 pam = {
@@ -1920,12 +1920,12 @@ krb4_convert = false
 </pre>
 
           <p class="p">
-            在<samp class="ph codeph">[realms]</samp>分布，<samp class="ph codeph">kdc</samp>和<samp class="ph codeph">admin_server</samp>键指定了Kerberos服务运行的域名（<samp class="ph codeph">gpdb-kdc</samp>）和端口。可以用IP地址来代替主机名。</p>
+            在<samp class="ph codeph">[realms]</samp>分布，<samp class="ph codeph">kdc</samp>和<samp class="ph codeph">admin_server</samp>键指定了Kerberos服务运行的域名（<samp class="ph codeph">hdb-kdc</samp>）和端口。可以用IP地址来代替主机名。</p>
 
           <p class="p">
             如果该Kerberos服务器还管理者其他域的认证，
               需要在<samp class="ph codeph">kdc.conf</samp>文件<samp class="ph codeph">[realms]</samp>和<samp class="ph codeph">[domain_realm]</samp>
-              部分添加<samp class="ph codeph">GPDB.KRB</samp>域配置。关于<samp class="ph codeph">kdc.conf</samp>文件更多信息，参阅<a class="xref" href="http://web.mit.edu/kerberos/krb5-latest/doc/" target="_blank">Kerberos文档</a>。</p>
+              部分添加<samp class="ph codeph">HDB.KRB</samp>域配置。关于<samp class="ph codeph">kdc.conf</samp>文件更多信息，参阅<a class="xref" href="http://web.mit.edu/kerberos/krb5-latest/doc/" target="_blank">Kerberos文档</a>。</p>
 
         </li>
 

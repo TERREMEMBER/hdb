@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -194,7 +194,7 @@
 
 <ol>
 <li><p>登录greenplum的master节点</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;gpmaster&gt;
+<pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
 <li><p>创建一个text文件列出你的gp集群的standby节点和segment节点，每行一个主机名。例如，一个叫做<code>seghostfile</code>的文件</p>
 <pre class="highlight plaintext"><code>mstandby
@@ -206,12 +206,12 @@ seghost3
 
 <ol>
 <li><p>安装java包。比如安装java 8:</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>sudo yum -y install java-1.8.0-openjdk-1.8.0<span class="k">*</span>
-<span class="gp">hdbadmin@gpmaster$ </span>hdbssh -e -v -f gphostfile sudo yum -y install java-1.8.0-openjdk-1.8.0<span class="k">*</span>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>sudo yum -y install java-1.8.0-openjdk-1.8.0<span class="k">*</span>
+<span class="gp">hdbadmin@hdbmaster$ </span>hdbssh -e -v -f gphostfile sudo yum -y install java-1.8.0-openjdk-1.8.0<span class="k">*</span>
 </code></pre></li>
 <li><p>标识Java基本安装目录。如果每台主机上的<code>hdbadmin</code>用户的<code>.bashrc</code>文件不存在，请更新它以包含<code>$JAVA_HOME</code>设置。例如，如果您安装了Java 8：</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span><span class="nb">echo</span> <span class="s1">'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.x86_64/jre'</span> &gt;&gt; /home/hdbadmin/.bashrc
-<span class="gp">hdbadmin@gpmaster$ </span>hdbssh -e -v -f gphostfile <span class="s2">"echo 'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.x86_64/jre' &gt;&gt; /home/hdbadmin/.bashrc"</span>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nb">echo</span> <span class="s1">'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.x86_64/jre'</span> &gt;&gt; /home/hdbadmin/.bashrc
+<span class="gp">hdbadmin@hdbmaster$ </span>hdbssh -e -v -f gphostfile <span class="s2">"echo 'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.x86_64/jre' &gt;&gt; /home/hdbadmin/.bashrc"</span>
 </code></pre>
 
 <p>如果安装了Java 11, <code>JAVA_HOME</code>可能是<code>/usr/lib/jvm/java-11-openjdk-11.0.4.11-0.el7_6.x86_64</code>。</p></li>

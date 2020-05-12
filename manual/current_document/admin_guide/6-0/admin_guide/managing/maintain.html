@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1824,7 +1824,7 @@ VACUUM cust_info;</pre>
 
         <p class="p">inHybrid数据库在Master和所有的Segment实例上都启用了日志文件轮转。
           日志文件被创建在Master以及每个Segment的数据目录中的<samp class="ph codeph">pg_log</samp>子目录下，这些文件使用
-          命名规则：<samp class="ph codeph">gpdb-<em class="ph i">YYYY</em>-<em class="ph i">MM</em>-<em class="ph i">DD_hhmmss</em>.csv</samp>。数据库管理员需要
+          命名规则：<samp class="ph codeph">hdb-<em class="ph i">YYYY</em>-<em class="ph i">MM</em>-<em class="ph i">DD_hhmmss</em>.csv</samp>。数据库管理员需要
           编写脚本或程序定期清理Master以及每个Segment日志目录<samp class="ph codeph">pg_log</samp>下的旧文件。</p>
 
         <p class="p">日志轮转可以被当前日志文件的大小或当前日志文件的年龄触发。<samp class="ph codeph">log_rotation_size</samp>

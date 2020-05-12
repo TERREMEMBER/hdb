@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -212,7 +212,7 @@ under the License.
 
 <ol>
 <li><p>使用<code>hdbadmin</code>用户连接数据库</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
 </code></pre></li>
 <li><p>创建PXF扩展名。您必须具有inHybrid数据库管理员权限才能创建扩展。 例如：</p>
 <pre class="highlight sql"><code><span class="k">database</span><span class="o">-</span><span class="n">name</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="n">EXTENSION</span> <span class="n">pxf</span><span class="p">;</span>
@@ -227,7 +227,7 @@ under the License.
 
 <ol>
 <li><p>使用<code>hdbadmin</code>用户连接数据库</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@gpmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>psql -d &lt;database-name&gt; -U hdbadmin
 </code></pre></li>
 <li><p>删除pxf扩展</p>
 <pre class="highlight sql"><code><span class="k">database</span><span class="o">-</span><span class="n">name</span><span class="o">=#</span> <span class="k">DROP</span> <span class="n">EXTENSION</span> <span class="n">pxf</span><span class="p">;</span>

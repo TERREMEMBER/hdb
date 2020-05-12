@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -1639,10 +1639,10 @@
         <li class="li" id="topic17__kd158474">获取包含inHybrid数据库用户的身份认证凭据的Kerberos密钥表文件。</li>
 
         <li class="li" id="topic17__kd158478">运行<samp class="ph codeph">kinit</samp>指定密钥表文件在客户端计算机上创建票证。
-            对于此示例，密钥表文件<samp class="ph codeph">gpdb-kerberos.keytab</samp>在当前目录中。
+            对于此示例，密钥表文件<samp class="ph codeph">hdb-kerberos.keytab</samp>在当前目录中。
             票证缓存文件位于<samp class="ph codeph">hdbadmin</samp>用户家目录。
-          <pre class="pre codeblock">&gt; kinit -k -t gpdb-kerberos.keytab-c/home/hdbadmin/cache.txt 
-hdbadmin/kerberos-gpdb@KRB.EXAMPLE.COM</pre>
+          <pre class="pre codeblock">&gt; kinit -k -t hdb-kerberos.keytab-c/home/hdbadmin/cache.txt 
+hdbadmin/kerberos-hdb@KRB.EXAMPLE.COM</pre>
 </li>
 
       </ol>
@@ -1665,10 +1665,10 @@ hdbadmin/kerberos-gpdb@KRB.EXAMPLE.COM</pre>
 
           <li class="li" id="topic12__mh151099">从命令窗口启动<samp class="ph codeph">psql</samp>，指定与inHybrid数据库的连接，使用Kerberos身份验证配置的用户。
           <p class="p">
-            例如，使用Kerberos主体<samp class="ph codeph">hdbadmin/kerberos-gpdb</samp>，以<samp class="ph codeph">hdbadmin</samp>用户身份，
+            例如，使用Kerberos主体<samp class="ph codeph">hdbadmin/kerberos-hdb</samp>，以<samp class="ph codeph">hdbadmin</samp>用户身份，
             登录到计算机上的inHybrid数据库：</p>
 
-            <pre class="pre codeblock">$ psql -U "hdbadmin/kerberos-gpdb" -h kerberos-gpdb postgres</pre>
+            <pre class="pre codeblock">$ psql -U "hdbadmin/kerberos-hdb" -h kerberos-hdb postgres</pre>
 </li>
 
         </ol>
@@ -1709,9 +1709,9 @@ client=true;
       此示例数据库连接URL使用PostgreSQL的JDBC驱动程序并指定Kerberos身份验证的参数。
       </p>
 
-      <pre class="pre codeblock">jdbc:postgresql://kerberos-gpdb:5432/mytest? 
+      <pre class="pre codeblock">jdbc:postgresql://kerberos-hdb:5432/mytest? 
 kerberosServerName=postgres&amp;jaasApplicationName=pgjdbc&amp; 
-user=hdbadmin/kerberos-gpdb</pre>
+user=hdbadmin/kerberos-hdb</pre>
 
       <p class="p">指定的参数名称和值取决于Java应用程序如何执行Kerberos身份验证。</p>
 

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -188,7 +188,7 @@
 
 <h2 id="-架构概述"><a id="arch"></a> 架构概述</h2>
 
-<p>GPDB集群包含一个master节点(master node)和多个segment主机(segment host)。GPDB segment主机上的PXF客户端进程为对外部表进行查询的每个segment instance分配工作线程。多个segment主机的PXF代理与外部数据存储并行通信。</p>
+<p>HDB集群包含一个master节点(master node)和多个segment主机(segment host)。HDB segment主机上的PXF客户端进程为对外部表进行查询的每个segment instance分配工作线程。多个segment主机的PXF代理与外部数据存储并行通信。</p>
 
 <h2 id="-连接器(connector),服务器(servers)和配置文件(profiles)"><a id="more"></a> 连接器(Connector),服务器(Servers)和配置文件(Profiles)</h2>
 
@@ -201,14 +201,14 @@
 <p>默认的PXF服务是default(保留)，在没有配置SERVER=<server_name>时提供外部数据源的位置和访问信息。
 创建外部表时，可以指定<code>SERVER=&lt;server_name&gt;</code>设置，以标识从中获取配置的服务器配置和访问外部数据存储的凭据。</p>
 
-<p>GPDB数据库管理员将为每个允许GPDB用户访问的外部数据存储配置至少一个服务定义,并将根据需求发布可用的服务名。
+<p>HDB数据库管理员将为每个允许HDB用户访问的外部数据存储配置至少一个服务定义,并将根据需求发布可用的服务名。
 默认的PXF服务器名为<code>default</code>（保留），在配置后，如果没有<code>SERVER=&lt;server_name&gt;</code>设置，则将提供外部数据源的位置和访问信息。</p>
 
 <p>最后，PXF配置文件是一个命名映射，用于标识特定外部数据存储支持的特定数据格式或协议。PXF支持text，Avro，JSON，RCFile，Parquet，SequenceFile和ORC数据格式以及JDBC协议，并提供了一些内置配置文件，如以下部分所述。</p>
 
 <h2 id="-创建一个外部表"><a id="create_external_table"></a> 创建一个外部表</h2>
 
-<p>PXF实现了一个叫做pxf的GPDB协议,你可以使用这个协议去创建一个外部表。指定pxf协议的<a href="../ref_guide/sql_commands/CREATE_EXTERNAL_TABLE.html"><code>CREATE EXTERNAL TABLE</code></a>命令语法如下:</p>
+<p>PXF实现了一个叫做pxf的HDB协议,你可以使用这个协议去创建一个外部表。指定pxf协议的<a href="../ref_guide/sql_commands/CREATE_EXTERNAL_TABLE.html"><code>CREATE EXTERNAL TABLE</code></a>命令语法如下:</p>
 <pre class="highlight sql"><code><span class="k">CREATE</span> <span class="p">[</span><span class="n">WRITABLE</span><span class="p">]</span> <span class="k">EXTERNAL</span> <span class="k">TABLE</span> <span class="o">&lt;</span><span class="k">table_name</span><span class="o">&gt;</span>
         <span class="p">(</span> <span class="o">&lt;</span><span class="k">column_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">data_type</span><span class="o">&gt;</span> <span class="p">[,</span> <span class="p">...]</span> <span class="o">|</span> <span class="k">LIKE</span> <span class="o">&lt;</span><span class="n">other_table</span><span class="o">&gt;</span> <span class="p">)</span>
 <span class="k">LOCATION</span><span class="p">(</span><span class="s1">'pxf://&lt;path-to-data&gt;?PROFILE=&lt;profile_name&gt;[&amp;SERVER=&lt;server_name&gt;][&amp;&lt;custom-option&gt;=&lt;value&gt;[...]]'</span><span class="p">)</span>

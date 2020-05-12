@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -2017,13 +2017,13 @@ rg_perseg_mem = ((RAM * (vm.overcommit_ratio / 100) + SWAP) * gp_resource_group_
         <ol class="ol">
           <li class="li">如果用户在inHybrid数据库群集节点上运行SuSE 11+操作系统，则必须在每个节点上启用交换记帐并重新启动inHybrid数据库群集。<samp class="ph codeph">swapaccount</samp>内核引导参数控制SuSE 11+系统上的交换记帐设置。设置此引导参数后，必须重新引导系统。有关详细信息，请参阅SuSE 11发行说明中的<a class="xref" href="https://www.suse.com/releasenotes/x86_64/SUSE-SLES/11-SP2/#fate-310471" target="_blank">Cgroup交换控制</a>讨论。用户必须是超级用户或具有<samp class="ph codeph">sudo</samp>访问权限才能配置内核引导参数和重新引导系统。</li>
 
-          <li class="li">创建inHybrid数据库cgroups配置文件<samp class="ph codeph">/etc/cgconfig.d/gpdb.conf</samp>。用户必须是超级用户或具有<samp class="ph codeph">sudo</samp>访问权限才能创建此文件：
-            <pre class="pre codeblock">sudo vi /etc/cgconfig.d/gpdb.conf</pre>
+          <li class="li">创建inHybrid数据库cgroups配置文件<samp class="ph codeph">/etc/cgconfig.d/hdb.conf</samp>。用户必须是超级用户或具有<samp class="ph codeph">sudo</samp>访问权限才能创建此文件：
+            <pre class="pre codeblock">sudo vi /etc/cgconfig.d/hdb.conf</pre>
 
           </li>
 
           <li class="li">将以下配置信息添加到
-              <samp class="ph codeph">/etc/cgconfig.d/gpdb.conf</samp>: <pre class="pre codeblock">group gpdb {
+              <samp class="ph codeph">/etc/cgconfig.d/hdb.conf</samp>: <pre class="pre codeblock">group hdb {
      perm {
          task {
              uid = hdbadmin;
@@ -2051,7 +2051,7 @@ rg_perseg_mem = ((RAM * (vm.overcommit_ratio / 100) + SWAP) * gp_resource_group_
           <li class="li">如果尚未安装并正在运行，请安装Control Groups操作系统软件包，并在每个inHybrid Database节点上启动cgroups服务。用户运行以执行这些任务的命令将根据节点上安装的操作系统而有所不同。用户必须是超级用户或具有<samp class="ph codeph">sudo</samp>访问权限才能运行这些命令：<ul class="ul">
               <li class="li"> Redhat/CentOS 7.x 系统：
                 <pre class="pre codeblock">sudo yum install libcgroup-tools
-sudo cgconfigparser -l /etc/cgconfig.d/gpdb.conf </pre>
+sudo cgconfigparser -l /etc/cgconfig.d/hdb.conf </pre>
 
               </li>
 
@@ -2063,7 +2063,7 @@ sudo service cgconfig start </pre>
 
               <li class="li"> SuSE 11+ systems:
                 <pre class="pre codeblock">sudo zypper install libcgroup-tools
-sudo cgconfigparser -l /etc/cgconfig.d/gpdb.conf </pre>
+sudo cgconfigparser -l /etc/cgconfig.d/hdb.conf </pre>
 
               </li>
 
@@ -2079,10 +2079,10 @@ sudo cgconfigparser -l /etc/cgconfig.d/gpdb.conf </pre>
           </li>
 
           <li class="li">通过运行以下命令验证是否正确设置了inHybrid Database cgroups配置。将&lt;cgroup_mount_point&gt; 替换为用户在上一步中标识的安装点：
-			  <pre class="pre codeblock">ls -l &lt;cgroup_mount_point&gt;/cpu/gpdb
-ls -l &lt;cgroup_mount_point&gt;/cpuacct/gpdb
-ls -l &lt;cgroup_mount_point&gt;/cpuset/gpdb
-ls -l &lt;cgroup_mount_point&gt;/memory/gpdb</pre>
+			  <pre class="pre codeblock">ls -l &lt;cgroup_mount_point&gt;/cpu/hdb
+ls -l &lt;cgroup_mount_point&gt;/cpuacct/hdb
+ls -l &lt;cgroup_mount_point&gt;/cpuset/hdb
+ls -l &lt;cgroup_mount_point&gt;/memory/hdb</pre>
 
             <p class="p">如果这些目录存在且由<samp class="ph codeph">hdbadmin:hdbadmin</samp>拥有，则用户已成功为inHybrid数据库CPU资源管理配置了cgroup。</p>
 

@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -79,7 +79,7 @@
       </li>
     
       <li class="">
-        <a href="gpactivatestandby.html">gpactivatestandby</a>
+        <a href="hdbactivatestandby.html">hdbactivatestandby</a>
         
 
       </li>
@@ -163,7 +163,7 @@
       </li>
     
       <li class="">
-        <a href="gpmapreduce.html">gpmapreduce</a>
+        <a href="hdbmapreduce.html">hdbmapreduce</a>
         
 
       </li>
@@ -469,7 +469,7 @@
         </p>
 <pre class="pre codeblock">hdbssh -f seg_host_file
           =&gt; source /usr/local/greenplum-db/greenplum_path.sh
-          =&gt; hdblogfilter -n 3 /gpdata/*/pg_log/gpdb*.csv</pre>
+          =&gt; hdblogfilter -n 3 /gpdata/*/pg_log/hdb*.csv</pre>
 
         <p class="p"><samp class="ph codeph">hdblogfilter</samp>的输出默认被发送到标准输出。可以使用<samp class="ph codeph">-o</samp>选项把输出发送到一个文件或者一个目录。
           如果用户提供了一个以<samp class="ph codeph">.gz</samp>结束的输出文件名，该输出文件默认将被以最大压缩率压缩。如果输出目标是一个目录，
@@ -678,7 +678,7 @@
 
     <pre class="pre codeblock">hdbssh -f seg_hosts_file -e 'source 
       /usr/local/greenplum-db/greenplum_path.sh ; hdblogfilter -f 
-      con6 /gpdata/*/pg_log/gpdb*.csv' &gt; seglog.out</pre>
+      con6 /gpdata/*/pg_log/hdb*.csv' &gt; seglog.out</pre>
 </div>
 
   <div class="section" id="topic1__section10">

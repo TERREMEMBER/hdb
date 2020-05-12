@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -3649,7 +3649,7 @@
       </li>
     
       <li class="">
-        <a href="https://github.com/greenplum-db/gpdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
+        <a href="https://github.com/greenplum-db/hdb/tree/master/gpcontrib/gp_sparse_vector/README">gp_sparse_vector</a>
         
 
       </li>
@@ -3893,7 +3893,7 @@
 
         <div class="p">通过为<samp class="ph codeph">plcontainer runtime-add</samp>（新runtime）或<samp class="ph codeph">plcontainer runtime-replace</samp>（现有runtime）命令指定<samp class="ph codeph">-s resource_group_id=<var class="keyword varname">rg_groupid</var></samp>选项，可以将资源组分配给PL/Container runtime配置。
           例如，要将<samp class="ph codeph">plpy_run1_rg</samp>资源组分配给名为<samp class="ph codeph">python_run1</samp>的新PL/Container runtime：
-          <pre class="pre codeblock">plcontainer runtime-add -r python_run1 -i pivotaldata/plcontainer_python_shared:devel -l python -s resource_group_id=16391</pre>
+          <pre class="pre codeblock">plcontainer runtime-add -r python_run1 -i inspurdata/plcontainer_python_shared:devel -l python -s resource_group_id=16391</pre>
 </div>
 
         <p class="p">您还可以使用<samp class="ph codeph">plcontainer runtime-edit</samp>命令将资源组分配给PL/Container runtime。
@@ -3935,7 +3935,7 @@
             <li class="li">如果尚未在inHybrid数据库部署中配置和启用资源组，
               请按照<cite class="cite">inHybrid数据库管理员指南</cite>中的<a class="xref" href="../../admin_guide/workload_mgmt_resgroups.html#topic71717999">使用资源组</a>中的说明配置cgroup并启用inHybrid数据库资源组。
               <div class="note note">
-<span class="notetitle">Note:</span> 如果先前已在部署中配置并启用了资源组，请确保inHybrid数据库资源组<samp class="ph codeph">gpdb.conf</samp> cgroups配置文件包含<samp class="ph codeph">内存{}</samp>块，如上一个链接中所述。
+<span class="notetitle">Note:</span> 如果先前已在部署中配置并启用了资源组，请确保inHybrid数据库资源组<samp class="ph codeph">hdb.conf</samp> cgroups配置文件包含<samp class="ph codeph">内存{}</samp>块，如上一个链接中所述。
                 </div>
 </li>
 
@@ -3978,8 +3978,8 @@ CREATE RESOURCE GROUP plpy_run1_rg WITH (MEMORY_AUDITOR=cgroup, CONCURRENCY=0,
               如果尚未创建runtime配置，请使用<samp class="ph codeph">plcontainer runtime-add</samp>命令。
               如果runtime已存在，请使用<samp class="ph codeph">plcontainer runtime-replace</samp>或<samp class="ph codeph">plcontainer runtime-edit</samp>命令将资源组分配添加到runtime配置。
               例如：
-                <pre class="pre codeblock">plcontainer runtime-add -r python_run1 -i pivotaldata/plcontainer_python_shared:devel -l python -s resource_group_id=16391
-plcontainer runtime-replace -r r_run1 -i pivotaldata/plcontainer_r_shared:devel -l r -s resource_group_id=16393</pre>
+                <pre class="pre codeblock">plcontainer runtime-add -r python_run1 -i inspurdata/plcontainer_python_shared:devel -l python -s resource_group_id=16391
+plcontainer runtime-replace -r r_run1 -i inspurdata/plcontainer_r_shared:devel -l r -s resource_group_id=16393</pre>
 
               <p class="p">有关<samp class="ph codeph">plcontainer</samp>命令的信息，请参阅<a class="xref" href="pl_container.html#topic_rw3_52s_dw">plcontainer实用程序</a>。
                 </p>
@@ -3999,7 +3999,7 @@ plcontainer runtime-replace -r r_run1 -i pivotaldata/plcontainer_r_shared:devel 
     <h2 class="title topictitle2">PL/Container Docker镜像</h2>
 
     <div class="body">
-      <p class="p">PL/Python镜像和PL/R镜像可从Pivotal Network的inHybrid数据库产品下载站点获得，网址为<a class="xref" href="https://network.pivotal.io/products/pivotal-gpdb" target="_blank">https://network.pivotal.io/</a>。
+      <p class="p">PL/Python镜像和PL/R镜像可从inspur Network的inHybrid数据库产品下载站点获得，网址为<a class="xref" href="https://network.inspur.io/products/inspur-hdb" target="_blank">https://network.inspur.io/</a>。
         </p>
 
       <ul class="ul" id="topic_tcm_htd_gw__ul_epg_t2v_qbb">
@@ -4020,7 +4020,7 @@ plcontainer runtime-replace -r r_run1 -i pivotaldata/plcontainer_r_shared:devel 
       </ul>
 
       <p class="p">Docker镜像tag表示PL/Container版本（例如，1.0.0）。
-        例如，用于Python Docker镜像的PL/Container的完整Docker镜像名称类似于<samp class="ph codeph">pivotaldata/plc_python_shared:1.0.0</samp>。
+        例如，用于Python Docker镜像的PL/Container的完整Docker镜像名称类似于<samp class="ph codeph">inspurdata/plc_python_shared:1.0.0</samp>。
         这是默认PL/Container配置中引用的名称。
         此外，您可以创建自定义Docker镜像，安装镜像并将图像添加到PL/Container配置。
         </p>
@@ -4147,7 +4147,7 @@ plcontainer runtime-replace -r r_run1 -i pivotaldata/plcontainer_r_shared:devel 
         </p>
 
       <div class="p">此命令将信息添加到PL/Container配置文件，以便PL/Container可以访问Docker镜像以创建Docker容器。
-        <pre class="pre codeblock">plcontainer runtime-add -r plc_py -i pivotaldata/plcontainer_python_shared:devel -l python</pre>
+        <pre class="pre codeblock">plcontainer runtime-add -r plc_py -i inspurdata/plcontainer_python_shared:devel -l python</pre>
 </div>
 
       <p class="p">该实用程序在更新inHybrid数据库实例上的PL/Container配置文件时显示进度信息。
@@ -4300,7 +4300,7 @@ plcontainer runtime-replace -r r_run1 -i pivotaldata/plcontainer_r_shared:devel 
       <div class="p">运行该命令将执行PL/Container函数，该函数显示master实例和segment实例的配置信息。
         这是视图输出的开始和结束的示例。
         <pre class="pre codeblock">INFO:  plcontainer: Container 'plc_py_test' configuration
-INFO:  plcontainer:     image = 'pivotaldata/plcontainer_python_shared:devel'
+INFO:  plcontainer:     image = 'inspurdata/plcontainer_python_shared:devel'
 INFO:  plcontainer:     memory_mb = '1024'
 INFO:  plcontainer:     use container network = 'no'
 INFO:  plcontainer:     use container logging  = 'no'
@@ -4310,7 +4310,7 @@ INFO:  plcontainer:         access = readonly
     ...
 
 INFO:  plcontainer: Container 'plc_r_example' configuration  (seg0 slice3 192.168.180.45:40000 pid=3304)
-INFO:  plcontainer:     image = 'pivotaldata/plcontainer_r_without_clients:0.2'  (seg0 slice3 192.168.180.45:40000 pid=3304)
+INFO:  plcontainer:     image = 'inspurdata/plcontainer_r_without_clients:0.2'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:     memory_mb = '1024'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:     use container network = 'no'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:     use container logging  = 'yes'  (seg0 slice3 192.168.180.45:40000 pid=3304)
@@ -4660,7 +4660,7 @@ $$ LANGUAGE plcontainer;</pre>
 
             <dd class="dd pd">从所有inHybrid数据库主机中删除已安装的Docker镜像。
               例如，指定包括tag的完整Docker镜像名称
-                <samp class="ph codeph">pivotaldata/plcontainer_python_shared:1.0.0</samp>
+                <samp class="ph codeph">inspurdata/plcontainer_python_shared:1.0.0</samp>
 </dd>
 
           
@@ -4693,7 +4693,7 @@ $$ LANGUAGE plcontainer;</pre>
 </dt>
 
                   <dd class="dd pd">必须。指定inHybrid数据库主机上安装的完整Docker镜像名称，包括tag。例如
-                      <samp class="ph codeph">pivotaldata/plcontainer_python:1.0.0</samp>。</dd>
+                      <samp class="ph codeph">inspurdata/plcontainer_python:1.0.0</samp>。</dd>
 
                   <dd class="dd pd">如果未安装指定的Docker镜像，该实用程序将返回警告。
                     </dd>
@@ -5015,12 +5015,12 @@ $$ LANGUAGE plcontainer;</pre>
 &lt;configuration&gt;
     &lt;runtime&gt;
         &lt;id&gt;plc_python_example1&lt;/id&gt;
-        &lt;image&gt;pivotaldata/plcontainer_python_with_clients:0.1&lt;/image&gt;
+        &lt;image&gt;inspurdata/plcontainer_python_with_clients:0.1&lt;/image&gt;
         &lt;command&gt;./pyclient&lt;/command&gt;
     &lt;/runtime&gt;
     &lt;runtime&gt;
         &lt;id&gt;plc_python_example2&lt;/id&gt;
-        &lt;image&gt;pivotaldata/plcontainer_python_without_clients:0.1&lt;/image&gt;
+        &lt;image&gt;inspurdata/plcontainer_python_without_clients:0.1&lt;/image&gt;
         &lt;command&gt;/clientdir/pyclient.sh&lt;/command&gt;
         &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/&gt;
         &lt;setting memory_mb="512"/&gt;
@@ -5030,7 +5030,7 @@ $$ LANGUAGE plcontainer;</pre>
     &lt;/runtime&gt;
     &lt;runtime&gt;
         &lt;id&gt;plc_r_example&lt;/id&gt;
-        &lt;image&gt;pivotaldata/plcontainer_r_without_clients:0.2&lt;/image&gt;
+        &lt;image&gt;inspurdata/plcontainer_r_without_clients:0.2&lt;/image&gt;
         &lt;command&gt;/clientdir/rclient.sh&lt;/command&gt;
         &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/&gt;
         &lt;setting use_container_logging="yes"/&gt;
@@ -5079,7 +5079,7 @@ $$ LANGUAGE plcontainer;</pre>
                       </p>
 
                     <p class="p">例如，您可能有两个<samp class="ph codeph">runtime</samp>元素，具有不同的<samp class="ph codeph">id</samp>元素，
-                      <samp class="ph codeph">plc_python_128</samp>和<samp class="ph codeph">plc_python_256</samp>，两者都引用Docker镜像<samp class="ph codeph">pivotaldata/plcontainer_python:1.0.0</samp>。
+                      <samp class="ph codeph">plc_python_128</samp>和<samp class="ph codeph">plc_python_256</samp>，两者都引用Docker镜像<samp class="ph codeph">inspurdata/plcontainer_python:1.0.0</samp>。
                       第一个<samp class="ph codeph">runtime</samp>指定128MB RAM限制，第二个指定由<samp class="ph codeph">setting</samp>元素的<samp class="ph codeph">memory_mb</samp>属性指定的256MB限制。
                       </p>
 
@@ -5247,23 +5247,23 @@ $$ LANGUAGE plcontainer;</pre>
 
         <p class="p">PL/Container配置文件可以包含多个<samp class="ph codeph">runtime</samp>元素，这些元素引用由XML元素<samp class="ph codeph">image</samp>指定的相同Docker镜像。
           在示例配置文件中，<samp class="ph codeph">runtime</samp>元素包含名为<samp class="ph codeph">plc_python_128</samp>和<samp class="ph codeph">plc_python_256</samp>的<samp class="ph codeph">id</samp>元素，
-          两者都引用Docker容器<samp class="ph codeph">pivotaldata/plcontainer_python:1.0.0</samp>。
+          两者都引用Docker容器<samp class="ph codeph">inspurdata/plcontainer_python:1.0.0</samp>。
           第一个<samp class="ph codeph">runtime</samp>元素定义为128MB RAM限制，第二个定义为为256MB RAM限制。
           </p>
 
         <pre class="pre codeblock">&lt;configuration&gt;
   &lt;runtime&gt;
     &lt;id&gt;plc_python_128&lt;/id&gt;
-    &lt;image&gt;pivotaldata/plcontainer_python:1.0.0&lt;/image&gt;
+    &lt;image&gt;inspurdata/plcontainer_python:1.0.0&lt;/image&gt;
     &lt;command&gt;./client&lt;/command&gt;
-    &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/gpdb/bin/plcontainer_clients"/&gt;
+    &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/hdb/bin/plcontainer_clients"/&gt;
     &lt;setting memory_mb="128"/&gt;
   &lt;/runtime&gt;
   &lt;runtime&gt;
     &lt;id&gt;plc_python_256&lt;/id&gt;
-    &lt;image&gt;pivotaldata/plcontainer_python:1.0.0&lt;/image&gt;
+    &lt;image&gt;inspurdata/plcontainer_python:1.0.0&lt;/image&gt;
     &lt;command&gt;./client&lt;/command&gt;
-    &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/gpdb/bin/plcontainer_clients"/&gt;
+    &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/hdb/bin/plcontainer_clients"/&gt;
     &lt;setting memory_mb="256"/&gt;
     &lt;setting resource_group_id="16391"/&gt;
   &lt;/runtime&gt;
