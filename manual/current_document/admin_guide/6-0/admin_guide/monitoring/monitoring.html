@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="gbk">
   <!-- Always force latest IE rendering engine or request Chrome Frame -->
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
@@ -9,7 +9,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-      Recommended Monitoring and Maintenance Tasks |
+      建议的监视和维护措施 |
     inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,7 @@
       <div class="btn-menu" data-behavior="MenuMobile"></div>
       <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
       <div class="header-item">
-        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+        <a href="https://github.com/greenplum-db/gpdb/wiki">Wiki</a>
       </div>
       
     </div>
@@ -639,7 +639,7 @@
       </li>
     
       <li class="">
-        <a href="monitoring.html">Recommended Monitoring and Maintenance Tasks</a>
+        <a href="monitoring.html">建议的监视和维护措施</a>
         
 
       </li>
@@ -1484,7 +1484,7 @@
         <a id="top"></a>
         
           <h1 class="title-container" style="display: none;">
-    Recommended Monitoring and Maintenance Tasks
+    建议的监视和维护措施
   </h1>
 
           <div id="js-quick-links" >
@@ -1496,23 +1496,15 @@
         
 
     <div class="nested0" id="topic_kmz_lbg_rp">
-        <h1 class="title topictitle1">Recommended Monitoring and Maintenance Tasks</h1>
+        <h1 class="title topictitle1">建议的监视和维护措施</h1>
 
         
         <div class="body">
-<p class="shortdesc">This section lists monitoring and maintenance activities recommended to ensure
-            high availability and consistent performance of your inHybrid Database
-            cluster.</p>
+<p class="shortdesc">本节列出了为确保inHybrid数据库群集的高可用性和一致性能而建议的监视和维护活动.</p>
 
-            <p class="p">The tables in the following sections suggest activities that a inHybrid System Administrator can perform periodically to
-                ensure that all components of the system are operating optimally. Monitoring
-                activities help you to detect and diagnose problems early. Maintenance activities
-                help you to keep the system up-to-date and avoid deteriorating performance, for
-                example, from bloated system tables or diminishing free disk space. </p>
+            <p class="p">以下各节中的表建议inHybrid系统管理员可以定期执行的活动，以确保系统的所有组件均以最佳状态运行。监视活动可以帮助及早发现和诊断问题。维护措施可以帮助系统保持最新状态并避免性能下降，比如系统表过大或磁盘可用空间减少. </p>
 
-            <p class="p">It is not necessary to implement all of these suggestions in every cluster; use the
-                frequency and severity recommendations as a guide to implement measures according to
-                your service requirements. </p>
+            <p class="p">不必在集群中实施所有这些建议；根据服务的要求、建议执行的频率和级别作为参考标准进行实施. </p>
 
         </div>
 
@@ -1524,23 +1516,23 @@
 </div>
 </div>
 <div class="topic nested1" id="drr_5bg_rp">
-            <h2 class="title topictitle2">Database State Monitoring Activities</h2>
+            <h2 class="title topictitle2">数据库状态监视活动</h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="drr_5bg_rp__table_drr_5bg_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 1. Database State Monitoring Activities</span></caption>
+<caption><span class="tablecap">表 1. 数据库状态监视活动</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" id="d75104e58">Activity</th>
+                                <th class="entry" valign="top" id="d75104e58">活动</th>
 
-                                <th class="entry" valign="top" id="d75104e61">Procedure</th>
+                                <th class="entry" valign="top" id="d75104e61">执行程序</th>
 
-                                <th class="entry" valign="top" id="d75104e64">Corrective Actions</th>
+                                <th class="entry" valign="top" id="d75104e64">维护措施</th>
 
                             </tr>
 
@@ -1548,30 +1540,24 @@
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">List segments that are currently down. If any rows are
-                                    returned, this should generate a warning or alert.<p class="p">Recommended
-                                        frequency: run every 5 to 10 minutes</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e58 ">列出当前关闭的segments，如果有结果返回，则应产生警告.<p class="p">Recommended
+                                        推荐频率：每5到10分执行钟一次</p>
+<p class="p">级别:
                                         IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e61 ">Run the following query in the <samp class="ph codeph">postgres</samp>
-                                    database:<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
+                                <td class="entry" valign="top" headers="d75104e61 ">在 <samp class="ph codeph">postgres</samp>
+                                   数据库执行以下查询<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
 WHERE status &lt;&gt; 'u';</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e64 ">If the query returns any rows, follow these steps to correct
-                                    the problem:<ol class="ol" id="drr_5bg_rp__ol_okh_2cg_rp">
-                                        <li class="li">Verify that the hosts with down segments are responsive. </li>
+                                <td class="entry" valign="top" headers="d75104e64 ">如果该查询有一个或多个结果返回,说明有一个或多个segment停止服务，可以根据以下步骤定位解决问题:<ol class="ol" id="drr_5bg_rp__ol_okh_2cg_rp">
+                                        <li class="li">确认有segment关闭的主机是否有响应. </li>
 
-                                        <li class="li">If hosts are OK, check the <span class="ph filepath">pg_log</span>
-                                            files for the <span class="ph">primaries and
-                                                mirrors of the </span>down segments to discover the
-                                            root cause of the segments going down. </li>
+                                        <li class="li">如果主机没有问题, 检查primary和mirrorsegments的pg_log 目录下的文件来排查segment关闭的主要原因. </li>
 
-                                        <li class="li">If no unexpected errors are found, run the
-                                                <samp class="ph codeph">hdbrecoverseg</samp> utility to bring the
-                                            segments back online.</li>
+                                        <li class="li">如果没有明显的错误发现, 执行
+                                                <samp class="ph codeph">hdbrecoverseg</samp> 管理命令来启动关闭的segments.</li>
 
                                     </ol>
 </td>
@@ -1579,34 +1565,25 @@ WHERE status &lt;&gt; 'u';</pre>
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Check for segments that are currently in change tracking
-                                    mode. If any rows are returned, this should generate a warning
-                                    or alert.<p class="p">Recommended frequency: run every 5 to 10
-                                        minutes</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">检查segments是否处于 changetracking 状态。如果有结果返回，则应产生警告.<p class="p">推荐频率：每5到10分执行钟一次</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Execute the following query in the <samp class="ph codeph">postgres</samp>
-                                        database:<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
+                                    <div class="p">在 <samp class="ph codeph">postgres</samp>
+                                        数据库执行以下查询:<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
 WHERE mode = 'c';</pre>
 </div>
 
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <div class="p">If the query returns any rows, follow these steps to correct
-                                        the problem:<ol class="ol" id="drr_5bg_rp__ol_ezt_kcg_rp">
-                                            <li class="li">Verify that hosts with down segments are responsive. </li>
+                                    <div class="p">如果该查询有结果返回，可以根据以下步骤定位解决问题：<ol class="ol" id="drr_5bg_rp__ol_ezt_kcg_rp">
+                                            <li class="li">确认有segment关闭的主机是否有响应. </li>
 
-                                            <li class="li">If hosts are OK, check the
-                                                  <span class="ph filepath">pg_log</span> files for the
-                                                primaries and mirrors of the down segments to
-                                                determine the root cause of the segments going down. </li>
+                                            <li class="li">如果主机没有问题, 检查primary和mirrorsegments的pg_log 目录下的文件来排查segment关闭的主要原因. </li>
 
-                                            <li class="li">If no unexpected errors are found, run the
-                                                  <samp class="ph codeph">hdbrecoverseg</samp> utility to bring the
-                                                segments back online.</li>
+                                            <li class="li">如果没有明显的错误发现, 执行 hdbrecoverseg 管理命令来启动关闭的segments</li>
 
                                         </ol>
 </div>
@@ -1616,44 +1593,34 @@ WHERE mode = 'c';</pre>
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Check for segments that are currently re-syncing. If rows are
-                                    returned, this should generate a warning or alert.<p class="p">Recommended
-                                        frequency: run every 5 to 10 minutes</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e58 ">检查segments是否处于 Resynchronizing 状态。如果有结果返回，则应产生警告<p class="p">推荐频率：每5到10分执行钟一次</p>
+<p class="p">级别:
                                         IMPORTANT</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Execute the following query in the <samp class="ph codeph">postgres</samp>
-                                        database:<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
+                                    <div class="p">在<samp class="ph codeph">postgres</samp>
+                                        数据库执行以下查询：<pre class="pre codeblock">SELECT * FROM gp_segment_configuration
 WHERE mode = 'r';</pre>
 </div>
 
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">When this query returns rows, it implies that the segments
-                                        are in the process of being re-synched. If the state does
-                                        not change from 'r' to 's', then check the
-                                            <span class="ph filepath">pg_log</span> files from the primaries and
-                                        mirrors of the affected segments for errors.</p>
+                                    <p class="p">当查询有结果返回，说明有segment处于Resynchronizing 状态. 如果数据库当中记录的状态没有从'r'变为's', 检查primary和mirrorsegments的pg_log 目录下的文件来排查导致错误的原因。</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Check for segments that are not operating in their optimal
-                                    role. If any segments are found, the cluster may not be
-                                    balanced. If any rows are returned this should generate a
-                                    warning or alert. <p class="p">Recommended frequency: run every 5 to 10
-                                        minutes</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">检查没有处于首选角色的segments.如果有结果返回，说明inHybrid集群处于不平衡的状态，则应产生警告 <p class="p">推荐频率：每5到10分执行钟一次</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Execute the following query in the <samp class="ph codeph">postgres</samp>
-                                        database:
+                                    <div class="p">在 <samp class="ph codeph">postgres</samp>
+                                        数据库执行以下查询：
                                         <pre class="pre codeblock">SELECT * FROM gp_segment_configuration
 WHERE preferred_role &lt;&gt; role;</pre>
 </div>
@@ -1661,22 +1628,17 @@ WHERE preferred_role &lt;&gt; role;</pre>
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">When the segments are not running in their preferred role,
-                                        hosts have uneven numbers of primary segments on each host,
-                                        implying that processing is skewed. Wait for a potential
-                                        window and restart the database to bring the segments into
-                                        their preferred roles.</p>
+                                    <p class="p">当segments没有运行在最佳角色时,说明每个主机上的primarysegment数量不均衡，暗示存在数据倾斜，等待一个可能出现的窗口重启数据库使segment回到原来的最佳角色
+.</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Run a distributed query to test that it runs on all segments.
-                                    One row should be returned for each primary segment.
-                                        <p class="p">Recommended frequency: run every 5 to 10
-                                        minutes</p>
-<p class="p">Severity: CRITICAL</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">在所有的segment上面运行分布式查询. 返回结果当中应该包含每个primarysegment的信息.
+                                        <p class="p">推荐频率: 每5到10分执行钟一次</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
@@ -1689,26 +1651,20 @@ GROUP BY 1;</pre>
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">If this query fails, there is an issue dispatching to some
-                                        segments in the cluster. This is a rare event. Check the
-                                        hosts that are not able to be dispatched to ensure there is
-                                        no hardware or networking issue.</p>
+                                    <p class="p">如果该查询运行失败, 说明集群中某些primarysegment分发失效，这是很少会出现的情况 。请检查分发失败的主机确认是否是硬件或网络问题。</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Test the state of master mirroring on a inHybrid Database<span class="ph"> 4.2 or
-                                        earlier</span> cluster. If the value is "Not Synchronized",
-                                    raise an alert or warning.<p class="p">Recommended frequency: run every 5
-                                        to 10 minutes</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">对于inHybrid以及更早版本的集群检查master镜像. 如果查询返回的值为 "NotSynchronized", 则应该产生一个警告<p class="p">推荐频率: 每5到10分执行钟一次.</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Execute the following query in the <samp class="ph codeph">postgres</samp>
-                                        database:
+                                    <div class="p">在 <samp class="ph codeph">postgres</samp>
+                                       数据库执行以下查询：
                                         <pre class="pre codeblock">SELECT summary_state
 FROM gp_master_mirroring;</pre>
 </div>
@@ -1716,65 +1672,47 @@ FROM gp_master_mirroring;</pre>
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">Check the <span class="ph filepath">pg_log</span> from the master and
-                                        standby master for errors. If there are no unexpected errors
-                                        and the machines are up, run the
-                                            <samp class="ph codeph">hdbinitstandby</samp> utility to bring the
-                                        standby online. This requires a database restart on HDB 4.2
-                                        and earlier.</p>
+                                    <p class="p">检查master和standbymaster的pg_log目录的文件是否有报错. 如果没有对应的报错信息并且没有机器故障问题, 运行 hdbinitstandby工具命令启动standby.
+</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Test the state of master mirroring on inHybrid Database. If
-                                    the value is not "STREAMING", raise an alert or
-                                        warning.<p class="p">Recommended frequency: run every 5 to 10
-                                        minutes</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">检查master镜像. 如果查询返回的值不为 "streaming", 则应该产生一个警告.<p class="p">推荐频率: 每5到10分执行钟一次.</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Run the following <samp class="ph codeph">psql</samp>
-                                        command:<pre class="pre codeblock">psql <em class="ph i">dbname</em> -c 'SELECT procpid, state FROM pg_stat_replication;'</pre>
+                                    <div class="p">执行下列 <samp class="ph codeph">psql</samp>
+                                        指令：<pre class="pre codeblock">psql <em class="ph i">dbname</em> -c 'SELECT procpid, state FROM pg_stat_replication;'</pre>
 </div>
 
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">Check the <span class="ph filepath">pg_log</span> file from the master
-                                        and standby master for errors. If there are no unexpected
-                                        errors and the machines are up, run the
-                                            <samp class="ph codeph">hdbinitstandby</samp> utility to bring the
-                                        standby online. </p>
+                                    <p class="p">检查master和standbymaster的pg_log目录的文件是否有报错. 如果没有对应的报错信息并且没有机器故障问题, 运行 hdbinitstandby工具命令启动standby. </p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e58 ">Perform a basic check to see if the master is up and
-                                        functioning.<p class="p">Recommended frequency: run every 5 to 10
-                                        minutes</p>
-<p class="p">Severity: CRITICAL</p>
+                                <td class="entry" valign="top" headers="d75104e58 ">执行基本的检查检测master是否启动并且正常运转 .<p class="p">推荐频率: 每5到10分执行钟一次</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e61 ">
-                                    <div class="p">Run the following query in the <samp class="ph codeph">postgres</samp>
-                                        database:
+                                    <div class="p">在 <samp class="ph codeph">postgres</samp>
+                                        数据库执行以下查询：
                                         <pre class="pre codeblock">SELECT count(*) FROM gp_segment_configuration;</pre>
 </div>
 
                                 </td>
 
                                 <td class="entry" valign="top" headers="d75104e64 ">
-                                    <p class="p">If this query fails the active master may be down. Try again
-                                        several times and then inspect the active master manually.
-                                        If the active master is down, reboot or power cycle the
-                                        active master to ensure no processes remain on the active
-                                        master and then trigger the activation of the standby
-                                        master.</p>
+                                    <p class="p">如果查询失败可能是active master关闭. 重试几次然后检查activemaster.如果activemaster被关闭,重启activemaster然后触发启动standbymaster.</p>
 
                                 </td>
 
@@ -1790,23 +1728,23 @@ FROM gp_master_mirroring;</pre>
         </div>
 
         <div class="topic nested1" id="topic_atb_b2g_rp">
-            <h2 class="title topictitle2">Database Alert Log Monitoring </h2>
+            <h2 class="title topictitle2">数据库告警日志监控 </h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="topic_atb_b2g_rp__table_dvp_d2g_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 2. Database Alert Log Monitoring Activities</span></caption>
+<caption><span class="tablecap">表 2.数据库告警日志监控</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" id="d75104e370">Activity</th>
+                                <th class="entry" valign="top" id="d75104e370">活动</th>
 
-                                <th class="entry" valign="top" id="d75104e373">Procedure</th>
+                                <th class="entry" valign="top" id="d75104e373">执行程序</th>
 
-                                <th class="entry" valign="top" id="d75104e376">Corrective Actions</th>
+                                <th class="entry" valign="top" id="d75104e376">维护措施</th>
 
                             </tr>
 
@@ -1814,28 +1752,20 @@ FROM gp_master_mirroring;</pre>
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e370 ">Check for FATAL and ERROR log messages from the
-                                        system.<p class="p">Recommended frequency: run every 15
-                                        minutes</p>
-<p class="p">Severity: WARNING</p>
-<p class="p"><em class="ph i">This activity and
-                                            the next are two methods for monitoring messages in the
-                                            log_alert_history table. It is only necessary to set up
-                                            one or the other.</em></p>
+                                <td class="entry" valign="top" headers="d75104e370 ">检查系统FATAL和ERROR级别的信息.<p class="p">推荐频率: 每15分执行钟一次。</p>
+<p class="p">级别: WARNING</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e373 ">
-                                    <div class="p">Run the following query in the <samp class="ph codeph">gpperfmon</samp>
-                                        database:<pre class="pre codeblock">SELECT * FROM log_alert_history
+                                    <div class="p">在<samp class="ph codeph">gpperfmon</samp>
+                                       数据库执行以下查询:<pre class="pre codeblock">SELECT * FROM log_alert_history
 WHERE logseverity in ('FATAL', 'ERROR')
    AND logtime &gt; (now() - interval '15 minutes');</pre>
 </div>
 
                                 </td>
 
-                                <td class="entry" valign="top" headers="d75104e376 ">Send an alert to the DBA to analyze the alert. You may want
-                                    to add additional filters to the query to ignore certain
-                                    messages of low interest.</td>
+                                <td class="entry" valign="top" headers="d75104e376 ">向DBA发送警报以分析警报。您可能需要在查询中添加其他筛选器以忽略某些感兴趣的信息.</td>
 
                             </tr>
 
@@ -1849,23 +1779,23 @@ WHERE logseverity in ('FATAL', 'ERROR')
         </div>
 
         <div class="topic nested1" id="topic_y4c_4gg_rp">
-            <h2 class="title topictitle2">Hardware and Operating System Monitoring</h2>
+            <h2 class="title topictitle2">硬件和操作系统监控</h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="topic_y4c_4gg_rp__table_ls5_sgg_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 3. Hardware and Operating System Monitoring Activities</span></caption>
+<caption><span class="tablecap">表 3. 硬件和操作系统监控</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" id="d75104e439">Activity</th>
+                                <th class="entry" valign="top" id="d75104e439">活动</th>
 
-                                <th class="entry" valign="top" id="d75104e442">Procedure</th>
+                                <th class="entry" valign="top" id="d75104e442">执行程序</th>
 
-                                <th class="entry" valign="top" id="d75104e445">Corrective Actions</th>
+                                <th class="entry" valign="top" id="d75104e445">维护措施</th>
 
                             </tr>
 
@@ -1873,62 +1803,58 @@ WHERE logseverity in ('FATAL', 'ERROR')
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e439 ">Check disk space usage on volumes used for inHybrid Database data storage and the OS.
-                                        <p class="p">Recommended frequency: every 5 to 30
-                                        minutes</p>
-<p class="p">Severity: CRITICAL</p>
+                                <td class="entry" valign="top" headers="d75104e439 ">检查用于inHybrid数据库数据存储和操作系统的卷上的磁盘空间使用情况.
+                                        <p class="p">推荐频率: 每5到30分钟</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
                                 <td class="entry" valign="top" headers="d75104e442 ">
-                                    <div class="p">Set up a disk space check.<ul class="ul" id="topic_y4c_4gg_rp__ul_rs1_whg_rp">
-                                            <li class="li">Set a threshold to raise an alert when a disk
-                                                reaches a percentage of capacity. The recommended
-                                                threshold is 75% full.</li>
+                                    <div class="p">设置一个磁盘空间检查.<ul class="ul" id="topic_y4c_4gg_rp__ul_rs1_whg_rp">
+                                            <li class="li">设置一个阈值，以便在磁盘达到容量百分比时发出警报.</li>
+<li class="li">建议阈值在75%.</li>
 
-                                            <li class="li">It is not recommended to run the system with
-                                                capacities approaching 100%.</li>
+                                            <li class="li">不建议在容量接近100%的情况下运行系统.</li>
 
                                         </ul>
 </div>
 
                                 </td>
 
-                                <td class="entry" valign="top" headers="d75104e445 ">Free space on the system by removing some data or
-                                    files.</td>
+                                <td class="entry" valign="top" headers="d75104e445 ">通过删除一些数据或文件来释放系统上的空间。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e439 ">Check for errors or dropped packets on the network
-                                        interfaces.<p class="p">Recommended frequency: hourly</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e439 ">检查网络接口上是否有错误或丢弃的数据包。<p class="p">推荐频率：每小时</p>
+<p class="p">级别:
                                         IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e442 ">Set up a network interface checks. </td>
+                                <td class="entry" valign="top" headers="d75104e442 ">设置网络接口检查. 
+</td>
 
                                 <td class="entry" valign="top" headers="d75104e445 ">
-                                    <p class="p">Work with network and OS teams to resolve errors.</p>
+                                    <p class="p">与网络和操作系统团队合作解决错误.
+</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e439 ">Check for RAID errors or degraded RAID performance.
-                                        <p class="p">Recommended frequency: every 5 minutes</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e439 ">检查是否存在RAID错误或RAID性能降级。
+                                        <p class="p">推荐频率：每5分钟</p>
+<p class="p">级别:
                                         CRITICAL</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e442 ">Set up a RAID check.</td>
+                                <td class="entry" valign="top" headers="d75104e442 ">设置RAID检查</td>
 
                                 <td class="entry" valign="top" headers="d75104e445 ">
                                     <ul class="ul" id="topic_y4c_4gg_rp__ul_f4b_fjg_rp">
-                                        <li class="li">Replace failed disks as soon as possible. </li>
+                                        <li class="li">尽快更换故障磁盘.  </li>
 
-                                        <li class="li">Work with system administration team to resolve other
-                                            RAID or controller errors as soon as possible.</li>
+                                        <li class="li">与系统管理团队合作，尽快解决其他RAID或控制器错误.</li>
 
                                     </ul>
 
@@ -1937,50 +1863,43 @@ WHERE logseverity in ('FATAL', 'ERROR')
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e439 ">Run the inHybrid <samp class="ph codeph">gpcheck</samp> utility to test
-                                    that the configuration of the cluster complies with current
-                                        recommendations.<p class="p">Recommended frequency: when creating a
-                                        cluster or adding new machines to the cluster
+                                <td class="entry" valign="top" headers="d75104e439 ">运行inHybrid gpcheck实用程序来测试集群的配置是否符合当前的建议. <p class="p">建议频率：创建群集或向群集添加新计算机时 
                                         </p>
-<p class="p">Severity: IMPORTANT</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e442 ">Run <samp class="ph codeph">gpcheck</samp>.</td>
+                                <td class="entry" valign="top" headers="d75104e442 ">执行 <samp class="ph codeph">gpcheck</samp>.</td>
 
                                 <td class="entry" valign="top" headers="d75104e445 ">
-                                    <p class="p">Work with system administration team to update configuration
-                                        according to the recommendations made by the
-                                            <samp class="ph codeph">gpcheck</samp> utility.</p>
+                                    <p class="p">与系统管理团队合作，根据gpcheck实用程序的建议更新配置.
+</p>
 
                                 </td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e439 ">Check for adequate I/O bandwidth and I/O skew.<p class="p">Recommended
-                                        frequency: when create a cluster or when hardware issues are
-                                        suspected.</p>
+                                <td class="entry" valign="top" headers="d75104e439 ">检查是否有足够的I/O带宽和I/O倾斜. <p class="p">建议频率：创建群集或怀疑硬件问题时.
+
+                                        </p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e442 ">Run the inHybrid
-                                    <samp class="ph codeph">hdbcheckperf</samp> utility. </td>
+                                <td class="entry" valign="top" headers="d75104e442 ">执行 inHybrid
+                                    <samp class="ph codeph">hdbcheckperf</samp> 命令. </td>
 
                                 <td class="entry" valign="top" headers="d75104e445 ">
-                                    <div class="p">The cluster may be under-specified if data transfer rates are
-                                        not similar to the following: <ul class="ul" id="topic_y4c_4gg_rp__ul_elm_dkg_rp">
-                                            <li class="li">2GB per second disk read</li>
+                                    <div class="p">如果数据传输速率与以下情况不相似，则可能未指定集群: <ul class="ul" id="topic_y4c_4gg_rp__ul_elm_dkg_rp">
+                                            <li class="li">每秒读取2GB磁盘</li>
 
-                                            <li class="li">1 GB per second disk write</li>
+                                            <li class="li">每秒1 GB磁盘写入</li>
 
-                                            <li class="li">10 Gigabit per second network read and write </li>
+                                            <li class="li">每秒10千兆网络读写 </li>
 
                                         </ul>
-If transfer rates are lower than expected, consult with
-                                        your data architect regarding performance expectations.</div>
+如果传输速率低于预期，请咨询您的数据架构师以了解性能预期. </div>
 
-                                    <p class="p">If the machines on the cluster display an uneven performance
-                                        profile, work with the system administration team to fix
-                                        faulty machines.</p>
+                                    <p class="p">如果群集中的计算机显示不均匀的性能配置文件，请与系统管理团队合作修复有故障的计算机.
+</p>
 
                                 </td>
 
@@ -1996,23 +1915,23 @@ If transfer rates are lower than expected, consult with
         </div>
 
         <div class="topic nested1" id="topic_gbp_jng_rp">
-            <h2 class="title topictitle2">Catalog Monitoring</h2>
+            <h2 class="title topictitle2">目录监控</h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="topic_gbp_jng_rp__table_pdq_lng_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 4. Catalog Monitoring Activities</span></caption>
+<caption><span class="tablecap">表 4. 目录监控</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" id="d75104e615">Activity</th>
+                                <th class="entry" valign="top" id="d75104e615">活动</th>
 
-                                <th class="entry" valign="top" id="d75104e618">Procedure</th>
+                                <th class="entry" valign="top" id="d75104e618">执行程序</th>
 
-                                <th class="entry" valign="top" id="d75104e621">Corrective Actions</th>
+                                <th class="entry" valign="top" id="d75104e621">维护措施</th>
 
                             </tr>
 
@@ -2020,102 +1939,78 @@ If transfer rates are lower than expected, consult with
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Run catalog consistency checks to ensure the catalog on each
-                                    host in the cluster is consistent and in a good
-                                        state.<p class="p">Recommended frequency: weekly</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e615 ">运行目录一致性检查，以确保集群中每个主机上的目录是一致的，并且处于良好状态<p class="p">推荐频率:每周</p>
+<p class="p">级别：
                                         IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">Run the inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -O</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">执行 inHybrid
+                                    <samp class="ph codeph">hdbcheckcat</samp> 程序在每个数据库：<pre class="pre codeblock">hdbcheckcat -O</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run repair scripts for any issues detected.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Run a persistent table catalog check.<p class="p">Recommended
-                                        frequency: monthly</p>
-<p class="p">Severity: CRITICAL</p>
+                                <td class="entry" valign="top" headers="d75104e615 ">运行持久表目录检查<p class="p">推荐频率: 每月</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">During a downtime, with no users on the system, run the
-                                        inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -R persistent</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">检查不存在对象的依赖关系。在停机期间，系统上没有用户，在每个数据库中运行inHybrid hdbcheckcat工具:<pre class="pre codeblock">hdbcheckcat -R persistent</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run repair scripts for any issues detected.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Check for <samp class="ph codeph">pg_class</samp> entries that have no
-                                    corresponding pg_<samp class="ph codeph">attribute</samp> entry.<p class="p">Recommended
-                                        frequency: monthly</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e615 ">检查没有相应pg_attribute实例的pg_class实例.<p class="p">推荐频率: 每月</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">During a downtime, with no users on the system, run the
-                                        inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -R pgclass</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">在停机期间，系统上没有用户，在每个数据库中运行inHybrid hdbcheckcat工具:<pre class="pre codeblock">hdbcheckcat -R pgclass</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run the repair scripts for any issues identified.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Check for leaked temporary schema and missing schema
-                                        definition.<p class="p">Recommended frequency: monthly</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e615 ">检查泄漏的临时模式和丢失的模式定义<p class="p">推荐频率: 每月</p>
+<p class="p">级别:
                                         IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">During a downtime, with no users on the system, run the
-                                        inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -R namespace</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">在停机期间，系统上没有用户，在每个数据库中运行inHybrid hdbcheckcat工具:<pre class="pre codeblock">hdbcheckcat -R namespace</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run the repair scripts for any issues identified.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Check constraints on randomly distributed
-                                        tables.<p class="p">Recommended frequency: monthly</p>
-<p class="p">Severity:
+                                <td class="entry" valign="top" headers="d75104e615 ">检查随机分布表上的约束.<p class="p">推荐频率: 每月</p>
+<p class="p">级别:
                                         IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">During a downtime, with no users on the system, run the
-                                        inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -R distribution_policy</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">在停机期间，系统上没有用户，在每个数据库中运行inHybrid hdbcheckcat工具:<pre class="pre codeblock">hdbcheckcat -R distribution_policy</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run the repair scripts for any issues identified.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e615 ">Check for dependencies on non-existent objects.<p class="p">Recommended
-                                        frequency: monthly</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" headers="d75104e615 ">检查不存在对象的依赖关系。<p class="p">推荐频率：每月</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e618 ">During a downtime, with no users on the system, run the
-                                        inHybrid
-                                    <samp class="ph codeph">hdbcheckcat</samp> utility in each
-                                    database:<pre class="pre codeblock">hdbcheckcat -R dependency</pre>
+                                <td class="entry" valign="top" headers="d75104e618 ">在停机期间，系统上没有用户，在每个数据库中运行inHybrid hdbcheckcat工具:<pre class="pre codeblock">hdbcheckcat -R dependency</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e621 ">Run the repair scripts for any issues identified.</td>
+                                <td class="entry" valign="top" headers="d75104e621 ">为检测到的任何问题运行修复脚本。</td>
 
                             </tr>
 
@@ -2129,23 +2024,23 @@ If transfer rates are lower than expected, consult with
         </div>
 
         <div class="topic nested1" id="maintentenance_check_scripts">
-            <h2 class="title topictitle2">Data Maintenance</h2>
+            <h2 class="title topictitle2">数据维护</h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="maintentenance_check_scripts__table_tp4_nxg_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 5. Data Maintenance Activities</span></caption>
+<caption><span class="tablecap">表 5.数据维护活动</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" id="d75104e790">Activity</th>
+                                <th class="entry" valign="top" id="d75104e790">活动</th>
 
-                                <th class="entry" valign="top" id="d75104e793">Procedure</th>
+                                <th class="entry" valign="top" id="d75104e793">执行程序</th>
 
-                                <th class="entry" valign="top" id="d75104e796">Corrective Actions</th>
+                                <th class="entry" valign="top" id="d75104e796">维护措施</th>
 
                             </tr>
 
@@ -2153,32 +2048,26 @@ If transfer rates are lower than expected, consult with
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e790 ">Check for missing statistics on tables. </td>
+                                <td class="entry" valign="top" headers="d75104e790 ">检查表上缺少的统计信息. </td>
 
-                                <td class="entry" valign="top" headers="d75104e793 ">Check the <samp class="ph codeph">gp_stats_missing</samp> view in each
-                                    database:<pre class="pre codeblock">SELECT * FROM gp_toolkit.gp_stats_missing;</pre>
+                                <td class="entry" valign="top" headers="d75104e793 ">检查每个数据库中的gp_stats_missing视图 ：<pre class="pre codeblock">SELECT * FROM gp_toolkit.gp_stats_missing;</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e796 ">Run <samp class="ph codeph">ANALYZE</samp> on tables that are missing
-                                    statistics.</td>
+                                <td class="entry" valign="top" headers="d75104e796 ">对缺少统计信息的表运行ANALYZE.</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" headers="d75104e790 ">Check for tables that have bloat (dead space) in data files
-                                    that cannot be recovered by a regular <samp class="ph codeph">VACUUM</samp>
-                                    command. <p class="p">Recommended frequency: weekly or
-                                        monthly</p>
-<p class="p">Severity: WARNING</p>
+                                <td class="entry" valign="top" headers="d75104e790 ">检查数据文件中有膨胀(
+deadspace)的表，这些表不能通过常规的VACUUM命令恢复。 <p class="p">建议频率:每周或每月</p>
+<p class="p">级别: WARNING</p>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e793 ">Check the <samp class="ph codeph">gp_bloat_diag</samp> view in each database:
+                                <td class="entry" valign="top" headers="d75104e793 ">检查每个数据库中的gp_bloat_diag视图: 
                                     <pre class="pre codeblock">SELECT * FROM gp_toolkit.gp_bloat_diag;</pre>
 </td>
 
-                                <td class="entry" valign="top" headers="d75104e796 ">Execute a <samp class="ph codeph">VACUUM FULL</samp> statement at a time
-                                    when users are not accessing the table to remove bloat and
-                                    compact the data.</td>
+                                <td class="entry" valign="top" headers="d75104e796 ">当用户不访问表时，执行一个VACUUMFULL语句，以消除数据膨胀并压缩数据.</td>
 
                             </tr>
 
@@ -2192,24 +2081,24 @@ If transfer rates are lower than expected, consult with
         </div>
 
         <div class="topic nested1" id="topic_dld_23h_rp">
-            <h2 class="title topictitle2">Database Maintenance</h2>
+            <h2 class="title topictitle2">Database 维护</h2>
 
             <div class="body">
                 <div class="p">
                     
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="topic_dld_23h_rp__table_vxx_f3h_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 6. Database Maintenance Activities</span></caption>
+<caption><span class="tablecap">表 6. Database 维护活动</span></caption>
                             
                             
                             
                             <thead class="thead" align="left">
                                 <tr class="row">
-                                    <th class="entry" valign="top" id="d75104e881">Activity</th>
+                                    <th class="entry" valign="top" id="d75104e881">活动</th>
 
-                                    <th class="entry" valign="top" id="d75104e884">Procedure</th>
+                                    <th class="entry" valign="top" id="d75104e884">执行程序</th>
 
-                                    <th class="entry" valign="top" id="d75104e887">Corrective Actions</th>
+                                    <th class="entry" valign="top" id="d75104e887">维护措施</th>
 
                                 </tr>
 
@@ -2217,92 +2106,66 @@ If transfer rates are lower than expected, consult with
 
                             <tbody class="tbody">
                                 <tr class="row">
-                                    <td class="entry" valign="top" headers="d75104e881 ">Mark deleted rows in heap tables so that the space they
-                                        occupy can be reused.<p class="p">Recommended frequency:
-                                            daily</p>
-<p class="p">Severity: CRITICAL</p>
+                                    <td class="entry" valign="top" headers="d75104e881 ">在堆表中标记已删除的行，以便重用它们占用的空间。<p class="p">推荐频率:每天</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
-                                    <td class="entry" valign="top" headers="d75104e884 ">Vacuum user
-                                        tables:<pre class="pre codeblock">VACUUM <em class="ph i">&lt;table&gt;</em>;</pre>
+                                    <td class="entry" valign="top" headers="d75104e884 ">Vacuum 用户数据表:<pre class="pre codeblock">VACUUM <em class="ph i">&lt;table&gt;</em>;</pre>
 </td>
 
-                                    <td class="entry" valign="top" headers="d75104e887 ">Vacuum updated tables regularly to prevent bloating.
+                                    <td class="entry" valign="top" headers="d75104e887 ">定期对表进行vacuum更新，防止数据膨胀。 
                                     </td>
 
                                 </tr>
 
                                 <tr class="row">
-                                    <td class="entry" valign="top" headers="d75104e881 ">Update table statistics. <p class="p">Recommended frequency: after
-                                            loading data and before executing
-                                            queries</p>
-<p class="p">Severity: CRITICAL</p>
+                                    <td class="entry" valign="top" headers="d75104e881 ">更新表的统计信息。<p class="p">推荐频率:在加载数据之后和执行查询之前</p>
+<p class="p">级别: CRITICAL</p>
 </td>
 
-                                    <td class="entry" valign="top" headers="d75104e884 ">Analyze user tables. You can use the
-                                            <samp class="ph codeph">analyzedb</samp> management
-                                        utility:<pre class="pre codeblock">analyzedb -d <var class="keyword varname">&lt;database&gt;</var> -a</pre>
+                                    <td class="entry" valign="top" headers="d75104e884 ">Analyze 用户表可以使用analyzedb管理工具:<pre class="pre codeblock">analyzedb -d <var class="keyword varname">&lt;database&gt;</var> -a</pre>
 </td>
 
-                                    <td class="entry" valign="top" headers="d75104e887 ">Analyze updated tables regularly so that the optimizer
-                                        can produce efficient query execution plans.</td>
+                                    <td class="entry" valign="top" headers="d75104e887 ">定期分析更新的表，以便优化器能够生成高效的查询执行计划。</td>
 
                                 </tr>
 
                                 <tr class="row">
-                                    <td class="entry" valign="top" headers="d75104e881 ">Backup the database data.<p class="p">Recommended frequency: daily,
-                                            or as required by your backup plan</p>
-<p class="p">Severity:
+                                    <td class="entry" valign="top" headers="d75104e881 ">备份数据库数据。<p class="p">推荐频率:每天，或根据您的备份计划的要求</p>
+<p class="p">级别:
                                             CRITICAL</p>
 </td>
 
                                     <td class="entry" valign="top" headers="d75104e884 ">
-                                        <span class="ph">Run the <samp class="ph codeph">hdbbackup</samp>
-                                            utility to create a backup of the master and segment
-                                            databases in parallel.</span>
+                                        <span class="ph">运行hdbbackup工具并行地创建Master数据库和Segment数据库的备份。</span>
                                     </td>
 
-                                    <td class="entry" valign="top" headers="d75104e887 ">Best practice is to have a current backup ready in case
-                                        the database must be restored. </td>
+                                    <td class="entry" valign="top" headers="d75104e887 ">最佳实践是准备好当前备份，以备必须恢复数据库时使用。</td>
 
                                 </tr>
 
                                 <tr class="row">
-                                    <td class="entry" valign="top" headers="d75104e881 ">Vacuum, reindex, and analyze system catalogs to maintain
-                                        an efficient catalog.<p class="p">Recommended frequency: weekly, or
-                                            more often if database objects are created and dropped
-                                            frequently</p>
+                                    <td class="entry" valign="top" headers="d75104e881 ">对系统目录进行vacuum、reindex和analyze，以维护有效的目录。<p class="p">推荐频率: 如果频繁地创建和删除数据库对象，则每周更新一次，或者更频繁地更新一次</p>
 </td>
 
                                     <td class="entry" valign="top" headers="d75104e884 ">
                                         <ol class="ol" id="topic_dld_23h_rp__ol_frs_nlh_rp">
                                             <li class="li">
-<samp class="ph codeph">VACUUM</samp> the system tables in each
-                                                database.</li>
+对每个数据库中的系统表进行VACUUM处理.</li>
 
-                                            <li class="li">Run <samp class="ph codeph">REINDEX SYSTEM</samp> in each
-                                                database, or use the <samp class="ph codeph">reindexdb</samp>
-                                                command-line utility with the <samp class="ph codeph">-s</samp>
-                                                option:
-                                                <pre class="pre codeblock">reindexdb -s <var class="keyword varname">&lt;database&gt;</var></pre>
+                                            <li class="li">在每个数据库中运行REINDEX SYSTEM，或者使用reindexdb命令行工具用 -s 选项:<br/>
+<pre>reindexdb -s <database></pre>
 </li>
 
                                             <li class="li">
-<samp class="ph codeph">ANALYZE</samp> each of the system
-                                                tables:<pre class="pre codeblock">analyzedb -s pg_catalog -d <var class="keyword varname">&lt;database&gt;</var></pre>
+<samp class="ph codeph">ANALYZE每一个系统表:<pre class="pre codeblock">analyzedb -s pg_catalog -d <var class="keyword varname">&lt;database&gt;</var></pre>
 </li>
 
                                         </ol>
 
                                     </td>
 
-                                    <td class="entry" valign="top" headers="d75104e887 ">The optimizer retrieves information from the system
-                                        tables to create query plans. If system tables and indexes
-                                        are allowed to become bloated over time, scanning the system
-                                        tables increases query execution time. It is important to
-                                        run <samp class="ph codeph">ANALYZE</samp> after reindexing, because
-                                            <samp class="ph codeph">REINDEX</samp> leaves indexes with no
-                                        statistics. </td>
+                                    <td class="entry" valign="top" headers="d75104e887 ">优化器从系统表中检索信息以创建查询计划。如果允许系统表和索引随时间膨胀，那么扫描系统表会增加查询执行时间。在重索引之后运行ANALYZE非常重要，因为REINDEX只留下没有统计信息的索引。</td>
 
                                 </tr>
 
@@ -2318,23 +2181,23 @@ If transfer rates are lower than expected, consult with
         </div>
 
         <div class="topic nested1" id="topic_idx_smh_rp">
-            <h2 class="title topictitle2">Patching and Upgrading</h2>
+            <h2 class="title topictitle2">修复和升级</h2>
 
             <div class="body">
                 
 <div class="tablenoborder">
 <table cellpadding="4" cellspacing="0" summary="" id="topic_idx_smh_rp__table_td5_5mh_rp" class="table" frame="border" border="1" rules="all">
-<caption><span class="tablecap">Table 7. Patch and Upgrade Activities</span></caption>
+<caption><span class="tablecap">表 7. 修复和升级</span></caption>
                         
                         
                         
                         <thead class="thead" align="left">
                             <tr class="row">
-                                <th class="entry" valign="top" width="33.003300330033%" id="d75104e1044">Activity</th>
+                                <th class="entry" valign="top" width="33.003300330033%" id="d75104e1044">活动</th>
 
-                                <th class="entry" valign="top" width="33.66336633663366%" id="d75104e1047">Procedure</th>
+                                <th class="entry" valign="top" width="33.66336633663366%" id="d75104e1047">执行程序</th>
 
-                                <th class="entry" valign="top" width="33.33333333333333%" id="d75104e1050">Corrective Actions</th>
+                                <th class="entry" valign="top" width="33.33333333333333%" id="d75104e1050">维护措施</th>
 
                             </tr>
 
@@ -2342,35 +2205,24 @@ If transfer rates are lower than expected, consult with
 
                         <tbody class="tbody">
                             <tr class="row">
-                                <td class="entry" valign="top" width="33.003300330033%" headers="d75104e1044 ">Ensure any bug fixes or enhancements are applied to the
-                                        kernel.<p class="p">Recommended frequency: at least every 6
-                                        months</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" width="33.003300330033%" headers="d75104e1044 ">确保将任何错误修复或增强应用于内核。<p class="p">推荐频率: 至少每六个月</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" width="33.66336633663366%" headers="d75104e1047 ">Follow the vendor's instructions to update the Linux
-                                    kernel.</td>
+                                <td class="entry" valign="top" width="33.66336633663366%" headers="d75104e1047 ">按照供应商的说明更新Linux内核。</td>
 
-                                <td class="entry" valign="top" width="33.33333333333333%" headers="d75104e1050 ">Keep the kernel current to include bug fixes and security
-                                    fixes, and to avoid difficult future upgrades. </td>
+                                <td class="entry" valign="top" width="33.33333333333333%" headers="d75104e1050 ">保持内核最新，以包含错误修复和安全修复，并避免将来出现困难的升级。</td>
 
                             </tr>
 
                             <tr class="row">
-                                <td class="entry" valign="top" width="33.003300330033%" headers="d75104e1044 ">Install inHybrid Database minor releases<span class="ph">, for example
-                                            5.0.<em class="ph i">x</em></span>.<p class="p">Recommended frequency:
-                                        quarterly</p>
-<p class="p">Severity: IMPORTANT</p>
+                                <td class="entry" valign="top" width="33.003300330033%" headers="d75104e1044 ">安装inHybrid 数据库release镜像, 例如: 1.0.0.<p class="p">推荐频率: 每季度</p>
+<p class="p">级别: IMPORTANT</p>
 </td>
 
-                                <td class="entry" valign="top" width="33.66336633663366%" headers="d75104e1047 ">Follow upgrade instructions in the inHybrid Database
-                                    <em class="ph i">Release Notes</em>. Always upgrade to the latest in the
-                                    series.</td>
+                                <td class="entry" valign="top" width="33.66336633663366%" headers="d75104e1047 ">遵循inHybrid数据库发行说明中的升级说明。总是升级到最新的系列。</td>
 
-                                <td class="entry" valign="top" width="33.33333333333333%" headers="d75104e1050 ">Keep the inHybrid Database software current to
-                                    incorporate bug fixes, performance enhancements, and feature
-                                    enhancements into your inHybrid
-                                    cluster. </td>
+                                <td class="entry" valign="top" width="33.33333333333333%" headers="d75104e1050 ">保持inHybrid数据库软件处于最新状态，以便将bug修复、性能增强和特性增强合并到您的inHybrid集群中。</td>
 
                             </tr>
 

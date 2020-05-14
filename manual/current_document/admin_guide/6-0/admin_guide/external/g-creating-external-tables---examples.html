@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="gbk">
   <!-- Always force latest IE rendering engine or request Chrome Frame -->
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
@@ -1495,22 +1495,17 @@
         </div>
         
 
-    <h1 class="title topictitle1">Examples for Creating External Tables</h1>
+    <h1 class="title topictitle1">创建外部表的示例</h1>
 
     
     <div class="body">
-<p class="shortdesc">These examples show how to define external data with different protocols. Each
-            <samp class="ph codeph">CREATE EXTERNAL TABLE</samp> command can contain only one protocol. </p>
+<p class="shortdesc">这些示例展示了如何使用不同的协议定义外部数据.每个
+            <samp class="ph codeph">CREATE EXTERNAL TABLE</samp> 命令只能包含一个协议。 </p>
 
         <div class="note note">
-<span class="notetitle">Note:</span> When using IPv6, always enclose the numeric IP addresses in square
-            brackets.</div>
+<span class="notetitle">注意:</span>注意:当使用IPv6时，总是将数字IP地址括在方括号中。</div>
 
-        <p class="p">Start <span class="keyword cmdname">hdbfdist</span> before you create external tables with the
-                <span class="keyword cmdname">hdbfdist</span> protocol. The following code starts the
-                <span class="keyword cmdname">hdbfdist</span> file server program in the background on port <em class="ph i">8081</em>
-            serving files from directory <span class="ph filepath">/var/data/staging</span>. The logs are saved
-            in <span class="ph filepath">/home/hdbadmin/log</span>.</p>
+        <p class="p">在使用hdbfdist协议创建外部表之前，先启动hdbfdist。下面的代码在后台端口8081上启动hdbfdist文件服务器程序，为来自目录/var/data/ stag.的文件提供服务这些日志保存在/home/hdbadmin/log中。</p>
 
         <div class="p">
             <pre class="pre codeblock">hdbfdist -p 8081 -d /var/data/staging -l /home/hdbadmin/log &amp;
@@ -1523,34 +1518,34 @@
 <div class="related-links">
 <ul class="ullinks">
 <li class="link ulchildlink">
-<strong><a href="g-example-1-single-hdbfdist-instance-on-single-nic-machine.html">Example 1—Single hdbfdist instance on single-NIC machine</a></strong><br>
+<strong><a href="g-example-1-single-hdbfdist-instance-on-single-nic-machine.html">示例1--在single-NIC机器上的单个hdbfdist实例</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-2-multiple-hdbfdist-instances.html">Example 2—Multiple hdbfdist instances</a></strong><br>
+<strong><a href="g-example-2-multiple-hdbfdist-instances.html">示例2--多个hdbfdist实例</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-3-multiple-hdbfdists-instances.html">Example 3—Multiple hdbfdists instances</a></strong><br>
+<strong><a href="g-example-3-multiple-hdbfdists-instances.html">示例3--多个hdbfdists实例</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-4-single-hdbfdist-instance-with-error-logging.html">Example 4—Single hdbfdist instance with error logging</a></strong><br>
+<strong><a href="g-example-4-single-hdbfdist-instance-with-error-logging.html">示例4--带有错误日志记录的单个hdbfdist实例</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-5-text-format-on-a-hadoop-distributed-file-server.html">Example 5—TEXT Format on a Hadoop Distributed File Server</a></strong><br>
+<strong><a href="g-example-5-text-format-on-a-hadoop-distributed-file-server.html">示例5-- Hadoop分布式文件服务器上的文本格式</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-6-multiple-files-in-csv-format-with-header-rows.html">Example 6—Multiple files in CSV format with header rows</a></strong><br>
+<strong><a href="g-example-6-multiple-files-in-csv-format-with-header-rows.html">示例6--多个文件的标题行CSV格式</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-7-readable-web-external-table-with-script.html">Example 7—Readable External Web Table with Script</a></strong><br>
+<strong><a href="g-example-7-readable-web-external-table-with-script.html">示例7--可读的外部Web表与脚本</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-8-writable-external-table-with-hdbfdist.html">Example 8—Writable External Table with hdbfdist</a></strong><br>
+<strong><a href="g-example-8-writable-external-table-with-hdbfdist.html">示例8--使用hdbfdist可写外部表</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-9-writable-external-web-table-with-script.html">Example 9—Writable External Web Table with Script</a></strong><br>
+<strong><a href="g-example-9-writable-external-web-table-with-script.html">示例9--可写的外部Web表与脚本</a></strong><br>
 </li>
 <li class="link ulchildlink">
-<strong><a href="g-example-10-readable-and-writable-external-tables-with-xml-transformations.html">Example 10—Readable and Writable External Tables with XML Transformations</a></strong><br>
+<strong><a href="g-example-10-readable-and-writable-external-tables-with-xml-transformations.html">示例10 --使用XML转换的可读和可写的外部表</a></strong><br>
 </li>
 </ul>
 
