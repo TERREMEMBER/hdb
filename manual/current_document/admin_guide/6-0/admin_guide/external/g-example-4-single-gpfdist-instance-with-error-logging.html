@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="gbk">
   <!-- Always force latest IE rendering engine or request Chrome Frame -->
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
@@ -1484,7 +1484,7 @@
         <a id="top"></a>
         
           <h1 class="title-container" style="display: none;">
-    Example 4—Single hdbfdist instance with error logging
+   示例4--带有错误日志记录的单个hdbfdist实例
   </h1>
 
           <div id="js-quick-links" >
@@ -1495,19 +1495,12 @@
         </div>
         
 
-    <h1 class="title topictitle1">Example 4—Single hdbfdist instance with error logging</h1>
+    <h1 class="title topictitle1">示例4--带有错误日志记录的单个hdbfdist实例</h1>
 
     <div class="body">
-        <p class="p">Uses the hdbfdist protocol to create a readable external table,
-                <samp class="ph codeph">ext_expenses,</samp> from all files with the <em class="ph i">txt</em> extension. The
-            column delimiter is a pipe ( | ) and NULL (' ') is a space.</p>
+        <p class="p">使用hdbfdist协议从带有txt扩展名的所有文件创建一个可读的外部表ext_expenses。列分隔符是一个管道(|)，NULL(' ')是一个空格。</p>
 
-        <p class="p">Access to the external table is single row error isolation mode. Input data formatting
-            errors are captured internally in inHybrid Database with a description of the error.
-            See <a class="xref" href="../load/topics/g-viewing-bad-rows-in-the-error-table-or-error-log.html#topic58">在错误日志中查看不正确的行</a> for information about investigating error rows. You can view the errors, fix the
-            issues, and then reload the rejected data. If the error count on a segment is greater
-            than five (the <samp class="ph codeph">SEGMENT REJECT LIMIT</samp> value), the entire external table
-            operation fails and no rows are processed. </p>
+        <p class="p">对外部表的访问是单行错误隔离模式。在inHybrid数据库内部捕获输入数据格式化错误和错误描述。看到在错误日志中查看不正确的行信息调查错误行。您可以查看错误，修复问题，然后重新加载被拒绝的数据。如果一个段上的错误计数大于5(段拒绝极限值)，则整个外部表操作失败，不处理任何行。</p>
 
         <div class="p">
             <pre class="pre codeblock">=# CREATE EXTERNAL TABLE ext_expenses ( name text, 
@@ -1520,7 +1513,7 @@ LOG ERRORS SEGMENT REJECT LIMIT 5;
 
         </div>
 
-        <p class="p">To create the readable ext_expenses table from CSV-formatted text files:</p>
+        <p class="p">要从csv格式的文本文件创建可读的ext_expenses表:</p>
 
         <div class="p">
             <pre class="pre codeblock">=# CREATE EXTERNAL TABLE ext_expenses ( name text, 
@@ -1540,7 +1533,7 @@ LOG ERRORS SEGMENT REJECT LIMIT 5;
 <div class="related-links">
 <div class="familylinks">
 <div class="parentlink">
-<strong>Parent topic:</strong> <a class="link" href="g-creating-external-tables---examples.html" title="These examples show how to define external data with different protocols. Each CREATE EXTERNAL TABLE command can contain only one protocol.">Examples for Creating External Tables</a>
+<strong>父主题:</strong> <a class="link" href="g-creating-external-tables---examples.html" title="These examples show how to define external data with different protocols. Each CREATE EXTERNAL TABLE command can contain only one protocol.">创建外部表的示例</a>
 </div>
 </div>
 </div>

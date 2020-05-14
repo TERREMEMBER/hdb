@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8">
+  <meta charset="gbk">
   <!-- Always force latest IE rendering engine or request Chrome Frame -->
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,223 +54,223 @@
 
 <h1><a name="PGUPGRADE" id="PGUPGRADE"></a><span class="APPLICATION">pg_upgrade</span></h1>
 <div class="REFNAMEDIV"><a name="AEN133955" id="AEN133955"></a>
-<h2>Name</h2>
-pg_upgrade&nbsp;--&nbsp;upgrade a <span class="PRODUCTNAME">PostgreSQL</span> server instance</div>
+<h2>名字</h2>
+pg_upgrade&nbsp;--&nbsp;升级PostgreSQL服务实例</div>
 <div class="REFSYNOPSISDIV"><a name="AEN133959" id="AEN133959"></a>
-<h2>Synopsis</h2>
+<h2>概要</h2>
 <p><tt class="COMMAND">pg_upgrade</tt> <tt class="OPTION">-b</tt> <tt class="REPLACEABLE c2">oldbindir</tt> <tt class="OPTION">-B</tt> <tt class="REPLACEABLE c2">newbindir</tt> <tt class="OPTION">-d</tt> <tt class="REPLACEABLE c2">olddatadir</tt> <tt class="OPTION">-D</tt> <tt class="REPLACEABLE c2">newdatadir</tt> [<tt class="REPLACEABLE c2">option</tt>...]</p>
 </div>
 <div class="REFSECT1"><a name="AEN133980" id="AEN133980"></a>
-<h2>Description</h2>
-<p><span class="APPLICATION">pg_upgrade</span> (formerly called <span class="APPLICATION">pg_migrator</span>) allows data stored in <span class="PRODUCTNAME">PostgreSQL</span> data files to be upgraded to a later <span class="PRODUCTNAME">PostgreSQL</span> major version without the data dump/reload typically required for major version upgrades, e.g. from 8.4.7 to the current major release of <span class="PRODUCTNAME">PostgreSQL</span>. It is not required for minor version upgrades, e.g. from 9.0.1 to 9.0.4.</p>
-<p>Major PostgreSQL releases regularly add new features that often change the layout of the system tables, but the internal data storage format rarely changes. <span class="APPLICATION">pg_upgrade</span> uses this fact to perform rapid upgrades by creating new system tables and simply reusing the old user data files. If a future major release ever changes the data storage format in a way that makes the old data format unreadable, <span class="APPLICATION">pg_upgrade</span> will not be usable for such upgrades. (The community will attempt to avoid such situations.)</p>
-<p><span class="APPLICATION">pg_upgrade</span> does its best to make sure the old and new clusters are binary-compatible, e.g. by checking for compatible compile-time settings, including 32/64-bit binaries. It is important that any external modules are also binary compatible, though this cannot be checked by <span class="APPLICATION">pg_upgrade</span>.</p>
-<p>pg_upgrade supports upgrades from 8.3.X and later to the current major release of <span class="PRODUCTNAME">PostgreSQL</span>, including snapshot and alpha releases.</p>
+<h2>描述</h2>
+<p>pg_upgrade(以前称为pg_migrator)允许存储在PostgreSQL数据文件中的数据被升级到一个稍后的PostgreSQL主版本，而不需要进行主要版本升级通常需要的数据转储/重新加载，例如从8.4.7升级到当前的PostgreSQL主要版本。小版本升级不需要它，例如从9.0.1到9.0.4。</p>
+<p>主要的PostgreSQL版本会定期添加一些新特性，这些特性通常会改变系统表的布局，但是内部数据存储格式很少改变。pg_upgrade通过创建新的系统表和简单地重用旧的用户数据文件来使用这个事实来执行快速的升级。如果将来某个主要版本更改了数据存储格式，使旧的数据格式变得不可读，那么pg_upgrade将不能用于此类升级。</p>
+<p>pg_upgrade尽力确保新旧集群是二进制兼容的，例如，通过检查兼容的编译时设置，包括32/64位二进制文件。重要的是，任何外部模块也都是二进制兼容的，尽管pg_upgrade不能检查这一点。</p>
+<p>pg_upgrade支持从8.3.X开始的升级。到目前PostgreSQL的主要版本，包括快照和alpha版本。</p>
 </div>
 <div class="REFSECT1"><a name="AEN133996" id="AEN133996"></a>
-<h2>Options</h2>
-<p><span class="APPLICATION">pg_upgrade</span> accepts the following command-line arguments:</p>
+<h2>选项</h2>
+<p><span class="APPLICATION">pg_upgrade</span>接受以下命令行参数:</p>
 <div class="VARIABLELIST">
 <dl>
 <dt><tt class="OPTION">-b</tt> <tt class="REPLACEABLE c2">bindir</tt><br>
 <tt class="OPTION">--old-bindir=</tt><tt class="REPLACEABLE c2">bindir</tt></dt>
 <dd>
-<p>the old PostgreSQL executable directory; environment variable <tt class="ENVAR">PGBINOLD</tt></p>
+<p>旧的PostgreSQL可执行目录;环境变量PGBINOLD</p>
 </dd>
 <dt><tt class="OPTION">-B</tt> <tt class="REPLACEABLE c2">bindir</tt><br>
 <tt class="OPTION">--new-bindir=</tt><tt class="REPLACEABLE c2">bindir</tt></dt>
 <dd>
-<p>the new PostgreSQL executable directory; environment variable <tt class="ENVAR">PGBINNEW</tt></p>
+<p>新的PostgreSQL可执行目录;环境变量PGBINNEW</tt></p>
 </dd>
 <dt><tt class="OPTION">-c</tt><br>
 <tt class="OPTION">--check</tt></dt>
 <dd>
-<p>check clusters only, don't change any data</p>
+<p>只检查集群，不更改任何数据</p>
 </dd>
 <dt><tt class="OPTION">-d</tt> <tt class="REPLACEABLE c2">datadir</tt><br>
 <tt class="OPTION">--old-datadir=</tt><tt class="REPLACEABLE c2">datadir</tt></dt>
 <dd>
-<p>the old cluster data directory; environment variable <tt class="ENVAR">PGDATAOLD</tt></p>
+<p>旧的群集数据目录;环境变量PGDATAOLD</p>
 </dd>
 <dt><tt class="OPTION">-D</tt> <tt class="REPLACEABLE c2">datadir</tt><br>
 <tt class="OPTION">--new-datadir=</tt><tt class="REPLACEABLE c2">datadir</tt></dt>
 <dd>
-<p>the new cluster data directory; environment variable <tt class="ENVAR">PGDATANEW</tt></p>
+<p>新的群集数据目录;环境变量PGDATANEW</p>
 </dd>
 <dt><tt class="OPTION">-j</tt><br>
 <tt class="OPTION">--jobs</tt></dt>
 <dd>
-<p>number of simultaneous processes or threads to use</p>
+<p>要同时使用的进程或线程的数目</p>
 </dd>
 <dt><tt class="OPTION">-k</tt><br>
 <tt class="OPTION">--link</tt></dt>
 <dd>
-<p>use hard links instead of copying files to the new cluster</p>
+<p>使用硬链接而不是将文件复制到新集群</p>
 </dd>
 <dt><tt class="OPTION">-o</tt> <tt class="REPLACEABLE c2">options</tt><br>
 <tt class="OPTION">--old-options</tt> <tt class="REPLACEABLE c2">options</tt></dt>
 <dd>
-<p>options to be passed directly to the old <tt class="COMMAND">postgres</tt> command</p>
+<p>直接传递到旧postgres命令的选项</p>
 </dd>
 <dt><tt class="OPTION">-O</tt> <tt class="REPLACEABLE c2">options</tt><br>
 <tt class="OPTION">--new-options</tt> <tt class="REPLACEABLE c2">options</tt></dt>
 <dd>
-<p>options to be passed directly to the new <tt class="COMMAND">postgres</tt> command</p>
+<p>直接传递到新postgres命令的选项</p>
 </dd>
 <dt><tt class="OPTION">-p</tt> <tt class="REPLACEABLE c2">port</tt><br>
 <tt class="OPTION">--old-port=</tt><tt class="REPLACEABLE c2">port</tt></dt>
 <dd>
-<p>the old cluster port number; environment variable <tt class="ENVAR">PGPORTOLD</tt></p>
+<p>旧的群集端口号;环境变量PGPORTOLD</p>
 </dd>
 <dt><tt class="OPTION">-P</tt> <tt class="REPLACEABLE c2">port</tt><br>
 <tt class="OPTION">--new-port=</tt><tt class="REPLACEABLE c2">port</tt></dt>
 <dd>
-<p>the new cluster port number; environment variable <tt class="ENVAR">PGPORTNEW</tt></p>
+<p>新的集群端口号;环境变量PGPORTNEW</p>
 </dd>
 <dt><tt class="OPTION">-r</tt><br>
 <tt class="OPTION">--retain</tt></dt>
 <dd>
-<p>retain SQL and log files even after successful completion</p>
+<p>保留SQL和日志文件，即使在成功完成后</p>
 </dd>
 <dt><tt class="OPTION">-U</tt> <tt class="REPLACEABLE c2">username</tt><br>
 <tt class="OPTION">--username=</tt><tt class="REPLACEABLE c2">username</tt></dt>
 <dd>
-<p>cluster's super user name; environment variable <tt class="ENVAR">PGUSER</tt></p>
+<p>集群的超级用户名;环境变量PGUSER</p>
 </dd>
 <dt><tt class="OPTION">-v</tt><br>
 <tt class="OPTION">--verbose</tt></dt>
 <dd>
-<p>enable verbose internal logging</p>
+<p>启用详细的内部日志记录</p>
 </dd>
 <dt><tt class="OPTION">-V</tt><br>
 <tt class="OPTION">--version</tt></dt>
 <dd>
-<p>display version information, then exit</p>
+<p>显示版本信息，然后退出</p>
 </dd>
 <dt><tt class="OPTION">-?</tt><br>
 <tt class="OPTION">--help</tt></dt>
 <dd>
-<p>show help, then exit</p>
+<p>显示帮助，然后退出</p>
 </dd>
 </dl>
 </div>
 </div>
 <div class="REFSECT1"><a name="AEN134140" id="AEN134140"></a>
-<h2>Usage</h2>
-<p>These are the steps to perform an upgrade with <span class="APPLICATION">pg_upgrade</span>:</p>
+<h2>用法</h2>
+<p>以下是使用pg_upgrade执行升级的步骤:</p>
 <div class="PROCEDURE">
 <ol type="1">
 <li class="STEP">
-<p><b>Optionally move the old cluster</b></p>
-<p>If you are using a version-specific installation directory, e.g. <tt class="FILENAME">/opt/PostgreSQL/9.1</tt>, you do not need to move the old cluster. The graphical installers all use version-specific installation directories.</p>
-<p>If your installation directory is not version-specific, e.g. <tt class="FILENAME">/usr/local/pgsql</tt>, it is necessary to move the current PostgreSQL install directory so it does not interfere with the new <span class="PRODUCTNAME">PostgreSQL</span> installation. Once the current <span class="PRODUCTNAME">PostgreSQL</span> server is shut down, it is safe to rename the PostgreSQL installation directory; assuming the old directory is <tt class="FILENAME">/usr/local/pgsql</tt>, you can do:</p>
+<p><b>可以选择移动旧的集群</b></p>
+<p>如果使用特定于版本的安装目录，例如/opt/PostgreSQL/9.1，则不需要移动旧的集群。图形化安装程序都使用特定于版本的安装目录。</p>
+<p>如果您的安装目录不是特定于版本的，例如/usr/local/pgsql，那么有必要移动当前的PostgreSQL安装目录，这样它就不会干扰新的PostgreSQL安装。一旦当前PostgreSQL服务器被关闭，重新命名PostgreSQL安装目录是安全的;假设旧目录是/usr/local/pgsql，可以这样做:</p>
 <pre class="PROGRAMLISTING">mv /usr/local/pgsql /usr/local/pgsql.old</pre>
-<p>to rename the directory.</p>
+<p>来重命名目录。</p>
 </li>
 <li class="STEP">
-<p><b>For source installs, build the new version</b></p>
-<p>Build the new PostgreSQL source with <tt class="COMMAND">configure</tt> flags that are compatible with the old cluster. <span class="APPLICATION">pg_upgrade</span> will check <tt class="COMMAND">pg_controldata</tt> to make sure all settings are compatible before starting the upgrade.</p>
+<p><b>对于源安装，构建新版本</b></p>
+<p>使用与旧集群兼容的配置标志构建新的PostgreSQL源代码。在开始升级之前，pg_upgrade将检查pg_controldata，以确保所有设置都是兼容的。</p>
 </li>
 <li class="STEP">
-<p><b>Install the new PostgreSQL binaries</b></p>
-<p>Install the new server's binaries and support files.</p>
-<p>For source installs, if you wish to install the new server in a custom location, use the <tt class="LITERAL">prefix</tt> variable:</p>
+<p><b>安装新的PostgreSQL二进制文件</b></p>
+<p>安装新服务器的二进制文件和支持文件。</p>
+<p> 对于源安装，如果希望在自定义位置安装新服务器，请使用prefix变量:</p>
 <pre class="PROGRAMLISTING">make prefix=/usr/local/pgsql.new install</pre></li>
 <li class="STEP">
-<p><b>Install pg_upgrade and pg_upgrade_support</b></p>
-<p>Install the <span class="APPLICATION">pg_upgrade</span> binary and <span class="APPLICATION">pg_upgrade_support</span> library in the new PostgreSQL installation.</p>
+<p><b>安装pg升级和pg升级支持</b></p>
+<p>在新的PostgreSQL安装中安装pg_upgrade二进制文件和pg_upgrade_support库。</p>
 </li>
 <li class="STEP">
-<p><b>Initialize the new PostgreSQL cluster</b></p>
-<p>Initialize the new cluster using <tt class="COMMAND">initdb</tt>. Again, use compatible <tt class="COMMAND">initdb</tt> flags that match the old cluster. Many prebuilt installers do this step automatically. There is no need to start the new cluster.</p>
+<p><b>初始化新的PostgreSQL集群</b></p>
+<p>使用initdb初始化新集群。同样，使用与旧集群匹配的兼容initdb标志。许多预构建的安装程序会自动执行此步骤。不需要启动新的集群。</p>
 </li>
 <li class="STEP">
-<p><b>Install custom shared object files</b></p>
-<p>Install any custom shared object files (or DLLs) used by the old cluster into the new cluster, e.g. <tt class="FILENAME">pgcrypto.so</tt>, whether they are from <tt class="FILENAME">contrib</tt> or some other source. Do not install the schema definitions, e.g. <tt class="COMMAND">CREATE EXTENSION pgcrypto</tt>, because these will be upgraded from the old cluster. Also, any custom full text search files (dictionary, synonym, thesaurus, stop words) must also be copied to the new cluster.</p>
+<p><b>安装自定义共享对象文件</b></p>
+<p>将旧集群使用的任何自定义共享对象文件(或dll)安装到新集群中，例如pgcrypto。所以，无论是来自贡献者还是其他来源。不要安装模式定义，例如创建扩展pgcrypto，因为这些将从旧集群升级。此外，任何自定义全文搜索文件(字典、同义词、同义词库、停止单词)也必须复制到新的集群。</p>
 </li>
 <li class="STEP">
-<p><b>Adjust authentication</b></p>
-<p><tt class="COMMAND">pg_upgrade</tt> will connect to the old and new servers several times, so you might want to set authentication to <tt class="LITERAL">peer</tt> in <tt class="FILENAME">pg_hba.conf</tt> or use a <tt class="FILENAME">~/.pgpass</tt> file (see <a href="https://www.postgresql.org/docs/9.4/libpq-pgpass.html">Section 31.15</a>).</p>
+<p><b>调整身份验证</b></p>
+<p>pg_upgrade将多次连接到旧服务器和新服务器，因此您可能希望在pg_hba.conf中将身份验证设置为peer或使用~/。</p>
 </li>
 <li class="STEP">
-<p><b>Stop both servers</b></p>
-<p>Make sure both database servers are stopped using, on Unix, e.g.:</p>
+<p><b>停止所有服务</b></p>
+<p>确保在Unix上停止使用所有数据库服务器，例如:</p>
 <pre class="PROGRAMLISTING">pg_ctl -D /opt/PostgreSQL/8.4 stop
 pg_ctl -D /opt/PostgreSQL/9.0 stop</pre>
-<p>or on Windows, using the proper service names:</p>
+<p>或在Windows上，使用正确的服务名称:</p>
 <pre class="PROGRAMLISTING">NET STOP postgresql-8.4
 NET STOP postgresql-9.0</pre>
-<p>or</p>
-<pre class="PROGRAMLISTING">NET STOP pgsql-8.3  (<span class="PRODUCTNAME">PostgreSQL</span> 8.3 and older used a different service name)</pre></li>
+<p>或</p>
+<pre class="PROGRAMLISTING">NET STOP pgsql-8.3  (<span class="PRODUCTNAME">PostgreSQL</span> 8.3 及以上版本使用了不同的服务名)</pre></li>
 <li class="STEP">
-<p><b>Run <span class="APPLICATION">pg_upgrade</span></b></p>
-<p>Always run the <span class="APPLICATION">pg_upgrade</span> binary of the new server, not the old one. <span class="APPLICATION">pg_upgrade</span> requires the specification of the old and new cluster's data and executable (<tt class="FILENAME">bin</tt>) directories. You can also specify user and port values, and whether you want the data linked instead of copied (the default).</p>
-<p>If you use link mode, the upgrade will be much faster (no file copying) and use less disk space, but you will not be able to access your old cluster once you start the new cluster after the upgrade. Link mode also requires that the old and new cluster data directories be in the same file system. (Tablespaces and <tt class="FILENAME">pg_xlog</tt> can be on different file systems.) See <tt class="LITERAL">pg_upgrade --help</tt> for a full list of options.</p>
-<p>The <tt class="OPTION">--jobs</tt> option allows multiple CPU cores to be used for copying/linking of files and to dump and reload database schemas in parallel; a good place to start is the maximum of the number of CPU cores and tablespaces. This option can dramatically reduce the time to upgrade a multi-database server running on a multiprocessor machine.</p>
-<p>For Windows users, you must be logged into an administrative account, and then start a shell as the <tt class="LITERAL">postgres</tt> user and set the proper path:</p>
+<p><b>运行pg升级</b></p>
+<p>总是运行新服务器的pg_upgrade二进制文件，而不是旧的。pg_upgrade需要指定新旧集群的数据和可执行(bin)目录。您还可以指定用户和端口值，以及是否希望数据链接而不是复制(默认值)。</p>
+<p>如果使用链接模式，升级将快得多(没有文件复制)，并且使用更少的磁盘空间，但是在升级后启动新集群后，您将无法访问旧集群。链接模式还要求旧的和新的集群数据目录位于同一个文件系统中。(表空间和pg_xlog可以位于不同的文件系统上。)请参阅pg_upgrade——选项的完整列表的帮助。</p>
+<p>jobs选项允许使用多个CPU内核来复制/链接文件，并并行地转储和重新加载数据库模式;最好的起点是CPU内核和表空间的最大数量。这个选项可以显著减少在多处理器机器上运行的多数据库服务器的升级时间。</p>
+<p>对于Windows用户，您必须登录到一个管理帐户，然后作为postgres用户启动一个shell，并设置正确的路径:</p>
 <pre class="PROGRAMLISTING">RUNAS /USER:postgres "CMD.EXE"
 SET PATH=%PATH%;C:\Program Files\PostgreSQL\9.0\bin;</pre>
-<p>and then run <span class="APPLICATION">pg_upgrade</span> with quoted directories, e.g.:</p>
+<p>然后运行pg_upgrade和带引号的目录，例如:</p>
 <pre class="PROGRAMLISTING">pg_upgrade.exe
         --old-datadir "C:/Program Files/PostgreSQL/8.4/data"
         --new-datadir "C:/Program Files/PostgreSQL/9.0/data"
         --old-bindir "C:/Program Files/PostgreSQL/8.4/bin"
         --new-bindir "C:/Program Files/PostgreSQL/9.0/bin"</pre>
-<p>Once started, <tt class="COMMAND">pg_upgrade</tt> will verify the two clusters are compatible and then do the upgrade. You can use <tt class="COMMAND">pg_upgrade --check</tt> to perform only the checks, even if the old server is still running. <tt class="COMMAND">pg_upgrade --check</tt> will also outline any manual adjustments you will need to make after the upgrade. If you are going to be using link mode, you should use the <tt class="OPTION">--link</tt> option with <tt class="OPTION">--check</tt> to enable link-mode-specific checks. <tt class="COMMAND">pg_upgrade</tt> requires write permission in the current directory.</p>
-<p>Obviously, no one should be accessing the clusters during the upgrade. <span class="APPLICATION">pg_upgrade</span> defaults to running servers on port 50432 to avoid unintended client connections. You can use the same port number for both clusters when doing an upgrade because the old and new clusters will not be running at the same time. However, when checking an old running server, the old and new port numbers must be different.</p>
-<p>If an error occurs while restoring the database schema, <tt class="COMMAND">pg_upgrade</tt> will exit and you will have to revert to the old cluster as outlined in <a href="https://www.postgresql.org/docs/9.4/pgupgrade.html#PGUPGRADE-STEP-REVERT">step 14</a> below. To try <tt class="COMMAND">pg_upgrade</tt> again, you will need to modify the old cluster so the pg_upgrade schema restore succeeds. If the problem is a contrib module, you might need to uninstall the contrib module from the old cluster and install it in the new cluster after the upgrade, assuming the module is not being used to store user data.</p>
+<p>一旦启动，pg_upgrade将验证两个集群是否兼容，然后进行升级。可以使用pg_upgrade——check只执行检查，即使旧的服务器仍在运行。pg_upgrade——检查还会列出升级后需要进行的所有手动调整。如果要使用链接模式，应该使用—link选项with—check来启用特定于链接模式的检查。pg_upgrade需要当前目录中的写权限。</p>
+<p>显然，在升级期间不应该有人访问集群。pg_upgrade默认在端口50432上运行服务器，以避免意外的客户端连接。在进行升级时，可以为两个集群使用相同的端口号，因为新旧集群不会同时运行。但是，在检查一个旧的正在运行的服务器时，旧端口号和新端口号必须不同。</p>
+<p>如果在恢复数据库schema时发生错误，pg_upgrade将退出，您将必须恢复到下面步骤14中所述的旧集群。要再次尝试pg_upgrade，您需要修改旧的集群，以便pg_upgrade模式恢复成功。如果问题是一个contrib模块，那么您可能需要从旧集群卸载contrib模块，并在升级后将其安装到新集群中(假设该模块不用于存储用户数据)。</p>
 </li>
 <li class="STEP">
-<p><b>Restore <tt class="FILENAME">pg_hba.conf</tt></b></p>
-<p>If you modified <tt class="FILENAME">pg_hba.conf</tt>, restore its original settings. It might also be necessary to adjust other configuration files in the new cluster to match the old cluster, e.g. <tt class="FILENAME">postgresql.conf</tt>.</p>
+<p><b>恢复pg hba.conf</b></p>
+<p>如果修改了pg_hba。conf，恢复原始设置。可能还需要调整新集群中的其他配置文件以匹配旧集群，例如postgresql.conf。</p>
 </li>
 <li class="STEP">
-<p><b>Post-Upgrade processing</b></p>
-<p>If any post-upgrade processing is required, pg_upgrade will issue warnings as it completes. It will also generate script files that must be run by the administrator. The script files will connect to each database that needs post-upgrade processing. Each script should be run using:</p>
+<p><b>Post-Upgrade处理</b></p>
+<p>如果需要任何升级后处理，pg_upgrade将在完成时发出警告。它还将生成必须由管理员运行的脚本文件。脚本文件将连接到需要升级后处理的每个数据库。每个脚本应该运行使用:</p>
 <pre class="PROGRAMLISTING">psql --username postgres --file script.sql postgres</pre>
-<p>The scripts can be run in any order and can be deleted once they have been run.</p>
+<p>脚本可以以任何顺序运行，并且可以在运行之后删除它们。</p>
 <div class="CAUTION">
 <table class="CAUTION" border="1" width="100%">
 <tbody><tr>
-<td class="c3" align="center">Caution</td>
+<td class="c3" align="center">警告</td>
 </tr>
 <tr>
 <td align="left">
-<p>In general it is unsafe to access tables referenced in rebuild scripts until the rebuild scripts have run to completion; doing so could yield incorrect results or poor performance. Tables not referenced in rebuild scripts can be accessed immediately.</p>
+<p>通常，在重新生成脚本运行到完成之前，访问重新生成脚本中引用的表是不安全的;这样做可能会产生错误的结果或糟糕的性能。可以立即访问在重新生成脚本中没有引用的表。</p>
 </td>
 </tr>
 </tbody></table>
 </div>
 </li>
 <li class="STEP">
-<p><b>Statistics</b></p>
-<p>Because optimizer statistics are not transferred by <tt class="COMMAND">pg_upgrade</tt>, you will be instructed to run a command to regenerate that information at the end of the upgrade. You might need to set connection parameters to match your new cluster.</p>
+<p><b>统计</b></p>
+<p>因为优化器统计信息不是由pg_upgrade传输的，所以将指示您在升级结束时运行一条命令来重新生成该信息。您可能需要设置连接参数来匹配新的集群。</p>
 </li>
 <li class="STEP">
-<p><b>Delete old cluster</b></p>
-<p>Once you are satisfied with the upgrade, you can delete the old cluster's data directories by running the script mentioned when <tt class="COMMAND">pg_upgrade</tt> completes. (Automatic deletion is not possible if you have user-defined tablespaces inside the old data directory.) You can also delete the old installation directories (e.g. <tt class="FILENAME">bin</tt>, <tt class="FILENAME">share</tt>).</p>
+<p><b>删除老集群</b></p>
+<p>一旦您对升级感到满意，您就可以通过运行pg_upgrade完成时提到的脚本来删除旧的集群的数据目录。(如果旧数据目录中有用户定义的表空间，则无法自动删除。)您还可以删除旧的安装目录(例如bin、share)。</p>
 </li>
 <li class="STEP"><a name="PGUPGRADE-STEP-REVERT" id="PGUPGRADE-STEP-REVERT"></a>
-<p><b>Reverting to old cluster</b></p>
-<p>If, after running <tt class="COMMAND">pg_upgrade</tt>, you wish to revert to the old cluster, there are several options:</p>
+<p><b>恢复到旧集群</b></p>
+<p>如果在运行pg_upgrade之后，您希望恢复到旧的集群，有几个选项:</p>
 <ul>
 <li>
-<p>If the <tt class="OPTION">--check</tt> option was used, the old cluster was unmodified; it can be restarted.</p>
+<p>如果使用了——check选项，则未修改旧的集群;它可以重新启动。</p>
 </li>
 <li>
-<p>If the <tt class="OPTION">--link</tt> option was <span class="emphasis EMPHASIS c4">not</span> used, the old cluster was unmodified; it can be restarted.</p>
+<p>如果没有使用——link选项，则旧集群未被修改;它可以重新启动。</p>
 </li>
 <li>
-<p>If the <tt class="OPTION">--link</tt> option was used, the data files might be shared between the old and new cluster:</p>
+<p>如果使用——link选项，数据文件可能在新旧集群之间共享:</p>
 <ul>
 <li>
-<p>If <tt class="COMMAND">pg_upgrade</tt> aborted before linking started, the old cluster was unmodified; it can be restarted.</p>
+<p>If pg_upgrade 在链接开始前退出，  老集群是没有被修改的，它可以重新启动。</p>
 </li>
 <li>
-<p>If you did <span class="emphasis EMPHASIS c4">not</span> start the new cluster, the old cluster was unmodified except that, when linking started, a <tt class="LITERAL">.old</tt> suffix was appended to <tt class="FILENAME">$PGDATA/global/pg_control</tt>. To reuse the old cluster, remove the <tt class="FILENAME">.old</tt> suffix from <tt class="FILENAME">$PGDATA/global/pg_control</tt>; you can then restart the old cluster.</p>
+<p>如果你不开始 新的集群, 旧的集群除非被修改, 当链接已经开始, 附加到 $PGDATA/global/pg_control. .old 后缀要重用旧的集群，请从$PGDATA/global/pg_control中删除.old后缀;然后可以重新启动旧的集群。</p>
 </li>
 <li>
-<p>If you did start the new cluster, it has written to shared files and it is unsafe to use the old cluster. The old cluster will need to be restored from backup in this case.</p>
+<p>如果开始了新的 cluster, 写入共享文件和安全使用旧集群在这种情况下，需要从备份中恢复旧的集群。</p>
 </li>
 </ul>
 </li>
@@ -280,44 +280,44 @@ SET PATH=%PATH%;C:\Program Files\PostgreSQL\9.0\bin;</pre>
 </div>
 </div>
 <div class="REFSECT1"><a name="AEN134277" id="AEN134277"></a>
-<h2>Notes</h2>
-<p><span class="APPLICATION">pg_upgrade</span> does not support upgrading of databases containing these <tt class="TYPE">reg*</tt> OID-referencing system data types: <tt class="TYPE">regproc</tt>, <tt class="TYPE">regprocedure</tt>, <tt class="TYPE">regoper</tt>, <tt class="TYPE">regoperator</tt>, <tt class="TYPE">regconfig</tt>, and <tt class="TYPE">regdictionary</tt>. (<tt class="TYPE">regtype</tt> can be upgraded.)</p>
-<p>All failure, rebuild, and reindex cases will be reported by <span class="APPLICATION">pg_upgrade</span> if they affect your installation; post-upgrade scripts to rebuild tables and indexes will be generated automatically. If you are trying to automate the upgrade of many clusters, you should find that clusters with identical database schemas require the same post-upgrade steps for all cluster upgrades; this is because the post-upgrade steps are based on the database schemas, and not user data.</p>
-<p>For deployment testing, create a schema-only copy of the old cluster, insert dummy data, and upgrade that.</p>
-<p>If you are upgrading a pre-<span class="PRODUCTNAME">PostgreSQL</span> 9.2 cluster that uses a configuration-file-only directory, you must pass the real data directory location to <span class="APPLICATION">pg_upgrade</span>, and pass the configuration directory location to the server, e.g. <tt class="LITERAL">-d /real-data-directory -o '-D /configuration-directory'</tt>.</p>
-<p>If using a pre-9.1 old server that is using a non-default Unix-domain socket directory or a default that differs from the default of the new cluster, set <tt class="ENVAR">PGHOST</tt> to point to the old server's socket location. (This is not relevant on Windows.)</p>
-<p>A Log-Shipping Standby Server (<a href="https://www.postgresql.org/docs/9.4/warm-standby.html">Section 25.2</a>) cannot be upgraded because the server must allow writes. The simplest way is to upgrade the primary and use <tt class="COMMAND">rsync</tt> to rebuild the standbys. You can run <tt class="COMMAND">rsync</tt> while the primary is down, or as part of a base backup (<a href="https://www.postgresql.org/docs/9.4/continuous-archiving.html#BACKUP-BASE-BACKUP">Section 24.3.2</a>) which overwrites the old standby cluster.</p>
-<p>If you want to use link mode and you do not want your old cluster to be modified when the new cluster is started, make a copy of the old cluster and upgrade that in link mode. To make a valid copy of the old cluster, use <tt class="COMMAND">rsync</tt> to create a dirty copy of the old cluster while the server is running, then shut down the old server and run <tt class="COMMAND">rsync</tt> again to update the copy with any changes to make it consistent. You might want to exclude some files, e.g. <tt class="FILENAME">postmaster.pid</tt>, as documented in <a href="https://www.postgresql.org/docs/9.4/continuous-archiving.html#BACKUP-LOWLEVEL-BASE-BACKUP">Section 24.3.3</a>. If your file system supports file system snapshots or copy-on-write file copies, you can use that to make a backup of the old cluster and tablespaces, though the snapshot and copies must be created simultaneously or while the database server is down.</p>
+<h2>注释</h2>
+<p>pg_upgrade不支持包含这些reg* OID -引用系统数据类型的数据库的升级:regproc、regprocedure、regoper、regoperator、regconfig和regdictionary。(regtype可以升级。)</p>
+<p>如果影响安装，则pg_upgrade将报告所有失败、重新构建和重新索引的情况;升级后用于重新构建表和索引的脚本将自动生成。如果您试图自动化许多集群的升级，您会发现具有相同数据库模式的集群需要所有集群升级的相同升级后步骤;这是因为升级后的步骤基于数据库schema，而不是用户数据。</p>
+<p>对于部署测试，创建旧集群的模式副本，插入模拟数据，并对其进行升级。</p>
+<p>如果您正在升级一个使用仅配置文件目录的pre-PostgreSQL 9.2集群，则必须将实际数据目录位置传递给pg_upgrade，并将配置目录位置传递给服务器，例如-d /real-data-directory -o ' -d /configuration-directory'。</p>
+<p>如果使用的是使用非默认unix域套接字目录的9.1之前的旧服务器，或者使用的默认套接字目录与新集群的默认套接字目录不同，请将PGHOST设置为指向旧服务器的套接字位置。(这与Windows无关。)</p>
+<p>无法升级日志传送备用服务器，因为服务器必须允许写操作。最简单的方法是升级主服务器并使用rsync重新构建备用服务器。您可以在主服务器关闭时运行rsync，或者作为覆盖旧备用集群的基本备份的一部分运行rsync。</p>
+<p>如果您希望使用链接模式，并且不希望在新集群启动时修改旧集群，请复制旧集群并在链接模式下升级它。要创建旧集群的有效副本，请在服务器运行时使用rsync创建旧集群的脏副本，然后关闭旧服务器并再次运行rsync，以更新副本，使其保持一致。您可能想要排除一些文件，例如postmaster。pid。如果您的文件系统支持文件系统快照或即写即拷的文件副本，那么您可以使用它对旧的集群和表空间进行备份，不过快照和副本必须同时创建或在数据库服务器关闭时创建。</p>
 <div class="REFSECT2"><a name="AEN134308" id="AEN134308"></a>
-<h3>Limitations in Upgrading from PostgreSQL 8.3</h3>
-<p>Upgrading <span class="emphasis EMPHASIS c4">from</span> PostgreSQL 8.3 has additional restrictions not present when upgrading from later PostgreSQL releases. For example, pg_upgrade will not work for upgrading from 8.3 if a user column is defined as:</p>
+<h3>从PostgreSQL 8.3升级的限制</h3>
+<p>从PostgreSQL 8.3升级有一些额外的限制，这在从以后的PostgreSQL版本升级时是不存在的。例如，如果用户列定义为:</p>
 <ul>
 <li>
-<p>a <tt class="TYPE">tsquery</tt> data type</p>
+<p>tsquery数据类型</p>
 </li>
 <li>
-<p>data type <tt class="TYPE">name</tt> and is not the first column</p>
+<p>数据类型名称，并且不是第一列</p>
 </li>
 </ul>
-<p>You must drop any such columns and upgrade them manually.</p>
-<p>pg_upgrade will not work if the <tt class="FILENAME">ltree</tt> contrib module is installed in a database.</p>
-<p>pg_upgrade will require a table rebuild if:</p>
+<p>您必须删除任何此类列并手动升级它们。</p>
+<p>如果ltree contrib模块安装在数据库中，pg_upgrade将无法工作。</p>
+<p>pg升级将需要表重建，如果:</p>
 <ul>
 <li>
-<p>a user column is of data type <tt class="TYPE">tsvector</tt></p>
+<p>用户列的数据类型为tsvector</tt></p>
 </li>
 </ul>
-<p>pg_upgrade will require a reindex if:</p>
+<p>pg升级将需要重新索引，如果:</p>
 <ul>
 <li>
-<p>an index is of type hash or GIN</p>
+<p>索引的类型是hash或GIN</p>
 </li>
 <li>
-<p>an index uses <code class="FUNCTION">bpchar_pattern_ops</code></p>
+<p>索引使用bpchar_pattern_ops</code></p>
 </li>
 </ul>
-<p>Also, the default datetime storage format changed to integer after <span class="PRODUCTNAME">PostgreSQL</span> 8.3. pg_upgrade will check that the datetime storage format used by the old and new clusters match. Make sure your new cluster is built with the configure flag <tt class="OPTION">--disable-integer-datetimes</tt>.</p>
-<p>For Windows users, note that due to different integer datetimes settings used by the graphical installer and the MSI installer, it is only possible to upgrade from version 8.3 of the installer distribution to version 8.4 or later of the installer distribution. It is not possible to upgrade from the MSI installer to the new graphical installer.</p>
+<p>而且，默认的datetime存储格式在PostgreSQL 8.3之后变成了整数。pg_upgrade将检查新旧集群使用的datetime存储格式是否匹配。确保您的新集群是使用configure标志——disable-integer-datetimes构建的。</p>
+<p>对于Windows用户，请注意，由于图形安装程序和MSI安装程序使用的整数datetimes设置不同，因此只能从安装程序发行版的8.3版升级到8.4版或更高版本的安装程序发行版。无法从MSI安装程序升级到新的图形安装程序。</p>
 </div>
 </div>
 
