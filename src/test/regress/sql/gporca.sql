@@ -2304,7 +2304,7 @@ insert into tt values (1, 'b'), (1, 'B');
 -- expected fall back to the planner
 select * from tc, tt where c = v;
 
--- test gpexpand phase 1
+-- test hdbexpand phase 1
 -- right now, these will fall back to planner in 6X and 7X, ORCA should handle them in 5X unless noted
 drop table if exists noexp_hash, gpexp_hash, gpexp_rand, gpexp_repl;
 create table noexp_hash(a int, b int) distributed by (a);

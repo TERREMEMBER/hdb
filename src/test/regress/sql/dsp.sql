@@ -23,7 +23,7 @@ alter database dsp2 set gp_default_storage_options =
 -- \! cp $(psql -d postgres -t -c "show data_directory")/pg_hba.conf /tmp/
 -- \! echo "local    all    all    trust" >> /tmp/pg_hba.conf
 -- \! cp /tmp/pg_hba.conf $(psql -d postgres -t -c "show data_directory")/pg_hba.conf
--- \! gpstop -qau
+-- \! hdbstop -qau
 
 -- alter role dsprole1 set gp_default_storage_options to
 -- 	"appendonly=true,blocksize=8192";
@@ -425,7 +425,7 @@ RESET gp_default_storage_options;
 -- m/.*\[ERROR\]*/
 -- s/.*\[ERROR\]/[ERROR]/gm
 -- end_matchsubs
-\!gpconfig -c gp_default_storage_options -v 'appendonly=true' --masteronly
-\!gpconfig -c gp_default_storage_options -v 'appendonly=true' -m 'appendonly=false'
+\!hdbconfig -c gp_default_storage_options -v 'appendonly=true' --masteronly
+\!hdbconfig -c gp_default_storage_options -v 'appendonly=true' -m 'appendonly=false'
 
-\!gpconfig -s gp_default_storage_options
+\!hdbconfig -s gp_default_storage_options

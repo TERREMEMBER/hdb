@@ -95,7 +95,7 @@ DROP PROTOCOL IF EXISTS demoprot_untrusted2;
 
 drop external web table if exists check_ps;
 CREATE EXTERNAL WEB TABLE check_ps (x text)
-execute E'( (ps -ef || ps -aux) | grep gpfdist | grep -v grep)'
+execute E'( (ps -ef || ps -aux) | grep hdbfdist | grep -v grep)'
 on SEGMENT 0
 format 'text';
 drop external web table if exists check_env;

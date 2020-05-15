@@ -2,6 +2,6 @@
 -- Clean up for segspace.sql tests
 -- 
 -- start_ignore
-\! gpconfig -r gp_workfile_limit_per_segment
+\! hdbconfig -r gp_workfile_limit_per_segment
 \! gpstop -rai
 -- end_ignore

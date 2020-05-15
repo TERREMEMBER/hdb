@@ -48,7 +48,7 @@ def dereference_symlink(path):
 
 
 GPHOME = dereference_symlink(gp.get_gphome())
-print(GPHOME)
+
 GPPKG_EXTENSION = '.hdbpkg'
 SPECFILE_NAME = 'hdbpkg_spec.yml'
 SPECFILE_REQUIRED_TAGS = ['pkgname', 'version', 'architecture', 'os', 'description', 'gpdbversion']

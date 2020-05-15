@@ -50,7 +50,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and create RET gpfdist
+-- Role to create RET hdbfdist and create RET hdbfdist
 --
 CREATE ROLE ext_u19 CREATEEXTTABLE(protocol='gpfdist') CREATEEXTTABLE(protocol='gpfdist', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u19';
@@ -90,7 +90,7 @@ drop external table priv_ext_test1;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and create RET http
+-- Role to create RET hdbfdist and create RET http
 --
 CREATE ROLE ext_u23 CREATEEXTTABLE(type='readable') CREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u23';
@@ -105,7 +105,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and create RET http
+-- Role to create RET hdbfdist and create RET http
 --
 CREATE ROLE ext_u29 CREATEEXTTABLE(protocol='gpfdist',type='readable') CREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u29';
@@ -134,7 +134,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and create WET gpfdist
+-- Role to create RET hdbfdist and create WET hdbfdist
 --
 CREATE ROLE ext_u21 CREATEEXTTABLE(protocol='gpfdist') CREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u21';
@@ -178,7 +178,7 @@ drop external table priv_ext_test2;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and NO create RET gpfdist
+-- Role to create RET hdbfdist and NO create RET hdbfdist
 --
 
 CREATE ROLE ext_u4 CREATEEXTTABLE(protocol='gpfdist') NOCREATEEXTTABLE(protocol='gpfdist', type='readable'); -- fail due to conflict
@@ -192,7 +192,7 @@ select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_au
 
 
 --
--- Role to create RET gpfdist and NO create RET http
+-- Role to create RET hdbfdist and NO create RET http
 --
 CREATE ROLE ext_u8 CREATEEXTTABLE(type='readable') NOCREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u8';
@@ -219,7 +219,7 @@ drop external table priv_ext_test1;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET gpfdist and NO create WET gpfdist
+-- Role to create RET hdbfdist and NO create WET hdbfdist
 --
 CREATE ROLE ext_u6 CREATEEXTTABLE(protocol='gpfdist') NOCREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u6';
@@ -274,7 +274,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create RET http and NO create RET gpfdist
+-- Role to create RET http and NO create RET hdbfdist
 --
 CREATE ROLE ext_u17 CREATEEXTTABLE(protocol='http',type='readable') NOCREATEEXTTABLE(protocol='gpfdist', type='readable');
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u17';
@@ -302,7 +302,7 @@ select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_au
 
 
 --
--- Role to create RET http and NO create WET gpfdist
+-- Role to create RET http and NO create WET hdbfdist
 --
 CREATE ROLE ext_u18 CREATEEXTTABLE(protocol='http',type='readable') NOCREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u18';
@@ -316,7 +316,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to create WET gpfdist and create RET http
+-- Role to create WET hdbfdist and create RET http
 --
 CREATE ROLE ext_u31 CREATEEXTTABLE(protocol='gpfdist',type='writable') CREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u31';
@@ -348,7 +348,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to create WET gpfdist and create WET gpfdist
+-- Role to create WET hdbfdist and create WET hdbfdist
 --
 CREATE ROLE ext_u24 CREATEEXTTABLE(type='writable') CREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u24';
@@ -377,7 +377,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to create WET gpfdist and NO create RET gpfdist
+-- Role to create WET hdbfdist and NO create RET hdbfdist
 --
 CREATE ROLE ext_u15 CREATEEXTTABLE(protocol='gpfdist',type='writable') NOCREATEEXTTABLE(protocol='gpfdist', type='readable');
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u15';
@@ -392,7 +392,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to create WET gpfdist and NO create RET http
+-- Role to create WET hdbfdist and NO create RET http
 --
 CREATE ROLE ext_u16 CREATEEXTTABLE(protocol='gpfdist',type='writable') NOCREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u16';
@@ -408,7 +408,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to create WET gpfdist and NO create WET gpfdist
+-- Role to create WET hdbfdist and NO create WET hdbfdist
 --
 CREATE ROLE ext_u9 CREATEEXTTABLE(type='writable') NOCREATEEXTTABLE(protocol='gpfdist', type='writable'); -- fail due to conflict
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u9';
@@ -419,7 +419,7 @@ CREATE ROLE ext_u11 CREATEEXTTABLE(protocol='gpfdist',type='writable') NOCREATEE
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u11';
 --
 --
--- Role to NO create RET gpfdist and NO create RET gpfdist
+-- Role to NO create RET hdbfdist and NO create RET hdbfdist
 --
 CREATE ROLE ext_u34 NOCREATEEXTTABLE(protocol='gpfdist') NOCREATEEXTTABLE(protocol='gpfdist', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u34';
@@ -464,7 +464,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to NO create RET gpfdist and NO create RET http
+-- Role to NO create RET hdbfdist and NO create RET http
 --
 CREATE ROLE ext_u38 NOCREATEEXTTABLE(type='readable') NOCREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u38';
@@ -495,7 +495,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to NO create RET gpfdist and NO create WET gpfdist
+-- Role to NO create RET hdbfdist and NO create WET hdbfdist
 --
 CREATE ROLE ext_u36 NOCREATEEXTTABLE(protocol='gpfdist') NOCREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u36';
@@ -582,7 +582,7 @@ RESET SESSION AUTHORIZATION;
 
 
 --
--- Role to NO create WET gpfdist and NO create RET http
+-- Role to NO create WET hdbfdist and NO create RET http
 --
 CREATE ROLE ext_u46 NOCREATEEXTTABLE(protocol='gpfdist',type='writable') NOCREATEEXTTABLE(protocol='http', type='readable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u46';
@@ -598,7 +598,7 @@ drop external table priv_ext_test3;
 RESET SESSION AUTHORIZATION;
 
 --
--- Role to NO create WET gpfdist and NO create WET gpfdist
+-- Role to NO create WET hdbfdist and NO create WET hdbfdist
 --
 CREATE ROLE ext_u39 NOCREATEEXTTABLE(type='writable') NOCREATEEXTTABLE(protocol='gpfdist', type='writable'); 
 select rolname, rolcreaterextgpfd,rolcreaterexthttp,rolcreatewextgpfd from pg_authid where rolname='ext_u39';

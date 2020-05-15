@@ -4,6 +4,6 @@
 -- will check for leaks of instrumentation slots in shmem.
 
 -- start_ignore
-\! gpconfig -c gp_enable_query_metrics -v on 
-\! PGDATESTYLE="" gpstop -rai
+\! hdbconfig -c gp_enable_query_metrics -v on 
+\! PGDATESTYLE="" hdbstop -rai
 -- end_ignore
