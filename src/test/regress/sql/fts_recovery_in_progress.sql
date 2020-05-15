@@ -10,17 +10,17 @@ select gp_inject_fault_infinite('fts_conn_startup_packet', 'skip', dbid)
 from gp_segment_configuration where content = 0 and role = 'p';
 -- to make test deterministic and fast
 -- start_ignore
-\!gpconfig -c gp_fts_probe_retries -v 2 --masteronly
+\!hdbconfig -c gp_fts_probe_retries -v 2 --masteronly
 -- end_ignore
 
 -- Allow extra time for mirror promotion to complete recovery to avoid
--- gprecoverseg BEGIN failures due to gang creation failure as some primaries
+-- hdbrecoverseg BEGIN failures due to gang creation failure as some primaries
 -- are not up. Setting these increase the number of retries in gang creation in
 -- case segment is in recovery. Approximately we want to wait 2 minutes at most.
 -- start_ignore
-\!gpconfig -c gp_gang_creation_retry_count -v 127 --skipvalidation --masteronly
-\!gpconfig -c gp_gang_creation_retry_timer -v 1000 --skipvalidation --masteronly
-\!gpstop -u
+\!hdbconfig -c gp_gang_creation_retry_count -v 127 --skipvalidation --masteronly
+\!hdbconfig -c gp_gang_creation_retry_timer -v 1000 --skipvalidation --masteronly
+\!hdbstop -u
 -- end_ignore
 -- Wait a few seconds, to ensure the config changes take effect.
 select pg_sleep(5);
@@ -46,7 +46,7 @@ select role, preferred_role, mode, status from gp_segment_configuration where co
 -- The remaining steps are to bring back the cluster to original state.
 -- start_ignore
 
--- Wait until content 0 mirror is promoted otherwise, gprecoverseg
+-- Wait until content 0 mirror is promoted otherwise, hdbrecoverseg
 -- that runs after will fail.
 do $$
 declare
@@ -66,7 +66,7 @@ begin
 end;
 $$;
 
-\! gprecoverseg -av --no-progress
+\! hdbrecoverseg -av --no-progress
 -- end_ignore
 
 -- loop while segments come in sync
@@ -83,7 +83,7 @@ $$;
 select role, preferred_role, mode, status from gp_segment_configuration where content = 0;
 
 -- start_ignore
-\! gprecoverseg -arv
+\! hdbrecoverseg -arv
 -- end_ignore
 
 -- loop while segments come in sync
@@ -100,10 +100,10 @@ $$;
 select role, preferred_role, mode, status from gp_segment_configuration where content = 0;
 
 -- start_ignore
-\!gpconfig -r gp_fts_probe_retries --masteronly
-\!gpconfig -r gp_gang_creation_retry_count --skipvalidation --masteronly
-\!gpconfig -r gp_gang_creation_retry_timer --skipvalidation --masteronly
-\!gpstop -u
+\!hdbconfig -r gp_fts_probe_retries --masteronly
+\!hdbconfig -r gp_gang_creation_retry_count --skipvalidation --masteronly
+\!hdbconfig -r gp_gang_creation_retry_timer --skipvalidation --masteronly
+\!hdbstop -u
 -- end_ignore
 
 -- cleanup steps

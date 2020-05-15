@@ -11725,7 +11725,7 @@ select * from tc, tt where c = v;
  1 | b | 1 | b
 (4 rows)
 
--- test gpexpand phase 1
+-- test hdbexpand phase 1
 -- right now, these will fall back to planner in 6X and 7X, ORCA should handle them in 5X unless noted
 drop table if exists noexp_hash, gpexp_hash, gpexp_rand, gpexp_repl;
 NOTICE:  table "noexp_hash" does not exist, skipping

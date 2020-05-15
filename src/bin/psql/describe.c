@@ -71,7 +71,7 @@ static bool isGPDB(void)
 		return false;
 
 	ver = PQgetvalue(res, 0, 0);
-	if (strstr(ver, "Greenplum") != NULL)
+	if (strstr(ver, "inHybrid") != NULL)
 	{
 		PQclear(res);
 		talking_to_gpdb = gpdb_yes;

@@ -14,7 +14,7 @@ create user user_disallowed_via_local with login;
 \! echo 'local all user_disallowed_via_local reject' | tee -a $MASTER_DATA_DIRECTORY/pg_hba.conf;
 
 -- inform the cluster to reload the settings
-\! gpstop -qu;
+\! hdbstop -qu;
 -- the reloading might not happen immediately, wait for a while
 select pg_sleep(2);
 

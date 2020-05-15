@@ -1272,7 +1272,7 @@ alter table foo alter partition others split partition subothers at (10) into (p
 alter table foo alter partition others split default partition at (10) into (partition b1, default partition);
 drop table foo;
 
--- Drop table as gpcheckcat will complaint of not having constraint for newly
+-- Drop table as hdbcheckcat will complaint of not having constraint for newly
 -- created tables due to split.
 drop table mpp14613_list;
 

@@ -7,6 +7,6 @@
 -- query execution. If gp_workfile_limit_per_segment == 0 (default value), 
 -- then we don't change 'used_segspace' counter.
 -- start_ignore
-\! gpconfig -c gp_workfile_limit_per_segment -v 5242880
+\! hdbconfig -c gp_workfile_limit_per_segment -v 5242880
 \! gpstop -rai
 -- end_ignore
