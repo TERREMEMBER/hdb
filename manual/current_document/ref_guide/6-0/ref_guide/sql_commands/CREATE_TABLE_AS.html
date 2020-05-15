@@ -3848,14 +3848,12 @@ oids[=TRUE|FALSE]</pre>
             堆存储表只能是面向行的。</dd>
 
           <dd class="dd pd">
-<strong class="ph b">compresstype</strong> — 设置为<samp class="ph codeph">ZLIB</samp>（默认值），<samp class="ph codeph">ZSTD</samp>或<samp class="ph codeph">QUICKLZ</samp><sup class="ph sup">1</sup>以指定使用的压缩类型。
+<strong class="ph b">compresstype</strong> — 设置为<samp class="ph codeph">ZLIB</samp>（默认值），<samp class="ph codeph">ZSTD</samp><sup class="ph sup">1</sup>以指定使用的压缩类型。
             值<samp class="ph codeph">NONE</samp>禁用压缩。
             Zstd提供速度或良好的压缩率，可通过<samp class="ph codeph">compresslevel</samp>选项进行调整。
-            提供QuickLZ和zlib是为了向后兼容。
-            在通常的工作负载上，Zstd的性能优于这些压缩类型。
             仅当<samp class="ph codeph">appendoptimized=TRUE</samp>时，<samp class="ph codeph">compresstype</samp>选项才有效。
             <div class="note note">
-<span class="notetitle">Note:</span> <sup class="ph sup">1</sup>QuickLZ压缩仅在inspur inHybrid数据库的商业版本中可用。</div>
+</div>
 </dd>
 
           <dd class="dd pd">
