@@ -55,8 +55,8 @@
       register: postgres_hdb_version
     - name: fail if the correct inHybrid version is not installed
       fail:
-        msg: "Expected inHybrid version {{ version }}, but found '{{ postgres_hdb_version.stdout }}'"
-      when: "version is not defined or version not in postgres_hdb_version.stdout"
+        msg: "Expected inHybrid version {{ hdb_version }}, but found '{{ postgres_hdb_version.stdout }}'"
+      when: "hdb_version is not defined or hdb_version not in postgres_hdb_version.stdout"
 #----ssh拷贝
     - name: delete ssh
       file:
@@ -88,15 +88,15 @@
 #-----------------初始化数据库
 #segement节点操作
 - hosts: segment
-  remote_user: hdbadmin
+  remote_user: root
   connection: ssh
   vars_files: 
     - ./variable/inHybrid_config.yml
   tasks:
     - name: create inHybridDB segement data directory  
-      shell: "mkdir -p {{ declare_DATA_DIRECTORY }}"
+      shell: "mkdir -p {{ declare_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_DATA_DIRECTORY }}"
     - name: create inHybridDB segement mirror directory
-      shell: "mkdir -p {{ declare_MIRROR_DATA_DIRECTORY }}"
+      shell: "mkdir -p {{ declare_MIRROR_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_MIRROR_DATA_DIRECTORY }}"
       when: declare_MIRROR_DATA_DIRECTORY is defined
 
 #master节点操作
@@ -108,9 +108,14 @@
   connection: ssh
   tasks:
     - name: create inHybridDB master data directory
+      become: yes
+      become_method: sudo
+      become_user: root
       file:
         path: "{{ MASTER_DIRECTORY }}"
         state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
     - name: make config dir
       file:
          path: "/home/hdbadmin/hdb_conf"

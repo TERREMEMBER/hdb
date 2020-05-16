@@ -1,0 +1,9 @@
+#----数据库指定端口是否被占用
+- name: master port
+  shell: netstat -anp | grep ":{{ MASTER_PORT }}"
+  register: master_port_result
+  ignore_errors: true
+- name: show master_port_result
+  fail:
+    msg: "Port:{{ MASTER_PORT }} is already in used!"
+  when: master_port_result.rc==0

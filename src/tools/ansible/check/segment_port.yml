@@ -1,0 +1,20 @@
+#----primary port
+- name: segment port
+  shell: netstat -anp | grep ":{{ PORT_BASE }}"
+  register: seg_port_result
+  ignore_errors: true
+- name: show seg_port_result
+  fail:
+    msg: "Port:{{ PORT_BASE }} is already in used!"
+  when: seg_port_result.rc==0
+#---mirror port
+- block:
+    - name: mirror port
+      shell: netstat -anp | grep ":{{ MIRROR_PORT_BASE }}"
+      register: mirror_port_result
+      ignore_errors: true
+    - name: show mirror_port_result
+      fail:
+        msg: "Port:{{ MIRROR_PORT_BASE }} is already in used!"
+      when: mirror_port_result.rc==0 
+  when: declare_MIRROR_DATA_DIRECTORY is defined and MIRROR_PORT_BASE is defined
