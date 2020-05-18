@@ -1,31 +1,44 @@
 ---
-#---包拷贝
 - hosts: hdb_all
   vars_files: 
     - ./variable/deployment_config.yml
   remote_user: root
-  become: yes
-  become_method: sudo
   connection: ssh
   gather_facts: yes
   tasks:
+  #---创建用户
     - name: create inhybrid admin user
       user:
         name: "{{ inhybrid_admin_user }}"
-        password: "{{ inhybrid_admin_password | password_hash('sha512', 'DvkPtCtNH+UdbePZfm9muQ9pU') }}"
-    - name: copy package to host
+        password: "{{ inhybrid_admin_password | password_hash('sha512') }}"
+  #---包拷贝
+    - name: copy hdb package
       copy:
-        src: "{{ package_path }}"
+        src: "{{ hdb_package_path }}"
         dest: /tmp
-    - name: install package
+    - name: copy gpEnv package
+      copy:
+        src: "{{ hdbEnv_package_path }}"
+        dest: /tmp
+    - name: install hdb_package
       unarchive:
         copy: no
-        src: "/tmp/{{ package_path | basename }}"
+        src: "/tmp/{{ hdb_package_path | basename }}"
         dest: "/usr/local/"
         mode: "755"
-    - name: cleanup package file from host
+    - name: install hdbEnv_package
+      unarchive:
+        copy: no
+        src: "/tmp/{{ hdbEnv_package_path | basename }}"
+        dest: "/usr/local/"
+        mode: "755"
+    - name: cleanup hdb_package file from host
       file:
-        path: "/tmp/{{ package_path | basename }}"
+        path: "/tmp/{{ hdb_package_path | basename }}"
+        state: absent
+    - name: cleanup hdbEnv_package file from host
+      file:
+        path: "/tmp/{{ hdbEnv_package_path | basename }}"
         state: absent
     - name: find install directory
       find:
@@ -40,6 +53,7 @@
         group: "{{ inhybrid_admin_user }}"
         recurse: yes #递归
       with_items: "{{ installed_dir.files }}"
+    #---更改系统参数
     - name: update pam_limits
       pam_limits:
         domain: "{{ inhybrid_admin_user }}"
@@ -132,3 +146,6 @@
       shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbssh-exkeys -f /home/hdbadmin/hdb_conf/hostlist"
     - name: init inHybridDB
       shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbinitsystem -c /home/hdbadmin/hdb_conf/hdbinitsystem_config -a"
+    - name: Configure hdbadmin environment variables
+      shell: "sed -i '/^export MASTER_DATA_DIRECTORY.*/d' /home/{{ inhybrid_admin_user }}/.bashrc && \
+      sed -i '$a\\export MASTER_DATA_DIRECTORY={{ MASTER_DIRECTORY }}' /home/{{ inhybrid_admin_user }}/.bashrc"
