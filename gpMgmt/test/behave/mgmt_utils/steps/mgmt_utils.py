@@ -2956,7 +2956,6 @@ def impl(context):
     query = "select hostname, datadir from gp_segment_configuration where content = -1 order by dbid"
     conn = dbconn.connect(dbconn.DbURL(dbname='postgres'), unsetSearchPath=False)
     res = dbconn.execSQL(conn, query).fetchall()
-    print(res)
     master = res[0]
     standby = res[1]
     master_datadir = master[1]

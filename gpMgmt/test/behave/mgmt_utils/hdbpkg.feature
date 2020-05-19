@@ -73,7 +73,7 @@ Feature: hdbpkg tests
         Then hdbpkg should print "hdbpkg version" to stdout
 
 
-########################### @concourse_cluster tests ###########################
+########################### @enbv ###########################
 # The @concourse_cluster tag denotes the scenario that requires a remote cluster
 
     @concourse_cluster
@@ -92,6 +92,7 @@ Feature: hdbpkg tests
         Then hdbpkg should return a return code of 2
         And hdbpkg should print "sample.hdbpkg is already installed." to stdout
 
+    @hdbpkg1
     @concourse_cluster
     Scenario: hdbpkg --remove should report success when the package is already installed
         Given the database is running
@@ -113,6 +114,7 @@ Feature: hdbpkg tests
         And hdbpkg should print "Starting hdbpkg with args: --query --all" to stdout
         And hdbpkg should print "sample" to stdout
 
+    @hdbpkg2
     @concourse_cluster
     Scenario: hdbpkg --clean (which should be named "sync") should install to the segment host that lacks a hdbpkg found elsewhere
         Given the database is running

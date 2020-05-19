@@ -872,16 +872,16 @@ class SegmentTemplate:
     def _tar_template(self):
         """Tars up the template files"""
         self.logger.info('Creating schema tar file')
-        tarCmd = CreateTar('gpexpand tar segment template', self.tempDir, self.schema_tar_file)
+        tarCmd = CreateTar('hdbexpand tar segment template', self.tempDir, self.schema_tar_file)
         tarCmd.run(validateAfter=True)
 
     @staticmethod
     def cleanup_build_segment_template(tarFile, tempDir):
         """Reverts the work done by build_segment_template.  Deletes the temp
         directory and local tar file"""
-        rmCmd = RemoveDirectory('gpexpand remove temp dir: %s' % tempDir, tempDir)
+        rmCmd = RemoveDirectory('hdbexpand remove temp dir: %s' % tempDir, tempDir)
         rmCmd.run(validateAfter=True)
-        rmCmd = RemoveFile('gpexpand remove segment template file', tarFile)
+        rmCmd = RemoveFile('hdbexpand remove segment template file', tarFile)
         rmCmd.run(validateAfter=True)
         print(rmCmd)
 
@@ -897,7 +897,7 @@ class SegmentTemplate:
 
         # Remove template tar file
         for host in hosts:
-            rmCmd = RemoveFile('gpexpand remove segment template file on host: %s' % host,
+            rmCmd = RemoveFile('hdbexpand remove segment template file on host: %s' % host,
                                tarFile, ctxt=REMOTE, remoteHost=host)
             pool.addCommand(rmCmd)
 
@@ -905,7 +905,7 @@ class SegmentTemplate:
             for seg in gparray.getExpansionSegDbList():
                 hostname = seg.getSegmentHostName()
                 datadir = seg.getSegmentDataDirectory()
-                rmCmd = RemoveDirectory('gpexpand remove new segment data directory: %s:%s' % (hostname, datadir),
+                rmCmd = RemoveDirectory('hdbexpand remove new segment data directory: %s:%s' % (hostname, datadir),
                                         datadir, ctxt=REMOTE, remoteHost=hostname)
                 pool.addCommand(rmCmd)
         pool.join()
@@ -1411,7 +1411,7 @@ class gpexpand:
                                      , port=seg.getSegmentPort()
                                      , dbname=database[0]
                                      )
-                name = "gpexpand execute segment cleanup commands. seg dbid = %s, command = %s" % (
+                name = "hdbexpand execute segment cleanup commands. seg dbid = %s, command = %s" % (
                     seg.getSegmentDbId(), str(statements))
                 execSQLCmd = ExecuteSQLStatementsCommand(name=name
                                                          , url=dburl
@@ -1504,7 +1504,7 @@ class gpexpand:
         """ This method will execute hdbrecoverseg so that all new segments sync with their mirrors."""
         if self.gparray.get_mirroring_enabled():
             self.logger.info('Starting new mirror segment synchronization')
-            cmd = GpRecoverSeg(name="gpexpand syncing mirrors", options="-a -F")
+            cmd = GpRecoverSeg(name="hdbexpand syncing mirrors", options="-a -F")
             cmd.run(validateAfter=True)
 
     def start_prepare(self):
@@ -1535,7 +1535,7 @@ class gpexpand:
 
         self.conn.commit()
 
-        inject_fault('gpexpand retry after releaseing catalog lock fault injection')
+        inject_fault('hdbexpand retry after releaseing catalog lock fault injection')
 
         self.statusLogger.set_status('SETUP_EXPANSION_SCHEMA_DONE')
 
@@ -1562,7 +1562,7 @@ class gpexpand:
                 dbname.decode('utf-8')))
             self._populate_regular_tables(dbname)
             self._populate_partitioned_tables(dbname)
-            inject_fault('gpexpand MPP-14620 fault injection')
+            inject_fault('hdbexpand MPP-14620 fault injection')
 
         nowStr = datetime.datetime.now()
         statusSQL = "INSERT INTO gpexpand.status VALUES ( 'SETUP DONE', '%s' ) " % (nowStr)
@@ -2452,7 +2452,7 @@ def main(options, args, parser):
                 raise ValidationError()
             _gp_expand.perform_expansion()
         elif gpexpand_db_status == 'EXPANSION STARTED':
-            logger.info('It appears the last run of gpexpand did not exit cleanly.')
+            logger.info('It appears the last run of hdbexpand did not exit cleanly.')
             logger.info('Resuming the expansion process...')
             if not _gp_expand.validate_max_connections():
                 raise ValidationError()

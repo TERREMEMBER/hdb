@@ -15,7 +15,7 @@ Feature: psql test
 
     Scenario: psql copyright test
 	Given a standard local demo cluster is running
-	When the user runs command "psql -c \\copyright -p 6000 -d postgres"
+	When the user runs command "psql -c \\copyright -p 15432 -d postgres"
 	Then psql should return a return code of 0
 	Then psql should print "inHybrid Database version of PostgreSQL Database Management System" to stdout
     Then psql should print "Portions Copyright (c) 2020-Present Inspur Software Technology co.LTD" escaped to stdout
