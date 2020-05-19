@@ -20,7 +20,7 @@ Feature: hdbcheckperf behave tests
         #Given the database is not running
         When the user runs "hdbcheckperf --version"
 	    Then hdbcheckperf should return a return code of 0
-        Then hdbcheckperf should print "hdbcheckperf version 1.0.0 build dev" to stdout
+        Then hdbcheckperf should print "hdbcheckperf version" to stdout
     
     Scenario: hdbcheckperf functional test
         #Given the database is not running

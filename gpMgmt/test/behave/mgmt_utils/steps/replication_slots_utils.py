@@ -50,7 +50,7 @@ def expand(context):
     ensure_temp_directory_is_empty(context, "behave_test_expansion_primary")
     ensure_temp_directory_is_empty(context, "behave_test_expansion_mirror")
 
-    expansion_command = """gpexpand --input <(echo '
+    expansion_command = """hdbexpand --input <(echo '
     localhost|localhost|25438|/tmp/behave_test_expansion_primary|8|3|p
     localhost|localhost|25439|/tmp/behave_test_expansion_mirror|9|3|m
 ')

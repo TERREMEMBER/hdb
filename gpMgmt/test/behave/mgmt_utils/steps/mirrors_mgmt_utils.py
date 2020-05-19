@@ -383,12 +383,12 @@ def impl(context, mirror_config):
     #   gpinitsystem task.  The maps below are from {contentID : (port|hostname)}.
 
     # Group mirroring (TestCluster default): sdw1 mirrors to sdw2, sdw2 mirrors to sdw3, sdw3 mirrors to sdw2
-    group_port_map = {0: 20000, 1: 20001, 2: 20000, 3: 20001, 4: 20000, 5: 20001}
-    group_address_map = {0: "sdw1", 1: "sdw1", 2: "sdw2", 3: "sdw2", 4: "mdw", 5: "mdw"}
+    group_port_map = {0: 21000, 1: 21001, 2: 21000, 3: 21001, 4: 21000, 5: 21001}
+    group_address_map = {0: "sdw2", 1: "sdw2", 2: "sdw3", 3: "sdw3", 4: "sdw1", 5: "sdw1"}
 
     # Spread mirroring: each host mirrors one primary to each of the other two hosts
-    spread_port_map = {0: 20000, 1: 20000, 2: 20000, 3: 20001, 4: 20001, 5: 20001}
-    spread_address_map = {0: "sdw1", 1: "sdw2", 2: "mdw", 3: "sdw2", 4: "mdw", 5: "sdw1"}
+    spread_port_map = {0: 21000, 1: 21000, 2: 21000, 3: 21001, 4: 21001, 5: 21001}
+    spread_address_map = {0: "sdw2", 1: "sdw3", 2: "sdw1", 3: "sdw3", 4: "sdw1", 5: "sdw2"}
 
     # Create a map from each host to the hosts holding the mirrors of all the
     # primaries on the original host, e.g. the primaries for contents 0 and 1

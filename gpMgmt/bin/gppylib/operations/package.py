@@ -1209,7 +1209,7 @@ class UninstallPackage(Operation):
             UninstallPackageLocally(self.hdbpkg.pkg).run()
 
         # perform any post-installation steps
-        PerformHooks(hooks=self.hbdpkg.postuninstall,
+        PerformHooks(hooks=self.hdbpkg.postuninstall,
                      master_host=self.master_host,
                      standby_host=self.standby_host,
                      segment_host_list=self.segment_host_list).run()

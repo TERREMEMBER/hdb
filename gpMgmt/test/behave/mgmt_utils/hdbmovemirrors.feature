@@ -83,7 +83,7 @@ Feature: Tests for hdbmovemirrors
     @concourse_cluster
     Scenario: hdbmovemirrors can change from group mirroring to spread mirroring
         Given verify that mirror segments are in "group" configuration
-        And pg_hba file "/home/hdbadmin/gpdata/data0/primary/gpseg0/pg_hba.conf" on host "sdw1" contains only cidr addresses
+        And pg_hba file "~/data1/primary/gpseg1/pg_hba.conf" on host "sdw1" contains only cidr addresses
         And a sample hdbmovemirrors input file is created in "spread" configuration
         When the user runs "hdbmovemirrors --input=/tmp/hdbmovemirrors_input_spread"
         Then hdbmovemirrors should return a return code of 0
@@ -93,7 +93,7 @@ Feature: Tests for hdbmovemirrors
         And the segments are synchronized
         And verify that mirror segments are in "spread" configuration
         And verify that mirrors are recognized after a restart
-        And pg_hba file "/home/hdbadmin/gpdata/data0/primary/gpseg0/pg_hba.conf" on host "sdw1" contains only cidr addresses
+        And pg_hba file "~/data1/primary/gpseg1/pg_hba.conf" on host "sdw1" contains only cidr addresses
         And the information of a "mirror" segment on a remote host is saved
         When user kills a "mirror" process with the saved information
         And an FTS probe is triggered
@@ -128,7 +128,7 @@ Feature: Tests for hdbmovemirrors
         And all the segments are running
         And the segments are synchronized
         #hdbmovemirrors_input_group moves mirror on sdw3 to sdw2, corresponding primary should now have sdw2 entry
-        And pg_hba file "/home/hdbadmin/gpdata/data0/primary/gpseg0/pg_hba.conf" on host "sdw1" contains entries for "sdw2"
+        And pg_hba file "~/data1/primary/gpseg1/pg_hba.conf" on host "sdw1" contains entries for "sdw2"
         And verify that mirror segments are in "group" configuration
         And verify that mirrors are recognized after a restart
         And the information of a "mirror" segment on a remote host is saved
