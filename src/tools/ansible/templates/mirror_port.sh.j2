@@ -1,0 +1,25 @@
+port={{ MIRROR_PORT_BASE }}
+str='{{ declare_MIRROR_DATA_DIRECTORY }}'
+save_str=''
+split_str=''
+count=1
+while :
+do
+    split_str=`echo $str | cut -d ' ' -f $count`
+    if [[ -z "$split_str" || "$split_str" == "$save_str" ]]; then
+        let count-=1
+        break;
+    fi
+    let count+=1
+    save_str=$split_str
+done;
+
+for((i=0;i<$count;i++));  
+do   
+    p=$(($port+$i))
+    result=`netstat -nutlp | grep ":$p"`
+    if [ -n "$result" ]; then
+        flag=0
+        echo "端口: $p 已被占用"
+    fi
+done

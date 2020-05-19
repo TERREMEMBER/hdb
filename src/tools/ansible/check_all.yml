@@ -9,6 +9,8 @@
     - include_tasks: ./check/ping.yml
   #---操作系统
     - include_tasks: ./check/operating_system_version.yml
+  #---磁盘IO
+    - include_tasks: ./check/disk_IO.yml
   #---Centos防火墙
     - include_tasks: ./check/firewall.yml
       when: os == "Centos"
