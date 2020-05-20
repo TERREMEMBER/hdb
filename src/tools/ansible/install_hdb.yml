@@ -1,0 +1,87 @@
+---
+- hosts: hdb_all
+  vars_files: 
+    - ./variable/deployment_config.yml
+  remote_user: root
+  connection: ssh
+  gather_facts: yes
+  tasks:
+  #---创建用户
+    - name: create inhybrid admin user
+      user:
+        name: "{{ inhybrid_admin_user }}"
+        password: "{{ inhybrid_admin_password | password_hash('sha512') }}"
+  #---包拷贝
+    - name: copy hdb package
+      copy:
+        src: "{{ hdb_package_path }}"
+        dest: /tmp
+    - name: copy gpEnv package
+      copy:
+        src: "{{ hdbEnv_package_path }}"
+        dest: /tmp
+    - name: install hdb_package
+      unarchive:
+        copy: no
+        src: "/tmp/{{ hdb_package_path | basename }}"
+        dest: "/usr/local/"
+        mode: "755"
+    - name: install hdbEnv_package
+      unarchive:
+        copy: no
+        src: "/tmp/{{ hdbEnv_package_path | basename }}"
+        dest: "/usr/local/"
+        mode: "755"
+    #---清理安装包
+    - name: cleanup hdb_package file from host
+      file:
+        path: "/tmp/{{ hdb_package_path | basename }}"
+        state: absent
+    - name: cleanup hdbEnv_package file from host
+      file:
+        path: "/tmp/{{ hdbEnv_package_path | basename }}"
+        state: absent
+    - name: find install directory
+      find:
+        paths: /usr/local
+        patterns: 'inhybrid*'
+        file_type: directory
+      register: installed_dir
+    - name: change install directory ownership
+      file:
+        path: '{{ item.path }}'
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        recurse: yes #递归
+      with_items: "{{ installed_dir.files }}"
+    #---环境变量
+    - name: ld.so.conf
+      blockinfile:
+        path: "/etc/ld.so.conf"
+        block: "/usr/local/gpEnv/gpos_home/lib\n\
+        /usr/local/gpEnv/gp-xerces_home/lib\n\
+        /usr/local/gpEnv/gporca_home/lib\n\
+        /usr/local/gpEnv/inhybrid-db/lib"
+        marker: "#{mark}gpEnv"
+        state: "present"
+        create: yes
+    - name: apply ld.so.conf
+      shell: "ldconfig"
+    #---更改系统参数
+    - name: update pam_limits
+      pam_limits:
+        domain: "{{ inhybrid_admin_user }}"
+        limit_type: '-'
+        limit_item: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_dict:
+        nofile: 524288
+        nproc: 131072
+    #----版本验证
+    - name: find installed inhybrid version
+      shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && /usr/local/inhybrid-db/bin/postgres --hdb-version"
+      register: postgres_hdb_version
+    - name: fail if the correct inHybrid version is not installed
+      fail:
+        msg: "Expected inHybrid version {{ hdb_version }}, but found '{{ postgres_hdb_version.stdout }}'"
+      when: "hdb_version is not defined or hdb_version not in postgres_hdb_version.stdout"
