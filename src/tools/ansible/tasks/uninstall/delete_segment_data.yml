@@ -1,0 +1,5 @@
+- name: rm segement data
+  shell: "rm -rf {{ declare_DATA_DIRECTORY }}"
+- name: rm segement mirror data
+  shell: "rm -rf {{ declare_MIRROR_DATA_DIRECTORY }}"
+  when: declare_MIRROR_DATA_DIRECTORY is defined

@@ -4,6 +4,12 @@ hostlist_template_path: "./hostlist.j2"
 #os
 os: "Ubuntu"
 os_version: "18.04"
+#cluster list
+cluster:
+    - { id: "master", hostname: 'mdw',  ip: '172.12.0.10' }
+    - { id: "segment1", hostname: 'sdw1', ip: '172.12.0.11' }
+    - { id: "segment2", hostname: 'sdw2', ip: '172.12.0.12' }
+    - { id: "segment3", hostname: 'sdw3', ip: '172.12.0.13' }
 #inHybrid
 hdb_package_path: "./inhybrid-db.tar.gz"
 hdbEnv_package_path: "./hdbEnv.tar.gz"

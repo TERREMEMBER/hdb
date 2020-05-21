@@ -6,15 +6,13 @@
     - ./variable/deployment_config.yml
   tasks:
   #---ping
-    - include_tasks: ./check/ping.yml
+    - include_tasks: ./tasks/check/ping.yml
   #---操作系统
-    - include_tasks: ./check/operating_system_version.yml
+    - include_tasks: ./tasks/check/operating_system_version.yml
   #---磁盘IO
-    - include_tasks: ./check/disk_IO.yml
-  #---Centos防火墙
-    - include_tasks: ./check/firewall.yml
-      when: os == "Centos"
-
+    - include_tasks: ./tasks/check/disk_IO.yml
+  #---防火墙
+    - include_tasks: ./tasks/check/firewall.yml
 
 #----master
 - hosts: master
@@ -24,9 +22,9 @@
     - ./variable/inHybrid_config.yml
   tasks:
   #---端口
-    - include_tasks: ./check/master_port.yml
+    - include_tasks: ./tasks/check/master_port.yml
   #---目录
-    - include_tasks: ./check/master_directory.yml
+    - include_tasks: ./tasks/check/master_directory.yml
 
 #---segment
 - hosts: segment
@@ -36,6 +34,6 @@
     - ./variable/inHybrid_config.yml
   tasks:
   #---端口
-    - include_tasks: ./check/segment_port.yml
+    - include_tasks: ./tasks/check/segment_port.yml
   #---目录
-    - include_tasks: ./check/segment_directory.yml
+    - include_tasks: ./tasks/check/segment_directory.yml

@@ -62,7 +62,7 @@
         /usr/local/gpEnv/gp-xerces_home/lib\n\
         /usr/local/gpEnv/gporca_home/lib\n\
         /usr/local/gpEnv/inhybrid-db/lib"
-        marker: "#{mark}gpEnv"
+        marker: "#{mark}hdbEnv"
         state: "present"
         create: yes
     - name: apply ld.so.conf

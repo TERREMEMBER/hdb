@@ -1,3 +1,5 @@
-sdw1
-sdw2
-sdw3
+{% for h in cluster %}
+{%if h.id != "master" and h.id != "standby" %}
+{{ h.hostname }}
+{%endif%}
+{%endfor%}
