@@ -1,0 +1,3 @@
+- name: kill process
+  shell: "kill -9 $(pgrep postgres)"
+  ignore_errors: True

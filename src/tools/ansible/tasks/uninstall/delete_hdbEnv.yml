@@ -1,0 +1,4 @@
+- name: delete hdbEnv
+  file:
+    path: "/usr/local/hdbEnv"
+    state: "absent"

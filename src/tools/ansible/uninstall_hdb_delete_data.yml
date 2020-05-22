@@ -1,0 +1,29 @@
+---
+- hosts: master
+  remote_user: root
+  gather_facts: yes
+  vars_files:
+    - ./variable/inHybrid_config.yml
+  tasks:
+    - include_tasks: ./tasks/uninstall/hdbstop.yml
+    - include_tasks: ./tasks/uninstall/delete_log.yml
+    - include_tasks: ./tasks/uninstall/delete_master_data.yml
+#-----
+- hosts: segment
+  remote_user: root
+  gather_facts: yes
+  vars_files:
+    - ./variable/inHybrid_config.yml
+  tasks:
+    - include_tasks: ./tasks/uninstall/delete_segment_data.yml
+#-----
+- hosts: hdb_all
+  remote_user: root
+  gather_facts: yes
+  vars_files:
+    - ./variable/inHybrid_config.yml
+  tasks:
+    - include_tasks: ./tasks/uninstall/kill_process.yml
+    - include_tasks: ./tasks/uninstall/clean_tmp.yml
+    - include_tasks: ./tasks/uninstall/delete_inhybrid.yml
+    - include_tasks: ./tasks/uninstall/delete_hdb.yml

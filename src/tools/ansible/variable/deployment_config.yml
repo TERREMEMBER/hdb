@@ -11,8 +11,8 @@ cluster:
     - { id: "segment2", hostname: 'sdw2', ip: '172.12.0.12' }
     - { id: "segment3", hostname: 'sdw3', ip: '172.12.0.13' }
 #inHybrid
-hdb_package_path: "./inhybrid-db.tar.gz"
-hdbEnv_package_path: "./hdbEnv.tar.gz"
+hdb_package_path: "./package/inhybrid-db.tar.gz"
+hdbEnv_package_path: "./package/hdbEnv.tar.gz"
 inhybrid_admin_user: "hdbadmin"
 inhybrid_admin_password: "changeme"
 hdb_version: "1.0.0"
