@@ -1959,7 +1959,7 @@ fi
 LOG_MSG "[INFO]:-Start Main"
 LOG_MSG "[INFO]:-Command line options passed to utility = $*"
 if [ x"$INPUT_CONFIG" != x"" ] ; then
-    CHK_GPDB_ID
+    CHK_HDB_ID
     CHK_PARAMS
     CHK_QE_ARRAY_PORT_RANGES
     CHK_QES_FROM_INPUTFILE
@@ -1972,7 +1972,7 @@ if [ x"$INPUT_CONFIG" != x"" ] ; then
     DISPLAY_CONFIG
 
 else
-    CHK_GPDB_ID
+    CHK_HDB_ID
     CHK_PARAMS
     CHK_MULTI_HOME
     CREATE_QE_ARRAY
