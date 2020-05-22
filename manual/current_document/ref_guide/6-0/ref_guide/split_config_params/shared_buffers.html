@@ -1,0 +1,83 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="shared_buffers">
+<h2 class="title topictitle2">shared_buffers</h2>
+<div class="body">
+<p class="p">设置Greenplum数据库segment实例用于共享内存缓冲区的内存量。
+        此设置必须至少为128KB且至少为<samp class="ph codeph"><a class="xref" href="guc-list.html#max_connections">max_connections</a></samp>的16KB倍。
+        </p>
+<p class="p">每个Greenplum数据库segment实例根据segment配置计算并尝试分配一定量的共享内存。
+        <samp class="ph codeph">shared_buffers</samp>的值是此共享内存计算的重要部分，但并非全部。
+        设置<samp class="ph codeph">shared_buffers</samp>时，可能还需要调整操作系统参数<samp class="ph codeph">SHMMAX</samp>或<samp class="ph codeph">SHMALL</samp>的值。
+        </p>
+<div class="p">操作系统参数<samp class="ph codeph">SHMMAX</samp>指定单个共享内存分配的最大大小。
+        <samp class="ph codeph">SHMMAX</samp>的值必须大于此值：
+        <pre class="pre codeblock"> <samp class="ph codeph">shared_buffers</samp> + <var class="keyword varname">other_seg_shmem</var></pre>
+<var class="keyword varname">other_seg_shmem</var>的值是Greenplum数据库共享内存计算的部分，而<samp class="ph codeph">shared_buffers</samp>值没有考虑该部分。
+        <var class="keyword varname">other_seg_shmem</var>值将根据segment配置而有所不同。
+        </div>
+<p class="p">使用默认的Greenplum数据库参数值，
+        对于Greenplum数据库segment，<var class="keyword varname">other_seg_shmem</var>的值大约为111MB，
+        对于Greenplum数据库master，大约为79MB。
+        </p>
+<div class="p">操作系统参数<samp class="ph codeph">SHMALL</samp>指定主机上的最大共享内存量。
+        <samp class="ph codeph">SHMALL</samp>的值必须大于此值：
+        <pre class="pre codeblock"> (<var class="keyword varname">num_instances_per_host</var> * ( <samp class="ph codeph">shared_buffers</samp> + <var class="keyword varname">other_seg_shmem</var> )) + <var class="keyword varname">other_app_shared_mem</var> </pre>
+<var class="keyword varname">other_app_shared_mem</var>的值是主机上其他应用程序和进程使用的共享内存量。
+        </div>
+<p class="p">发生共享内存分配错误时，解决共享内存分配问题的可能方法是增加<samp class="ph codeph">SHMMAX</samp>或<samp class="ph codeph">SHMALL</samp>，
+        或减少<samp class="ph codeph">shared_buffers</samp>或<samp class="ph codeph">max_connections</samp>。
+        </p>
+<p class="p">有关参数<samp class="ph codeph">SHMMAX</samp>和<samp class="ph codeph">SHMALL</samp>的Greenplum数据库值的信息，请参阅<cite class="cite">Greenplum数据库安装指南</cite>。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="shared_buffers__shared_buffers_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e18335" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e18338" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e18341" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e18335" valign="top" width="33.33333333333333%">整数 &gt; 16K * <em class="ph i">max_connections </em>
+</td>
+<td class="entry" headers="d62161e18338" valign="top" width="33.33333333333333%">125MB</td>
+<td class="entry" headers="d62161e18341" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

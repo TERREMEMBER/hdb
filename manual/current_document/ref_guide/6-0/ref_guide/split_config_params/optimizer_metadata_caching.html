@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_metadata_caching">
+<h2 class="title topictitle2">optimizer_metadata_caching</h2>
+<div class="body">
+<p class="p" dir="ltr" id="optimizer_metadata_caching__docs-internal-guid-698e4ca6-574c-b75b-5cbe-8c7bfd011557">
+        启用GPORCA（默认值）时，此参数指定GPORCA在查询优化期间是否在Greenplum数据库master上的内存中缓存查询元数据（优化数据）。
+        此参数的默认值为<samp class="ph codeph">on</samp>，启用缓存。
+        缓存是基于会话的。
+        会话结束时，缓存将被释放。
+        如果查询元数据的数量超过缓存大小，则从缓存中逐出旧的未使用的元数据。
+        </p>
+<p class="p" dir="ltr">如果该值为<samp class="ph codeph">off</samp>，则GPORCA在查询优化期间不会缓存元数据。
+        </p>
+<p class="p">可以为数据库系统，单个数据库或会话或查询设置此参数。
+        </p>
+<p class="p">服务器配置参数<samp class="ph codeph"><a class="xref" href="guc-list.html#optimizer_mdcache_size">optimizer_mdcache_size</a></samp>控制查询元数据缓存的大小。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_metadata_caching__optimizer_metadata_caching_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e16236" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e16239" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e16242" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e16236" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e16239" valign="top" width="33.33333333333333%">on</td>
+<td class="entry" headers="d62161e16242" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

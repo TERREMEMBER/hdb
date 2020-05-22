@@ -1,0 +1,546 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      About Implicit Text Casting in inHybrid Database |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_43x_to_5x has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    About Implicit Text Casting in inHybrid Database
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="43x_to_5x.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">About Implicit Text Casting in inHybrid Database</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">inHybrid Database version 4.3.x is based on PostgreSQL version 8.2. inHybrid Database
+    version 6.x is based on PostgreSQL version 9.4. PostgreSQL 8.3 removed automatic implicit casts
+    between the <samp class="ph codeph">text</samp> type and other data types. When you migrate from inHybrid
+    Database version 4.3.x to version 6, this change in behavior might impact existing applications
+    and queries. </p>
+
+    <p class="p">For information about how inHybrid Database 6 performs type casts, see <a class="xref" href="../admin_guide/query/topics/defining-queries.html#topic14">Type
+        Casts</a>.</p>
+
+    <p class="p"><strong class="ph b">What is different in inHybrid Database 6</strong></p>
+
+    <p class="p">inHybrid Database 6 does not automatically implicitly cast between text and other data
+      types. inHybrid Database 6 also treats certain automatic implicit casts differently than
+      version 4.3.x, and in some cases does not handle them at all. <strong class="ph b">Applications or queries that
+        you wrote for inHybrid Database 4.3.x that rely on automatic implicit casting may fail on
+        inHybrid Database version 6.</strong></p>
+
+    <p class="p">(The term <em class="ph i">implicit cast</em>, when used in the remainder of this section, refers to
+      implicit casts automatically applied by inHybrid Database.)</p>
+
+    <ul class="ul">
+      <li class="li">inHybrid Database 6 has downgraded implicit casts in the to-text type direction; these
+        casts are now treated as assignment casts. A cast from a data type to the text type will
+        continue to work in inHybrid Database 6 if used in assignment contexts.</li>
+
+      <li class="li">inHybrid Database 6 no longer automatically provides an implicit cast in the to-text type
+        direction that can be used in expression contexts. Additionally, inHybrid Database 6 no
+        longer provides implicit casts in the from-text type direction. When such expressions or
+        assignments are encountered, inHybrid Database 6 returns an error and the following
+        message:<pre class="pre codeblock">HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.</pre>
+To
+        illustrate, suppose you create two
+        tables:<pre class="pre codeblock">CREATE TABLE foo (a int) DISTRIBUTED RANDOMLY ;
+CREATE TABLE bar (b text) DISTRIBUTED RANDOMLY ;</pre>
+
+        The following examples demonstrate certain types of text comparison queries that will fail
+        on inHybrid Database 6. <div class="note note">
+<span class="notetitle">Note:</span> This is not an exhaustive list of failure scenarios.</div>
+<ul class="ul">
+          <li class="li">Queries that reference <samp class="ph codeph">text</samp> type and non-text type columns in an
+            expression. In this example query, the comparison expression returns a cast
+            error.<pre class="pre codeblock">SELECT * FROM foo, bar WHERE foo.a = bar.b;
+ERROR:  operator does not exist: integer = text
+LINE 1: SELECT * FROM foo, bar WHERE foo.a = bar.b;
+                                           ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.</pre>
+The
+            updated example casts the <samp class="ph codeph">text</samp> type to an <samp class="ph codeph">integer</samp>
+            type.<pre class="pre codeblock">SELECT * FROM foo, bar WHERE foo.a = bar.b::int;</pre>
+</li>
+
+          <li class="li">Queries that mix the <samp class="ph codeph">text</samp> type and non-text type columns in function
+            and aggregate arguments. In this example, the query that executes the example function
+              <samp class="ph codeph">concat</samp> returns a cast
+            error.<pre class="pre codeblock">CREATE FUNCTION concat(TEXT, TEXT) 
+RETURNS TEXT AS $$ 
+  SELECT $1 || $2 
+$$ STRICT LANGUAGE SQL;
+
+SELECT concat('a'::TEXT, 2);</pre>
+Adding
+            an explicit cast from <samp class="ph codeph">integer</samp> to <samp class="ph codeph">text</samp> fixes the
+            issue.<pre class="pre codeblock">SELECT concat('a', 2::text);</pre>
+</li>
+
+          <li class="li">Queries that perform comparisons between a <samp class="ph codeph">text</samp> type column and a
+            non-quoted literal such as an <samp class="ph codeph">integer</samp>, <samp class="ph codeph">number</samp>,
+              <samp class="ph codeph">float</samp>, or <samp class="ph codeph">oid</samp>. This example query that compares text
+            and non-quoted integer returns an
+            error.<pre class="pre codeblock">SELECT * FROM bar WHERE b = 123;</pre>
+Adding an explicit cast to
+            text fixes the issue.<pre class="pre codeblock">SELECT * FROM bar WHERE b = 123::text;</pre>
+</li>
+
+          <li class="li">Queries that perform comparisons between a <samp class="ph codeph">date</samp> type column or
+            literal and an integer-like column (inHybrid Database internally converts date types to
+            the text type) . This example query that compares an <samp class="ph codeph">integer</samp> column
+            with a literal of type <samp class="ph codeph">date</samp> returns an
+            error.<pre class="pre codeblock">SELECT * FROM foo WHERE a = '20130101'::DATE;</pre>
+There is no
+            built-in cast from integer type to <samp class="ph codeph">date</samp> type. However, you can
+            explicitly cast an <samp class="ph codeph">integer</samp> to <samp class="ph codeph">text</samp> and then to
+              <samp class="ph codeph">date</samp>. The updated examples use the <samp class="ph codeph">cast</samp> and
+              <samp class="ph codeph">::</samp>
+            syntax.<pre class="pre codeblock">SELECT * FROM foo WHERE cast(cast(a AS text) AS date)  = '20130101'::date;
+SELECT * FROM foo WHERE (a::text)::date  = '20130101'::date;</pre>
+</li>
+
+        </ul>
+</li>
+
+    </ul>
+
+
+    <p class="p"><strong class="ph b">The only supported workaround for the implicit casting differences between inHybrid
+        Database versions 4.3.x and 6 is to analyze failing applications and queries and update the
+        application or query to use explicit casts to fix the failures.</strong></p>
+
+
+    <div class="p">If rewriting the application or query is not feasible, you may choose to temporarily work
+      around the change in behaviour introduced by the removal of automatic implicit casts in
+      inHybrid Database 6. There are two well-known workarounds to this PostgreSQL issue:<ul class="ul">
+        <li class="li">Re-create the implicit casts (described in <a class="xref" href="http://petereisentraut.blogspot.com/2008/03/readding-implicit-casts-in-postgresql.html" target="_blank">Readding implicit casts in PostgreSQL 8.3</a>).</li>
+
+        <li class="li">Create missing operators (described in <a class="xref" href="http://blog.ioguix.net/postgresql/2010/12/11/Problems-and-workaround-recreating-casts-with-8.3+.html" target="_blank">Problems and workaround recreating implicit casts using
+            8.3+</a>).</li>
+
+      </ul>
+
+    </div>
+
+    <p class="p">The workaround to re-create the implicit casts is not recommended as it breaks concatenation
+      functionality. With the create missing operators workaround, you create the operators and
+      functions that implement the comparison expressions that are failing in your applications and
+      queries.</p>
+
+  </div>
+
+  <div class="topic nested1" id="temp_workaround">
+    <h2 class="title topictitle2">Workaround: Manually Creating Missing Operators</h2>
+
+    <div class="body">
+      <div class="note warning">
+<span class="warningtitle">Warning:</span> Use this workaround only to aid migration to inHybrid Database 6 for
+        evaluation purposes. Do not use this workaround in a production environment.</div>
+
+      <p class="p">When you create an operator, you identify the data types of the left operand and the right
+        operand. You also identify the name of a function that inHybrid Database invokes to
+        evaluate the operator expression between the specified data types. The operator function
+        evaluates the expression by performing either to-text or from-text conversion using the
+        INPUT/OUTPUT methods of the data types involved. By creating operators for each (text type,
+        other data type) and (other data type, text type) combination, you effectively implement the
+        casts that are missing in inHybrid Database 6. </p>
+
+      <p class="p">To implement this workaround, complete the following tasks <strong class="ph b">after</strong> you install
+        inHybrid Database 6:</p>
+
+      <ol class="ol">
+        <li class="li">Identify and note the names of the inHybrid 6 databases in which you want to create the
+          missing operators. Consider applying this workaround to all databases in your inHybrid
+          Database deployment.</li>
+
+        <li class="li">Identify a schema in which to create the operators and functions. Use a schema other
+          than <samp class="ph codeph">pg_catalog</samp> to ensure that these objects are included in a
+            <samp class="ph codeph">pg_dump</samp> or <samp class="ph codeph">hdbbackup</samp> of the database. This procedure
+          will use a schema named <samp class="ph codeph">cast_fix</samp> for illustrative purposes.</li>
+
+        <li class="li">Review the blog entry <a class="xref" href="http://blog.ioguix.net/postgresql/2010/12/11/Problems-and-workaround-recreating-casts-with-8.3+.html" target="_blank">Problems and workaround recreating implicit casts using
+            8.3+</a>. The blog discusses this temporary workaround to the casting issue, i.e.
+          creating missing operators. It also references a SQL script that you can run to create a
+          set of equality (<samp class="ph codeph">=</samp>) operators and functions for several text and other
+          data type comparisons.</li>
+
+        <li class="li">Download the <a class="xref" href="https://gist.github.com/ioguix/4dd187986c4a1b7e1160" target="_blank"><samp class="ph codeph">8.3 operator workaround.sql</samp></a>
+          script referenced on the blog page, noting the location to which the file was downloaded
+          on your local system.</li>
+
+        <li class="li">The <samp class="ph codeph">8.3 operator workaround.sql</samp> script creates the equality operators
+          and functions. Open the script in the editor of your choice, and examine the contents. For
+          example, using the <samp class="ph codeph">vi</samp>
+            editor:<pre class="pre codeblock">vi 8.3 operator workaround.sql</pre>
+<p class="p">Notice that the script
+            creates the operators and functions in the <samp class="ph codeph">pg_catalog</samp> schema.</p>
+</li>
+
+        <li class="li">Replace occurrences of <samp class="ph codeph">pg_catalog</samp> in the script with the name of the
+          schema that you identified in Step 2, and then save the file and exit the editor. (You
+          will create this schema in an upcoming step if the schema does not already exist.) For
+          example:<pre class="pre codeblock">:s/pg_catalog/cast_fix/g
+:wq</pre>
+</li>
+
+        <li class="li">Analyze your failing queries, identifying the operators and from-type and to-type data
+          type comparisons that are the source of the failures. Compare this list to the contents of
+          the <samp class="ph codeph">8.3 operator workaround.sql</samp> script, and identify the minimum set of
+          additional operators and left_type/right_type expression combinations that you must
+          support.</li>
+
+        <li class="li">For each operator and left_type/right_type combination that you identify in the previous
+          step, add <samp class="ph codeph">CREATE</samp> statements for the following <em class="ph i">objects</em> to the
+            <samp class="ph codeph">8.3 operator workaround.sql</samp> script:<ol class="ol" type="a">
+            <li class="li">
+<em class="ph i">Create the function that implements the left_type operator right_type
+                comparison.</em> For example, to create a function that implements the greater than
+                (<samp class="ph codeph">&gt;</samp>) operator for text (left_type) to integer (right_type)
+                comparison:<pre class="pre codeblock">CREATE FUNCTION cast_fix.textgtint(text, integer)
+RETURNS boolean
+STRICT IMMUTABLE LANGUAGE SQL AS $$ 
+  SELECT textin(int4out($2)) &gt; $1;
+$$;</pre>
+<p class="p">
+                Be sure to schema-qualify the function name.</p>
+</li>
+
+            <li class="li">
+<em class="ph i">Create the operator</em>. For example, to create a greater than
+                (<samp class="ph codeph">&gt;</samp>) operator for text (left_type) to integer (right_type) type
+              comparison that specifies the function you created
+                above:<pre class="pre codeblock">CREATE OPERATOR cast_fix.&gt; (PROCEDURE=cast_fix.textgtint, LEFTARG=text, RIGHTARG=integer, COMMUTATOR=OPERATOR(cast_fix.&gt;))</pre>
+<p class="p">
+                Be sure to schema-qualify the operator and function names.</p>
+</li>
+
+            <li class="li">You must create another operator and function if you want the operator to work in
+              reverse (i.e. using the example above, if you want a greater than operator for integer
+              (left_type) to text (right_type) comparison.)</li>
+
+          </ol>
+
+        </li>
+
+        <li class="li">For each database that you identified in Step 1, add the missing operators. For example:<ol class="ol" type="a">
+            <li class="li">Connect to the database as an administrative user. For
+              example:<pre class="pre codeblock">$ psql -d database1 -U hdbadmin</pre>
+</li>
+
+            <li class="li">Create the schema if it does not already exist. For example:
+              <pre class="pre codeblock">CREATE SCHEMA cast_fix;</pre>
+</li>
+
+            <li class="li">Run the script. For example, if you downloaded the file to the <samp class="ph codeph">/tmp</samp>
+              directory:<pre class="pre codeblock">\i '/tmp/8.3 operator workaround.sql'</pre>
+</li>
+
+          </ol>
+<p class="p">You must create the schema and run the script for every new database that you
+            create in your inHybrid Database cluster.</p>
+</li>
+
+        <li class="li">Identify and note the names of the users/roles to which you want to provide this
+          capability. Consider exposing this to all roles in your inHybrid Database
+          deployment.</li>
+
+        <li class="li">For each role that you identified in Step 10, add the schema to the role's
+            <samp class="ph codeph">search_path</samp>. For
+            example:<pre class="pre codeblock">SHOW search_path;
+ALTER ROLE bill SET search_path TO existing_search_path, cast_fix;</pre>
+<p class="p">If
+            required, also grant schema-level permissions to the role.</p>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

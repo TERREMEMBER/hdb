@@ -1,0 +1,91 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_create_table_random_default_distribution">
+<h2 class="title topictitle2">gp_create_table_random_default_distribution</h2>
+<div class="body">
+<p class="p">使用不包含<span class="keyword cmdname">DISTRIBUTED BY</span>子句的<span class="keyword cmdname">CREATE TABLE</span>或<span class="keyword cmdname">CREATE TABLE AS</span>创建Greenplum数据库表时，控制表的创建。
+        </p>
+<div class="p">对于<span class="keyword cmdname">CREATE TABLE</span>，如果参数的值为<samp class="ph codeph">off</samp>（缺省值），
+        并且创建表命令不包含<span class="keyword cmdname">DISTRIBUTED BY</span>子句，Greenplum数据库将根据以下命令选择表分布键：
+        <ul class="ul" id="gp_create_table_random_default_distribution__ul_rjb_gty_qfb">
+<li class="li">如果指定了<samp class="ph codeph">LIKE</samp>或<samp class="ph codeph">INHERITS</samp>子句，则Greenplum将从源表或父表复制分布键。
+            </li>
+<li class="li">如果指定了<samp class="ph codeph">PRIMARY KEY</samp>或<samp class="ph codeph">UNIQUE</samp>约束，则Greenplum会选择所有键列的最大子集作为分布键。
+            </li>
+<li class="li">如果既没有指定约束也没有指定<samp class="ph codeph">LIKE</samp>或<samp class="ph codeph">INHERITS</samp>子句，则Greenplum选择第一个合适的列作为分布键。
+            （具有几何或用户定义数据类型的列不符合Greenplum分布键列的条件。）
+            </li>
+</ul>
+</div>
+<div class="p">如果参数的值设置为<samp class="ph codeph">on</samp>，则当未指定<span class="keyword cmdname">DISTRIBUTED BY</span>子句时，Greenplum数据库将遵循这些规则来创建表：
+        <ul class="ul" id="gp_create_table_random_default_distribution__ul_tbr_5kq_kq">
+<li class="li">如果未指定<span class="keyword cmdname">PRIMARY KEY</span>或<span class="keyword cmdname">UNIQUE</span>列，则表的分布是随机的（<span class="keyword cmdname">DISTRIBUTED RANDOMLY</span>）。
+            即使表创建命令包含<span class="keyword cmdname">LIKE</span>或<span class="keyword cmdname">INHERITS</span>子句，表分发也是随机的。
+            </li>
+<li class="li">如果指定了<span class="keyword cmdname">PRIMARY KEY</span>或<span class="keyword cmdname">UNIQUE</span>列，则还必须指定<span class="keyword cmdname">DISTRIBUTED BY</span>子句。
+            如果未将<span class="keyword cmdname">DISTRIBUTED BY</span>子句指定为表创建命令的一部分，则该命令将失败。
+            </li>
+</ul>
+</div>
+<div class="p">对于不包含分布子句的<span class="keyword cmdname">CREATE TABLE AS</span>命令：
+        <ul class="ul" id="gp_create_table_random_default_distribution__ul_ejv_m1b_kr">
+<li class="li">如果Postgres查询优化器创建表，并且参数的值为<samp class="ph codeph">off</samp>，则根据该命令确定表分发策略。
+            </li>
+<li class="li">如果Postgres查询优化器创建表，并且参数的值为<samp class="ph codeph">on</samp>，则表分发策略是随机的。
+            </li>
+<li class="li">如果GPORCA创建表，则表分发策略是随机的。
+            参数值没有影响。</li>
+</ul>
+</div>
+<p class="p">有关Postgres查询优化器和GPORCA的信息，请参阅<cite class="cite">Greenplum数据库管理员指南</cite>中的“查询数据”。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_create_table_random_default_distribution__table_hh5_kgp_kq" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e5679" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e5682" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e5685" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e5679" valign="top" width="33.33333333333333%">boolean</td>
+<td class="entry" headers="d62161e5682" valign="top" width="33.33333333333333%">off</td>
+<td class="entry" headers="d62161e5685" valign="top" width="33.33333333333333%">master<p class="p">system</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

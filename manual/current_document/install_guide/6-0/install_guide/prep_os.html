@@ -1,0 +1,879 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Configuring Your Systems |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_prep_os has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Configuring Your Systems
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="prep_os.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">配置系统</h1>
+
+  
+  
+  <div class="body">
+<p class="shortdesc">描述如何为inHybrid数据库软件安装准备操作系统环境。</p>
+
+    <p class="p">按顺序执行以下任务：</p>
+
+    <ol class="ol">
+      <li class="li" id="topic1__ji162035">确保您的主机系统满足平台要求中描述的要求。</li>
+
+      <li class="li">禁用SELinux和防火墙软件。</li>
+
+      <li class="li" id="topic1__ji162039">
+        <a class="xref" href="prep_os.html#topic3">设置所需的操作系统参数。</a>
+      </li>
+
+      <li class="li">同步系统时钟。</li>
+
+      <li class="li" id="topic1__ji1620399">
+        创建hdbadmin帐户。
+      </li>
+
+    </ol>
+
+    <p class="p">除非另有说明，否则这些任务应针对inHybrid数据库阵列中的所有主机（master、standby和segment主机）执行。</p>
+
+    <p class="p">master主机的inHybrid数据库主机命名约定是mdw，standby主机的命名约定是smdw。</p>
+
+    <p class="p">segment主机命名约定是sdw N，其中sdw是前缀，N是整数。例如，段主机名将是sdw1、sdw2等。对于具有多个接口的主机，建议使用NIC绑定，但如果没有绑定接口，则惯例是在主机名后附加一个破折号（-）和数字。例如，sdw1-1和sdw1-2是主机sdw1的两个接口名称。</p>
+
+    
+    
+    <div class="note important">
+<b class="importanttitle">重要提示：</b>当关键的inHybrid数据库系统不能接受数据丢失时，必须启用inHybrid数据库主机和segment镜像。在没有镜像的情况下，单segment实例故障会停止群集。有关主镜像和段镜像的信息，请参阅《inHybrid数据库管理员指南》中的关于冗余和故障转移。</div>
+
+    
+    
+    <div class="note note">
+<b class="notetitle">注意：</b>自动化本主题中描述的配置步骤，并使用系统配置工具（如Ansible、Chef或Puppet）安装inHybrid数据库软件，可以节省时间并确保inHybrid数据库安装的可靠性和可重复性。
+    </div>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">安装和升级inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="topic_sqj_lt1_nfb">
+    <h2 class="title topictitle2">禁用SELinux和防火墙软件</h2>
+
+    <div class="body">
+      <div class="p">对于运行RHEL或CentOS的所有inHybrid数据库主机系统，必须禁用SELinux。遵循以下步骤：<ol class="ol" id="topic_sqj_lt1_nfb__ol_ysm_5t1_nfb">
+          <li class="li">作为root用户，检查SELinux的状态：<pre class="pre codeblock"># sestatus
+SELinuxstatus: disabled</pre>
+</li>
+
+          <li class="li">如果没有禁用SELinux，请通过编辑/etc/SELinux/config文件禁用它。作为根用户，更改配置文件中SELINUX参数的值，如下所示：<pre class="pre codeblock">SELINUX=disabled</pre>
+</li>
+
+          <li class="li">如果系统上安装了系统安全服务守护程序（SSSD），请编辑SSSD配置文件并将selinux_provider参数设置为none，以防止即使禁用selinux也可能发生与selinux相关的SSH身份验证拒绝。作为根用户，编辑/etc/sssd/sssd.conf并添加此参数：<pre class="pre codeblock">selinux_provider=none</pre>
+</li>
+
+          <li class="li">重新启动系统以应用您所做的任何更改，并验证已禁用SELinux。</li>
+
+        </ol>
+</div>
+
+      <p class="p">有关禁用SELinux的信息，请参阅SELinux文档。</p>
+
+      <p class="p">您还应该禁用防火墙软件，如iptables（在诸如RHEL 6.x和CentOS 6.x的系统上）、firewalld（在诸如RHEL 7.x和CentOS 7.x的系统上）或ufw（在Ubuntu系统上，默认情况下禁用）。</p>
+
+      <p class="p">如果出于安全目的决定启用带有inHybrid数据库的iptables，请参阅启用iptables（可选）。</p>
+
+      <div class="p">按照以下步骤禁用iptables：<ol class="ol" id="topic_sqj_lt1_nfb__ul_wrw_3v1_nfb">
+          <li class="li">作为root用户，检查iptables的状态：<pre class="pre codeblock"># /sbin/chkconfig --list iptables</pre>
+<p class="p">如果禁用iptables，则命令输出为：</p>
+<pre class="pre codeblock">iptables 0:off 1:off 2:off 3:off 4:off 5:off 6:off</pre>
+</li>
+
+          <li class="li">如有必要，以根用户身份执行此命令以禁用iptables：<pre class="pre codeblock">/sbin/chkconfig iptables off</pre>
+<p class="p">如有必要，以根用户身份执行此命令以禁用iptables：</p>
+</li>
+
+          <li class="li">对于带有firewalld的系统，使用命令检查firewalld的状态：<pre class="pre codeblock"># systemctl status firewalld</pre>
+<p class="p">如果禁用firewalld，则命令输出为：</p>
+<pre class="pre codeblock">* firewalld.service - firewalld - dynamic firewall daemon
+   Loaded: loaded (/usr/lib/systemd/system/firewalld.service; disabled; vendor preset: enabled)
+   Active: inactive (dead)</pre>
+</li>
+
+          <li class="li">如有必要，以root用户身份执行这些命令以禁用firewalld：<pre class="pre codeblock"># systemctl stop firewalld.service
+# systemctl disable firewalld.service</pre>
+</li>
+
+        </ol>
+</div>
+
+      <p class="p">有关配置防火墙软件的详细信息，请参阅防火墙或操作系统的文档</p>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic3">
+    <h2 class="title topictitle2">建议的操作系统参数设置</h2>
+
+    <div class="body">
+      <p class="p">inHybrid要求在inHybrid数据库系统（masters和segments）的所有主机上设置某些Linux操作系统（OS）参数。</p>
+
+      <p class="p">一般来说，需要更改以下类别的系统参数： </p>
+
+      <ul class="ul">
+        <li class="li" id="topic3__ji162186">
+<strong class="ph b">共享内存</strong> -除非内核的共享内存段大小正确，否则inHybrid数据库实例将无法工作。对于inHybrid数据库，大多数默认操作系统安装的共享内存值设置得太低。在Linux系统上，还必须禁用OOM（内存不足）杀手。有关inHybrid数据库共享内存要求的信息，请参阅inHybrid数据库参考指南中的inHybrid数据库服务器配置参数shared_buffers。</li>
+
+        <li class="li" id="topic3__ji162187">
+<strong class="ph b">网络</strong> - 在大容量inHybrid数据库系统上，必须设置某些与网络相关的调整参数，以优化inHybrid互连所建立的网络连接。</li>
+
+        <li class="li" id="topic3__ji162188">
+<strong class="ph b">用户限制</strong> - 用户限制控制用户shell启动的进程可用的资源。inHybrid数据库要求对单个进程可以打开的文件描述符的允许数量有更高的限制。默认设置可能会导致一些inHybrid数据库查询失败，因为它们将用完处理查询所需的文件描述符。</li>
+
+      </ul>
+
+    
+    <p class="p">更具体地说，您需要编辑以下Linux配置设置：</p>
+
+    <ul class="ul" id="topic3__ul_t1k_rl3_2jb">
+      <li class="li"><a class="xref" href="prep_os.html#topic3__linux_hosts_file">hosts文件</a></li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__sysctl_file">sysctl.conf文件e</a></li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__system_resources">系统资源限制</a></li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__xfs_mount">XFS挂载选项</a></li>
+
+      <li class="li">
+<a class="xref" href="prep_os.html#topic3__disk_io_settings">磁盘I/O设置</a>
+        <ul class="ul" id="topic3__ul_fm1_2yc_2jb">
+          <li class="li">预读值</li>
+
+          <li class="li">磁盘I/o调度程序磁盘访问</li>
+
+        </ul>
+</li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__huge_pages">透明大页（THP）</a></li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__ipc_object_removal">IPC对象移除</a></li>
+
+      <li class="li"><a class="xref" href="prep_os.html#topic3__ssh_max_connections">SSH连接阈值</a></li>
+
+    </ul>
+
+    <div class="section" id="topic3__linux_hosts_file">
+<h3 class="title sectiontitle">hosts文件</h3>
+      
+      <p class="p">编辑/etc/hosts文件，确保它包含参与inHybrid数据库系统的每台计算机的主机名和所有接口地址名。</p>
+
+    </div>
+
+    <div class="section" id="topic3__sysctl_file">
+<h3 class="title sectiontitle">sysctl.conf文件</h3>
+        
+        <p class="p">本主题中列出的sysctl.conf参数用于各种环境中的性能、优化和一致性。根据您的具体情况和设置更改这些设置。</p>
+
+        <p class="p">在/etc中设置参数/sysctl.conf文件使用sysctl -p文件并重新加载：</p>
+
+        <pre class="pre codeblock">
+# kernel.shmall = _PHYS_PAGES / 2 # <strong class="ph b">See <a class="xref" href="prep_os.html#topic3__shared_memory_pages">Shared Memory Pages</a></strong>
+kernel.shmall = 197951838
+# kernel.shmmax = kernel.shmall * PAGE_SIZE 
+kernel.shmmax = 810810728448
+kernel.shmmni = 4096
+vm.overcommit_memory = 2 # <strong class="ph b">See <a class="xref" href="prep_os.html#topic3__segment_host_memory">Segment Host Memory</a></strong>
+vm.overcommit_ratio = 95 # <strong class="ph b">See <a class="xref" href="prep_os.html#topic3__segment_host_memory">Segment Host Memory</a></strong>
+
+net.ipv4.ip_local_port_range = 10000 65535 # <strong class="ph b">See <a class="xref" href="prep_os.html#topic3__port_settings">Port Settings</a></strong>
+kernel.sem = 500 2048000 200 40960
+kernel.sysrq = 1
+kernel.core_uses_pid = 1
+kernel.msgmnb = 65536
+kernel.msgmax = 65536
+kernel.msgmni = 2048
+net.ipv4.tcp_syncookies = 1
+net.ipv4.conf.default.accept_source_route = 0
+net.ipv4.tcp_max_syn_backlog = 4096
+net.ipv4.conf.all.arp_filter = 1
+net.core.netdev_max_backlog = 10000
+net.core.rmem_max = 2097152
+net.core.wmem_max = 2097152
+vm.swappiness = 10
+vm.zone_reclaim_mode = 0
+vm.dirty_expire_centisecs = 500
+vm.dirty_writeback_centisecs = 100
+vm.dirty_background_ratio = 0 # <strong class="ph b">See <a class="xref" href="prep_os.html#topic3__system_memory">System Memory</a></strong>
+vm.dirty_ratio = 0
+vm.dirty_background_bytes = 1610612736
+vm.dirty_bytes = 4294967296</pre>
+
+        <p class="p" id="topic3__shared_memory_pages"><strong class="ph b">共享内存页</strong></p>
+
+        <p class="p">inHybrid数据库使用共享内存在属于同一postgres实例的postgres进程之间进行通信。shmall设置可在系统范围内使用的共享内存总量（以页为单位）。shmmax设置单个共享内存段的最大大小（字节）。</p>
+
+        <p class="p">根据系统的物理内存和页面大小设置kernel.shmall和kernel.shmax值。通常，这两个参数的值都应该是系统物理内存的一半。 </p>
+
+        <p class="p">使用操作系统变量<samp class="ph codeph">_PHYS_PAGES</samp> 和
+            <samp class="ph codeph">PAGE_SIZE</samp> </p>
+
+        <pre class="pre codeblock">kernel.shmall = ( _PHYS_PAGES / 2)
+kernel.shmmax = ( _PHYS_PAGES / 2) * PAGE_SIZE</pre>
+
+        <p class="p">要计算kernel.shmall和kernel.shmax的值，请使用getconf命令运行以下命令，该命令返回操作系统变量的值。</p>
+
+        <pre class="pre codeblock">$ echo $(expr $(getconf _PHYS_PAGES) / 2) 
+$ echo $(expr $(getconf _PHYS_PAGES) / 2 \* $(getconf PAGE_SIZE))</pre>
+
+        <p class="p">作为最佳实践，我们建议您在/etc中设置以下值/sysctl.conf文件使用计算值的文件。例如，主机系统安装了1583GB内存，并返回以下值：_PHYS_PAGES=395903676和PAGE_SIZE=4096。这些就是kernel.shmall和kernel.shmmax值：</p>
+
+        <pre class="pre codeblock">kernel.shmall = 197951838
+kernel.shmmax = 810810728448</pre>
+
+        <p class="p">如果Greeplum数据库主机具有与段主机不同的共享内存配置，则页和页大小值可能不同，并且主主机上的kernel.shmall和kernel.shmax值将不同于段主机上的值。</p>
+
+        <p class="p" id="topic3__segment_host_memory"><strong class="ph b">segment主机内存</strong></p>
+
+        <p class="p">OS使用vm.overcommit_memory Linux内核参数来确定可以为进程分配多少内存。对于inHybrid数据库，此参数应始终设置为2.</p>
+
+        <p class="p">vm.overcommit_比率是用于应用程序进程的RAM的百分比，其余部分保留给操作系统。在Red Hat Enterprise Linux上，默认值为50。</p>
+
+        <p class="p">有关基于资源组的资源管理或基于资源队列的资源管理的vm.overcommit_ratio调整和计算建议，请参阅《Geenplum数据库管理员指南》中的配置段主机内存选项。另请参阅inHybrid数据库参考指南中的inHybrid数据库服务器配置参数gp_vmem_protect_limit。</p>
+
+        <p class="p" id="topic3__port_settings"><strong class="ph b">端口设置</strong></p>
+
+        <p class="p">为避免inHybrid初始化期间inHybrid数据库与其他应用程序之间的端口冲突，请记下操作系统参数net.ipv4.ip_local_port_range指定的端口范围。使用hdbinitsystem集群配置文件初始化inHybrid时，不要在该范围内指定inHybrid数据库端口。例如，如果net.ipv4.ip_local_port_range=10000 65535，请将inHybrid数据库基本端口号设置为这些值。</p>
+
+        <pre class="pre codeblock">PORT_BASE = 6000
+MIRROR_PORT_BASE = 7000</pre>
+
+        <p class="p">有关hdbinitsystem集群配置文件的信息，请参阅初始化inHybrid数据库系统。</p>
+
+        <div class="p">对于使用inHybrid数据库的Azure部署，请避免使用端口65330；将以下行添加到sysctl.conf：
+          <pre class="pre codeblock">net.ipv4.ip_local_reserved_ports=65330 </pre>
+</div>
+
+        <p class="p">有关云部署的其他要求和建议，请参阅inHybrid数据库云技术建议。</p>
+
+        <p class="p" id="topic3__system_memory"><strong class="ph b">系统内存</strong></p>
+
+        <div class="p">对于内存超过64GB的主机系统，建议使用以下设置：
+          <pre class="pre codeblock">vm.dirty_background_ratio = 0
+vm.dirty_ratio = 0
+vm.dirty_background_bytes = 1610612736 # 1.5GB
+vm.dirty_bytes = 4294967296 # 4GB</pre>
+</div>
+
+        <div class="p">对于内存小于等于64GB的主机系统，删除vm.dirty_background_bytes和vm.dirty_bytes，并将两个比率参数设置为以下值：
+          <pre class="pre codeblock">vm.dirty_background_ratio = 3
+vm.dirty_ratio = 10</pre>
+</div>
+
+        <div class="p">增加vm.min_free_kbytes以确保来自网络和存储驱动程序的PF_MEMALLOC请求很容易得到满足。这对于具有大量系统内存的系统尤其重要。在这些系统上，默认值通常太低。使用此awk命令将vm.min_free_kbytes设置为建议的3%系统物理内存：
+          <pre class="pre codeblock">awk 'BEGIN {OFMT = "%.0f";} /MemTotal/ {print "vm.min_free_kbytes =", $2 * .03;}'
+               /proc/meminfo &gt;&gt; /etc/sysctl.conf </pre>
+</div>
+
+        <p class="p">不要将vm.min_free_kbytes设置为高于系统内存的5%，否则可能导致内存不足。</p>
+
+      </div>
+
+    <div class="section" id="topic3__system_resources">
+<h3 class="title sectiontitle">系统资源限制</h3>
+      
+      <p class="p">在/etc/security/limits.conf文件中设置以下参数：</p>
+
+      <pre class="pre codeblock">* soft nofile 524288
+* hard nofile 524288
+* soft nproc 131072
+* hard nproc 131072</pre>
+
+      <p class="p">对于Red Hat Enterprise Linux（RHEL）和CentOS系统，/etc/security/limits.d/90-nproc.conf文件（RHEL/CentOS 6）或/etc/security/limits.d/20-nproc.conf文件（RHEL/CentOS 7）中的参数值将覆盖limits.conf文件中的值。确保覆盖文件中的任何参数都设置为所需的值。Linux模块pam_limits通过从limits.conf文件读取值，然后从override文件读取值来设置用户限制。有关PAM和用户限制的信息，请参阅PAM和PAM_限制的文档。</p>
+
+      <p class="p">在每个segment主机上执行ulimit-u命令，以显示每个用户可用的最大进程数。验证返回值是否为131072。</p>
+
+    </div>
+
+    <div class="section" id="topic3__xfs_mount">
+<h3 class="title sectiontitle">XFS挂载选项</h3>
+      
+      <div class="p">XFS是Linux平台上首选的数据存储文件系统。对于RHEL和CentOS系统，将mount命令与以下建议的XFS mount选项一起使用：<pre class="pre codeblock">rw,nodev,noatime,nobarrier,inode64</pre>
+</div>
+
+      <div class="p">Ubuntu系统不支持<samp class="ph codeph">nobarrier</samp>选项。仅使用选项： <pre class="pre codeblock">rw,nodev,noatime,inode64</pre>
+</div>
+
+        <p class="p">有关使用此命令的详细信息，请参阅安装手册页（手动安装打开手册页）。</p>
+
+      <p class="p">XFS选项也可以在/etc/fstab文件中设置。fstab文件中的这个示例条目指定了XFS选项。</p>
+
+      <pre class="pre codeblock">/dev/data /data xfs nodev,noatime,nobarrier,inode64 0 0</pre>
+
+    </div>
+
+    <div class="section" id="topic3__disk_io_settings">
+<h3 class="title sectiontitle">磁盘I/O设置</h3>
+      
+      <ul class="ul" id="topic3__ul_oh4_vlk_2jb">
+        <li class="li">
+          <p class="p">预读值</p>
+
+          <p class="p">每个磁盘设备文件的预读（blockdev）值应为16384。要验证磁盘设备的预读值，请执行以下操作：</p>
+
+          <pre class="pre codeblock"># /sbin/blockdev --getra <var class="keyword varname">devname</var></pre>
+
+          <p class="p">例如：</p>
+
+          <pre class="pre codeblock"># /sbin/blockdev --getra /dev/sdb</pre>
+
+          <p class="p">要在设备上设置blockdev（预读）：</p>
+
+          <pre class="pre codeblock"># /sbin/blockdev --setra <var class="keyword varname">bytes</var> <var class="keyword varname">devname</var></pre>
+
+          <p class="p">例如：</p>
+
+          <pre class="pre codeblock"># /sbin/blockdev --setra 16384 /dev/sdb</pre>
+
+          <p class="p">有关使用blockdev命令的详细信息，请参阅blockdev命令的手册页（man）（man blockdev打开手册页）。</p>
+
+            <div class="note note">
+<span class="notetitle">注意：blockdev --setra命令不是持久的。必须确保在系统重新启动时设置预读值。如何设置该值将因系统而异。</div>
+
+            <div class="p">在系统启动时设置blockdev值的一种方法是在rc.local文件。例如，将此行添加到rc.local文件设置磁盘sdb的预读值。<pre class="pre codeblock">/sbin/blockdev --setra 16384 /dev/sdb</pre>
+</div>
+
+            <div class="p">在使用systemd的系统上，还必须在rc.local启动时运行的文件。例如，在RHEL/CentOS 7系统上，此命令设置文件的执行权限。<pre class="pre codeblock"># chmod +x /etc/rc.d/rc.local</pre>
+</div>
+
+            <p class="p">重新启动系统以使设置生效。</p>
+
+        </li>
+
+        <li class="li">
+          <p class="p">磁盘I/O调度程序</p>
+
+          <p class="p">用于磁盘访问的Linux磁盘I/O调度程序支持不同的策略，如CFQ、as和deadline。</p>
+
+          <p class="p">建议使用“截止日期计划程序”选项。要在下次系统重新启动前指定计划程序，请运行以下命令：</p>
+
+          <pre class="pre codeblock"># echo <var class="keyword varname">schedulername</var> &gt; /sys/block/<var class="keyword varname">devname</var>/queue/scheduler</pre>
+
+          <p class="p">例如：</p>
+
+          <pre class="pre codeblock"># echo deadline &gt; /sys/block/sbd/queue/scheduler</pre>
+
+          <div class="note note">
+<span class="notetitle">Note:</span>注意：使用echo命令设置磁盘I/O计划程序策略不是持久的，因此必须确保在系统重新启动时运行该命令。如何运行该命令取决于您的系统。</div>
+
+          <p class="p">在启动时设置I/O调度程序策略的一种方法是使用 elevator内核参数。在文件/boot/grub/grub.conf中添加参数elevator=deadline。这是RHEL 6.x或CentOS 6.x上的内核命令行。为了便于阅读，该命令位于多行上。</p>
+
+          <pre class="pre codeblock">kernel /vmlinuz-2.6.18-274.3.1.el5 ro root=LABEL=/
+                 <strong class="ph b">elevator=deadline</strong> crashkernel=128M@16M  quiet console=tty1
+                 console=ttyS1,115200 panic=30 transparent_hugepage=never 
+                 initrd /initrd-2.6.18-274.3.1.el5.img</pre>
+
+          <div class="p">要在使用grub2（如RHEL 7.x或CentOS 7.x）的系统上指定启动时的I/O调度程序，请使用系统实用程序grubby。此命令在以root用户身份运行时添加参数。<pre class="pre codeblock"># grubby --update-kernel=ALL --args="elevator=deadline"</pre>
+</div>
+
+          <p class="p">添加参数后，重新启动系统。</p>
+
+          <div class="p">这个grubby命令显示内核参数设置。<pre class="pre codeblock"># grubby --info=ALL</pre>
+</div>
+
+          <p class="p">有关grubby实用程序的更多信息，请参阅操作系统文档。如果grubby命令不更新内核，请参阅本节末尾的注释。</p>
+
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="section" id="topic3__huge_pages">
+<h3 class="title sectiontitle">透明大页（THP）</h3>
+      
+      <div class="p">禁用透明大页（THP），因为它会降低inHybrid数据库的性能。RHEL 6.0或更高版本默认启用THP。在RHEL 6.x上禁用THP的一种方法是在grub引导加载程序配置文件/boot/grub/grub.conf中的内核命令中添加参数transparent_hugepage=never。这是一个来自grub.conf文件的内核命令示例。为了便于阅读，该命令位于多行：<pre class="pre codeblock">kernel /vmlinuz-2.6.18-274.3.1.el5 ro root=LABEL=/
+           elevator=deadline crashkernel=128M@16M  quiet console=tty1
+           console=ttyS1,115200 panic=30 <strong class="ph b">transparent_hugepage=never</strong> 
+           initrd /initrd-2.6.18-274.3.1.el5.img</pre>
+</div>
+
+      <div class="p">在使用grub2的系统（如RHEL7.x或CentOS7.x）上，使用系统实用程序grubby。此命令在以root用户身份运行时添加参数。<pre class="pre codeblock"># grubby --update-kernel=ALL --args="transparent_hugepage=never"</pre>
+</div>
+
+      <p class="p">添加参数后，重新启动系统。</p>
+
+      <div class="p">对于Ubuntu系统，安装hugepages包并以root用户身份执行此命令：<pre class="pre codeblock"># hugeadm --thp-never</pre>
+</div>
+
+      <div class="p">这个cat命令检查THP的状态。输出指示THP被禁用<pre class="pre codeblock">$ cat /sys/kernel/mm/*transparent_hugepage/enabled
+always [never]</pre>
+</div>
+
+      <p class="p">有关透明大页面或grubby实用程序的更多信息，请参阅操作系统文档。如果grubby命令不更新内核，请参阅本节末尾的注释。</p>
+
+    </div>
+
+    <div class="section" id="topic3__ipc_object_removal">
+<h3 class="title sectiontitle">IPC对象删除</h3>
+      
+      <p class="p">禁用RHEL 7.2或CentOS 7.2或Ubuntu的IPC对象删除。默认的systemd设置RemoveIPC=yes在非系统用户帐户注销时删除IPC连接。这会导致inHybrid数据库实用程序hdbinitsystem失败，并出现信号量错误。执行以下操作之一以避免此问题。</p>
+
+      <ul class="ul" id="topic3__ul_l21_t2v_q5">
+        <li class="li">在创建inHybrid管理用户时，将hdbadmin操作系统用户帐户添加到主节点时，将该用户创建为系统帐户。 </li>
+
+        <li class="li"> 禁用RemoveIPC。在inHybrid数据库主机系统上的/etc/systemd/logind.conf中设置此参数。
+            <pre class="pre codeblock">RemoveIPC=no</pre>
+<p class="p">此设置在重新启动systemd登录服务或重新启动系统后生效。要重新启动服务，请以根用户身份运行此命令。</p>
+<pre class="pre codeblock">service systemd-logind restart</pre>
+</li>
+
+      </ul>
+
+    </div>
+
+    <div class="section" id="topic3__ssh_max_connections">
+<h3 class="title sectiontitle">SSH连接阈值</h3>
+      
+      <p class="p">某些inHybrid数据库管理实用程序（包括hdbexpand、hdbinitsystem和hdbaddmirrors）使用系统之间的安全shell（SSH）连接来执行其任务。在大型inHybrid数据库部署、云部署或每个主机具有大量segment的部署中，这些实用程序可能会超过主机未经验证连接的最大阈值。发生这种情况时，您将收到错误，例如：ssh_exchange_identification:Connection closed by remote host。</p>
+
+      <p class="p">要为inHybrid数据库系统增加此连接阈值，请更新/etc/ssh/sshd_config或/etc/sshd_config ssh daemon配置文件之一中的SSHMaxStartups和MaxSessions配置参数。</p>
+
+        <div class="p">如果使用单个整数值指定MaxStartups和MaxSessions，则标识每个网络连接允许的最大并发未经身份验证的连接数（MaxStartups）和最大打开shell、登录或子系统会话数（MaxSessions）。例如：<pre class="pre codeblock">MaxStartups 200
+MaxSessions 200</pre>
+</div>
+
+        <div class="p">如果使用“start:rate:full”语法指定MaxStartups，则可以通过SSH守护进程启用随机的早期连接丢弃。start标识允许的未经身份验证的SSH连接尝试的最大数量。一旦达到未经身份验证的连接尝试的开始次数，SSH守护进程将拒绝后续连接尝试的百分比。full标识拒绝所有连接尝试的最大未经身份验证的连接尝试次数。例如：<pre class="pre codeblock">MaxStartups 10:30:200
+MaxSessions 200</pre>
+</div>
+
+        <div class="p">更新maxstups和MaxSessions后重新启动SSH守护进程。例如，在CentOS 6系统上，以root用户身份运行以下命令：<pre class="pre codeblock"># service sshd restart</pre>
+</div>
+
+      <p class="p">有关SSH配置选项的详细信息，请参阅Linux发行版的SSH文档。</p>
+
+      
+      <div class="note note" id="topic3__grubby_note">
+<span class="notetitle">注意：如果grubby命令不更新RHEL 7.x或centos7.x系统的内核，则可以手动更新系统上的所有内核。<ol class="ol" id="topic3__ol_bxf_g3x_j1b">
+          <li class="li">在/etc/default/GRUB中的文件参数中将参数添加到GRUB-CMDLINE-LINUX行。<pre class="pre codeblock">GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR="$(sed 's, release .*$,,g' /etc/system-release)"
+GRUB_DEFAULT=saved
+GRUB_DISABLE_SUBMENU=true
+GRUB_TERMINAL_OUTPUT="console"
+GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=cl/root rd.lvm.lv=cl/swap rhgb quiet <strong class="ph b">transparent_hugepage=never</strong>"
+GRUB_DISABLE_RECOVERY="true"</pre>
+</li>
+
+          <li class="li">作为root用户，运行grub2 mkconfig命令来更新内核。<pre class="pre codeblock"># grub2-mkconfig -o /boot/grub2/grub.cfg</pre>
+</li>
+
+          <li class="li">重新启动系统</li>
+
+        </ol>
+</div>
+
+    </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic_qst_s5t_wy">
+    <h2 class="title topictitle2">重新启动系统</h2>
+
+    <div class="body">
+      <p class="p">您应该使用NTP（网络时间协议）来同步组成inHybrid数据库系统的所有主机上的系统时钟。见www.ntp.org网站有关NTP的更多信息。</p>
+
+      <p class="p">segment主机上的NTP应配置为使用master主机作为主时间源，而standby主机作为辅助时间源。在master主机和standby主主机上，将NTP配置为指向首选时间服务器。</p>
+
+      <div class="section" id="topic_qst_s5t_wy__ji162603">
+<h3 class="title sectiontitle">配置NTP</h3>
+        
+        <ol class="ol" id="topic_qst_s5t_wy__ol_zjk_knz_thb">
+          <li class="li" id="topic_qst_s5t_wy__ji162604">在master主机上，以根用户身份登录并编辑/etc/ntp.conf文件。将服务器参数设置为指向数据中心的NTP时间服务器。例如（如果10.6.220.20是数据中心NTP服务器的IP地址）：<pre class="pre codeblock">server 10.6.220.20</pre>
+</li>
+
+          <li class="li" id="topic_qst_s5t_wy__ji162606">在每个segment主机上，以root用户身份登录并编辑/etc/ntp.conf文件。将第一个服务器参数设置为指向master主机，将第二个服务器参数设置为指向standby主机。例如：<pre class="pre codeblock">server mdw prefer
+server smdw</pre>
+</li>
+
+          <li class="li" id="topic_qst_s5t_wy__ji162609">在standby主机上，以root用户身份登录并编辑/etc/ntp.conf文件。将第一个服务器参数设置为指向master主机，将第二个服务器参数设置为指向数据中心的NTP时间服务器。例如：<pre class="pre codeblock">server mdw prefer
+server 10.6.220.20</pre>
+</li>
+
+          <li class="li" id="topic_qst_s5t_wy__ji162612">在master主机上，使用NTP守护进程同步所有inHybrid主机上的系统时钟。例如，使用hdbssh：<pre class="pre codeblock"># hdbssh -f hostfile_hdbssh_allhosts -v -e 'ntpd'</pre>
+</li>
+
+        </ol>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic23">
+    <h2 class="title topictitle2">创建inHybrid管理用户</h2>
+
+    <div class="body">
+      <p class="p">在每个节点上创建一个专用的操作系统用户帐户以运行和管理inHybrid数据库。此用户帐户按惯例命名为hdbadmin。</p>
+
+      <div class="note important">
+<span class="importanttitle">重要提示：不能以根root用户身份运行inHybrid数据库服务器。</div>
+
+      <p class="p">hdbadmin用户必须具有访问安装和运行inHybrid数据库所需的服务和目录的权限。 </p>
+
+      <p class="p">每个inHybrid主机上的hdbadmin用户必须安装一个SSH密钥对，并且能够从群集中的任何主机SSH到群集中的任何其他主机，而无需输入密码或密码短语（称为“无密码SSH”）。如果启用从主主机到群集中每个其他主机的无密码SSH（“1-n passwordless SSH”），则可以稍后使用inHybrid数据库hdbssh exkeys命令行实用程序启用从每个主机到每个其他主机的无密码SSH（“n-n passwordless SSH”）。</p>
+
+      <p class="p">您可以选择授予hdbadmin用户sudo权限，以便可以使用sudo、ssh/scp和hdbssh/hdbscp命令轻松地将inHybrid数据库集群中的所有主机管理为hdbadmin。</p>
+
+      <p class="p">以下步骤说明如何在主机上设置hdbadmin用户、设置密码、创建SSH密钥对和（可选）启用sudo功能。这些步骤必须以root身份在每个inHybrid数据库集群主机上执行。（对于大型inHybrid数据库集群，您需要使用系统配置工具自动执行这些步骤。）</p>
+
+      <div class="note note">
+<span class="notetitle">注意：请参阅示例Ansible Playbook，该示例演示如何在集群中的所有主机上自动执行创建hdbadmin用户和安装inHybrid数据库软件的任务。</div>
+
+      <ol class="ol" id="topic23__ol_k23_3cz_thb">
+        <li class="li">创建hdbadmin组和用户。
+          <div class="note note">
+<span class="notetitle">注意：如果要在RHEL 7.2或CentOS 7.2上安装inHybrid数据库，并希望通过将hdbadmin用户创建为系统帐户来禁用IPC对象删除，请在useradd命令中同时提供-roption（将用户创建为系统帐户）和-m选项（创建主目录）。在Ubuntu系统上，必须使用-m选项和useradd命令为用户创建主目录。</div>
+<div class="p">此示例创建hdbadmin组，将hdbadmin用户创建为具有主目录的系统帐户和hdbadmin组的成员，并为该用户创建密码
+。
+<pre class="pre codeblock"># groupadd hdbadmin
+# useradd hdbadmin -r -m -g hdbadmin
+# passwd hdbadmin
+New password: &lt;changeme&gt;
+Retype new password: &lt;changeme&gt;</pre>
+</div>
+
+          <div class="note note">
+注意：确保hdbadmin用户在每个主机上具有相同的用户id（uid）和组id（gid）号码，以防止使用它们进行标识或权限的脚本或服务出现问题。例如，如果hdbadmin用户在不同的网段主机上具有不同的uid或gid号，那么将inHybrid数据库备份到某些网络文件系统或存储设备可能会失败。创建hdbadmin组和用户时，可以使用groupadd -g选项指定gid号，使用useradd  -u选项指定uid号。使用命令id hdbadmin查看当前主机上hdbadmin用户的uid和gid。/div>
+</li>
+
+        <li class="li">切换到hdbadmin用户并为hdbadmin用户生成SSH密钥对<pre class="pre codeblock">$ su hdbadmin
+$ ssh-keygen -t rsa -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/hdbadmin/.ssh/id_rsa):
+Created directory '/home/hdbadmin/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+</pre>
+在密码短语提示下，按Enter键，这样SSH连接就不需要输入密码短语。</li>
+
+        <li class="li">（可选）授予hdbadmin用户sudo访问权限。<pre class="pre codeblock">%wheel        ALL=(ALL)       NOPASSWD: ALL</pre>
+</div>
+<p class="p">确保取消注释具有NOPASSWD关键字的行。</p>
+<p class="p">使用此命令将hdbadmin用户添加到wheel组。</p>
+<pre class="pre codeblock"># usermod -aG wheel hdbadmin</pre>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_acx_5xb_vhb">
+    <h2 class="title topictitle2">Next Steps</h2>
+
+    <div class="body">
+      <ul class="ul" id="topic_acx_5xb_vhb__ul_ibb_1yb_vhb">
+        <li class="li"><a class="xref" href="install_hdb.html#topic1" title="Describes how to install the inHybrid Database software binaries on all of the hosts that will comprise your inHybrid Database system, how to enable passwordless SSH for the hdbadmin user, and how to verify the installation.">安装inHybrid数据库</a></li>
+
+        <li class="li"><a class="xref" href="validate.html#topic1" title="Validate your hardware and network performance.">验证您的系统</a></li>
+
+        <li class="li"><a class="xref" href="init_hdb.html#topic1" title="Describes how to initialize a inHybrid Database database system.">初始化inHybrid数据库系统</a></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

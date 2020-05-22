@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_join_arity_for_associativity_commutativity">
+<h2 class="title topictitle2">optimizer_join_arity_for_associativity_commutativity</h2>
+<div class="body">
+<p class="p">该值是一个优化提示，用于限制在查询优化期间探索的连接关联性和连接可交换性转换的数量。
+        该限制控制GPORCA在查询优化期间考虑的备选计划。
+        例如，默认值18是GPORCA在优化期间n-ary连接运算符具有超过18个子节点时停止探索连接关联性和连接交换变换的优化提示。
+        </p>
+<p class="p">对于具有大量连接的查询，指定较低的值可通过限制GPORCA评估的备用查询计划的数量来提高查询性能。
+        但是，将值设置得太低可能会导致GPORCA生成次优执行的查询计划。
+        </p>
+<p class="p">当<samp class="ph codeph">optimizer_join_order</samp>参数设置为<samp class="ph codeph">query</samp>或<samp class="ph codeph">greedy</samp>时，此参数无效。
+        </p>
+<p class="p">可以为数据库系统或会话设置此参数。</p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_join_arity_for_associativity_commutativity__table_lfq_3zg_nbb" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e15899" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e15902" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e15905" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e15899" valign="top" width="33.33333333333333%">整数 &gt; 0</td>
+<td class="entry" headers="d62161e15902" valign="top" width="33.33333333333333%">18</td>
+<td class="entry" headers="d62161e15905" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

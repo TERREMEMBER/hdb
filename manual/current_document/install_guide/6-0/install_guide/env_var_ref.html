@@ -1,0 +1,528 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      inHybrid Environment Variables |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_env_var_ref has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    inHybrid Environment Variables
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="env_var_ref.html#top" title="back to top"></a>
+        </div>
+        
+
+        <h1 class="title topictitle1">inHybrid环境变量</h1>
+
+        
+        <div class="body">
+<p class="shortdesc">为inHybrid数据库设置环境变量参考。</p>
+
+                <p class="p">在用户的启动shell配置文件中设置这些参数(例如~/)。bashrc或~/.bash_profile)，或者在/etc/profile中(如果您想为所有用户设置它们)。</p>
+
+        </div>
+
+        <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic2">必需环境变量</a></strong><br>
+</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">可选环境变量</a></strong><br>
+</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">安装和升级inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" xml:lang="en" lang="en" id="topic2">
+                <h2 class="title topictitle2">必需的环境变量</h2>
+
+                <div class="body">
+                        <div class="note note">
+注意:可以通过从inHybrid数据库安装目录中获取greenplum_path.sh文件来设置HDBHOME、PATH和LD_LIBRARY_PATH</div>
+
+                </div>
+
+                <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="env_var_ref.html" title="Reference of the environment variables to set for inHybrid Database.">inHybrid 环境变量 </a>
+</div>
+</div>
+</div>
+<div class="topic nested2" xml:lang="en" lang="en" id="topic3">
+                        <h3 class="title topictitle3">HDBHOME</h3>
+
+                        <div class="body">
+                                <p class="p">这是inHybrid数据库软件的安装位置。例如:</p>
+
+                                <pre class="pre codeblock">HDBHOME=/usr/local/greenplum-db-6.<var class="keyword varname">x.x</var>
+export HDBHOME</pre>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic4">
+                        <h3 class="title topictitle3">PATH</h3>
+
+                        <div class="body">
+                                <p class="p">您的路径环境变量应该指向inHybrid Database bin目录的位置。例如:</p>
+
+                                <pre class="pre codeblock">PATH=$HDBHOME/bin:$PATH
+export PATH</pre>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic5">
+                        <h3 class="title topictitle3">LD_LIBRARY_PATH</h3>
+
+                        <div class="body">
+                                <p class="p">LD_LIBRARY_PATH环境变量应该指向inHybrid数据库/PostgreSQL库文件的位置。例如:</p>
+
+                                <pre class="pre codeblock">LD_LIBRARY_PATH=$HDBHOME/lib
+export LD_LIBRARY_PATH</pre>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic6">
+                        <h3 class="title topictitle3">MASTER_DATA_DIRECTORY</h3>
+
+                        <div class="body">
+                                <p class="p">这应该指向hdbinitsystem工具在主数据目录位置中创建的目录。例如:</p>
+
+                                <pre class="pre codeblock">MASTER_DATA_DIRECTORY=/data/master/gpseg-1
+export MASTER_DATA_DIRECTORY</pre>
+
+                        </div>
+
+                </div>
+
+        </div>
+
+        <div class="topic nested1" xml:lang="en" lang="en" id="topic7">
+                <h2 class="title topictitle2">可选环境变量</h2>
+
+                <div class="body">
+                        <p class="p">下面是标准的PostgreSQL环境变量，在inHybrid数据库中也可以识别。为了方便起见，您可能希望将与连接相关的环境变量添加到配置文件中，这样您就不必在命令行上为客户机连接键入那么多选项。注意，这些环境变量应该只在inHybrid数据库Master主机上设置。</p>
+
+                </div>
+
+                <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="env_var_ref.html" title="Reference of the environment variables to set for inHybrid Database.">inHybrid 环境变量</a>
+</div>
+</div>
+</div>
+<div class="topic nested2" xml:lang="en" lang="en" id="topic8">
+                        <h3 class="title topictitle3">PGAPPNAME</h3>
+
+                        <div class="body">
+                                <p class="p">应用程序的名称，通常由连接到服务器的应用程序设置。此名称显示在活动视图和日志条目中。PGAPPNAME环境变量的行为与application_name连接参数相同。application_name的默认值是psql。名称不能超过63个字符。 </p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic9">
+                        <h3 class="title topictitle3">PGDATABASE</h3>
+
+                        <div class="body">
+                                <p class="p">连接时使用的默认数据库的名称。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic10">
+                        <h3 class="title topictitle3">PGHOST</h3>
+
+                        <div class="body">
+                                <p class="p">inHybrid数据库主主机名。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic11">
+                        <h3 class="title topictitle3">PGHOSTADDR</h3>
+
+                        <div class="body">
+                                <p class="p">Master主机的IP地址。可以将其设置为PGHOST或PGHOST之外，以避免DNS查找开销。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic12">
+                        <h3 class="title topictitle3">PGPASSWORD </h3>
+
+                        <div class="body">
+                                <p class="p">如果服务器要求口令身份验证，则使用的口令。出于安全原因，不建议使用此环境变量(一些操作系统允许非根用户通过ps查看流程环境变量)。相反，可以考虑使用~/.pgpass文件。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic13">
+                        <h3 class="title topictitle3">PGPASSFILE </h3>
+
+                        <div class="body">
+                                <p class="p">用于查找的密码文件的名称。如果没有设置，它的默认值是~/.pgpass。有关更多信息，请参阅PostgreSQL文档中关于密码文件的主题。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic14">
+                        <h3 class="title topictitle3">PGOPTIONS</h3>
+
+                        <div class="body">
+                                <p class="p">为inHybrid数据库主服务器设置其他配置参数。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic15">
+                        <h3 class="title topictitle3">PGPORT</h3>
+
+                        <div class="body">
+                                <p class="p">Master主机上inHybrid数据库服务器的端口号。默认端口是5432。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic16">
+                        <h3 class="title topictitle3">PGUSER</h3>
+
+                        <div class="body">
+                                <p class="p">用于连接的inHybrid数据库用户名。</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic17">
+                        <h3 class="title topictitle3">PGDATESTYLE</h3>
+
+                        <div class="body">
+                                <p class="p">设置会话的日期/时间表示的默认样式。(相当于将datestyle设为…)</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic18">
+                        <h3 class="title topictitle3">PGTZ</h3>
+
+                        <div class="body">
+                                <p class="p">设置会话的默认时区。(相当于将时区设置为…)</p>
+
+                        </div>
+
+                </div>
+
+                <div class="topic nested2" xml:lang="en" lang="en" id="topic19">
+                        <h3 class="title topictitle3">PGCLIENTENCODING</h3>
+
+                        <div class="body">
+                                <p class="p">设置会话的默认客户端字符集编码。(相当于将client_encoding设置为…)</p>
+
+                        </div>
+
+                </div>
+
+        </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

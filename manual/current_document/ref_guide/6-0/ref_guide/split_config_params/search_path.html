@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="search_path">
+<h2 class="title topictitle2">search_path</h2>
+<div class="body">
+<p class="p">指定在没有schema组件的简单名称引用对象时搜索schema的顺序。
+        当在不同schema中存在具有相同名称的对象时，将使用在搜索路径中首先找到的对象。
+        始终搜索系统catalog schema <em class="ph i">pg_catalog</em>，无论路径中是否提及它。
+        在未指定特定目标schema的情况下创建对象时，它们将被放置在搜索路径中列出的第一个schema中。
+        可以通过SQL函数<em class="ph i">current_schemas()</em>检查搜索路径的当前有效值。
+        <em class="ph i">current_schemas()</em>显示了<em class="ph i">search_path</em>中出现的请求是如何解析的。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="search_path__search_path_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e17945" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e17948" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e17951" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e17945" valign="top" width="33.33333333333333%">以逗号分隔的schema名称列表</td>
+<td class="entry" headers="d62161e17948" valign="top" width="33.33333333333333%">$user,public</td>
+<td class="entry" headers="d62161e17951" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

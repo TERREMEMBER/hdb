@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_log_interconnect">
+<h2 class="title topictitle2">gp_log_interconnect</h2>
+<div class="body">
+<p class="p">控制写入日志文件的有关Greenplum数据库segment实例工作进程之间通信的信息量。
+        默认值为<samp class="ph codeph">terse</samp>。
+        日志信息将写入master实例日志和segment实例日志。
+        </p>
+<p class="p">增加日志记录量可能会影响性能并增加磁盘空间使用量。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_log_interconnect__table_xkm_nqr_y1b" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e8013" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e8016" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e8019" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e8013" valign="top" width="33.33333333333333%">
+<p class="p">off</p>
+<p class="p">terse</p>
+<p class="p">verbose</p>
+<p class="p">debug</p>
+</td>
+<td class="entry" headers="d62161e8016" valign="top" width="33.33333333333333%">terse</td>
+<td class="entry" headers="d62161e8019" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

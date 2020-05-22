@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_analyze_root_partition">
+<h2 class="title topictitle2">optimizer_analyze_root_partition</h2>
+<div class="body">
+<p class="p">对于分区表，控制在表上运行<span class="keyword cmdname">ANALYZE</span>命令时是否需要<samp class="ph codeph">ROOTPARTITION</samp>关键字来收集根分区统计信息。
+        GPORCA在生成查询计划时使用根分区统计信息。
+        Postgres查询优化器不使用这些统计信息。
+        </p>
+<p class="p">参数的默认设置为<samp class="ph codeph">on</samp>，<samp class="ph codeph">ANALYZE</samp>命令可以在不使用<samp class="ph codeph">ROOTPARTITION</samp>关键字的情况下收集根分区统计信息。
+        在根分区上运行<samp class="ph codeph">ANALYZE</samp>时，或者在分区表的子叶子分区上运行<samp class="ph codeph">ANALYZE</samp>并且其他子叶子分区具有统计信息时，将收集根分区统计信息。
+        当该值为<samp class="ph codeph">off</samp>时，您必须运行<samp class="ph codeph">ANALZYE ROOTPARTITION</samp>以收集根分区统计信息。
+        </p>
+<p class="p">当服务器配置参数<samp class="ph codeph"><a class="xref" href="guc-list.html#optimizer">optimizer</a></samp>的值为<samp class="ph codeph">on</samp>（默认值）时，此参数的值也应该为<samp class="ph codeph">on</samp>。
+        有关收集分区表的表统计信息的信息，请参阅<samp class="ph codeph"><a class="xref" href="../sql_commands/ANALYZE.html">ANALYZE</a></samp>。
+        </p>
+<p class="p">有关Postgres查询优化器和GPORCA的信息，请参阅<a class="xref" href="../../admin_guide/query/topics/query.html" title="本主题提供在Greenplum数据库中使用SQL的信息。">查询数据</a>。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_analyze_root_partition__table_gj5_k5l_vp" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e15215" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e15218" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e15221" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e15215" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e15218" valign="top" width="33.33333333333333%">on</td>
+<td class="entry" headers="d62161e15221" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

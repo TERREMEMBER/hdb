@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_parallel_union">
+<h2 class="title topictitle2">optimizer_parallel_union</h2>
+<div class="body">
+<p class="p">启用GPORCA（默认值）时，<samp class="ph codeph">optimizer_parallel_union</samp>控制包含<samp class="ph codeph">UNION</samp>或<samp class="ph codeph">UNION ALL</samp>子句的查询的并行化数量。
+        </p>
+<p class="p">当值为<samp class="ph codeph">off</samp>时，默认GPORCA会生成一个查询计划，其中APPEND（UNION）运算符的每个子项与APPEND运算符位于同一个切片中。
+        在查询执行期间，子节点以顺序方式执行。
+        </p>
+<p class="p">当该值打开时，GPORCA会生成一个查询计划，其中重新分配motion节点位于APPEND（UNION）运算符下。
+        在查询执行期间，子项和父APPEND运算符位于不同的切片上，允许APPEND（UNION）运算符的子项在segment实例上并行执行。
+        </p>
+<p class="p">可以为数据库系统，单个数据库或会话或查询设置该参数。</p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_parallel_union__table_q4c_34y_rw" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e16489" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e16492" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e16495" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e16489" valign="top" width="33.33333333333333%">boolean</td>
+<td class="entry" headers="d62161e16492" valign="top" width="33.33333333333333%">off</td>
+<td class="entry" headers="d62161e16495" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="timezone_abbreviations">
+<h2 class="title topictitle2">timezone_abbreviations</h2>
+<div class="body">
+<p class="p">设置服务器为日期时间输入接受的时区缩写集合。
+        默认值为<samp class="ph codeph">Default</samp>，这是一个适用于世界大部分地区的集合。
+        可以为特定安装定义<samp class="ph codeph">Australia</samp>和<samp class="ph codeph">India</samp>以及其他集合。
+        可能的值是存储在<samp class="ph codeph">$GPHOME/share/postgresql/timezonesets/</samp>中的配置文件的名称。
+        </p>
+<p class="p">要将Greenplum数据库配置为使用自定义时区集合，
+        请将包含时区定义的文件复制到Greenplum数据库master和segment主机上的<samp class="ph codeph">$GPHOME/share/postgresql/timezonesets/</samp>目录中。
+        然后将服务器配置参数<samp class="ph codeph">timezone_abbreviations</samp>的值设置为该文件。
+        例如，要使用包含默认时区和WIB（Waktu Indonesia Barat）时区的文件<samp class="ph codeph">custom</samp>。
+        </p>
+<ol class="ol" id="timezone_abbreviations__ol_u51_pdb_rr">
+<li class="li">从目录<samp class="ph codeph">$GPHOME/share/postgresql/timezonesets/</samp>复制文件<samp class="ph codeph">Default</samp>到文件<samp class="ph codeph">custom</samp>。
+          将文件Asia.txt中的WIB时区信息添加到<samp class="ph codeph">custom</samp>。
+          </li>
+<li class="li">将文件<samp class="ph codeph">custom</samp>复制到Greenplum数据库master和segment主机上的<samp class="ph codeph">$GPHOME/share/postgresql/timezonesets/</samp>目录。
+          </li>
+<li class="li">将服务器配置参数<samp class="ph codeph">timezone_abbreviations</samp>的值设置为<samp class="ph codeph">custom</samp>。
+          </li>
+<li class="li">重新加载服务器配置文件（<samp class="ph codeph">gpstop -u</samp>）。</li>
+</ol>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="timezone_abbreviations__timezone_abbreviations_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e19319" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e19322" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e19325" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e19319" valign="top" width="33.33333333333333%">字符串</td>
+<td class="entry" headers="d62161e19322" valign="top" width="33.33333333333333%">默认值</td>
+<td class="entry" headers="d62161e19325" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

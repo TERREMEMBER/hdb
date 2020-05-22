@@ -1,0 +1,433 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Installation Management Utilities |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_apx_mgmt_utils has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Installation Management Utilities
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="apx_mgmt_utils.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">安装管理工具</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">用于安装和初始化inHybrid数据库系统的命令行管理工具的引用。</p>
+
+    <p class="p">有关所有inHybrid数据库实用程序的完整参考，请参阅inHybrid数据库实用程序指南。</p>
+
+    <div class="p">下面的inHybrid数据库管理工具位于$HDBHOME/bin中。<table cellpadding="4" cellspacing="0" summary="" id="topic1__jn163810" border="1" class="simpletable">
+<tr class="strow">
+          <td valign="top" class="stentry">
+            <ul class="ul" id="topic1__ul_vsx_zwn_r4">
+              <li class="li">
+                <samp class="ph codeph">
+                  <a class="xref" href="../utility_guide/ref/hdbactivatestandby.html">hdbactivatestandby</a>
+                </samp>
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbaddmirrors.html">hdbaddmirrors</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbcheckperf.html">hdbcheckperf</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbdeletesystem.html">hdbdeletesystem</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbinitstandby.html">hdbinitstandby</a>
+                  </samp>
+                </p>
+
+              </li>
+
+            </ul>
+
+          </td>
+
+          <td valign="top" class="stentry">
+            <ul class="ul" id="topic1__ul_zy5_fxn_r4">
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbinitsystem.html">hdbinitsystem</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <samp class="ph codeph">
+                  <a class="xref" href="../utility_guide/ref/hdbpkg.html">hdbpkg</a>
+                </samp>
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbscp.html">hdbscp</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbssh.html">hdbssh</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbssh-exkeys.html">hdbssh-exkeys</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbstart.html">hdbstart</a>
+                  </samp>
+                </p>
+
+              </li>
+
+              <li class="li">
+                <p class="p">
+                  <samp class="ph codeph">
+                    <a class="xref" href="../utility_guide/ref/hdbstop.html">hdbstop</a>
+                  </samp>
+                </p>
+
+              </li>
+
+            </ul>
+
+          </td>
+
+        </tr>
+</table>
+</div>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">下面的inHybrid数据库管理工具位于$HDBHOME/bin中。</a>
+</div>
+</div>
+</div>
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

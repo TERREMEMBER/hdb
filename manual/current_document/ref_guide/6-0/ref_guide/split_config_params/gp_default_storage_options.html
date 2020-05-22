@@ -1,0 +1,155 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_default_storage_options">
+<h2 class="title topictitle2">gp_default_storage_options</h2>
+<div class="body">
+<div class="p">使用<samp class="ph codeph">CREATE TABLE</samp>命令创建表时，设置以下表存储选项的默认值。
+        <ul class="ul" id="gp_default_storage_options__ul_r4t_nxx_5p">
+<li class="li">
+<span class="keyword cmdname">appendoptimized</span>
+<div class="note note">
+<span class="notetitle">Note:</span> 您可以使用<samp class="ph codeph">appendoptimized=<var class="keyword varname">value</var></samp>语法指定追加优化的表存储类型。
+              <samp class="ph codeph">appendoptimized</samp>是<samp class="ph codeph">appendonly</samp>传统存储选项的精简别名。
+              Greenplum数据库在catalog中存储<samp class="ph codeph">appendonly</samp>，并在列出追加优化表的存储选项时显示相同内容。
+              </div>
+</li>
+<li class="li">
+<span class="keyword cmdname">blocksize</span>
+</li>
+<li class="li"><span class="keyword cmdname">checksum</span></li>
+<li class="li">
+<span class="keyword cmdname">compresstype</span>
+</li>
+<li class="li">
+<span class="keyword cmdname">compresslevel</span>
+</li>
+<li class="li">
+<span class="keyword cmdname">orientation</span>
+</li>
+</ul>
+</div>
+<p class="p">将多个存储选项值指定为逗号分隔列表。</p>
+<p class="p">您可以使用此参数设置存储选项，而不是在<samp class="ph codeph">CREATE TABLE</samp>命令的<samp class="ph codeph">WITH</samp>中指定表存储选项。
+        使用<samp class="ph codeph">CREATE TABLE</samp>命令指定的表存储选项会覆盖此参数指定的值。
+        </p>
+<p class="p">并非所有存储选项值组合都有效。
+        如果指定的存储选项无效，则返回错误。
+        有关表存储选项的信息，请参阅<samp class="ph codeph">CREATE TABLE</samp>命令。
+        </p>
+<p class="p">可以为数据库和用户设置默认值。
+        如果服务器配置参数设置在不同的级别，则当用户登录到数据库并创建表时，这是表存储值的优先顺序，从最高到最低：</p>
+<ol class="ol" id="gp_default_storage_options__ol_fy1_fty_5p">
+<li class="li">
+<samp class="ph codeph">CREATE TABLE</samp>命令中使用<samp class="ph codeph">WITH</samp>子句或<samp class="ph codeph">ENCODING</samp>子句指定的值
+          </li>
+<li class="li">使用<samp class="ph codeph">ALTER ROLE...SET</samp>命令为用户设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
+          </li>
+<li class="li">使用<samp class="ph codeph">ALTER DATABASE...SET</samp>命令为数据库设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
+          </li>
+<li class="li">使用<samp class="ph codeph">gpconfig</samp>工具为Greenplum数据库系统设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
+          </li>
+</ol>
+<p class="p">参数值不是累积的。
+        例如，如果参数指定数据库的<samp class="ph codeph">appendoptimized</samp>和<samp class="ph codeph">compresstype</samp>选项并且用户登录并设置参数以指定<samp class="ph codeph">orientation</samp>选项的值，
+        则忽略在数据库级别设置的<samp class="ph codeph">appendoptimized</samp>和<samp class="ph codeph">compresstype</samp>值。
+        </p>
+<div class="p">此示例<samp class="ph codeph">ALTER DATABASE</samp>命令为数据库<samp class="ph codeph">mytest</samp>设置默认<samp class="ph codeph">orientation</samp>和<samp class="ph codeph">compresstype</samp>表存储选项。
+        <pre class="pre codeblock">ALTER DATABASE mytest SET gp_default_storage_options = 'orientation=column, compresstype=rle_type'</pre>
+</div>
+<p class="p">使用面向列的表和RLE压缩在<samp class="ph codeph">mytest</samp>数据库中创建追加优化的表。
+        用户需要在<samp class="ph codeph">WITH</samp>子句中仅指定<samp class="ph codeph">appendoptimized=TRUE</samp>。
+        </p>
+<div class="p">此示例<samp class="ph codeph">gpconfig</samp>工具命令设置Greenplum数据库系统的默认存储选项。
+        如果为多个表存储选项设置默认值，则该值必须用单引号括起来。
+        <pre class="pre codeblock">gpconfig -c 'gp_default_storage_options' -v 'appendoptimized=true, orientation=column'</pre>
+</div>
+<div class="p">此示例<samp class="ph codeph">gpconfig</samp>工具命令显示参数的值。
+        参数值必须在Greenplum数据库主数据库和所有segment之间保持一致。
+        <pre class="pre codeblock">gpconfig -s 'gp_default_storage_options'</pre>
+</div>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_default_storage_options__gp_default_storage_option_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e6030" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e6033" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e6036" valign="top" width="33.33333333333333%">设置分类 <sup class="ph sup">1</sup>
+</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e6030" valign="top" width="33.33333333333333%">
+<samp class="ph codeph">appendoptimized</samp>= <samp class="ph codeph">TRUE</samp> |
+                  <samp class="ph codeph">FALSE</samp><p class="p"><samp class="ph codeph">blocksize</samp>= integer between 8192 and
+                  2097152 </p>
+<p class="p"><samp class="ph codeph">checksum</samp>= <samp class="ph codeph">TRUE</samp> |
+                    <samp class="ph codeph">FALSE</samp>
+</p>
+<p class="p"><samp class="ph codeph">compresstype</samp>= <samp class="ph codeph">ZLIB</samp> |
+                    <samp class="ph codeph">ZSTD</samp> | <samp class="ph codeph">QUICKLZ</samp><sup class="ph sup">2</sup> |
+                    <samp class="ph codeph">RLE</samp>_<samp class="ph codeph">TYPE</samp> | <samp class="ph codeph">NONE</samp>
+</p>
+<p class="p"><samp class="ph codeph">compresslevel</samp>= integer between 0 and
+                    19</p>
+<p class="p"><samp class="ph codeph">orientation</samp>= <samp class="ph codeph">ROW</samp> |
+                    <samp class="ph codeph">COLUMN</samp>
+</p>
+</td>
+<td class="entry" headers="d62161e6033" valign="top" width="33.33333333333333%">
+<samp class="ph codeph">appendoptimized</samp>=<samp class="ph codeph">FALSE</samp>
+<p class="p"><samp class="ph codeph">blocksize</samp>=<samp class="ph codeph">32768</samp>
+</p>
+<p class="p"><samp class="ph codeph">checksum</samp>=<samp class="ph codeph">TRUE</samp>
+</p>
+<p class="p"><samp class="ph codeph">compresstype</samp>=<samp class="ph codeph">none</samp>
+</p>
+<p class="p"><samp class="ph codeph">compresslevel</samp>=<samp class="ph codeph">0</samp>
+</p>
+<p class="p"><samp class="ph codeph">orientation</samp>=<samp class="ph codeph">ROW</samp></p>
+</td>
+<td class="entry" headers="d62161e6036" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note note">
+<span class="notetitle">Note:</span>
+<sup class="ph sup">1</sup>当参数使用<samp class="ph codeph">gpconfig</samp>工具设置在系统级时，为集合分类。
+        </div>
+<div class="note note">
+<span class="notetitle">Note:</span>
+<sup class="ph sup">2</sup>QuickLZ 压缩仅在Pivotal Greenplum数据库的商业版本中可用。
+        </div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

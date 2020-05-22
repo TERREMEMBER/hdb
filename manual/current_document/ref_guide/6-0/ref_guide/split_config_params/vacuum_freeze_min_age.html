@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="vacuum_freeze_min_age">
+<h2 class="title topictitle2">vacuum_freeze_min_age</h2>
+<div class="body">
+<p class="p">指定<samp class="ph codeph">VACUUM</samp>在扫描表时决定是否用<em class="ph i">FrozenXID</em>替换事务ID时应使用的截止年龄（在事务中）。
+        </p>
+<p class="p">有关<samp class="ph codeph">VACUUM</samp>和事务ID管理的信息，
+        请参阅<cite class="cite">Greenplum数据库管理员指南</cite>和<a class="xref" href="https://www.postgresql.org/docs/8.3/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND" target="_blank">PostgreSQL文档</a>中的“管理数据”。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="vacuum_freeze_min_age__vacuum_freeze_min_age_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e20170" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e20173" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e20176" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e20170" valign="top" width="33.33333333333333%">整数 0-100000000000</td>
+<td class="entry" headers="d62161e20173" valign="top" width="33.33333333333333%">100000000</td>
+<td class="entry" headers="d62161e20176" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

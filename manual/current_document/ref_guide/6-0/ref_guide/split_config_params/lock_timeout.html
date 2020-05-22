@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="lock_timeout">
+<h2 class="title topictitle2">lock_timeout</h2>
+<div class="body">
+<p class="p">尝试获取表，索引，行或其他数据库对象的锁时，中止任何等待时间超过指定毫秒数的语句。
+        时间限制在每次锁定获取尝试是独立的。
+        该限制既适用于显式锁定请求（例如<samp class="ph codeph">LOCK TABLE</samp>，也适用于没有<samp class="ph codeph">NOWAIT</samp>的<samp class="ph codeph">SELECT FOR UPDATE</samp>），也适用于隐式获取的锁定。
+        如果<samp class="ph codeph">log_min_error_statement</samp>设置为<samp class="ph codeph">ERROR</samp>或更低，则Greenplum数据库会记录超时的语句。
+        值为零（默认值）将关闭此锁定等待监视。
+        </p>
+<p class="p">与<samp class="ph codeph"><a class="xref" href="guc-list.html#statement_timeout">statement_timeout</a></samp>不同，此超时只能在等待锁定时发生。
+        请注意，如果<samp class="ph codeph">statement_timeout</samp>非零，
+        则将<samp class="ph codeph">lock_timeout</samp>设置为相同或更大的值是没有意义的，因为语句超时始终会先触发。
+        </p>
+<p class="p">Greenplum数据库使用<samp class="ph codeph"><a class="xref" href="guc-list.html#deadlock_timeout">deadlock_timeout</a></samp>和<samp class="ph codeph"><a class="xref" href="guc-list.html#gp_global_deadlock_detector_period">gp_global_deadlock_detector_period</a></samp>来触发本地和全局死锁检测。
+        请注意，如果打开<samp class="ph codeph">lock_timeout</samp>并将其设置为小于这些死锁检测超时的值，则Greenplum数据库将在该会话中触发死锁检查之前中止语句。
+        </p>
+<div class="note note">
+<span class="notetitle">Note:</span> 建议不要在<samp class="ph codeph">postgresql.conf</samp>中设置<samp class="ph codeph">lock_timeout</samp>，因为它会影响所有会话
+        </div>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="lock_timeout__lock_timeout_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e12752" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e12755" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e12758" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e12752" valign="top" width="33.33333333333333%">0 - <samp class="ph codeph">INT_MAX</samp>毫秒</td>
+<td class="entry" headers="d62161e12755" valign="top" width="33.33333333333333%">0毫秒</td>
+<td class="entry" headers="d62161e12758" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

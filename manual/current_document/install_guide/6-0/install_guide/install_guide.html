@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Installing and Upgrading inHybrid |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_install_guide has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Installing and Upgrading inHybrid
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="install_guide.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">安装和升级inHybrid</h1>
+
+  
+  
+  <p class="shortdesc">有关安装、配置和升级inHybrid数据库软件以及配置inHybrid数据库主机的信息。</p>
+
+<div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink">
+<strong><a href="platform-requirements.html">平台要求</a></strong><br>
+本课题描述了inHybrid数据库平台和操作系统的软件需求。</li>
+<li class="link ulchildlink">
+<strong><a href="preinstall_concepts.html">inHybrid介绍</a></strong><br>
+对inHybrid数据库系统架构的高级概述。</li>
+<li class="link ulchildlink">
+<strong><a href="capacity_planning.html">估计存储容量</a></strong><br>
+要估计inHybrid数据库系统可以容纳多少数据，请使用这些测量作为指导。还要记住，您可能需要有额外的空间用于在每个段主机上登录备份文件和数据加载文件。</li>
+<li class="link ulchildlink">
+<strong><a href="prep_os.html">配置系统</a></strong><br>
+描述如何为inHybrid数据库软件安装准备操作系统环境。</li>
+<li class="link ulchildlink">
+<strong><a href="install_hdb.html">安装inHybrid数据库软件</a></strong><br>
+描述如何在构成inHybrid数据库系统的所有主机上安装inHybrid数据库软件二进制文件，如何为hdbadmin用户启用无密码SSH，以及如何验证安装。</li>
+<li class="link ulchildlink">
+<strong><a href="create_data_dirs.html">创建数据存储区域</a></strong><br>
+描述如何为每个主、备用和段实例创建存储inHybrid数据库数据的目录位置。</li>
+<li class="link ulchildlink">
+<strong><a href="validate.html">验证您的系统</a></strong><br>
+验证硬件和网络性能</li>
+<li class="link ulchildlink">
+<strong><a href="init_hdb.html">初始化inHybrid数据库系统</a></strong><br>
+描述如何初始化inHybrid数据库系统。</li>
+<li class="link ulchildlink">
+<strong><a href="install_modules.html">描述如何初始化inHybrid数据库系统。</a></strong><br>
+inHybrid数据库发行版包括几个PostgreSQL和inHybrid来源的contrib模块，您可以选择安装这些模块。</li>
+<li class="link ulchildlink">
+<strong><a href="localization.html">配置时区和本地化设置</a></strong><br>
+描述inHybrid数据库的可用时区和本地化功能。</li>
+<li class="link ulchildlink">
+<strong><a href="enable_iptables.html">启用iptables（可选）</a></strong><br>
+在Linux系统上，您可以配置并启用iptables防火墙以使用inHybrid数据库。</li>
+<li class="link ulchildlink">
+<strong><a href="apx_mgmt_utils.html">安装管理实用程序</a></strong><br>
+用于安装和初始化inHybrid数据库系统的命令行管理实用程序的参考。</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html">inHybrid环境变量</a></strong><br>
+为inHybrid数据库设置的环境变量的引用。 </li>
+</ul>
+</div>
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+</body>
+</html>

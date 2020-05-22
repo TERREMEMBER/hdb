@@ -1214,6 +1214,7 @@ category: basics
       padding: 1.9em 0 1.9em 1em; } }
 
 .nav-content {
+  display:none;
   height: 0;
   opacity: 0;
   -webkit-transition: all 0.2s linear;
@@ -1224,14 +1225,16 @@ category: basics
   @media (min-width: 43.75em) {
     .nav-content {
       height: auto;
-      display: block;
+      display:none;
       opacity: 1;
       padding-left: 0; } }
   @media (min-width: 56.25em) {
     .nav-content {
+     display:none
       padding-left: 0.875em; } }
 
 .active .nav-content {
+  display:none;
   border-top: 1px solid #ededed;
   height: auto;
   opacity: 1;
@@ -1241,12 +1244,12 @@ category: basics
 .nav-content ul,
 .nav-content ol {
   clear: both;
-  display: block;
+  display: none;
   margin: 0.5em 0;
   padding: 0; }
 
 .nav-content li {
-  display: block;
+  display: none;
   margin: 0;
   overflow: hidden;
   padding: 0; }
@@ -1257,7 +1260,7 @@ category: basics
   border-color: transparent;
   color: #686868;
   font-size: 0.9rem;
-  display: block;
+  display: none;
   float: left;
   padding: .75em 30px .75em 2em;
   text-decoration: none;
@@ -1266,6 +1269,7 @@ category: basics
 .nav-content a:hover,
 .nav-content a:focus,
 .nav-content a:active {
+  display:none;
   border-color: #EEE;
   background-color: #fff;
   color: #424242; }
@@ -1273,23 +1277,26 @@ category: basics
 .nav-content .active,
 .nav-content .active:hover,
 .nav-content .active:focus {
+  display:none;
   background-color: rgba(0, 167, 157, 0.2);
   border-style: solid;
   color: #424242;
   font-weight: 600; }
 
 .nav-content .has_submenu {
+  display:none;
   cursor: pointer; }
   .nav-content .has_submenu:before {
     content: "";
     float: left;
     width: 1rem;
     margin-top: 1em;
-    display: inline-block;
+    display: none;
     font-style: normal;
     font-weight: normal;
     line-height: 1; }
   .nav-content .has_submenu > a, .nav-content .has_submenu > span {
+   display:none;
     margin-left: 1em;
     float: none;
     width: inherit;
@@ -1297,11 +1304,13 @@ category: basics
   .nav-content .has_submenu > ul {
     display: none; }
   .nav-content .has_submenu li {
+    display:none;
     padding-left: 1em; }
   .nav-content .has_submenu.expanded:before {
+    display:none;
     content: ""; }
   .nav-content .has_submenu.expanded > ul {
-    display: block; }
+    display: none; }
 
 .container {
   background: #fff;

@@ -1,0 +1,431 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Example Ansible Playbook |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_ansible-example has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Example Ansible Playbook
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="ansible-example.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">Example Ansible Playbook</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">A sample Ansible playbook to install a inHybrid Database software release onto the
+    hosts that will comprise a inHybrid Database system.</p>
+
+    <p class="p">This Ansible playbook shows how tasks described in <a class="xref" href="install_hdb.html#topic1" title="Describes how to install the inHybrid Database software binaries on all of the hosts that will comprise your inHybrid Database system, how to enable passwordless SSH for the hdbadmin user, and how to verify the installation.">Installing the inHybrid Database Software</a>
+      might be automated using <a class="xref" href="https://docs.ansible.com" target="_blank">Ansible</a>.</p>
+
+    <div class="note important">
+<span class="importanttitle">Important:</span> This playbook is provided as an <em class="ph i">example only</em> to illustrate how
+      inHybrid Database cluster configuration and software installation tasks can be automated
+      using provisioning tools such as Ansible, Chef, or Puppet. inspur does not provide support
+      for Ansible or for the playbook presented in this example.</div>
+
+    <p class="p">The example playbook is designed for use with CentOS 7. It creates the
+        <samp class="ph codeph">hdbadmin</samp> user, installs the inHybrid Database software release, sets the
+      owner and group of the installed software to <samp class="ph codeph">hdbadmin</samp>, and sets the Pam
+      security limits for the <samp class="ph codeph">hdbadmin</samp> user. </p>
+
+    <p class="p">You can revise the script to work with your operating system platform and to perform
+      additional host configuration tasks.</p>
+
+    <p class="p">Following are steps to use this Ansible playbook.</p>
+
+    <ol class="ol" id="Untitled1__ol_umm_h25_yhb">
+      <li class="li">Install Ansible on the control node using your package manager. See the <a class="xref" href="https://docs.ansible.com" target="_blank">Ansible documention</a>
+        for help with installation.</li>
+
+      <li class="li">Set up passwordless SSH from the control node to all hosts that will be a part of the
+        inHybrid Database cluster. You can use the <samp class="ph codeph">ssh-copy-id</samp> command to install
+        your public SSH key on each host in the cluster. Alternatively, your provisioning software
+        may provide more convenient ways to securely install public keys on multiple hosts.</li>
+
+      <li class="li">Create an Ansible inventory by creating a file called <samp class="ph codeph">hosts</samp> with a list
+        of the hosts that will comprise your inHybrid Database cluster. For
+        example:<pre class="pre codeblock">mdw
+sdw1
+sdw2
+...</pre>
+This file can be edited and used with the
+        inHybrid Database <samp class="ph codeph">hdbssh-exkeys</samp> and <samp class="ph codeph">hdbinitsystem</samp> utilities
+        later on.</li>
+
+      <li class="li">Copy the playbook code below to a file <samp class="ph codeph">ansible-playbook.yml</samp> on your
+        Ansible control node.</li>
+
+      <li class="li">Edit the playbook variables at the top of the playbook, such as the
+          <samp class="ph codeph">hdbadmin</samp> administrative user and password to create, and the version of
+        inHybrid Database you are installing. </li>
+
+      <li class="li">Run the playbook, passing the package to be installed to the <samp class="ph codeph">package_path</samp>
+        parameter.<pre class="pre codeblock">ansible-playbook ansible-playbook.yml -i hosts -e package_path=./greenplum-db-6.0.0-rhel7-x86_64.rpm</pre>
+</li>
+
+    </ol>
+
+    <div class="section">
+<h2 class="title sectiontitle">Ansible Playbook - inHybrid Database Installation for CentOS 7</h2>
+      
+      <pre class="pre codeblock">
+---
+
+- hosts: all
+  vars:
+    - version: "6.0.0"
+    - greenplum_admin_user: "hdbadmin"
+    - greenplum_admin_password: "changeme"
+    # - package_path: passed via the command line with: -e package_path=./greenplum-db-6.0.0-rhel7-x86_64.rpm
+  remote_user: root
+  become: yes
+  become_method: sudo
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    - name: create greenplum admin user
+      user:
+        name: "{{ greenplum_admin_user }}"
+        password: "{{ greenplum_admin_password | password_hash('sha512', 'DvkPtCtNH+UdbePZfm9muQ9pU') }}"
+    - name: copy package to host
+      copy:
+        src: "{{ package_path }}"
+        dest: /tmp
+    - name: install package
+      yum:
+        name: "/tmp/{{ package_path | basename }}"
+        state: present
+    - name: cleanup package file from host
+      file:
+        path: "/tmp/{{ package_path | basename }}"
+        state: absent
+    - name: find install directory
+      find:
+        paths: /usr/local
+        patterns: 'greenplum*'
+        file_type: directory
+      register: installed_dir
+    - name: change install directory ownership
+      file:
+        path: '{{ item.path }}'
+        owner: "{{ greenplum_admin_user }}"
+        group: "{{ greenplum_admin_user }}"
+        recurse: yes
+      with_items: "{{ installed_dir.files }}"
+    - name: update pam_limits
+      pam_limits:
+        domain: "{{ greenplum_admin_user }}"
+        limit_type: '-'
+        limit_item: "{{ item.key }}"
+        value: "{{ item.value }}"
+      with_dict:
+        nofile: 524288
+        nproc: 131072
+    - name: find installed greenplum version
+      shell: . /usr/local/greenplum-db/greenplum_path.sh &amp;&amp; /usr/local/greenplum-db/bin/postgres --gp-version
+      register: postgres_gp_version
+    - name: fail if the correct greenplum version is not installed
+      fail:
+        msg: "Expected greenplum version {{ version }}, but found '{{ postgres_gp_version.stdout }}'"
+      when: "version is not defined or version not in postgres_gp_version.stdout"
+</pre>
+
+    </div>
+
+    <p class="p">When the playbook has executed successfully, you can proceed with <a class="xref" href="create_data_dirs.html#topic13" title="Describes how to create the directory locations where inHybrid Database data is stored for each master, standby, and segment instance.">Creating the Data Storage Areas</a> and <a class="xref" href="init_hdb.html#topic1" title="Describes how to initialize a inHybrid Database database system.">Initializing a inHybrid Database System</a>.</p>
+
+  </div>
+
+<div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">Installing and Upgrading inHybrid</a>
+</div>
+</div>
+</div>
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_autostats_mode">
+<h2 class="title topictitle2">gp_autostats_mode</h2>
+<div class="body">
+<p class="p">指定使用<samp class="ph codeph">ANALYZE</samp>触发自动统计信息收集的模式。
+        <samp class="ph codeph">on_no_stats</samp>选项可以触发对任何没有统计信息的表上的<samp class="ph codeph">CREATE TABLE AS SELECT</samp>，<samp class="ph codeph">INSERT</samp>，或<samp class="ph codeph">COPY</samp>操作的统计信息收集。
+        </p>
+<p class="p">当受影响的行数超过由<samp class="ph codeph">gp_autostats_on_change_threshold</samp>定义的阀值时，<samp class="ph codeph">on_change</samp>选项才会触发统计信息收集。
+        可以使用<samp class="ph codeph">on_change</samp>触发自动统计信息收集的操作有：
+        </p>
+<p class="p">
+<samp class="ph codeph">CREATE TABLE AS SELECT</samp>
+</p>
+<p class="p">
+<samp class="ph codeph">UPDATE</samp>
+</p>
+<p class="p">
+<samp class="ph codeph">DELETE</samp>
+</p>
+<p class="p">
+<samp class="ph codeph">INSERT</samp>
+</p>
+<p class="p">
+<samp class="ph codeph">COPY</samp>
+</p>
+<p class="p">默认值是<samp class="ph codeph">on_no_stats</samp>。</p>
+<div class="note note">
+<span class="notetitle">Note:</span> 对于分区表来说，如果从分区表的顶级父表插入数据，则不会触发自动统计信息收集。
+        <p class="p">如果数据直接插入到分区表的叶表（数据的存储位置）中，则触发自动统计信息收集。
+          统计数据仅在叶表上收集。
+        </p>
+</div>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_autostats_mode__gp_autostats_mode_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e5075" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e5078" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e5081" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e5075" valign="top" width="33.33333333333333%">none<p class="p">on_change</p>
+<p class="p">on_no_stats</p>
+</td>
+<td class="entry" headers="d62161e5078" valign="top" width="33.33333333333333%">on_no_ stats</td>
+<td class="entry" headers="d62161e5081" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

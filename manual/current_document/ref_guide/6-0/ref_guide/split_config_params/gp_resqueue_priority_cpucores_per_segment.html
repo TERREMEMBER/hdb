@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_resqueue_priority_cpucores_per_segment">
+<h2 class="title topictitle2">gp_resqueue_priority_cpucores_per_segment</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">gp_resqueue_priority_cpucores_per_segment</samp>服务器配置参数才会生效。
+        </div>
+<p class="p">指定每个segment实例分配的CPU单元数。
+        例如，如果Greenplum数据库群集具有配置有四个segment的10核心segment主机，请将segment实例的值设置为2.5。
+        对于master实例，值为10。
+        master主机通常只运行master实例，因此主机的值应反映所有可用CPU内核的使用情况。
+        </p>
+<p class="p">设置不正确可能导致CPU使用率不足或查询优先级不按设计工作。
+        </p>
+<p class="p">Greenplum数据计算设备V2的默认值为segment 4，master 25。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resqueue_priority_cpucores_per_segment__gp_resqueue_priority_cpucores_per_segment_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e10281" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e10284" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e10287" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e10281" valign="top" width="33.33333333333333%">0.1 - 512.0</td>
+<td class="entry" headers="d62161e10284" valign="top" width="33.33333333333333%">4</td>
+<td class="entry" headers="d62161e10287" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

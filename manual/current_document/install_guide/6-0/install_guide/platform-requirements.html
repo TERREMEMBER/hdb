@@ -1,0 +1,678 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Platform Requirements |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_platform-requirements has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Platform Requirements
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="platform-requirements.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">平台要求</h1>
+
+  
+  
+  <div class="body">
+<p class="shortdesc">本课题描述了inHybrid 6数据库平台和操作系统的软件需求</p>
+
+    <div class="note important">
+<span class="importanttitle">Important:</span> inspur Support does <strong class="ph b">not</strong> provide support for open source versions
+      of inHybrid Database. Only inspur inHybrid Database is supported by inspur Support.</div>
+
+    <div class="p">
+      <ul class="ul" id="topic_bqz_4fx_zgb__ul_kt5_ggk_1hb">
+        <li class="li">
+<a class="xref" href="platform-requirements.html#topic13">操作系统</a><ul class="ul" id="topic_bqz_4fx_zgb__ul_fqv_pgk_1hb">
+            <li class="li"><a class="xref" href="platform-requirements.html#topic_i4k_nlx_zgb">软件依赖</a></li>
+
+            <li class="li"><a class="xref" href="platform-requirements.html#topic_xbl_mkx_zgb">Java</a></li>
+
+          </ul>
+</li>
+
+        <li class="li"><a class="xref" href="platform-requirements.html#topic_tnl_3mx_zgb">硬件和网络</a></li>
+
+        <li class="li"><a class="xref" href="platform-requirements.html#topic_pnz_5zd_xs">存储</a></li>
+
+        
+        <li class="li"><a class="xref" href="platform-requirements.html#topic36">Haddop分布式</a></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">安装和升级Greeplum</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="topic13">
+    <h2 class="title topictitle2">操作系统</h2>
+
+    <div class="body">
+      <p class="p">inHybrid 6在以下操作系统平台上运行：</p>
+
+      <ul class="ul" id="topic13__ul_atm_psl_fp">
+        <li class="li">Red Hat Enterprise Linux 64-bit 7.x见以下注释</li>
+
+        <li class="li" id="topic13__pm445077">Red Hat Enterprise Linux 64-bit 6.x</li>
+
+        <li class="li">CentOS 64-bit 7.x</li>
+
+        <li class="li" id="topic13__pm405698">CentOS 64-bit 6.x</li>
+
+        <li class="li">Ubuntu 18.04 LTS</li>
+
+      </ul>
+
+      <div class="note important">
+<span class="importanttitle">重要提示：在RedHat 6.x和CentOS 6.x系统上启用基于资源组的工作负载管理时，发现inHybrid数据库性能显著下降。此问题是由Linux cgroup内核错误引起的。此内核错误已在CentOS 7.x和Red Hat 7.x系统中修复。</p>
+</div>
+
+      <div class="note note" id="topic13__7x-issue">
+<span class="notetitle">注意：对于7之前安装在Red Hat Enterprise Linux 7.3之前或CentOS 7.3之前上的inHybrid数据库，操作系统问题可能会导致运行大量工作负载的inHybrid数据库挂起工作负载。inHybrid数据库问题是由Linux内核错误引起的。RHEL7.3和CentOS7.3解决了这个问题</p>
+</div>
+
+      <p class="p">inHybrid数据库服务器在RHEL/CentOS系统上支持TLS版本1.2，在Ubuntu系统上支持TLS版本1.3</p>
+
+    </div>
+
+    <div class="topic nested2" id="topic_i4k_nlx_zgb">
+      <h3 class="title topictitle3">软件依赖</h3>
+
+      <div class="body">
+        <div class="p" id="topic_i4k_nlx_zgb__packages">inHybrid Database 6要求在RHEL/CentOS 6/7系统上安装以下软件包，这些软件包在安装inHybrid Database RPM包时作为依赖项自动安装：<ul class="ul" id="topic_i4k_nlx_zgb__ul_zpd_mpd_qgb">
+            <li class="li">apr</li>
+
+            <li class="li">apr-util</li>
+
+            <li class="li">bash</li>
+
+            <li class="li">bzip2</li>
+
+            <li class="li">curl</li>
+
+            <li class="li">krb5</li>
+
+            <li class="li">libcurl</li>
+
+            <li class="li">libevent</li>
+
+            <li class="li">libxml2</li>
+
+            <li class="li">libyaml</li>
+
+            <li class="li">zlib</li>
+
+            <li class="li">openldap</li>
+
+            <li class="li">openssh</li>
+
+            <li class="li">openssl</li>
+
+            <li class="li">openssl-libs (RHEL7/Centos7)</li>
+
+            <li class="li">perl</li>
+
+            <li class="li">readline</li>
+
+            <li class="li">rsync</li>
+
+            <li class="li">R</li>
+
+            <li class="li">sed (used by <samp class="ph codeph">hdbinitsystem</samp>)</li>
+
+            <li class="li">tar</li>
+
+            <li class="li">zip</li>
+
+          </ul>
+</div>
+
+        
+        
+        <div class="p">在Ubuntu系统上，inHybrid Database 6需要以下软件包，当您使用Debian包安装程序安装inHybrid Database时，这些软件包将作为依赖项自动安装：<ul class="ul" id="topic_i4k_nlx_zgb__ul_pl2_wqy_c3b">
+            <li class="li">libapr1</li>
+
+            <li class="li">libaprutil1 </li>
+
+            <li class="li">bash </li>
+
+            <li class="li">bzip2 </li>
+
+            <li class="li">krb5-multidev </li>
+
+            <li class="li">libcurl3-gnutls </li>
+
+            <li class="li">libcurl4 </li>
+
+            <li class="li">libevent-2.1-6 </li>
+
+            <li class="li">libxml2 </li>
+
+            <li class="li">libyaml-0-2 </li>
+
+            <li class="li">zlib1g </li>
+
+            <li class="li">libldap-2.4-2 </li>
+
+            <li class="li">openssh-client </li>
+
+            <li class="li">openssh-client </li>
+
+            <li class="li">openssl </li>
+
+            <li class="li">perl </li>
+
+            <li class="li">readline</li>
+
+            <li class="li">rsync</li>
+
+            <li class="li">sed </li>
+
+            <li class="li">tar </li>
+
+            <li class="li">zip </li>
+
+            <li class="li">net-tools </li>
+
+            <li class="li">less </li>
+
+            <li class="li">iproute2</li>
+
+          </ul>
+</div>
+
+        <p class="p">inHybrid Database 6使用Python2.7.12，它包含在产品安装中（而不是作为包依赖项安装）</p>
+
+        <div class="note important">
+<span class="importanttitle">重要提示：SSL只能在inHybrid数据库master主机系统上使用。它不能在segment主机系统上使用。</div>
+
+        <div class="note important">
+<span class="importanttitle">重要提示：对于所有inHybrid数据库主机系统，必须禁用SELinux。您还应该禁用防火墙软件，但如果出于安全目的需要，可以启用防火墙软件。请参阅禁用SELinux和防火墙软件。</div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" id="topic_xbl_mkx_zgb">
+      <h3 class="title topictitle3">Java</h3>
+
+      <div class="body">
+        <div class="p">inHybrid 6可以将这些Java版本用于PL/Java和PXF：
+<ul class="ul" id="topic_xbl_mkx_zgb__ul_dkh_3k5_xr">
+            <li class="li">Open JDK 8或Open JDK 11，可从AdoptOpenJDK获得</a>
+</li>
+
+            <li class="li">Oracle JDK 8 or Oracle JDK 11</li>
+
+          </ul>
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_tnl_3mx_zgb">
+    <h2 class="title topictitle2">硬件和网络</h2>
+
+    <div class="body">
+      
+      
+      
+      <div class="p">下表列出了在Linux系统上支持inHybrid数据库的硬件服务器的最低推荐规范。inHybrid数据库系统中的所有主机服务器必须具有相同的硬件和软件配置。
+        <div class="note warning">
+<span class="warningtitle">警告：在超聚合基础设施（HCI）上运行inHybrid数据库存在性能、可伸缩性和稳定性方面的已知问题，不建议这样做。</div>
+</div>
+
+      
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="topic_tnl_3mx_zgb__ji162790" class="table" frame="border" border="1" rules="all">
+<caption><span class="tablecap">表1.最低硬件要求</span></caption>
+          
+          
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="120pt">最小CPU</td>
+
+              <td class="entry" valign="top" width="255pt">任何x86_64兼容的CPU</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="120pt">最小内存</td>
+
+              <td class="entry" valign="top" width="255pt">每台服务器16 GB内存</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="120pt">磁盘空间要求</td>
+
+              <td class="entry" valign="top" width="255pt">
+                <ul class="ul" id="topic_tnl_3mx_zgb__ul_us1_b4n_r4">
+                  <li class="li">每个主机150MB，用于inHybrid安装</li>
+
+                  <li class="li">元数据的每个段实例大约300MB</li>
+
+                  <li class="li">磁盘容量不超过70%的数据有适当的可用空间</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="120pt">网络要求</td>
+
+              <td class="entry" valign="top" width="255pt">阵列中的10千兆以太网<p class="p">当存在多个接口时，建议使用NIC绑定</p>
+<p class="p">inspur inHybrid可以使用IPV4或IPV6协议。</p>
+</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_pnz_5zd_xs">
+    <h2 class="title topictitle2">存储</h2>
+
+    <div class="body">
+      
+      
+      
+      <p class="p">您应该在XFS文件系统上运行inHybrid数据库。</p>
+
+      <p class="p">如果将共享存储作为块设备提供给运行inHybrid数据库的服务器，并且XFS文件系统安装在块设备上，inHybrid数据库可以在网络上运行，也可以在共享存储上运行。不建议使用网络文件系统。使用网络或共享存储时，inHybrid数据库镜像的使用方式必须与本地存储相同，并且不应修改镜像方案或段的恢复方案。</p>
+
+      <p class="p">共享存储的其他功能，如重复数据消除和/或复制，只要不影响inHybrid数据库的预期操作，就可以与inHybrid数据库一起使用。</span></p>
+
+      <div class="p">inHybrid数据库只能部署到虚拟化系统中，前提是存储以块设备的形式显示，并且XFS文件系统是为segment存储目录而装载的。
+        <div class="note warning">
+<span class="warningtitle">警告：在超聚合基础设施（HCI）上运行inHybrid数据库存在性能、可伸缩性和稳定性方面的已知问题，不建议将其作为关键inHybrid数据库的可伸缩解决方案，如果稳定性问题与基础设施相关，则可能不受关键inHybrid数据库的支持。HCI虚拟化了传统硬件系统的所有元素，至少包括虚拟计算、虚拟SAN和虚拟网络。</div>
+</div>
+
+      <p class="p">inHybrid数据库可以使用Amazon实例存储（Amazon使用卷名ephemeral[0-20]）或Amazon弹性块存储（Amazon EBS）在Amazon Web服务（AWS）服务器上运行。如果使用Amazon EBS存储，那么存储应该是amazonebs卷的RAID，并与XFS文件系统一起装载。</p>
+
+      
+      
+    </div>
+
+  </div>
+
+  
+  
+  <div class="topic nested1" id="topic36">
+    <h2 class="title topictitle2">Hadoop分布式</h2>
+
+    <div class="body">
+      <p class="p">inHybrid数据库通过inHybrid平台扩展框架（PXF）提供对HDF的访问。PXFv5.10.0与inHybrid Database 6集成，提供对Hadoop、对象存储和SQL外部数据存储的访问。有关PXF配置和使用信息，请参阅inHybrid数据库管理员指南中的使用PXF访问外部数据。</p>
+
+      <p class="p">PXF可以使用Cloudera、Hortonworks数据平台、MapR和通用Apache Hadoop发行版。PXF捆绑了它所依赖的所有JAR文件，包括以下Hadoop库：</p>
+
+      
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" class="table" frame="border" border="1" rules="all">
+<caption><span class="tablecap">表二.PXF Hadoop支持的平台</span></caption>
+          
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="131pt" id="d13265e499">PXF版本</th>
+
+              <th class="entry" valign="top" width="97pt" id="d13265e502">Hadoop 版本</th>
+
+              <th class="entry" valign="top" width="82pt" id="d13265e505">Hive Server 版本</th>
+
+              <th class="entry" valign="top" width="138pt" id="d13265e508">HBase Server 版本</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="131pt" headers="d13265e499 ">5.10.0</td>
+
+              <td class="entry" valign="top" width="97pt" headers="d13265e502 ">2.x, 3.1+</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d13265e505 ">1.x, 2.x, 3.1+</td>
+
+              <td class="entry" valign="top" width="138pt" headers="d13265e508 ">1.3.2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="131pt" headers="d13265e499 ">5.8.2</td>
+
+              <td class="entry" valign="top" width="97pt" headers="d13265e502 ">2.x</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d13265e505 ">1.x</td>
+
+              <td class="entry" valign="top" width="138pt" headers="d13265e508 ">1.3.2</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="131pt" headers="d13265e499 ">5.8.1</td>
+
+              <td class="entry" valign="top" width="97pt" headers="d13265e502 ">2.x</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d13265e505 ">1.x</td>
+
+              <td class="entry" valign="top" width="138pt" headers="d13265e508 ">1.3.2</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      <div class="note note">
+<span class="notetitle">注意：如果您计划访问存储在Cloudera Hadoop集群中的JSON格式数据，PXF需要Cloudera 5.8版或更高版本的Hadoop发行版。</div>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
