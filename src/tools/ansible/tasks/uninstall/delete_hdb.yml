@@ -1,0 +1,4 @@
+- name: delete inhybrid-db
+  file:
+    path: "/usr/local/inhybrid-db"
+    state: "absent"

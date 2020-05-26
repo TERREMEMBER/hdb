@@ -1,0 +1,9 @@
+#----检查数据目录是否已经存在
+- name: check master directory exist
+  shell: ls {{ MASTER_DIRECTORY }}/{{ SEG_PREFIX }}*
+  register: master_dir_result
+  ignore_errors: true
+- name: fail if master data directory already exists
+  fail:
+    msg: "inHybrid data directory already exists"
+  when: master_dir_result is success

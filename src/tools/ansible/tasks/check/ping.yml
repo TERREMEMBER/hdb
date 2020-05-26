@@ -1,0 +1,3 @@
+#---ssh ping模块检测
+- name: ssh ping
+  ping:

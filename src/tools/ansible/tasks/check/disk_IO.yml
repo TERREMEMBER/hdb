@@ -1,0 +1,6 @@
+- name: disk check
+  shell: "dd if=/dev/zero of=/test.iso bs=1M count=1024 2>&1"
+  register: result_IO
+- name: show IO
+  debug:
+    msg: "{{ result_IO.stdout_lines }}"

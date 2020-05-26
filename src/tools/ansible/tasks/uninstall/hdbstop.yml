@@ -1,0 +1,12 @@
+- name: stop cluster
+  become: yes
+  become_method: sudo
+  become_user: hdbadmin
+  shell: "export MASTER_DATA_DIRECTORY={{ MASTER_DIRECTORY }}/{{ SEG_PREFIX }}-1 && \
+          . /usr/local/inhybrid-db/inhybrid_path.sh && hdbstop -a"
+  ignore_errors: True
+  register: hdbstop_result
+- name: show hdbstop_result
+  debug:
+    var: hdbstop_result.stdout_lines
+    verbosity: 0

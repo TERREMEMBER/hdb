@@ -1,0 +1,39 @@
+---
+- hosts: hdb_all
+  remote_user: root
+  connection: ssh
+  vars_files:
+    - ./variable/deployment_config.yml
+  tasks:
+  #---ping
+    - include_tasks: ./tasks/check/ping.yml
+  #---操作系统
+    - include_tasks: ./tasks/check/operating_system_version.yml
+  #---磁盘IO
+    - include_tasks: ./tasks/check/disk_IO.yml
+  #---防火墙
+    - include_tasks: ./tasks/check/firewall.yml
+
+#----master
+- hosts: master
+  remote_user: root
+  connection: ssh
+  vars_files:
+    - ./variable/inHybrid_config.yml
+  tasks:
+  #---端口
+    - include_tasks: ./tasks/check/master_port.yml
+  #---目录
+    - include_tasks: ./tasks/check/master_directory.yml
+
+#---segment
+- hosts: segment
+  remote_user: root
+  connection: ssh
+  vars_files:
+    - ./variable/inHybrid_config.yml
+  tasks:
+  #---端口
+    - include_tasks: ./tasks/check/segment_port.yml
+  #---目录
+    - include_tasks: ./tasks/check/segment_directory.yml

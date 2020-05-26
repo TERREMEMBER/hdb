@@ -1,8 +1,18 @@
 #template_path
 inHybrid_config_template_path: "./hdbinitsystem_config.j2"
 hostlist_template_path: "./hostlist.j2"
+#os
+os: "Ubuntu"
+os_version: "18.04"
+#cluster list
+cluster:
+    - { id: "master", hostname: 'mdw',  ip: '172.12.0.10' }
+    - { id: "segment1", hostname: 'sdw1', ip: '172.12.0.11' }
+    - { id: "segment2", hostname: 'sdw2', ip: '172.12.0.12' }
+    - { id: "segment3", hostname: 'sdw3', ip: '172.12.0.13' }
 #inHybrid
-package_path: "./inhybrid-db.tar"
+hdb_package_path: "./package/inhybrid-db.tar.gz"
+hdbEnv_package_path: "./package/hdbEnv.tar.gz"
 inhybrid_admin_user: "hdbadmin"
 inhybrid_admin_password: "changeme"
-version: "1.0.0"
+hdb_version: "1.0.0"

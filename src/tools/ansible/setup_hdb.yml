@@ -1,0 +1,92 @@
+---
+- hosts: hdb_all
+  vars_files: 
+    - ./variable/deployment_config.yml
+  remote_user: root
+  connection: ssh
+  gather_facts: yes
+  tasks:
+    #----ssh拷贝
+    - name: delete ssh
+      file:
+        path: "/home/{{ inhybrid_admin_user }}/.ssh"
+        state: absent
+    - name: create ssh
+      file:
+        path: "/home/{{ inhybrid_admin_user }}/.ssh"
+        state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "755"
+    - name: cp id_rsa
+      copy: 
+        src:  "/root/.ssh/id_rsa"
+        dest: "/home/{{ inhybrid_admin_user }}/.ssh/id_rsa"
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "600"
+    - name: cp id_rsa.pub 
+      copy: 
+        src:  "/root/.ssh/id_rsa.pub"
+        dest: "/home/{{ inhybrid_admin_user }}/.ssh/id_rsa.pub"
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+        mode: "644"
+    - name: authorized_keys
+      shell: "cd /home/{{ inhybrid_admin_user }}/.ssh && cat id_rsa.pub > authorized_keys && chown {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} authorized_keys"
+#-----------------初始化数据库
+#segement节点操作
+- hosts: segment
+  remote_user: root
+  connection: ssh
+  vars_files: 
+    - ./variable/deployment_config.yml
+    - ./variable/inHybrid_config.yml
+  tasks:
+    - name: create inHybridDB segement data directory  
+      shell: "mkdir -p {{ declare_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_DATA_DIRECTORY }}"
+    - name: create inHybridDB segement mirror directory
+      shell: "mkdir -p {{ declare_MIRROR_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_MIRROR_DATA_DIRECTORY }}"
+      when: declare_MIRROR_DATA_DIRECTORY is defined
+
+#master节点操作
+- hosts: master
+  vars_files: 
+    - ./variable/inHybrid_config.yml
+    - ./variable/deployment_config.yml
+  remote_user: hdbadmin
+  connection: ssh
+  tasks:
+    - name: create inHybridDB master data directory
+      become: yes
+      become_method: sudo
+      become_user: root
+      file:
+        path: "{{ MASTER_DIRECTORY }}"
+        state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+    - name: make config dir
+      file:
+         path: "/home/hdbadmin/hdb_conf"
+         state: directory
+    - name: copy hdbinitsystem_config to master
+      template:
+        src: "{{ inHybrid_config_template_path }}"
+        dest: "/home/hdbadmin/hdb_conf/hdbinitsystem_config"
+    - name: copy hostlist to master
+      template:
+        src: "{{ hostlist_template_path }}"
+        dest: "{{ MACHINE_LIST_FILE }}"
+    - name: hdbssh-exkeys
+      shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbssh-exkeys -f /home/hdbadmin/hdb_conf/hostlist"
+    - name: init inHybridDB
+      shell: ". /usr/local/inhybrid-db/inhybrid_path.sh && hdbinitsystem -c /home/hdbadmin/hdb_conf/hdbinitsystem_config -a"
+    - name: Configure hdbadmin environment variables
+      blockinfile:
+        path: "~/.bashrc"
+        block: "export MASTER_DATA_DIRECTORY={{ MASTER_DIRECTORY }}/{{ SEG_PREFIX }}-1\n\
+        export PORT={{ MASTER_PORT }}"
+        marker: "#{mark}MASTER_DATA_DIRECTORY"
+        state: "present"
+        create: yes

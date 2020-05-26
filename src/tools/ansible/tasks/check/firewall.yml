@@ -1,0 +1,22 @@
+#---检查Ubuntu防火墙
+- block:
+  - name: check Ubuntu firewalld
+    shell: "ufw status | grep '不活动'"
+    register: ubuntu_firewalld_result
+    ignore_errors: true
+  - name: print message
+    fail:
+      msg: "The firewall is not closed, which may cause communication failure between databases. Please turn off the firewall."
+    when: ubuntu_firewalld_result.rc==1
+  when: os == "Ubuntu"
+#---检查centos防火墙
+- block:
+  - name: check Centos firewalld
+    shell: systemctl status firewalld | grep "inactive (dead)"
+    register: firewalld_result
+    ignore_errors: true
+  - name: print message
+    fail:
+      msg: "The firewall is not closed, which may cause communication failure between databases. Please turn off the firewall."
+    when: firewalld_result.rc==1
+  when: os == "Centos"

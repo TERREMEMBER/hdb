@@ -1,0 +1,28 @@
+#---primary port
+- name: copy seg_port.sh
+  template:
+    src: "./seg_port.sh.j2"
+    dest: "/home/seg_port.sh"
+- name: segment port
+  shell: "bash /home/seg_port.sh"
+  register: seg_port_result
+  ignore_errors: true
+- name: show seg_port_result
+  fail:
+    msg: "{{ seg_port_result.stdout_lines }}"
+  when: seg_port_result.stdout != ""
+#---mirror port
+- block:
+    - name: copy mirror_port.sh
+      template:
+        src: "./mirror_port.sh.j2"
+        dest: "/home/mirror_port.sh"
+    - name: mirror port
+      shell: ". /home/mirror_port.sh"
+      register: mirror_port_result
+      ignore_errors: true
+    - name: show mirror_port_result
+      fail:
+        msg: "{{ mirror_port_result.stdout_lines }}"
+      when: seg_port_result.stdout != ""
+  when: declare_MIRROR_DATA_DIRECTORY is defined and MIRROR_PORT_BASE is defined

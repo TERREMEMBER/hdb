@@ -1,0 +1,2 @@
+- name: rm tmp
+  shell: "rm -rf /tmp/.s.* /tmp/gp*"
