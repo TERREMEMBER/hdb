@@ -1,0 +1,778 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Migrating Data from inHybrid 4.3 or 5 |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_migrate has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Migrating Data from inHybrid 4.3 or 5
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="migrate.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">Migrating Data from inHybrid 4.3 or 5</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">You can migrate data from inHybrid Database 4.3 or 5 to inHybrid 6 using the standard
+    backup and restore procedures, <samp class="ph codeph">hdbbackup</samp> and <samp class="ph codeph">hdbrestore</samp>.</p>
+
+    <div class="p">
+      <div class="note note">
+<span class="notetitle">Note:</span> Open source inHybrid Database is available only for inHybrid
+        Database 5 and later. </div>
+
+      <div class="note note">
+<span class="notetitle">Note:</span> Currently, you cannot upgrade a inHybrid Database 4.3 or 5 system directly to inHybrid
+        Database 6.</div>
+
+    </div>
+
+    <p class="p">This topic identifies known issues you may encounter when moving data from inHybrid 4.3 to
+      inHybrid 6. You can work around these problems by making needed changes to your inHybrid 4.3
+      databases so that you can create backups that can be restored successfully to inHybrid 6. </p>
+
+    <ul class="ul" id="topic1__ul_uw1_gnb_z3b">
+      <li class="li"><a class="xref" href="migrate.html#prep-hdb6">Preparing the inHybrid 6 Cluster</a></li>
+
+      <li class="li"><a class="xref" href="migrate.html#prep-hdb4">Preparing inHybrid 4.3 and 5 Databases for Backup</a></li>
+
+      <li class="li"><a class="xref" href="migrate.html#backup-and-restore">Backing Up and Restoring a Database</a></li>
+
+      <li class="li"><a class="xref" href="migrate.html#after-migration">Completing the Migration</a></li>
+
+    </ul>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">Installing and Upgrading inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="prep-hdb6">
+    <h2 class="title topictitle2">Preparing the inHybrid 6 Cluster</h2>
+
+    <div class="body">
+      <ul class="ul" id="prep-hdb6__ol_rzd_xfb_z3b">
+        <li class="li">Install and initialize a new inHybrid Database 6 cluster using the version 6
+            <samp class="ph codeph">hdbinitsystem</samp> utility. <div class="note note">
+<span class="notetitle">Note:</span> <samp class="ph codeph">hdbrestore</samp> only supports
+            restoring data to a cluster that has an identical number of hosts and an identical
+            number of segments per host, with each segment having the same
+              <samp class="ph codeph">content_id</samp> as the segment in the original cluster. </div>
+
+          <div class="note note">
+<span class="notetitle">Note:</span>  Set the inHybrid Database 6 timezone to a value that is compatible with your host
+            systems. Setting the inHybrid Database timezone prevents inHybrid Database from
+            selecting a timezone each time the cluster is restarted. See <a class="xref" href="localization.html" title="Describes the available timezone and localization features of inHybrid Database.">Configuring Timezone and
+              Localization Settings</a> for more information.</div>
+</li>
+
+        <li class="li">Install the latest release of the inHybrid Backup and Restore utilities, available to
+          download from <span class="ph"><a class="xref" href="https://github.com/greenplum-db/hdbbackup/releases" target="_blank">github</a></span>.</li>
+
+        <li class="li">If you intend to install inHybrid Database 6 on the same hardware as your 4.3 system,
+          you will need enough disk space to accommodate over five times the original data set (two
+          full copies of the primary and mirror data sets, plus the original backup data in ASCII
+          format) in order to migrate data with <samp class="ph codeph">hdbbackup</samp> and
+            <samp class="ph codeph">hdbrestore</samp>. Keep in mind that the ASCII backup data will require more
+          disk space than the original data, which may be stored in compressed binary format.
+          Offline backup solutions such as Dell EMC Data Domain can reduce the required disk space
+          on each host. </li>
+
+        <li class="li">Install any external modules used in your inHybrid 4.3 system in the inHybrid 6 system
+          before you restore the backup, for example MADlib or PostGIS. If versions of the external
+          modules are not compatible, you may need to exclude tables that reference them when
+          restoring the inHybrid 4.3 backup to inHybrid 6.</li>
+
+        <li class="li">The inHybrid 4.3 Oracle Compatibility Functions module is not compatible with inHybrid
+          6. Uninstall the module from inHybrid 4.3 by running the
+            <samp class="ph codeph">uninstall_orafunc.sql</samp> script before you back up your
+          databases:<pre class="pre codeblock">$ $HDBHOME/share/postgresql/contrib/uninstall_orafunc.sql</pre>
+You
+          will also need to drop any dependent database objects that reference compatibility
+          functions.<div class="p">Install the Oracle Compatibility Functions in inHybrid 6 by creating the
+              <samp class="ph codeph">orafce</samp> module in each database where you require the
+            functions:<pre class="pre codeblock">$ psql -d <var class="keyword varname">dbname</var> 'CREATE EXTENSION orafce'</pre>
+See
+              <a class="xref" href="install_modules.html#topic_d45_wcw_pgb" title="The inHybrid Database distribution includes several PostgreSQL- and inHybrid-sourced contrib modules that you have the option to install.">Installing Additional Supplied Modules</a> for information about installing
+              <samp class="ph codeph">orafce</samp> and other modules.</div>
+</li>
+
+        <li class="li">When restoring language-based user-defined functions, the shared object file must be in
+          the location specified in the <samp class="ph codeph">CREATE FUNCTION</samp> SQL command and must have
+          been recompiled on the inHybrid 6 system. This applies to user-defined functions,
+          user-defined types, and any other objects that use custom functions, such as aggregates
+          created with the <samp class="ph codeph">CREATE AGGREGATE</samp> command.</li>
+
+        <li class="li">inHybrid 6 provides <em class="ph i">resource groups</em>, an alternative to managing resources using
+          resource queues. Setting the <samp class="ph codeph">gp_resource_manager</samp> server configuration
+          parameter to <samp class="ph codeph">queue</samp> or <samp class="ph codeph">group</samp> selects the resource
+          management scheme the inHybrid Database system will use. The default is
+            <samp class="ph codeph">queue</samp>, so no action is required when you move from inHybrid version
+          4.3 to version 6. To more easily transition from resource queues to resource groups, you
+          can set resource groups to allocate and manage memory in a way that is similar to resource
+          queue memory management. To select this feature, set the <samp class="ph codeph">MEMORY_LIMIT</samp> and
+            <samp class="ph codeph">MEMORY_SPILL_RATIO</samp> attributes of your resource groups to 0. See <a class="xref" href="../admin_guide/workload_mgmt_resgroups.html">Using
+            Resource Groups</a> for information about enabling and configuring resource
+          groups.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="prep-hdb4">
+    <h2 class="title topictitle2">Preparing inHybrid 4.3 and 5 Databases for Backup</h2>
+
+    <div class="body">
+      <div class="note note">
+<span class="notetitle">Note:</span> A inHybrid 4 system must be at least version 4.3.22 to use the
+          <samp class="ph codeph">hdbbackup</samp> and <samp class="ph codeph">hdbrestore</samp> utilities. A inHybrid 5 system
+        must be at least version 5.5. Be sure to use the latest release of the backup and restore
+        utilities, available for download from <span class="ph"><a class="xref" href="https://github.com/greenplum-db/hdbbackup/releases" target="_blank">github</a></span>.</div>
+
+      <div class="note important">
+<span class="importanttitle">Important:</span> Make sure that you have a complete backup of all data in the inHybrid
+        Database 4.3 or 5 cluster, and that you can successfully restore the inHybrid Database
+        cluster if necessary.</div>
+
+      <p class="p">Following are some issues that are known to cause errors when restoring a inHybrid 4.3 or
+        5 backup to inHybrid 6. Keep a list of any changes you make to the inHybrid 4.3 or 5
+        database to enable migration so that you can fix them in inHybrid 6 after restoring the
+        backup.</p>
+
+      <ul class="ul">
+        <li class="li">If you have configured PXF in your inHybrid Database 5 installation, review <a class="xref" href="../pxf/migrate_5to6.html">Migrating PXF
+            from inHybrid 5</a> to plan for the PXF migration.</li>
+
+        <li class="li">inHybrid Database version 6 removes support for the <samp class="ph codeph">gphdfs</samp> protocol.
+          If you have created external tables that use gphdfs, remove the external table definitions
+          and (optionally) recreate them to use inspur Extension Framework (PXF) before you migrate
+          the data to inHybrid 6. Refer to <a class="xref" href="../pxf/gphdfs-pxf-migrate.html">Migrating gphdfs External Tables to PXF</a> in the PXF documentation for the
+          migration procedure.</li>
+
+        <li class="li">References to catalog tables or their attributes can cause a restore to fail due to
+          catalog changes from inHybrid 4.3 or 5 to inHybrid 6. Here are some catalog issues to be
+          aware of when migrating to inHybrid 6:<ul class="ul" id="prep-hdb4__ul_i54_jjj_s3b">
+            <li class="li">In the <samp class="ph codeph">pg_class</samp> system table, the <samp class="ph codeph">reltoastidxid</samp>
+              column has been removed.</li>
+
+            <li class="li">In the <samp class="ph codeph">pg_stat_replication</samp> system table, the
+                <samp class="ph codeph">procpid</samp> column is renamed to <samp class="ph codeph">pid</samp>.</li>
+
+            <li class="li">In the <samp class="ph codeph">pg_stat_activity</samp> system table, the <samp class="ph codeph">procpid</samp>
+              column is renamed to <samp class="ph codeph">pid</samp>. The <samp class="ph codeph">current_query</samp> column
+              is replaced by two columns <samp class="ph codeph">state</samp>: the state of the backend, and
+                <samp class="ph codeph">query</samp>: the last run query, or currently running query if
+                <samp class="ph codeph">state</samp> is <samp class="ph codeph">active</samp>. </li>
+
+            <li class="li">In the <samp class="ph codeph">gp_distribution_policy</samp> system table, the
+                <samp class="ph codeph">attrnums</samp> column is renamed to <samp class="ph codeph">distkey</samp> and its data
+              type is changed to <samp class="ph codeph">int2vector</samp>. A backend function
+                <samp class="ph codeph">pg_get_table_distributedby()</samp> was added to get the distribution
+              policy for a table as a string.</li>
+
+            <li class="li">The <samp class="ph codeph">__gp_localid</samp> and <samp class="ph codeph">__gp_masterid</samp> columns are
+              removed from the <samp class="ph codeph">session_level_memory_consumption</samp> system view in
+              inHybrid 6. The underlying external tables and functions are removed from the
+                <samp class="ph codeph">gp_toolkit</samp> schema.</li>
+
+            <li class="li">Filespaces are removed in inHybrid 6. The <samp class="ph codeph">pg_filespace</samp> and
+                <samp class="ph codeph">pg_filespace_entry</samp> system tables are removed. Any reference to
+                <samp class="ph codeph">pg_filespace</samp> or <samp class="ph codeph">pg_filespace_entry</samp> will fail in
+              inHybrid 6.</li>
+
+            <li class="li">Restoring a inHybrid 4 backup can fail due to lack of dependency checking in
+              inHybrid 4 catalog tables. For example, restoring a UDF can fail if it references a
+              custom data type that is created later in the backup file.</li>
+
+          </ul>
+</li>
+
+        <li class="li">The  <samp class="ph codeph">INTO <var class="keyword varname">error_table</var></samp> clause of the <samp class="ph codeph">CREATE
+            EXTERNAL TABLE</samp> and <samp class="ph codeph">COPY</samp> commands was deprecated in inHybrid
+          4.3 and is unsupported in inHybrid 5 and 6. Remove this clause from any external table
+          definitions before you create a backup of your inHybrid 4.3 system. The
+            <samp class="ph codeph">ERROR_TABLE</samp> parameter of the <samp class="ph codeph">hdbload</samp> utility load
+          control YAML file must also be removed from any <samp class="ph codeph">hdbload</samp> YAML files before
+          you run <samp class="ph codeph">hdbload</samp>. </li>
+
+        <li class="li">The <samp class="ph codeph">int4_avg_accum()</samp> function signature changed in inHybrid 6 from
+            <samp class="ph codeph">int4_avg_accum(bytea, integer)</samp> to <samp class="ph codeph">int4_avg_accum(bigint[],
+            integer)</samp>. This function is the state transition function (<em class="ph i">sfunc</em>) called
+          when calculating the average of a series of 4-byte integers. If you have created a custom
+          aggregate in a previous inHybrid release that called the built-in
+            <samp class="ph codeph">int4_avg_accum()</samp> function, you will need to revise your aggregate for
+          the new signature. </li>
+
+        <li class="li">The <samp class="ph codeph">string_agg(expression)</samp> function has been removed from inHybrid 6.
+          The function concatenates text values into a string. You can replace the single argument
+          function with the function <samp class="ph codeph">string_agg(expression, delimiter)</samp> and specify
+          an empty string as the <samp class="ph codeph">delimiter</samp>, for example
+            <samp class="ph codeph">string_agg(txt_col1, '').</samp>
+</li>
+
+        <li class="li">The <samp class="ph codeph">offset</samp> argument of the <samp class="ph codeph">lag(expr, offset[,
+            default])</samp> window function has changed from <samp class="ph codeph">int8</samp> in inHybrid
+          4.3 to <samp class="ph codeph">int4</samp> in inHybrid 5 and 6.</li>
+
+        <li class="li">
+<samp class="ph codeph">hdbbackup</samp> saves the distribution policy and distribution key for each
+          table in the backup so that data can be restored to the same segment. If a table's
+          distribution key in the inHybrid 4.3 or 5 database is incompatible with inHybrid 6,
+            <samp class="ph codeph">hdbrestore</samp> cannot restore the table to the correct segment in the
+          inHybrid 6 database. This can happen if the distribution key in the older inHybrid
+          release has columns with data types not allowed in inHybrid 6 distribution keys, or if
+          the data representation for data types has changed or is insufficient for inHybrid 6 to
+          generate the same hash value for a distribution key. You should correct these kinds of
+          problems by altering distribution keys in the tables before you back up the inHybrid
+          database. </li>
+
+        <li class="li">inHybrid 6 requires primary keys and unique index keys to match a table's distribution
+          key. The leaf partitions of partitioned tables must have the same distribution policy as
+          the root partition. These known issues should be corrected in the source inHybrid
+          database before you back up the database:<ul class="ul" id="prep-hdb4__ul_tpr_kzz_y3b">
+            <li class="li">If the primary key is different than the distribution key for a table, alter the
+              table to either remove the primary key or change the primary key to match the
+              distribution key.</li>
+
+            <li class="li">If the key columns for a unique index are not a subset of the distribution key
+              columns, before you back up the source database, drop the index and, optionally,
+              recreate it with a compatible key.</li>
+
+            <li class="li">If a partitioned table in the source database has a <samp class="ph codeph">DISTRIBUTED BY</samp>
+              distribution policy, but has leaf partitions that are <samp class="ph codeph">DISTRIBUTED
+                RANDOMLY</samp>, alter the leaf tables to match the root table distribution policy
+              before you back up the source database. </li>
+
+          </ul>
+</li>
+
+        <li class="li">In inHybrid 4.3, the name provided for a constraint in a <samp class="ph codeph">CREATE TABLE</samp>
+          command was the name of the index created to enforce the constraint, which could lead to
+          indexes having the same name. In inHybrid 6, duplicate index names are not allowed;
+          restoring from a inHybrid 4.3 backup that has duplicate index names will generate
+          errors.</li>
+
+        <li class="li">Columns of type <samp class="ph codeph">abstime</samp>, <samp class="ph codeph">reltime</samp>,
+            <samp class="ph codeph">tinterval</samp>, <samp class="ph codeph">money</samp>, or <samp class="ph codeph">anyarray</samp> are not
+          supported as distribution keys in inHybrid 6.<p class="p">If you have tables distributed on columns
+            of type <samp class="ph codeph">abstime</samp>, <samp class="ph codeph">reltime</samp>, <samp class="ph codeph">tinterval</samp>,
+              <samp class="ph codeph">money</samp>, or <samp class="ph codeph">anyarray</samp>, use the <samp class="ph codeph">ALTER
+              TABLE</samp> command to set the distribution to <samp class="ph codeph">RANDOM</samp> before you
+            back up the database. After the data is restored, you can set a new distribution
+            policy.</p>
+</li>
+
+        <li class="li">In inHybrid 4.3 and 5, it was possible to <samp class="ph codeph">ALTER</samp> a table that has a
+          primary key or unique index to be <samp class="ph codeph">DISTRIBUTED RANDOMLY</samp>. inHybrid 6 does
+          not permit tables <samp class="ph codeph">DISTRIBUTED RANDOMLY</samp> to have primary keys or unique
+          indexes. Restoring such a table from a inHybrid 4.3 or 5 backup will cause an error.</li>
+
+        <li class="li">inHybrid 6 no longer automatically converts from the deprecated timestamp format
+          YYYYMMDDHH24MISS. The format could not be parsed unambiguously in previous inHybrid
+          Database releases. You can still specify the YYYYMMDDHH24MISS format in conversion
+          functions such as <samp class="ph codeph">to_timestamp</samp> and <samp class="ph codeph">to_char</samp> for
+          compatibility with other database systems. You can use input formats for converting text
+          to date or timestamp values to avoid unexpected results or query execution failures.</li>
+
+        <li class="li">Creating a table using the <samp class="ph codeph">CREATE TABLE AS</samp> command in inHybrid 4.3 or
+          5 could create a table with a duplicate distribution key. The <samp class="ph codeph">hdbbackup</samp>
+          utility saves the table to the backup using a <samp class="ph codeph">CREATE TABLE</samp> command that
+          lists the duplicate keys in the <samp class="ph codeph">DISTRIBUTED BY</samp> clause. Restoring this
+          backup will cause a duplicate distribution key error. The <samp class="ph codeph">CREATE TABLE AS</samp>
+          command was fixed in inHybrid 5.10 to disallow duplicate distribution keys.</li>
+
+        <li class="li">inHybrid 4.3 supports foreign key constraints on columns of different types, for
+          example, <samp class="ph codeph">numeric</samp> and <samp class="ph codeph">bigint</samp>, with implicit type
+          conversion. inHybrid 5 and 6 do not support implicit type conversion. Restoring a table
+          with a foreign key on columns with different data types causes an error.</li>
+
+        <li class="li">Only Boolean operators can use Boolean negators. In inHybrid Database 4.3 and 5 it was
+          possible to create a non-Boolean operator that specifies a Boolean negator function. For
+          example, this <samp class="ph codeph">CREATE OPERATOR</samp> command creates an integer
+            <samp class="ph codeph">@@</samp> operator with a Boolean
+            negator:<pre class="pre codeblock">CREATE OPERATOR public.@@ (
+        PROCEDURE = int4pl,
+        LEFTARG = integer,
+        RIGHTARG = integer,
+        NEGATOR = OPERATOR(public.!!)
+);</pre>
+<p class="p">If
+            you restore a backup containing an operator like this to a inHybrid 6 system,
+              <samp class="ph codeph">hdbrestore</samp> produces an error: <samp class="ph codeph">ERROR: only boolean operators
+              can have negators (SQLSTATE 42P13)</samp>.</p>
+</li>
+
+        <li class="li">In inHybrid Database 4.3 and 5, the undocumented server configuration parameter
+            <samp class="ph codeph">allow_system_table_mods</samp> could have a value of <samp class="ph codeph">none</samp>,
+            <samp class="ph codeph">ddl</samp>, <samp class="ph codeph">dml</samp>, or <samp class="ph codeph">all</samp>. In inHybrid 6,
+          this parameter has changed to a Boolean value, with a default value of
+            <samp class="ph codeph">false</samp>. If there are any references to this parameter in the source
+          database, remove them to prevent errors during the restore.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="backup-and-restore">
+    <h2 class="title topictitle2">Backing Up and Restoring a Database</h2>
+
+    <div class="body">
+      <p class="p">First use <samp class="ph codeph">hdbbackup</samp> to create a <samp class="ph codeph">--metadata-only</samp> backup
+        from the source inHybrid database and restore it to the inHybrid 6 system. This helps find
+        any additional problems that are not identified in <a class="xref" href="migrate.html#prep-hdb4">Preparing inHybrid 4.3 and 5 Databases for Backup</a>.
+        Refer to the <a class="xref" href="https://hdb.docs.inspur.io/backup-restore/latest/" target="_blank">inHybrid Backup and Restore documentation</a> for syntax and examples
+        for the <samp class="ph codeph">hdbbackup</samp> and <samp class="ph codeph">hdbrestore</samp> utilities.</p>
+
+      <p class="p">Review the <samp class="ph codeph">hdbrestore</samp> log file for error messages and correct any remaining
+        problems in the source inHybrid database.</p>
+
+      <p class="p">When you are able to restore a metadata backup successfully, create the full backup and
+        then restore it to the inHybrid 6 system. If needed, use the
+          <samp class="ph codeph">hdbbackup</samp> or <samp class="ph codeph">hdbrestore</samp> filter options to omit schemas or
+        tables that cannot be restored without error. </p>
+
+      
+      <div class="note important">
+<span class="importanttitle">Important:</span> When you restore a backup taken from a inHybrid Database 4.3 or 5
+        system, <samp class="ph codeph">hdbrestore</samp> warns that the restore will use legacy hash operators
+        when loading the data. This is because inHybrid 6 has new hash algorithms that map
+        distribution keys to segments, but the data in the backup set must be restored to the same
+        segments as the cluster from which the backup was taken. The <samp class="ph codeph">hdbrestore</samp>
+        utility sets the <samp class="ph codeph">gp_use_legacy_hashops</samp> server configuration parameter to
+          <samp class="ph codeph">on</samp> when restoring to inHybrid 6 from an earlier version so that the
+        restored tables are created using the legacy operator classes instead of the new default
+        operator classes. <p class="p">After restoring, you can redistribute these tables with the
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> parameter set to <samp class="ph codeph">off</samp> so that the
+          tables use the new inHybrid 6 hash operators. See <a class="xref" href="migrate.html#redistribute">Working With Hash Operator Classes in inHybrid 6</a> for more information and examples.</p>
+</div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="after-migration">
+    <h2 class="title topictitle2">Completing the Migration</h2>
+
+    <div class="body">
+      <p class="p">Migrate any tables you skipped during the restore using other methods, for example using
+        the <samp class="ph codeph">COPY TO</samp> command to create an external file and then loading the data
+        from the external file into inHybrid 6 with the <samp class="ph codeph">COPY FROM</samp> command.</p>
+
+      <p class="p">Recreate any objects you dropped in the inHybrid 4.3 or 5 database to enable migration,
+        such as external tables, indexes, user-defined functions, or user-defined aggregates.</p>
+
+      <p class="p">Here are some additional items to consider to complete your migration to inHybrid 6.</p>
+
+      <ul class="ul" id="after-migration__ul_spw_q2b_z3b">
+        <li class="li">If you are migrating from inHybrid Database 4.3.27 or an earlier 4.3.x release and have
+          configured PgBouncer in your inHybrid Database installation, you must migrate to the new
+          PgBouncer when you upgrade inHybrid Database. Refer to <a class="xref" href="../admin_guide/access_db/topics/pgbouncer.html#pgb_migrate">Migrating PgBouncer</a> for specific migration instructions.</li>
+
+        <li class="li">inHybrid Database 5 and 6 remove automatic casts between the text type and other data
+          types. After you migrate from inHybrid Database version 4.3 to version 6, this changed
+          behavior may impact existing applications and queries. Refer to <a class="xref" href="43x_to_5x.html" title="inHybrid Database version 4.3.x is based on PostgreSQL version 8.2. inHybrid Database version 6.x is based on PostgreSQL version 9.4. PostgreSQL 8.3 removed automatic implicit casts between the text type and other data types. When you migrate from inHybrid Database version 4.3.x to version 6, this change in behavior might impact existing applications and queries.">About Implicit Text Casting in inHybrid Database</a> for
+          information, including a discussion about<span class="ph"> recommended</span> workarounds.</li>
+
+        <li class="li">After migrating data you may need to modify SQL scripts, administration scripts, and
+          user-defined functions as necessary to account for changes in inHybrid Database version
+          6. Review the <a class="xref" href="https://hdb.docs.inspur.io/latest/relnotes/HDB_600_README.html" target="_blank">inspur inHybrid 6.0.0 Release Notes</a> for features and changes
+          that may necessitate post-migration tasks.</li>
+
+        <li class="li">To use the new inHybrid 6 default hash operator classes, use the command <samp class="ph codeph">ALTER
+            TABLE &lt;table&gt; SET DISTRIBUTED BY (&lt;key&gt;)</samp> to redistribute tables restored
+          from inHybrid 4.3 or 5 backups. The <samp class="ph codeph">gp_use_legacy_hashops</samp> parameter must
+          be set to <samp class="ph codeph">off</samp> when your execute the command. See <a class="xref" href="migrate.html#redistribute">Working With Hash Operator Classes in inHybrid 6</a> for more information about hash operator classes.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="topic nested2" id="redistribute">
+      <h3 class="title topictitle3">Working With Hash Operator Classes in inHybrid 6</h3>
+
+      <div class="body">
+        <p class="p">inHybrid 6 has new <em class="ph i">jump consistent</em> hash operators that map distribution keys for
+          distributed tables to the segments. The new hash operators enable faster database
+          expansion because they don't require redistributing rows unless they map to a different
+          segment. The hash operators used in inHybrid 4.3 and 5 are present in inHybrid 6 as
+          non-default legacy hash operator classes. For example, for integer columns, the new hash
+          operator class is named <samp class="ph codeph">int_ops</samp> and the legacy operator class is named
+            <samp class="ph codeph">cdbhash_int_ops</samp>.</p>
+
+        <p class="p">This example creates a table using the legacy hash operator class
+            <samp class="ph codeph">cdbhash_int_ops</samp>.</p>
+
+        <pre class="pre codeblock">test=# <strong class="ph b">SET gp_use_legacy_hashops=on;</strong>
+SET            
+test=# <strong class="ph b">CREATE TABLE t1 (
+    c1 integer,
+    c2 integer,
+    p integer
+) DISTRIBUTED BY (c1);</strong>
+CREATE TABLE
+test=# <strong class="ph b">\d+ t1</strong>
+                          Table "public.t1"
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ c1     | integer |           | plain   |              |
+ c2     | integer |           | plain   |              |
+ p      | integer |           | plain   |              |
+Distributed by: (c1)</pre>
+
+        <p class="p">Notice that the distribution key is <samp class="ph codeph">c1</samp>. If the
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> parameter is <samp class="ph codeph">on</samp> and the operator
+          class is a legacy operator class, the operator class name is not shown. However, if
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> is <samp class="ph codeph">off</samp>, the legacy operator
+          class name is reported with the distribution key.</p>
+
+        <pre class="pre codeblock">test=# <strong class="ph b">SET gp_use_legacy_hashops=off;</strong>
+SET
+test=# <strong class="ph b">\d+ t1
+</strong>                          Table "public.t1"
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ c1     | integer |           | plain   |              |
+ c2     | integer |           | plain   |              |
+ p      | integer |           | plain   |              |
+Distributed by: (c1 cdbhash_int4_ops)</pre>
+
+        <p class="p">The operator class name is reported only when it does not match the setting of the
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> parameter.</p>
+
+        <div class="p">To change the table to use the new jump consistent operator class, use the <samp class="ph codeph">ALTER
+            TABLE</samp> command to redistribute the table with the
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> parameter set to <samp class="ph codeph">off</samp>.
+          <div class="note note">
+<span class="notetitle">Note:</span> Redistributing tables with a large amount of data can take a long time. </div>
+</div>
+
+        <pre class="pre codeblock">test=# <strong class="ph b">SHOW gp_use_legacy_hashops;</strong>
+ gp_use_legacy_hashops
+-----------------------
+ off
+(1 row)
+
+test=# <strong class="ph b">ALTER TABLE t1 SET DISTRIBUTED BY (c1);</strong>
+ALTER TABLE
+test=# <strong class="ph b">\d+ t1</strong>
+                          Table "public.t1"
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ c1     | integer |           | plain   |              |
+ c2     | integer |           | plain   |              |
+ p      | integer |           | plain   |              |
+Distributed by: (c1)</pre>
+
+        <p class="p">To verify the default jump consistent operator class has been used, set
+            <samp class="ph codeph">gp_use_legacy_hashops</samp> to on before you show the table definition.</p>
+
+        <pre class="pre codeblock">test=# <strong class="ph b">SET gp_use_legacy_hashops=on;</strong>
+SET
+test=# <strong class="ph b">\d+ t1</strong>
+                          Table "public.t1"
+ Column |  Type   | Modifiers | Storage | Stats target | Description
+--------+---------+-----------+---------+--------------+-------------
+ c1     | integer |           | plain   |              |
+ c2     | integer |           | plain   |              |
+ p      | integer |           | plain   |              |
+Distributed by: (c1 int4_ops)</pre>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

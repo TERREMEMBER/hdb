@@ -1,0 +1,67 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_recursive_cte">
+<h2 class="title topictitle2">gp_recursive_cte</h2>
+<div class="body">
+<p class="p">控制<samp class="ph codeph">SELECT [INTO]</samp>命令的<samp class="ph codeph">WITH</samp>子句或<samp class="ph codeph">DELETE</samp>，<samp class="ph codeph">INSERT</samp>或<samp class="ph codeph">UPDATE</samp>命令中<samp class="ph codeph">RECURSIVE</samp>关键字的可用性。
+        该关键字允许命令的<samp class="ph codeph">WITH</samp>子句中的子查询引用自身。
+        默认值为<samp class="ph codeph">false</samp>，命令的<samp class="ph codeph">WITH</samp>子句中不允许使用<samp class="ph codeph">RECURSIVE</samp>关键字。
+        </p>
+<p class="p">有关<samp class="ph codeph">RECURSIVE</samp>关键字（Beta）的信息，
+        请参阅<samp class="ph codeph"><a class="xref" href="../sql_commands/SELECT.html">SELECT</a></samp>命令和<a class="xref" href="../../admin_guide/query/topics/CTE-query.html" title="WITH子句提供在一个更大的SELECT查询中，使用子查询或执行数据修改操作的方式。你可以在INSERT, UPDATE, 或 DELETE 命令中使用WITH子句。">WITH查询（公用表表达式）</a>。
+        </p>
+<p class="p">可以为数据库系统，单个数据库或会话或查询设置该参数。
+        </p>
+<div class="note note">
+<span class="notetitle">Note:</span> 此参数之前名为<samp class="ph codeph">gp_recursive_cte_prototype</samp>，但已重命名以反映实现的当前状态。
+        </div>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_recursive_cte__table_j4s_yyx_1bb" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e9535" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e9538" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e9541" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e9535" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e9538" valign="top" width="33.33333333333333%">true</td>
+<td class="entry" headers="d62161e9541" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

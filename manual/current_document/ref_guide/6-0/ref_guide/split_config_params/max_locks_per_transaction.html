@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="max_locks_per_transaction">
+<h2 class="title topictitle2">max_locks_per_transaction</h2>
+<div class="body">
+<p class="p">创建共享锁定表时，
+        可以在<em class="ph i">max_locks_per_transaction</em> *（<em class="ph i">max_connections</em> + <em class="ph i">max_prepared_transactions</em>）对象上描述锁定，
+        因此在任何时候都不能锁定这么多不同的对象。
+        这不是任何一个事务所采用的锁数的硬限制，而是最大平均值。
+        如果您的客户端在单个事务中触及许多不同的表，则可能需要提高此值。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="max_locks_per_transaction__max_locks_per_transaction_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e14580" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e14583" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e14586" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e14580" valign="top" width="33.33333333333333%">整数</td>
+<td class="entry" headers="d62161e14583" valign="top" width="33.33333333333333%">128</td>
+<td class="entry" headers="d62161e14586" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

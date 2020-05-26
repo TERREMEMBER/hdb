@@ -1,0 +1,68 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="data_checksums">
+<h2 class="title topictitle2">data_checksums</h2>
+<div class="body">
+<p class="p">报告是否为数据库系统中的堆数据存储启用了校验和。
+        初始化数据库系统且无法更改时，将启用或禁用堆数据的校验和。</p>
+<p class="p">堆数据页存储堆表，目录表，索引和数据库元数据。
+        追加优化存储具有与此参数无关的内置校验和支持。</p>
+<p class="p">Greenplum数据库使用校验和来防止将文件系统中损坏的数据加载到由数据库进程管理的内存中。
+        启用堆数据校验和时，Greenplum Database会在堆数据页写入磁盘时计算并存储校验和。
+        从磁盘检索页面时，将验证校验和。
+        如果验证失败，则会生成错误，并且不允许将页面加载到托管内存中。
+        </p>
+<p class="p">如果<samp class="ph codeph">ignore_checksum_failure</samp>配置参数已设置为on，则校验和验证失败会生成警告，但允许将页面加载到托管内存中。
+        如果页面随后更新，则会刷新到磁盘并复制到镜像。
+        这可能导致数据损坏传播到镜像并阻止完全恢复。
+        由于可能会丢失数据，因此只应在需要恢复数据时启用<samp class="ph codeph">ignore_checksum_failure</samp>参数。
+        有关更多信息，请参阅<a class="xref" href="guc-list.html#ignore_checksum_failure">ignore_checksum_failure</a>。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="data_checksums__table_djn_1nb_v1b" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e2783" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e2786" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e2789" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e2783" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e2786" valign="top" width="33.33333333333333%">on</td>
+<td class="entry" headers="d62161e2789" valign="top" width="33.33333333333333%">read only</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

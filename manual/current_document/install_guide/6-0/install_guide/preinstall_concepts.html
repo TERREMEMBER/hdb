@@ -1,0 +1,574 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Introduction to inHybrid |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_preinstall_concepts has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Introduction to inHybrid
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="preinstall_concepts.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">inHybrid介绍</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">对inHybrid数据库系统架构的高级概述。</p>
+
+    <p class="p">inHybrid数据库通过在多个服务器或主机上分配负载来存储和处理大量数据。inHybrid中的逻辑数据库是一组单独的PostgreSQL数据库，它们共同工作以呈现单个数据库映像。master是inHybrid数据库系统的入口点。它是用户连接并提交SQL语句的数据库实例。主服务器协调系统中其他数据库实例（称为segment）的工作负载，这些实例处理数据处理和存储。segment之间通过互连（inHybrid数据库的网络层）与master进行通信。</p>
+
+    <br><img class="image" src="graphics/highlevel_arch.jpg" width="389" height="309"><br>
+    <p class="p">inHybrid数据库是一个软件专用的解决方案；硬件和数据库软件不耦合。inHybrid数据库运行在inHybrid认证硬件供应商提供的各种商品服务器平台上。性能取决于安装它的硬件。由于在inHybrid数据库系统中，数据库分布在多台机器上，因此正确选择和配置硬件对于获得最佳性能至关重要。</p>
+
+    <p class="p">本章描述了inHybrid数据库系统的主要组件，以及与每个组件相关联的硬件注意事项和概念：inHybrid master、segment和互连。此外，系统可以具有用于数据加载的可选ETL主机和用于监视查询工作负载和性能的主题</p>
+
+  </div>
+
+  <div class="related-links">
+<ul class="ullinks">
+<li class="link ulchildlink">
+<strong><a href="preinstall_concepts.html#topic2">The inHybrid Master</a></strong><br>
+</li>
+<li class="link ulchildlink">
+<strong><a href="preinstall_concepts.html#topic4">The Segments</a></strong><br>
+</li>
+<li class="link ulchildlink">
+<strong><a href="preinstall_concepts.html#topic9">互连</a></strong><br>
+</li>
+<li class="link ulchildlink">
+<strong><a href="preinstall_concepts.html#topic13">用于数据加载的ETL主机</a></strong><br>
+</li>
+</ul>
+
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">用于数据加载的ETL主机</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" xml:lang="en" lang="en" id="topic2">
+    <h2 class="title topictitle2">The inHybrid Master</h2>
+
+    <div class="body">
+      <p class="p">master是inHybrid数据库系统的入口点。数据库服务器进程接受客户端连接并处理系统用户发出的SQL命令。用户使用PostgreSQL兼容的客户端程序（如psql或ODBC）通过master连接到inHybrid数据库。</p>
+
+      <p class="p">master维护系统目录（一组包含inHybrid数据库系统本身元数据的系统表），但是master不包含任何用户数据。数据只存在于段上。master验证客户机连接，处理传入的SQL命令，在段之间分配工作负载，协调每个段返回的结果，并将最终结果呈现给客户机程序。</p>
+
+      <p class="p">因为master不包含任何用户数据，所以它的磁盘负载很小。master需要一个快速的专用CPU来加载数据、处理连接和规划查询，因为通常需要额外的空间来加载文件和备份文件，特别是在生产环境中。</p>
+
+    </div>
+
+    <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="preinstall_concepts.html" title="High-level overview of the inHybrid Database system architecture.">inHybrid 介绍</a>
+</div>
+</div>
+</div>
+<div class="topic nested2" xml:lang="en" lang="en" id="topic3">
+      <h3 class="title topictitle3">Master 冗余</h3>
+
+      <div class="body">
+        <p class="p">Master 冗余 </p>
+
+        <p class="p">您可以选择部署主实例的备份或镜像。如果primary master主机变得不可操作，备用主机将充当热备用主机。您可以将备用主机部署在指定的冗余主机或某个segment主机上。</p>
+
+        <p class="p">备用主机由事务日志复制过程保持最新，该过程在备用主机上运行，并在master主机和备用主机之间同步数据。如果primary master主机发生故障，日志复制进程将关闭，管理员可以激活备用主机。当备用主机处于活动状态时，复制的日志将用于重建上次成功提交事务时master主机的状态。</p>
+
+        <div class="fig fignone" id="topic3__jg163382">
+<span class="figcap">图1.inHybrid数据库中的master镜像</span>
+          
+          <br><img class="image" src="graphics/standby_master.jpg" width="271" height="165"><br>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic4">
+    <h2 class="title topictitle2">The Segments</h2>
+    <div class="body">
+      <p class="p">在inHybrid数据库中，segment是存储数据和进行大多数查询处理的地方。用户定义的表及其索引分布在inHybrid数据库系统的可用段中；每个segment包含不同的数据部分。segment实例是为段提供服务的数据库服务器进程。用户不直接与inHybrid数据库系统中的segment交互，而是通过master进行交互。</p>
+
+      <p class="p">在参考inHybrid数据库硬件配置中，每个segment主机的段实例数量由有效CPU或CPU核心的数量决定。例如，如果segment主机有两个双核处理器，则每个主机可能有两个或四个主segment。如果您的segment主机有三个四核处理器，则每个主机可能有三个、六个或十二个segment。性能测试将有助于确定所选硬件平台的最佳segment数量。</p>
+
+    </div>
+
+    <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="preinstall_concepts.html" title="High-level overview of the inHybrid Database system architecture.">inHybrid 介绍</a>
+</div>
+</div>
+</div>
+<div class="topic nested2" xml:lang="en" lang="en" id="topic5">
+      <h3 class="title topictitle3">Segment 冗余</h3>
+
+      <div class="body">
+        <p class="p">部署inHybrid数据库系统时，可以选择配置mirror segment。mirror segment允许数据库查询在primary segment不可用时故障转移到backup segment。</p>
+
+        <p class="p">mirror segment必须始终位于primary segment以外的其他主机上。mirror segment可以在系统中的两个标准配置中的一个或在您设计的自定义配置中跨主机排列。默认配置（称为组镜像）将主机上所有primary segment的mirror segment放置在另一台主机上。另一个选项称为扩散镜像，它将每个主机的primary segment的镜像扩散到其余主机上。扩展镜像要求系统中的主机多于主机上的primary segment。在具有多个网络接口的主机上，primary segment和mirror segment在接口之间平均分布。图2显示了配置默认组镜像选项时，表数据如何跨segment分布。</p>
+
+        <div class="fig fignone" id="topic5__jg163134">
+<span class="figcap">图2.inHybrid数据库中的数据镜像</span>
+          
+          <br><img class="image" src="graphics/group-mirroring.png"><br>
+        </div>
+
+      </div>
+
+      <div class="topic nested3" xml:lang="en" lang="en" id="topic6">
+        <h4 class="title topictitle4">segment故障转移和恢复</h4>
+
+        <div class="body">
+          <p class="p">在inHybrid数据库系统中启用镜像时，如果主副本不可用，系统将自动故障转移到镜像副本。如果一个segment实例或主机发生故障，只有在剩余活动segment上的所有数据部分都可用时，inHybrid数据库系统才能继续运行。</p>
+
+          <p class="p">如果master无法连接到段实例，它会在inHybrid数据库系统目录中将该segment实例标记为无效。在管理员使该segment重新联机之前，该segment实例将保持无效并停止运行。管理员可以在系统启动和运行时恢复出现故障的segment。恢复过程只复制在segment不可操作时丢失的更改。</p>
+
+          <p class="p">如果未启用镜像并且某个segment无效，系统将自动关闭。管理员必须先恢复所有失败的segment，然后才能继续操作。</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic7">
+      <h3 class="title topictitle3">segment主机硬件堆栈示例</h3>
+
+      <div class="body">
+        <p class="p">无论您选择何种硬件平台，生产inHybrid数据库处理节点（segment主机）通常都按照本节所述进行配置。</p>
+
+        <p class="p">segment主机负责大部分数据库处理，因此segment主机服务器的配置是为了从inHybrid数据库系统中获得尽可能最佳的性能。inHybrid数据库的性能将与阵列中最慢的segment服务器一样快。因此，确保运行inHybrid数据库的底层硬件和操作系统都在其最佳性能级别上运行是非常重要的。还建议inHybrid数据库阵列中的所有segment主机具有相同的硬件资源和配置。</p>
+
+        <p class="p">segment主机也应仅用于inHybrid数据库操作。为了获得最佳的查询性能，您不希望inHybrid数据库与其他应用程序争夺机器或网络资源。</p>
+
+        <p class="p">下图显示了inHybrid数据库segment主机硬件堆栈的示例。主机上有效CPU的数量是确定每个segment主机要部署多少个主要inHybrid数据库segment实例的基础。本例显示了一个具有两个有效CPU（一个双核CPU）的主机。请注意，每个CPU核心有一个primary segment实例（如果使用镜像，则为主/镜像对）。 </p>
+
+        <div class="fig fignone" id="topic7__jg161984">
+<span class="figcap">图3.inHybrid数据库segment主机配置示例</span>
+          
+          <br><img class="image" src="graphics/hardware_stack.jpg" width="416" height="305"><br>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic8">
+      <h3 class="title topictitle3">segment磁盘布局示例</h3>
+
+      <div class="body">
+        <p class="p">每个CPU通常映射到一个逻辑磁盘。逻辑磁盘由一个主文件系统（以及可选的镜像文件系统）组成，它通过I/O通道或磁盘控制器访问物理磁盘池。逻辑磁盘和文件系统由操作系统提供。大多数操作系统为逻辑磁盘驱动器提供了使用排列在RAID阵列中的物理磁盘组的能力。</p>
+
+        <div class="fig fignone" id="topic8__jg163832">
+<span class="figcap">图4.inHybrid数据库中的逻辑磁盘布局</span>
+          
+          <br><img class="image" src="graphics/disk_raid.jpg" width="413" height="155"><br>
+        </div>
+
+        <p class="p">根据您选择的硬件平台，不同的RAID配置提供不同的性能和容量级别。inHybrid支持并认证许多参考硬件平台和操作系统。请向您的销售客户代表咨询所选平台上的推荐配置。</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic9">
+    <h2 class="title topictitle2">互连</h2>
+
+    <div class="body">
+      <p class="p">互连是inHybrid数据库的网络层。当用户连接到数据库并发出查询时，将在每个segment上创建处理该查询工作的进程。</p>
+<p class="p">互连指的是segment之间的进程间通信，以及这种通信所依赖的网络基础设施。互连使用标准的10千兆以太网交换结构。</p>
+      <p class="p">默认情况下，inHybrid Database interconnect使用带流量控制的UDP（用户数据报协议）通过网络发送消息。inHybrid软件做附加的包验证和检查，而不是由UDP来执行，因此可靠性相当于TCP（传输控制协议），性能和可扩展性都超过了TCP。有关inHybrid数据库支持的互连类型的信息，请参阅inHybrid数据库参考指南中的服务器配置参数gp_interconnect_type。</p>
+
+    </div>
+
+    <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="preinstall_concepts.html" title="High-level overview of the inHybrid Database system architecture.">inHybrid 介绍</a>
+</div>
+</div>
+</div>
+<div class="topic nested2" xml:lang="en" lang="en" id="topic10">
+      <h3 class="title topictitle3">互连冗余</h3>
+
+      <div class="body">
+        <p class="p">通过在您的网络上部署双10千兆以太网交换机，以及到inHybrid数据库主服务器和段主机服务器的冗余10千兆连接，可以实现高可用的互连</p>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic11">
+      <h3 class="title topictitle3">网络接口配置</h3>
+
+      <div class="body">
+        <p class="p">segment主机通常有多个指定给inHybrid互连流量的网络接口。除了用于互连通信的接口外，master主机通常还具有其他外部网络接口。</p>
+
+        <p class="p">根据可用接口的数量，您需要在可用接口的数量上分布互连网络流量。这是通过将segment实例分配给特定网络接口并确保segment在可用接口的数量上均匀平衡来完成的。</p>
+
+        <p class="p">这是通过为每个网络接口创建单独的主机地址名来完成的。例如，如果一个主机有四个网络接口，那么它将有四个对应的主机地址，每个地址都映射到一个或多个primary segment实例。/etc/hosts文件应配置为不仅包含每台计算机的主机名，还包含所有inHybrid数据库主机（主机、备用主机、段和ETL主机）的所有接口主机地址。</p>
+
+        <p class="p">使用此配置，操作系统会自动选择到目标的最佳路径。inHybrid数据库自动平衡网络目的地，以最大限度地提高并行性。</p>
+
+        <div class="fig fignone" id="topic11__jg161452">
+<span class="figcap">图5.网络接口架构示例</span>
+          
+          <br><img class="image" src="graphics/multi_nic_arch.jpg" width="438" height="437"><br>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic12">
+      <h3 class="title topictitle3">交换机配置</h3>
+
+      <div class="body">
+        <p class="p">在inHybrid数据库阵列中使用多个万兆以太网交换机时，请平均分配每个交换机之间的子网数量。在这个示例配置中，如果我们有两个交换机，则每个主机上的NICs 1和NICs 2将使用交换机1，而每个主机上的NICs 3和NICs 4将使用交换机2。对于主主机，绑定到NIC 1的主机名（因此使用交换机1）是阵列的有效primary master主机名。因此，如果出于冗余目的部署热备用主机，则备用主机应映射到使用不同于primary master主机的交换机的NIC。</p>
+
+        <div class="fig fignone" id="topic12__jg161465">
+<span class="figcap">图6.交换机配置示例</span>
+          
+          <br><img class="image" src="graphics/multi_switch_arch.jpg" width="417" height="292"><br>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic13">
+    <h2 class="title topictitle2">用于数据加载的ETL主机</h2>
+
+    <div class="body">
+      <p class="p">inHybrid通过其外部表功能支持快速、并行的数据加载。通过将外部表与inHybrid数据库的并行文件服务器（hdbfdist）结合使用，管理员可以从inHybrid数据库系统中获得最大的并行性和负载带宽。许多生产系统部署指定的ETL服务器以进行数据加载。这些机器运行inHybrid并行文件服务器（hdbfdist），但不运行inHybrid数据库实例。</p>
+
+      <p class="p">使用hdbfdist文件服务器程序的一个优点是，它确保从外部表数据文件读取时，inHybrid数据库系统中的所有段都得到充分利用。</p>
+
+      <p class="p">hdbfdist程序可以为段实例提供数据，分隔文本格式文件的平均速率约为350mb/s，CSV格式文件的平均速率约为200mb/s。因此，运行hdbfdist时应考虑以下选项，以便最大化ETL系统的网络带宽：</p>
+
+      <ul class="ul">
+        <li class="li" id="topic13__jg164745">如果您的ETL机器配置了多个网络接口卡（NIC），如网络接口配置中所述，在ETL主机上运行hdbfdist的一个实例，然后定义外部表定义，以便在LOCATIONclause中声明每个NIC的主机名（请参阅inHybrid数据库参考指南中的CREATE external table）。这允许inHybrid段主机和ETL主机之间的网络通信同时使用所有NIC。</li>
+
+      </ul>
+
+      <div class="fig fignone" id="topic13__jg164760">
+<span class="figcap">图7.使用带有多个NIC的单个hdbfdist实例的外部表</span>
+        
+        <br><img class="image" src="graphics/ext_tables_multinic.jpg" width="452" height="243"><br>
+      </div>
+
+      <ul class="ul">
+        <li class="li" id="topic13__jg164761">在ETL主机上运行多个hdbfdist实例，并在每个实例之间平均分配外部数据文件。例如，如果您有一个带有两个网络接口卡（NIC）的ETL系统，则可以在该计算机上运行两个hdbfdist实例，以最大限度地提高负载性能。然后在两个hdbfdist程序之间平均分配外部表数据文件。</li>
+
+      </ul>
+
+      <div class="fig fignone" id="topic13__jg164770">
+<span class="figcap">图8.使用具有多个NIC的多个hdbfdist实例的外部表</span>
+        
+        <br><img class="image" src="graphics/ext_tables.jpg" width="436" height="264"><br>
+      </div>
+
+    </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="preinstall_concepts.html" title="High-level overview of the inHybrid Database system architecture.">inHybrid介绍</a>
+</div>
+</div>
+</div>
+</div>
+
+  
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

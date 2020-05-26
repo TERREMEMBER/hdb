@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_enable_direct_dispatch">
+<h2 class="title topictitle2">gp_enable_direct_dispatch</h2>
+<div class="body">
+<p class="p">启用或禁用为访问单个segment上的数据的查询调度目标查询计划。
+        启用时，单个segment上的目标行的查询将仅将其查询计划分派到该segment（而不是所有segment）。
+        这明显缩短了限定查询的响应时间，因为没有涉及互连设置。
+        直接分发确实需要主服务器上更多的CPU利用率。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_enable_direct_dispatch__gp_enable_direct_dispatch_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e6437" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e6440" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e6443" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e6437" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e6440" valign="top" width="33.33333333333333%">on</td>
+<td class="entry" headers="d62161e6443" valign="top" width="33.33333333333333%">master<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

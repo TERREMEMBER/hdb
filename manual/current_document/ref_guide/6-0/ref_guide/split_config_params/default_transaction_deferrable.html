@@ -1,0 +1,64 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="default_transaction_deferrable">
+<h2 class="title topictitle2">default_transaction_deferrable</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 只有只读和可串行化事务才可以被推迟。
+        Greenplum数据库不支持<samp class="ph codeph">SERIALIZABLE</samp>事务隔离级别，因此将<samp class="ph codeph">default_transaction_deferrable</samp>设置为on对Greenplum数据库没有影响。
+        </div>
+<p class="p">在可序列化隔离级别运行时，可延迟的只读SQL事务可能会在允许继续之前被延迟。
+        但是，一旦它开始执行，它不会产生确保可串行化所需的任何开销; 因此，序列化代码没有理由强制它因并发更新而中止，所以此选项适用于长时间运行的只读事务。</p>
+<p class="p">此参数控制每个新事务的默认可延迟状态。
+        它目前对读写事务或低于可序列化的隔离级别的操作没有影响。
+        默认为关闭。</p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="default_transaction_deferrable__default_transaction_deferrable" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e3674" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e3677" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e3680" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e3674" valign="top" width="33.33333333333333%">Boolean</td>
+<td class="entry" headers="d62161e3677" valign="top" width="33.33333333333333%">off</td>
+<td class="entry" headers="d62161e3680" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

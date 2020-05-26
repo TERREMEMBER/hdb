@@ -1,0 +1,59 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_cached_segworkers_threshold">
+<h2 class="title topictitle2">gp_cached_segworkers_threshold</h2>
+<div class="body">
+<p class="p">当用户使用Greenplum数据库启动会话并发出查询时，系统会在每个segment上创建工作进程的组或“gangs”来完成工作。
+        完成工作后，除了由此参数设置的缓存数之外，将销毁段工作进程。
+        较低的设置可以节省段主机上的系统资源，但更高的设置可以提高想要连续发出许多复杂查询的高级用户的性能。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_cached_segworkers_threshold__gp_cached_segworkers_threshold_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e5329" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e5332" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e5335" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e5329" valign="top" width="33.33333333333333%">整数 &gt; 0</td>
+<td class="entry" headers="d62161e5332" valign="top" width="33.33333333333333%">5</td>
+<td class="entry" headers="d62161e5335" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

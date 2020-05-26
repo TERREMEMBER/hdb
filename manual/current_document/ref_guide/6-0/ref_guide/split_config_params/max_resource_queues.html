@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="max_resource_queues">
+<h2 class="title topictitle2">max_resource_queues</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">max_resource_portals_per_transaction</samp>服务器配置参数才会生效。</div>
+<p class="p">设置可以在Greenplum数据库系统中创建的最大资源队列数。
+        请注意，资源队列是系统范围的（角色也是如此），因此它们适用于系统中的所有数据库。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="max_resource_queues__max_resource_groups_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e14772" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e14775" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e14778" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e14772" valign="top" width="33.33333333333333%">整数</td>
+<td class="entry" headers="d62161e14775" valign="top" width="33.33333333333333%">9</td>
+<td class="entry" headers="d62161e14778" valign="top" width="33.33333333333333%">master<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

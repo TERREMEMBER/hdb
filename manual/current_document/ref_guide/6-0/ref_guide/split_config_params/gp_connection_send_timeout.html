@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_connection_send_timeout">
+<h2 class="title topictitle2">gp_connection_send_timeout</h2>
+<div class="body">
+<div class="p">在查询处理期间向无响应的Greenplum数据库用户客户端发送数据的超时。
+        值为0将禁用超时，Greenplum数据库将无限期地等待客户端。
+        达到超时后，将使用以下消息取消查询：
+        <pre class="pre codeblock">Could not send data to client: Connection timed out.</pre>
+</div>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_connection_send_timeout__gp_connection_send_timeout_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e5443" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e5446" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e5449" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e5443" valign="top" width="33.33333333333333%">秒数</td>
+<td class="entry" headers="d62161e5446" valign="top" width="33.33333333333333%">3600 (1小时)</td>
+<td class="entry" headers="d62161e5449" valign="top" width="33.33333333333333%">master<p class="p">system</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_resqueue_memory_policy">
+<h2 class="title topictitle2">gp_resqueue_memory_policy</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">gp_resqueue_memory_policy</samp>服务器配置参数才会生效。
+        </div>
+<p class="p">启用Greenplum内存管理功能。
+        分配算法<samp class="ph codeph">eager_free</samp>利用了并非所有运算符同时执行的事实<span class="ph">（在Greenplum Database 4.2及更高版本中）</span>。
+        查询计划分为几个阶段，Greenplum数据库急切地释放在该阶段执行结束时分配给前一阶段的内存，
+        然后将急切释放的内存分配给新阶段。
+        </p>
+<p class="p">When set to <samp class="ph codeph">none</samp>, memory management is the same as in Greenplum Database
+        releases prior to 4.1. </p>
+<p class="p">When set to <samp class="ph codeph">auto</samp>, query memory usage is controlled by <a class="xref" href="guc-list.html#statement_mem">statement_mem</a> and resource queue memory limits. </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resqueue_memory_policy__gp_resqueue_memory_policy_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e10147" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e10150" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e10153" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e10147" valign="top" width="33.33333333333333%">none, auto, eager_free</td>
+<td class="entry" headers="d62161e10150" valign="top" width="33.33333333333333%">eager_free</td>
+<td class="entry" headers="d62161e10153" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart/reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

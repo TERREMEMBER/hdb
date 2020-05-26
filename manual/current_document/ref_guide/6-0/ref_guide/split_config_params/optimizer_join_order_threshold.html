@@ -1,0 +1,60 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_join_order_threshold">
+<h2 class="title topictitle2">optimizer_join_order_threshold</h2>
+<div class="body">
+<p class="p">启用GPORCA（默认设置）时，此参数设置GPORCA将使用基于动态编程的连接排序算法的最大连接子数。
+        您可以为单个查询或整个会话设置此值。
+        </p>
+<p class="p">当<samp class="ph codeph">optimizer_join_query</samp>参数设置为<samp class="ph codeph">query</samp>或<samp class="ph codeph">greedy</samp>时，此参数无效。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_join_order_threshold__table_z1c_bqp_jx" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e16086" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e16089" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e16092" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e16086" valign="top" width="33.33333333333333%">0 - 12</td>
+<td class="entry" headers="d62161e16089" valign="top" width="33.33333333333333%">10</td>
+<td class="entry" headers="d62161e16092" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Upgrading from an Earlier inHybrid 6 Release |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_upgrading has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Upgrading from an Earlier inHybrid 6 Release
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="upgrading.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">Upgrading from an Earlier inHybrid 6 Release</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">The upgrade path supported for this release is inHybrid Database 6.x to a newer
+    inHybrid Database 6.x release. </p>
+
+    <div class="note important">
+<span class="importanttitle">Important:</span> Set the inHybrid Database timezone to a value that is compatible with
+      your host systems. Setting the inHybrid Database timezone prevents inHybrid Database from
+      selecting a timezone each time the cluster is restarted and sets the timezone for the
+      inHybrid Database master and segment instances. After you upgrade to this release and if you
+      have not set a inHybrid Database timezone value, verify that the selected inHybrid Database
+      timezone is acceptable for your deployment. See <a class="xref" href="localization.html">Configuring Timezone and Localization Settings</a> for more
+      information.</div>
+
+    <div class="section" id="topic_tbx_szy_kbb__hdb_prereq">
+<h2 class="title sectiontitle">Prerequisites</h2>
+      
+      <p class="p">Before starting the upgrade process, perform the following checks. </p>
+
+      <ul class="ul" id="topic_tbx_szy_kbb__ul_ubx_szy_kbb">
+        <li class="li">Verify the health of the inHybrid Database host hardware, and verify that the hosts
+          meet the requirements for running inHybrid Database. The inHybrid Database
+            <samp class="ph codeph">hdbcheckperf</samp> utility can assist you in confirming the host requirements.
+            <div class="note note">
+<span class="notetitle">Note:</span> If you need to run the <samp class="ph codeph">hdbcheckcat</samp> utility, run it a few weeks
+            before the upgrade during a maintenance period. If necessary, you can resolve any issues
+            found by the utility before the scheduled upgrade.</div>
+<p class="p">The utility is in
+              <samp class="ph codeph">$HDBHOME/bin</samp>. Place inHybrid Database in restricted mode when you run
+            the <samp class="ph codeph">hdbcheckcat</samp> utility. See the <cite class="cite">inHybrid Database Utility
+              Guide</cite> for information about the <samp class="ph codeph">hdbcheckcat</samp> utility.</p>
+<p class="p">If
+              <samp class="ph codeph">hdbcheckcat</samp> reports catalog inconsistencies, you can run
+              <samp class="ph codeph">hdbcheckcat</samp> with the <samp class="ph codeph">-g</samp> option to generate SQL
+            scripts to fix the inconsistencies.</p>
+<p class="p">After you run the SQL scripts, run
+              <samp class="ph codeph">hdbcheckcat</samp> again. You might need to repeat the process of running
+              <samp class="ph codeph">hdbcheckcat</samp> and creating SQL scripts to ensure that there are no
+            inconsistencies. Run the SQL scripts generated by <samp class="ph codeph">hdbcheckcat</samp> on a
+            quiescent system. The utility might report false alerts if there is activity on the
+            system. </p>
+
+          </li>
+
+        <li class="li">During the migration process from inHybrid Database 6, a backup is made of some files
+          and directories in <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp>. Manually back up and remove
+          any remaining files and directories from the <samp class="ph codeph">$MASTER_DATA_DIRECTORY</samp>
+          before migration. For information about the inHybrid Database migration utilities, see
+          the <cite class="cite">Release Notes</cite>.</li>
+
+      </ul>
+
+    </div>
+
+    <p class="p">If you have configured the inHybrid Platform Extension Framework (PXF) in your previous
+      inHybrid Database installation, you must stop the PXF service, and you might need to back up
+      PXF configuration files before upgrading to a new version of inHybrid Database. Refer to
+        <a class="xref" href="../pxf/upgrade_pxf_6x.html#pxfpre">PXF Pre-Upgrade
+        Actions</a> for instructions.</p>
+
+    <p class="p">If you have not yet configured PXF, no action is necessary.</p>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">Installing and Upgrading inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="topic17">
+    <h2 class="title topictitle2">Upgrading from <span class="ph">6.x</span> to a
+      Newer 6.x Release</h2>
+
+    <div class="body">
+      <p class="p">An upgrade from inHybrid Database <span class="ph">6.x</span> to a newer 6.x release
+        involves stopping inHybrid Database, updating the inHybrid Database software binaries, and
+        restarting inHybrid Database. If you are using inHybrid Database extension packages there
+        are additional requirements. See <a class="xref" href="upgrading.html#topic_tbx_szy_kbb__hdb_prereq">Prerequisites</a>
+        in the previous section.</p>
+
+      <ol class="ol" id="topic17__ol_wbx_szy_kbb">
+        <li class="li">Log in to your inHybrid Database master host as the inHybrid
+          administrative user:<pre class="pre codeblock">$ su - hdbadmin</pre>
+</li>
+
+        <li class="li">Perform a smart shutdown of your inHybrid Database 6.x system
+          (there can be no active connections to the database). This example uses the
+            <samp class="ph codeph">-a</samp> option to disable confirmation
+          prompts:<pre class="pre codeblock">$ hdbstop -a</pre>
+</li>
+
+        <li class="li">Copy the new inHybrid Database software installation package to the
+            <samp class="ph codeph">hdbadmin</samp> user's home directory on each master, standby, and segment
+          host.</li>
+
+        <li class="li">As <samp class="ph codeph">root</samp>, install the new inHybrid Database
+          software release on each host. For example, on RHEL/CentOS
+            systems:<pre class="pre codeblock">$ sudo yum install greenplum-db-&lt;version&gt;-&lt;platform&gt;.rpm</pre>
+<div class="p">On
+            Ubuntu
+            systems:<pre class="pre codeblock"># apt install ./greenplum-db-&lt;version&gt;-&lt;platform&gt;.deb</pre>
+</div>
+</li>
+
+        <li class="li">Update the permissions for the new installation. For example, run this command as
+            <samp class="ph codeph">root</samp> to change the user and group of the installed files to
+            <samp class="ph codeph">hdbadmin</samp>.<pre class="pre codeblock">$ sudo chown -R hdbadmin:hdbadmin /usr/local/greenplum*</pre>
+</li>
+
+        <li class="li">If needed, update the <samp class="ph codeph">greenplum_path.sh</samp> file on the master and standby
+          master hosts for use with your specific installation. These are some examples.<ul class="ul" id="topic17__ul_mk3_xjq_cgb">
+            <li class="li">If inHybrid Database uses LDAP authentication, edit the
+                <samp class="ph codeph">greenplum_path.sh</samp> file to add the
+              line:<pre class="pre codeblock">export LDAPCONF=/etc/openldap/ldap.conf</pre>
+</li>
+
+            <li class="li">If inHybrid Database uses PL/Java, you might need to set or update the environment
+              variables <samp class="ph codeph">JAVA_HOME</samp> and <samp class="ph codeph">LD_LIBRARY_PATH</samp> in
+                <samp class="ph codeph">greenplum_path.sh</samp>. </li>
+
+          </ul>
+
+          <div class="note note">
+<span class="notetitle">Note:</span> When comparing the previous and new <samp class="ph codeph">greenplum_path.sh</samp> files, be
+            aware that installing some inHybrid Database extensions also updates the
+              <samp class="ph codeph">greenplum_path.sh</samp> file. The <samp class="ph codeph">greenplum_path.sh</samp> from
+            the previous release might contain updates that were the result of installing those
+            extensions.</div>
+</li>
+
+        <li class="li">Edit the environment of the inHybrid Database superuser
+            (<samp class="ph codeph">hdbadmin</samp>) and make sure you are sourcing the <samp class="ph codeph">greenplum_path.sh</samp> file for the new
+          installation. For example change the following line in the <samp class="ph codeph">.bashrc</samp> or your chosen profile
+            file:<pre class="pre codeblock">source /usr/local/greenplum-db-&lt;current_version&gt;/greenplum_path.sh</pre>
+<p class="p">to:</p>
+<pre class="pre codeblock">source /usr/local/greenplum-db-&lt;new_version&gt;/greenplum_path.sh</pre>
+<p class="p">Or
+            if you are sourcing a symbolic link (<samp class="ph codeph">/usr/local/greenplum-db</samp>) in your
+            profile files, update the link to point to the newly installed version. For
+          example:</p>
+<pre class="pre codeblock">$ rm /usr/local/greenplum-db
+$ ln -s /usr/local/greenplum-db-&lt;new_version&gt; /usr/local/greenplum-db</pre>
+</li>
+
+        <li class="li">Source the environment file you just edited. For
+          example:<pre class="pre codeblock">$ source ~/.bashrc</pre>
+</li>
+
+        
+        <li class="li">After all segment hosts have been upgraded, log in as the
+            <samp class="ph codeph">hdbadmin</samp> user and restart your inHybrid Database
+          system:<pre class="pre codeblock"># su - hdbadmin
+$ hdbstart</pre>
+</li>
+
+        <li class="li">If you configured PXF in your previous inHybrid Database installation, you must
+          re-initialize the PXF service after you upgrade inHybrid Database. Refer to <a class="xref" href="../pxf/upgrade_pxf_6x.html#pxfup">Upgrading PXF</a>
+          for instructions.</li>
+
+      </ol>
+
+      <p class="p">After upgrading inHybrid Database, ensure that all features work as expected. For example,
+        test that backup and restore perform as expected, and inHybrid Database features such as
+        user-defined functions, and extensions such as MADlib and PostGIS perform as expected.</p>
+
+    </div>
+
+  </div>
+
+  
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

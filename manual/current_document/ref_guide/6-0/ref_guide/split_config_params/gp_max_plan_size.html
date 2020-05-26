@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_max_plan_size">
+<h2 class="title topictitle2">gp_max_plan_size</h2>
+<div class="body">
+<p class="p">指定查询执行计划的最大未压缩总大小乘以计划中的Motion运算符（切片）数。
+        如果查询计划的大小超过该值，则取消查询并返回错误。
+        值为0表示不监视计划的大小。</p>
+<p class="p">您可以指定以<samp class="ph codeph">kB</samp>，<samp class="ph codeph">MB</samp>或<samp class="ph codeph">GB</samp>为单位的值。
+        默认单位是<samp class="ph codeph">kB</samp>。
+        例如，值<samp class="ph codeph">200</samp>是200kB。
+        值<samp class="ph codeph">1GB</samp>与<samp class="ph codeph">1024MB</samp>或<samp class="ph codeph">1048576kB</samp>相同。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_max_plan_size__gp_max_plan_size_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e9268" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e9271" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e9274" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e9268" valign="top" width="33.33333333333333%">整数</td>
+<td class="entry" headers="d62161e9271" valign="top" width="33.33333333333333%">0</td>
+<td class="entry" headers="d62161e9274" valign="top" width="33.33333333333333%">master<p class="p">superuser</p>
+<p class="p">session</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

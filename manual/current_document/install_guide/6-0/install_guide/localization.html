@@ -1,0 +1,1418 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Configuring Timezone and Localization Settings |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_localization has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Configuring Timezone and Localization Settings
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="localization.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">配置时区和本地化设置</h1>
+
+  <p class="shortdesc">描述inHybrid数据库的可用时区和本地化特性。</p>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">安装和升级inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="topic_fvc_zh1_b2b">
+    <h2 class="title topictitle2">Configuring the Timezone</h2>
+
+    <div class="body">
+      <p class="p">inHybrid数据库从一组内部存储的PostgreSQL时区中选择要使用的时区。可用的PostgreSQL时区取自Internet Assigned Numbers Authority (IANA)时区数据库，当IANA数据库为PostgreSQL更改时，inHybrid数据库根据需要更新可用时区列表。</p>
+
+      <p class="p">inHybrid数据库选择匹配一个PostgreSQL时区的时区,时区服务器配置参数的值,或主机系统时区如果不设置时区。例如,在选择一个默认时区从主机系统时区,inHybrid数据库使用了一个算法来选择一个PostgreSQL时区基于主机系统时区文件。如果系统时区包含闰秒信息，inHybrid数据库就不能将系统时区与PostgreSQL时区相匹配。在本例中，inHybrid数据库根据来自主机系统的信息计算出与PostgreSQL时区的“最佳匹配”。</p>
+
+      
+      <div class="p">作为一种最佳实践，配置inHybrid数据库和主机系统以使用一个已知的、受支持的时区。这个设置时区inHybrid数据库master和segment实例,并防止inHybrid数据库选择一个最佳匹配时区每次重新启动集群,使用当前系统时区和inHybrid数据库时区文件(可能已经从IANA数据库更新自上次重启)。使用hdbconfig实用程序显示并设置inHybrid数据库时区。例如，这些命令显示inHybrid数据库时区，并将时区设置为US/Pacific。<pre class="pre codeblock"># hdbconfig -s TimeZone
+# hdbconfig -c TimeZone -v 'US/Pacific'</pre>
+更改时区后必须重新启动inHybrid数据库。命令hdbstop -ra重新启动inHybrid数据库。目录视图pg_timezone_names提供inHybrid数据库时区信息。显示和设置inHybrid数据库时区的实用程序。例如，这些命令显示inHybrid数据库时区，并将时区设置为US/Pacific。</div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic2">
+    <h2 class="title topictitle2">关于inHybrid数据库中的场景支持</h2>
+
+    <div class="body">
+      <p class="p">inHybrid数据库支持本地化，有两种方法: </p>
+
+      <ul class="ul" id="topic2__ul_v5m_xj1_b2b">
+        <li class="li">使用操作系统的语言环境特性来提供特定于语言环境的排序顺序、数字格式等。 </li>
+
+        <li class="li">提供inHybrid数据库服务器中定义的许多不同的字符集，包括多字节字符集，以支持以各种语言存储文本，并提供客户端和服务器之间的字符集转换。</li>
+
+      </ul>
+
+      <p class="p">语言环境支持是指应用程序在字母、排序、数字格式等方面尊重文化偏好。inHybrid数据库使用服务器操作系统提供的标准ISO C和POSIX语言环境设施。有关更多信息，请参考操作系统的文档。</p>
+
+      <p class="p">在初始化inHybrid数据库系统时，区域设置支持会自动初始化。初始化工具hdbinitsystem将在默认情况下使用inHybrid数组的执行环境的语言环境设置来初始化这个inHybrid数组，因此，如果您的系统已经设置为在inHybrid数据库系统中使用您想要的语言环境，那么不需要做其他任何事情。</p>
+
+      <p class="p">当您准备启动inHybrid数据库并且希望使用不同的语言环境(或者您不确定您的系统被设置为哪种语言环境)时，您可以通过指定-n locale选项来指示hdbinitsystem具体使用哪种语言环境。例如:</p>
+
+      <pre class="pre codeblock">$ hdbinitsystem -c gp_init_config -n sv_SE</pre>
+
+      <p class="p">有关数据库初始化过程的信息，请参见初始化inHybrid数据库系统。</p>
+
+      <p class="p">上面的示例将语言环境设置为瑞典语(sv)。其他的可能是en_US(美国英语)和fr_CA(加拿大)。如果一种语言环境需要多个字符集，那么规范应该是这样的:cs_CZ.ISO8859-2。在系统上的什么名称下有什么地区可用，这取决于操作系统供应商提供的内容和安装的内容。在大多数系统上，命令locale -a将提供可用locale的列表。</p>
+
+      <p class="p">有时候，混合来自多个地区的规则是有用的，例如使用英语的排序规则而不是西班牙语的消息。为了支持这一点，存在一组语言环境子类别，它们只控制本地化规则的某个方面:</p>
+
+      <ul class="ul">
+        <li class="li" id="topic2__jk145923">
+<samp class="ph codeph">LC_COLLATE</samp> — String sort order </li>
+
+        <li class="li" id="topic2__jk145924">
+<samp class="ph codeph">LC_CTYPE</samp> — Character classification (What is a letter?
+          Its upper-case equivalent?) </li>
+
+        <li class="li" id="topic2__jk145925">
+<samp class="ph codeph">LC_MESSAGES</samp> — Language of messages </li>
+
+        <li class="li" id="topic2__jk145926">
+<samp class="ph codeph">LC_MONETARY</samp> — Formatting of currency amounts </li>
+
+        <li class="li" id="topic2__jk145927">
+<samp class="ph codeph">LC_NUMERIC</samp> — Formatting of numbers </li>
+
+        <li class="li" id="topic2__jk145928">
+<samp class="ph codeph">LC_TIME</samp> — Formatting of dates and times </li>
+
+      </ul>
+
+      <p class="p">如果您想让系统表现得好像没有区域设置支持一样，那么可以使用特殊的区域设置C或POSIX。</p>
+
+      <p class="p">某些地区类别的性质是，它们的值在inHybrid数据库系统的生命周期内必须是固定的。也就是说，一旦hdbinitsystem运行了，就不能再更改它们了。LC_COLLATE和LC_CTYPE就是这些类别。它们影响索引的排序顺序，因此必须保持固定，否则文本列上的索引将会损坏。inHybrid数据库通过记录hdbinitsystem看到的LC_COLLATE和LC_CTYPE的值来实现这一点。服务器根据初始化时选择的语言环境自动采用这两个值。</p>
+
+      <p class="p">在服务器运行时，可以根据需要更改其他语言环境类别，方法是设置与语言环境类别名称相同的服务器配置参数(有关设置服务器配置参数的更多信息，请参阅inHybrid数据库参考指南)。hdbinitsystem选择的默认值被写入到master和segment postgresql.conf配置文件中，以便在启动inHybrid数据库系统时作为默认值使用。如果你从master和每个segment postgresql.conf文件中删除这些赋值，那么服务器将从它的执行环境中继承这些设置。</p>
+
+      <p class="p">请注意，服务器的语言环境行为是由服务器看到的环境变量决定的，而不是由任何客户机的环境决定的。因此，在启动系统之前，要注意在每个inHybrid数据库主机(master和segment)上配置正确的本地设置。这样做的结果是，如果客户端和服务器设置在不同的地区，消息可能出现在不同的语言中，这取决于消息的来源。 </p>
+
+      <p class="p">继承的地区执行环境意味着以下大多数操作系统:对于一个给定的地区类别,排序,参考以下环境变量在此订单,直到找到一个设置:LC_ALL, LC_COLLATE(变量对应于相应的类别),如果这些环境变量设置语言环境默认为C。 </p>
+
+      <p class="p">一些消息本地化库还查看了环境变量语言，该语言覆盖了所有其他语言环境设置，目的是设置消息的语言。如果有疑问，请参考操作系统的文档，特别是关于gettext的文档，以获得更多信息。</p>
+
+      <p class="p">本地语言支持(NLS)允许将消息翻译成用户的首选语言，但inHybrid数据库中不支持英语以外的语言。这与其他语言环境支持无关。</p>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic3">
+      <h3 class="title topictitle3">现场行为</h3>
+
+      <div class="body">
+        <p class="p">语言环境设置影响以下SQL特性:</p>
+
+        <ul class="ul">
+          <li class="li" id="topic3__jk144083">在查询中使用order BY对文本数据排序 </li>
+
+          <li class="li" id="topic3__jk144085">使用带有LIKE子句的索引的能力 </li>
+
+          <li class="li" id="topic3__jk144087">upper, lower, and initcap 函数 </li>
+
+          <li class="li" id="topic3__jk144089">函数的to char系列</li>
+
+        </ul>
+
+        <p class="p">在inHybrid数据库中使用C或POSIX以外的语言环境的缺点是它对性能的影响。它减慢了字符处理并阻止LIKE使用普通索引。因此，只有在实际需要时才使用locale。</p>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic4">
+      <h3 class="title topictitle3">故障排除的地方</h3>
+
+      <div class="body">
+        <p class="p">如果语言环境支持没有按照预期工作，请检查操作系统中的语言环境支持是否正确配置。要检查系统上安装了哪些locale，可以使用命令locale -a(如果操作系统提供的话)。</p>
+
+        <p class="p">检查inHybrid数据库是否实际使用了您认为的语言环境。LC_COLLATE和LC_CTYPE设置是在初始化时确定的，如果不重新执行hdbinitsystem，就不能更改它们。其他区域设置包括LC_MESSAGES和LC_MONETARY最初由master和/或segment的操作系统环境决定，但是可以在初始化之后通过编辑每个inHybrid master和segment实例的postgresql.conf文件来更改。可以使用SHOW命令检查master主机的活动区域设置。注意，inHybrid数据库数组中的每个主机都应该使用相同的语言环境设置。</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic5">
+    <h2 class="title topictitle2">字符集的支持</h2>
+
+    <div class="body">
+      <p class="p">inHybrid数据库中的字符集支持允许您将文本存储在各种字符集中，包括单字节字符集(如ISO 8859系列)和多字节字符集(如EUC(扩展Unix代码)、UTF-8和Mule内部代码)。客户端可以透明地使用所有受支持的字符集，但不支持在服务器内使用(即作为服务器端编码)。在使用hdbinitsystem初始化inHybrid数据库数组时选择默认字符集。在创建数据库时可以重写它，这样就可以有多个数据库，每个数据库具有不同的字符集。</p>
+
+      
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="topic5__jk167966" class="table" frame="border" border="1" rules="all">
+<caption><span class="tablecap">表1.inHybrid数据库字符集<span class="ph">
+            
+          </span></span></caption>
+          
+          
+          
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="78pt" id="d5120e381">Name</th>
+
+              <th class="entry" valign="top" width="124pt" id="d5120e384">Description</th>
+
+              <th class="entry" valign="top" width="82pt" id="d5120e387">Language</th>
+
+              <th class="entry" valign="top" width="38pt" id="d5120e390">Server</th>
+
+              <th class="entry" valign="top" width="51pt" id="d5120e393">Bytes/Char</th>
+
+              <th class="entry" valign="top" width="75pt" id="d5120e397">Aliases</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">BIG5</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Big Five</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Traditional Chinese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-2</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">WIN950, Windows950</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">EUC_CN</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Extended UNIX Code-CN</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Simplified Chinese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-3</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">EUC_JP</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Extended UNIX Code-JP</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Japanese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-3</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">EUC_KR</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Extended UNIX Code-KR</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Korean</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-3</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">EUC_TW</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Extended UNIX Code-TW</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Traditional Chinese, Taiwanese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-3</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">GB18030</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">National Standard</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Chinese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-2</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">GBK</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Extended National Standard</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Simplified Chinese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-2</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">WIN936, Windows936</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">ISO_8859_5</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-5, ECMA 113</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Latin/Cyrillic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">ISO_8859_6</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-6, ECMA 114</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Latin/Arabic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">ISO_8859_7</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-7, ECMA 118</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Latin/Greek</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">ISO_8859_8</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-8, ECMA 121</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Latin/Hebrew</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">JOHAB</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">JOHA </td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Korean (Hangul)</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-3</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">KOI8</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">KOI8-R(U)</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Cyrillic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">KOI8R</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN1</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-1, ECMA 94</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Western European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO88591</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN2</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-2, ECMA 94</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Central European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO88592</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN3</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-3, ECMA 94</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">South European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO88593</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN4</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-4, ECMA 94</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">North European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO88594</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN5</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-9, ECMA 128</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Turkish</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO88599</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN6</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-10, ECMA 144</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Nordic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO885910</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN7</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-13</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Baltic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO885913</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN8</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-14</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Celtic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO885914</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN9</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-15</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">LATIN1 with Euro and accents</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO885915</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">LATIN10</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">ISO 8859-16, ASRO SR 14111</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Romanian</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ISO885916</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">MULE_INTERNAL</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Mule internal code</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Multilingual Emacs</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-4</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">SJIS</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Shift JIS</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Japanese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-2</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">Mskanji, ShiftJIS, WIN932, Windows932</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">SQL_ASCII</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">unspecified<a class="xref" href="localization.html#topic5__jk168303"><sup>2</sup></a>
+</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">any</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">UHC</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Unified Hangul Code</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Korean</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">No</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-2</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">WIN949, Windows949</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">UTF8</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Unicode, 8-bit </td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">all</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1-4</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">Unicode</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN866</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP866</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Cyrillic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ALT</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN874</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP874</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Thai</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1250</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1250</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Central European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1251</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1251</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Cyrillic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">WIN</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1252</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1252</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Western European</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1253</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1253</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Greek</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1254</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1254</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Turkish</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1255</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1255</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Hebrew</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1256</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1256</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Arabic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1257</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1257</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Baltic</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 "></td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="78pt" headers="d5120e381 ">WIN1258</td>
+
+              <td class="entry" valign="top" width="124pt" headers="d5120e384 ">Windows CP1258</td>
+
+              <td class="entry" valign="top" width="82pt" headers="d5120e387 ">Vietnamese</td>
+
+              <td class="entry" valign="top" width="38pt" headers="d5120e390 ">Yes</td>
+
+              <td class="entry" valign="top" width="51pt" headers="d5120e393 ">1</td>
+
+              <td class="entry" valign="top" width="75pt" headers="d5120e397 ">ABC, TCVN, TCVN5712, VSCII</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic6">
+    <h2 class="title topictitle2">设置的字符集</h2>
+
+    <div class="body">
+      <p class="p">hdbinitsystem通过在初始化时读取gp_init_config文件中编码参数的设置来定义inHybrid数据库系统的默认字符集。默认字符集是UNICODE或UTF8。</p>
+
+      <p class="p">除了系统默认设置之外，还可以用不同的字符集创建数据库。例如:</p>
+
+      <pre class="pre codeblock">=&gt; CREATE DATABASE korean WITH ENCODING 'EUC_KR';</pre>
+
+      <div class="note important">
+重要提示:尽管可以指定数据库所需的任何编码，但选择与所选语言环境不一致的编码是不明智的。LC_COLLATE和LC_CTYPE设置暗示了一种特殊的编码，依赖于语言环境的操作(例如排序)很可能会误解不兼容编码的数据。</div>
+
+      <p class="p">由于hdbinitsystem冻结了这些语言环境设置，因此在不同的数据库中使用不同编码的灵活性只是理论上的，而不是实际的。</p>
+
+      <p class="p">安全使用多种编码的一种方法是在初始化期间将语言环境设置为C或POSIX，从而禁用任何真正的语言环境感知。</p>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic7">
+    <h2 class="title topictitle2">服务器和客户端之间的字符集转换</h2>
+
+    <div class="body">
+      <p class="p">inHybrid数据库支持在服务器和客户端之间对特定字符集组合进行自动字符集转换。转换信息存储在主pg_conversion系统编目表中。inHybrid数据库带有一些预定义的转换，或者您可以使用SQL命令create conversion创建新的转换。</p>
+
+      
+<div class="tablenoborder">
+<table cellpadding="4" cellspacing="0" summary="" id="topic7__jk168487" class="table" frame="border" border="1" rules="all">
+<caption><span class="tablecap">表2.客户端/服务器字符集转换</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="125pt" id="d5120e1341">Server Character Set </th>
+
+              <th class="entry" valign="top" width="250pt" id="d5120e1344">Available Client Character Sets</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">BIG5</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">EUC_CN</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">EUC_CN, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">EUC_JP</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">EUC_JP, MULE_INTERNAL, SJIS, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">EUC_KR</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">EUC_KR, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">EUC_TW </td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">EUC_TW, BIG5, MULE_INTERNAL, UTF8 </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">GB18030</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">GBK</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">ISO_8859_5</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">ISO_8859_5, KOI8, MULE_INTERNAL, UTF8, WIN866, WIN1251</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">ISO_8859_6</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">ISO_8859_6, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">ISO_8859_7</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">ISO_8859_7, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">ISO_8859_8</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">ISO_8859_8, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">JOHAB</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">JOHAB, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">KOI8</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">KOI8, ISO_8859_5, MULE_INTERNAL, UTF8, WIN866, WIN1251</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN1</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN1, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN2</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN2, MULE_INTERNAL, UTF8, WIN1250</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN3</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN3, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN4</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN4, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN5</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN5, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN6</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN6, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN7</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN7, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN8</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN8, UTF8 </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN9</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN9, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">LATIN10</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">LATIN10, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">MULE_INTERNAL</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">MULE_INTERNAL, BIG5, EUC_CN, EUC_JP, EUC_KR, EUC_TW, ISO_8859_5,
+                KOI8, LATIN1 to LATIN4, SJIS, WIN866, WIN1250, WIN1251</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">SJIS</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">SQL_ASCII</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">UHC</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">not supported as a server encoding</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">UTF8</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">all supported encodings</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN866</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN866</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">ISO_8859_5</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">KOI8, MULE_INTERNAL, UTF8, WIN1251</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN874</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN874, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1250</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1250, LATIN2, MULE_INTERNAL, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1251</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1251, ISO_8859_5, KOI8, MULE_INTERNAL, UTF8, WIN866 </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1252</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1252, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1253</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1253, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1254</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1254, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1255</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1255, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1256</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1256, UTF8</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1257</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1257, UTF8 </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="125pt" headers="d5120e1341 ">WIN1258</td>
+
+              <td class="entry" valign="top" width="250pt" headers="d5120e1344 ">WIN1258, UTF8</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      <p class="p">要启用自动字符集转换，您必须告诉inHybrid数据库您希望在客户机中使用的字符集(编码)。有几种方法可以做到这一点:</p>
+
+      <ul class="ul">
+        <li class="li" id="topic7__jk168660">使用psql中的\encoding命令，它允许您动态更改客户机编码。</li>
+
+        <li class="li" id="topic7__jk168661">使用SET client_encoding TO。设置客户端编码可以用这个SQL命令:
+            <pre class="pre codeblock">=&gt; SET CLIENT_ENCODING TO '<var class="keyword varname">value</var>';</pre>
+<p class="p">查询当前客户端编码:
+            </p>
+<pre class="pre codeblock">=&gt; SHOW client_encoding;</pre>
+<p class="p">返回默认编码: </p>
+<pre class="pre codeblock">=&gt; RESET client_encoding;</pre>
+</li>
+
+        <li class="li" id="topic7__jk168667">使用PGCLIENTENCODING环境变量。当在客户端环境中定义PGCLIENTENCODING时，在与服务器建立连接时将自动选择该客户端编码。(随后可以使用上面提到的任何其他方法来覆盖它。) </li>
+
+        <li class="li" id="topic7__jk168668">设置配置参数client_encoding。如果在主postgresql.conf文件中设置了client_encoding，那么在连接到inHybrid数据库时将自动选择该客户机编码。(随后可以使用上面提到的任何其他方法来覆盖它。)</li>
+
+      </ul>
+
+      <p class="p">如果无法转换特定字符—假设您选择EUC_JP作为服务器，拉丁1作为客户端，那么一些日语字符没有LATIN1的表示—然后报告一个错误。 </p>
+
+      <p class="p">如果客户端字符集定义为SQL_ASCII，则无论服务器的字符集如何，编码转换都将被禁用。除非处理的是全ASCII数据，否则使用SQL_ASCII是不明智的。不支持SQL_ASCII作为服务器编码。</p>
+
+    </div>
+
+  </div>
+
+<div class="fn">
+不是所有的api都支持所有列出的字符集。例如，JDBC驱动程序不支持MULE_INTERNAL、LATIN6、LATIN8和LATIN10。</div>
+<div class="fn">
+SQL_ASCII设置的行为与其他设置有很大的不同。字节值0-127根据ASCII标准解释，字节值128-255作为未解释字符。如果您正在处理任何非ASCII数据，那么将SQL_ASCII设置用作客户端编码是不明智的。不支持SQL_ASCII作为服务器编码。</div>
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

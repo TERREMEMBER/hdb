@@ -1,0 +1,75 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="optimizer_join_order">
+<h2 class="title topictitle2">optimizer_join_order</h2>
+<div class="body">
+<p class="p">启用GPORCA时，此参数通过指定要评估的连接排序备选类型来设置查询优化期间的连接排序的优化级别。
+        </p>
+<ul class="ul" id="optimizer_join_order__ul_dpf_cyr_1cb">
+<li class="li">
+<samp class="ph codeph">query</samp> - 使用查询中指定的连接顺序。</li>
+<li class="li">
+<samp class="ph codeph">greedy</samp> - 根据连接中关系的最小基数，计算查询中指定的连接顺序和备选方案。</li>
+<li class="li">
+<samp class="ph codeph">exhaustive</samp> - 应用转换规则以查找和评估所有连接排序备选方案。</li>
+</ul>
+<p class="p">默认值是<samp class="ph codeph">exhaustive</samp>。
+        将此参数设置为<samp class="ph codeph">query</samp>或<samp class="ph codeph">greedy</samp>可以生成次优查询计划。
+        但是，如果管理员确信使用<samp class="ph codeph">query</samp>或<samp class="ph codeph">greedy</samp>设置生成了令人满意的计划，
+        则可以通过将参数设置为较低的优化级别来提高查询优化时间。
+        </p>
+<p class="p">将此参数设置为<samp class="ph codeph">query</samp>或<samp class="ph codeph">greedy</samp>会覆盖<samp class="ph codeph">optimizer_join_order_threshold</samp>和<samp class="ph codeph">optimizer_join_arity_for_associativity_commutativity</samp>参数。
+        </p>
+<p class="p">可以为单个数据库，会话或查询设置此参数。</p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="optimizer_join_order__table_ucb_str_1cb" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e16012" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e16015" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e16018" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e16012" valign="top" width="33.33333333333333%">query<p class="p">greedy</p>
+<p class="p">exhaustive</p>
+</td>
+<td class="entry" headers="d62161e16015" valign="top" width="33.33333333333333%">exhaustive</td>
+<td class="entry" headers="d62161e16018" valign="top" width="33.33333333333333%">master<p class="p">session</p>
+<p class="p">reload</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

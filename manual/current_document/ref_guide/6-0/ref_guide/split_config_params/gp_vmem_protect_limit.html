@@ -1,0 +1,95 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="gp_vmem_protect_limit">
+<h2 class="title topictitle2">gp_vmem_protect_limit</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">gp_vmem_protect_limit</samp>服务器配置参数才会生效。
+        </div>
+<p class="p">设置活动segment实例的所有postgres进程可以使用的内存量（以MB为单位）。
+        如果查询导致超出此限制，则不会分配内存，查询将失败。
+        请注意，这是一个本地参数，必须为系统中的每个segment（primary和mirror）设置。
+        设置参数值时，仅指定数值。
+        例如，要指定4096MB，请使用值<samp class="ph codeph">4096</samp>.不要将单位<samp class="ph codeph">MB</samp>添加到该值。
+        </p>
+<p class="p">为了防止内存过度分配，这些计算可以估计安全的<samp class="ph codeph">gp_vmem_protect_limit</samp>值。
+        </p>
+<div class="p">首先计算值<var class="keyword varname">gp_vmem</var>。
+        这是主机上可用的Greenplum数据库内存
+        <pre class="pre codeblock"><var class="keyword varname">gp_vmem</var> = ((<var class="keyword varname">SWAP</var> + <var class="keyword varname">RAM</var>) – (7.5GB + 0.05 * <var class="keyword varname">RAM</var>)) / 1.7</pre>
+</div>
+<p class="p">其中<var class="keyword varname">SWAP</var>是主机交换空间，<var class="keyword varname">RAM</var>是主机上的RAM，以GB为单位。
+        </p>
+<p class="p">接下来，计算<var class="keyword varname">max_acting_primary_segments</var>。
+        这是由于故障而激活mirror时主机上可以运行的primary的最大数量。
+        例如，如果mirror布置在4个主机块中，每个主机有8个primary，则单个segment主机故障将激活故障主机块中每个剩余主机上的两个或三个mirror。
+        此配置的<var class="keyword varname">max_acting_primary_segments</var>值为11（8个primary加上3个失败时激活的mirror）。
+        </p>
+<p class="p">这是<samp class="ph codeph">gp_vmem_protect_limit</samp>的计算。
+        该值应转换为MB。
+        </p>
+<pre class="pre codeblock"><samp class="ph codeph">gp_vmem_protect_limit</samp> = <var class="keyword varname">gp_vmem</var> / <var class="keyword varname">acting_primary_segments</var></pre>
+<p class="p">对于生成大量工作文件的情况，这是计算工作文件的<var class="keyword varname">gp_vmem</var>的计算。
+        </p>
+<pre class="pre codeblock"><var class="keyword varname">gp_vmem</var> = ((<var class="keyword varname">SWAP</var> + <var class="keyword varname">RAM</var>) – (7.5GB + 0.05 * <var class="keyword varname">RAM</var> - (300KB * <var class="keyword varname">total_#_workfiles</var>))) / 1.7</pre>
+<p class="p">有关监视和管理工作文件使用情况的信息，请参阅<cite class="cite">Greenplum数据库管理员指南</cite>。
+        </p>
+<div class="p">根据<var class="keyword varname">gp_vmem</var>值，您可以计算<samp class="ph codeph">vm.overcommit_ratio</samp>操作系统内核参数的值。
+        配置每个Greenplum数据库主机时，将设置此参数。
+        <pre class="pre codeblock">vm.overcommit_ratio = (<var class="keyword varname">RAM</var> - (0.026 * <var class="keyword varname">gp_vmem</var>)) / <var class="keyword varname">RAM</var></pre>
+</div>
+<div class="note note">
+<span class="notetitle">Note:</span> Red Hat Enterprise Linux中内核参数<samp class="ph codeph">vm.overcommit_ratio</samp>的默认值为50。
+        </div>
+<p class="p">有关内核参数的信息，请参阅<cite class="cite">Greenplum数据库安装指南</cite>。
+        </p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_vmem_protect_limit__gp_vmem_protect_limit_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e11330" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e11333" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e11336" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e11330" valign="top" width="33.33333333333333%">整数</td>
+<td class="entry" headers="d62161e11333" valign="top" width="33.33333333333333%">8192</td>
+<td class="entry" headers="d62161e11336" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>

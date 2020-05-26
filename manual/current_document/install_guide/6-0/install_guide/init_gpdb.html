@@ -1,0 +1,643 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Initializing a inHybrid Database System |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_init_hdb has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Initializing a inHybrid Database System
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="init_hdb.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">初始化一个inHybrid数据库系统</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">描述如何初始化一个inHybrid数据库数据库系统。</p>
+
+    <p class="p">本章说明假设您已经按照配置系统中的描述准备好了主机，并根据安装inHybrid数据库软件的说明在系统中的所有主机上安装了inHybrid数据库软件。 </p>
+
+    <p class="p">本章包含以下主题</p>
+
+    <ul class="ul">
+      <li class="li" id="topic1__jm137819">
+        <a class="xref" href="init_hdb.html#topic2">概述</a>
+      </li>
+
+      <li class="li" id="topic1__jm138219">
+        <a class="xref" href="init_hdb.html#topic3">初始化inHybrid数据库</a>
+      </li>
+
+      <li class="li"><a class="xref" href="init_hdb.html#topic8">设置inHybrid环境变量</a></li>
+
+      <li class="li" id="topic1__jm138984">
+        <a class="xref" href="init_hdb.html#topic9">下一步</a>
+      </li>
+
+    </ul>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">安装和升级inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" xml:lang="en" lang="en" id="topic2">
+    <h2 class="title topictitle2">概述</h2>
+
+    <div class="body">
+      <p class="p">因为inHybrid数据库是分布式的，所以初始化inHybrid数据库管理系统(DBMS)的过程包括初始化几个独立的PostgreSQL数据库实例(在inHybrid中称为segment实例)。</p>
+
+      <p class="p">必须跨系统中的所有主机初始化每个数据库实例(master和所有的segment)，使它们都能作为一个统一的DBMS一起工作。inHybrid提供了自己的initdb版本，称为hdbinitsystem，它负责在master实例和每个segment实例上初始化数据库，并以正确的顺序启动每个实例。 </p>
+
+      <p class="p">在inHybrid数据库系统初始化和启动之后，您就可以像在常规的PostgreSQL DBMS中一样，通过连接到inHybrid master来创建和管理数据库。</p>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic3">
+    <h2 class="title topictitle2">初始化inHybrid数据库</h2>
+
+    <div class="body">
+      <p class="p"> 这些是初始化inHybrid数据库的高级任务:</p>
+
+      <ol class="ol">
+        <li class="li" id="topic3__jm138478">确保您已经完成了在配置系统和安装inHybrid数据库软件中描述的所有安装任务。</li>
+
+        <li class="li" id="topic3__jm138489">创建一个包含segment的主机地址的主机文件。参见创建初始化主机文件。</li>
+
+        <li class="li" id="topic3__jm138493">创建您的inHybrid数据库系统配置文件。参见创建inHybrid数据库配置文件。</li>
+
+        <li class="li" id="topic3__jm138497">默认情况下，inHybrid数据库将使用master主机系统的语言环境进行初始化。确保这是您想要使用的正确语言环境，因为有些语言环境选项在初始化之后无法更改。有关更多信息，请参见配置时区和本地化设置。</li>
+
+        <li class="li" id="topic3__jm143805">在master主机上运行inHybrid数据库初始化工具。参见运行初始化工具。</li>
+
+        <li class="li">设置inHybrid数据库时区。参见设置inHybrid数据库时区。</li>
+
+        <li class="li">为inHybrid数据库用户设置环境变量。参见设置inHybrid环境变量。</li>
+
+      </ol>
+
+      <div class="p">在执行以下初始化任务时，您必须作为hdbadmin用户登录到master主机，并且要运行inHybrid数据库实用程序，您必须获取greenplum_path.sh文件来设置inHybrid数据库环境变量。例如，如果您登录到master，运行这些命令。
+<pre class="pre codeblock">$ su - hdbadmin
+$ source /usr/local/greenplum-db/greenplum_path.sh</pre>
+</div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic4">
+      <h3 class="title topictitle3">创建初始化主机文件</h3>
+
+      <div class="body">
+        <p class="p">hdbinitsystem工具需要一个主机文件，该文件包含每个段主机的地址列表。初始化工具通过每台主机列出的主机地址数乘以hdbinitsystem_config文件中指定的数据目录位置数来确定每台主机的Segment实例数。</p>
+
+        <p class="p">这个文件应该只包含segment主机地址(不是Master主机或者Standby主机)。对于具有多个未绑定网络接口的Segment机器，此文件应该列出每个接口的主机地址名——每行一个。</p>
+
+        <div class="note note">
+<span class="notetitle">注意:inHybrid数据库Segment主机命名约定是sdwN，其中sdw是前缀，N是整数。例如，sdw2等等。如果主机有多个非绑定的nic，惯例是在主机名后面加上一个破折号(-)和数字。例如，sdw1-1和sdw1-2是主机sdw1的两个接口名。但是，建议使用NIC绑定来创建一个负载平衡、容错的网络。</div>
+
+        <div class="section" id="topic4__jm138608">
+<h4 class="title sectiontitle">创建初始化主机文件</h4>
+          
+          <ol class="ol">
+            <li class="li" id="topic4__jm144112">创建一个名为hostfile_hdbinitsystem的文件。在此文件中添加segment主机接口的主机地址名，每行一个名称，没有多余的行或空格。例如，如果您有四个segment主机，每个主机有两个非绑定的网络接口:<pre class="pre codeblock">sdw1-1
+sdw1-2
+sdw2-1
+sdw2-2
+sdw3-1
+sdw3-2
+sdw4-1
+sdw4-2</pre>
+</li>
+
+            <li class="li" id="topic4__jm138635">保存并关闭文件</li>
+
+          </ol>
+
+          <div class="note note">
+注意:如果您不确定您的机器使用的主机名和/或接口地址名，请查看/etc/hosts文件。</div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic5">
+      <h3 class="title topictitle3">创建inHybrid数据库配置文件</h3>
+
+      <div class="body">
+        <p class="p">您的inHybrid数据库配置文件告诉hdbinitsystem工具您希望如何配置inHybrid数据库系统。在$HDBHOME/docs/cli_help/hdbconfigs/hdbinitsystem_config中可以找到一个示例配置文件。</p>
+
+        <div class="section" id="topic5__jm138725">
+<h4 class="title sectiontitle">创建一个hdbinitsystem配置文件</h4>
+          
+          <ol class="ol">
+            <li class="li" id="topic5__jm144214">创建一个hdbinitsystem_config文件的副本作为起点。例如:<pre class="pre codeblock">$ cp $HDBHOME/docs/cli_help/hdbconfigs/hdbinitsystem_config \
+     /home/hdbadmin/hdbconfigs/hdbinitsystem_config</pre>
+</li>
+
+            <li class="li" id="topic5__jm138730">打开刚才在文本编辑器中复制的文件。<p class="p">根据您的环境设置所有必需的参数。有关更多信息，请参见hdbinitsystem。一个inHybrid数据库系统必须包含一个Master实例和至少两个Segment实例(即使设置了单个节点系统)。</p>
+<p class="p">DATA_DIRECTORY参数决定每个主机将创建多少segment。如果segment主机有多个网络接口，并且在主机文件中使用了它们的接口地址名，那么segment的数量将均匀地分布在可用接口的数量上。</p>
+<p class="p">要指定PORT_BASE，请查看net.ipv4.ip_local_port_range。在/etc/sysctl.conf文件中使用ip_local_port_range参数。参见建议的操作系统参数设置。
+以下是hdbinitsystem_config文件中所需参数的一个示例:
+</p>
+<p class="p">以下是hdbinitsystem_config文件中所需参数的一个示例:
+              </p>
+<pre class="pre codeblock">ARRAY_NAME="inHybrid Data Platform"
+SEG_PREFIX=gpseg
+PORT_BASE=6000 
+declare -a DATA_DIRECTORY=(/data1/primary /data1/primary /data1/primary /data2/primary /data2/primary /data2/primary)
+MASTER_HOSTNAME=mdw 
+MASTER_DIRECTORY=/data/master 
+MASTER_PORT=5432 
+TRUSTED SHELL=ssh
+CHECK_POINT_SEGMENTS=8
+ENCODING=UNICODE</pre>
+</li>
+
+            <li class="li" id="topic5__jm143448">(可选)如果您想部署镜segment，取消注释并根据您的环境设置镜像参数。要指定MIRROR_PORT_BASE，请查看在/etc/sysctl.conf文件中使用的net.ipv4.ip_local_port_range参数。下面是hdbinitsystem_config文件中可选镜像参数的一个示例:<pre class="pre codeblock">MIRROR_PORT_BASE=7000
+declare -a MIRROR_DATA_DIRECTORY=(/data1/mirror /data1/mirror /data1/mirror /data2/mirror /data2/mirror /data2/mirror)</pre>
+
+              <div class="note note">
+注意:可以只使用主Segment初始化inHybrid系统，然后使用hdbaddmirrors工具部署镜像。</div>
+</li>
+
+            <li class="li" id="topic5__jm138783">保存并关闭文件</li>
+
+          </ol>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic6">
+      <h3 class="title topictitle3">运行初始化工具</h3>
+
+      <div class="body">
+        <p class="p">hdbinitsystem工具将使用配置文件中定义的值创建一个inHybrid数据库系统。</p>
+
+        <p class="p">这些步骤假设您以hdbadmin用户的身份登录，并且已经获取了greenplum_path.sh文件来设置inHybrid数据库环境变量。</p>
+
+        <div class="section" id="topic6__jm138821">
+<h4 class="title sectiontitle">运行初始化工具</h4>
+          
+          <ol class="ol">
+            <li class="li" id="topic6__jm143533">运行以下命令，该命令引用初始化配置文件(hdbinitsystem_config)和主机文件(hostfile_hdbinitsystem)的路径和文件名。例如:
+<pre class="pre codeblock">$ cd ~
+$ hdbinitsystem -c hdbconfigs/hdbinitsystem_config -h hdbconfigs/hostfile_hdbinitsystem</pre>
+<p class="p">对于完全冗余的系统(具有备用主系统和扩展镜像配置)，包括-s和-s选项。例如:
+</p>
+<pre class="pre codeblock">$ hdbinitsystem -c hdbconfigs/hdbinitsystem_config -h hdbconfigs/hostfile_hdbinitsystem \
+  -s <var class="keyword varname">standby_master_hostname</var> -S</pre>
+</li>
+
+            <li class="li" id="topic6__jm138853">该工具将验证您的设置信息，并确保它可以连接到每个主机并访问配置中指定的数据目录。如果所有预检查都成功，工具将提示您确认您的配置。例如:<pre class="pre codeblock">=&gt; Continue with inHybrid creation? <strong class="ph b">Yy/Nn</strong></pre>
+</li>
+
+            <li class="li" id="topic6__jm143919">按y开始初始化。 </li>
+
+            <li class="li" id="topic6__jm141337">然后，该实用程序将开始设置和初始化主实例和系统中的每个段实例。每个段实例都是并行设置的。根据段的数量，这个过程可能需要一段时间。</li>
+
+            <li class="li" id="topic6__jm141341">在成功安装之后，该工具将启动inHybrid数据库系统。您应该看到:<pre class="pre codeblock"><var class="keyword varname">=&gt; inHybrid Database instance successfully created.</var></pre>
+</li>
+
+          </ol>
+
+        </div>
+
+      </div>
+
+      <div class="topic nested3" xml:lang="en" lang="en" id="topic7">
+        <h4 class="title topictitle4">故障排除初始化问题</h4>
+
+        <div class="body">
+          <p class="p">如果工具在设置实例时遇到任何错误，整个过程将会失败，并可能留给您一个部分创建的系统。参考错误消息和日志，以确定失败的原因以及在流程中失败发生的位置。日志文件是在~/gpAdminLogs中创建的。</p>
+
+          <p class="p">根据进程中发生错误的时间，您可能需要进行清理，然后再次尝试hdbinitsystem实用程序。例如，如果创建了一些segment 实例，而其中一些失败了，您可能需要停止postgres进程，并从数据存储区域中删除工具创建的任何数据目录。如果需要，将创建一个回退脚本来帮助进行清理。</p>
+
+          <div class="section" id="topic7__jm139087">
+<h5 class="title sectiontitle">使用回退脚本</h5>
+            
+            <p class="p">如果hdbinitsystem工具失败，它将创建以下回退脚本，如果它让您的系统处于部分安装状态:</p>
+
+            <p class="p">
+              <samp class="ph codeph">~/gpAdminLogs/backout_hdbinitsystem_<var class="keyword varname">&lt;user&gt;</var>_<var class="keyword varname">&lt;timestamp&gt;</var></samp>
+            </p>
+
+            <p class="p">您可以使用此脚本清理部分创建的inHybrid数据库系统。这个回退脚本将删除任何工具创建的数据目录、postgres进程和日志文件。在纠正导致hdbinitsystem失败的错误并运行回滚脚本之后，您应该准备好重试初始化inHybrid数据库数组。</p>
+
+            <p class="p">下面的示例演示如何运行回滚脚本:</p>
+
+            <pre class="pre codeblock">$ sh backout_hdbinitsystem_hdbadmin_20071031_121053</pre>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" id="topic_xkd_d1q_l2b">
+      <h3 class="title topictitle3">设置inHybrid数据库时区</h3>
+
+      <div class="body">
+        
+        <p class="p">作为一种最佳实践，配置inHybrid数据库和主机系统以使用一个已知的、受支持的时区。inHybrid数据库使用来自一组内部存储的PostgreSQL时区的时区。设置inHybrid数据库时区可以防止inHybrid数据库在每次重新启动集群时选择一个时区，并为inHybrid数据库master实例和segment实例设置时区。 </p>
+
+        <div class="p">使用hdbconfig工具显示并设置inHybrid数据库时区。例如，这些命令显示inHybrid数据库时区，并将时区设置为US/Pacific。<pre class="pre codeblock">$ hdbconfig -s TimeZone
+$ hdbconfig -c TimeZone -v 'US/Pacific'</pre>
+更改时区后必须重新启动inHybrid数据库。命令hdbstop -ra重新启动inHybrid数据库。目录视图pg_timezone_names提供inHybrid数据库时区信息。</div>
+
+        <p class="p">有关inHybrid数据库时区的更多信息，请参见配置时区和本地化设置。</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic8">
+    <h2 class="title topictitle2">设置inHybrid环境变量</h2>
+
+    <div class="body">
+      <p class="p">您必须在inHybrid数据库用户(hdbadmin)环境中设置环境变量，该环境在inHybrid数据库master主机和standby主机上运行inHybrid数据库。在inHybrid数据库安装目录中提供了一个greenplum_path.sh文件，其中包含inHybrid数据库的环境变量设置。</p>
+
+      <p class="p">inHybrid数据库管理工具还要求设置MASTER_DATA_DIRECTORY环境变量。这应该指向由hdbinitsystem工具在主数据目录位置创建的目录。</p>
+
+      <div class="note note">
+注意:为了支持运行inHybrid特定于数据库的工具，greenplum_path.sh脚本更改了操作环境。对环境的这些相同更改可能会对其他系统级实用程序(如ps或yum)的操作产生负面影响。使用单独的帐户执行系统管理和数据库管理，而不是试图同时执行hdbadmin功能。</div>
+
+      <p class="p">这些步骤确保在系统重新启动之后为hdbadmin用户设置环境变量。</p>
+
+      <div class="section" id="topic8__jm144961">
+<h3 class="title sectiontitle">为inHybrid数据库设置hdbadmin环境</h3>
+        
+        <ol class="ol">
+          <li class="li" id="topic8__jm145055">在文本编辑器中打开hdbadmin配置文件(例如.bashrc)。例如:<pre class="pre codeblock">$ vi ~/.bashrc</pre>
+</li>
+
+          <li class="li" id="topic8__jm145072">将行添加到此文件以获取greenplum_path.sh文件，并设置MASTER_DATA_DIRECTORY环境变量。例如:<pre class="pre codeblock">source /usr/local/greenplum-db/greenplum_path.sh
+export MASTER_DATA_DIRECTORY=/data/master/gpseg-1</pre>
+</li>
+
+          <li class="li" id="topic8__jm145148">(可选)为了方便，您可能还需要设置一些客户端会话环境变量，如PGPORT、PGUSER和PGDATABASE。例如:<pre class="pre codeblock">export PGPORT=5432
+export PGUSER=hdbadmin export PGDATABASE=<var class="keyword varname">default_login_database_name</var></pre>
+</li>
+
+          <li class="li"> (可选)如果您使用RHEL 7或CentOS 7，请在.bashrc文件的末尾添加以下行，以便在greenplum_path.sh环境中使用ps命令:<pre class="pre codeblock">export LD_PRELOAD=/lib64/libz.so.1 ps</pre>
+</li>
+
+          <li class="li" id="topic8__jm145208">保存并关闭文件。</li>
+
+          <li class="li" id="topic8__jm145155">在编辑概要文件之后，获取它以使更改处于活动状态。例如:<pre class="pre codeblock">$ source ~/.bashrc
+</pre>
+</li>
+
+          <li class="li" id="topic8__jm145342">如果您有一个standby主机，请将您的环境文件也复制到standby master。例如:<pre class="pre codeblock">$ cd ~
+$ scp .bashrc <var class="keyword varname">standby_hostname</var>:`pwd`</pre>
+</li>
+
+        </ol>
+
+        <div class="note note">
+注意:.bashrc文件不应该产生任何输出。如果希望在登录时向用户显示消息，请使用.profile文件。</div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic9">
+    <h2 class="title topictitle2">下一步</h2>
+
+    <div class="body">
+      <p class="p">系统启动并运行后，接下来的步骤是:</p>
+
+      <ul class="ul">
+        <li class="li" id="topic9__jm139449">
+          <a class="xref" href="init_hdb.html#topic10">允许客户端连接</a>
+        </li>
+
+        <li class="li" id="topic9__jm142387">
+          <a class="xref" href="init_hdb.html#topic11">创建数据库和加载数据</a>
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic10">
+      <h3 class="title topictitle3">允许客户端连接</h3>
+
+      <div class="body">
+        <p class="p">在首次初始化inHybrid数据库之后，它只允许从hdbadmin角色(或者运行hdbinitsystem的任何系统用户)到数据库的本地连接。如果您希望其他用户或客户端机器能够连接到inHybrid数据库，则必须允许他们访问。有关更多信息，请参见inHybrid数据库管理员指南。</p>
+
+      </div>
+
+    </div>
+
+    <div class="topic nested2" xml:lang="en" lang="en" id="topic11">
+      <h3 class="title topictitle3">创建数据库和加载数据</h3>
+
+      <div class="body">
+        <p class="p">在验证安装之后，您可能希望开始创建数据库并加载数据。有关在inHybrid数据库中创建数据库、模式、表和其他数据库对象以及加载数据的更多信息，请参见inHybrid数据库管理员指南中的定义数据库对象和加载和卸载数据</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

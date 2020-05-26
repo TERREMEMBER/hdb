@@ -1,0 +1,569 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      Installing the inHybrid Database Software |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_install_hdb has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    Installing the inHybrid Database Software
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="install_hdb.html#top" title="back to top"></a>
+        </div>
+        
+
+  <h1 class="title topictitle1">Installing the inHybrid Database Software</h1>
+
+  
+  <div class="body">
+<p class="shortdesc">Describes how to install the inHybrid Database software binaries on all of the hosts
+    that will comprise your inHybrid Database system, how to enable passwordless SSH for the
+      <samp class="ph codeph">hdbadmin</samp> user, and how to verify the installation.</p>
+
+    <p class="p">Perform the following tasks in order:</p>
+
+    <ol class="ol">
+      <li class="li"><a class="xref" href="install_hdb.html#topic_oy5_21n_1jb">Installing inHybrid Database</a></li>
+
+      <li class="li"><a class="xref" href="install_hdb.html#topic_xmb_gb5_vhb">Enabling Passwordless SSH</a></li>
+
+      <li class="li"><a class="xref" href="install_hdb.html#topic10">Confirm the software installation.</a></li>
+
+      <li class="li"><a class="xref" href="install_hdb.html#topic_cwj_hzb_vhb">Next Steps</a></li>
+
+    </ol>
+
+  </div>
+
+  <div class="related-links">
+<div class="familylinks">
+<div class="parentlink">
+<strong>Parent topic:</strong> <a class="link" href="install_guide.html" title="Information about installing, configuring, and upgrading inHybrid Database software and configuring inHybrid Database host machines.">Installing and Upgrading inHybrid</a>
+</div>
+</div>
+</div>
+<div class="topic nested1" id="topic_oy5_21n_1jb">
+    <h2 class="title topictitle2">Installing inHybrid Database</h2>
+
+    <div class="body">
+      <p class="p">You must install inHybrid Database on each host machine of the inHybrid Database
+          system.<span class="ph"> You can configure a minimal inHybrid Database system to
+          run on a single host system with the master instance and segment instances running on the
+          same host system.</span></p>
+
+      
+      <p class="p">inHybrid Database releases are available as: source code tarballs,
+        RPM installers for CentOS, and DEB packages for Debian and Ubuntu. See <a class="xref" href="https://greenplum.org/download/" target="_blank">https://greenplum.org/download/</a> for links to source code and instructions to
+        compile inHybrid Database from source, and for links to download pre-built binaries in RPM
+        and DEB format. For the Ubuntu operating system, inHybrid also offers a binary that can be
+        installed via the <samp class="ph codeph">apt-get</samp> command with the Ubuntu Personal Package Archive
+        system.</p>
+
+      <p class="p">Before you begin installing inHybrid Database, be sure you have completed the steps in
+          <a class="xref" href="prep_os.html#topic1" title="Describes how to prepare your operating system environment for inHybrid Database software installation.">Configuring Your Systems</a> to configure each of the master, standby master, and
+        segment host machines for inHybrid Database.</p>
+
+      <div class="note important">
+<span class="importanttitle">Important:</span> After installing inHybrid Database, you must set inHybrid Database
+        environment variables. See <a class="xref" href="init_hdb.html#topic8">Setting inHybrid Environment Variables</a>.</div>
+
+      <p class="p">See <a class="xref" href="ansible-example.html#Untitled1" title="A sample Ansible playbook to install a inHybrid Database software release onto the hosts that will comprise a inHybrid Database system.">Example Ansible Playbook</a> for an example script that shows how you
+        can automate creating the <samp class="ph codeph">hdbadmin</samp> user and installing the inHybrid
+        Database.</p>
+
+      <p class="p">Follow these instructions to install inHybrid Database<span class="ph"> from a
+          pre-built binary</span>.</p>
+
+      <div class="note important">
+<span class="importanttitle">Important:</span> You will need sudo or root user access to install from a pre-built
+        binary. </div>
+
+      <ol class="ol" id="topic_oy5_21n_1jb__ol_mm5_v1n_1jb">
+        <li class="li">Download and copy the inHybrid Database package to the <samp class="ph codeph">hdbadmin</samp> user's
+          home directory on the master, standby master, and every segment host machine. The
+          distribution file name has the format
+            <samp class="ph codeph">greenplum-db-&lt;version&gt;-&lt;platform&gt;.rpm</samp> for RHEL and CentOS
+          systems, or <samp class="ph codeph">greenplum-db-&lt;version&gt;-&lt;platform&gt;.deb</samp> for Ubuntu
+          systems, where <samp class="ph codeph">&lt;platform&gt;</samp> is similar to <samp class="ph codeph">rhel7-x86_64</samp>
+          (Red Hat 7 64-bit).</li>
+
+        <li class="li">With sudo (or as root), install the inHybrid Database package on each host machine
+          using your system's package manager software. <ul class="ul" id="topic_oy5_21n_1jb__ol_wgt_mxz_1jb">
+            <li class="li">For RHEL/CentOS systems, execute the <samp class="ph codeph">yum</samp> command:
+              <pre class="pre codeblock">$ sudo yum install ./greenplum-db-&lt;version&gt;-&lt;platform&gt;.rpm</pre>
+</li>
+
+            <li class="li">For Ubuntu systems, execute the <samp class="ph codeph">apt</samp>
+              command:<pre class="pre codeblock">$ sudo apt install ./greenplum-db-&lt;version&gt;-&lt;platform&gt;.deb</pre>
+</li>
+
+          </ul>
+<p class="p">The <samp class="ph codeph">yum</samp> or <samp class="ph codeph">apt</samp> command installs software
+            dependencies, copies the inHybrid Database software files into a version-specific
+            directory, <samp class="ph codeph">/usr/local/greenplum-db-&lt;version&gt;</samp>, and creates the
+            symbolic link <samp class="ph codeph">/usr/local/greenplum-db</samp> to the installation
+            directory.</p>
+</li>
+
+        <li class="li">Change the owner and group of the installed files to
+          <samp class="ph codeph">hdbadmin</samp>:<pre class="pre codeblock">$ sudo chown -R hdbadmin:hdbadmin /usr/local/greenplum*</pre>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_xmb_gb5_vhb">
+    <h2 class="title topictitle2">Enabling Passwordless SSH</h2>
+
+    <div class="body">
+      <p class="p">The <samp class="ph codeph">hdbadmin</samp> user on each inHybrid host must be able to SSH from any host
+        in the cluster to any other host in the cluster without entering a password or passphrase
+        (called "passwordless SSH"). If you enable passwordless SSH from the master host to every
+        other host in the cluster ("1-<em class="ph i">n</em> passwordless SSH"), you can use the inHybrid
+        Database <samp class="ph codeph">hdbssh-exkeys</samp> command-line utility to enable passwordless SSH from
+        every host to every other host ("<em class="ph i">n</em>-<em class="ph i">n</em> passwordless SSH"). </p>
+
+      <ol class="ol" id="topic_xmb_gb5_vhb__ol_iyx_3b5_vhb">
+        <li class="li">Log in to the master host as the <samp class="ph codeph">hdbadmin</samp> user.</li>
+
+        <li class="li">Source the <samp class="ph codeph">path</samp> file in the inHybrid Database installation directory.<pre class="pre codeblock">$ source /usr/local/greenplum-db-&lt;version&gt;/greenplum_path.sh</pre>
+
+          <div class="note note">
+<span class="notetitle">Note:</span> Add the above <samp class="ph codeph">source</samp> command to the <samp class="ph codeph">hdbadmin</samp> user's
+              <samp class="ph codeph">.bashrc</samp> or other shell startup file so that the inHybrid Database
+            path and environment variables are set whenever you log in as
+            <samp class="ph codeph">hdbadmin</samp>.</div>
+</li>
+
+        <li class="li">Use the <samp class="ph codeph">ssh-copy-id</samp> command to add the <samp class="ph codeph">hdbadmin</samp> user's
+          public key to the <samp class="ph codeph">authorized_hosts</samp> SSH file on every other host in the
+          cluster.
+          <pre class="pre codeblock">$ ssh-copy-id smdw
+$ ssh-copy-id sdw1
+$ ssh-copy-id sdw2
+$ ssh-copy-id sdw3
+. . .</pre>
+
+          This enables 1-<em class="ph i">n</em> passwordless SSH. You will be prompted to enter the
+            <samp class="ph codeph">hdbadmin</samp> user's password for each host. If you have the
+            <samp class="ph codeph">sshpass</samp> command on your system, you can use a command like the
+          following to avoid the
+          prompt.<pre class="pre codeblock">$ SSHPASS=&lt;password&gt; sshpass -e ssh-copy-id smdw</pre>
+</li>
+
+        <li class="li">In the <samp class="ph codeph">hdbadmin</samp> home directory, create a file named
+            <samp class="ph codeph">hostfile_exkeys</samp> that has the machine configured host names and host
+          addresses (interface names) for each host in your inHybrid system (master, standby
+          master, and segment hosts). Make sure there are no blank lines or extra spaces. Check the
+            <samp class="ph codeph">/etc/hosts</samp> file on your systems for the correct host names to use for
+          your environment. For example, if you have a master, standby master, and three segment
+          hosts with two unbonded network interfaces per host, your file would look something like
+          this:<pre class="pre codeblock">mdw
+mdw-1
+mdw-2
+smdw
+smdw-1
+smdw-2
+sdw1
+sdw1-1
+sdw1-2
+sdw2
+sdw2-1
+sdw2-2
+sdw3
+sdw3-1
+sdw3-2</pre>
+</li>
+
+        <li class="li">Run the <samp class="ph codeph">hdbssh-exkeys</samp> utility with your <samp class="ph codeph">hostfile_exkeys</samp>
+          file to enable <em class="ph i">n</em>-<em class="ph i">n</em> passwordless SSH for the <samp class="ph codeph">hdbadmin</samp>
+          user.<pre class="pre codeblock">$ hdbssh-exkeys -f hostfile_exkeys</pre>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" xml:lang="en" lang="en" id="topic10">
+    <h2 class="title topictitle2">Confirming Your Installation</h2>
+
+    <div class="body">
+      <p class="p">To make sure the inHybrid software was installed and configured correctly, run the
+        following confirmation steps from your inHybrid master host. If necessary, correct any
+        problems before continuing on to the next task.</p>
+
+      <ol class="ol" id="topic10__ol_yjk_knz_thb">
+        <li class="li" id="topic10__ji162490">Log in to the master host as
+          <samp class="ph codeph">hdbadmin</samp>:<pre class="pre codeblock">$ su - <var class="keyword varname">hdbadmin</var></pre>
+</li>
+
+        <li class="li" id="topic10__ji162506">Use the <samp class="ph codeph">hdbssh</samp> utility to see if you can log in to all
+          hosts without a password prompt, and to confirm that the inHybrid software was installed
+          on all hosts. Use the <samp class="ph codeph">hostfile_exkeys</samp> file you used to set up
+          passwordless SSH. For
+            example:<pre class="pre codeblock">$ hdbssh -f hostfile_exkeys -e 'ls -l /usr/local/greenplum-db-&lt;version&gt;'</pre>
+<p class="p">If
+            the installation was successful, you should be able to log in to all hosts without a
+            password prompt. All hosts should show that they have the same contents in their
+            installation directories, and that the directories are owned by the
+              <samp class="ph codeph">hdbadmin</samp> user.</p>
+<p class="p">If you are prompted for a password, run the
+            following command to redo the ssh key
+          exchange:</p>
+<pre class="pre codeblock">$ hdbssh-exkeys -f hostfile_exkeys</pre>
+</li>
+
+      </ol>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_zdf_1f5_vhb">
+    <h2 class="title topictitle2">About Your inHybrid Database Installation</h2>
+
+    <div class="body">
+      <ul class="ul" id="topic_zdf_1f5_vhb__ul_a2f_1f5_vhb">
+        <li class="li">
+<samp class="ph codeph">greenplum_path.sh</samp> ！ This file contains the environment variables for
+          inHybrid Database. See <a class="xref" href="init_hdb.html#topic8">Setting inHybrid Environment Variables</a>.</li>
+
+        <li class="li">
+<strong class="ph b">bin</strong> ！ This directory contains the inHybrid Database management utilities. This
+          directory also contains the PostgreSQL client and server programs, most of which are also
+          used in inHybrid Database.</li>
+
+        <li class="li">
+<strong class="ph b">docs/cli_help</strong> ！ This directory contains help files for inHybrid Database
+          command-line utilities. </li>
+
+        <li class="li">
+<strong class="ph b">docs/cli_help/hdbconfigs</strong> ！ This directory contains sample
+            <samp class="ph codeph">hdbinitsystem</samp> configuration files and host files that can be modified
+          and used when installing and initializing a inHybrid Database system.</li>
+
+        <li class="li">
+<strong class="ph b">ext</strong> ！ Bundled programs (such as Python) used by some inHybrid Database
+          utilities.</li>
+
+        <li class="li">
+<strong class="ph b">include</strong> ！ The C header files for inHybrid Database.</li>
+
+        <li class="li">
+<strong class="ph b">lib</strong> ！ inHybrid Database and PostgreSQL library files.</li>
+
+        <li class="li">
+<strong class="ph b">sbin</strong> ！ Supporting/Internal scripts and programs.</li>
+
+        <li class="li">
+<strong class="ph b">share</strong> ！ Shared files for inHybrid Database.</li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+  <div class="topic nested1" id="topic_cwj_hzb_vhb">
+    <h2 class="title topictitle2">Next Steps</h2>
+
+    <div class="body">
+      <ul class="ul" id="topic_cwj_hzb_vhb__ul_xsq_jzb_vhb">
+        <li class="li"><a class="xref" href="create_data_dirs.html#topic13" title="Describes how to create the directory locations where inHybrid Database data is stored for each master, standby, and segment instance.">Creating the Data Storage Areas</a></li>
+
+        <li class="li"><a class="xref" href="validate.html#topic1" title="Validate your hardware and network performance.">Validating Your Systems</a></li>
+
+        <li class="li"><a class="xref" href="init_hdb.html#topic1" title="Describes how to initialize a inHybrid Database database system.">Initializing a inHybrid Database System</a></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+
+        
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>

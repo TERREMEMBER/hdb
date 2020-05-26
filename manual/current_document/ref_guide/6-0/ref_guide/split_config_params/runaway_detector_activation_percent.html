@@ -1,0 +1,70 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+    Greenplum Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../../images/favicon.ico' rel='shortcut icon'>
+  
+</head>
+
+<body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
+<div class="topic nested1" id="runaway_detector_activation_percent">
+<h2 class="title topictitle2">runaway_detector_activation_percent</h2>
+<div class="body">
+<div class="note note">
+<span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">runaway_detector_activation_percent</samp>服务器配置参数才会生效。
+        </div>
+<p class="p">设置触发查询终止的Greenplum数据库vmem内存的百分比。
+        如果用于Greenplum数据库segment的vmem内存百分比超过指定值，
+        Greenplum数据库将根据内存使用情况终止查询，从占用最大内存量的查询开始。
+        查询将终止，直到使用的vmem百分比低于指定的百分比。
+        </p>
+<p class="p">使用服务器配置参数<a class="xref" href="guc-list.html#gp_vmem_protect_limit">gp_vmem_protect_limit</a>指定活动Greenplum数据库segment实例的最大vmem值。
+        </p>
+<p class="p">例如，如果vmem内存设置为10GB，
+        并且<samp class="ph codeph">runaway_detector_activation_percent</samp>的值为90（90％），
+        则当使用的vmem内存超过9GB时，Greenplum数据库将开始终止查询。
+        </p>
+<p class="p">值0禁用基于所使用的vmem的百分比自动终止查询。</p>
+<div class="tablenoborder">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="runaway_detector_activation_percent__runaway_detector_activation_percent_table" rules="all" summary="">
+<thead align="left" class="thead">
+<tr class="row">
+<th class="entry" id="d62161e17875" valign="top" width="33.33333333333333%">取值范围</th>
+<th class="entry" id="d62161e17878" valign="top" width="33.33333333333333%">默认值</th>
+<th class="entry" id="d62161e17881" valign="top" width="33.33333333333333%">设置分类</th>
+</tr>
+</thead>
+<tbody class="tbody">
+<tr class="row">
+<td class="entry" headers="d62161e17875" valign="top" width="33.33333333333333%">百分比(整数)</td>
+<td class="entry" headers="d62161e17878" valign="top" width="33.33333333333333%">90</td>
+<td class="entry" headers="d62161e17881" valign="top" width="33.33333333333333%">local<p class="p">system</p>
+<p class="p">restart</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<script type="application/javascript">
+window.addEventListener('DOMContentLoaded',function(){
+	var tags=document.getElementsByTagName('a');
+  for(var i=0;i<tags.length;i++){
+	  tags[i].removeAttribute('href');
+  }
+});
+</script>
+</body>
+</html>
