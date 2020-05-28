@@ -314,8 +314,8 @@ DISTRIBUTED BY (<em class="ph i">&lt;original distribution columns&gt;</em>);</p
 <h2 class="title sectiontitle">从索引移除膨胀</h2>
       
       <p class="p">VACUUM命令只会从表中恢复空间。要从索引中恢复空间，需要使用REINDEX命令重建它们。
-        The <samp class="ph codeph">VACUUM</samp> command only recovers space from tables. To recover the space
-        from indexes, recreate them using the <samp class="ph codeph">REINDEX</samp> command.</p>
+        <samp class="ph codeph">VACUUM</samp>命令仅从表中恢复空间。 要从索引恢复空间，请使用<samp class="ph codeph">REINDEX</samp>命令重新创建它们。</p>
+		
 
       <p class="p">要在一个表上重建所有的索引，可运行<samp class="ph codeph">REINDEX <em class="ph i">table_name</em>;</samp>。要重建一个特定的索引，
         可运行<samp class="ph codeph">REINDEX <em class="ph i">index_name</em>;</samp>。<samp class="ph codeph">REINDEX</samp>会将该索引相关

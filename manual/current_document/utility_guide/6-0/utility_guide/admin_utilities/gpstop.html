@@ -515,30 +515,25 @@
                     <dt class="dt pt dlterm">--host <var class="keyword varname">host_name</var>
 </dt>
 
-                    <dd class="dd pd">The utility shuts down the inHybrid Database segment instances on the
-                        specified host to allow maintenance on the host. Each primary segment
-                        instance on the host is shut down and the associated mirror segment instance
-                        is promoted to a primary segment if the mirror segment is on another host.
-                        Mirror segment instances on the host are shut down.</dd>
+                    <dd class="dd pd">该实用程序将关闭数据库中的inHybrid数据库段实例。
+                         指定的主机以允许对该主机进行维护。 每个主要部分主机上的实例
+						 已关闭，并且关联的镜像段实例如果镜像段位于另一台主机上，则
+						 升级到主段。主机上的镜像段实例已关闭。</dd>
 
-                    <dd class="dd pd">The segment instances are not shut down and the utility returns an error in
-                        these cases:<ul class="ul" id="topic1__ul_at2_kk3_ccb">
-                            <li class="li">Segment mirroring is not enabled for the system.</li>
+                    <dd class="dd pd">在这些情况下，段实例未关闭，实用程序返回错误<ul class="ul" id="topic1__ul_at2_kk3_ccb">
+                            <li class="li">系统未启用段镜像.</li>
 
-                            <li class="li">The master or standby master is on the host.</li>
+                            <li class="li">主机或备用主机在主机上.</li>
 
-                            <li class="li">Both a primary segment instance and its mirror are on the host.</li>
+                            <li class="li">主段实例及其镜像都在主机上.</li>
 
                         </ul>
 </dd>
 
-                    <dd class="dd pd">This option cannot be specified with the <samp class="ph codeph">-m</samp>,
+                    <dd class="dd pd">不能使用 <samp class="ph codeph">-m</samp>,
                         <samp class="ph codeph">-r</samp>, <samp class="ph codeph">-u</samp>, or <samp class="ph codeph">-y</samp>
-                        options.<div class="note note">
-<span class="notetitle">Note:</span> The <samp class="ph codeph">hdbrecoverseg</samp> utility restores segment
-                            instances. Run <samp class="ph codeph">hdbrecoverseg</samp> commands to start the
-                            segments as mirrors and then to return the segments to their preferred
-                            role (primary segments). </div>
+                        选项.<div class="note note">
+<span class="notetitle">Note:</span> hdbrecoverseg</samp>实用程序可还原段实例。 运行<samp class="ph codeph">hdbrecoverseg</samp>命令以将分段作为镜像启动，然后将分段返回其首选角色（主要分段）。</div><samp class="ph codeph">
 </dd>
 
                 
@@ -546,7 +541,7 @@
                     <dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var>
 </dt>
 
-                    <dd class="dd pd">写入日志文件的目录。默认为<samp class="ph codeph">~/gpAdminLogs</samp>。</dd>
+                    <dd class="dd pd">写入日志文件的目录。默认为<samp class="ph codeph">~/hdbAdminLogs</samp>。</dd>
 
                 
                 
