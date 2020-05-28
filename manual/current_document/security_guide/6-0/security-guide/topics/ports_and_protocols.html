@@ -178,7 +178,7 @@
 </pre>
 </div>
 
-    <p class="p">诸如后备复制、Segment镜像、统计信息收集以及Segment之间的数据交换等特性也会创建额外的inHybrid数据库网络连接。
+    <p class="p">诸如Standby复制、Segment镜像、统计信息收集以及Segment之间的数据交换等特性也会创建额外的inHybrid数据库网络连接。
     数据库启动时会创建一些持久连接而在查询执行之类的操作期间会创建临时连接。用于查询执行处理、数据移动以及统计信息收集的临时连接使用TCP和UDP协议在1025到65535范围内的可用端口。 </p>
 
     <div class="note note">
@@ -253,41 +253,41 @@ MIRROR_REPLICATION_PORT_BASE = 9000</pre>
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="25%" headers="d9777e66 ">后备Master的客户端监听器</td>
+            <td class="entry" valign="top" width="25%" headers="d9777e66 ">Standby Master的客户端监听器</td>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP 5432, libpq</td>
 
-            <td class="entry" valign="top" width="50%" headers="d9777e72 ">后备Master主机上的SQL客户端连接端口。通常和Master的客户端连接端口相同。可以用<samp class="ph codeph">hdbinitstandby</samp>工具的<samp class="ph codeph">-P</samp>选项配置。</td>
+            <td class="entry" valign="top" width="50%" headers="d9777e72 ">Standby Master主机上的SQL客户端连接端口。通常和Master的客户端连接端口相同。可以用<samp class="ph codeph">hdbinitstandby</samp>工具的<samp class="ph codeph">-P</samp>选项配置。</td>
 
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="25%" headers="d9777e66 ">后备Master复制器</td>
+            <td class="entry" valign="top" width="25%" headers="d9777e66 ">Standby Master复制器</td>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP 1025-65535, gpsyncmaster</td>
 
-            <td class="entry" valign="top" width="50%" headers="d9777e72 ">Master主机上的<samp class="ph codeph">gpsyncmaster</samp>进程会建立一个到第二Master主机的连接来把Master的日志复制到后备Master上。</td>
+            <td class="entry" valign="top" width="50%" headers="d9777e72 ">Master主机上的<samp class="ph codeph">gpsyncmaster</samp>进程会建立一个到第二Master主机的连接来把Master的日志复制到Standby Master上。</td>
 
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="25%" headers="d9777e66 ">inHybrid数据库文件装载和传输工具：hdbfdist、hdbload、gptransfer</td>
+            <td class="entry" valign="top" width="25%" headers="d9777e66 ">inHybrid数据库文件装载和传输工具：hdbfdist、hdbload</td>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP 8080, HTTP<p class="p">TCP 9000, HTTPS</p>
 </td>
 
             <td class="entry" valign="top" width="50%" headers="d9777e72 ">hdbfdist文件服务工具能够在inHybrid主机或者外部主机上运行。在启动该服务器时用<samp class="ph codeph">-p</samp>选项指定连接端口。
-                <p class="p">hdbload和gptransfer工具会用一个配置文件中指定的端口或者端口范围运行一个或者更多hdbfdist。</p>
+                <p class="p">hdbload工具会用一个配置文件中指定的端口或者端口范围运行一个或者更多hdbfdist。</p>
 </td>
 
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="25%" headers="d9777e66 ">Gpperfmon代理</td>
+            <td class="entry" valign="top" width="25%" headers="d9777e66 ">hdbperfmon代理</td>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP 8888</td>
 
-            <td class="entry" valign="top" width="50%" headers="d9777e72 ">执行在每一台inHybrid主机上的gpperfmon代理(<samp class="ph codeph">hdbmmon</samp> 和
+            <td class="entry" valign="top" width="50%" headers="d9777e72 ">执行在每一台inHybrid主机上的hdbperfmon代理(<samp class="ph codeph">hdbmmon</samp> 和
                 <samp class="ph codeph">hdbsmon</samp>)的连接端口。通过Master和Segment主机上<span class="ph filepath">postgresql.conf</span>中的配置变量<samp class="ph codeph">gpperfmon_port</samp>设置。</td>
 
           </tr>
@@ -303,7 +303,7 @@ MIRROR_REPLICATION_PORT_BASE = 9000</pre>
           </tr>
 
           <tr class="row">
-            <td class="entry" valign="top" width="25%" headers="d9777e66 ">inHybrid数据库的安全shell（SSH）：hdbssh、hdbscp、hdbssh-exkeys、hdbpkg、gpseginstall</td>
+            <td class="entry" valign="top" width="25%" headers="d9777e66 ">inHybrid数据库的安全shell（SSH）：hdbssh、hdbscp、hdbssh-exkeys、hdbpkg</td>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP 22, SSH</td>
 
@@ -334,7 +334,7 @@ MIRROR_REPLICATION_PORT_BASE = 9000</pre>
 
             <td class="entry" valign="top" width="25%" headers="d9777e69 ">TCP, libpq</td>
 
-            <td class="entry" valign="top" width="50%" headers="d9777e72 ">pgbouncer连接池运行在libpq客户端和inHybrid（或者PostgreSQL）数据库之间。它可以运行在inHybrid的Master主机上，但推荐将它运行在inHybrid集群之外的一台主机上。当它运行在一台单独的主机上时，pgbouncer可以当作inHybrid的Master主机的温备机制，切换到inHybrid后备主机不要求重新配置客户端。在<span class="ph filepath">pgbouncer.ini</span>配置文件中设置客户端连接端口和inHybrid的Master主机地址。</td>
+            <td class="entry" valign="top" width="50%" headers="d9777e72 ">pgbouncer连接池运行在libpq客户端和inHybrid（或者PostgreSQL）数据库之间。它可以运行在inHybrid的Master主机上，但推荐将它运行在inHybrid集群之外的一台主机上。当它运行在一台单独的主机上时，pgbouncer可以当作inHybrid的Master主机的温备机制，切换到inHybrid Standby主机不要求重新配置客户端。在<span class="ph filepath">pgbouncer.ini</span>配置文件中设置客户端连接端口和inHybrid的Master主机地址。</td>
 
           </tr>
 

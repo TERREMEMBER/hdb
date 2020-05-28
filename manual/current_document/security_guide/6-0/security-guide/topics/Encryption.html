@@ -217,7 +217,7 @@
       </ul>
 
       <div class="note important">
-<span class="importanttitle">Important:</span> 不要用口令保护私钥。服务器不会为私钥提示要求口令，因此数据装载会在要求口令的情况下失败并且报出错误。 </div>
+<span class="importanttitle">重要:</span> 不要用口令保护私钥。服务器不会为私钥提示要求口令，因此数据装载会在要求口令的情况下失败并且报出错误。 </div>
 
       <p class="p">在使用带有SSL的<samp class="ph codeph">hdbload</samp>时，用户在YAML控制文件中指定服务器证书的位置。在使用带有SSL的<samp class="ph codeph">hdbfdist</samp>时，用户用--ssl选项指定服务器证书的位置。</p>
 
@@ -227,7 +227,7 @@
           <li class="li">登入数据库并执行下面的命令：<pre class="pre codeblock">
 =# CREATE EXTERNAL TABLE ext_expenses 
    ( name text, date date, amount float4, category text, desc1 text )
-LOCATION ('hdbfdists://etlhost-1:8081/*.txt', 'hdbfdists://etlhost-2:8082/*.txt')
+LOCATION ('gpfdists://etlhost-1:8081/*.txt', 'gpfdists://etlhost-2:8082/*.txt')
 FORMAT 'TEXT' ( DELIMITER '|' NULL ' ') ;
 </pre>
 </li>
