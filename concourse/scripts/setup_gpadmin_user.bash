@@ -38,38 +38,38 @@ transfer_ownership() {
     chmod a+w gpdb_src
     find gpdb_src -type d -exec chmod a+w {} \;
     # Needed for the gpload test
-    [ -f gpdb_src/gpMgmt/bin/gpload_test/gpload2/data_file.csv ] && chown gpadmin:gpadmin gpdb_src/gpMgmt/bin/gpload_test/gpload2/data_file.csv
-    [ -d /usr/local/gpdb ] && chown -R gpadmin:gpadmin /usr/local/gpdb
-    [ -d /usr/local/greenplum-db-devel ] && chown -R gpadmin:gpadmin /usr/local/greenplum-db-devel
-    chown -R gpadmin:gpadmin /home/gpadmin
+    [ -f gpdb_src/gpMgmt/bin/gpload_test/gpload2/data_file.csv ] && chown hdbadmin:hdbadmin gpdb_src/gpMgmt/bin/gpload_test/gpload2/data_file.csv
+    [ -d /usr/local/gpdb ] && chown -R hdbadmin:hdbadmin /usr/local/gpdb
+    [ -d /usr/local/greenplum-db-devel ] && chown -R hdbadmin:hdbadmin /usr/local/greenplum-db-devel
+    chown -R hdbadmin:hdbadmin /home/hdbadmin
 }
 
 set_limits() {
   # Currently same as what's recommended in install guide
   if [ -d /etc/security/limits.d ]; then
     cat > /etc/security/limits.d/gpadmin-limits.conf <<-EOF
-		gpadmin soft core unlimited
-		gpadmin soft nproc 131072
-		gpadmin soft nofile 65536
+		hdbadmin soft core unlimited
+		hdbadmin soft nproc 131072
+		hdbadmin soft nofile 65536
 	EOF
   fi
-  # Print now effective limits for gpadmin
-  su gpadmin -c 'ulimit -a'
+  # Print now effective limits for hdbadmin
+  su hdbadmin -c 'ulimit -a'
 }
 
 setup_gpadmin_user() {
   groupadd supergroup
   case "$TEST_OS" in
     centos)
-      /usr/sbin/useradd -G supergroup,tty gpadmin
+      /usr/sbin/useradd -G supergroup,tty hdbadmin
       ;;
     ubuntu)
-      /usr/sbin/useradd -G supergroup,tty gpadmin -s /bin/bash
+      /usr/sbin/useradd -G supergroup,tty hdbadmin -s /bin/bash
       ;;
     *) echo "Unknown OS: $TEST_OS"; exit 1 ;;
   esac
-  echo -e "password\npassword" | passwd gpadmin
-  setup_ssh_for_user gpadmin
+  echo -e "password\npassword" | passwd hdbadmin
+  setup_ssh_for_user hdbadmin
   transfer_ownership
   set_limits
 }
@@ -100,7 +100,7 @@ setup_sshd() {
   /usr/sbin/sshd
 
   ssh_keyscan_for_user root
-  ssh_keyscan_for_user gpadmin
+  ssh_keyscan_for_user hdbadmin
 }
 
 determine_os() {

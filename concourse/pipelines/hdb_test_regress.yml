@@ -1,0 +1,68 @@
+## ======================================================================
+## resources
+## ======================================================================
+resource_types:
+- name: http
+  type: registry-image
+  source:
+    repository: 10.221.129.153:5000/registry/http-resource
+    tag: v1.0
+
+resources:
+  - name: every-1d
+    type: time
+    icon: clock-outline
+    source:
+      interval: 86400s
+
+  - name: gpdb6-ubuntu18.04-test
+    type: registry-image 
+    source:
+      repository: 10.221.129.153:5000/registry/gpdb-dev
+      tag: ubuntu18_hdbadmin_evo1.0
+  
+  - name: bin_gpdb
+    type: http
+    source:
+      index: http://10.221.129.153:8088
+      regex: 'bin_gpdb-v(?P<version>1\.0).tar.gz'
+      uri: 'http://10.221.129.153:8088/bin_gpdb-v{version}.tar.gz'
+ 
+jobs:
+- name: hdb_test_regress
+  public: true
+  max_in_flight: 10
+  plan:
+  - aggregate:
+    - get: every-1d 
+      trigger: true
+    - get: gpdb6-ubuntu18.04-test
+    - get: bin_gpdb
+ 
+  - #"do":
+    do:
+    - task: prepare gpdb_src  
+      image: gpdb6-ubuntu18.04-test 
+      config:
+        platform: linux
+        run:
+          path: bash
+          args:
+          - -c
+          - |
+            echo '10.110.27.118 git.inspur.com' >> /etc/hosts &&
+            mkdir gpdb_src
+            cd gpdb_src &&
+            git clone http://oauth2:FWZasNgPVNMzDZhVFB-w@git.inspur.com/fanwenchang/hdb.git &&
+            cd hdb && mv * .[^.]* .. && cd .. &&
+            git checkout 80-add_pipeline_test-regress && 
+            git submodule update --init --recursive
+        outputs: [{ name: gpdb_src }]
+    - task: hdb_ubuntu18.04_test
+      file: gpdb_src/concourse/tasks/hdb_test_regress.yml 
+      image: gpdb6-ubuntu18.04-test
+      params:
+        MAKE_TEST_COMMAND: -k PGOPTIONS='-c optimizer=on' installcheck-world
+        TEST_OS: ubuntu
+        CONFIGURE_FLAGS: ""
+
