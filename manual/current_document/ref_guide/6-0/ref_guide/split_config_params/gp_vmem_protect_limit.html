@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -33,7 +33,7 @@
 <p class="p">为了防止内存过度分配，这些计算可以估计安全的<samp class="ph codeph">gp_vmem_protect_limit</samp>值。
         </p>
 <div class="p">首先计算值<var class="keyword varname">gp_vmem</var>。
-        这是主机上可用的Greenplum数据库内存
+        这是主机上可用的inHybrid数据库内存
         <pre class="pre codeblock"><var class="keyword varname">gp_vmem</var> = ((<var class="keyword varname">SWAP</var> + <var class="keyword varname">RAM</var>) – (7.5GB + 0.05 * <var class="keyword varname">RAM</var>)) / 1.7</pre>
 </div>
 <p class="p">其中<var class="keyword varname">SWAP</var>是主机交换空间，<var class="keyword varname">RAM</var>是主机上的RAM，以GB为单位。
@@ -50,16 +50,16 @@
 <p class="p">对于生成大量工作文件的情况，这是计算工作文件的<var class="keyword varname">gp_vmem</var>的计算。
         </p>
 <pre class="pre codeblock"><var class="keyword varname">gp_vmem</var> = ((<var class="keyword varname">SWAP</var> + <var class="keyword varname">RAM</var>) – (7.5GB + 0.05 * <var class="keyword varname">RAM</var> - (300KB * <var class="keyword varname">total_#_workfiles</var>))) / 1.7</pre>
-<p class="p">有关监视和管理工作文件使用情况的信息，请参阅<cite class="cite">Greenplum数据库管理员指南</cite>。
+<p class="p">有关监视和管理工作文件使用情况的信息，请参阅<cite class="cite">inHybrid数据库管理员指南</cite>。
         </p>
 <div class="p">根据<var class="keyword varname">gp_vmem</var>值，您可以计算<samp class="ph codeph">vm.overcommit_ratio</samp>操作系统内核参数的值。
-        配置每个Greenplum数据库主机时，将设置此参数。
+        配置每个inHybrid数据库主机时，将设置此参数。
         <pre class="pre codeblock">vm.overcommit_ratio = (<var class="keyword varname">RAM</var> - (0.026 * <var class="keyword varname">gp_vmem</var>)) / <var class="keyword varname">RAM</var></pre>
 </div>
 <div class="note note">
 <span class="notetitle">Note:</span> Red Hat Enterprise Linux中内核参数<samp class="ph codeph">vm.overcommit_ratio</samp>的默认值为50。
         </div>
-<p class="p">有关内核参数的信息，请参阅<cite class="cite">Greenplum数据库安装指南</cite>。
+<p class="p">有关内核参数的信息，请参阅<cite class="cite">inHybrid数据库安装指南</cite>。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_vmem_protect_limit__gp_vmem_protect_limit_table" rules="all" summary="">

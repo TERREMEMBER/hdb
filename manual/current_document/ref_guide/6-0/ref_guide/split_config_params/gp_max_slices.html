@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -22,10 +22,10 @@
 <h2 class="title topictitle2">gp_max_slices</h2>
 <div class="body">
 <p class="p" dir="ltr">指定可以由查询生成的最大切片数（在segment实例上执行的查询计划的部分）。
-        如果查询生成的切片数超过指定数量，则Greenplum数据库将返回错误并且不执行查询。
+        如果查询生成的切片数超过指定数量，则inHybrid数据库将返回错误并且不执行查询。
         默认值为<samp class="ph codeph">0</samp>，没有最大值。
         </p>
-<p class="p">执行生成大量切片的查询可能会影响Greenplum数据库性能。
+<p class="p">执行生成大量切片的查询可能会影响inHybrid数据库性能。
         例如，在多个复杂视图上包含<samp class="ph codeph">UNION</samp>或<samp class="ph codeph">UNION ALL</samp>运算符的查询可以生成大量切片。
         您可以在查询上运行<samp class="ph codeph">EXPLAIN ANALYZE</samp>以查看查询的切片统计信息。
         </p>

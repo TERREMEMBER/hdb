@@ -8,7 +8,7 @@
           rel='stylesheet' type='text/css'>
     <!-- Use title if it's in the page YAML frontmatter -->
     <title>
-        Greenplum Database Docs
+        inHybrid Database Docs
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print"/>
@@ -23,27 +23,27 @@
 
     <div class="body">
         <p class="p">在<samp class="ph codeph">CREATE EXTERNAL TABLE</samp>或<samp class="ph codeph">COPY</samp>命令中指定不推荐使用的<samp
-                class="ph codeph">INTO ERROR TABLE</samp>子句时，控制Greenplum数据库行为。
+                class="ph codeph">INTO ERROR TABLE</samp>子句时，控制inHybrid数据库行为。
         </p>
 
-        <p class="p">默认值为<samp class="ph codeph">false</samp>，如果在命令中指定了<samp class="ph codeph">INTO ERROR TABLE</samp>子句，Greenplum数据库将返回错误。
+        <p class="p">默认值为<samp class="ph codeph">false</samp>，如果在命令中指定了<samp class="ph codeph">INTO ERROR TABLE</samp>子句，inHybrid数据库将返回错误。
         </p>
 
-        <p class="p">如果值为<samp class="ph codeph">true</samp>，则Greenplum数据库会忽略该子句，发出警告，并在没有<samp class="ph codeph">INTO
+        <p class="p">如果值为<samp class="ph codeph">true</samp>，则inHybrid数据库会忽略该子句，发出警告，并在没有<samp class="ph codeph">INTO
             ERROR TABLE</samp>子句的情况下执行该命令。
-            在Greenplum数据库5.x及更高版本中，您可以使用内置SQL函数访问错误日志信息。
+            在inHybrid数据库5.x及更高版本中，您可以使用内置SQL函数访问错误日志信息。
             请参见 <samp class="ph codeph"><a class="xref" href="../sql_commands/CREATE_EXTERNAL_TABLE.html">CREATE
                 EXTERNAL TABLE</a></samp>或<samp class="ph codeph"><a class="xref"
                                                                      href="../sql_commands/COPY.html">COPY</a></samp>命令。
         </p>
 
         <p class="p">您可以将此值设置为<samp class="ph codeph">true</samp>，
-            以避免在运行包含Greenplum数据库4.3.x <samp class="ph codeph">INTO ERROR TABLE</samp>子句的<samp class="ph codeph">CREATE
-                EXTERNAL TABLE</samp>或<samp class="ph codeph">COPY</samp>命令的应用程序时出现Greenplum数据库错误。
+            以避免在运行包含inHybrid数据库4.3.x <samp class="ph codeph">INTO ERROR TABLE</samp>子句的<samp class="ph codeph">CREATE
+                EXTERNAL TABLE</samp>或<samp class="ph codeph">COPY</samp>命令的应用程序时出现inHybrid数据库错误。
         </p>
 
-        <p class="p">在Greenplum数据库5中不推荐使用<samp class="ph codeph">INTO ERROR TABLE</samp>子句并将其删除。
-            在Greenplum数据库7中，此参数也将被删除，导致所有<samp class="ph codeph">INTO ERROR TABLE</samp>调用产生语法错误。
+        <p class="p">在inHybrid数据库5中不推荐使用<samp class="ph codeph">INTO ERROR TABLE</samp>子句并将其删除。
+            在inHybrid数据库7中，此参数也将被删除，导致所有<samp class="ph codeph">INTO ERROR TABLE</samp>调用产生语法错误。
         </p>
 
 

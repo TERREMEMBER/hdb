@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -23,10 +23,10 @@
 <div class="body">
 <p class="p">为查询指标分配的共享内存量（以KB为单位）。
         默认值为5120，最大值为131072。
-        启动时，如果<samp class="ph codeph"><a class="xref" href="guc-list.html#gp_enable_query_metrics">gp_enable_query_metrics</a></samp>设置为on，则Greenplum数据库会在共享内存中分配空间以保存查询指标。
+        启动时，如果<samp class="ph codeph"><a class="xref" href="guc-list.html#gp_enable_query_metrics">gp_enable_query_metrics</a></samp>设置为on，则inHybrid数据库会在共享内存中分配空间以保存查询指标。
         该内存被组织为标题和插槽列表。
         所需的插槽数取决于并发查询的数量和每个查询的执行计划节点的数量。
-        默认值5120基于Greenplum数据库系统，该系统最多执行约250个并发查询，每个查询120个节点。
+        默认值5120基于inHybrid数据库系统，该系统最多执行约250个并发查询，每个查询120个节点。
         如果<samp class="ph codeph">gp_enable_query_metrics</samp>配置参数关闭，或者插槽耗尽，则指标将保留在本地内存中而不是共享内存中。
         </p>
 <div class="tablenoborder">

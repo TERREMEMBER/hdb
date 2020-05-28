@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -22,13 +22,13 @@
 <h2 class="title topictitle2">max_connections</h2>
 <div class="body">
 <p class="p">与数据库服务器的最大并发连接数。
-        在Greenplum数据库系统中，用户客户端连接仅通过Greenplum master实例。
+        在inHybrid数据库系统中，用户客户端连接仅通过inHybrid master实例。
         segment实例应该允许相比于master实例5-10倍的数量。
         增加此参数时，还必须增加<a class="xref" href="guc-list.html#max_prepared_transactions">max_prepared_transactions</a>。
-        有关限制并发连接的详细信息，请参阅<em class="ph i">Greenplum数据库管理员指南</em>中的“配置客户端身份验证”。
+        有关限制并发连接的详细信息，请参阅<em class="ph i">inHybrid数据库管理员指南</em>中的“配置客户端身份验证”。
         </p>
-<p class="p">增加此参数可能会导致Greenplum数据库请求更多共享内存。
-        有关Greenplum服务器实例共享内存缓冲区的信息，请参阅<a class="xref" href="guc-list.html#shared_buffers">shared_buffers</a>。
+<p class="p">增加此参数可能会导致inHybrid数据库请求更多共享内存。
+        有关inHybrid服务器实例共享内存缓冲区的信息，请参阅<a class="xref" href="guc-list.html#shared_buffers">shared_buffers</a>。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="max_connections__max_connections_table" rules="all" summary="">

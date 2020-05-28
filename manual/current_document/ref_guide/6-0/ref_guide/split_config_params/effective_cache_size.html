@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -23,10 +23,10 @@
 <div class="body">
 <p class="p">设置有关Postgres查询优化器（计划程序）的单个查询可用的磁盘高速缓存的有效大小的假设。
         这是用于估算使用指数的成本的因素; 较高的值使得更有可能使用索引扫描，较低的值使得更有可能使用顺序扫描。
-        此参数对Greenplum服务器实例分配的共享内存大小没有影响，也不保留内核磁盘缓存; 它仅用于估算目的。
+        此参数对inHybrid服务器实例分配的共享内存大小没有影响，也不保留内核磁盘缓存; 它仅用于估算目的。
         </p>
 <p class="p">将此参数设置为32K块的数量（例如，对于16MB，为<samp class="ph codeph">512</samp>），或指定有效缓存的大小（例如，对于1024个块，为<samp class="ph codeph">'32MB'</samp>）。
-        <samp class="ph codeph">gpconfig</samp>工具和<samp class="ph codeph">SHOW</samp>命令以“MB”或“kB”为单位显示有效的高速缓存大小值。
+        <samp class="ph codeph">hdbconfig</samp>工具和<samp class="ph codeph">SHOW</samp>命令以“MB”或“kB”为单位显示有效的高速缓存大小值。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="effective_cache_size__effective_cache_size_table" rules="all" summary="">

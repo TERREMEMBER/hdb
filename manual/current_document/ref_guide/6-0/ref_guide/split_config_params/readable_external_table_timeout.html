@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -21,12 +21,12 @@
 <div class="topic nested1" id="readable_external_table_timeout">
 <h2 class="title topictitle2">readable_external_table_timeout</h2>
 <div class="body">
-<p class="p">当SQL查询从外部表读取时，参数值指定当数据停止从外部表返回时，Greenplum数据库在取消查询之前等待的时间（以秒为单位）。
+<p class="p">当SQL查询从外部表读取时，参数值指定当数据停止从外部表返回时，inHybrid数据库在取消查询之前等待的时间（以秒为单位）。
         </p>
 <p class="p">默认值0，指定没有超时。
-        Greenplum数据库不会取消查询。</p>
-<p class="p">如果使用gpfdist的查询运行很长时间然后返回错误“间歇性网络连接问题”，则可以为readable_external_table_timeout设定值。
-        如果gpfdist在指定的时间内没有返回任何数据，Greenplum数据库将取消该查询。
+        inHybrid数据库不会取消查询。</p>
+<p class="p">如果使用hdbfdist的查询运行很长时间然后返回错误“间歇性网络连接问题”，则可以为readable_external_table_timeout设定值。
+        如果hdbfdist在指定的时间内没有返回任何数据，inHybrid数据库将取消该查询。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="readable_external_table_timeout__readable_external_table_timeout_table" rules="all" summary="">

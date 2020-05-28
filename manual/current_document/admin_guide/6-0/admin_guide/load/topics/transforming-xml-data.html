@@ -1774,7 +1774,7 @@ DISTRIBUTED BY (itemnumber);
 
          <ul class="ul" id="topic80__ul_jfr_h32_pbb">
             <li class="li" id="topic80__du224442">
-               <samp class="ph codeph">GPLOAD</samp>只支持输入转换，但是在很多情况下更容易实现。</li>
+               <samp class="ph codeph">hdbload</samp>只支持输入转换，但是在很多情况下更容易实现。</li>
 
             <li class="li" id="topic80__du224443">
                <samp class="ph codeph">INSERT INTO SELECT FROM</samp>支持输入和输出转换，但是会暴露更多细节。</li>
@@ -1784,7 +1784,7 @@ DISTRIBUTED BY (itemnumber);
       </div>
 
       <div class="topic nested2" id="topic81">
-         <h3 class="title topictitle3">用GPLOAD转换</h3>
+         <h3 class="title topictitle3">用hdbload转换</h3>
 
          <div class="body">
             <p class="p">inHybrid数据库<samp class="ph codeph">hdbload</samp>工具使用<samp class="ph codeph">hdbfdist</samp>并行文件服务器和YAML格式的配置文件来编排数据加载操作。<samp class="ph codeph">hdbload</samp>自动执行以下任务：</p>
@@ -1904,7 +1904,7 @@ TRANSFORMATIONS:
                   <dt class="dt pt dlterm">
 <a name="topic83__p_type"><!-- --></a>TYPE</dt>
 
-                  <dd class="dd pd">必须。指定转换的方向。值是input或者output。值为
+                  <dd class="dd pd">必须。指定转换的方向。值为
                         <samp class="ph codeph">input</samp> 或者 <samp class="ph codeph">output</samp>. <ul class="ul" id="topic83__ul_f3p_j3q_34">
                         <li class="li" id="topic83__du198814">
                            <samp class="ph codeph">input</samp>：<span class="keyword cmdname">hdbfdist</span>把转换处理的标准输出当做是要载入到inHybrid数据库的一个记录流。</li>

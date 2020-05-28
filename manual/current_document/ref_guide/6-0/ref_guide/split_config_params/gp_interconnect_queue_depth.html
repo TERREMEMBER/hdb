@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -21,7 +21,7 @@
 <div class="topic nested1" id="gp_interconnect_queue_depth">
 <h2 class="title topictitle2">gp_interconnect_queue_depth</h2>
 <div class="body">
-<p class="p">设置接收器上的排队的Greenplum数据库每方用于默认UDPIFC的interconnect数据量（当接收到数据但没有可用于接收数据的空间时，数据将被丢弃，并且发送器将需要重新发送它）。
+<p class="p">设置接收器上的排队的inHybrid数据库每方用于默认UDPIFC的interconnect数据量（当接收到数据但没有可用于接收数据的空间时，数据将被丢弃，并且发送器将需要重新发送它）。
         将深度从其默认值增加将导致系统使用更多内存，但可能会提高性能。
         将此值设置在1到10之间是合理的。
         具有数据倾斜的查询可能会随着队列深度的增加而更好地执行。

@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -25,8 +25,8 @@
         初始化数据库系统且无法更改时，将启用或禁用堆数据的校验和。</p>
 <p class="p">堆数据页存储堆表，目录表，索引和数据库元数据。
         追加优化存储具有与此参数无关的内置校验和支持。</p>
-<p class="p">Greenplum数据库使用校验和来防止将文件系统中损坏的数据加载到由数据库进程管理的内存中。
-        启用堆数据校验和时，Greenplum Database会在堆数据页写入磁盘时计算并存储校验和。
+<p class="p">inHybrid数据库使用校验和来防止将文件系统中损坏的数据加载到由数据库进程管理的内存中。
+        启用堆数据校验和时，inHybrid Database会在堆数据页写入磁盘时计算并存储校验和。
         从磁盘检索页面时，将验证校验和。
         如果验证失败，则会生成错误，并且不允许将页面加载到托管内存中。
         </p>

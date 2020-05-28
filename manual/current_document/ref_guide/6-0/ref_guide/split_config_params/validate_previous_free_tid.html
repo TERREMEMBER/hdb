@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -22,14 +22,14 @@
 <h2 class="title topictitle2">validate_previous_free_tid</h2>
 <div class="body">
 <p class="p">启用验证空闲元组ID（TID）列表的测试。
-        该列表由Greenplum数据库维护和使用。
-        Greenplum数据库通过确保当前空闲元组的先前空闲TID是有效的空闲元组来确定空闲TID列表的有效性。
+        该列表由inHybrid数据库维护和使用。
+        inHybrid数据库通过确保当前空闲元组的先前空闲TID是有效的空闲元组来确定空闲TID列表的有效性。
         默认值为<samp class="ph codeph">true</samp>，启用测试。
         </p>
-<p class="p">如果Greenplum数据库检测到空闲TID列表中的损坏，
+<p class="p">如果inHybrid数据库检测到空闲TID列表中的损坏，
         则会重建空闲TID列表，并记录警告，
         并且检查失败的查询会返回警告。
-        Greenplum数据库尝试执行查询。
+        inHybrid数据库尝试执行查询。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="validate_previous_free_tid__table_fkc_4pb_1w" rules="all" summary="">

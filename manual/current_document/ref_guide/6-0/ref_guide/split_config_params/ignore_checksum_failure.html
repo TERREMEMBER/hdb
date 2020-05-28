@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -22,10 +22,10 @@
 <h2 class="title topictitle2">ignore_checksum_failure</h2>
 <div class="body">
 <p class="p">仅在启用了<a class="xref" href="guc-list.html#data_checksums">data_checksums</a>时才有效。</p>
-<p class="p">Greenplum数据库使用校验和来防止将文件系统中已损坏的数据加载到由数据库进程管理的内存中。
+<p class="p">inHybrid数据库使用校验和来防止将文件系统中已损坏的数据加载到由数据库进程管理的内存中。
         </p>
-<p class="p">默认情况下，当读取堆数据页时发生校验和验证错误时，Greenplum数据库会生成错误并阻止将页面加载到托管内存中。
-        当<samp class="ph codeph">ignore_checksum_failure</samp>设置为on并且校验和验证失败时，Greenplum Database会生成警告，并允许将页面读入托管内存。
+<p class="p">默认情况下，当读取堆数据页时发生校验和验证错误时，inHybrid数据库会生成错误并阻止将页面加载到托管内存中。
+        当<samp class="ph codeph">ignore_checksum_failure</samp>设置为on并且校验和验证失败时，inHybrid Database会生成警告，并允许将页面读入托管内存。
         如果页面随后更新，则会将其保存到磁盘并复制到mirror。
         如果页眉已损坏，即使启用此选项，也会报告错误。
         </p>

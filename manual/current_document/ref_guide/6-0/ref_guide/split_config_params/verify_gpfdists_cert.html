@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -18,31 +18,31 @@
 </head>
 
 <body class="x6-0 x6-0_ref_guide x6-0_ref_guide_config_params x6-0_ref_guide_config_params_guc-list has-subnav">
-<div class="topic nested1" id="verify_gpfdists_cert">
-<h2 class="title topictitle2">verify_gpfdists_cert</h2>
+<div class="topic nested1" id="verify_hdbfdists_cert">
+<h2 class="title topictitle2">verify_hdbfdists_cert</h2>
 <div class="body">
-<p class="p" dir="ltr">使用<samp class="ph codeph">gpfdists</samp>协议定义Greenplum数据库外部表以使用SSL安全性时，此参数控制是否启用SSL证书身份验证。
-        默认设置为<samp class="ph codeph">true</samp>，当Greenplum数据库与<samp class="ph codeph">gpfdist</samp>实用程序通信以从外部数据源读取数据或将数据写入外部数据源时，将启用SSL身份验证。
+<p class="p" dir="ltr">使用<samp class="ph codeph">hdbfdists</samp>协议定义inHybrid数据库外部表以使用SSL安全性时，此参数控制是否启用SSL证书身份验证。
+        默认设置为<samp class="ph codeph">true</samp>，当inHybrid数据库与<samp class="ph codeph">hdbfdist</samp>实用程序通信以从外部数据源读取数据或将数据写入外部数据源时，将启用SSL身份验证。
         </p>
 <div class="p">值<samp class="ph codeph">false</samp>将禁用SSL证书身份验证。
         忽略这些SSL异常：
-        <ul class="ul" id="verify_gpfdists_cert__ul_ygd_1lj_mdb">
-<li class="li">Greenpum数据库不信任<samp class="ph codeph">gpfdist</samp>使用的自签名SSL证书。
+        <ul class="ul" id="verify_hdbfdists_cert__ul_ygd_1lj_mdb">
+<li class="li">Greenpum数据库不信任<samp class="ph codeph">hdbfdist</samp>使用的自签名SSL证书。
             </li>
-<li class="li">SSL证书中包含的主机名与运行<samp class="ph codeph">gpfdist</samp>的主机名不匹配。
+<li class="li">SSL证书中包含的主机名与运行<samp class="ph codeph">hdbfdist</samp>的主机名不匹配。
             </li>
 </ul>
 </div>
-<div class="p">您可以将值设置为<samp class="ph codeph">false</samp>以在测试Greenplum数据库外部表与提供外部数据的<samp class="ph codeph">gpfdist</samp>实用程序之间的通信时禁用身份验证。
+<div class="p">您可以将值设置为<samp class="ph codeph">false</samp>以在测试inHybrid数据库外部表与提供外部数据的<samp class="ph codeph">hdbfdist</samp>实用程序之间的通信时禁用身份验证。
         <div class="note warning">
-<span class="warningtitle">Warning:</span> 通过不验证<samp class="ph codeph">gpfdists</samp> SSL证书禁用SSL证书身份验证会暴露安全风险。
+<span class="warningtitle">Warning:</span> 通过不验证<samp class="ph codeph">hdbfdists</samp> SSL证书禁用SSL证书身份验证会暴露安全风险。
           </div>
 </div>
-<p class="p">有关<samp class="ph codeph">gpfdists</samp>协议的信息，请参阅<a class="xref" href="../../admin_guide/external/g-gpfdists-protocol.html" title="gpfdists:// 协议是gpfdist:// 协议的一个安全版本。">gpfdists:// Protocol</a>。
-        有关运行<samp class="ph codeph">gpfdist</samp>实用程序的信息，请参阅<a class="xref" href="../../utility_guide/admin_utilities/gpfdist.html">gpfdist</a>。
+<p class="p">有关<samp class="ph codeph">hdbfdists</samp>协议的信息，请参阅<a class="xref" href="../../admin_guide/external/g-hdbfdists-protocol.html" title="hdbfdists:// 协议是hdbfdist:// 协议的一个安全版本。">hdbfdists:// Protocol</a>。
+        有关运行<samp class="ph codeph">hdbfdist</samp>实用程序的信息，请参阅<a class="xref" href="../../utility_guide/admin_utilities/hdbfdist.html">hdbfdist</a>。
         </p>
 <div class="tablenoborder">
-<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="verify_gpfdists_cert__table_ncx_n1h_ldb" rules="all" summary="">
+<table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="verify_hdbfdists_cert__table_ncx_n1h_ldb" rules="all" summary="">
 <thead align="left" class="thead">
 <tr class="row">
 <th class="entry" id="d62161e20361" valign="top" width="33.33333333333333%">取值范围</th>
