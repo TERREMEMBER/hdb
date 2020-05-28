@@ -22,7 +22,7 @@ resources:
     uri: "http://10.110.27.118/fanwenchang/hdb.git"
     private_token: FWZasNgPVNMzDZhVFB-w
     username: "majingwei"
-    password: "321edc--"
+    password: "432rfv--"
     no_ssl: true
     project_id: 15136
 

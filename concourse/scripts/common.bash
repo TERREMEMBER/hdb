@@ -19,11 +19,11 @@ function install_gpdb() {
 }
 
 function setup_configure_vars() {
-    # We need to add GPHOME paths for configure to check for packaged
+    # We need to add HDBHOME paths for configure to check for packaged
     # libraries (e.g. ZStandard).
-    source /usr/local/greenplum-db-devel/greenplum_path.sh
-    export LDFLAGS="-L${GPHOME}/lib"
-    export CPPFLAGS="-I${GPHOME}/include"
+    source /usr/local/greenplum-db-devel/inhybrid_path.sh
+    export LDFLAGS="-L${HDBHOME}/lib"
+    export CPPFLAGS="-I${HDBHOME}/include"
 }
 
 function configure() {
@@ -47,18 +47,18 @@ function install_and_configure_gpdb() {
 }
 
 function make_cluster() {
-  source /usr/local/greenplum-db-devel/greenplum_path.sh
+  source /usr/local/greenplum-db-devel/inhybrid_path.sh
   export BLDWRAP_POSTGRES_CONF_ADDONS=${BLDWRAP_POSTGRES_CONF_ADDONS}
   export STATEMENT_MEM=250MB
   pushd gpdb_src/gpAux/gpdemo
-  su gpadmin -c "source /usr/local/greenplum-db-devel/greenplum_path.sh; make create-demo-cluster"
+  su hdbadmin -c "source /usr/local/greenplum-db-devel/inhybrid_path.sh; make create-demo-cluster"
   popd
 }
 
 function run_test() {
   # is this particular python version giving us trouble?
   ln -s "$(pwd)/gpdb_src/gpAux/ext/rhel6_x86_64/python-2.7.12" /opt
-  su gpadmin -c "bash /opt/run_test.sh $(pwd)"
+  su hdbadmin -c "bash /opt/run_test.sh $(pwd)"
 }
 
 
@@ -98,7 +98,7 @@ function _install_python_requirements() {
     # modifies PYTHONHOME and PYTHONPATH
     #
     # XXX Patch up the vendored Python's RPATH so we can successfully run
-    # virtualenv. If we instead set LD_LIBRARY_PATH (as greenplum_path.sh
+    # virtualenv. If we instead set LD_LIBRARY_PATH (as inhybrid_path.sh
     # does), the system Python and the vendored Python will collide and
     # virtualenv will fail. This step requires patchelf.
     if which patchelf > /dev/null; then

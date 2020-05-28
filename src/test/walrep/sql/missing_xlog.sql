@@ -77,11 +77,11 @@ $$ language plpgsql;
 
 -- start_ignore
 -- let the mirror be marked as 'down' quickly
-\! gpconfig -c gp_fts_mark_mirror_down_grace_period -v 2
+\! hdbconfig -c gp_fts_mark_mirror_down_grace_period -v 2
 -- since setting wal_keep_segments to 0 is not safe for master/standby,
 -- we are not going to set wal_keep_segments to 0 now, to avoid flaky tests
-\! gpconfig -c wal_keep_segments -v 1
-\! gpstop -u
+\! hdbconfig -c wal_keep_segments -v 1
+\! hdbstop -u
 -- end_ignore
 -- stop a mirror
 select pg_ctl((select datadir from gp_segment_configuration c where c.role='m' and c.content=0), 'stop', NULL);
@@ -118,7 +118,7 @@ $$;
 checkpoint;
 
 -- start_ignore
-\! gprecoverseg -a
+\! hdbrecoverseg -a
 -- end_ignore
 -- check the view, we expect to see error, since the WAL files required
 -- by mirror are removed on the corresponding primary
@@ -136,7 +136,7 @@ select wait_for_mirror_down(0::smallint, 30);
 select gp_inject_fault('keep_log_seg', 'reset', dbid)
   from gp_segment_configuration where role='p' and content = 0;
 -- start_ignore
-\! gprecoverseg -aF
+\! hdbrecoverseg -aF
 -- end_ignore
 -- force the WAL segment to switch over from after previous pg_switch_xlog().
 create temp table dummy2 (id int4) distributed randomly;
@@ -155,7 +155,7 @@ select count(*) = 2 as mirror_up from gp_segment_configuration
 select wait_for_mirror_sync(0::smallint);
 select role, preferred_role, content, mode, status from gp_segment_configuration;
 -- start_ignore
-\! gpconfig -c gp_fts_mark_mirror_down_grace_period -v 30
-\! gpconfig -r wal_keep_segments
-\! gpstop -u
+\! hdbconfig -c gp_fts_mark_mirror_down_grace_period -v 30
+\! hdbconfig -r wal_keep_segments
+\! hdbstop -u
 -- end_ignore
