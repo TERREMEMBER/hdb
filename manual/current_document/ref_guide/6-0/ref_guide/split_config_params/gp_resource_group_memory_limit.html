@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -24,7 +24,7 @@
 <div class="note note">
 <span class="notetitle">Note:</span> 仅当资源管理设置为资源组时，<samp class="ph codeph">gp_resource_group_memory_limit</samp>服务器配置参数才会生效。
         </div>
-<p class="p">标识要分配给每个Greenplum数据库segment节点上的资源组的系统内存资源的最大百分比。
+<p class="p">标识要分配给每个inHybrid数据库segment节点上的资源组的系统内存资源的最大百分比。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resource_group_memory_limit__gp_resource_group_memory_limit_table" rules="all" summary="">
@@ -48,12 +48,12 @@
 </div>
 <div class="note note">
 <span class="notetitle">Note:</span> 当基于资源组的资源管理处于活动状态时，分配给segment主机的内存将由活动primary segment平均共享。
-        当segment为primary时，Greenplum数据库会将内存分配给primary segment。
+        当segment为primary时，inHybrid数据库会将内存分配给primary segment。
         即使在故障转移情况下，primary segment的初始内存分配也不会更改。
         这可能导致segment主机使用比<samp class="ph codeph">gp_resource_group_memory_limit</samp>设置允许的更多内存。
-        <p class="p">例如，假设您的Greenplum数据库群集使用默认的<samp class="ph codeph">gp_resource_group_memory_limit</samp>为<samp class="ph codeph">0.7</samp>，
+        <p class="p">例如，假设您的inHybrid数据库群集使用默认的<samp class="ph codeph">gp_resource_group_memory_limit</samp>为<samp class="ph codeph">0.7</samp>，
           而名为<samp class="ph codeph">seghost1</samp>的segment主机有4个primary和4个mirror。
-          Greenplum数据库在<samp class="ph codeph">seghost1</samp>上为每个primary segment分配整个系统内存的<samp class="ph codeph">(0.7 / 4 = 0.175%)</samp>。
+          inHybrid数据库在<samp class="ph codeph">seghost1</samp>上为每个primary segment分配整个系统内存的<samp class="ph codeph">(0.7 / 4 = 0.175%)</samp>。
           如果发生故障转移并且<samp class="ph codeph">seghost1</samp>上的两个mirror故障转移成为primary，
           则原始4个primary中的每一个保留其<samp class="ph codeph">0.175</samp>的存储器分配，
           并且两个新的primary segment分别被分配系统内存的<samp class="ph codeph">(0.7 / 6 = 0.116%)</samp>。

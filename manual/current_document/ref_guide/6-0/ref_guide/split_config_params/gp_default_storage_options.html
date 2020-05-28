@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -28,7 +28,7 @@
 <div class="note note">
 <span class="notetitle">Note:</span> 您可以使用<samp class="ph codeph">appendoptimized=<var class="keyword varname">value</var></samp>语法指定追加优化的表存储类型。
               <samp class="ph codeph">appendoptimized</samp>是<samp class="ph codeph">appendonly</samp>传统存储选项的精简别名。
-              Greenplum数据库在catalog中存储<samp class="ph codeph">appendonly</samp>，并在列出追加优化表的存储选项时显示相同内容。
+              inHybrid数据库在catalog中存储<samp class="ph codeph">appendonly</samp>，并在列出追加优化表的存储选项时显示相同内容。
               </div>
 </li>
 <li class="li">
@@ -64,7 +64,7 @@
           </li>
 <li class="li">使用<samp class="ph codeph">ALTER DATABASE...SET</samp>命令为数据库设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
           </li>
-<li class="li">使用<samp class="ph codeph">gpconfig</samp>工具为Greenplum数据库系统设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
+<li class="li">使用<samp class="ph codeph">hdbconfig</samp>工具为inHybrid数据库系统设置的<samp class="ph codeph">gp_default_storage_options</samp>的值
           </li>
 </ol>
 <p class="p">参数值不是累积的。
@@ -77,13 +77,13 @@
 <p class="p">使用面向列的表和RLE压缩在<samp class="ph codeph">mytest</samp>数据库中创建追加优化的表。
         用户需要在<samp class="ph codeph">WITH</samp>子句中仅指定<samp class="ph codeph">appendoptimized=TRUE</samp>。
         </p>
-<div class="p">此示例<samp class="ph codeph">gpconfig</samp>工具命令设置Greenplum数据库系统的默认存储选项。
+<div class="p">此示例<samp class="ph codeph">hdbconfig</samp>工具命令设置inHybrid数据库系统的默认存储选项。
         如果为多个表存储选项设置默认值，则该值必须用单引号括起来。
-        <pre class="pre codeblock">gpconfig -c 'gp_default_storage_options' -v 'appendoptimized=true, orientation=column'</pre>
+        <pre class="pre codeblock">hdbconfig -c 'gp_default_storage_options' -v 'appendoptimized=true, orientation=column'</pre>
 </div>
-<div class="p">此示例<samp class="ph codeph">gpconfig</samp>工具命令显示参数的值。
-        参数值必须在Greenplum数据库主数据库和所有segment之间保持一致。
-        <pre class="pre codeblock">gpconfig -s 'gp_default_storage_options'</pre>
+<div class="p">此示例<samp class="ph codeph">hdbconfig</samp>工具命令显示参数的值。
+        参数值必须在inHybrid数据库主数据库和所有segment之间保持一致。
+        <pre class="pre codeblock">hdbconfig -s 'gp_default_storage_options'</pre>
 </div>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_default_storage_options__gp_default_storage_option_table" rules="all" summary="">
@@ -135,11 +135,11 @@
 </div>
 <div class="note note">
 <span class="notetitle">Note:</span>
-<sup class="ph sup">1</sup>当参数使用<samp class="ph codeph">gpconfig</samp>工具设置在系统级时，为集合分类。
+<sup class="ph sup">1</sup>当参数使用<samp class="ph codeph">hdbconfig</samp>工具设置在系统级时，为集合分类。
         </div>
 <div class="note note">
 <span class="notetitle">Note:</span>
-<sup class="ph sup">2</sup>QuickLZ 压缩仅在Pivotal Greenplum数据库的商业版本中可用。
+<sup class="ph sup">2</sup>QuickLZ 压缩仅在inspur inHybrid数据库的商业版本中可用。
         </div>
 </div>
 </div>

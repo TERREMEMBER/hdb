@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -24,16 +24,16 @@
 <div class="note note">
 <span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">runaway_detector_activation_percent</samp>服务器配置参数才会生效。
         </div>
-<p class="p">设置触发查询终止的Greenplum数据库vmem内存的百分比。
-        如果用于Greenplum数据库segment的vmem内存百分比超过指定值，
-        Greenplum数据库将根据内存使用情况终止查询，从占用最大内存量的查询开始。
+<p class="p">设置触发查询终止的inHybrid数据库vmem内存的百分比。
+        如果用于inHybrid数据库segment的vmem内存百分比超过指定值，
+        inHybrid数据库将根据内存使用情况终止查询，从占用最大内存量的查询开始。
         查询将终止，直到使用的vmem百分比低于指定的百分比。
         </p>
-<p class="p">使用服务器配置参数<a class="xref" href="guc-list.html#gp_vmem_protect_limit">gp_vmem_protect_limit</a>指定活动Greenplum数据库segment实例的最大vmem值。
+<p class="p">使用服务器配置参数<a class="xref" href="guc-list.html#gp_vmem_protect_limit">gp_vmem_protect_limit</a>指定活动inHybrid数据库segment实例的最大vmem值。
         </p>
 <p class="p">例如，如果vmem内存设置为10GB，
         并且<samp class="ph codeph">runaway_detector_activation_percent</samp>的值为90（90％），
-        则当使用的vmem内存超过9GB时，Greenplum数据库将开始终止查询。
+        则当使用的vmem内存超过9GB时，inHybrid数据库将开始终止查询。
         </p>
 <p class="p">值0禁用基于所使用的vmem的百分比自动终止查询。</p>
 <div class="tablenoborder">

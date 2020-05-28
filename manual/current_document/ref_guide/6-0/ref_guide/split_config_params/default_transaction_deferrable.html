@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -23,7 +23,7 @@
 <div class="body">
 <div class="note note">
 <span class="notetitle">Note:</span> 只有只读和可串行化事务才可以被推迟。
-        Greenplum数据库不支持<samp class="ph codeph">SERIALIZABLE</samp>事务隔离级别，因此将<samp class="ph codeph">default_transaction_deferrable</samp>设置为on对Greenplum数据库没有影响。
+        inHybrid数据库不支持<samp class="ph codeph">SERIALIZABLE</samp>事务隔离级别，因此将<samp class="ph codeph">default_transaction_deferrable</samp>设置为on对inHybrid数据库没有影响。
         </div>
 <p class="p">在可序列化隔离级别运行时，可延迟的只读SQL事务可能会在允许继续之前被延迟。
         但是，一旦它开始执行，它不会产生确保可串行化所需的任何开销; 因此，序列化代码没有理由强制它因并发更新而中止，所以此选项适用于长时间运行的只读事务。</p>

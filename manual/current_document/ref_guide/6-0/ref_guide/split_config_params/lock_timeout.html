@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -24,15 +24,15 @@
 <p class="p">尝试获取表，索引，行或其他数据库对象的锁时，中止任何等待时间超过指定毫秒数的语句。
         时间限制在每次锁定获取尝试是独立的。
         该限制既适用于显式锁定请求（例如<samp class="ph codeph">LOCK TABLE</samp>，也适用于没有<samp class="ph codeph">NOWAIT</samp>的<samp class="ph codeph">SELECT FOR UPDATE</samp>），也适用于隐式获取的锁定。
-        如果<samp class="ph codeph">log_min_error_statement</samp>设置为<samp class="ph codeph">ERROR</samp>或更低，则Greenplum数据库会记录超时的语句。
+        如果<samp class="ph codeph">log_min_error_statement</samp>设置为<samp class="ph codeph">ERROR</samp>或更低，则inHybrid数据库会记录超时的语句。
         值为零（默认值）将关闭此锁定等待监视。
         </p>
 <p class="p">与<samp class="ph codeph"><a class="xref" href="guc-list.html#statement_timeout">statement_timeout</a></samp>不同，此超时只能在等待锁定时发生。
         请注意，如果<samp class="ph codeph">statement_timeout</samp>非零，
         则将<samp class="ph codeph">lock_timeout</samp>设置为相同或更大的值是没有意义的，因为语句超时始终会先触发。
         </p>
-<p class="p">Greenplum数据库使用<samp class="ph codeph"><a class="xref" href="guc-list.html#deadlock_timeout">deadlock_timeout</a></samp>和<samp class="ph codeph"><a class="xref" href="guc-list.html#gp_global_deadlock_detector_period">gp_global_deadlock_detector_period</a></samp>来触发本地和全局死锁检测。
-        请注意，如果打开<samp class="ph codeph">lock_timeout</samp>并将其设置为小于这些死锁检测超时的值，则Greenplum数据库将在该会话中触发死锁检查之前中止语句。
+<p class="p">inHybrid数据库使用<samp class="ph codeph"><a class="xref" href="guc-list.html#deadlock_timeout">deadlock_timeout</a></samp>和<samp class="ph codeph"><a class="xref" href="guc-list.html#gp_global_deadlock_detector_period">gp_global_deadlock_detector_period</a></samp>来触发本地和全局死锁检测。
+        请注意，如果打开<samp class="ph codeph">lock_timeout</samp>并将其设置为小于这些死锁检测超时的值，则inHybrid数据库将在该会话中触发死锁检查之前中止语句。
         </p>
 <div class="note note">
 <span class="notetitle">Note:</span> 建议不要在<samp class="ph codeph">postgresql.conf</samp>中设置<samp class="ph codeph">lock_timeout</samp>，因为它会影响所有会话

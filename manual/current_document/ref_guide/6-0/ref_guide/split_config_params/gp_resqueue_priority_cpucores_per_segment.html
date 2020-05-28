@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -25,13 +25,13 @@
 <span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">gp_resqueue_priority_cpucores_per_segment</samp>服务器配置参数才会生效。
         </div>
 <p class="p">指定每个segment实例分配的CPU单元数。
-        例如，如果Greenplum数据库群集具有配置有四个segment的10核心segment主机，请将segment实例的值设置为2.5。
+        例如，如果inHybrid数据库群集具有配置有四个segment的10核心segment主机，请将segment实例的值设置为2.5。
         对于master实例，值为10。
         master主机通常只运行master实例，因此主机的值应反映所有可用CPU内核的使用情况。
         </p>
 <p class="p">设置不正确可能导致CPU使用率不足或查询优先级不按设计工作。
         </p>
-<p class="p">Greenplum数据计算设备V2的默认值为segment 4，master 25。
+<p class="p">inHybrid数据计算设备V2的默认值为segment 4，master 25。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resqueue_priority_cpucores_per_segment__gp_resqueue_priority_cpucores_per_segment_table" rules="all" summary="">

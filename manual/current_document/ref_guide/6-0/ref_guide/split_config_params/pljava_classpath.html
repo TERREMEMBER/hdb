@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -22,8 +22,8 @@
 <h2 class="title topictitle2">pljava_classpath</h2>
 <div class="body">
 <p class="p">包含jar文件或目录的冒号（<samp class="ph codeph">:</samp>)分隔列表，其中包含PL/Java函数所需的jar文件。
-        必须指定jar文件或目录的完整路径，但<samp class="ph codeph">$GPHOME/lib/postgresql/java</samp>目录中的jar文件的路径可以省略。
-        jar文件必须安装在所有Greenplum主机上的相同位置，并且可由<samp class="ph codeph">gpadmin</samp>用户读取。
+        必须指定jar文件或目录的完整路径，但<samp class="ph codeph">$HDBHOME/lib/postgresql/java</samp>目录中的jar文件的路径可以省略。
+        jar文件必须安装在所有inHybrid主机上的相同位置，并且可由<samp class="ph codeph">hdbadmin</samp>用户读取。
         </p>
 <p class="p"><samp class="ph codeph">pljava_classpath</samp>参数用于在每个用户会话开始时组装PL/Java类路径。
         会话启动后添加的Jar文件不可用于该会话。
@@ -32,7 +32,7 @@
         指定目录时，该目录包含的任何jar文件都将添加到PL/Java类路径中。
         搜索不会下降到指定目录的子目录中。
         如果jar文件的名称包含在没有路径的<samp class="ph codeph">pljava_classpath</samp>中，
-        则jar文件必须位于<samp class="ph codeph">$GPHOME/lib/postgresql/java</samp>目录中。
+        则jar文件必须位于<samp class="ph codeph">$HDBHOME/lib/postgresql/java</samp>目录中。
         </p>
 <div class="note note">
 <span class="notetitle">Note:</span> 如果要搜索的目录很多或者有大量的jar文件，性能会受到影响。</div>
@@ -40,7 +40,7 @@
         则设置<samp class="ph codeph">pljava_classpath</samp>参数需要超级用户权限。
         当没有超级用户权限的用户执行代码时，在SQL代码中设置类路径将失败。
         必须先由超级用户或<samp class="ph codeph">postgresql.conf</samp>文件设置<samp class="ph codeph">pljava_classpath</samp>参数。
-        更改<samp class="ph codeph">postgresql.conf</samp>文件中的类路径需要重新加载（<samp class="ph codeph">gpstop -u</samp>）。
+        更改<samp class="ph codeph">postgresql.conf</samp>文件中的类路径需要重新加载（<samp class="ph codeph">hdbstop -u</samp>）。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="pljava_classpath__pljava_classpath_table" rules="all" summary="">

@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -21,13 +21,13 @@
 <div class="topic nested1" id="gp_interconnect_type">
 <h2 class="title topictitle2">gp_interconnect_type</h2>
 <div class="body">
-<p class="p">设置用于Greenplum数据库interconnect流量的网络协议。
+<p class="p">设置用于inHybrid数据库interconnect流量的网络协议。
         UDPIFC指定使用UDP和流量控制来实现interconnect流量，并且是唯一支持的值。
         </p>
 <p class="p">UDPIFC（默认值）指定使用UDP和流量控制来实现interconnect流量。
         使用<a class="xref" href="guc-list.html#gp_interconnect_fc_method">gp_interconnect_fc_method</a>指定interconnect流控制方法。
         </p>
-<p class="p">使用TCP作为interconnect协议，Greenplum数据库的上限为1000个segment实例 - 如果查询工作负载涉及复杂的多切片查询时，上限小于该值。
+<p class="p">使用TCP作为interconnect协议，inHybrid数据库的上限为1000个segment实例 - 如果查询工作负载涉及复杂的多切片查询时，上限小于该值。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_interconnect_type__table_jn5_frn_xv" rules="all" summary="">

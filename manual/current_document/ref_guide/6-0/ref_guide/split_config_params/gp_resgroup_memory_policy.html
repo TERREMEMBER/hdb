@@ -8,7 +8,7 @@
   <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
   <!-- Use title if it's in the page YAML frontmatter -->
   <title>
-    Greenplum Database Docs
+    inHybrid Database Docs
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
@@ -25,9 +25,9 @@
 <span class="notetitle">Note:</span> 仅当资源管理设置为资源组时，<samp class="ph codeph">gp_resgroup_memory_policy</samp>服务器配置参数才会生效。
         </div>
 <p class="p">由资源组用于管理查询运算符的内存分配。</p>
-<p class="p">设置为<samp class="ph codeph">auto</samp>时，Greenplum数据库使用资源组内存限制在查询运算符之间分配内存，为非内存密集型运算符分配固定大小的内存，其余内存为内存密集型运算符。
+<p class="p">设置为<samp class="ph codeph">auto</samp>时，inHybrid数据库使用资源组内存限制在查询运算符之间分配内存，为非内存密集型运算符分配固定大小的内存，其余内存为内存密集型运算符。
         </p>
-<p class="p">当您指定<samp class="ph codeph">eager_free</samp>时，Greenplum数据库通过将已完成处理的运算符释放的内存重新分配给稍后查询阶段的运算符，从而更好地在运算符之间分配内存。
+<p class="p">当您指定<samp class="ph codeph">eager_free</samp>时，inHybrid数据库通过将已完成处理的运算符释放的内存重新分配给稍后查询阶段的运算符，从而更好地在运算符之间分配内存。
         </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resgroup_memory_policy__gp_resgroup_memory_policy_table" rules="all" summary="">
