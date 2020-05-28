@@ -275,9 +275,9 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 
 <p>您可以基于每个服务器，每个inHybrid用户配置对外部数据存储的访问。</p>
 
-<p>您可以通过在PXF服务器配置目录<code>$PXF_CONF/servers/&lt;server_name&gt;/</code>中提供<code>&lt;greenplum_user_name&gt;-user.xml</code>用户配置文件来为特定的inHybrid数据库用户配置外部数据存储用户访问凭据和属性。例如，您在<code>$PXF_CONF/servers/&lt;server_name&gt;/bill-user.xml</code>文件中为名为<code>bill</code>的inHybrid数据库用户指定属性。您可以在PXF服务器配置中配置零个，一个或多个用户。</p>
+<p>您可以通过在PXF服务器配置目录<code>$PXF_CONF/servers/&lt;server_name&gt;/</code>中提供<code>&lt;inhybrid_user_name&gt;-user.xml</code>用户配置文件来为特定的inHybrid数据库用户配置外部数据存储用户访问凭据和属性。例如，您在<code>$PXF_CONF/servers/&lt;server_name&gt;/bill-user.xml</code>文件中为名为<code>bill</code>的inHybrid数据库用户指定属性。您可以在PXF服务器配置中配置零个，一个或多个用户。</p>
 
-<p>您在用户配置文件中指定的属性是特定于连接器的。您可以在<code>&lt;greenplum_user_name&gt;-user.xml</code>配置文件中指定PXF连接器服务器支持的任何配置属性。</p>
+<p>您在用户配置文件中指定的属性是特定于连接器的。您可以在<code>&lt;inhybrid_user_name&gt;-user.xml</code>配置文件中指定PXF连接器服务器支持的任何配置属性。</p>
 
 <p>例如，假设您已经在名为<code>pgsrv1</code>的PXF JDBC服务器配置中配置了对PostgreSQL数据库的访问。要允许名为<code>bill</code>的inHybrid数据库用户以名为<code>pguser1</code>的PostgreSQL用户(密码为<code>changeme</code>)访问该数据库，请使用以下命令创建用户包含如下属性的配置文件<code>$PXF_CONF/servers/pgsrv1/bill-user.xml</code>：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;configuration&gt;</span>
@@ -311,22 +311,22 @@ gs-site.xml    hive-site.xml   minio-site.xml   yarn-site.xml
 <li>标识inHybrid数据库用户的名称。</li>
 <li>标识要为其配置用户访问权限的PXF服务器定义。</li>
 <li>标识要为用户配置的每个属性的名称和值。</li>
-<li><p>创建/编辑文件<code>$PXF_CONF/servers/&lt;server_name&gt;/&lt;greenplum_user_name&gt;-user.xml</code>，并添加外部配置块：</p>
+<li><p>创建/编辑文件<code>$PXF_CONF/servers/&lt;server_name&gt;/&lt;inhybrid_user_name&gt;-user.xml</code>，并添加外部配置块：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;configuration&gt;</span>
 <span class="nt">&lt;/configuration&gt;</span>
 </code></pre></li>
-<li><p>将在步骤3中标识的每个属性/值对添加到<code>&lt;greenplum_user_name&gt;-user.xml</code>文件中的配置块中。</p></li>
+<li><p>将在步骤3中标识的每个属性/值对添加到<code>&lt;inhybrid_user_name&gt;-user.xml</code>文件中的配置块中。</p></li>
 <li><p>如果要将PXF用户配置添加到以前配置的PXF服务器定义中，请将该用户配置同步到inHybrid数据库集群。</p></li>
 </ol>
 
 <h2 id="关于配置属性优先级"><a id="override"></a>关于配置属性优先级</h2>
 
-<p>PXF服务器配置可能包括用于用户访问凭据的默认设置以及用于访问外部数据存储的其他属性。一些PXF连接器(例如S3和JDBC连接器)允许您通过<code>CREATE EXTERNAL TABLE</code>命令<code>LOCATION</code>子句中的自定义选项直接指定某些服务器属性。<code>&lt;greenplum_user_name&gt;-user.xml</code>文件为inHybrid数据库用户指定了外部数据存储的属性设置。</p>
+<p>PXF服务器配置可能包括用于用户访问凭据的默认设置以及用于访问外部数据存储的其他属性。一些PXF连接器(例如S3和JDBC连接器)允许您通过<code>CREATE EXTERNAL TABLE</code>命令<code>LOCATION</code>子句中的自定义选项直接指定某些服务器属性。<code>&lt;inhybrid_user_name&gt;-user.xml</code>文件为inHybrid数据库用户指定了外部数据存储的属性设置。</p>
 
 <p>对于给定的inHybrid数据库用户，PXF使用以下优先级规则(从高到低)获取该用户的配置属性设置：</p>
 
 <ol>
-<li>您在<code>&lt;server_name&gt;/&lt;greenplum_user_name&gt;-user.xml</code>中配置的属性将覆盖其他位置的属性设置。</li>
+<li>您在<code>&lt;server_name&gt;/&lt;inhybrid_user_name&gt;-user.xml</code>中配置的属性将覆盖其他位置的属性设置。</li>
 <li>通过<code>CREATE EXTERNAL TABLE</code>命令的<code>LOCATION</code>子句中的自定义选项指定的属性将覆盖PXF服务器配置中该属性的任何设置。</li>
 <li>您在PXF服务器定义<code>&lt;server_name&gt;</code>中配置的属性标识默认属性值。</li>
 </ol>

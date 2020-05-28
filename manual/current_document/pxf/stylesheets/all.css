@@ -1445,7 +1445,7 @@ category: basics
     list-style-type: disk;
     margin-left: -1em; }
     .quick-links > ul:before {
-      content: "In this topic:";
+      content: "主题:";
       display: block;
       padding-bottom: 0.25em; }
   .quick-links ul ul {

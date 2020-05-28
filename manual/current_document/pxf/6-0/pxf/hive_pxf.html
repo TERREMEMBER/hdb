@@ -815,7 +815,7 @@ Time: 425.416 ms
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">TABLE</span> <span class="n">table_complextypes_ORC</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">table_complextypes</span><span class="p">;</span>
 </code></pre>
 
-<p>A copy of the sample data set is now stored in ORC format in <code>table_complextypes_ORC</code>.</p></li>
+<p>一份以 ORC 格式存储的样本数据的拷贝现已存储到 <code>table_complextypes_ORC</code>中.</p></li>
 <li><p>在 <code>table_complextypes_ORC</code> 上执行查询以验证数据是否成功加载:</p>
 <pre class="highlight sql"><code><span class="n">hive</span><span class="o">&gt;</span> <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">table_complextypes_ORC</span><span class="p">;</span>
 </code></pre>

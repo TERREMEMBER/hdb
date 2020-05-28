@@ -224,20 +224,20 @@ root@kdc-server<span class="err">$</span>
 <li><p>列出principals:</p>
 <pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>kadmin.local -q <span class="s2">"listprincs"</span>
 </code></pre></li>
-<li><p>将每个PXF服务主体的密钥表文件复制到其各自的segment主机。 例如，以下命令在<code>PXF_CONF=/usr/local/greenplum-pxf</code>时，将在步骤4中生成的每个主体复制到segment主机上的PXF默认keytab目录中</p>
-<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host1.service.keytab host1.example.com:/usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host2.service.keytab host2.example.com:/usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host3.service.keytab host3.example.com:/usr/local/greenplum-pxf/keytabs/pxf.service.keytab
+<li><p>将每个PXF服务主体的密钥表文件复制到其各自的segment主机。 例如，以下命令在<code>PXF_CONF=/usr/local/inhybrid-pxf</code>时，将在步骤4中生成的每个主体复制到segment主机上的PXF默认keytab目录中</p>
+<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host1.service.keytab host1.example.com:/usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host2.service.keytab host2.example.com:/usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>scp /etc/security/keytabs/pxf-host3.service.keytab host3.example.com:/usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
 </code></pre>
 
-<p>Note the file system location of the keytab file on each PXF host; you will need this information for a later configuration step.</p></li>
+<p>注意每个 PXF 节点上 keytab 文件的位置，在稍后配置环节你将会用到这些信息.</p></li>
 <li><p>更改<code>pxf.service.keytab</code>文件的属主和权限。 这些文件必须仅由<code>hdbadmin</code>用户拥有并可读。 例如:</p>
-<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>ssh host1.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host1.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host2.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host2.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host3.example.com chown hdbadmin:hdbadmin /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
-<span class="gp">root@kdc-server$ </span>ssh host3.example.com chmod 400 /usr/local/greenplum-pxf/keytabs/pxf.service.keytab
+<pre class="highlight shell"><code><span class="gp">root@kdc-server$ </span>ssh host1.example.com chown hdbadmin:hdbadmin /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host1.example.com chmod 400 /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host2.example.com chown hdbadmin:hdbadmin /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host2.example.com chmod 400 /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host3.example.com chown hdbadmin:hdbadmin /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
+<span class="gp">root@kdc-server$ </span>ssh host3.example.com chmod 400 /usr/local/inhybrid-pxf/keytabs/pxf.service.keytab
 </code></pre></li>
 </ol>
 
@@ -251,15 +251,15 @@ root@kdc-server<span class="err">$</span>
 <pre class="highlight shell"><code><span class="gp">root@seghost$ </span>rpm -qa | grep krb
 <span class="gp">root@seghost$ </span>yum install krb5-libs krb5-workstation
 </code></pre></li>
-<li><p>打开 <code>pxf-env.sh</code>用户配置文件。例如使用vi命令打开<code>PXF_CONF=/usr/local/greenplum-pxf</code>:</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@seghost$ </span>vi /usr/local/greenplum-pxf/conf/pxf-env.sh
+<li><p>打开 <code>pxf-env.sh</code>用户配置文件。例如使用vi命令打开<code>PXF_CONF=/usr/local/inhybrid-pxf</code>:</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@seghost$ </span>vi /usr/local/inhybrid-pxf/conf/pxf-env.sh
 </code></pre></li>
 <li><p>更新<code>PXF_KEYTAB</code> 和 <code>PXF_PRINCIPAL</code> 配置. 指定keytab 文件 和 Kerberos principal的位置。这些设置的默认值如下所示:</p>
 <pre class="highlight shell"><code><span class="nb">export </span><span class="nv">PXF_KEYTAB</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PXF_CONF</span><span class="k">}</span><span class="s2">/keytabs/pxf.service.keytab"</span>
 <span class="nb">export </span><span class="nv">PXF_PRINCIPAL</span><span class="o">=</span><span class="s2">"hdbadmin/_HOST@EXAMPLE.COM"</span>
 </code></pre>
 
-<p>PXF automatically replaces <code>_HOST</code> with the FQDN of the segment host.</p></li>
+<p>PXF 会自动的将 <code>_HOST</code> 替换成 segment 节点的 FQDN.</p></li>
 <li><p>在segment上重启PXF服务:</p>
 <pre class="highlight shell"><code><span class="gp">hdbadmin@seghost$ </span><span class="nv">$HDBHOME</span>/pxf/bin/pxf restart
 </code></pre></li>

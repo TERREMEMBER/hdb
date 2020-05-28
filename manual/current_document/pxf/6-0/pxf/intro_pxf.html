@@ -188,7 +188,7 @@
 
 <h2 id="-架构概述"><a id="arch"></a> 架构概述</h2>
 
-<p>HDB集群包含一个master节点(master node)和多个segment主机(segment host)。HDB segment主机上的PXF客户端进程为对外部表进行查询的每个segment instance分配工作线程。多个segment主机的PXF代理与外部数据存储并行通信。</p>
+<p>HDB集群包含一个master节点(master node)和多个segment主机(segment host)。HDB segment主机上的PXF客户端进程为对外部表进行查询的每个segment 实例分配工作线程。多个segment主机的PXF代理与外部数据存储并行通信。</p>
 
 <h2 id="-连接器(connector),服务器(servers)和配置文件(profiles)"><a id="more"></a> 连接器(Connector),服务器(Servers)和配置文件(Profiles)</h2>
 
@@ -233,11 +233,11 @@
 </thead><tbody>
 <tr>
 <td>&lt;path&#8209;to&#8209;data&gt;</td>
-<td>目录，文件名，通配符模式，表名等。<path-to-data>的语法取决于外部数据源</td>
+<td>目录，文件名，通配符模式，表名等<path-to-data>的语法取决于外部数据源</td>
 </tr>
 <tr>
 <td>PROFILE=&lt;profile_name&gt;</td>
-<td>PXF用于访问数据的配置文件。 PXF支持<a href="access_hdfs.html">Hadoop services</a>, <a href="access_objstore.html">object stores</a>, and <a href="jdbc_pxf.html">other SQL databases</a>.</td>
+<td>PXF用于访问数据的配置文件。 PXF支持<a href="access_hdfs.html">Hadoop services</a>, <a href="access_objstore.html">object stores</a>, 和 <a href="jdbc_pxf.html">其他 SQL 数据库</a>.</td>
 </tr>
 <tr>
 <td>SERVER=&lt;server_name&gt;</td>

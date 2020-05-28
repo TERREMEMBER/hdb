@@ -241,8 +241,8 @@ under the License.
 <li><p>登录HDB的master节点</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
-<li><p>运行<code>pxf cluster init</code>命令会在master,standby节点和所有的segment节点主机上初始化PXF服务。如下命令指定<code>/usr/local/greenplum-pxf</code>作为pxf初始化的用户配置目录</p>
-<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">PXF_CONF</span><span class="o">=</span>/usr/local/greenplum-pxf <span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster init
+<li><p>运行<code>pxf cluster init</code>命令会在master,standby节点和所有的segment节点主机上初始化PXF服务。如下命令指定<code>/usr/local/inhybrid-pxf</code>作为pxf初始化的用户配置目录</p>
+<pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span><span class="nv">PXF_CONF</span><span class="o">=</span>/usr/local/inhybrid-pxf <span class="nv">$HDBHOME</span>/pxf/bin/pxf cluster init
 </code></pre>
 
 <p><code>init</code>命令创建了pxf网页应用和pxf内部配置。init命令也创建了<code>$PXF_CONF</code>用户配置目录(如果目录不存在)并使用用户可自定义的配置模板填充<code>conf</code>和<code>templates</code>目录。如果<code>$PXF_CONF</code>存在，则PXF仅更新<code>templates</code>目录。</p>

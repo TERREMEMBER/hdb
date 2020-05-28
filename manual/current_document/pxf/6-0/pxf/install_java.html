@@ -193,10 +193,10 @@
 <p>执行以下过程，在master,standby和各个segment上安装Java，可以使用<code>hdbssh</code>命令在多个主机上执行。</p>
 
 <ol>
-<li><p>登录greenplum的master节点</p>
+<li><p>登录inhybrid的master节点</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
-<li><p>创建一个text文件列出你的gp集群的standby节点和segment节点，每行一个主机名。例如，一个叫做<code>seghostfile</code>的文件</p>
+<li><p>创建一个text文件列出你的hdb集群的standby节点和segment节点，每行一个主机名。例如，一个叫做<code>seghostfile</code>的文件</p>
 <pre class="highlight plaintext"><code>mstandby
 seghost1
 seghost2
