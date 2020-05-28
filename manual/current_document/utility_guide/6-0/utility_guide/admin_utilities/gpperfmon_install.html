@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 <head>
@@ -473,32 +474,32 @@
         选项运行时，该工具还会运行启用性能监视器数据收集代理所需的以下附加任务：</p>
 
       <ol class="ol">
-        <li class="li" id="topic1__ou143278">在inHybrid数据库中创建<samp class="ph codeph">gpmon</samp>超级用户角色。 
-          数据收集代理需要连接到数据库并写入数据。<samp class="ph codeph">gpmon</samp>超级用户角色默认
+        <li class="li" id="topic1__ou143278">在inHybrid数据库中创建<samp class="ph codeph">hdbmon</samp>超级用户角色。 
+          数据收集代理需要连接到数据库并写入数据。<samp class="ph codeph">hdbmon</samp>超级用户角色默认
           使用MD5加密口令认证。 使用<samp class="ph codeph">--password</samp>选项来设置<samp class="ph codeph">gpmon</samp>
           超级用户的口令。</li>
 
         <li class="li" id="topic1__ou143437">更新<samp class="ph codeph">$MASTER_DATA_DIRECTORY/pg_hba.conf</samp>文件。
           该工具将这些行添加到基于主机的认证文件（<samp class="ph codeph">pg_hba.conf</samp>）中：
-          <pre class="pre codeblock">local      gpperfmon     gpmon                 md5
-            host       all           gpmon  127.0.0.1/28   md5
-            host       all           gpmon  ::1/128        md5</pre>
+          <pre class="pre codeblock">local      gpperfmon     hdbmon                 md5
+            host       all           hdbmon  127.0.0.1/28   md5
+            host       all           hdbmon  ::1/128        md5</pre>
 
-          <p class="p">第二和第三行的<samp class="ph codeph">host</samp>项，让<samp class="ph codeph">gpmon</samp>能访问
+          <p class="p">第二和第三行的<samp class="ph codeph">host</samp>项，让<samp class="ph codeph">hdbmon</samp>能访问
             所有inHybrid数据库。</p>
 
           <div class="note note">
 <span class="notetitle">Note:</span> 可能有必要在运行<samp class="ph codeph">hdbperfmon_install</samp>工具以限制
-            <samp class="ph codeph">gpmon</samp>角色访问数据库或更改身份验证方法之后再编辑
+            <samp class="ph codeph">hdbmon</samp>角色访问数据库或更改身份验证方法之后再编辑
             <samp class="ph codeph">pg_hba.conf</samp>文件中的行。运行<samp class="ph codeph">hdbstop -u</samp>重新加载
             inHybrid数据库的pg_hba.conf文件。<ul class="ul" id="topic1__ul_ffm_ysw_k5">
-              <li class="li">要将<samp class="ph codeph">gpmon</samp>的访问限制为仅访问<samp class="ph codeph">gpperfmon</samp>数据库，
+              <li class="li">要将<samp class="ph codeph">hdbmon</samp>的访问限制为仅访问<samp class="ph codeph">gpperfmon</samp>数据库，
                 编辑<samp class="ph codeph">pg_hba.conf</samp>文件中<samp class="ph codeph">host</samp>项。对于
-                <samp class="ph codeph">gpmon</samp>用户，将第二个字段从<samp class="ph codeph">all</samp>更改为
+                <samp class="ph codeph">hdbmon</samp>用户，将第二个字段从<samp class="ph codeph">all</samp>更改为
                 <samp class="ph codeph">gpperfmon</samp>：
-                <pre class="pre codeblock">local      gpperfmon     gpmon                  md5
-                  host       <strong class="ph b">gpperfmon</strong>     gpmon    127.0.0.1/28  md5
-                  host       <strong class="ph b">gpperfmon</strong>     gpmon    ::1/128       md5</pre>
+                <pre class="pre codeblock">local      gpperfmon     hdbmon                  md5
+                  host       <strong class="ph b">gpperfmon</strong>     hdbmon    127.0.0.1/28  md5
+                  host       <strong class="ph b">gpperfmon</strong>     hdbmon    ::1/128       md5</pre>
 </li>
 
               <li class="li">
@@ -510,9 +511,9 @@
                   工具后编辑<samp class="ph codeph">pg_hba.conf</samp>文件。对于<samp class="ph codeph">host</samp>项，将
                   <samp class="ph codeph">gpmon</samp>角色的身份认证从<samp class="ph codeph">md5</samp>改为
                   <samp class="ph codeph">password</samp>：
-                  <pre class="pre codeblock">local      gpperfmon     gpmon                 md5 
-                    host       all           gpmon  127.0.0.1/28   <strong class="ph b">password</strong>
-                    host       all           gpmon  ::1/128        <strong class="ph b">password</strong></pre>
+                  <pre class="pre codeblock">local      gpperfmon     hdbmon                 md5 
+                    host       all           hdbmon  127.0.0.1/28   <strong class="ph b">password</strong>
+                    host       all           hdbmon  ::1/128        <strong class="ph b">password</strong></pre
 </div>
 
                 <p class="p"><samp class="ph codeph">password</samp>认证方法提交用户的明文口令进行验证，不应在不可信的网络上使用。
@@ -525,9 +526,9 @@
 </li>
 
         <li class="li" id="topic1__ou143384">更新口令文件(<samp class="ph codeph">.pgpass</samp>)。为了允许数据收集代理作为
-          <samp class="ph codeph">gpmon</samp>角色进行连接而无需口令提示，用户必须拥有一个包含<samp class="ph codeph">gpmon</samp>
+          <samp class="ph codeph">hdbmon</samp>角色进行连接而无需口令提示，用户必须拥有一个包含<samp class="ph codeph">gpmon</samp>
           用户项的口令文件。该工具将以下项添加到用户的口令文件（如果该文件不存在，该工具将创建它）：
-          <pre class="pre codeblock">*:5432:gpperfmon:gpmon:<var class="keyword varname">gpmon_password</var></pre>
+          <pre class="pre codeblock">*:5432:gpperfmon:hdbmon:<var class="keyword varname">gpmon_password</var></pre>
  
           如果用户的口令文件不在默认位置(<samp class="ph codeph">~/.pgpass</samp>)，使用<samp class="ph codeph">--pgpass</samp>
           选项指定文件位置。</li>
@@ -571,10 +572,10 @@
 
         
         
-          <dt class="dt pt dlterm">--password <var class="keyword varname">gpmon_password</var>
+          <dt class="dt pt dlterm">--password <var class="keyword varname">hdbmon_password</var>
 </dt>
 
-          <dd class="dd pd">如果必须指定了<samp class="ph codeph">--enable</samp>。设置<samp class="ph codeph">gpmon</samp>超级用户的口令。
+          <dd class="dd pd">如果必须指定了<samp class="ph codeph">--enable</samp>。设置<samp class="ph codeph">hdbmon</samp>超级用户的口令。
             如果未指定<samp class="ph codeph">--enable</samp>则不允许使用。</dd>
 
         
@@ -717,21 +718,21 @@
     <div class="section">
 <h2 class="title sectiontitle">注解</h2>
       
-      <p class="p"><samp class="ph codeph">gpperfmon</samp>数据库和inHybrid Command Center需要<samp class="ph codeph">gpmon</samp>角色。
-        在创建<samp class="ph codeph">gpperfmon</samp>数据库和<samp class="ph codeph">gpmon</samp>角色后，用户可以更改
-        <samp class="ph codeph">gpmon</samp>角色的口令并更新inHybrid Command Center信息用来连接到<samp class="ph codeph">gpperfmon</samp>
+      <p class="p"><samp class="ph codeph">gpperfmon</samp>数据库和inHybrid Command Center需要<samp class="ph codeph">hdbmon</samp>角色。
+        在创建<samp class="ph codeph">gpperfmon</samp>数据库和<samp class="ph codeph">hdbmon</samp>角色后，用户可以更改
+        <samp class="ph codeph">hdbmon</samp>角色的口令并更新inHybrid Command Center信息用来连接到<samp class="ph codeph">gpperfmon</samp>
         数据库：
       </p>
 
       <ol class="ol" id="topic1__ol_wss_knp_wr">
         <li class="li">以超级用户身份登录到inHybrid数据库，并使用<samp class="ph codeph">ALTER ROLE</samp>命令更改
-          <samp class="ph codeph">gpmon</samp>的口令。
+          <samp class="ph codeph">hdbmon</samp>的口令。
           <pre class="pre codeblock"># ALTER ROLE gpmon WITH PASSWORD '<var class="keyword varname">new_password</var>' ;</pre>
 </li>
 
         <li class="li">更新inHybrid Command Center使用的<samp class="ph codeph">.pgpass</samp>文件中的口令。默认文件位置是<samp class="ph codeph">hdbadmin</samp>
-          的主目录（<samp class="ph codeph">~/.pgpass</samp>）。<samp class="ph codeph">.pgpass</samp>文件包含一行<samp class="ph codeph">gpmon</samp>口令。
-          <pre class="pre codeblock">*:5432:gpperfmon:gpmon:<var class="keyword varname">new_password</var></pre>
+          的主目录（<samp class="ph codeph">~/.pgpass</samp>）。<samp class="ph codeph">.pgpass</samp>文件包含一行<samp class="ph codeph">hdbmon</samp>口令。
+          <pre class="pre codeblock">*:5432:gpperfmon:hdbmon:<var class="keyword varname">new_password</var></pre>
 </li>
 
         <li class="li">使用Command Center的<samp class="ph codeph">gpcmdr</samp>工具重新启动inHybrid Command Center。
@@ -755,7 +756,7 @@
       <pre class="pre codeblock">$ su - hdbadmin
         $ hdbperfmon_install --port 5432</pre>
 
-      <p class="p">创建<samp class="ph codeph">gpperfmon</samp>数据库，创建<samp class="ph codeph">gpmon</samp>超级用户，
+      <p class="p">创建<samp class="ph codeph">gpperfmon</samp>数据库，创建<samp class="ph codeph">hdbmon</samp>超级用户，
         并启用数据收集代理：</p>
 
       <pre class="pre codeblock">$ su - hdbadmin

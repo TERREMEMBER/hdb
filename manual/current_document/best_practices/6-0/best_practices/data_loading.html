@@ -255,10 +255,10 @@
   </div>
 
   <div class="topic nested1" id="topic_x2l_bft_bp">
-    <h2 class="title topictitle2">使用gpfdist外部表</h2>
+    <h2 class="title topictitle2">使用hdbfdist外部表</h2>
 
     <div class="body">
-      <p class="p">装载大型事实表的最快方式是使用基于<samp class="ph codeph">gpdist</samp>的外部表。<samp class="ph codeph">hdbfdist</samp>
+      <p class="p">装载大型事实表的最快方式是使用基于<samp class="ph codeph">hdbfdist</samp>的外部表。<samp class="ph codeph">hdbfdist</samp>
         是一个使用HTTP协议的文件服务器程序，它以并行的方式向inHybrid数据库的segment供应外部数据文件。
         一个<samp class="ph codeph">hdbfdist</samp>实例每秒能供应200MB并且很多<samp class="ph codeph">hdbfdist</samp>进程可以
         同时运行，每一个供应要被装载的数据的一部分。当使用者用<samp class="ph codeph">INSERT INTO &lt;table&gt; SELECT * FROM &lt;external_table&gt;</samp>
@@ -315,7 +315,7 @@ Segment 12 - hdbfdist 4</pre>
   </div>
 
   <div class="topic nested1" id="topic_xyt_cft_bp">
-    <h2 class="title topictitle2">gpload</h2>
+    <h2 class="title topictitle2">hdbload</h2>
 
     <div class="body">
       <p class="p"><samp class="ph codeph">hdbload</samp>是一种数据装载工具，它扮演着inHybrid外部表并行装载特性的接口的角色。

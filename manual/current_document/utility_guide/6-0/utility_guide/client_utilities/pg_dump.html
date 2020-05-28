@@ -661,16 +661,16 @@
               如果未向工作进程授予此共享锁，则其他人在此期间必须申请到独占锁，并且无法继续进行转储，因此<samp class="ph codeph">pg_dump</samp>别无选择，只能中止转储。
               </dd>
 
-            <dd class="dd pd">为了保持一致的备份，数据库服务器需要支持同步快照，这是inHybrid数据库6.0中引入的功能。
+            <dd class="dd pd">为了保持一致的备份，数据库服务器需要支持同步快照，这是inHybrid数据库1.0中引入的功能。
               使用此特性，即使数据库客户端使用不同的连接，也可以确保他们看到相同的数据集。
               <samp class="ph codeph">pg_dump -j</samp>使用多个数据库连接；它通过主进程一次连接到数据库，并针对每个工作者作业再次连接到数据库。
               如果没有同步快照特性，将无法保证不同的工作作业在每个连接中都看到相同的数据，这可能导致备份不一致。
               </dd>
 
-            <dd class="dd pd">如果要运行6.0之前版本服务器的并行转储，
+            <dd class="dd pd">如果要运行1.0之前版本服务器的并行转储，
               则需要确保从主服务器连接到数据库到最后一个工作者作业连接到数据库之间的时间里，数据库的内容没有变化。
               最简单的方法是在开始备份之前，停止所有访问数据库的数据修改过程（DDL和DML）。
-              在6.0之前的inHybrid数据库服务器上运行<samp class="ph codeph">pg_dump -j</samp>时，还需要指定<samp class="ph codeph">--no-synchronized-snapshots</samp>参数。
+              在1.0之前的inHybrid数据库服务器上运行<samp class="ph codeph">pg_dump -j</samp>时，还需要指定<samp class="ph codeph">--no-synchronized-snapshots</samp>参数。
               </dd>
 
           
@@ -918,7 +918,7 @@
           
             <dt class="dt pt dlterm">--no-synchronized-snapshots</dt>
 
-            <dd class="dd pd">该选项允许在6.0之前版本的inHybrid数据库服务器上运行<samp class="ph codeph">pg_dump -j</samp>。
+            <dd class="dd pd">该选项允许在1.0之前版本的inHybrid数据库服务器上运行<samp class="ph codeph">pg_dump -j</samp>。
               有关更多详细信息，请参见<samp class="ph codeph">-j</samp>参数的文档。
               </dd>
 

@@ -497,7 +497,6 @@
                 <samp class="ph codeph">UPDATE</samp>或<samp class="ph codeph">MERGE</samp>操作把源数据装载到数据库中的目标表中。
                 <div class="note note">
 <span class="notetitle">Note:</span> <samp class="ph codeph">hdbfdist</samp>和<samp class="ph codeph">hdbload</samp>是在inHybrid的主版本级别有效的。
-                    例如，inHybrid 4.x版本的<samp class="ph codeph">hdbfdist</samp>不能用于inHybrid 5.x或6.x版本。
                 </div>
 
                 <div class="note note" id="topic1__hdbload-limitation">
@@ -538,7 +537,7 @@
                     <dt class="dt pt dlterm">-l <var class="keyword varname">log_file</var>
 </dt>
 
-                    <dd class="dd pd">指定在哪里写日志文件。默认是<samp class="ph codeph">~/gpAdminLogs/hdbload_<var class="keyword varname">YYYYMMDD</var></samp>。
+                    <dd class="dd pd">指定在哪里写日志文件。默认是<samp class="ph codeph">~/hdbAdminLogs/hdbload_<var class="keyword varname">YYYYMMDD</var></samp>。
                         有关日志文件的更多信息请见<a class="xref" href="hdbload.html#topic1__section9">日志文件格式</a>。</dd>
 
                 
@@ -758,7 +757,7 @@
                 
                     <dt class="dt pt dlterm" id="topic1__cfhdbload">GPLOAD</dt>
 
-                    <dd class="dd pd">必需。开始装载说明部分。<samp class="ph codeph">GPLOAD</samp>说明必须定义有一个<samp class="ph codeph">INPUT</samp>
+                    <dd class="dd pd">必需。开始装载说明部分。<samp class="ph codeph">HDBLOAD</samp>说明必须定义有一个<samp class="ph codeph">INPUT</samp>
                         小节和一个<samp class="ph codeph">OUTPUT</samp>小节。
                         <dl class="dl parml">
                             
