@@ -238,7 +238,7 @@
 
 <p><strong>Note:</strong> 从inHybrid Database版本5.12开始，PXF类的包名称已更改为使用前缀<code>org.greenplum.*</code> 。如果要从较旧的<em>PXF.from</em>版本升级并自定义<code>pxf-profiles.xml</code>文件，则必须在重新应用时更改对<code>org.greenplum.pxf.*</code>的任何<code>org.apache.hawq.pxf.*</code>的引用。</p></li>
 <li><p>如果更新了<em>PXF.from</em>安装中的<code>pxf-log4j.properties</code>配置文件，请将这些更改重新应用到主机上的 <code>$PXF_CONF/conf/pxf-log4j.properties</code></p></li>
-<li><p>如果在<em>PXF.from</em>安装中更新了<code>pxf-public.classpath</code>配置文件，请将文件中引用的每个JAR复制到naster主机的<code>$PXF_CONF/lib</code></p></li>
+<li><p>如果在<em>PXF.from</em>安装中更新了<code>pxf-public.classpath</code>配置文件，请将文件中引用的每个JAR复制到master主机的<code>$PXF_CONF/lib</code></p></li>
 <li><p>如果你将其他JAR文件添加到<em>PXF.from</em>中，请将它们复制到master主机上的<code>$PXF_CONF/lib</code></p></li>
 <li><p>从inHybrid Database版本 5.15 开始，PXF需要Hadoop配置文件放置在<code>$PXF_CONF/servers/default</code>目录中。如果在<em>PXF.from</em>安装中配置了PXF Hadoop连接器，请将<code>/etc/&lt;hadoop_service&gt;/conf</code>中的Hadoop配置文件复制到inHybrid Database主机上的<code>$PXF_CONF/servers/default</code></p></li>
 <li><p>从inHybrid Database版本 5.15 开始，PXF的默认Kerberos keytab文件位置是<code>$PXF_CONF/keytabs</code>。如果先前已将PXF配置为安全HDFS 且PXF密钥表文件位于<em>PXF.from</em>安装目录中(例如，<code>$HDBHOME/pxf/conf</code>)，请考虑将keytab文件重定位到<code>$PXF_CONF/keytabs</code>,或者，更新<code>$PXF_CONF/conf/pxf-env.sh</code>文件中的<code>PXF_KEYTAB</code>属性设置以引用您的keytab文件。</p></li>

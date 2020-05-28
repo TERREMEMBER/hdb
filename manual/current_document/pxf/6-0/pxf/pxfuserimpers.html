@@ -176,7 +176,7 @@
 <li><a href="pxfuserimpers.html#pxf_cfg_proc">&#37197;&#32622;PXF&#29992;&#25143;&#27169;&#25311;</a></li>
 <li><a href="pxfuserimpers.html#hadoop">&#37197;&#32622;Hadoop&#20195;&#29702;</a></li>
 <li><a href="pxfuserimpers.html#hive">Hive&#29992;&#25143;&#27169;&#25311;</a></li>
-<li><a href="pxfuserimpers.html#hbase">Hbase&#29992;&#25143;&#27169;&#25311;</a></li>
+<li><a href="pxfuserimpers.html#hbase">HBase&#29992;&#25143;&#27169;&#25311;</a></li>
 </ul></div>
           </div>
         <div class="to-top" id="js-to-top">
@@ -196,7 +196,7 @@
 <li><p>以管理员用户身份登录HDB master节点</p>
 <pre class="highlight shell"><code><span class="gp">$ </span>ssh hdbadmin@&lt;hdbmaster&gt;
 </code></pre></li>
-<li><p>重新进入PXF用户配置目录<code>$PGF_CONF</code>。用文本编辑器打开配置文件<code>$PXF_CONF/conf/pxf-env.sh</code>。例如：</p>
+<li><p>重新进入PXF用户配置目录<code>$PXF_CONF</code>。用文本编辑器打开配置文件<code>$PXF_CONF/conf/pxf-env.sh</code>。例如：</p>
 <pre class="highlight shell"><code><span class="gp">hdbadmin@hdbmaster$ </span>vi <span class="nv">$PXF_CONF</span>/conf/pxf-env.sh
 </code></pre></li>
 <li><p>在<code>pxf-env.sh</code>文件中找到<code>PXF_USER_IMPERSONATION</code>设置。 将该值设置为true可打开PXF用户模拟，或将其设置为false可将其关闭。 例如：</p>
@@ -214,7 +214,7 @@
 
 <ol>
 <li><p>在你的Hadoop集群中，使用文本编辑器打开<code>core-site.xml</code>配置文件，或者使用Ambari添加或编辑此过程中描述的Hadoop属性值。</p></li>
-<li><p>设置属性值<code>hadoop.proxyuser.&lt;name&gt;.hosts</code>指定允许代理请求的PXF主机名列表。将PXF代理用户(通常为<code>hdbadmin</code>)替换为<name>，并在用逗号分隔的列表中提供多个PXF主机名。 例如：</p>
+<li><p>设置属性值<code>hadoop.proxyuser.&lt;name&gt;.hosts</code>指定允许代理请求的PXF主机名列表。将PXF代理用户(通常为<code>hdbadmin</code>)替换为&lt;name&gt;，并在用逗号分隔的列表中提供多个PXF主机名。 例如：</p>
 <pre class="highlight xml"><code><span class="nt">&lt;property&gt;</span>
     <span class="nt">&lt;name&gt;</span>hadoop.proxyuser.hdbadmin.hosts<span class="nt">&lt;/name&gt;</span>
     <span class="nt">&lt;value&gt;</span>pxfhost1,pxfhost2,pxfhost3<span class="nt">&lt;/value&gt;</span>
@@ -234,7 +234,7 @@
 
 <p>PXF Hive连接器使用Hive MetaStore确定Hive表的HDFS位置，然后直接访问基础HDFS文件。Hive不需要特定的模拟配置，因为<code>core-site.xml</code>中的Hadoop代理配置也适用于以这种方式访问的Hive表。</p>
 
-<h2 id="hbase用户模拟"><a id="hbase"></a>Hbase用户模拟</h2>
+<h2 id="hbase用户模拟"><a id="hbase"></a>HBase用户模拟</h2>
 
 <p>为了使用户模拟功能能够与HBase一起使用，必须在HBase配置中启用<code>AccessController</code>并重新启动群集。有关<code>hbase-site.xml</code>配置设置，请参阅《Apache HBase参考指南》中的<a href="http://hbase.apache.org/book.html#hbase.secure.configuration">61.3 Server-side Configuration for Simple User Access Operation</a>以进行简单的用户访问操作。</p>
 

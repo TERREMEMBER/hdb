@@ -375,7 +375,7 @@
 
 <h3 id="会话级属性"><a id="sessprop"></a>会话级属性</h3>
 
-<p>要设置会话级别的属性，请在<code>jdbc-site.xml</code>中添加<code>jdbc.session.property。&lt;SPROP_NAME&gt;</code>属性。在执行查询之前，PXF将在外部数据库中<code>SET</code>这些属性。</p>
+<p>要设置会话级别的属性，请在<code>jdbc-site.xml</code>中添加<code>jdbc.session.property.&lt;SPROP_NAME&gt;</code>属性。在执行查询之前，PXF将在外部数据库中<code>SET</code>这些属性。</p>
 
 <p>将<code>&lt;SPROP_NAME&gt;</code>替换为会话属性名称，并指定其值：</p>
 
@@ -419,11 +419,11 @@
 <span class="nt">&lt;/property&gt;</span>
 </code></pre>
 
-<p>为PXF服务器启用JDBC用户模拟时，PXF会覆盖在<code>jdbc-site.xml</code>或<code>&lt;greenplum_user_name&gt;-user.xml</code>中定义或在外部表DDL中指定的<code>jdbc.user</code>属性设置的值，以及inHybrid数据库用户名。为了在外部数据存储区需要密码来验证连接用户的身份时有效地模拟用户，必须为可以模拟在该用户的<code>&lt;greenplum_user_name&gt;-user.xml</code>属性覆盖文件中的每个用户指定<code>jdbc.password</code>设置。有关每个服务器，每个inHybrid用户配置的更多信息，请参考<a href="cfg_server.html#usercfg">配置PXF用户</a>。</p>
+<p>为PXF服务器启用JDBC用户模拟时，PXF会覆盖在<code>jdbc-site.xml</code>或<code>&lt;inhybrid_user_name&gt;-user.xml</code>中定义或在外部表DDL中指定的<code>jdbc.user</code>属性设置的值，以及inHybrid数据库用户名。为了在外部数据存储区需要密码来验证连接用户的身份时有效地模拟用户，必须为可以模拟在该用户的<code>&lt;inhybrid_user_name&gt;-user.xml</code>属性覆盖文件中的每个用户指定<code>jdbc.password</code>设置。有关每个服务器，每个inHybrid用户配置的更多信息，请参考<a href="cfg_server.html#usercfg">配置PXF用户</a>。</p>
 
 <h3 id="关于jdbc连接池"><a id="jdbcconpool"></a>关于JDBC连接池</h3>
 
-<p>PXF JDBC连接器使用由[HikariCP]（<a href="https://github.com/brettwooldridge/HikariCP%EF%BC%89%E5%AE%9E%E7%8E%B0%E7%9A%84JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0%E3%80%82%E5%BD%93%E7%94%A8%E6%88%B7%E6%9F%A5%E8%AF%A2%E6%88%96%E5%86%99%E5%85%A5%E5%A4%96%E9%83%A8%E8%A1%A8%E6%97%B6%EF%BC%8C%E8%BF%9E%E6%8E%A5%E5%99%A8%E5%9C%A8%E9%A6%96%E6%AC%A1%E9%81%87%E5%88%B0%60jdbc.url%60">https://github.com/brettwooldridge/HikariCP）实现的JDBC连接池。当用户查询或写入外部表时，连接器在首次遇到`jdbc.url`</a>, <code>jdbc.user</code>, <code>jdbc.password</code>，连接属性和池属性设置的唯一组合时，将为关联的服务器配置建立连接池。连接器会根据某些连接和超时设置重用池中的连接。</p>
+<p>PXF JDBC连接器使用由[HikariCP]（<a href="https://github.com/brettwooldridge/HikariCP%EF%BC%89%E5%AE%9E%E7%8E%B0%E7%9A%84JDBC%E8%BF%9E%E6%8E%A5%E6%B1%A0%E3%80%82%E5%BD%93%E7%94%A8%E6%88%B7%E6%9F%A5%E8%AF%A2%E6%88%96%E5%86%99%E5%85%A5%E5%A4%96%E9%83%A8%E8%A1%A8%E6%97%B6%EF%BC%8C%E8%BF%9E%E6%8E%A5%E5%99%A8%E5%9C%A8%E9%A6%96%E6%AC%A1%E9%81%87%E5%88%B0%60jdbc.url%60">https://github.com/brettwooldridge/HikariCP）实现的JDBC连接池。当用户查询或写入外部表时，连接器在首次遇到<code>jdbc.url</code></a>, <code>jdbc.user</code>, <code>jdbc.password</code>，连接属性和池属性设置的唯一组合时，将为关联的服务器配置建立连接池。连接器会根据某些连接和超时设置重用池中的连接。</p>
 
 <p>对于给定的服务器配置，可能存在一个或多个连接池，并且用户访问指定同一服务器的不同外部表可能会共享一个连接池。</p>
 
@@ -469,7 +469,7 @@
 </tr>
 </tbody></table>
 
-<p>您可以通过指定<code>jdbc.pool.property。&lt;HIKARICP_PROP_NAME&gt;</code>以及服务器的<code>jdbc-site.xml</code>配置文件中的所需值来为服务器配置设置其他HikariCP特定的连接池属性。还要注意，当JDBC连接器请求来自JDBC<code>DriverManager</code>的连接时，它会传递您用<code>jdbc.connection.property.</code>前缀指定的任何属性。请参考上面的<a href="jdbc_cfg.html#connprop">连接级属性</a>。</p>
+<p>您可以通过指定<code>jdbc.pool.property.&lt;HIKARICP_PROP_NAME&gt;</code>以及服务器的<code>jdbc-site.xml</code>配置文件中的所需值来为服务器配置设置其他HikariCP特定的连接池属性。还要注意，当JDBC连接器请求来自JDBC<code>DriverManager</code>的连接时，它会传递您用<code>jdbc.connection.property.</code>前缀指定的任何属性。请参考上面的<a href="jdbc_cfg.html#connprop">连接级属性</a>。</p>
 
 <h4 id="调整最大连接池大小"><a id="jdbcconpool_tune"></a>调整最大连接池大小</h4>
 
