@@ -368,7 +368,7 @@ host all dba 192.168.0.0/32 md5
         <div class="p">下面是<samp class="ph codeph">pg_hba.conf</samp>基本认证项的一些例子：
           entries:<pre class="pre codeblock">hostnossl all all 0.0.0.0reject
 hostssl alltestuser0.0.0.0/0md5
-local all gpuserident
+local all hdbuserident
 </pre>
 </div>
 
@@ -467,7 +467,7 @@ local all gpuserident
 
           <li class="li">除非SSL被启用，从客户端到服务器的连接不会被加密。配置客户端连接以使用SSL加密来自该客户端的连接。</li>
 
-          <li class="li">要配置或者自定义LDAP设置，将<samp class="ph codeph">LDAPCONF</samp> 环境变量设置为到<samp class="ph codeph">ldap.conf</samp>文件的路径并且将它加入到<samp class="ph codeph">greenplum_path.sh</samp>脚本。</li>
+          <li class="li">要配置或者自定义LDAP设置，将<samp class="ph codeph">LDAPCONF</samp> 环境变量设置为到<samp class="ph codeph">ldap.conf</samp>文件的路径并且将它加入到<samp class="ph codeph">inhybrid_path.sh</samp>脚本。</li>
 
         </ul>
 
@@ -548,14 +548,14 @@ local all gpuserident
         </div>
 
         <div class="p">Example:
-          <pre class="pre codeblock">ldapserver=ldap.greenplum.com prefix="cn=" suffix=", dc=greenplum, dc=com"</pre>
+          <pre class="pre codeblock">ldapserver=ldap.inhybrid.com prefix="cn=" suffix=", dc=inhybrid, dc=com"</pre>
 </div>
 
         <div class="p">下面是LDAP认证的<samp class="ph codeph">pg_hba.conf</samp>文件项的例子：
           <pre class="pre codeblock">host all testuser 0.0.0.0/0 ldap ldap
-ldapserver=ldapserver.greenplum.com ldapport=389 ldapprefix="cn=" ldapsuffix=",ou=people,dc=greenplum,dc=com"
+ldapserver=ldapserver.inhybrid.com ldapport=389 ldapprefix="cn=" ldapsuffix=",ou=people,dc=inhybrid,dc=com"
 hostssl all ldaprole 0.0.0.0/0 ldap
-ldapserver=ldapserver.greenplum.com ldaptls=1 ldapprefix="cn=" ldapsuffix=",ou=people,dc=greenplum,dc=com"          
+ldapserver=ldapserver.inhybrid.com ldaptls=1 ldapprefix="cn=" ldapsuffix=",ou=people,dc=inhybrid,dc=com"          
         </pre>
 </div>
 
@@ -595,7 +595,7 @@ ldapserver=ldapserver.greenplum.com ldaptls=1 ldapprefix="cn=" ldapsuffix=",ou=p
 </div>
 <div class="p">下面是SSL客户端认证的<samp class="ph codeph">pg_hba.conf</samp>项的例子：
                 <pre class="pre codeblock">Hostssl testdb certuser 192.168.0.0/16 cert
-                           Hostssl testdb all 192.168.0.0/16 cert map=gpuser
+                           Hostssl testdb all 192.168.0.0/16 cert map=hdbuser
                 </pre>
 </div>
 </li>
@@ -608,7 +608,7 @@ ldapserver=ldapserver.greenplum.com ldaptls=1 ldapprefix="cn=" ldapsuffix=",ou=p
       <div class="section" id="topic_fzv_wb2_jr__openssl_config">
 <h3 class="title sectiontitle">OpenSSL配置</h3>
         
-        <p class="p">inHybrid数据库默认会读取<samp class="ph codeph">$GP_HOME/etc/openssl.cnf</samp>中指定的OpenSSL配置文件。用户可以通过修改或者更新这个文件并且重启服务器对OpenSSL的默认配置做更改。</p>
+        <p class="p">inHybrid数据库默认会读取<samp class="ph codeph">$HDB_HOME/etc/openssl.cnf</samp>中指定的OpenSSL配置文件。用户可以通过修改或者更新这个文件并且重启服务器对OpenSSL的默认配置做更改。</p>
 
       </div>
 
@@ -792,7 +792,7 @@ ldapserver=ldapserver.greenplum.com ldaptls=1 ldapprefix="cn=" ldapsuffix=",ou=p
         </div>
 
           <div class="p">下面是PAM客户端认证的<samp class="ph codeph">pg_hba.conf</samp>项的例子：
-            <pre class="pre codeblock">local all gpuser am pamservice=postgresql</pre>
+            <pre class="pre codeblock">local all hdbuser am pamservice=postgresql</pre>
 </div>
 
       </div>
@@ -924,7 +924,7 @@ max_prepared_transactions=100</pre>
       <p class="p">启用SSL要求在客户端和Master服务器系统上都安装OpenSSL。可通过在Master的<samp class="ph codeph">postgresql.conf</samp>中设置服务器配置参数<samp class="ph codeph">ssl=on</samp>让inHybrid以启用SSL的方式启动。在以SSL模式启动时，服务器将在Master的数据目录中查找<samp class="ph codeph">server.key</samp>（服务器私钥）文件和<samp class="ph codeph">server.crt</samp>（服务器证书）文件。在启用SSL的inHybrid系统能启动之前，这些文件必须被正确地设置好。</p>
 
       <div class="note important">
-<span class="importanttitle">Important:</span> 不要用口令保护私钥。服务器不会为私钥提示要求口令，而不提供口令数据库启动会失败并且报出错误。</div>
+<span class="importanttitle">重要:</span> 不要用口令保护私钥。服务器不会为私钥提示要求口令，而不提供口令数据库启动会失败并且报出错误。</div>
 
       <p class="p">自签名证书可以被用来测试，但是生产中应该使用由证书颁发机构（CA）（全球CA或者本地CA）签发的证书，这样客户端就能够验证服务器的身份。如果所有的客户端都是组织本地的，推荐使用本地CA。创建自签名证书的步骤请见 <a class="xref" href="Authenticate.html#topic_fzv_wb2_jr__create_a_cert">创建一个自签名证书</a></p>
 

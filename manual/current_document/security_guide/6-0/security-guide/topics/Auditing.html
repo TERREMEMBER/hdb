@@ -36,7 +36,7 @@
     
     <div class="header-links js-bar-links">
       <div class="btn-menu" data-behavior="MenuMobile"></div>
-      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item"><a href="https://inhybrid.org">Back to inHybrid Database</a></div>
       <div class="header-item">
         <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
       </div>
@@ -890,8 +890,8 @@
 </div>
 
       <div class="p"> 用户还可以通过<samp class="ph codeph">hdbssh</samp>工具运行<samp class="ph codeph">hdblogfilter</samp>来立刻搜索所有的Segment日志文件。例如，要显示每个Segment日志文件的最后三行：<pre class="pre codeblock">$ hdbssh -f seg_host_file
-  =&gt; source /usr/local/greenplum-db/greenplum_path.sh
-  =&gt; hdblogfilter -n 3 /gpdata/gp*/pg_log/hdb*.csv</pre>
+  =&gt; source /usr/local/inhybrid-db/inhybrid_path.sh
+  =&gt; hdblogfilter -n 3 /hdbdata/gp*/pg_log/hdb*.csv</pre>
 </div>
 
       <p class="p"> 下面是inHybrid与安全相关的审计（或者日志）服务器配置参数，它们可以在postgresql.conf配置文件中设置：</p>
