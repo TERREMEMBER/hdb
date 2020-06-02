@@ -4314,7 +4314,7 @@ INFO:  plcontainer:     image = 'inspurdata/plcontainer_r_without_clients:0.2'  
 INFO:  plcontainer:     memory_mb = '1024'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:     use container network = 'no'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:     use container logging  = 'yes'  (seg0 slice3 192.168.180.45:40000 pid=3304)
-INFO:  plcontainer:     shared directory from host '/usr/local/greenplum-db/bin/plcontainer_clients' to container '/clientdir'  (seg0 slice3 192.168.180.45:40000 pid=3304)
+INFO:  plcontainer:     shared directory from host '/usr/local/inhybrid-db/bin/plcontainer_clients' to container '/clientdir'  (seg0 slice3 192.168.180.45:40000 pid=3304)
 INFO:  plcontainer:         access = readonly  (seg0 slice3 192.168.180.45:40000 pid=3304) 
 gp_segment_id | plcontainer_show_local_config
 ---------------+-------------------------------
@@ -4803,7 +4803,7 @@ $$ LANGUAGE plcontainer;</pre>
                     </dd>
 
                   <dd class="dd pd">
-                    <pre class="pre codeblock"><var class="keyword varname">greenplum-home</var>/bin/plcontainer_clients:/clientdir:ro</pre>
+                    <pre class="pre codeblock"><var class="keyword varname">inhybrid-home</var>/bin/plcontainer_clients:/clientdir:ro</pre>
 
                   </dd>
 
@@ -4964,7 +4964,7 @@ $$ LANGUAGE plcontainer;</pre>
  Linked Docker Image: test1:latest
  Runtime Setting(s):
  Shared Directory:
- ---- Shared Directory From HOST '/usr/local/greenplum-db/bin/plcontainer_clients' to Container '/clientdir', access mode is 'ro'
+ ---- Shared Directory From HOST '/usr/local/inhybrid-db/bin/plcontainer_clients' to Container '/clientdir', access mode is 'ro'
  ---- Shared Directory From HOST '/home/hdbadmin/share/' to Container '/opt/share', access mode is 'rw'
 ---------------------------------------------------------</pre>
 </div>
@@ -5022,7 +5022,7 @@ $$ LANGUAGE plcontainer;</pre>
         &lt;id&gt;plc_python_example2&lt;/id&gt;
         &lt;image&gt;inspurdata/plcontainer_python_without_clients:0.1&lt;/image&gt;
         &lt;command&gt;/clientdir/pyclient.sh&lt;/command&gt;
-        &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/&gt;
+        &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/inhybrid-db/bin/plcontainer_clients"/&gt;
         &lt;setting memory_mb="512"/&gt;
         &lt;setting use_container_logging="yes"/&gt;
         &lt;setting cpu_share="1024"/&gt;
@@ -5032,7 +5032,7 @@ $$ LANGUAGE plcontainer;</pre>
         &lt;id&gt;plc_r_example&lt;/id&gt;
         &lt;image&gt;inspurdata/plcontainer_r_without_clients:0.2&lt;/image&gt;
         &lt;command&gt;/clientdir/rclient.sh&lt;/command&gt;
-        &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/&gt;
+        &lt;shared_directory access="ro" container="/clientdir" host="/usr/local/inhybrid-db/bin/plcontainer_clients"/&gt;
         &lt;setting use_container_logging="yes"/&gt;
         &lt;setting roles="hdbadmin,user1"/&gt;
     &lt;/runtime&gt;
@@ -5129,7 +5129,7 @@ $$ LANGUAGE plcontainer;</pre>
 </dd>
 
                   <dd class="dd pd">创建<samp class="ph codeph">runtime</samp>元素时，<samp class="ph codeph">plcontainer</samp>实用程序会添加<samp class="ph codeph">shared_directory</samp>元素。
-                    <pre class="pre codeblock">&lt;shared_directory access="ro" container="/clientdir" host="/usr/local/greenplum-db/bin/plcontainer_clients"/&gt;</pre>
+                    <pre class="pre codeblock">&lt;shared_directory access="ro" container="/clientdir" host="/usr/local/inhybrid-db/bin/plcontainer_clients"/&gt;</pre>
 </dd>
 
                   <dd class="dd pd">对于每个<samp class="ph codeph">runtime</samp>元素，<samp class="ph codeph">shared_directory</samp>元素的<samp class="ph codeph">container</samp>属性必须是唯一的。

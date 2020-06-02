@@ -493,15 +493,15 @@
                 格式是：
             </p>
 
-            <pre class="pre codeblock">mirror<var class="keyword varname">&lt;row_id&gt;</var>=<var class="keyword varname">&lt;contentID&gt;</var>:<var class="keyword varname">&lt;address&gt;</var>:<var class="keyword varname">&lt;port&gt;</var>:<var class="keyword varname">&lt;data_dir&gt;</var></pre>
+            <pre class="pre codeblock">mirror<var class="keyword varname">&lt;row_id&gt;</var>=<var class="keyword varname">&lt;contentID&gt;</var>|<var class="keyword varname">&lt;address&gt;</var>|<var class="keyword varname">&lt;port&gt;</var>|<var class="keyword varname">&lt;data_dir&gt;</var></pre>
 
             <p class="p">此处<samp class="ph codeph">row_id</samp>是文件中的行号，<var class="keyword varname">contentID</var>是segment实例的content_id,
                 <var class="keyword varname">address</var>是segment所在的主机名或IP地址，<var class="keyword varname">port</var>是交互端口，
                 <samp class="ph codeph">data_dir</samp>是segment实例数据目录。</p>
 
             <div class="p">例如：
-                <pre class="pre codeblock">mirror0=0:sdw1-1:60000:/hdbdata/mir1/hdb0
-                    mirror1=1:sdw1-1:60001:/hdbdata/mir2/hdb1</pre>
+                <pre class="pre codeblock">mirror0=0|sdw1-1|60000|/hdbdata/mir1/hdb0
+                    mirror1=1|sdw1-1|60001|/hdbdata/mir2/hdb1</pre>
 </div>
 
             <p class="p"><samp class="ph codeph">gp_segment_configuration</samp>系统目录表可以帮助用户确定当前的主Segment配置，
@@ -579,7 +579,7 @@
                     <dt class="dt pt dlterm">-l <var class="keyword varname">logfile_directory</var>
 </dt>
 
-                    <dd class="dd pd">用来写日志的目录，默认为<samp class="ph codeph">~/gpAdminLogs</samp>。
+                    <dd class="dd pd">用来写日志的目录，默认为<samp class="ph codeph">~/hdbAdminLogs</samp>。
                     </dd>
 
                 
@@ -672,10 +672,10 @@
             <p class="p">其中<samp class="ph codeph">mirror_config_file</samp>看起来像这样：
             </p>
 
-            <pre class="pre codeblock">mirror0=0:sdw1-1:52001:/hdbdata/mir1/hdb0
-                mirror1=1:sdw1-2:52002:/hdbdata/mir2/hdb1
-                mirror2=2:sdw2-1:52001:/hdbdata/mir1/hdb2
-                mirror3=3:sdw2-2:52002:/hdbdata/mir2/hdb3</pre>
+            <pre class="pre codeblock">mirror0=0|sdw1-1|52001|/hdbdata/mir1/hdb0
+                mirror1=1|sdw1-2|52002|/hdbdata/mir2/hdb1
+                mirror2=2|sdw2-1|52001|/hdbdata/mir1/hdb2
+                mirror3=3|sdw2-2|52002|/hdbdata/mir2/hdb3</pre>
 
             <p class="p">使用hdbaddmirrors -o输出一个要使用的镜像配置文件样例：
             </p>
