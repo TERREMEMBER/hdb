@@ -1,0 +1,442 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Always force latest IE rendering engine or request Chrome Frame -->
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400italic,400,600' rel='stylesheet' type='text/css'>
+  <!-- Use title if it's in the page YAML frontmatter -->
+  <title>
+      inHybrid Environment Variables |
+    inHybrid Database Docs
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../stylesheets/all.css" rel="stylesheet" media="screen, print" />
+  <link href="../../stylesheets/print.css" rel="stylesheet" media="print" />
+  <link href='../../images/favicon.ico' rel='shortcut icon'>
+
+  <script src="../../javascripts/all.js"></script>
+  
+</head>
+
+<body class="x6-4 x6-4_install_guide x6-4_install_guide_env_var_ref has-subnav">
+
+<div class="viewport">
+  <div class='wrap'>
+    <script type="text/javascript">
+
+    </script>
+
+     
+  <header class="header header-layout">
+    <h1 class="logo">
+      <a href="../../index.html">inHybrid Database Documentation</a>
+    </h1>
+    
+    <div class="header-links js-bar-links">
+      <div class="btn-menu" data-behavior="MenuMobile"></div>
+      <div class="header-item"><a href="https://greenplum.org">Back to inHybrid Database</a></div>
+      <div class="header-item">
+        <a href="https://github.com/greenplum-db/hdb/wiki">Wiki</a>
+      </div>
+      
+    </div>
+  </header>
+
+
+    <div class="container">
+
+      <!--googleoff: index-->
+      <div id="sub-nav" class="nav-container js-sidenav" role="navigation" >
+  <a class="sidenav-title" data-behavior="SubMenuMobile">
+    Doc Index
+  </a>
+  <div class="nav-content">
+    
+  <ul>
+    
+      <li class="">
+        <a href="../homenav.html">inspur inHybrid 6.4 Documentation</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="install_guide.html">Installation Guide</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="platform-requirements.html">Platform Requirements</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="preinstall_concepts.html">Introduction to inHybrid</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic2">The inHybrid Master</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic4">The Segments</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic9">The Interconnect</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="preinstall_concepts.html#topic13">ETL Hosts for Data Loading</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="capacity_planning.html">Estimating Storage Capacity</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic2">Calculating Usable Disk Capacity</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic3">Calculating User Data Size</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="capacity_planning.html#topic4">Calculating Space Requirements for Metadata and Logs</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="prep_os.html">Configuring Your Systems</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_hdb.html">Installing the inHybrid Database Software</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="create_data_dirs.html">Creating the Data Storage Areas</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="validate.html">Validating Your Systems</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="validate.html#topic4">Validating Network Performance</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="validate.html#topic5">Validating Disk I&#x2F;O and Memory Bandwidth</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="init_hdb.html">Initializing a inHybrid Database System</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="install_modules.html">Installing Additional Supplied Modules</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="localization.html">Configuring Timezone and Localization Settings</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="upgrading.html">Upgrading from an Earlier inHybrid 6 Release</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="migrate.html">Migrating Data from inHybrid 4.3 or 5</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="enable_iptables.html">Enabling iptables (Optional)</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="apx_mgmt_utils.html">Installation Management Utilities</a>
+        
+
+      </li>
+    
+      <li class="has_submenu">
+        <a href="env_var_ref.html">inHybrid Environment Variables</a>
+        
+  <ul>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic2">Required Environment Variables</a>
+        
+
+      </li>
+    
+      <li class="">
+        <a href="env_var_ref.html#topic7">Optional Environment Variables</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+      <li class="">
+        <a href="ansible-example.html">Example Ansible Playbook</a>
+        
+
+      </li>
+    
+  </ul>
+
+
+      </li>
+    
+  </ul>
+
+
+  </div>
+</div>
+
+      <!--googleon: index-->
+
+      <main class="content content-layout" id="js-content" role="main">
+        <a id="top"></a>
+        
+          <h1 class="title-container" style="display: none;">
+    inHybrid Environment Variables
+  </h1>
+
+          <div id="js-quick-links" >
+            
+          </div>
+        <div class="to-top" id="js-to-top">
+          <a href="env_var_ref.html#top" title="back to top"></a>
+        </div>
+        
+
+        <h1 class="title topictitle1">使用ansible进行安装</h1>
+
+        
+        <div class="body">
+             <p class="shortdesc">使用该playbook遵循如下步骤：</p>  
+        </div>
+
+        <div class="related-links">
+<ol class="ullinks">
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic2">对inHybrid_config和deployment_config.yml进行配置</a></strong><br>
+</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">配置/etc/ansible/hosts 文件，包含如下3个主机组:</a></strong><br>
+<ul class="ullinks">
+<li class="link ulchildlink">
+[hdb_all] 包含全部主机<br>
+</li>
+<li class="link ulchildlink">
+[master] 包含master节点<br>
+</li>
+<li class="link ulchildlink">
+ [segement] 包含segement节点<br>
+</li>
+</ul>
+</li>
+<div class="body">
+                                <p class="p">例如:</p>
+
+                                <pre class="pre codeblock">[hdb_all]
+172.12.0.10
+172.12.0.11
+172.12.0.12
+172.12.0.13
+
+[master]
+172.12.0.10
+
+[segment]
+172.12.0.11
+172.12.0.12
+172.12.0.13
+
+</pre>
+
+ </div>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">根据写好的配置文件，进行系统检查</a></strong><br>
+<div class="body">
+                                <pre class="pre codeblock">ansible-playbook setup_check.yml</pre>
+
+ </div>
+</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">安装并初始化数据库集群</a></strong><br>
+<div class="body">
+                                <pre class="pre codeblock">ansible-playbook install_hdb.yml
+ansible-playbook setup_hdb.yml
+</pre>
+ </div>
+</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">删除数据库集群</a></strong><br>
+<div class="body">
+                                <pre class="pre codeblock">ansible-playbook uninstall_hdb_delete_data.yml
+ansible-playbook uninstall_hdb_reserved_data.yml
+</pre>
+ </div>
+</li>
+<li class="link ulchildlink">
+<strong><a href="env_var_ref.html#topic7">初始化失败，重置到之前的状态</a></strong><br>
+<div class="body">
+                                <pre class="pre codeblock">ansible-playbook reset_cluster.yml
+</pre>
+ </div>
+</li>
+</ol>
+
+ <h1 class="title topictitle1">inHybrid_config文件内容</h1>
+<h2 class="title topictitle1">必须</h2>
+<ul class="ullinks">
+<li class="link ulchildlink">
+  <p>inHybrid系统名称用引号括起来</p>
+ <pre class="pre codeblock">ARRAY_NAME: "inHybrid Data Platform"</pre>
+</li>
+<li class="link ulchildlink">
+<p>指定一个前缀，用于命名Master和Segment实例上的数据目录。</p>
+ <pre class="pre codeblock">SEG_PREFIX: "hdbseg"</pre>
+</li>
+<li class="link ulchildlink">
+<p>segement数据段端口号基数</p>
+ <pre class="pre codeblock">PORT_BASE: "6000"</pre>
+</li>
+<li class="link ulchildlink">
+<p>segment节点 数据目录</p>
+ <pre class="pre codeblock">declare_DATA_DIRECTORY: ("/home/hdbadmin/hdbdata/datadir/primary1" "/home/hdbadmin/hdbdata/datadir/primary2")</pre>
+</li>
+<li class="link ulchildlink">
+<p>master节点hostname</p>
+ <pre class="pre codeblock">MASTER_HOSTNAME: "mdw"</pre>
+</li>
+<li class="link ulchildlink">
+<p>master节点数据目录</p>
+ <pre class="pre codeblock">MASTER_DIRECTORY: "/home/hdbadmin/hdbdata/masterdir"</pre>
+</li>
+<li class="link ulchildlink">
+<p>master节点端口</p>
+ <pre class="pre codeblock">MASTER_PORT: "5432"</pre>
+</li>
+<li class="link ulchildlink">
+<p>hdbinitsystem工具用来在远程主机上执行命令的shell。 允许的值为ssh。</p>
+ <pre class="pre codeblock">TRUSTED_SHELL: "ssh"</pre>
+</li>
+<li class="link ulchildlink">
+<p>日志文件段（每个段通常为16兆字节）中自动预写式日志（WAL）检查点之间的最大距离。 这将在inHybrid数据库系统的每个Segment实例的postgresql.conf文件中 设置checkpoint_segments参数。</p>
+ <pre class="pre codeblock">CHECK_POINT_SEGMENTS: "8"</pre>
+</li>
+<li class="link ulchildlink">
+<p>要使用的字符集编码。该字符集必须与所使用的--locale设置兼容， 尤其是--lc-collate和--lc-ctype。inHybrid数据库 支持和PostgreSQL相同的字符集。</p>
+ <pre class="pre codeblock">ENCODING: "UNICODE"</pre>
+</li>
+<li class="link ulchildlink">
+<p>指定包含构成inHybrid数据库系统 的Segment主机地址名称列表的文件。</p>
+ <pre class="pre codeblock">MACHINE_LIST_FILE: "/home/hdbadmin/hdb_conf/hostlist"</pre>
+</li>
+</ul>
+
+<h2 class="title topictitle1">可选</h2>
+<ul class="ullinks">
+<li class="link ulchildlink">
+  <p>segment镜像段端口号基数</p>
+ <pre class="pre codeblock">#MIRROR_PORT_BASE: "7000"</pre>
+</li>
+<li class="link ulchildlink">
+<p>segment节点 镜像目录</p>
+ <pre class="pre codeblock">#declare_MIRROR_DATA_DIRECTORY: "/data1/mirror /data1/mirror /data1/mirror /data2/mirror /data2/mirror /data2/mirror"
+</pre>
+</li>
+<li class="link ulchildlink">
+<p>初始化后创建此名称的数据库</p>
+ <pre class="pre codeblock">DATABASE_NAME: name_of_database</pre>
+</li>
+<li class="link ulchildlink">
+<p>是否为堆表中的数据启用校验和。</p>
+ <pre class="pre codeblock">HEAP_CHECKSUM: "on"</pre>
+</li>
+<li class="link ulchildlink">
+<p>该参数控制hdbinitsystem工具在pg_hba.conf 中开放访问IP地址或者主机名的信息。默认值为0，该工具会 使用IP地址更新hba文件。当初始化inHybrid数据库系统时，指定 HBA_HOSTNAMES=1来让工具使用主机名更新 pg_hba.conf文件</p>
+ <pre class="pre codeblock">HBA_HOSTNAMES: "0"</pre>
+</li>
+</ul>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div id="scrim"></div>
+
+<div class="container">
+  <footer class="site-footer-links">
+    
+  </footer>
+</div><!--end of container-->
+
+</body>
+</html>
