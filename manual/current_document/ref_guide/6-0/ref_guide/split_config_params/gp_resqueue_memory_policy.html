@@ -25,13 +25,10 @@
 <span class="notetitle">Note:</span> 仅当资源管理设置为资源队列时，<samp class="ph codeph">gp_resqueue_memory_policy</samp>服务器配置参数才会生效。
         </div>
 <p class="p">启用inHybrid内存管理功能。
-        分配算法<samp class="ph codeph">eager_free</samp>利用了并非所有运算符同时执行的事实<span class="ph">（在inHybrid Database 4.2及更高版本中）</span>。
+        分配算法<samp class="ph codeph">eager_free</samp>利用了并非所有运算符同时执行的事实。
         查询计划分为几个阶段，inHybrid数据库急切地释放在该阶段执行结束时分配给前一阶段的内存，
         然后将急切释放的内存分配给新阶段。
         </p>
-<p class="p">When set to <samp class="ph codeph">none</samp>, memory management is the same as in inHybrid Database
-        releases prior to 4.1. </p>
-<p class="p">When set to <samp class="ph codeph">auto</samp>, query memory usage is controlled by <a class="xref" href="guc-list.html#statement_mem">statement_mem</a> and resource queue memory limits. </p>
 <div class="tablenoborder">
 <table border="1" cellpadding="4" cellspacing="0" class="table" frame="border" id="gp_resqueue_memory_policy__gp_resqueue_memory_policy_table" rules="all" summary="">
 <thead align="left" class="thead">
