@@ -11,6 +11,13 @@
       user:
         name: "{{ inhybrid_admin_user }}"
         password: "{{ inhybrid_admin_password | password_hash('sha512') }}"
+    - name: sudoer
+      blockinfile:
+        path: "/etc/sudoers"
+        block: "{{ inhybrid_admin_user }}  ALL=(ALL)   NOPASSWD: ALL"
+        marker: "#{mark}sudoers"
+        state: "present"
+        create: yes 
   #---包拷贝
     - name: copy hdb package
       copy:
@@ -58,10 +65,12 @@
     - name: ld.so.conf
       blockinfile:
         path: "/etc/ld.so.conf"
-        block: "/usr/local/gpEnv/gpos_home/lib\n\
-        /usr/local/gpEnv/gp-xerces_home/lib\n\
-        /usr/local/gpEnv/gporca_home/lib\n\
-        /usr/local/gpEnv/inhybrid-db/lib"
+        block: "/usr/local/hdbEnv/gpos/lib\n\
+        /usr/local/hdbEnv/gp-xerces/lib\n\
+        /usr/local/hdbEnv/gporca/lib\n\
+        /usr/local/hdbEnv/apr_home/lib\n\
+        /usr/local/hdbEnv/apr_util_home/lib\n\
+        /usr/local/hdbEnv/sigar_home/lib"
         marker: "#{mark}hdbEnv"
         state: "present"
         create: yes

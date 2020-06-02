@@ -1,0 +1,9 @@
+---
+- hosts: hdb_all
+  gather_facts: false
+  tasks:
+  - name: deliver authorized_keys
+    authorized_key:
+        user: root
+        key: "{{ lookup('file', '/root/.ssh/id_rsa.pub') }}"  # 从本地authorized_keys文件读取公钥内容
+        state: present
