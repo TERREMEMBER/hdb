@@ -41,7 +41,7 @@ in the SSH key exchange.
 
 Keys are exchanged as the currently logged in user. HTAP recommends 
 performing the key exchange process twice: once as root and once as the 
-gpadmin user (the user designated to own your HTAP Database installation). 
+hdbadmin user (the user designated to own your HTAP Database installation). 
 The HTAP Database management utilities require that the same non-root 
 user be created on all hosts in the HTAP Database system, and the 
 utilities must be able to connect as that user to all hosts without a 
