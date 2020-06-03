@@ -22,7 +22,7 @@ PORT_BASE={{ PORT_BASE }}
 #### physical host (if multiple addresses for a host are listed in 
 #### the hostfile, the number of segments will be spread evenly across
 #### the specified interface addresses).
-declare -a DATA_DIRECTORY=({{ declare_DATA_DIRECTORY }})
+declare -a DATA_DIRECTORY=({% for dir in declare_DATA_DIRECTORY %}{{ dir }} {%endfor%})
 
 #### OS-configured hostname or IP address of the master host.
 MASTER_HOSTNAME={{ MASTER_HOSTNAME }}
@@ -57,7 +57,7 @@ MIRROR_PORT_BASE={{ MIRROR_PORT_BASE }}
 #### number of primary locations as specified in the 
 #### DATA_DIRECTORY parameter.
 {%if declare_MIRROR_DATA_DIRECTORY is defined %}
-declare -a MIRROR_DATA_DIRECTORY=({{ declare_MIRROR_DATA_DIRECTORY }})
+declare -a MIRROR_DATA_DIRECTORY=({% for dir in declare_MIRROR_DATA_DIRECTORY %}{{ dir }} {%endfor%})
 {%endif%}
 
 

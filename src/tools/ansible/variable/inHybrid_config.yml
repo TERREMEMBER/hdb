@@ -22,7 +22,7 @@ PORT_BASE: 6000
 #### physical host (if multiple addresses for a host are listed in 
 #### the hostfile, the number of segments will be spread evenly across
 #### the specified interface addresses).
-declare_DATA_DIRECTORY: "/home/hdbadmin/hdbdata/datadir/primary1 /home/hdbadmin/hdbdata/datadir/primary2"
+declare_DATA_DIRECTORY: ["/home/hdbadmin/hdbdata/datadir1/primary","/home/hdbadmin/hdbdata/datadir2/primary"]
 
 #### OS-configured hostname or IP address of the master host.
 MASTER_HOSTNAME: "mdw"
@@ -55,7 +55,7 @@ ENCODING: "UNICODE"
 #### will be created. The number of mirror locations must equal the
 #### number of primary locations as specified in the 
 #### DATA_DIRECTORY parameter.
-#declare_MIRROR_DATA_DIRECTORY: "/data1/mirror /data1/mirror /data1/mirror /data2/mirror /data2/mirror /data2/mirror"
+#declare_MIRROR_DATA_DIRECTORY: ["/home/hdbadmin/hdbdata/datadir1/mirror","/home/hdbadmin/hdbdata/datadir1/mirror","/home/hdbadmin/hdbdata/datadir2/mirror","/home/hdbadmin/hdbdata/datadir/mirror2"]
 
 
 ################################################
