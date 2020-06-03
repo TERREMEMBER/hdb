@@ -44,9 +44,19 @@
     - ./variable/inHybrid_config.yml
   tasks:
     - name: create inHybridDB segement data directory  
-      shell: "mkdir -p {{ declare_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_DATA_DIRECTORY }}"
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+      with_items: "{{ declare_DATA_DIRECTORY }}"
     - name: create inHybridDB segement mirror directory
-      shell: "mkdir -p {{ declare_MIRROR_DATA_DIRECTORY }} && chown -R {{ inhybrid_admin_user }}:{{ inhybrid_admin_user }} {{ declare_MIRROR_DATA_DIRECTORY }}"
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ inhybrid_admin_user }}"
+        group: "{{ inhybrid_admin_user }}"
+      with_items: "{{ declare_MIRROR_DATA_DIRECTORY }}"
       when: declare_MIRROR_DATA_DIRECTORY is defined
 
 #master节点操作

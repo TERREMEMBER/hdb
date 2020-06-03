@@ -25,5 +25,5 @@
   tasks:
     - include_tasks: ./tasks/uninstall/kill_process.yml
     - include_tasks: ./tasks/uninstall/clean_tmp.yml
-    - include_tasks: ./tasks/uninstall/delete_inhybrid.yml
     - include_tasks: ./tasks/uninstall/delete_hdb.yml
+    - include_tasks: ./tasks/uninstall/delete_hdbEnv.yml
