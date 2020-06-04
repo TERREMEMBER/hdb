@@ -1,5 +1,5 @@
 {% for h in cluster %}
-{%if h.id != "master" and h.id != "standby" %}
+{%if h.id != "master"%}
 {{ h.hostname }}
 {%endif%}
 {%endfor%}

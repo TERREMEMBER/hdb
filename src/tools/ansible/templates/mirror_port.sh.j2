@@ -1,5 +1,5 @@
 port={{ MIRROR_PORT_BASE }}
-str='{{ declare_MIRROR_DATA_DIRECTORY }}'
+str='{% for dir in declare_MIRROR_DATA_DIRECTORY %}{{ dir }} {%endfor%}'
 save_str=''
 split_str=''
 count=1

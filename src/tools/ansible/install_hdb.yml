@@ -65,9 +65,9 @@
     - name: ld.so.conf
       blockinfile:
         path: "/etc/ld.so.conf"
-        block: "/usr/local/hdbEnv/gpos/lib\n\
-        /usr/local/hdbEnv/gp-xerces/lib\n\
-        /usr/local/hdbEnv/gporca/lib\n\
+        block: "/usr/local/hdbEnv/gpos_home/lib\n\
+        /usr/local/hdbEnv/gp-xerces_home/lib\n\
+        /usr/local/hdbEnv/gporca_home/lib\n\
         /usr/local/hdbEnv/apr_home/lib\n\
         /usr/local/hdbEnv/apr_util_home/lib\n\
         /usr/local/hdbEnv/sigar_home/lib"
