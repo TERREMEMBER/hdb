@@ -1,2 +1,4 @@
 - name: rm master data
-  shell: "rm -rf {{ MASTER_DIRECTORY }}"
+  file:
+    path: "{{ MASTER_DIRECTORY }}"
+    state: absent
