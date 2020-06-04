@@ -1,20 +1,25 @@
 #---primary
 - name: check segment directory exist
-  shell: ls {{ declare_DATA_DIRECTORY }}/{{ SEG_PREFIX }}*
+  shell: "ls {{ item }}/{{ SEG_PREFIX }}*"
   register: seg_dir_result
-  ignore_errors: true
+  ignore_errors: yes
+  with_items: "{{ declare_DATA_DIRECTORY }}"
+
 - name: fail if segment data directory already exists
   fail:
     msg: "inHybrid data directory already exists"
-  when: seg_dir_result is success
+  when:  item is success
+  with_items: "{{ seg_dir_result.results }}"
 #---mirror
 - block:
     - name: check mirror directory exist
-      shell: ls {{ declare_MIRROR_DATA_DIRECTORY }}/{{ SEG_PREFIX }}*
+      shell: ls {{ item }}/{{ SEG_PREFIX }}*
       register: mirror_dir_result
       ignore_errors: true
+      with_items: "{{ declare_MIRROR_DATA_DIRECTORY }}"
     - name: fail if mirror data directory already exists
       fail:
         msg: "inHybrid data directory already exists"
-      when: mirror_dir_result is success
+      when: item is success
+      with_items: "{{ mirror_dir_result.results }}"
   when: declare_MIRROR_DATA_DIRECTORY is defined and MIRROR_PORT_BASE is defined
