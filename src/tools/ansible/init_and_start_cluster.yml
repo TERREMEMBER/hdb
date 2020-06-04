@@ -65,7 +65,6 @@
     - ./variable/inHybrid_config.yml
     - ./variable/deployment_config.yml
   remote_user: hdbadmin
-  connection: ssh
   tasks:
     - name: create inHybridDB master data directory
       become: yes
