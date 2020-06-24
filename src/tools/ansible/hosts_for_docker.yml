@@ -1,0 +1,23 @@
+---
+- hosts: hdb_all
+  vars_files:
+    - ./variable/deployment_config.yml
+  remote_user: root
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: copy /etc/hosts
+      copy: 
+        remote_src: yes
+        src: '/etc/hosts'
+        dest: "/home/{{ inhybrid_admin_user }}/hosts"
+    - name: write into hosts
+      blockinfile:
+        path: '/home/{{ inhybrid_admin_user }}/hosts'
+        block: "{{ item.ip }} {{ item.hostname }}"
+        marker: "#{mark}hdb_host:{{ item.id }}"
+        state: "present"
+        create: yes
+      with_items: "{{ cluster }}"
+    - name: replace hosts
+      shell: "cp /home/{{ inhybrid_admin_user }}/hosts /etc/hosts"
