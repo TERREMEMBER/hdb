@@ -1,6 +1,6 @@
 ---
 - hosts: hdb_all
-  gather_facts: false
+  gather_facts: no
   tasks:
   - name: deliver authorized_keys
     authorized_key:

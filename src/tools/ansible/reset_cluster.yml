@@ -1,7 +1,7 @@
 ---
 - hosts: master
   remote_user: root
-  gather_facts: yes
+  gather_facts: no
   vars_files:
     - ./variable/inHybrid_config.yml
   tasks:
@@ -11,7 +11,7 @@
 #-----
 - hosts: segment
   remote_user: root
-  gather_facts: yes
+  gather_facts: no
   vars_files:
     - ./variable/inHybrid_config.yml
   tasks:
@@ -19,7 +19,7 @@
 #-----
 - hosts: hdb_all
   remote_user: root
-  gather_facts: yes
+  gather_facts: no
   vars_files:
     - ./variable/inHybrid_config.yml
   tasks:
