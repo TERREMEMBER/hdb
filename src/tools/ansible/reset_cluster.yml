@@ -6,16 +6,6 @@
     - ./variable/inHybrid_config.yml
   tasks:
     - include_tasks: ./tasks/uninstall/hdbstop.yml
-    - include_tasks: ./tasks/uninstall/delete_log.yml
-    - include_tasks: ./tasks/uninstall/delete_master_data.yml
-#-----
-- hosts: segment
-  remote_user: root
-  gather_facts: no
-  vars_files:
-    - ./variable/inHybrid_config.yml
-  tasks:
-    - include_tasks: ./tasks/uninstall/delete_segment_data.yml
 #-----
 - hosts: hdb_all
   remote_user: root
