@@ -564,8 +564,8 @@ main(int argc, char **argv)
 		 * the following are mpp specific, and don't have an equivalent short
 		 * option
 		 */
-		{"hdb-syntax", no_argument, NULL, 1000},
-		{"no-hdb-syntax", no_argument, NULL, 1001},
+		{"gp-syntax", no_argument, NULL, 1000},
+		{"no-gp-syntax", no_argument, NULL, 1001},
 		{"pre-data-schema-only", no_argument, &preDataSchemaOnly, 1},
 		{"post-data-schema-only", no_argument, &postDataSchemaOnly, 1},
 		{"function-oids", required_argument, NULL, 1002},
@@ -758,19 +758,19 @@ main(int argc, char **argv)
 				set_dump_section(optarg, &dumpSections);
 				break;
 
-			case 1000:				/* hdb-syntax */
+			case 1000:				/* gp-syntax */
 				if (gp_syntax_option != GPS_NOT_SPECIFIED)
 				{
-					write_msg(NULL, "options \"--hdb-syntax\" and \"--no-hdb-syntax\" cannot be used together\n");
+					write_msg(NULL, "options \"--gp-syntax\" and \"--no-gp-syntax\" cannot be used together\n");
 					exit(1);
 				}
 				gp_syntax_option = GPS_ENABLED;
 				break;
 
-			case 1001:				/* no-hdb-syntax */
+			case 1001:				/* no-gp-syntax */
 				if (gp_syntax_option != GPS_NOT_SPECIFIED)
 				{
-					write_msg(NULL, "options \"--hdb-syntax\" and \"--no-hdb-syntax\" cannot be used together\n");
+					write_msg(NULL, "options \"--gp-syntax\" and \"--no-gp-syntax\" cannot be used together\n");
 					exit(1);
 				}
 				gp_syntax_option = GPS_DISABLED;
@@ -915,7 +915,7 @@ main(int argc, char **argv)
 	isGPbackend = testGPbackend(fout);
 
 	/*
-	 * Now that the type of backend is known, determine the hdb-syntax option
+	 * Now that the type of backend is known, determine the gp-syntax option
 	 * value and set processing accordingly.
 	 */
 	switch (gp_syntax_option)
@@ -930,7 +930,7 @@ main(int argc, char **argv)
 			dumpPolicy = isGPbackend;
 			if (!isGPbackend)
 			{
-				write_msg(NULL, "Server is not a inHybrid Database instance; --hdb-syntax option ignored.\n");
+				write_msg(NULL, "Server is not a inHybrid Database instance; --gp-syntax option ignored.\n");
 			}
 			break;
 	}
@@ -1225,8 +1225,8 @@ help(const char *progname)
 			 "                               ALTER OWNER commands to set ownership\n"));
 
 	/* START MPP ADDITION */
-	printf(_("  --hdb-syntax                 dump with inHybrid Database syntax (default if hdb)\n"));
-	printf(_("  --no-hdb-syntax              dump without inHybrid Database syntax (default if postgresql)\n"));
+	printf(_("  --gp-syntax                 dump with inHybrid Database syntax (default if gp)\n"));
+	printf(_("  --no-gp-syntax              dump without inHybrid Database syntax (default if postgresql)\n"));
 	printf(_("  --function-oids              dump only function(s) of given list of oids\n"));
 	printf(_("  --relation-oids              dump only relation(s) of given list of oids\n"));
 	/* END MPP ADDITION */
