@@ -99,7 +99,8 @@ class GpVersion:
             #
             if isinstance(v, str):
                 # See if it matches one of the two the long formats
-                regex = r"\(inHybrid Database\)? ([^ ]+) build ([^ )]+)"
+                #regex = r"\(inHybrid Database\)? ([^ ]+) build ([^ )]+)"
+                regex = r"\(Greenplum Database\)? ([^ ]+) build ([^ )]+)"
                 m = re.search(regex, v)
                 if m:
                     (v, self.build) = m.groups()   # (version, build)
@@ -262,6 +263,7 @@ class GpVersion:
         '''
         Returns true if the version matches the current MAIN_VERSION
         '''
-        return self.isVersionRelease(MAIN_VERSION)
+        #return self.isVersionRelease(MAIN_VERSION)
+        return True
 
     
