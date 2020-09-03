@@ -18,7 +18,7 @@ if sys.version_info < (2, 5, 0) or sys.version_info >= (3, 0, 0):
                      % os.path.split(__file__)[-1])
     sys.exit(1)
 
-MAIN_VERSION = [1,99,99]    # version number for main
+MAIN_VERSION = [6,99,99]    # version number for main
 
 
 #============================================================
@@ -263,7 +263,7 @@ class GpVersion:
         '''
         Returns true if the version matches the current MAIN_VERSION
         '''
-        #return self.isVersionRelease(MAIN_VERSION)
-        return True
+        return self.isVersionRelease(MAIN_VERSION)
+        #return True
 
     
