@@ -2107,7 +2107,7 @@ transformDistributedBy(CreateStmtContext *cxt,
 							ereport(NOTICE,
 								(errcode(ERRCODE_SUCCESSFUL_COMPLETION),
 								 errmsg("Table doesn't have 'DISTRIBUTED BY' clause -- Using column "
-										"named '%s' from parent table as the Greenplum Database data distribution key for this "
+										"named '%s' from parent table as the inHybrid Database data distribution key for this "
 										"table. ", inhname),
 								 errhint("The 'DISTRIBUTED BY' clause determines the distribution of data."
 								 		 " Make sure column(s) chosen are the optimal data distribution key to minimize skew.")));
@@ -2148,7 +2148,7 @@ transformDistributedBy(CreateStmtContext *cxt,
 						ereport(NOTICE,
 							(errcode(ERRCODE_SUCCESSFUL_COMPLETION),
 							 errmsg("Table doesn't have 'DISTRIBUTED BY' clause -- Using column "
-									"named '%s' as the Greenplum Database data distribution key for this "
+									"named '%s' as the inHybrid Database data distribution key for this "
 									"table. ", column->colname),
 							 errhint("The 'DISTRIBUTED BY' clause determines the distribution of data."
 							 		 " Make sure column(s) chosen are the optimal data distribution key to minimize skew.")));
