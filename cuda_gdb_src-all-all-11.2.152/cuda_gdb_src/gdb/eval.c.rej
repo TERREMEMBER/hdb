@@ -1,0 +1,27 @@
+diff a/gdb/eval.c b/gdb/eval.c	(rejected hunks)
+@@ -1841,18 +1864,18 @@ evaluate_subexp_standard (struct type *expect_type,
+ 	       it's opinion (ie. through "whatis"), it won't offer
+ 	       it.  */
+ 
+-	    struct type *type = value_type (called_method);
++	    struct type *callee_type = value_type (called_method);
+ 
+-	    if (type && TYPE_CODE (type) == TYPE_CODE_PTR)
+-	      type = TYPE_TARGET_TYPE (type);
+-	    type = TYPE_TARGET_TYPE (type);
++	    if (callee_type && TYPE_CODE (callee_type) == TYPE_CODE_PTR)
++	      callee_type = TYPE_TARGET_TYPE (callee_type);
++	    callee_type = TYPE_TARGET_TYPE (callee_type);
+ 
+-	    if (type)
++	    if (callee_type)
+ 	    {
+-	      if ((TYPE_CODE (type) == TYPE_CODE_ERROR) && expect_type)
++	      if ((TYPE_CODE (callee_type) == TYPE_CODE_ERROR) && expect_type)
+ 		return allocate_value (expect_type);
+ 	      else
+-		return allocate_value (type);
++		return allocate_value (callee_type);
+ 	    }
+ 	    else
+ 	      error (_("Expression of type other than "

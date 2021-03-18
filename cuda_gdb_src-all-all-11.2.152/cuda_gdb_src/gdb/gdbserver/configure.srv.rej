@@ -1,0 +1,11 @@
+diff a/gdb/gdbserver/configure.srv b/gdb/gdbserver/configure.srv	(rejected hunks)
+@@ -225,6 +228,9 @@ case "${target}" in
+ 			srv_regobj="${srv_regobj} powerpc-isa205-64l.o"
+ 			srv_regobj="${srv_regobj} powerpc-isa205-altivec64l.o"
+ 			srv_regobj="${srv_regobj} powerpc-isa205-vsx64l.o"
++			srv_regobj="${srv_regobj} powerpc-isa205-ppr-dscr-vsx64l.o"
++			srv_regobj="${srv_regobj} powerpc-isa207-vsx64l.o"
++			srv_regobj="${srv_regobj} powerpc-isa207-htm-vsx64l.o"
+ 			srv_tgtobj="$srv_linux_obj linux-ppc-low.o ppc-linux.o"
+ 			srv_tgtobj="${srv_tgtobj} arch/ppc-linux-common.o"
+ 			srv_xmlfiles="rs6000/powerpc-32l.xml"

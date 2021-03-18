@@ -1,0 +1,23 @@
+diff a/gdb/python/py-framefilter.c b/gdb/python/py-framefilter.c	(rejected hunks)
+@@ -1051,21 +1054,6 @@ bootstrap_python_frame_filters (struct frame_info *frame,
+     return iterable.release ();
+ }
+ 
+-/* A helper function that will either print an exception or, if it is
+-   a KeyboardException, throw a quit.  This can only be called when
+-   the Python exception is set.  */
+-
+-static void
+-throw_quit_or_print_exception ()
+-{
+-  if (PyErr_ExceptionMatches (PyExc_KeyboardInterrupt))
+-    {
+-      PyErr_Clear ();
+-      throw_quit ("Quit");
+-    }
+-  gdbpy_print_stack ();
+-}
+-
+ /*  This is the only publicly exported function in this file.  FRAME
+     is the source frame to start frame-filter invocation.  FLAGS is an
+     integer holding the flags for printing.  The following elements of

@@ -1,0 +1,67 @@
+*** gdb/python/py-value.c	2016-10-07 10:09:21.000000000 -0700
+--- gdb/python/py-value.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 421,427 ****
+    static char *keywords[] = { "encoding", "length", NULL };
+    PyObject *str_obj = NULL;
+  
+!   if (!PyArg_ParseTupleAndKeywords (args, kw, "|s" GDB_PY_LL_ARG, keywords,
+  				    &user_encoding, &length))
+      return NULL;
+  
+--- 421,427 ----
+    static char *keywords[] = { "encoding", "length", NULL };
+    PyObject *str_obj = NULL;
+  
+!   if (!gdbpy_ArgParseTupleAndKeywords (args, kw, "|s" GDB_PY_LL_ARG, keywords,
+  				    &user_encoding, &length))
+      return NULL;
+  
+***************
+*** 467,473 ****
+    struct type *char_type;
+    static char *keywords[] = { "encoding", "errors", "length", NULL };
+  
+!   if (!PyArg_ParseTupleAndKeywords (args, kw, "|ssi", keywords,
+  				    &user_encoding, &errors, &length))
+      return NULL;
+  
+--- 467,473 ----
+    struct type *char_type;
+    static char *keywords[] = { "encoding", "errors", "length", NULL };
+  
+!   if (!gdbpy_ArgParseTupleAndKeywords (args, kw, "|ssi", keywords,
+  				    &user_encoding, &errors, &length))
+      return NULL;
+  
+***************
+*** 1642,1655 ****
+  	  else
+  	    value = value_from_longest (builtin_type_pylong, l);
+  	}
+!       else if (PyInt_Check (obj))
+  	{
+  	  long l = PyInt_AsLong (obj);
+  
+  	  if (! PyErr_Occurred ())
+  	    value = value_from_longest (builtin_type_pyint, l);
+  	}
+!       else if (PyFloat_Check (obj))
+  	{
+  	  double d = PyFloat_AsDouble (obj);
+  
+--- 1642,1655 ----
+  	  else
+  	    value = value_from_longest (builtin_type_pylong, l);
+  	}
+!       else if (gdbpy_IntCheck (obj))
+  	{
+  	  long l = PyInt_AsLong (obj);
+  
+  	  if (! PyErr_Occurred ())
+  	    value = value_from_longest (builtin_type_pyint, l);
+  	}
+!       else if (PyObject_TypeCheck (obj, gdbpy_FloatType))
+  	{
+  	  double d = PyFloat_AsDouble (obj);
+  

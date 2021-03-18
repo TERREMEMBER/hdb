@@ -1,0 +1,18 @@
+diff a/gdb/gdbserver/linux-low.c b/gdb/gdbserver/linux-low.c	(rejected hunks)
+@@ -43,13 +43,13 @@
+ #include <sys/stat.h>
+ #include <sys/vfs.h>
+ #include <sys/uio.h>
+-#include "filestuff.h"
++#include "common/filestuff.h"
+ #include "tracepoint.h"
+ #include "hostio.h"
+ #include <inttypes.h>
+-#include "common-inferior.h"
++#include "common/common-inferior.h"
+ #include "nat/fork-inferior.h"
+-#include "environ.h"
++#include "common/environ.h"
+ #include "common/scoped_restore.h"
+ #ifndef ELFMAG0
+ /* Don't include <linux/elf.h> here.  If it got included by gdb_proc_service.h

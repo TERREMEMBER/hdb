@@ -1,0 +1,66 @@
+*** gdb/gdbserver/configure.srv	2016-10-07 10:09:21.000000000 -0700
+--- gdb/gdbserver/configure.srv	2018-09-24 16:09:06.003292957 -0700
+***************
+*** 61,66 ****
+  			srv_tgtobj="$srv_tgtobj aarch64-linux.o"
+  			srv_tgtobj="$srv_tgtobj aarch64-insn.o"
+  			srv_tgtobj="${srv_tgtobj} $srv_linux_obj"
+  			srv_xmlfiles="aarch64.xml"
+  			srv_xmlfiles="${srv_xmlfiles} aarch64-core.xml"
+  			srv_xmlfiles="${srv_xmlfiles} aarch64-fpu.xml"
+--- 64,70 ----
+  			srv_tgtobj="$srv_tgtobj aarch64-linux.o"
+  			srv_tgtobj="$srv_tgtobj aarch64-insn.o"
+  			srv_tgtobj="${srv_tgtobj} $srv_linux_obj"
++ 			srv_tgtobj="${srv_tgtobj} ${cuda_tgtobj}"
+  			srv_xmlfiles="aarch64.xml"
+  			srv_xmlfiles="${srv_xmlfiles} aarch64-core.xml"
+  			srv_xmlfiles="${srv_xmlfiles} aarch64-fpu.xml"
+***************
+*** 91,96 ****
+  			srv_tgtobj="${srv_tgtobj} arm.o"
+  			srv_tgtobj="${srv_tgtobj} arm-linux.o"
+  			srv_tgtobj="${srv_tgtobj} arm-get-next-pcs.o"
+  			srv_xmlfiles="arm-with-iwmmxt.xml"
+  			srv_xmlfiles="${srv_xmlfiles} arm-with-vfpv2.xml"
+  			srv_xmlfiles="${srv_xmlfiles} arm-with-vfpv3.xml"
+--- 107,113 ----
+  			srv_tgtobj="${srv_tgtobj} arm.o"
+  			srv_tgtobj="${srv_tgtobj} arm-linux.o"
+  			srv_tgtobj="${srv_tgtobj} arm-get-next-pcs.o"
++ 			srv_tgtobj="${srv_tgtobj} ${cuda_tgtobj}"
+  			srv_xmlfiles="arm-with-iwmmxt.xml"
+  			srv_xmlfiles="${srv_xmlfiles} arm-with-vfpv2.xml"
+  			srv_xmlfiles="${srv_xmlfiles} arm-with-vfpv3.xml"
+***************
+*** 249,254 ****
+  			srv_regobj="${srv_regobj} powerpc-isa205-altivec64l.o"
+  			srv_regobj="${srv_regobj} powerpc-isa205-vsx64l.o"
+  			srv_tgtobj="$srv_linux_obj linux-ppc-low.o ppc-linux.o"
+  			srv_xmlfiles="rs6000/powerpc-32l.xml"
+  			srv_xmlfiles="${srv_xmlfiles} rs6000/powerpc-altivec32l.xml"
+  			srv_xmlfiles="${srv_xmlfiles} rs6000/powerpc-cell32l.xml"
+--- 267,273 ----
+  			srv_regobj="${srv_regobj} powerpc-isa205-altivec64l.o"
+  			srv_regobj="${srv_regobj} powerpc-isa205-vsx64l.o"
+  			srv_tgtobj="$srv_linux_obj linux-ppc-low.o ppc-linux.o"
++ 			srv_tgtobj="${srv_tgtobj} ${cuda_tgtobj}"
+  			srv_xmlfiles="rs6000/powerpc-32l.xml"
+  			srv_xmlfiles="${srv_xmlfiles} rs6000/powerpc-altivec32l.xml"
+  			srv_xmlfiles="${srv_xmlfiles} rs6000/powerpc-cell32l.xml"
+***************
+*** 376,381 ****
+  			srv_tgtobj="${srv_tgtobj} linux-btrace.o x86-linux.o"
+  			srv_tgtobj="${srv_tgtobj} x86-linux-dregs.o"
+  			srv_tgtobj="${srv_tgtobj} amd64-linux-siginfo.o"
+  			srv_xmlfiles="$srv_i386_linux_xmlfiles $srv_amd64_linux_xmlfiles"
+  			srv_linux_usrregs=yes # This is for i386 progs.
+  			srv_linux_regsets=yes
+--- 395,401 ----
+  			srv_tgtobj="${srv_tgtobj} linux-btrace.o x86-linux.o"
+  			srv_tgtobj="${srv_tgtobj} x86-linux-dregs.o"
+  			srv_tgtobj="${srv_tgtobj} amd64-linux-siginfo.o"
++ 			srv_tgtobj="${srv_tgtobj} ${cuda_tgtobj}"
+  			srv_xmlfiles="$srv_i386_linux_xmlfiles $srv_amd64_linux_xmlfiles"
+  			srv_linux_usrregs=yes # This is for i386 progs.
+  			srv_linux_regsets=yes

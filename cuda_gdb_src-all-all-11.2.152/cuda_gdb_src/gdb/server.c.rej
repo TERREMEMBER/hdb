@@ -1,0 +1,188 @@
+*** gdb/gdbserver/server.c	2016-10-07 10:09:21.000000000 -0700
+--- gdb/gdbserver/server.c	2018-09-24 16:09:06.003292957 -0700
+***************
+*** 36,41 ****
+  #include "dll.h"
+  #include "hostio.h"
+  
+  /* The thread set with an `Hc' packet.  `Hc' is deprecated in favor of
+     `vCont'.  Note the multi-process extensions made `vCont' a
+     requirement, so `Hc pPID.TID' is pretty much undefined.  So
+--- 36,49 ----
+  #include "dll.h"
+  #include "hostio.h"
+  
++ #include "cuda.h"
++ #include "../cuda-utils.h"
++ 
++ /* Android build hacks */
++ #ifdef __ANDROID__
++ extern char *strchrnul(const char *s, int c);
++ #endif
++ 
+  /* The thread set with an `Hc' packet.  `Hc' is deprecated in favor of
+     `vCont'.  Note the multi-process extensions made `vCont' a
+     requirement, so `Hc pPID.TID' is pretty much undefined.  So
+***************
+*** 2212,2224 ****
+  		{
+  		  /* GDB supports and wants fork events if possible.  */
+  		  if (target_supports_fork_events ())
+! 		    report_fork_events = 1;
+  		}
+  	      else if (strcmp (p, "vfork-events+") == 0)
+  		{
+  		  /* GDB supports and wants vfork events if possible.  */
+  		  if (target_supports_vfork_events ())
+! 		    report_vfork_events = 1;
+  		}
+  	      else if (strcmp (p, "exec-events+") == 0)
+  		{
+--- 2230,2254 ----
+  		{
+  		  /* GDB supports and wants fork events if possible.  */
+  		  if (target_supports_fork_events ())
+! 		    {
+! 		      /* CUDA debugging uses a forked debug process that
+! 			 doesn't cope well with fork-following.  Keep it
+! 			 disabled and let gdbserver silently detach from
+! 			 the forked process.  */
+! 		      report_fork_events = 0;
+! 		    }
+  		}
+  	      else if (strcmp (p, "vfork-events+") == 0)
+  		{
+  		  /* GDB supports and wants vfork events if possible.  */
+  		  if (target_supports_vfork_events ())
+! 		    {
+! 		      /* CUDA debugging uses a forked debug process that
+! 			 doesn't cope well with vfork-following.  Keep it
+! 			 disabled and let gdbserver silently detach from
+! 			 the vforked process.  */
+! 		      report_vfork_events = 0;
+! 		    }
+  		}
+  	      else if (strcmp (p, "exec-events+") == 0)
+  		{
+***************
+*** 3170,3175 ****
+    process->gdb_detached = 0;
+  }
+  
+  /* Callback for for_each_inferior.  Clear the thread's pending status
+     flag.  */
+  
+--- 3210,3216 ----
+    process->gdb_detached = 0;
+  }
+  
++ #ifndef __QNXHOST__
+  /* Callback for for_each_inferior.  Clear the thread's pending status
+     flag.  */
+  
+***************
+*** 3285,3302 ****
+  	  prepare_resume_reply (own_buf, tp->entry.id, &tp->last_status);
+  	}
+        else
+! 	strcpy (own_buf, "W00");
+      }
+  }
+  
+  static void
+  gdbserver_version (void)
+  {
+!   printf ("GNU gdbserver %s%s\n"
+  	  "Copyright (C) 2016 Free Software Foundation, Inc.\n"
+  	  "gdbserver is free software, covered by the "
+  	  "GNU General Public License.\n"
+  	  "This gdbserver was configured as \"%s\"\n",
+  	  PKGVERSION, version, host_name);
+  }
+  
+--- 3327,3354 ----
+  	  prepare_resume_reply (own_buf, tp->entry.id, &tp->last_status);
+  	}
+        else
+!         {
+! 	  strcpy (own_buf, "W00");
+! 
+!           /* CUDA - Append the return value of api_finalize. */
+!           cuda_append_api_finalize_res (own_buf + strlen (own_buf));
+!         }
+      }
+  }
+  
++ #ifndef __QNXHOST__
+  static void
+  gdbserver_version (void)
+  {
+!   printf ("NVIDIA (R) CUDA gdbserver\n"
+!           "%d.%d release\n"
+!           "Portions Copyright (C) 2013-2018 NVIDIA Corporation\n"
+!           "GNU gdbserver %s%s\n"
+  	  "Copyright (C) 2016 Free Software Foundation, Inc.\n"
+  	  "gdbserver is free software, covered by the "
+  	  "GNU General Public License.\n"
+  	  "This gdbserver was configured as \"%s\"\n",
++ 	  CUDA_VERSION / 1000, (CUDA_VERSION % 1000) / 10,
+  	  PKGVERSION, version, host_name);
+  }
+  
+***************
+*** 3402,3407 ****
+    discard_queued_stop_replies (pid_to_ptid (pid));
+  }
+  
+  /* Callback for for_each_inferior to detach or kill the inferior,
+     depending on whether we attached to it or not.
+     We inform the user whether we're detaching or killing the process
+--- 3461,3467 ----
+    discard_queued_stop_replies (pid_to_ptid (pid));
+  }
+  
++ #ifndef __QNXHOST__
+  /* Callback for for_each_inferior to detach or kill the inferior,
+     depending on whether we attached to it or not.
+     We inform the user whether we're detaching or killing the process
+***************
+*** 3626,3631 ****
+  	disable_randomization = 0;
+        else if (strcmp (*next_arg, "--once") == 0)
+  	run_once = 1;
+        else
+  	{
+  	  fprintf (stderr, "Unknown argument: %s\n", *next_arg);
+--- 3695,3707 ----
+  	disable_randomization = 0;
+        else if (strcmp (*next_arg, "--once") == 0)
+  	run_once = 1;
++       else if (strncmp (*next_arg,
++ 			"--cuda-use-lockfile=",
++ 			sizeof ("--cuda-use-lockfile=") - 1) == 0)
++ 	{
++ 	  *next_arg += sizeof ("--cuda-use-lockfile=") - 1;
++ 	  cuda_use_lockfile = (atoi (*next_arg) != 0);
++ 	}
+        else
+  	{
+  	  fprintf (stderr, "Unknown argument: %s\n", *next_arg);
+***************
+*** 4055,4060 ****
+  		 need to hang around doing nothing, until the child is
+  		 gone.  */
+  	      join_inferior (pid);
+  	      exit (0);
+  	    }
+  	}
+--- 4146,4155 ----
+  		 need to hang around doing nothing, until the child is
+  		 gone.  */
+  	      join_inferior (pid);
++ 
++ 	      /* CUDA - final cleanup before gdbserver quits. */
++ 	      cuda_final_cleanup ();
++ 
+  	      exit (0);
+  	    }
+  	}

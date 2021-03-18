@@ -1,0 +1,157 @@
+diff a/gdb/psymtab.c b/gdb/psymtab.c	(rejected hunks)
+@@ -62,16 +62,49 @@ static struct partial_symbol *find_pc_sect_psymbol (struct objfile *,
+ 						    CORE_ADDR,
+ 						    struct obj_section *);
+ 
+-static void fixup_psymbol_section (struct partial_symbol *psym,
+-				   struct objfile *objfile);
+-
+ static struct compunit_symtab *psymtab_to_symtab (struct objfile *objfile,
+ 						  struct partial_symtab *pst);
+ 
+-/* Ensure that the partial symbols for OBJFILE have been loaded.  This
+-   function always returns its argument, as a convenience.  */
++
++
++psymtab_storage::psymtab_storage ()
++  : psymbol_cache (psymbol_bcache_init ())
++{
++}
++
++psymtab_storage::~psymtab_storage ()
++{
++  psymbol_bcache_free (psymbol_cache);
++}
++
++/* See psymtab.h.  */
++
++struct partial_symtab *
++psymtab_storage::allocate_psymtab ()
++{
++  struct partial_symtab *psymtab;
++
++  if (free_psymtabs != nullptr)
++    {
++      psymtab = free_psymtabs;
++      free_psymtabs = psymtab->next;
++    }
++  else
++    psymtab = XOBNEW (obstack (), struct partial_symtab);
++
++  memset (psymtab, 0, sizeof (struct partial_symtab));
++
++  psymtab->next = psymtabs;
++  psymtabs = psymtab;
++
++  return psymtab;
++}
++
++
++
++/* See psymtab.h.  */
+ 
+-struct objfile *
++psymtab_storage::partial_symtab_range
+ require_partial_symbols (struct objfile *objfile, int verbose)
+ {
+   if ((objfile->flags & OBJF_PSYMTABS_READ) == 0)
+@@ -166,57 +170,56 @@ psym_map_symtabs_matching_filename
+    const char *real_path,
+    gdb::function_view<bool (symtab *)> callback)
+ {
+-  struct partial_symtab *pst;
+   const char *name_basename = lbasename (name);
+ 
+-  ALL_OBJFILE_PSYMTABS_REQUIRED (objfile, pst)
+-  {
+-    /* We can skip shared psymtabs here, because any file name will be
+-       attached to the unshared psymtab.  */
+-    if (pst->user != NULL)
+-      continue;
+-
+-    /* Anonymous psymtabs don't have a file name.  */
+-    if (pst->anonymous)
+-      continue;
++  for (partial_symtab *pst : require_partial_symbols (objfile, 1))
++    {
++      /* We can skip shared psymtabs here, because any file name will be
++	 attached to the unshared psymtab.  */
++      if (pst->user != NULL)
++	continue;
+ 
+-    if (compare_filenames_for_search (pst->filename, name))
+-      {
+-	if (partial_map_expand_apply (objfile, name, real_path,
+-				      pst, callback))
+-	  return true;
++      /* Anonymous psymtabs don't have a file name.  */
++      if (pst->anonymous)
+ 	continue;
+-      }
+ 
+-    /* Before we invoke realpath, which can get expensive when many
+-       files are involved, do a quick comparison of the basenames.  */
+-    if (! basenames_may_differ
+-	&& FILENAME_CMP (name_basename, lbasename (pst->filename)) != 0)
+-      continue;
++      if (compare_filenames_for_search (pst->filename, name))
++	{
++	  if (partial_map_expand_apply (objfile, name, real_path,
++					pst, callback))
++	    return true;
++	  continue;
++	}
+ 
+-    if (compare_filenames_for_search (psymtab_to_fullname (pst), name))
+-      {
+-	if (partial_map_expand_apply (objfile, name, real_path,
+-				      pst, callback))
+-	  return true;
++      /* Before we invoke realpath, which can get expensive when many
++	 files are involved, do a quick comparison of the basenames.  */
++      if (! basenames_may_differ
++	  && FILENAME_CMP (name_basename, lbasename (pst->filename)) != 0)
+ 	continue;
+-      }
+ 
+-    /* If the user gave us an absolute path, try to find the file in
+-       this symtab and use its absolute path.  */
+-    if (real_path != NULL)
+-      {
+-	gdb_assert (IS_ABSOLUTE_PATH (real_path));
+-	gdb_assert (IS_ABSOLUTE_PATH (name));
+-	if (filename_cmp (psymtab_to_fullname (pst), real_path) == 0)
+-	  {
+-	    if (partial_map_expand_apply (objfile, name, real_path,
+-					  pst, callback))
+-	      return true;
+-	    continue;
+-	  }
+-      }
+-  }
++      if (compare_filenames_for_search (psymtab_to_fullname (pst), name))
++	{
++	  if (partial_map_expand_apply (objfile, name, real_path,
++					pst, callback))
++	    return true;
++	  continue;
++	}
++
++      /* If the user gave us an absolute path, try to find the file in
++	 this symtab and use its absolute path.  */
++      if (real_path != NULL)
++	{
++	  gdb_assert (IS_ABSOLUTE_PATH (real_path));
++	  gdb_assert (IS_ABSOLUTE_PATH (name));
++	  if (filename_cmp (psymtab_to_fullname (pst), real_path) == 0)
++	    {
++	      if (partial_map_expand_apply (objfile, name, real_path,
++					    pst, callback))
++		return true;
++	      continue;
++	    }
++	}
++    }
+ 
+   return false;
+ }

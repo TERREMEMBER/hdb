@@ -1,0 +1,167 @@
+diff a/gdb/python/python.c b/gdb/python/python.c	(rejected hunks)
+@@ -496,29 +488,25 @@ gdbpy_parameter_value (enum var_types type, void *var)
+ static PyObject *
+ gdbpy_parameter (PyObject *self, PyObject *args)
+ {
+-  struct gdb_exception except = exception_none;
+   struct cmd_list_element *alias, *prefix, *cmd;
+   const char *arg;
+-  char *newarg;
+   int found = -1;
+ 
+   if (! PyArg_ParseTuple (args, "s", &arg))
+     return NULL;
+ 
+-  newarg = concat ("show ", arg, (char *) NULL);
++  std::string newarg = std::string ("show ") + arg;
+ 
+   TRY
+     {
+-      found = lookup_cmd_composition (newarg, &alias, &prefix, &cmd);
++      found = lookup_cmd_composition (newarg.c_str (), &alias, &prefix, &cmd);
+     }
+   CATCH (ex, RETURN_MASK_ALL)
+     {
+-      except = ex;
++      GDB_PY_HANDLE_EXCEPTION (ex);
+     }
+   END_CATCH
+ 
+-  xfree (newarg);
+-  GDB_PY_HANDLE_EXCEPTION (except);
+   if (!found)
+     return PyErr_Format (PyExc_RuntimeError,
+ 			 _("Could not find parameter `%s'."), arg);
+@@ -624,39 +621,11 @@ execute_gdb_command (PyObject *self, PyObject *args, PyObject *kw)
+     }
+   END_CATCH
+ 
+-  /* Do any commands attached to breakpoint we stopped at.  */
+-  bpstat_do_actions ();
+-
+   if (to_string)
+     return PyString_FromString (to_string_res.c_str ());
+   Py_RETURN_NONE;
+ }
+ 
+-/* Implementation of gdb.solib_name (Long) -> String.
+-   Returns the name of the shared library holding a given address, or None.  */
+-
+-static PyObject *
+-gdbpy_solib_name (PyObject *self, PyObject *args)
+-{
+-  char *soname;
+-  PyObject *str_obj;
+-  gdb_py_ulongest pc;
+-
+-  if (!PyArg_ParseTuple (args, GDB_PY_LLU_ARG, &pc))
+-    return NULL;
+-
+-  soname = solib_name_from_address (current_program_space, pc);
+-  if (soname)
+-    str_obj = host_string_to_python_string (soname);
+-  else
+-    {
+-      str_obj = Py_None;
+-      Py_INCREF (Py_None);
+-    }
+-
+-  return str_obj;
+-}
+-
+ /* Implementation of Python rbreak command.  Take a REGEX and
+    optionally a MINSYMS, THROTTLE and SYMTABS keyword and return a
+    Python list that contains newly set breakpoints that match that
+@@ -942,36 +912,6 @@ gdbpy_parse_and_eval (PyObject *self, PyObject *args)
+   return value_to_value_object (result);
+ }
+ 
+-/* Implementation of gdb.find_pc_line function.
+-   Returns the gdb.Symtab_and_line object corresponding to a PC value.  */
+-
+-static PyObject *
+-gdbpy_find_pc_line (PyObject *self, PyObject *args)
+-{
+-  gdb_py_ulongest pc_llu;
+-  PyObject *result = NULL; /* init for gcc -Wall */
+-
+-  if (!PyArg_ParseTuple (args, GDB_PY_LLU_ARG, &pc_llu))
+-    return NULL;
+-
+-  TRY
+-    {
+-      struct symtab_and_line sal;
+-      CORE_ADDR pc;
+-
+-      pc = (CORE_ADDR) pc_llu;
+-      sal = find_pc_line (pc, 0);
+-      result = symtab_and_line_to_sal_object (sal);
+-    }
+-  CATCH (except, RETURN_MASK_ALL)
+-    {
+-      GDB_PY_HANDLE_EXCEPTION (except);
+-    }
+-  END_CATCH
+-
+-  return result;
+-}
+-
+ /* Implementation of gdb.invalidate_cached_frames.  */
+ 
+ static PyObject *
+@@ -1426,37 +1362,10 @@ gdbpy_execute_objfile_script (const struct extension_language_defn *extlang,
+ static PyObject *
+ gdbpy_get_current_objfile (PyObject *unused1, PyObject *unused2)
+ {
+-  PyObject *result;
+-
+   if (! gdbpy_current_objfile)
+     Py_RETURN_NONE;
+ 
+-  result = objfile_to_objfile_object (gdbpy_current_objfile);
+-  if (result)
+-    Py_INCREF (result);
+-  return result;
+-}
+-
+-/* Return a sequence holding all the Objfiles.  */
+-
+-static PyObject *
+-gdbpy_objfiles (PyObject *unused1, PyObject *unused2)
+-{
+-  struct objfile *objf;
+-
+-  gdbpy_ref<> list (PyList_New (0));
+-  if (list == NULL)
+-    return NULL;
+-
+-  ALL_OBJFILES (objf)
+-  {
+-    PyObject *item = objfile_to_objfile_object (objf);
+-
+-    if (!item || PyList_Append (list.get (), item) == -1)
+-      return NULL;
+-  }
+-
+-  return list.release ();
++  return objfile_to_objfile_object (gdbpy_current_objfile).release ();
+ }
+ 
+ /* Compute the list of active python type printers and store them in
+@@ -1868,14 +1780,14 @@ This command is only a placeholder.")
+ 	   );
+   add_com_alias ("pi", "python-interactive", class_obscure, 1);
+ 
+-  add_com ("python", class_obscure, python_command,
++  python_cmd_element = add_com ("python", class_obscure, python_command,
+ #ifdef HAVE_PYTHON
+ 	   _("\
+ Evaluate a Python command.\n\
+ \n\
+ The command can be given as an argument, for instance:\n\
+ \n\
+-    python print 23\n\
++    python print (23)\n\
+ \n\
+ If no argument is given, the following lines are read and used\n\
+ as the Python commands.  Type a line containing \"end\" to indicate\n\

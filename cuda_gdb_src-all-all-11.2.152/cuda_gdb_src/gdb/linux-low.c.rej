@@ -1,0 +1,97 @@
+*** gdb/gdbserver/linux-low.c	2016-10-07 10:09:21.000000000 -0700
+--- gdb/gdbserver/linux-low.c	2018-09-24 16:09:06.003292957 -0700
+***************
+*** 47,52 ****
+  #include "tracepoint.h"
+  #include "hostio.h"
+  #include <inttypes.h>
+  #ifndef ELFMAG0
+  /* Don't include <linux/elf.h> here.  If it got included by gdb_proc_service.h
+     then ELFMAG0 will have been defined.  If it didn't get included by
+--- 47,59 ----
+  #include "tracepoint.h"
+  #include "hostio.h"
+  #include <inttypes.h>
++ #include "../cuda-notifications.h"
++ 
++ #if __ANDROID__ && __aarch64__
++ #include <linux/auxvec.h>
++ #endif
++ bool cuda_has_resumed_devices (void);
++ 
+  #ifndef ELFMAG0
+  /* Don't include <linux/elf.h> here.  If it got included by gdb_proc_service.h
+     then ELFMAG0 will have been defined.  If it didn't get included by
+***************
+*** 7275,7285 ****
+  	  libname[0] = '\0';
+  	  linux_read_memory (l_name, libname, sizeof (libname) - 1);
+  	  libname[sizeof (libname) - 1] = '\0';
+  	  if (libname[0] != '\0')
+  	    {
+  	      /* 6x the size for xml_escape_text below.  */
+  	      size_t len = 6 * strlen ((char *) libname);
+  	      char *name;
+  
+  	      if (!header_done)
+  		{
+--- 7378,7399 ----
+  	  libname[0] = '\0';
+  	  linux_read_memory (l_name, libname, sizeof (libname) - 1);
+  	  libname[sizeof (libname) - 1] = '\0';
++ #ifdef __ANDROID__
++           /* On Android the first entry is always an executable itself,
++              which is skipped by gdb anyway */
++           if (libname[0] != '\0' && !first_entry_skipped)
++             first_entry_skipped = 1;
++           else if (libname[0] != '\0')
++ #else
+  	  if (libname[0] != '\0')
++ #endif
+  	    {
+  	      /* 6x the size for xml_escape_text below.  */
+  	      size_t len = 6 * strlen ((char *) libname);
+  	      char *name;
++ #ifdef __ANDROID__
++               char *full_path = NULL;
++ #endif
+  
+  	      if (!header_done)
+  		{
+***************
+*** 7298,7308 ****
+  		  p = document + document_len;
+  		}
+  
+  	      name = xml_escape_text ((char *) libname);
+  	      p += sprintf (p, "<library name=\"%s\" lm=\"0x%lx\" "
+  			    "l_addr=\"0x%lx\" l_ld=\"0x%lx\"/>",
+  			    name, (unsigned long) lm_addr,
+  			    (unsigned long) l_addr, (unsigned long) l_ld);
+  	      free (name);
+  	    }
+  	}
+--- 7412,7434 ----
+  		  p = document + document_len;
+  		}
+  
++ #ifdef __ANDROID__
++               full_path = android_find_library_path ((char *) libname);
++               if (full_path)
++                 name = xml_escape_text (full_path);
++               else
++                 name = xml_escape_text ((char *) libname);
++ #else
+  	      name = xml_escape_text ((char *) libname);
+  	      p += sprintf (p, "<library name=\"%s\" lm=\"0x%lx\" "
+  			    "l_addr=\"0x%lx\" l_ld=\"0x%lx\"/>",
+  			    name, (unsigned long) lm_addr,
+  			    (unsigned long) l_addr, (unsigned long) l_ld);
++ #endif
++ #ifdef __ANDROID__
++               if (full_path)
++                 free (full_path);
++ #endif
+  	      free (name);
+  	    }
+  	}

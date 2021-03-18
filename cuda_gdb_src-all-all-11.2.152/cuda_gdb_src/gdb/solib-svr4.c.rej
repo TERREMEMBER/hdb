@@ -1,0 +1,84 @@
+diff a/gdb/solib-svr4.c b/gdb/solib-svr4.c	(rejected hunks)
+@@ -2487,28 +2475,20 @@ enable_break (struct svr4_info *info, int from_tty)
+   return 0;
+ }
+ 
+-/* Read the ELF program headers from ABFD.  Return the contents and
+-   set *PHDRS_SIZE to the size of the program headers.  */
++/* Read the ELF program headers from ABFD.  */
+ 
+-static gdb_byte *
+-read_program_headers_from_bfd (bfd *abfd, int *phdrs_size)
++static gdb::optional<gdb::byte_vector>
++read_program_headers_from_bfd (bfd *abfd)
+ {
+-  Elf_Internal_Ehdr *ehdr;
+-  gdb_byte *buf;
+-
+-  ehdr = elf_elfheader (abfd);
++  Elf_Internal_Ehdr *ehdr = elf_elfheader (abfd);
++  int phdrs_size = ehdr->e_phnum * ehdr->e_phentsize;
++  if (phdrs_size == 0)
++    return {};
+ 
+-  *phdrs_size = ehdr->e_phnum * ehdr->e_phentsize;
+-  if (*phdrs_size == 0)
+-    return NULL;
+-
+-  buf = (gdb_byte *) xmalloc (*phdrs_size);
++  gdb::byte_vector buf (phdrs_size);
+   if (bfd_seek (abfd, ehdr->e_phoff, SEEK_SET) != 0
+-      || bfd_bread (buf, *phdrs_size, abfd) != *phdrs_size)
+-    {
+-      xfree (buf);
+-      return NULL;
+-    }
++      || bfd_bread (buf.data (), phdrs_size, abfd) != phdrs_size)
++    return {};
+ 
+   return buf;
+ }
+@@ -2602,15 +2582,15 @@ svr4_exec_displacement (CORE_ADDR *displacementp)
+ 
+   if (bfd_get_flavour (exec_bfd) == bfd_target_elf_flavour)
+     {
+-      /* Be optimistic and clear OK only if GDB was able to verify the headers
++      /* Be optimistic and return 0 only if GDB was able to verify the headers
+ 	 really do not match.  */
+-      int phdrs_size, phdrs2_size, ok = 1;
+-      gdb_byte *buf, *buf2;
+       int arch_size;
+ 
+-      buf = read_program_header (-1, &phdrs_size, &arch_size, NULL);
+-      buf2 = read_program_headers_from_bfd (exec_bfd, &phdrs2_size);
+-      if (buf != NULL && buf2 != NULL)
++      gdb::optional<gdb::byte_vector> phdrs_target
++	= read_program_header (-1, &arch_size, NULL);
++      gdb::optional<gdb::byte_vector> phdrs_binary
++	= read_program_headers_from_bfd (exec_bfd);
++      if (phdrs_target && phdrs_binary)
+ 	{
+ 	  enum bfd_endian byte_order = gdbarch_byte_order (target_gdbarch ());
+ 
+@@ -2888,19 +2876,12 @@ svr4_exec_displacement (CORE_ADDR *displacementp)
+ 			continue;
+ 		    }
+ 
+-		  ok = 0;
+-		  break;
++		  return 0;
+ 		}
+ 	    }
+ 	  else
+-	    ok = 0;
++	    return 0;
+ 	}
+-
+-      xfree (buf);
+-      xfree (buf2);
+-
+-      if (!ok)
+-	return 0;
+     }
+ 
+   if (info_verbose)

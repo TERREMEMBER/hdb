@@ -1,0 +1,324 @@
+*** gdb/python/py-prettyprint.c	2016-08-01 08:50:20.000000000 -0700
+--- gdb/python/py-prettyprint.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 74,95 ****
+  	    continue;
+  	}
+  
+!       printer = PyObject_CallFunctionObjArgs (function, value, NULL);
+        if (! printer)
+  	return NULL;
+!       else if (printer != Py_None)
+  	return printer;
+  
+        Py_DECREF (printer);
+      }
+  
+!   Py_RETURN_NONE;
+  }
+  
+  /* Subroutine of find_pretty_printer to simplify it.
+     Look for a pretty-printer to print VALUE in all objfiles.
+     The result is NULL if there's an error and the search should be terminated.
+!    The result is Py_None, suitably inc-ref'd, if no pretty-printer was found.
+     Otherwise the result is the pretty-printer function, suitably inc-ref'd.  */
+  
+  static PyObject *
+--- 74,95 ----
+  	    continue;
+  	}
+  
+!       printer = gdbpy_ObjectCallFunctionObjArgs (function, value, NULL);
+        if (! printer)
+  	return NULL;
+!       else if (printer != gdbpy_None)
+  	return printer;
+  
+        Py_DECREF (printer);
+      }
+  
+!   GDB_PY_RETURN_NONE;
+  }
+  
+  /* Subroutine of find_pretty_printer to simplify it.
+     Look for a pretty-printer to print VALUE in all objfiles.
+     The result is NULL if there's an error and the search should be terminated.
+!    The result is gdbpy_None, suitably inc-ref'd, if no pretty-printer was found.
+     Otherwise the result is the pretty-printer function, suitably inc-ref'd.  */
+  
+  static PyObject *
+***************
+*** 117,135 ****
+      if (! function)
+        return NULL;
+  
+!     if (function != Py_None)
+        return function;
+  
+      Py_DECREF (function);
+    }
+  
+!   Py_RETURN_NONE;
+  }
+  
+  /* Subroutine of find_pretty_printer to simplify it.
+     Look for a pretty-printer to print VALUE in the current program space.
+     The result is NULL if there's an error and the search should be terminated.
+!    The result is Py_None, suitably inc-ref'd, if no pretty-printer was found.
+     Otherwise the result is the pretty-printer function, suitably inc-ref'd.  */
+  
+  static PyObject *
+--- 117,135 ----
+      if (! function)
+        return NULL;
+  
+!     if (function != gdbpy_None)
+        return function;
+  
+      Py_DECREF (function);
+    }
+  
+!   GDB_PY_RETURN_NONE;
+  }
+  
+  /* Subroutine of find_pretty_printer to simplify it.
+     Look for a pretty-printer to print VALUE in the current program space.
+     The result is NULL if there's an error and the search should be terminated.
+!    The result is gdbpy_None, suitably inc-ref'd, if no pretty-printer was found.
+     Otherwise the result is the pretty-printer function, suitably inc-ref'd.  */
+  
+  static PyObject *
+***************
+*** 162,173 ****
+    /* Fetch the global pretty printer list.  */
+    if (gdb_python_module == NULL
+        || ! PyObject_HasAttrString (gdb_python_module, "pretty_printers"))
+!     Py_RETURN_NONE;
+    pp_list = PyObject_GetAttrString (gdb_python_module, "pretty_printers");
+!   if (pp_list == NULL || ! PyList_Check (pp_list))
+      {
+        Py_XDECREF (pp_list);
+!       Py_RETURN_NONE;
+      }
+  
+    function = search_pp_list (pp_list, value);
+--- 162,173 ----
+    /* Fetch the global pretty printer list.  */
+    if (gdb_python_module == NULL
+        || ! PyObject_HasAttrString (gdb_python_module, "pretty_printers"))
+!     GDB_PY_RETURN_NONE;
+    pp_list = PyObject_GetAttrString (gdb_python_module, "pretty_printers");
+!   if (pp_list == NULL || ! gdbpy_ListCheck (pp_list))
+      {
+        Py_XDECREF (pp_list);
+!       GDB_PY_RETURN_NONE;
+      }
+  
+    function = search_pp_list (pp_list, value);
+***************
+*** 187,199 ****
+    /* Look at the pretty-printer list for each objfile
+       in the current program-space.  */
+    function = find_pretty_printer_from_objfiles (value);
+!   if (function == NULL || function != Py_None)
+      return function;
+    Py_DECREF (function);
+  
+    /* Look at the pretty-printer list for the current program-space.  */
+    function = find_pretty_printer_from_progspace (value);
+!   if (function == NULL || function != Py_None)
+      return function;
+    Py_DECREF (function);
+  
+--- 187,199 ----
+    /* Look at the pretty-printer list for each objfile
+       in the current program-space.  */
+    function = find_pretty_printer_from_objfiles (value);
+!   if (function == NULL || function != gdbpy_None)
+      return function;
+    Py_DECREF (function);
+  
+    /* Look at the pretty-printer list for the current program-space.  */
+    function = find_pretty_printer_from_progspace (value);
+!   if (function == NULL || function != gdbpy_None)
+      return function;
+    Py_DECREF (function);
+  
+***************
+*** 218,228 ****
+    *out_value = NULL;
+    TRY
+      {
+!       result = PyObject_CallMethodObjArgs (printer, gdbpy_to_string_cst, NULL);
+        if (result)
+  	{
+  	  if (! gdbpy_is_string (result) && ! gdbpy_is_lazy_string (result)
+! 	      && result != Py_None)
+  	    {
+  	      *out_value = convert_value_from_python (result);
+  	      if (PyErr_Occurred ())
+--- 218,228 ----
+    *out_value = NULL;
+    TRY
+      {
+!       result = gdbpy_ObjectCallMethodObjArgs (printer, gdbpy_to_string_cst, NULL);
+        if (result)
+  	{
+  	  if (! gdbpy_is_string (result) && ! gdbpy_is_lazy_string (result)
+! 	      && result != gdbpy_None)
+  	    {
+  	      *out_value = convert_value_from_python (result);
+  	      if (PyErr_Occurred ())
+***************
+*** 253,259 ****
+    if (! PyObject_HasAttr (printer, gdbpy_display_hint_cst))
+      return NULL;
+  
+!   hint = PyObject_CallMethodObjArgs (printer, gdbpy_display_hint_cst, NULL);
+    if (hint)
+      {
+        if (gdbpy_is_string (hint))
+--- 253,259 ----
+    if (! PyObject_HasAttr (printer, gdbpy_display_hint_cst))
+      return NULL;
+  
+!   hint = gdbpy_ObjectCallMethodObjArgs (printer, gdbpy_display_hint_cst, NULL);
+    if (hint)
+      {
+        if (gdbpy_is_string (hint))
+***************
+*** 319,325 ****
+      {
+        struct cleanup *cleanup = make_cleanup_py_decref (py_str);
+  
+!       if (py_str == Py_None)
+  	result = string_repr_none;
+        else if (gdbpy_is_lazy_string (py_str))
+  	{
+--- 319,325 ----
+      {
+        struct cleanup *cleanup = make_cleanup_py_decref (py_str);
+  
+!       if (py_str == gdbpy_None)
+  	result = string_repr_none;
+        else if (gdbpy_is_lazy_string (py_str))
+  	{
+***************
+*** 394,400 ****
+  py_restore_tstate (void *p)
+  {
+    PyFrameObject *frame = (PyFrameObject *) p;
+!   PyThreadState *tstate = PyThreadState_GET ();
+  
+    tstate->frame = frame;
+  }
+--- 394,400 ----
+  py_restore_tstate (void *p)
+  {
+    PyFrameObject *frame = (PyFrameObject *) p;
+!   PyThreadState *tstate = *gdbpy_ThreadState_Current;
+  
+    tstate->frame = frame;
+  }
+***************
+*** 451,457 ****
+        return NULL;
+      }
+  
+!   tstate = PyThreadState_GET ();
+  
+    frame = PyFrame_New (tstate, code, globals, NULL);
+  
+--- 451,457 ----
+        return NULL;
+      }
+  
+!   tstate = *gdbpy_ThreadState_Current;
+  
+    frame = PyFrame_New (tstate, code, globals, NULL);
+  
+***************
+*** 493,499 ****
+    is_map = hint && ! strcmp (hint, "map");
+    is_array = hint && ! strcmp (hint, "array");
+  
+!   children = PyObject_CallMethodObjArgs (printer, gdbpy_children_cst,
+  					 NULL);
+    if (! children)
+      {
+--- 493,499 ----
+    is_map = hint && ! strcmp (hint, "map");
+    is_array = hint && ! strcmp (hint, "array");
+  
+!   children = gdbpy_ObjectCallMethodObjArgs (printer, gdbpy_children_cst,
+  					 NULL);
+    if (! children)
+      {
+***************
+*** 554,569 ****
+  	  break;
+  	}
+  
+!       if (! PyTuple_Check (item) || PyTuple_Size (item) != 2)
+  	{
+! 	  PyErr_SetString (PyExc_TypeError,
+  			   _("Result of children iterator not a tuple"
+  			     " of two elements."));
+  	  gdbpy_print_stack ();
+  	  Py_DECREF (item);
+  	  continue;
+  	}
+!       if (! PyArg_ParseTuple (item, "sO", &name, &py_v))
+  	{
+  	  /* The user won't necessarily get a stack trace here, so provide
+  	     more context.  */
+--- 554,569 ----
+  	  break;
+  	}
+  
+!       if (! gdbpy_TupleCheck (item) || PyTuple_Size (item) != 2)
+  	{
+! 	  PyErr_SetString (gdbpyExc_TypeError,
+  			   _("Result of children iterator not a tuple"
+  			     " of two elements."));
+  	  gdbpy_print_stack ();
+  	  Py_DECREF (item);
+  	  continue;
+  	}
+!       if (! gdbpy_ArgParseTuple (item, "sO", &name, &py_v))
+  	{
+  	  /* The user won't necessarily get a stack trace here, so provide
+  	     more context.  */
+***************
+*** 735,740 ****
+    if (valaddr)
+      valaddr += embedded_offset;
+    value = value_from_contents_and_address (type, valaddr,
+  					   address + embedded_offset);
+  
+    set_value_component_location (value, val);
+--- 739,745 ----
+    if (valaddr)
+      valaddr += embedded_offset;
+    value = value_from_contents_and_address (type, valaddr,
++ 					   val ? value_length (val) : TYPE_LENGTH (type),
+  					   address + embedded_offset);
+  
+    set_value_component_location (value, val);
+***************
+*** 763,769 ****
+      }
+  
+    make_cleanup_py_decref (printer);
+!   if (printer == Py_None)
+      {
+        result = EXT_LANG_RC_NOP;
+        goto done;
+--- 768,774 ----
+      }
+  
+    make_cleanup_py_decref (printer);
+!   if (printer == gdbpy_None)
+      {
+        result = EXT_LANG_RC_NOP;
+        goto done;

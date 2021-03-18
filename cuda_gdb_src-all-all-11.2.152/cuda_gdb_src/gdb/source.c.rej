@@ -1,0 +1,33 @@
+diff a/gdb/source.c b/gdb/source.c	(rejected hunks)
+@@ -1291,24 +1268,26 @@ print_source_lines_base (struct symtab *s, int line, int stopline,
+ 	{
+ 	  last_source_visited = s;
+ 	  desc = open_source_file (s);
++	  if (desc.get () < 0)
++	    {
++	      last_source_error = desc.get ();
++	      noprint = 1;
++	    }
+ 	}
+       else
+ 	{
+-	  desc = last_source_error;
+ 	  flags |= PRINT_SOURCE_LINES_NOERROR;
++	  noprint = 1;
+ 	}
+     }
+   else
+     {
+-      desc = last_source_error;
+       flags |= PRINT_SOURCE_LINES_NOERROR;
+       noprint = 1;
+     }
+ 
+-  if (desc < 0 || noprint)
++  if (noprint)
+     {
+-      last_source_error = desc;
+-
+       if (!(flags & PRINT_SOURCE_LINES_NOERROR))
+ 	{
+ 	  const char *filename = symtab_to_filename_for_display (s);

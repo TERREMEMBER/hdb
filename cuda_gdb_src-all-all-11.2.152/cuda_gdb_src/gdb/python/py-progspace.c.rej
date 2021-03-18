@@ -1,0 +1,11 @@
+diff a/gdb/python/py-progspace.c b/gdb/python/py-progspace.c	(rejected hunks)
+@@ -72,7 +82,8 @@ pspy_get_filename (PyObject *self, void *closure)
+       struct objfile *objfile = obj->pspace->symfile_object_file;
+ 
+       if (objfile)
+-	return host_string_to_python_string (objfile_name (objfile));
++	return (host_string_to_python_string (objfile_name (objfile))
++		.release ());
+     }
+   Py_RETURN_NONE;
+ }

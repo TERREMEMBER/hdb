@@ -1,0 +1,18 @@
+diff a/gdb/value.c b/gdb/value.c	(rejected hunks)
+@@ -41,7 +41,7 @@
+ #include "user-regs.h"
+ #include <algorithm>
+ #include "completer.h"
+-#include "selftest.h"
++#include "common/selftest.h"
+ #include "common/array-view.h"
+ 
+ /* Definition of a user function.  */
+@@ -2777,7 +2776,6 @@ unpack_long (struct type *type, const gdb_byte *valaddr)
+     default:
+       error (_("Value can't be converted to integer."));
+     }
+-  return 0;			/* Placate lint.  */
+ }
+ 
+ /* Unpack raw data (copied from debugee, target byte order) at VALADDR

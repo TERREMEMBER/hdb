@@ -1,0 +1,21 @@
+*** gdb/nat/linux-ptrace.c	2016-10-07 10:04:17.000000000 -0700
+--- gdb/nat/linux-ptrace.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 23,29 ****
+  #include "buffer.h"
+  #include "gdb_wait.h"
+  #include "gdb_ptrace.h"
+  #include <sys/procfs.h>
+  
+  /* Stores the ptrace options supported by the running kernel.
+     A value of -1 means we did not check for features yet.  A value
+--- 23,31 ----
+  #include "buffer.h"
+  #include "gdb_wait.h"
+  #include "gdb_ptrace.h"
++ #ifdef HAVE_SYS_PROCFS_H
+  #include <sys/procfs.h>
++ #endif
+  
+  /* Stores the ptrace options supported by the running kernel.
+     A value of -1 means we did not check for features yet.  A value

@@ -1,0 +1,67 @@
+diff a/gdb/linux-nat.c b/gdb/linux-nat.c	(rejected hunks)
+@@ -58,14 +58,15 @@
+ #include "nat/linux-osdata.h"
+ #include "linux-tdep.h"
+ #include "symfile.h"
+-#include "agent.h"
++#include "common/agent.h"
+ #include "tracepoint.h"
+-#include "buffer.h"
++#include "common/buffer.h"
+ #include "target-descriptions.h"
+-#include "filestuff.h"
++#include "common/filestuff.h"
+ #include "objfiles.h"
+ #include "nat/linux-namespaces.h"
+-#include "fileio.h"
++#include "common/fileio.h"
++#include "common/scope-exit.h"
+ 
+ #ifndef SPUFS_MAGIC
+ #define SPUFS_MAGIC 0x23c9b64e
+@@ -191,10 +192,6 @@ struct linux_nat_target *linux_target;
+ /* Does the current host support PTRACE_GETREGSET?  */
+ enum tribool have_ptrace_getregset = TRIBOOL_UNKNOWN;
+ 
+-/* The saved to_close method, inherited from inf-ptrace.c.
+-   Called by our to_close.  */
+-static void (*super_close) (struct target_ops *);
+-
+ static unsigned int debug_linux_nat;
+ static void
+ show_debug_linux_nat (struct ui_file *file, int from_tty,
+@@ -488,25 +493,29 @@ linux_nat_target::follow_fork (int follow_child, int detach_fork)
+ 	  if (!gdbarch_software_single_step_p (target_thread_architecture
+ 					       (parent_ptid)))
+ 	    {
++	      int status;
++
+ 	      linux_disable_event_reporting (child_pid);
+ 	      if (ptrace (PTRACE_SINGLESTEP, child_pid, 0, 0) < 0)
+ 		perror_with_name (_("Couldn't do single step"));
+ 	      if (my_waitpid (child_pid, &status, 0) < 0)
+ 		perror_with_name (_("Couldn't wait vfork process"));
++	      else
++		{
++		  detach_child = WIFSTOPPED (status);
++		  child_stop_signal = WSTOPSIG (status);
++		}
+ 	    }
+ 
+-	  if (WIFSTOPPED (status))
++	  if (detach_child)
+ 	    {
+-	      int signo;
++	      int signo = child_stop_signal;
+ 
+-	      signo = WSTOPSIG (status);
+ 	      if (signo != 0
+ 		  && !signal_pass_state (gdb_signal_from_host (signo)))
+ 		signo = 0;
+ 	      ptrace (PTRACE_DETACH, child_pid, 0, signo);
+ 	    }
+-
+-	  do_cleanups (old_chain);
+ 	}
+       else
+ 	{

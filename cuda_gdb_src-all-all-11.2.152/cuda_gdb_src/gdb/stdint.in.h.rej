@@ -1,0 +1,52 @@
+*** gdb/gnulib/import/stdint.in.h	2016-08-01 08:50:20.000000000 -0700
+--- gdb/gnulib/import/stdint.in.h	2018-09-24 16:09:06.007292980 -0700
+***************
+*** 187,193 ****
+     types, since otherwise it breaks platforms like Tandem/NSK.  */
+  # if LONG_MAX >> 31 >> 31 == 1
+  #  undef int64_t
+  typedef long int gl_int64_t;
+  #  define int64_t gl_int64_t
+  #  define GL_INT64_T
+  # elif defined _MSC_VER
+--- 205,219 ----
+     types, since otherwise it breaks platforms like Tandem/NSK.  */
+  # if LONG_MAX >> 31 >> 31 == 1
+  #  undef int64_t
++ /* CUDA - uint64_t */
++ #ifdef __APPLE__
++ /* On Mac, long ints are 8 bytes long. They (correctly) end up being used for
++    uint64_t. However PRIx64 are defined as llx, and we end up with a bunch of
++    warnings. Avoid the issue here until a cleaner solution is implemented. */
++ typedef long long int gl_int64_t;
++ #else
+  typedef long int gl_int64_t;
++ #endif
+  #  define int64_t gl_int64_t
+  #  define GL_INT64_T
+  # elif defined _MSC_VER
+***************
+*** 208,214 ****
+  #else
+  # if ULONG_MAX >> 31 >> 31 >> 1 == 1
+  #  undef uint64_t
+  typedef unsigned long int gl_uint64_t;
+  #  define uint64_t gl_uint64_t
+  #  define GL_UINT64_T
+  # elif defined _MSC_VER
+--- 234,248 ----
+  #else
+  # if ULONG_MAX >> 31 >> 31 >> 1 == 1
+  #  undef uint64_t
++ /* CUDA - uint64_t */
++ #ifdef __APPLE__
++ /* On Mac, long ints are 8 bytes long. They (correctly) end up being used for
++    uint64_t. However PRIx64 are defined as llx, and we end up with a bunch of
++    warnings. Avoid the issue here until a cleaner solution is implemented. */
++ typedef unsigned long long int gl_uint64_t;
++ #else
+  typedef unsigned long int gl_uint64_t;
++ #endif
+  #  define uint64_t gl_uint64_t
+  #  define GL_UINT64_T
+  # elif defined _MSC_VER

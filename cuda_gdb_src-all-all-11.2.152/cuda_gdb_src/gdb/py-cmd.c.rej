@@ -1,0 +1,101 @@
+*** gdb/python/py-cmd.c	2016-08-01 08:50:20.000000000 -0700
+--- gdb/python/py-cmd.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 146,154 ****
+        error (_("Could not convert arguments to Python string."));
+      }
+  
+!   ttyobj = from_tty ? Py_True : Py_False;
+    Py_INCREF (ttyobj);
+!   result = PyObject_CallMethodObjArgs ((PyObject *) obj, invoke_cst, argobj,
+  				       ttyobj, NULL);
+    Py_DECREF (argobj);
+    Py_DECREF (ttyobj);
+--- 146,154 ----
+        error (_("Could not convert arguments to Python string."));
+      }
+  
+!   ttyobj = from_tty ? gdbpy_True : gdbpy_False;
+    Py_INCREF (ttyobj);
+!   result = gdbpy_ObjectCallMethodObjArgs ((PyObject *) obj, invoke_cst, argobj,
+  				       ttyobj, NULL);
+    Py_DECREF (argobj);
+    Py_DECREF (ttyobj);
+***************
+*** 262,268 ****
+        error (_("Could not convert argument to Python string."));
+      }
+  
+!   resultobj = PyObject_CallMethodObjArgs ((PyObject *) obj, complete_cst,
+  					  textobj, wordobj, NULL);
+    Py_DECREF (textobj);
+    Py_DECREF (wordobj);
+--- 262,268 ----
+        error (_("Could not convert argument to Python string."));
+      }
+  
+!   resultobj = gdbpy_ObjectCallMethodObjArgs ((PyObject *) obj, complete_cst,
+  					  textobj, wordobj, NULL);
+    Py_DECREF (textobj);
+    Py_DECREF (wordobj);
+***************
+*** 299,305 ****
+    if (resultobj == NULL)
+      goto done;
+  
+!   if (PyInt_Check (resultobj))
+      {
+        /* User code may also return one of the completion constants,
+  	 thus requesting that sort of completion.  We are only
+--- 299,305 ----
+    if (resultobj == NULL)
+      goto done;
+  
+!   if (gdbpy_IntCheck (resultobj))
+      {
+        /* User code may also return one of the completion constants,
+  	 thus requesting that sort of completion.  We are only
+***************
+*** 350,356 ****
+      goto done;
+  
+    result = NULL;
+!   if (PyInt_Check (resultobj))
+      {
+        /* User code may also return one of the completion constants,
+  	 thus requesting that sort of completion.  */
+--- 350,356 ----
+      goto done;
+  
+    result = NULL;
+!   if (gdbpy_IntCheck (resultobj))
+      {
+        /* User code may also return one of the completion constants,
+  	 thus requesting that sort of completion.  */
+***************
+*** 533,544 ****
+      {
+        /* Note: this is apparently not documented in Python.  We return
+  	 0 for success, -1 for failure.  */
+!       PyErr_Format (PyExc_RuntimeError,
+  		    _("Command object already initialized."));
+        return -1;
+      }
+  
+!   if (! PyArg_ParseTupleAndKeywords (args, kw, "si|iO",
+  				     keywords, &name, &cmdtype,
+  			  &completetype, &is_prefix))
+      return -1;
+--- 533,544 ----
+      {
+        /* Note: this is apparently not documented in Python.  We return
+  	 0 for success, -1 for failure.  */
+!       gdbpy_ErrFormat (gdbpyExc_RuntimeError,
+  		    _("Command object already initialized."));
+        return -1;
+      }
+  
+!   if (! gdbpy_ArgParseTupleAndKeywords (args, kw, "si|iO",
+  				     keywords, &name, &cmdtype,
+  			  &completetype, &is_prefix))
+      return -1;

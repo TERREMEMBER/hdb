@@ -1,0 +1,38 @@
+diff a/gdb/python/py-inferior.c b/gdb/python/py-inferior.c	(rejected hunks)
+@@ -459,11 +444,26 @@ infpy_get_was_attached (PyObject *self, void *closure)
+   Py_RETURN_FALSE;
+ }
+ 
++/* Getter of gdb.Inferior.progspace.  */
++
++static PyObject *
++infpy_get_progspace (PyObject *self, void *closure)
++{
++  inferior_object *inf = (inferior_object *) self;
++
++  INFPY_REQUIRE_VALID (inf);
++
++  program_space *pspace = inf->inferior->pspace;
++  gdb_assert (pspace != nullptr);
++
++  return pspace_to_pspace_object (pspace).release ();
++}
++
+ static int
+ build_inferior_list (struct inferior *inf, void *arg)
+ {
+   PyObject *list = (PyObject *) arg;
+-  gdbpy_ref<inferior_object> inferior (inferior_to_inferior_object (inf));
++  gdbpy_ref<inferior_object> inferior = inferior_to_inferior_object (inf);
+ 
+   if (inferior == NULL)
+     return 0;
+@@ -826,8 +822,6 @@ infpy_thread_from_thread_handle (PyObject *self, PyObject *args, PyObject *kw)
+   if (! gdb_PyArg_ParseTupleAndKeywords (args, kw, "O", keywords, &handle_obj))
+     return NULL;
+ 
+-  result = Py_None;
+-
+   if (!gdbpy_is_value_object (handle_obj))
+     {
+       PyErr_SetString (PyExc_TypeError,

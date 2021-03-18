@@ -1,0 +1,19 @@
+*** gdb/python/py-gdb-readline.c	2016-08-01 08:50:20.000000000 -0700
+--- gdb/python/py-gdb-readline.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 21,27 ****
+  #include "python-internal.h"
+  #include "top.h"
+  #include "cli/cli-utils.h"
+! /* Readline function suitable for PyOS_ReadlineFunctionPointer, which
+     is used for Python's interactive parser and raw_input.  In both
+     cases, sys_stdin and sys_stdout are always stdin and stdout
+     respectively, as far as I can tell; they are ignored and
+--- 21,27 ----
+  #include "python-internal.h"
+  #include "top.h"
+  #include "cli/cli-utils.h"
+! /* Readline function suitable for gdbpyOS_ReadlineFunctionPointer, which
+     is used for Python's interactive parser and raw_input.  In both
+     cases, sys_stdin and sys_stdout are always stdin and stdout
+     respectively, as far as I can tell; they are ignored and

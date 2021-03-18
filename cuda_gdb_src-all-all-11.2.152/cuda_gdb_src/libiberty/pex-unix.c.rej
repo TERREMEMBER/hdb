@@ -1,0 +1,30 @@
+diff a/libiberty/pex-unix.c b/libiberty/pex-unix.c	(rejected hunks)
+@@ -366,28 +364,6 @@ pex_unix_close (struct pex_obj *obj ATTRIBUTE_UNUSED, int fd)
+   return close (fd);
+ }
+ 
+-/* Report an error from a child process.  We don't use stdio routines,
+-   because we might be here due to a vfork call.  */
+-
+-static void
+-pex_child_error (struct pex_obj *obj, const char *executable,
+-		 const char *errmsg, int err)
+-{
+-  int retval = 0;
+-#define writeerr(s) retval |= (write (STDERR_FILE_NO, s, strlen (s)) < 0)
+-  writeerr (obj->pname);
+-  writeerr (": error trying to exec '");
+-  writeerr (executable);
+-  writeerr ("': ");
+-  writeerr (errmsg);
+-  writeerr (": ");
+-  writeerr (xstrerror (err));
+-  writeerr ("\n");
+-#undef writeerr
+-  /* Exit with -2 if the error output failed, too.  */
+-  _exit (retval == 0 ? -1 : -2);
+-}
+-
+ /* Execute a child.  */
+ 
+ #if defined(HAVE_SPAWNVE) && defined(HAVE_SPAWNVPE)

@@ -1,0 +1,309 @@
+diff a/gdb/infrun.c b/gdb/infrun.c	(rejected hunks)
+@@ -67,6 +67,7 @@
+ #include "progspace-and-thread.h"
+ #include "common/gdb_optional.h"
+ #include "arch-utils.h"
++#include "common/scope-exit.h"
+ 
+ /* Prototypes for local functions */
+ 
+@@ -2959,12 +2831,8 @@ schedlock_applies (struct thread_info *tp)
+ /* Basic routine for continuing the program in various fashions.
+ 
+    ADDR is the address to resume at, or -1 for resume where stopped.
+-   SIGGNAL is the signal to give it, or 0 for none,
+-   or -1 for act according to how it stopped.
+-   STEP is nonzero if should trap after one instruction.
+-   -1 means return after that and print nothing.
+-   You should probably set various step_... variables
+-   before calling here, if you are stepping.
++   SIGGNAL is the signal to give it, or GDB_SIGNAL_0 for none,
++   or GDB_SIGNAL_DEFAULT for act according to how it stopped.
+ 
+    You should call clear_proceed_status before calling proceed.  */
+ 
+@@ -3000,16 +2867,16 @@ proceed (CORE_ADDR addr, enum gdb_signal siggnal)
+   const address_space *aspace = regcache->aspace ();
+ 
+   pc = regcache_read_pc (regcache);
+-  tp = inferior_thread ();
++  thread_info *cur_thr = inferior_thread ();
+ 
+   /* Fill in with reasonable starting values.  */
+-  init_thread_stepping_state (tp);
++  init_thread_stepping_state (cur_thr);
+ 
+-  gdb_assert (!thread_is_in_step_over_chain (tp));
++  gdb_assert (!thread_is_in_step_over_chain (cur_thr));
+ 
+   if (addr == (CORE_ADDR) -1)
+     {
+-      if (pc == tp->suspend.stop_pc
++      if (pc == cur_thr->suspend.stop_pc
+ 	  && breakpoint_here_p (aspace, pc) == ordinary_breakpoint_here
+ 	  && execution_direction != EXEC_REVERSE)
+ 	/* There is a breakpoint at the address we will resume at,
+@@ -3183,11 +3038,11 @@ proceed (CORE_ADDR addr, enum gdb_signal siggnal)
+ 	    error (_("Command aborted."));
+ 	}
+       }
+-    else if (!tp->resumed && !thread_is_in_step_over_chain (tp))
++    else if (!cur_thr->resumed && !thread_is_in_step_over_chain (cur_thr))
+       {
+ 	/* The thread wasn't started, and isn't queued, run it now.  */
+-	reset_ecs (ecs, tp);
+-	switch_to_thread (tp);
++	reset_ecs (ecs, cur_thr);
++	switch_to_thread (cur_thr);
+ 	keep_going_pass_signal (ecs);
+ 	if (!ecs->wait_some_more)
+ 	  error (_("Command aborted."));
+@@ -3254,9 +3109,6 @@ init_wait_for_inferior (void)
+   target_last_wait_ptid = minus_one_ptid;
+ 
+   previous_inferior_ptid = inferior_ptid;
+-
+-  /* Discard any skipped inlined frames.  */
+-  clear_inline_frame_state (minus_one_ptid);
+ }
+ 
+ 
+@@ -3690,15 +3527,11 @@ prepare_for_detach (void)
+ void
+ wait_for_inferior (void)
+ {
+-  struct cleanup *old_cleanups;
+-
+   if (debug_infrun)
+     fprintf_unfiltered
+       (gdb_stdlog, "infrun: wait_for_inferior ()\n");
+ 
+-  old_cleanups
+-    = make_cleanup (delete_just_stopped_threads_infrun_breakpoints_cleanup,
+-		    NULL);
++  SCOPE_EXIT { delete_just_stopped_threads_infrun_breakpoints (); };
+ 
+   /* If an error happens while handling the event, propagate GDB's
+      knowledge of the executing state to the frontend/user running
+@@ -3789,7 +3619,7 @@ clean_up_just_stopped_threads_fsms (struct execution_control_state *ecs)
+ 	    continue;
+ 
+ 	  switch_to_thread (thr);
+-	  thread_fsm_clean_up (thr->thread_fsm, thr);
++	  thr->thread_fsm->clean_up (thr);
+ 	}
+ 
+       if (ecs->event_thread != NULL)
+@@ -3864,114 +3693,116 @@ fetch_inferior_event (void *client_data)
+   scoped_restore save_ui = make_scoped_restore (&current_ui, main_ui);
+ 
+   /* End up with readline processing input, if necessary.  */
+-  make_cleanup (reinstall_readline_callback_handler_cleanup, NULL);
+-
+-  /* We're handling a live event, so make sure we're doing live
+-     debugging.  If we're looking at traceframes while the target is
+-     running, we're going to need to get back to that mode after
+-     handling the event.  */
+-  gdb::optional<scoped_restore_current_traceframe> maybe_restore_traceframe;
+-  if (non_stop)
+-    {
+-      maybe_restore_traceframe.emplace ();
+-      set_current_traceframe (-1);
+-    }
+-
+-  gdb::optional<scoped_restore_current_thread> maybe_restore_thread;
+-
+-  if (non_stop)
+-    /* In non-stop mode, the user/frontend should not notice a thread
+-       switch due to internal events.  Make sure we reverse to the
+-       user selected thread and frame after handling the event and
+-       running any breakpoint commands.  */
+-    maybe_restore_thread.emplace ();
+-
+-  overlay_cache_invalid = 1;
+-  /* Flush target cache before starting to handle each event.  Target
+-     was running and cache could be stale.  This is just a heuristic.
+-     Running threads may modify target memory, but we don't get any
+-     event.  */
+-  target_dcache_invalidate ();
+-
+-  scoped_restore save_exec_dir
+-    = make_scoped_restore (&execution_direction, target_execution_direction ());
+-
+-  ecs->ptid = do_target_wait (waiton_ptid, &ecs->ws,
+-			      target_can_async_p () ? TARGET_WNOHANG : 0);
+-
+-  if (debug_infrun)
+-    print_target_wait_results (waiton_ptid, ecs->ptid, &ecs->ws);
+-
+-  /* If an error happens while handling the event, propagate GDB's
+-     knowledge of the executing state to the frontend/user running
+-     state.  */
+-  ptid_t finish_ptid = !target_is_non_stop_p () ? minus_one_ptid : ecs->ptid;
+-  scoped_finish_thread_state finish_state (finish_ptid);
+-
+-  /* Get executed before make_cleanup_restore_current_thread above to apply
+-     still for the thread which has thrown the exception.  */
+-  struct cleanup *ts_old_chain = make_bpstat_clear_actions_cleanup ();
+-
+-  make_cleanup (delete_just_stopped_threads_infrun_breakpoints_cleanup, NULL);
+-
+-  /* Now figure out what to do with the result of the result.  */
+-  handle_inferior_event (ecs);
++  {
++    SCOPE_EXIT { reinstall_readline_callback_handler_cleanup (); };
++
++    /* We're handling a live event, so make sure we're doing live
++       debugging.  If we're looking at traceframes while the target is
++       running, we're going to need to get back to that mode after
++       handling the event.  */
++    gdb::optional<scoped_restore_current_traceframe> maybe_restore_traceframe;
++    if (non_stop)
++      {
++	maybe_restore_traceframe.emplace ();
++	set_current_traceframe (-1);
++      }
+ 
+-  if (!ecs->wait_some_more)
+-    {
+-      struct inferior *inf = find_inferior_ptid (ecs->ptid);
+-      int should_stop = 1;
+-      struct thread_info *thr = ecs->event_thread;
++    gdb::optional<scoped_restore_current_thread> maybe_restore_thread;
++
++    if (non_stop)
++      /* In non-stop mode, the user/frontend should not notice a thread
++	 switch due to internal events.  Make sure we reverse to the
++	 user selected thread and frame after handling the event and
++	 running any breakpoint commands.  */
++      maybe_restore_thread.emplace ();
++
++    overlay_cache_invalid = 1;
++    /* Flush target cache before starting to handle each event.  Target
++       was running and cache could be stale.  This is just a heuristic.
++       Running threads may modify target memory, but we don't get any
++       event.  */
++    target_dcache_invalidate ();
++
++    scoped_restore save_exec_dir
++      = make_scoped_restore (&execution_direction,
++			     target_execution_direction ());
++
++    ecs->ptid = do_target_wait (waiton_ptid, &ecs->ws,
++				target_can_async_p () ? TARGET_WNOHANG : 0);
++
++    if (debug_infrun)
++      print_target_wait_results (waiton_ptid, ecs->ptid, &ecs->ws);
++
++    /* If an error happens while handling the event, propagate GDB's
++       knowledge of the executing state to the frontend/user running
++       state.  */
++    ptid_t finish_ptid = !target_is_non_stop_p () ? minus_one_ptid : ecs->ptid;
++    scoped_finish_thread_state finish_state (finish_ptid);
++
++    /* Get executed before scoped_restore_current_thread above to apply
++       still for the thread which has thrown the exception.  */
++    auto defer_bpstat_clear
++      = make_scope_exit (bpstat_clear_actions);
++    auto defer_delete_threads
++      = make_scope_exit (delete_just_stopped_threads_infrun_breakpoints);
++
++    /* Now figure out what to do with the result of the result.  */
++    handle_inferior_event (ecs);
++
++    if (!ecs->wait_some_more)
++      {
++	struct inferior *inf = find_inferior_ptid (ecs->ptid);
++	int should_stop = 1;
++	struct thread_info *thr = ecs->event_thread;
+ 
+-      delete_just_stopped_threads_infrun_breakpoints ();
++	delete_just_stopped_threads_infrun_breakpoints ();
+ 
+-      if (thr != NULL)
+-	{
+-	  struct thread_fsm *thread_fsm = thr->thread_fsm;
++	if (thr != NULL)
++	  {
++	    struct thread_fsm *thread_fsm = thr->thread_fsm;
+ 
+-	  if (thread_fsm != NULL)
+-	    should_stop = thread_fsm_should_stop (thread_fsm, thr);
+-	}
++	    if (thread_fsm != NULL)
++	      should_stop = thread_fsm->should_stop (thr);
++	  }
+ 
+-      if (!should_stop)
+-	{
+-	  keep_going (ecs);
+-	}
+-      else
+-	{
+-	  int should_notify_stop = 1;
+-	  int proceeded = 0;
++	if (!should_stop)
++	  {
++	    keep_going (ecs);
++	  }
++	else
++	  {
++	    bool should_notify_stop = true;
++	    int proceeded = 0;
+ 
+-	  clean_up_just_stopped_threads_fsms (ecs);
++	    clean_up_just_stopped_threads_fsms (ecs);
+ 
+-	  if (thr != NULL && thr->thread_fsm != NULL)
+-	    {
+-	      should_notify_stop
+-		= thread_fsm_should_notify_stop (thr->thread_fsm);
+-	    }
++	    if (thr != NULL && thr->thread_fsm != NULL)
++	      should_notify_stop = thr->thread_fsm->should_notify_stop ();
+ 
+-	  if (should_notify_stop)
+-	    {
+-	      /* We may not find an inferior if this was a process exit.  */
+-	      if (inf == NULL || inf->control.stop_soon == NO_STOP_QUIETLY)
+-		proceeded = normal_stop ();
+-	    }
++	    if (should_notify_stop)
++	      {
++		/* We may not find an inferior if this was a process exit.  */
++		if (inf == NULL || inf->control.stop_soon == NO_STOP_QUIETLY)
++		  proceeded = normal_stop ();
++	      }
+ 
+-	  if (!proceeded)
+-	    {
+-	      inferior_event_handler (INF_EXEC_COMPLETE, NULL);
+-	      cmd_done = 1;
+-	    }
+-	}
+-    }
++	    if (!proceeded)
++	      {
++		inferior_event_handler (INF_EXEC_COMPLETE, NULL);
++		cmd_done = 1;
++	      }
++	  }
++      }
+ 
+-  discard_cleanups (ts_old_chain);
++    defer_delete_threads.release ();
++    defer_bpstat_clear.release ();
+ 
+-  /* No error, don't finish the thread states yet.  */
+-  finish_state.release ();
++    /* No error, don't finish the thread states yet.  */
++    finish_state.release ();
+ 
+-  /* Revert thread and frame.  */
+-  do_cleanups (old_chain);
++    /* This scope is used to ensure that readline callbacks are
++       reinstalled here.  */
++  }
+ 
+   /* If a UI was in sync execution mode, and now isn't, restore its
+      prompt (a synchronous execution command has finished, and we're

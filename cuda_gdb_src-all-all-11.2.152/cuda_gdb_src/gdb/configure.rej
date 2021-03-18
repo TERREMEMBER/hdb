@@ -1,0 +1,69 @@
+diff a/gdb/configure b/gdb/configure	(rejected hunks)
+@@ -887,16 +889,17 @@ with_system_gdbinit
+ enable_werror
+ enable_build_warnings
+ enable_gdb_build_warnings
++enable_ubsan
+ with_lzma
+ with_liblzma_prefix
+ with_tcl
+ with_tk
+ with_x
+ enable_sim
+-enable_multi_ice
+ enable_gdbserver
+ with_babeltrace
+ with_libbabeltrace_prefix
++enable_unit_tests
+ '
+       ac_precious_vars='build_alias
+ host_alias
+@@ -1547,23 +1549,26 @@ Optional Features:
+   --enable-targets=TARGETS
+                           alternative target configurations
+   --enable-64-bit-bfd     64-bit support (on hosts with narrower word sizes)
+-  --disable-gdbcli        disable command-line interface (CLI)
+   --disable-gdbmi         disable machine-interface (MI)
+   --enable-tui            enable full-screen terminal user interface (TUI)
+   --enable-gdbtk          enable gdbtk graphical user interface (GUI)
+   --enable-profiling      enable profiling of GDB
+   --enable-codesign=CERT  sign gdb with 'codesign -s CERT'
+   --disable-rpath         do not hardcode runtime library paths
++  --enable-source-highlight
++                          enable source-highlight for source listings
+   --enable-libmcheck      Try linking with -lmcheck if available
+   --enable-werror         treat compile warnings as errors
+   --enable-build-warnings enable build-time compiler warnings if gcc is used
+   --enable-gdb-build-warnings
+                           enable GDB specific build-time compiler warnings if
+                           gcc is used
++  --enable-ubsan          enable undefined behavior sanitizer (auto/yes/no)
+   --enable-sim            link gdb with simulator
+-  --enable-multi-ice      build the multi-ice-gdb-server
+   --enable-gdbserver      automatically build gdbserver (yes/no/auto, default
+                           is auto)
++  --enable-unit-tests     Enable the inclusion of unit tests when compiling
++                          GDB
+ 
+ Optional Packages:
+   --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+@@ -15467,15 +15517,16 @@ fi
+ 
+ # The options we'll try to enable.
+ build_warnings="-Wall -Wpointer-arith \
+--Wno-unused -Wunused-value -Wunused-function \
++-Wno-unused -Wunused-value -Wunused-variable -Wunused-function \
+ -Wno-switch -Wno-char-subscripts \
+ -Wempty-body -Wunused-but-set-parameter -Wunused-but-set-variable \
+--Wno-sign-compare -Wno-narrowing -Wno-error=maybe-uninitialized \
++-Wno-sign-compare -Wno-error=maybe-uninitialized \
+ -Wno-mismatched-tags \
+ -Wno-error=deprecated-register \
+ -Wsuggest-override \
+ -Wimplicit-fallthrough=3 \
+--Wduplicated-cond"
++-Wduplicated-cond \
++-Wshadow=local"
+ 
+ case "${host}" in
+   *-*-mingw32*)

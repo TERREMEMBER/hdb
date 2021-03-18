@@ -1,0 +1,39 @@
+diff a/gdb/python/py-breakpoint.c b/gdb/python/py-breakpoint.c	(rejected hunks)
+@@ -391,10 +391,15 @@ bppy_get_location (PyObject *self, void *closure)
+   if (obj->bp->type != bp_breakpoint)
+     Py_RETURN_NONE;
+ 
+-  str = event_location_to_string (obj->bp->location.get ());
++  struct event_location *location = obj->bp->location.get ();
++  /* "catch throw" makes a breakpoint of type bp_breakpoint that does
++     not have a location.  */
++  if (location == nullptr)
++    Py_RETURN_NONE;
++  str = event_location_to_string (location);
+   if (! str)
+     str = "";
+-  return host_string_to_python_string (str);
++  return host_string_to_python_string (str).release ();
+ }
+ 
+ /* Python function to get the breakpoint expression.  */
+@@ -432,7 +437,7 @@ bppy_get_condition (PyObject *self, void *closure)
+   if (! str)
+     Py_RETURN_NONE;
+ 
+-  return host_string_to_python_string (str);
++  return host_string_to_python_string (str).release ();
+ }
+ 
+ /* Returns 0 on success.  Returns -1 on error, with a python exception set.
+@@ -870,9 +874,7 @@ bppy_init (PyObject *self, PyObject *args, PyObject *kwargs)
+   CATCH (except, RETURN_MASK_ALL)
+     {
+       bppy_pending_object = NULL;
+-      PyErr_Format (except.reason == RETURN_QUIT
+-		    ? PyExc_KeyboardInterrupt : PyExc_RuntimeError,
+-		    "%s", except.message);
++      gdbpy_convert_exception (except);
+       return -1;
+     }
+   END_CATCH

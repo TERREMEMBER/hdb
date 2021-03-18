@@ -1,0 +1,10 @@
+diff a/gdb/c-exp.y b/gdb/c-exp.y	(rejected hunks)
+@@ -189,7 +234,7 @@ static void c_print_token (FILE *file, int type, YYSTYPE value);
+    legal basetypes.  */
+ %token SIGNED_KEYWORD LONG SHORT INT_KEYWORD CONST_KEYWORD VOLATILE_KEYWORD DOUBLE_KEYWORD
+ 
+-%token <sval> VARIABLE
++%token <sval> DOLLAR_VARIABLE
+ 
+ %token <opcode> ASSIGN_MODIFY
+ 

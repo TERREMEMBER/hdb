@@ -1,0 +1,10 @@
+diff a/gdb/thread.c b/gdb/thread.c	(rejected hunks)
+@@ -1148,8 +1015,6 @@ print_thread_info_1 (struct ui_out *uiout, const char *requested_threads,
+ 		     int global_ids, int pid,
+ 		     int show_global_ids)
+ {
+-  struct thread_info *tp;
+-  struct inferior *inf;
+   int default_inf_num = current_inferior ()->num;
+ 
+   update_thread_list ();

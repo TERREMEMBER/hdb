@@ -1,0 +1,19 @@
+*** gdb/python/py-frame.c	2016-10-07 10:04:17.000000000 -0700
+--- gdb/python/py-frame.c	2018-09-24 16:09:06.011293004 -0700
+***************
+*** 559,565 ****
+  
+        if (!var)
+  	{
+! 	  PyErr_Format (PyExc_ValueError,
+  			_("Variable '%s' not found."), var_name);
+  	  do_cleanups (cleanup);
+  
+--- 559,565 ----
+  
+        if (!var)
+  	{
+! 	  gdbpy_ErrFormat (gdbpyExc_ValueError,
+  			_("Variable '%s' not found."), var_name);
+  	  do_cleanups (cleanup);
+  

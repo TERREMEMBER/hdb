@@ -1,0 +1,18 @@
+diff a/gdb/stack.c b/gdb/stack.c	(rejected hunks)
+@@ -1178,14 +1186,13 @@ print_frame (struct frame_info *frame, int print_level,
+     string_file stb;
+     fprintf_symbol_filtered (&stb, funname ? funname.get () : "??",
+ 			     funlang, DMGL_ANSI);
+-    uiout->field_stream ("func", stb);
++    uiout->field_stream ("func", stb, ui_out_style_kind::FUNCTION);
+     uiout->wrap_hint ("   ");
+     annotate_frame_args ();
+-      
++
+     uiout->text (" (");
+     if (print_args)
+       {
+-	struct gdbarch *gdbarch = get_frame_arch (frame);
+ 	int numargs;
+ 
+ 	if (gdbarch_frame_num_args_p (gdbarch))

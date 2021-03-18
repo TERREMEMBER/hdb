@@ -1,0 +1,16 @@
+diff a/gdb/dwarf2expr.c b/gdb/dwarf2expr.c	(rejected hunks)
+@@ -952,12 +952,12 @@ dwarf_expr_context::execute_stack_op (const gdb_byte *op_ptr,
+ 	       from the type length, we need to zero-extend it.  */
+ 	    if (TYPE_LENGTH (type) != addr_size)
+ 	      {
+-		ULONGEST result =
++		ULONGEST datum =
+ 		  extract_unsigned_integer (buf, addr_size, byte_order);
+ 
+ 		buf = (gdb_byte *) alloca (TYPE_LENGTH (type));
+ 		store_unsigned_integer (buf, TYPE_LENGTH (type),
+-					byte_order, result);
++					byte_order, datum);
+ 	      }
+ 
+ 	    result_val = value_from_contents_and_address (type, buf, addr);

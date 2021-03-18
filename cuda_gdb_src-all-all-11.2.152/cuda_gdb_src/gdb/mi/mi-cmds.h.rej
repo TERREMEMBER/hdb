@@ -1,0 +1,12 @@
+diff a/gdb/mi/mi-cmds.h b/gdb/mi/mi-cmds.h	(rejected hunks)
+@@ -19,8 +19,8 @@
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
+ 
+-#ifndef MI_CMDS_H
+-#define MI_CMDS_H
++#ifndef MI_MI_CMDS_H
++#define MI_MI_CMDS_H
+ 
+ enum print_values {
+    PRINT_NO_VALUES,

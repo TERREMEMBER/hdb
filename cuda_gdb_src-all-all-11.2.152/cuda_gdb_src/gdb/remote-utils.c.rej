@@ -1,0 +1,21 @@
+*** gdb/gdbserver/remote-utils.c	2016-10-07 10:09:21.000000000 -0700
+--- gdb/gdbserver/remote-utils.c	2018-09-24 16:09:06.003292957 -0700
+***************
+*** 112,117 ****
+  extern int using_threads;
+  extern int debug_threads;
+  
+  /* If true, then GDB has requested noack mode.  */
+  int noack_mode = 0;
+  /* If true, then we tell GDB to use noack mode by default.  */
+--- 112,121 ----
+  extern int using_threads;
+  extern int debug_threads;
+  
++ #ifdef __QNXHOST__
++ int using_threads = 0;
++ #endif
++ 
+  /* If true, then GDB has requested noack mode.  */
+  int noack_mode = 0;
+  /* If true, then we tell GDB to use noack mode by default.  */

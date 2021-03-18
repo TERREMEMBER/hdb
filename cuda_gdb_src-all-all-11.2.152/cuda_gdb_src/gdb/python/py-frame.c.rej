@@ -1,0 +1,19 @@
+diff a/gdb/python/py-frame.c b/gdb/python/py-frame.c	(rejected hunks)
+@@ -416,7 +415,7 @@ frapy_older (PyObject *self, PyObject *args)
+   END_CATCH
+ 
+   if (prev)
+-    prev_obj = (PyObject *) frame_info_to_frame_object (prev);
++    prev_obj = frame_info_to_frame_object (prev);
+   else
+     {
+       Py_INCREF (Py_None);
+@@ -449,7 +448,7 @@ frapy_newer (PyObject *self, PyObject *args)
+   END_CATCH
+ 
+   if (next)
+-    next_obj = (PyObject *) frame_info_to_frame_object (next);
++    next_obj = frame_info_to_frame_object (next);
+   else
+     {
+       Py_INCREF (Py_None);

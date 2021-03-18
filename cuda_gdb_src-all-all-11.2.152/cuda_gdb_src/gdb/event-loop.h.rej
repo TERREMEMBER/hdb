@@ -1,0 +1,7 @@
+diff a/gdb/event-loop.h b/gdb/event-loop.h	(rejected hunks)
+@@ -127,3 +130,5 @@ extern void mark_async_event_handler (struct async_event_handler *handler);
+ extern void clear_async_event_handler (struct async_event_handler *handler);
+ 
+ extern void initialize_async_signal_handlers (void);
++
++#endif /* EVENT_LOOP_H */

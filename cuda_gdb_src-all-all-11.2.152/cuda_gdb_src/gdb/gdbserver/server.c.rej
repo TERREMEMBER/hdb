@@ -1,0 +1,73 @@
+diff a/gdb/gdbserver/server.c b/gdb/gdbserver/server.c	(rejected hunks)
+@@ -18,29 +18,29 @@
+ 
+ #include "server.h"
+ #include "gdbthread.h"
+-#include "agent.h"
++#include "common/agent.h"
+ #include "notif.h"
+ #include "tdesc.h"
+-#include "rsp-low.h"
+-#include "signals-state-save-restore.h"
++#include "common/rsp-low.h"
++#include "common/signals-state-save-restore.h"
+ #include <ctype.h>
+ #include <unistd.h>
+ #if HAVE_SIGNAL_H
+ #include <signal.h>
+ #endif
+-#include "gdb_vecs.h"
+-#include "gdb_wait.h"
+-#include "btrace-common.h"
+-#include "filestuff.h"
++#include "common/gdb_vecs.h"
++#include "common/gdb_wait.h"
++#include "common/btrace-common.h"
++#include "common/filestuff.h"
+ #include "tracepoint.h"
+ #include "dll.h"
+ #include "hostio.h"
+ #include <vector>
+-#include "common-inferior.h"
+-#include "job-control.h"
+-#include "environ.h"
++#include "common/common-inferior.h"
++#include "common/job-control.h"
++#include "common/environ.h"
+ #include "filenames.h"
+-#include "pathstuff.h"
++#include "common/pathstuff.h"
+ 
+ #include "common/selftest.h"
+ 
+@@ -1281,7 +1288,7 @@ handle_detach (char *own_buf)
+ 	  /* If we are attached, then we can exit.  Otherwise, we
+ 	     need to hang around doing nothing, until the child is
+ 	     gone.  */
+-	  join_inferior (process->pid);
++	  join_inferior (pid);
+ 	  exit (0);
+ 	}
+     }
+@@ -3399,7 +3409,7 @@ static void
+ gdbserver_version (void)
+ {
+   printf ("GNU gdbserver %s%s\n"
+-	  "Copyright (C) 2018 Free Software Foundation, Inc.\n"
++	  "Copyright (C) 2019 Free Software Foundation, Inc.\n"
+ 	  "gdbserver is free software, covered by the "
+ 	  "GNU General Public License.\n"
+ 	  "This gdbserver was configured as \"%s\"\n",
+@@ -3481,10 +3491,8 @@ gdbserver_show_disableable (FILE *stream)
+ static void
+ kill_inferior_callback (process_info *process)
+ {
+-  int pid = process->pid;
+-
+-  kill_inferior (pid);
+-  discard_queued_stop_replies (ptid_t (pid));
++  kill_inferior (process);
++  discard_queued_stop_replies (ptid_t (process->pid));
+ }
+ 
+ /* Call this when exiting gdbserver with possible inferiors that need

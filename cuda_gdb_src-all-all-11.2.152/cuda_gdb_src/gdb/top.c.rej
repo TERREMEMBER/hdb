@@ -1,0 +1,12 @@
+diff a/gdb/top.c b/gdb/top.c	(rejected hunks)
+@@ -50,8 +50,9 @@
+ #include "maint.h"
+ #include "filenames.h"
+ #include "frame.h"
+-#include "buffer.h"
++#include "common/buffer.h"
+ #include "gdb_select.h"
++#include "common/scope-exit.h"
+ 
+ /* readline include files.  */
+ #include "readline/readline.h"

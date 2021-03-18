@@ -1,0 +1,96 @@
+diff a/gdb/remote.c b/gdb/remote.c	(rejected hunks)
+@@ -4977,12 +4994,13 @@ remote_target::set_permissions ()
+ 	     may_insert_breakpoints, may_insert_tracepoints,
+ 	     may_insert_fast_tracepoints, may_stop);
+   putpkt (rs->buf);
+-  getpkt (&rs->buf, &rs->buf_size, 0);
++  getpkt (&rs->buf, 0);
+ 
+   /* If the target didn't like the packet, warn the user.  Do not try
+      to undo the user's settings, that would just be maddening.  */
+-  if (strcmp (rs->buf, "OK") != 0)
+-    warning (_("Remote refused setting permissions with: %s"), rs->buf);
++  if (strcmp (rs->buf.data (), "OK") != 0)
++    warning (_("Remote refused setting permissions with: %s"),
++	     rs->buf.data ());
+ }
+ 
+ /* This type describes each known response to the qSupported
+@@ -5532,9 +5547,7 @@ remote_target::open_1 (const char *name, int from_tty, int extended_p)
+     }
+ 
+   /* Switch to using the remote target now.  */
+-  push_target (remote);
+-  /* The target stack owns the target now.  */
+-  target_holder.release ();
++  push_target (std::move (target_holder));
+ 
+   /* Register extra event sources in the event loop.  */
+   rs->remote_async_inferior_event_token
+@@ -9493,36 +9498,35 @@ remote_target::read_frame (char **buf_p, long *sizeof_buf)
+ }
+ 
+ /* Read a packet from the remote machine, with error checking, and
+-   store it in *BUF.  Resize *BUF using xrealloc if necessary to hold
+-   the result, and update *SIZEOF_BUF.  If FOREVER, wait forever
+-   rather than timing out; this is used (in synchronous mode) to wait
+-   for a target that is is executing user code to stop.  */
++   store it in *BUF.  Resize *BUF if necessary to hold the result.  If
++   FOREVER, wait forever rather than timing out; this is used (in
++   synchronous mode) to wait for a target that is is executing user
++   code to stop.  */
+ /* FIXME: ezannoni 2000-02-01 this wrapper is necessary so that we
+    don't have to change all the calls to getpkt to deal with the
+    return value, because at the moment I don't know what the right
+    thing to do it for those.  */
+ 
+ void
+-remote_target::getpkt (char **buf, long *sizeof_buf, int forever)
++remote_target::getpkt (gdb::char_vector *buf, int forever)
+ {
+-  getpkt_sane (buf, sizeof_buf, forever);
++  getpkt_sane (buf, forever);
+ }
+ 
+ 
+ /* Read a packet from the remote machine, with error checking, and
+-   store it in *BUF.  Resize *BUF using xrealloc if necessary to hold
+-   the result, and update *SIZEOF_BUF.  If FOREVER, wait forever
+-   rather than timing out; this is used (in synchronous mode) to wait
+-   for a target that is is executing user code to stop.  If FOREVER ==
+-   0, this function is allowed to time out gracefully and return an
+-   indication of this to the caller.  Otherwise return the number of
+-   bytes read.  If EXPECTING_NOTIF, consider receiving a notification
+-   enough reason to return to the caller.  *IS_NOTIF is an output
+-   boolean that indicates whether *BUF holds a notification or not
+-   (a regular packet).  */
++   store it in *BUF.  Resize *BUF if necessary to hold the result.  If
++   FOREVER, wait forever rather than timing out; this is used (in
++   synchronous mode) to wait for a target that is is executing user
++   code to stop.  If FOREVER == 0, this function is allowed to time
++   out gracefully and return an indication of this to the caller.
++   Otherwise return the number of bytes read.  If EXPECTING_NOTIF,
++   consider receiving a notification enough reason to return to the
++   caller.  *IS_NOTIF is an output boolean that indicates whether *BUF
++   holds a notification or not (a regular packet).  */
+ 
+ int
+-remote_target::getpkt_or_notif_sane_1 (char **buf, long *sizeof_buf,
++remote_target::getpkt_or_notif_sane_1 (gdb::char_vector *buf,
+ 				       int forever, int expecting_notif,
+ 				       int *is_notif)
+ {
+@@ -11193,10 +11188,10 @@ remote_target::rcmd (const char *command, struct ui_file *outbuf)
+     command = "";
+ 
+   /* The query prefix.  */
+-  strcpy (rs->buf, "qRcmd,");
+-  p = strchr (rs->buf, '\0');
++  strcpy (rs->buf.data (), "qRcmd,");
++  p = strchr (rs->buf.data (), '\0');
+ 
+-  if ((strlen (rs->buf) + strlen (command) * 2 + 8/*misc*/)
++  if ((strlen (rs->buf.data ()) + strlen (command) * 2 + 8/*misc*/)
+       > get_remote_packet_size ())
+     error (_("\"monitor\" command ``%s'' is too long."), command);
+ 

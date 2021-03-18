@@ -1,0 +1,100 @@
+diff a/gdb/python/py-objfile.c b/gdb/python/py-objfile.c	(rejected hunks)
+@@ -79,7 +78,8 @@ objfpy_get_filename (PyObject *self, void *closure)
+   objfile_object *obj = (objfile_object *) self;
+ 
+   if (obj->objfile)
+-    return host_string_to_python_string (objfile_name (obj->objfile));
++    return (host_string_to_python_string (objfile_name (obj->objfile))
++	    .release ());
+   Py_RETURN_NONE;
+ }
+ 
+@@ -95,7 +95,7 @@ objfpy_get_username (PyObject *self, void *closure)
+     {
+       const char *username = obj->objfile->original_name;
+ 
+-      return host_string_to_python_string (username);
++      return host_string_to_python_string (username).release ();
+     }
+ 
+   Py_RETURN_NONE;
+@@ -115,12 +115,7 @@ objfpy_get_owner (PyObject *self, void *closure)
+ 
+   owner = objfile->separate_debug_objfile_backlink;
+   if (owner != NULL)
+-    {
+-      PyObject *result = objfile_to_objfile_object (owner);
+-
+-      Py_XINCREF (result);
+-      return result;
+-    }
++    return objfile_to_objfile_object (owner).release ();
+   Py_RETURN_NONE;
+ }
+ 
+@@ -147,12 +142,10 @@ objfpy_get_build_id (PyObject *self, void *closure)
+ 
+   if (build_id != NULL)
+     {
+-      char *hex_form = make_hex_string (build_id->data, build_id->size);
+-      PyObject *result;
++      gdb::unique_xmalloc_ptr<char> hex_form
++	(make_hex_string (build_id->data, build_id->size));
+ 
+-      result = host_string_to_python_string (hex_form);
+-      xfree (hex_form);
+-      return result;
++      return host_string_to_python_string (hex_form.get ()).release ();
+     }
+ 
+   Py_RETURN_NONE;
+@@ -166,12 +159,7 @@ objfpy_get_progspace (PyObject *self, void *closure)
+   objfile_object *obj = (objfile_object *) self;
+ 
+   if (obj->objfile)
+-    {
+-      PyObject *pspace =  pspace_to_pspace_object (obj->objfile->pspace);
+-
+-      Py_XINCREF (pspace);
+-      return pspace;
+-    }
++    return pspace_to_pspace_object (obj->objfile->pspace).release ();
+ 
+   Py_RETURN_NONE;
+ }
+@@ -456,6 +436,21 @@ objfpy_add_separate_debug_file (PyObject *self, PyObject *args, PyObject *kw)
+   Py_RETURN_NONE;
+ }
+ 
++/* Implement repr() for gdb.Objfile.  */
++
++static PyObject *
++objfpy_repr (PyObject *self_)
++{
++  objfile_object *self = (objfile_object *) self_;
++  objfile *obj = self->objfile;
++
++  if (obj == nullptr)
++    return PyString_FromString ("<gdb.Objfile (invalid)>");
++
++  return PyString_FromFormat ("<gdb.Objfile filename=%s>",
++			      objfile_filename (obj));
++}
++
+ /* Subroutine of gdbpy_lookup_objfile_by_build_id to simplify it.
+    Return non-zero if STRING is a potentially valid build id.  */
+ 
+@@ -592,12 +583,7 @@ gdbpy_lookup_objfile (PyObject *self, PyObject *args, PyObject *kw)
+     objfile = objfpy_lookup_objfile_by_name (name);
+ 
+   if (objfile != NULL)
+-    {
+-      PyObject *result = objfile_to_objfile_object (objfile);
+-
+-      Py_XINCREF (result);
+-      return result;
+-    }
++    return objfile_to_objfile_object (objfile).release ();
+ 
+   PyErr_SetString (PyExc_ValueError, _("Objfile not found."));
+   return NULL;
